@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="可控核聚变技术路径分析报告：原理、优缺点、工程瓶颈、最新进展与机构链接。调研截止 2026-10-24。">
+<title>把太阳装进盒子 · 可控核聚变技术路径分析报告</title>
+<style>
+/* ========== 基础变量 ========== */
+:root{
+  color-scheme: light;
+  --bg:#f5f2e9;
+  --surface:#fffdf8;
+  --surface-2:#efece1;
+  --surface-3:#e7e2d4;
+  --ink:#12161c;
+  --ink-2:#3d444e;
+  --muted:#6b7280;
+  --line:#ddd7c8;
+  --line-strong:#b9b2a2;
+  --brand:#0b5f73;
+  --brand-2:#b4441c;
+  --navy:#07111f;
+  --navy-2:#0d1b2e;
+  --s1:#2a78d6;
+  --s2:#eb6834;
+  --s3:#1baf7a;
+  --s4:#eda100;
+  --s5:#e87ba4;
+  --s6:#008300;
+  --s7:#4a3aa7;
+  --s8:#e34948;
+  --good:#0ca30c;
+  --warn:#fab219;
+  --serious:#ec835a;
+  --critical:#d03b3b;
+  --shadow:0 18px 50px rgba(18,22,28,.08);
+  --shadow-sm:0 6px 18px rgba(18,22,28,.06);
+  --radius:18px;
+  --sans:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --mono:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:#0d0f13;
+    --surface:#15181e;
+    --surface-2:#1d2129;
+    --surface-3:#252a33;
+    --ink:#f2f0e8;
+    --ink-2:#c9c6bb;
+    --muted:#9a9a92;
+    --line:#2a2e36;
+    --line-strong:#434852;
+    --brand:#5cc8d8;
+    --brand-2:#f08a5d;
+    --navy:#04080e;
+    --navy-2:#0a1420;
+    --s1:#3987e5;
+    --s2:#d95926;
+    --s3:#199e70;
+    --s4:#c98500;
+    --s5:#d55181;
+    --s6:#008300;
+    --s7:#9085e9;
+    --s8:#e66767;
+    --shadow:0 18px 50px rgba(0,0,0,.35);
+    --shadow-sm:0 6px 18px rgba(0,0,0,.25);
+  }
+}
+/* ========== 重置与排版 ========== */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--serif);font-size:17px;line-height:1.85;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%}
+a{color:var(--brand);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+a:hover{text-decoration-color:var(--brand)}
+p{margin:0 0 16px}
+strong{font-weight:700}
+em{font-style:normal;color:var(--brand)}
+small{font-size:.84em}
+h1,h2,h3,h4,h5,.sans{font-family:var(--sans)}
+h2{font-size:clamp(30px,4vw,46px);line-height:1.16;letter-spacing:-.025em;margin:0 0 18px;font-weight:800}
+h3{font-size:24px;line-height:1.32;letter-spacing:-.01em;margin:42px 0 12px;font-weight:750}
+h4{font-size:18px;line-height:1.4;margin:26px 0 8px;font-weight:700}
+::selection{background:var(--brand);color:#fff}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--brand);color:#fff;padding:10px 14px;z-index:200;font-family:var(--sans)}
+.skip-link:focus{left:12px;top:12px}
+/* ========== 进度条与导航 ========== */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--s3),var(--brand));z-index:120}
+.toc{position:sticky;top:0;z-index:100;background:rgba(245,242,233,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.toc-inner{max-width:1180px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.toc-inner::-webkit-scrollbar{display:none}
+.toc a{font-family:var(--sans);font-size:12.5px;line-height:1;color:var(--ink-2);text-decoration:none;padding:16px 10px 14px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--brand)}
+.toc a.is-active{color:var(--brand);border-bottom-color:var(--brand)}
+/* ========== 首屏 ========== */
+.hero-copy{min-width:0}
+.hero{position:relative;min-height:100svh;background:radial-gradient(1100px 680px at 76% 22%,#12314a 0%,#07111f 56%,#040a12 100%);color:#f7f4ea;overflow:hidden;display:flex;align-items:center}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%,rgba(255,255,255,.75),transparent 60%),
+    radial-gradient(1px 1px at 24% 72%,rgba(255,255,255,.55),transparent 60%),
+    radial-gradient(1.4px 1.4px at 38% 28%,rgba(255,255,255,.7),transparent 60%),
+    radial-gradient(1px 1px at 52% 82%,rgba(255,255,255,.5),transparent 60%),
+    radial-gradient(1.1px 1.1px at 66% 14%,rgba(255,255,255,.65),transparent 60%),
+    radial-gradient(1.3px 1.3px at 78% 64%,rgba(255,255,255,.55),transparent 60%),
+    radial-gradient(1px 1px at 88% 32%,rgba(255,255,255,.7),transparent 60%),
+    radial-gradient(1px 1px at 8% 88%,rgba(255,255,255,.45),transparent 60%),
+    radial-gradient(1.2px 1.2px at 44% 52%,rgba(255,255,255,.4),transparent 60%),
+    radial-gradient(1px 1px at 92% 86%,rgba(255,255,255,.55),transparent 60%);
+  opacity:.9;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,10,18,0) 60%,rgba(4,10,18,.72) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:auto;padding:118px 28px 76px;display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+.kicker{font-family:var(--sans);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#8fd7e4;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:46px;height:1px;background:#8fd7e4;display:inline-block}
+.hero-title{font-family:var(--sans);font-size:clamp(54px,8.2vw,112px);line-height:.98;letter-spacing:-.045em;margin:24px 0 26px;font-weight:850;color:#fbf8ef}
+.hero-title span{display:block;color:#8fd7e4}
+.hero-sub{font-family:var(--sans);font-size:clamp(17px,2vw,23px);line-height:1.62;color:#c9d5dd;max-width:640px;font-weight:400}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:28px;font-family:var(--sans);font-size:12px;color:#8fa4b2;letter-spacing:.03em}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+.hero-meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:#35c5d1;display:inline-block}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1;padding:15px 20px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:#8fd7e4;color:#061018;border:1px solid #8fd7e4}
+.btn-primary:hover{background:#b8e8f0}
+.btn-ghost{background:transparent;color:#d7e2e8;border:1px solid rgba(255,255,255,.24)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.55)}
+.hero-art{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}
+.hero-art-svg{width:100%;max-width:540px;height:auto;overflow:visible}
+.hero-art-caption{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#6f8b9c;text-transform:uppercase}
+.hero-stats{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 28px 46px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat{background:#07111f;padding:20px 18px 18px}
+.hero-stat .v{font-family:var(--sans);font-size:26px;font-weight:750;line-height:1.1;color:#fbf8ef;letter-spacing:-.02em}
+.hero-stat .l{font-family:var(--sans);font-size:10.5px;line-height:1.45;color:#7f95a4;margin-top:6px;letter-spacing:.04em}
+/* ========== 布局 ========== */
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.prose{max-width:840px}
+.prose-wide{max-width:980px}
+.section{padding:82px 0;border-bottom:1px solid var(--line);position:relative}
+.section.alt{background:var(--surface-2)}
+.section.dark{background:var(--navy);color:#e9eef2;border-bottom:none}
+.section.dark h2,.section.dark h3,.section.dark h4{color:#fbf8ef}
+.section.dark p,.section.dark li{color:#c9d5dd}
+.section.dark a{color:#8fd7e4;text-decoration-color:#3c6b7d}
+.section-head{display:grid;grid-template-columns:110px 1fr;gap:26px;align-items:start;margin-bottom:38px}
+.section-num{font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--brand);padding-top:10px}
+.section-lede{font-family:var(--sans);font-size:18.5px;line-height:1.7;color:var(--ink-2);max-width:850px;margin:0}
+.section.dark .section-lede{color:#a9bcc8}
+/* ========== 组件 ========== */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--kpi-accent,var(--brand));opacity:.85}
+.kpi-label{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kpi-value{font-family:var(--sans);font-size:clamp(30px,3.4vw,40px);line-height:1.08;font-weight:800;margin:10px 0 5px;letter-spacing:-.035em;color:var(--ink)}
+.kpi-note{font-family:var(--sans);font-size:12px;line-height:1.5;color:var(--ink-2)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:25px 26px;box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 8px;font-size:17px}
+.card p{font-size:15.5px;line-height:1.75;margin:0 0 10px;color:var(--ink-2)}
+.card p:last-child{margin-bottom:0}
+.card-tag{display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);border:1px solid var(--line);border-radius:999px;padding:3px 8px;margin-bottom:10px}
+.callout{border-left:3px solid var(--brand);background:var(--surface);padding:20px 24px;border-radius:0 14px 14px 0;margin:28px 0;font-family:var(--sans);font-size:15px;line-height:1.75;box-shadow:var(--shadow-sm)}
+.callout .callout-label{display:block;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--brand);margin-bottom:7px;font-weight:750}
+.callout p{margin:0;color:var(--ink-2)}
+.callout.warn{border-left-color:var(--s2)}
+.callout.warn .callout-label{color:var(--brand-2)}
+.callout.plain{background:transparent;box-shadow:none}
+.callout.dark{background:rgba(255,255,255,.05);border-left-color:#8fd7e4}
+.callout.dark .callout-label{color:#8fd7e4}
+.callout.dark p{color:#c9d5dd}
+/* 证据徽章 */
+.badge{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:10px;font-weight:750;letter-spacing:.03em;line-height:1;padding:4px 7px;border-radius:999px;border:1px solid;vertical-align:2px;white-space:nowrap;margin-left:3px;text-decoration:none}
+.badge.a{color:#0f6b3d;background:#e6f4ec;border-color:#b7dfc8}
+.badge.b{color:#1d4ed8;background:#e8eefc;border-color:#c3d2f7}
+.badge.c{color:#8a5a00;background:#fbf0d9;border-color:#ecd39a}
+.badge.d{color:#9f1d1d;background:#fbe9e7;border-color:#efc0ba}
+@media (prefers-color-scheme: dark){
+  .toc{background:rgba(13,15,19,.94)}
+  .badge.a{color:#8ee0b0;background:#10291d;border-color:#245c3b}
+  .badge.b{color:#9dbcf7;background:#111d33;border-color:#29436e}
+  .badge.c{color:#f0c66a;background:#2a210e;border-color:#5c4a1d}
+  .badge.d{color:#f0a39a;background:#2b1413;border-color:#63302b}
+}
+/* 表格 */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-sm);margin:26px 0}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:13.5px;line-height:1.55}
+th{text-align:left;background:var(--surface-2);color:var(--ink-2);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;font-weight:750}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface-2)}
+td .badge{margin-left:0}
+/* 图 */
+figure{margin:34px 0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px 18px 14px;box-shadow:var(--shadow);overflow:hidden}
+.fig-svg{display:block;width:100%;height:auto}
+figcaption{font-family:var(--sans);font-size:13px;color:var(--ink-2);line-height:1.6;padding:12px 6px 2px;border-top:1px solid var(--line);margin-top:12px}
+.fig-num{color:var(--brand);font-weight:750;letter-spacing:.04em}
+.fig-sub{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+/* SVG 通用样式 */
+.fig-svg text{font-family:var(--sans);fill:var(--ink)}
+.fig-svg .t-muted{fill:var(--muted)}
+.fig-svg .t-ink2{fill:var(--ink-2)}
+.fig-svg .t-brand{fill:var(--brand)}
+.fig-svg .t-small{font-size:11px}
+.fig-svg .t-label{font-size:12.5px}
+.fig-svg .t-body{font-size:13.5px}
+.fig-svg .t-title{font-size:16px;font-weight:750}
+.fig-svg .t-hero{font-size:26px;font-weight:800}
+.fig-svg .t-mono{font-family:var(--mono);font-size:11px}
+.fig-svg .axis{stroke:var(--line-strong);stroke-width:1;fill:none}
+.fig-svg .grid{stroke:var(--line);stroke-width:1;fill:none}
+.fig-svg .stroke-1{stroke:var(--s1);fill:none}
+.fig-svg .stroke-2{stroke:var(--s2);fill:none}
+.fig-svg .stroke-3{stroke:var(--s3);fill:none}
+.fig-svg .stroke-4{stroke:var(--s4);fill:none}
+.fig-svg .stroke-5{stroke:var(--s5);fill:none}
+.fig-svg .stroke-6{stroke:var(--s6);fill:none}
+.fig-svg .stroke-7{stroke:var(--s7);fill:none}
+.fig-svg .stroke-8{stroke:var(--s8);fill:none}
+.fig-svg .stroke-brand{stroke:var(--brand);fill:none}
+.fig-svg .stroke-muted{stroke:var(--muted);fill:none}
+.fig-svg .stroke-line{stroke:var(--line-strong);fill:none}
+.fig-svg .fill-1{fill:var(--s1)}
+.fig-svg .fill-2{fill:var(--s2)}
+.fig-svg .fill-3{fill:var(--s3)}
+.fig-svg .fill-4{fill:var(--s4)}
+.fig-svg .fill-5{fill:var(--s5)}
+.fig-svg .fill-6{fill:var(--s6)}
+.fig-svg .fill-7{fill:var(--s7)}
+.fig-svg .fill-8{fill:var(--s8)}
+.fig-svg .fill-brand{fill:var(--brand)}
+.fig-svg .fill-surface{fill:var(--surface)}
+.fig-svg .fill-surface2{fill:var(--surface-2)}
+.fig-svg .fill-ink{fill:var(--ink)}
+.fig-svg .fill-ink2{fill:var(--ink-2)}
+.fig-svg .fill-muted{fill:var(--muted)}
+.fig-svg .fill-line{fill:var(--line)}
+.fig-svg .w-thin{stroke-width:1.5}
+.fig-svg .w-med{stroke-width:2.5}
+.fig-svg .w-thick{stroke-width:5}
+/* 来源 */
+.ref{font-family:var(--sans);font-size:10.5px;vertical-align:super;line-height:0;color:var(--brand);text-decoration:none;margin-left:1px}
+.sources{list-style:none;padding:0;margin:0;counter-reset:src}
+.sources li{counter-increment:src;position:relative;padding:13px 0 13px 48px;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:13px;line-height:1.62;color:var(--ink-2)}
+.sources li::before{content:"[" counter(src) "]";position:absolute;left:0;top:13px;font-family:var(--mono);font-size:11.5px;color:var(--brand)}
+.sources li:last-child{border-bottom:none}
+.sources .src-title{color:var(--ink);font-weight:650}
+.sources .src-meta{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.sources .src-url{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;margin-top:3px;text-decoration:none}
+/* 其他 */
+.details{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--surface);margin:10px 0}
+.details summary{cursor:pointer;font-family:var(--sans);font-weight:650;font-size:15px}
+.details p{font-size:15px;margin:10px 0 0;color:var(--ink-2)}
+.footer{background:var(--navy);color:#a9bcc8;padding:64px 0 38px;font-family:var(--sans);font-size:13px;line-height:1.7}
+.footer a{color:#8fd7e4;text-decoration-color:#2f5564}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px}
+.footer h5{color:#fbf8ef;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
+.footer p{margin:0 0 10px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11.5px;color:#6f8796}
+.hr{height:1px;background:var(--line);border:0;margin:34px 0}
+.small-note{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.6}
+.tick{font-family:var(--sans);font-size:11px;fill:var(--muted);letter-spacing:.02em}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-family:var(--sans);font-size:11.5px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface)}
+.quote{font-family:var(--serif);font-size:21px;line-height:1.65;color:var(--ink);border-left:3px solid var(--s3);padding-left:22px;margin:30px 0}
+.quote cite{display:block;font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:8px;font-style:normal}
+/* ========== 响应式 ========== */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:20px;padding-top:96px}
+  .hero-art{min-height:320px;max-width:480px;margin:0 auto}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .section-head{grid-template-columns:1fr;gap:4px}
+  .section-num{padding-top:0}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .toc-inner{padding:0 18px}
+  .hero-inner{padding:88px 18px 50px}
+  .hero-stats{padding:0 18px 34px}
+  .hero-stat .v{font-size:22px}
+  .kpis{grid-template-columns:1fr}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .section{padding:58px 0}
+  figure{padding:12px 10px 10px;border-radius:14px}
+  .footer-grid{grid-template-columns:1fr}
+  .quote{font-size:18px}
+}
+@media print{
+  .toc,.progress,.hero-actions,.skip-link,.hero-art{display:none!important}
+  .hero{min-height:auto;background:#fff;color:#000}
+  .hero *{color:#000!important}
+  .hero-stats{display:none}
+  .section{page-break-inside:avoid;border-bottom:1px solid #ccc}
+  figure,.card,.kpi{box-shadow:none}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker">技术路线评估 · 2026</div>
+      <h1 class="hero-title">把太阳<span>装进盒子</span></h1>
+      <p class="hero-sub">可控核聚变的六条路径、三重增益，以及从“点火”到“电网”之间那条被低估的工程鸿沟。</p>
+      <div class="hero-meta">
+        <span>调研截止 2026-10-24</span>
+        <span>16 张释义图</span>
+        <span>44 条来源</span>
+        <span>证据分级 A–D</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#summary">开始阅读 →</a>
+        <a class="btn btn-ghost" href="#compare">直接看路线对比</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="hero-art-svg" viewBox="0 0 560 560" role="img" aria-label="托卡马克环形磁场与等离子体概念图">
+        <defs>
+          <radialGradient id="heroGlow">
+            <stop offset="0" stop-color="#7ff0ff" stop-opacity=".55"/>
+            <stop offset=".42" stop-color="#2a78d6" stop-opacity=".18"/>
+            <stop offset="1" stop-color="#07111f" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="heroRing" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#b8f6ff"/>
+            <stop offset=".45" stop-color="#35c5d1"/>
+            <stop offset="1" stop-color="#2a78d6"/>
+          </linearGradient>
+          <filter id="heroBlur" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="7"/>
+          </filter>
+        </defs>
+        <circle cx="280" cy="280" r="248" fill="url(#heroGlow)"/>
+        <g transform="rotate(-16 280 280)">
+          <ellipse cx="280" cy="280" rx="205" ry="120" fill="none" stroke="#244b5f" stroke-width="1"/>
+          <ellipse cx="280" cy="280" rx="168" ry="96" fill="none" stroke="#2f6479" stroke-width="1"/>
+          <ellipse cx="280" cy="280" rx="90" ry="48" fill="none" stroke="#244b5f" stroke-width="1"/>
+          <ellipse cx="280" cy="280" rx="172" ry="99" fill="none" stroke="url(#heroRing)" stroke-width="16" filter="url(#heroBlur)" opacity=".55"/>
+          <ellipse cx="280" cy="280" rx="172" ry="99" fill="none" stroke="url(#heroRing)" stroke-width="3.5"/>
+          <g stroke="#6ea6b9" stroke-width="9" stroke-linecap="round" opacity=".72">
+            <line x1="280" y1="150" x2="280" y2="82"/>
+            <line x1="280" y1="410" x2="280" y2="478"/>
+            <line x1="150" y1="280" x2="82" y2="280"/>
+            <line x1="410" y1="280" x2="478" y2="280"/>
+            <line x1="188" y1="188" x2="140" y2="140"/>
+            <line x1="372" y1="372" x2="420" y2="420"/>
+            <line x1="188" y1="372" x2="140" y2="420"/>
+            <line x1="372" y1="188" x2="420" y2="140"/>
+          </g>
+          <g fill="#8fd7e4" opacity=".9">
+            <circle cx="280" cy="64" r="3"/>
+            <circle cx="280" cy="496" r="3"/>
+            <circle cx="64" cy="280" r="3"/>
+            <circle cx="496" cy="280" r="3"/>
+          </g>
+        </g>
+        <g>
+          <rect x="266" y="170" width="28" height="220" rx="14" fill="#0a1c2b" stroke="#5b8fa3" stroke-width="1.4"/>
+          <line x1="280" y1="190" x2="280" y2="370" stroke="#35c5d1" stroke-width="1" opacity=".55"/>
+          <text x="280" y="540" text-anchor="middle" font-size="10" letter-spacing="2.2" fill="#6f8b9c">TOKAMAK · MAGNETIC CONFINEMENT</text>
+        </g>
+      </svg>
+      <div class="hero-art-caption">1 亿摄氏度 · 环形磁场 · 真空室</div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="v">4.13×</div><div class="l">NIF 靶增益纪录<br>8.6 MJ / 2.08 MJ（2025）</div></div>
+    <div class="hero-stat"><div class="v">Q ≥ 10</div><div class="l">ITER 设计目标<br>500 MW / 50 MW · 400 s</div></div>
+    <div class="hero-stat"><div class="v">1.5 亿 °C</div><div class="l">Helion Polaris D-T<br>私营装置首次（2026）</div></div>
+    <div class="hero-stat"><div class="v">$15B+</div><div class="l">全球聚变产业累计投资<br>FIA 行业口径</div></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目录">
+  <div class="toc-inner">
+    <a href="#summary">00 摘要</a>
+    <a href="#physics">01 物理门槛</a>
+    <a href="#landscape">02 路径全景</a>
+    <a href="#magnetic">03 磁约束</a>
+    <a href="#inertial">04 惯性约束</a>
+    <a href="#aneutronic">05 无中子</a>
+    <a href="#others">06 其他概念</a>
+    <a href="#compare">07 横向比较</a>
+    <a href="#updates">08 最新进展</a>
+    <a href="#engineering">09 工程瓶颈</a>
+    <a href="#outlook">10 时间表</a>
+    <a href="#conclusion">11 结论</a>
+    <a href="#evidence">12 证据与来源</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ================= 00 摘要 ================= -->
+<section class="section" id="summary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">00 / SUMMARY</div>
+      <div>
+        <h2>先说结论：点火已经发生，发电还没有</h2>
+        <p class="section-lede">过去四年，聚变第一次同时跨过两条心理门槛：实验室里实现了“燃烧波自持”，产业里出现了百亿美元级的私营资本。但把这两件事翻译成“电网上的电”，中间还隔着氚、材料、排热、效率和成本五道工程关。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>2022 年 12 月 5 日，美国国家点火装置（NIF）用 2.05 MJ 的激光，换来了 3.15 MJ 的聚变能，人类第一次在实验室里让聚变反应释放的能量超过驱动它所需的激光能量<span class="badge a" title="A 官方/一手：LLNL 官方发布">A</span>。2025 年 4 月，同一装置把纪录推到 8.6 MJ / 2.08 MJ，靶增益 4.13<span class="badge a">A</span>。这是货真价实的科学里程碑。</p>
+      <p>但它不是能源里程碑。NIF 的 8.6 MJ 是聚变中子与 α 粒子携带的能量，不是 8.6 MJ 电；装置从电网取电、充电、打靶、冷却，全设施能量账本仍然是净亏损。磁约束这边，JET 在 1997 年做到 Q=0.67，2021 年做到 59 MJ、Q≈0.33；ITER 的目标是 Q≥10，但要到 2039 年才进入 D-T 运行<span class="badge a">A</span>。到今天，没有任何一台聚变装置实现过工程净电输出。</p>
+      <p>所以，当前竞争的不是“能不能聚变”，而是三件更俗气的事：<strong>能不能连续跑几千小时、能不能自己造出氚、能不能把每度电的成本压到市场愿意付的水平。</strong>谁先回答这三问，谁才配谈“商业化”。</p>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi" style="--kpi-accent:var(--s8)"><div class="kpi-label">已实现工程净电</div><div class="kpi-value">0 台</div><div class="kpi-note">全球范围，截至 2026-10；科学增益与工程增益必须分开看</div></div>
+      <div class="kpi" style="--kpi-accent:var(--s1)"><div class="kpi-label">NIF 靶增益</div><div class="kpi-value">4.13×</div><div class="kpi-note">2025-04-07：8.6 MJ 聚变能 / 2.08 MJ 激光能</div></div>
+      <div class="kpi" style="--kpi-accent:var(--s3)"><div class="kpi-label">ITER D-T 运行</div><div class="kpi-value">2039</div><div class="kpi-note">2034 年开始研究运行；Q≥10，500 MW / 50 MW</div></div>
+      <div class="kpi" style="--kpi-accent:var(--s2)"><div class="kpi-label">私营累计资本</div><div class="kpi-value">$15B+</div><div class="kpi-note">FIA 行业口径；CFS 一家约 $4B，占近三成</div></div>
+    </div>
+
+    <div class="prose">
+      <h3>五条判断</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">判断 01 · 路线</div>
+          <h4>托卡马克仍是主线，但“主线”不等于“赢家”</h4>
+          <p>它拥有最长的实验数据库、最高的等离子体性能、最完整的工程供应链。ITER、EAST、WEST、KSTAR、JT-60SA、SPARC、STEP、BEST 都在同一条技术谱系上。风险不在“能不能点火”，而在稳态运行、偏滤器寿命、氚增殖和资本成本。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">判断 02 · 惯性</div>
+          <h4>激光聚变证明了物理，没证明电站</h4>
+          <p>NIF 的靶增益说明 α 粒子自加热和燃烧波是真实存在的。但激光器效率、每秒 10 次的重复频率、靶丸制造成本、第一壁寿命，都是另一个量级的问题。NIF 是物理实验装置，不是发电站原型。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">判断 03 · 私营</div>
+          <h4>时间表被提前了，但多数是“公司目标”</h4>
+          <p>SPARC 目标 2027 年 Q&gt;1，Helion Orion 目标 2028 年运行，General Fusion 目标 2028 年完成 Lawson 演示，CFS ARC 目标 2030 年代初并网。这些日期属于 C 级证据：有工程计划支撑，但没有独立验证，也不构成承诺。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">判断 04 · 瓶颈</div>
+          <h4>真正的难关是“三件套”：氚、材料、排热</h4>
+          <p>D-T 聚变 80% 的能量由 14.1 MeV 中子带走。中子要在锂包层里增殖氚，同时把材料打出 50–100 dpa 的损伤；偏滤器要承受 10–20 MW/m² 的稳态热流。这三件事没有一件能靠“再加热一点”解决。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">判断 05 · 时间</div>
+          <h4>2030 年代是演示期，2040 年代才是部署期</h4>
+          <p>即便 SPARC、ARC、Helion 的时间表全部兑现，首批机组也是“单台示范”，不是规模化制造。聚变对全球电力结构的实质贡献，更可能出现在 2040 年代之后；在此之前，它更像一场高风险、长周期、资本密集的技术期权。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">判断 06 · 组合</div>
+          <h4>不要押单一路线，要押“学习速度”</h4>
+          <p>托卡马克是 backbone，仿星器是长周期备选，FRC / MTF / Z-pinch 是高风险高回报期权，激光 ICF 是科学验证与专项应用，p-B11 是远期期权。真正该跟踪的，是各路线每美元、每年能买到多少“等离子体数据”。</p>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-label">读报告前的一个提醒</span>
+        <p>本报告把“科学增益”“靶增益”“工程增益”“商业增益”严格分开。媒体最常犯的错误，是把 NIF 的靶增益 4.13 写成“聚变已经净赚能量”。如果你只记住一件事：<strong>靶增益 ≠ 墙插增益，等离子体 Q ≠ 发电效率。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 物理门槛 ================= -->
+<section class="section alt" id="physics">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">01 / PHYSICS</div>
+      <div>
+        <h2>为什么聚变难：三道门槛，不止“温度”</h2>
+        <p class="section-lede">太阳靠引力把等离子体压在一起；地球上没有引力可用，只能用磁场或惯性把燃料约束足够久。温度、密度、约束时间，三者必须同时达标——这就是 Lawson 判据的残酷之处。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>1.1 一次 D-T 反应，80% 的能量交给了中子</h3>
+      <p>最容易实现的聚变反应是氘（D）与氚（T）的碰撞：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">²H + ³H → ⁴He (3.52 MeV) + n (14.06 MeV)　ΔE = 17.59 MeV</p>
+      <p>产物中，α 粒子（⁴He 核）带 3.52 MeV，留在等离子体里，把能量传给周围的燃料，这是“自加热”的来源；中子带 14.06 MeV，不带电，不受磁场约束，直接飞进第一壁和包层。<strong>80% 的能量在中子身上</strong>——这既是聚变堆的能量来源，也是材料损伤、氚增殖和屏蔽问题的根源<span class="badge a" title="A 官方/教科书：D-T 反应运动学">A</span>。</p>
+      <p>D-T 之所以最容易，是因为它的反应截面在约 64 keV 处有一个共振峰，峰值约 5 barn（5×10⁻²⁸ m²），比 D-D、D-He₃、p-B¹¹ 高出一到几个数量级。换句话说，D-T 是“物理上最便宜”的路线，但也是“工程上最脏”的路线：中子多、氚难管、材料易坏。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 430" role="img" aria-label="D-T 聚变反应示意图">
+        <defs>
+          <radialGradient id="dtAlpha"><stop offset="0" stop-color="#ffd9a8"/><stop offset="1" stop-color="#eb6834"/></radialGradient>
+          <radialGradient id="dtNeutron"><stop offset="0" stop-color="#dff6ff"/><stop offset="1" stop-color="#2a78d6"/></radialGradient>
+          <marker id="arrInk" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/></marker>
+          <marker id="arrOrange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--s2)"/></marker>
+          <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--s1)"/></marker>
+        </defs>
+        <text x="40" y="42" class="t-title">一次 D-T 反应的能量账本</text>
+        <text x="40" y="64" class="t-small t-muted">17.59 MeV 总释放能；α 粒子留在线圈里，中子飞进包层</text>
+        <line x1="40" y1="86" x2="1080" y2="86" class="grid"/>
+
+        <g transform="translate(120 210)">
+          <circle r="44" fill="var(--surface-2)" stroke="var(--s1)" stroke-width="3"/>
+          <circle cx="-13" cy="-10" r="10" fill="var(--s1)"/>
+          <circle cx="14" cy="8" r="10" fill="var(--s1)"/>
+          <text x="0" y="76" text-anchor="middle" class="t-label">氘核 D</text>
+          <text x="0" y="94" text-anchor="middle" class="t-small t-muted">1 proton + 1 neutron</text>
+        </g>
+        <text x="220" y="216" class="t-hero" fill="var(--muted)">+</text>
+        <g transform="translate(310 210)">
+          <circle r="52" fill="var(--surface-2)" stroke="var(--s2)" stroke-width="3"/>
+          <circle cx="-14" cy="-12" r="10" fill="var(--s2)"/>
+          <circle cx="12" cy="-12" r="10" fill="var(--s2)"/>
+          <circle cx="0" cy="14" r="10" fill="var(--s2)"/>
+          <text x="0" y="82" text-anchor="middle" class="t-label">氚核 T</text>
+          <text x="0" y="100" text-anchor="middle" class="t-small t-muted">1 proton + 2 neutrons</text>
+        </g>
+
+        <path d="M380 210 C470 150, 520 150, 590 190" fill="none" stroke="var(--line-strong)" stroke-width="1.5" marker-end="url(#arrInk)"/>
+        <text x="485" y="145" text-anchor="middle" class="t-small t-muted">量子隧穿 + 强相互作用</text>
+
+        <g transform="translate(690 150)">
+          <circle r="34" fill="url(#dtAlpha)" opacity=".95"/>
+          <text x="0" y="5" text-anchor="middle" font-size="12" font-weight="700" fill="#3a1808">⁴He</text>
+          <text x="0" y="62" text-anchor="middle" class="t-label">α 粒子 · 3.52 MeV</text>
+          <text x="0" y="80" text-anchor="middle" class="t-small t-muted">带正电，被磁场约束 → 自加热</text>
+        </g>
+        <g transform="translate(930 270)">
+          <circle r="26" fill="url(#dtNeutron)" opacity=".95"/>
+          <text x="0" y="5" text-anchor="middle" font-size="11" font-weight="700" fill="#061a33">n</text>
+          <text x="0" y="52" text-anchor="middle" class="t-label">中子 · 14.06 MeV</text>
+          <text x="0" y="70" text-anchor="middle" class="t-small t-muted">不带电，逃出磁场 → 包层/材料</text>
+        </g>
+        <path d="M730 185 C780 220, 830 250, 895 262" fill="none" stroke="var(--s1)" stroke-width="2" marker-end="url(#arrBlue)"/>
+        <path d="M705 175 C700 230, 690 280, 680 330" fill="none" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+
+        <g transform="translate(470 300)">
+          <rect x="0" y="0" width="260" height="86" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="18" y="26" class="t-small t-muted">能量分配</text>
+          <rect x="18" y="40" width="166" height="12" rx="6" fill="var(--s2)"/>
+          <rect x="188" y="40" width="42" height="12" rx="6" fill="var(--s1)"/>
+          <text x="18" y="70" class="t-small">中子 80%</text>
+          <text x="188" y="70" class="t-small">α 20%</text>
+        </g>
+        <text x="850" y="360" text-anchor="middle" class="t-small t-muted">注：能量按动量守恒分配，中子与 α 粒子反向飞出</text>
+      </svg>
+      <figcaption><span class="fig-num">图 1</span> · D-T 反应的能量分配 <span class="fig-sub">α 粒子负责“点火”，中子负责“产能”，也负责“破坏”。示意图，非按比例绘制。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>1.2 反应率不是随温度线性上升的</h3>
+      <p>聚变反应率由截面 σ 与相对速度 v 的乘积对速度分布积分得到，记作 ⟨σv⟩。D-T 的 ⟨σv⟩ 在 64 keV 附近达到峰值；D-D 需要更高温度，p-B¹¹ 则要到几百 keV 才进入可用区间。这意味着：<strong>燃料越“干净”，点火温度越高</strong>。p-B¹¹ 的“无中子”优势，是用高得多的温度和更低的反应率换来的。</p>
+      <p>磁约束装置通常运行在 10–20 keV 的离子温度（约 1–2 亿摄氏度），正好落在 D-T 反应率快速上升的区间；惯性约束的热斑温度更高、密度更大，但持续时间只有皮秒到纳秒量级。两条路线在“温度—密度—时间”相空间里走的是完全不同的角落。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 470" role="img" aria-label="不同聚变燃料的归一化反应率随温度变化示意图">
+        <text x="40" y="40" class="t-title">反应率 vs 温度：D-T 是最低的门槛</text>
+        <text x="40" y="62" class="t-small t-muted">归一化 ⟨σv⟩（对数坐标），示意曲线；用于比较量级，不用于工程计算</text>
+        <g>
+          <line x1="80" y1="400" x2="1090" y2="400" class="axis"/>
+          <line x1="80" y1="80" x2="80" y2="400" class="axis"/>
+          <line x1="80" y1="80" x2="1090" y2="80" class="grid"/>
+          <line x1="80" y1="160" x2="1090" y2="160" class="grid"/>
+          <line x1="80" y1="240" x2="1090" y2="240" class="grid"/>
+          <line x1="80" y1="320" x2="1090" y2="320" class="grid"/>
+          <line x1="417" y1="80" x2="417" y2="400" class="grid"/>
+          <line x1="521" y1="80" x2="521" y2="400" class="grid"/>
+          <line x1="754" y1="80" x2="754" y2="400" class="grid"/>
+          <line x1="1090" y1="80" x2="1090" y2="400" class="grid"/>
+          <text x="80" y="424" text-anchor="middle" class="tick">1</text>
+          <text x="417" y="424" text-anchor="middle" class="tick">10</text>
+          <text x="521" y="424" text-anchor="middle" class="tick">20</text>
+          <text x="754" y="424" text-anchor="middle" class="tick">100</text>
+          <text x="1090" y="424" text-anchor="middle" class="tick">1000</text>
+          <text x="585" y="452" text-anchor="middle" class="t-small t-muted">离子温度 T（keV，对数坐标）</text>
+          <text x="64" y="240" text-anchor="middle" class="t-small t-muted" transform="rotate(-90 64 240)">归一化反应率</text>
+          <text x="88" y="96" class="tick">10⁰</text>
+          <text x="88" y="176" class="tick">10⁻²</text>
+          <text x="88" y="256" class="tick">10⁻⁴</text>
+          <text x="88" y="336" class="tick">10⁻⁶</text>
+        </g>
+        <rect x="417" y="80" width="104" height="320" fill="var(--s1)" opacity=".08"/>
+        <text x="469" y="100" text-anchor="middle" class="t-small" fill="var(--s1)">磁约束运行区</text>
+        <text x="469" y="116" text-anchor="middle" class="t-small t-muted">10–20 keV</text>
+
+        <path d="M80 400 C140 399, 220 395, 300 360 C350 336, 390 300, 430 240 C470 180, 520 110, 600 90 C640 82, 670 80, 688 80 C720 82, 760 100, 810 140 C870 190, 940 250, 1010 300 C1040 320, 1065 335, 1090 345" fill="none" stroke="var(--s2)" stroke-width="3"/>
+        <path d="M300 400 C380 399, 450 395, 520 380 C600 362, 680 335, 754 310 C820 288, 900 275, 980 270 C1020 268, 1060 270, 1090 272" fill="none" stroke="var(--s1)" stroke-width="2"/>
+        <path d="M430 400 C520 399, 600 397, 680 392 C760 386, 840 378, 920 370 C980 364, 1040 360, 1090 358" fill="none" stroke="var(--s3)" stroke-width="2"/>
+        <path d="M600 400 C680 399, 750 397, 820 392 C880 386, 940 378, 1000 370 C1040 365, 1070 362, 1090 360" fill="none" stroke="var(--s5)" stroke-width="2"/>
+
+        <circle cx="688" cy="80" r="5" fill="var(--s2)"/>
+        <text x="700" y="74" class="t-label" fill="var(--s2)">D-T 峰值 ≈ 64 keV</text>
+        <text x="820" y="300" class="t-label" fill="var(--s1)">D-D</text>
+        <text x="930" y="382" class="t-label" fill="var(--s3)">D-He³</text>
+        <text x="1000" y="345" class="t-label" fill="var(--s5)">p-B¹¹</text>
+        <text x="1035" y="326" class="t-small t-muted">≈ 300–600 keV</text>
+
+        <g transform="translate(760 120)">
+          <rect x="0" y="0" width="300" height="92" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="14" y="24" class="t-small t-muted">读图提示</text>
+          <text x="14" y="44" class="t-small">D-T 曲线最高、峰位最低 → 最容易点火</text>
+          <text x="14" y="62" class="t-small">p-B¹¹ 曲线最低、峰位最高 → 最难，但中子少</text>
+          <text x="14" y="80" class="t-small">纵轴每格 100 倍，差距是数量级而非几成</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 2</span> · 四种燃料的归一化反应率 <span class="fig-sub">D-T 在 10–20 keV 已有可用反应率；p-B¹¹ 需要约 300–600 keV，且峰值低几个数量级。曲线为示意，量级参考公开截面数据。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>1.3 三种“增益”，三本不同的账</h3>
+      <p>聚变报道里最容易混淆的，是三个完全不同的比值：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>指标</th><th>定义</th><th>代表值</th><th>它说明了什么</th></tr></thead>
+          <tbody>
+            <tr><td><strong>等离子体增益 Q</strong></td><td>P<sub>聚变</sub> / P<sub>外部加热</sub></td><td>JET 0.67（1997）；ITER 目标 10；SPARC 目标 &gt;1</td><td>等离子体是否“烧得比加热多”，不含发电与厂用电</td></tr>
+            <tr><td><strong>靶增益</strong></td><td>E<sub>聚变</sub> / E<sub>激光</sub></td><td>NIF 4.13（2025）</td><td>靶丸是否“烧得比激光多”，不含激光器效率与全设施能耗</td></tr>
+            <tr><td><strong>工程增益</strong></td><td>P<sub>上网/净电</sub> / P<sub>全厂输入</sub></td><td>尚无系统达到 1；商业目标通常 5–10</td><td>电站是否“卖电比用电多”，含磁体、激光、泵、冷却、辅助系统</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Q=1 只说明“聚变反应释放的能量等于外部加热能量”，离“输出电能”还差一个热机效率、一个recirculating power（再循环功率）和一个厂用电账本。工程增益要做到 5–10，才有商业意义；这也是为什么 ITER 的 Q=10 仍被定义为“实验堆”，而不是“电站”。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="靶增益、等离子体增益与工程增益的对数坐标对比">
+        <text x="40" y="38" class="t-title">三种增益不在一个量级上</text>
+        <text x="40" y="60" class="t-small t-muted">对数坐标；实心点为已实现，空心点/区间为目标。纵轴不是时间，而是不同口径的比值。</text>
+        <g>
+          <line x1="240" y1="170" x2="1060" y2="170" class="axis"/>
+          <line x1="240" y1="310" x2="1060" y2="310" class="axis"/>
+          <line x1="240" y1="450" x2="1060" y2="450" class="axis"/>
+          <line x1="240" y1="80" x2="240" y2="470" class="grid"/>
+          <line x1="445" y1="80" x2="445" y2="470" class="grid"/>
+          <line x1="650" y1="80" x2="650" y2="470" class="grid"/>
+          <line x1="855" y1="80" x2="855" y2="470" class="grid"/>
+          <line x1="1060" y1="80" x2="1060" y2="470" class="grid"/>
+          <text x="240" y="490" text-anchor="middle" class="tick">0.01</text>
+          <text x="445" y="490" text-anchor="middle" class="tick">0.1</text>
+          <text x="650" y="490" text-anchor="middle" class="tick">1</text>
+          <text x="855" y="490" text-anchor="middle" class="tick">10</text>
+          <text x="1060" y="490" text-anchor="middle" class="tick">100</text>
+          <text x="620" y="512" text-anchor="middle" class="t-small t-muted">增益倍数（对数）</text>
+          <line x1="650" y1="80" x2="650" y2="470" stroke="var(--s8)" stroke-width="1.5"/>
+          <text x="658" y="98" class="t-small" fill="var(--s8)">盈亏平衡 = 1</text>
+        </g>
+        <g>
+          <text x="40" y="126" class="t-label">靶增益</text>
+          <text x="40" y="144" class="t-small t-muted">E_fusion / E_laser</text>
+          <circle cx="684" cy="125" r="7" fill="var(--s2)"/>
+          <text x="684" y="105" text-anchor="middle" class="t-small" fill="var(--s2)">NIF 2022 · 1.5</text>
+          <circle cx="750" cy="125" r="8" fill="var(--s2)"/>
+          <text x="762" y="120" class="t-label" fill="var(--s2)">NIF 2025 · 4.13</text>
+          <path d="M692 132 L742 132" stroke="var(--s2)" stroke-width="1.5" marker-end="url(#arrOrange)"/>
+        </g>
+        <g>
+          <text x="40" y="266" class="t-label">等离子体增益 Q</text>
+          <text x="40" y="284" class="t-small t-muted">P_fusion / P_heating</text>
+          <circle cx="617" cy="265" r="7" fill="var(--s1)"/>
+          <text x="617" y="245" text-anchor="middle" class="t-small" fill="var(--s1)">JET 1997 · 0.67</text>
+          <circle cx="681" cy="265" r="7" fill="var(--s1)" opacity=".55"/>
+          <text x="681" y="292" text-anchor="middle" class="t-small t-muted">JT-60U 折算 · 1.25</text>
+          <circle cx="650" cy="265" r="8" fill="none" stroke="var(--s1)" stroke-width="2.5"/>
+          <text x="650" y="245" text-anchor="middle" class="t-small" fill="var(--s1)">SPARC 目标 &gt;1</text>
+          <circle cx="855" cy="265" r="8" fill="none" stroke="var(--s1)" stroke-width="2.5"/>
+          <text x="855" y="245" text-anchor="middle" class="t-small" fill="var(--s1)">ITER 目标 10</text>
+        </g>
+        <g>
+          <text x="40" y="406" class="t-label">工程增益</text>
+          <text x="40" y="424" class="t-small t-muted">P_electric / P_input</text>
+          <circle cx="366" cy="405" r="7" fill="var(--s3)"/>
+          <text x="366" y="385" text-anchor="middle" class="t-small" fill="var(--s3)">NIF 全设施 ≈0.03</text>
+          <text x="366" y="435" text-anchor="middle" class="t-small t-muted">估算值，非官方</text>
+          <rect x="793" y="396" width="62" height="18" rx="9" fill="var(--s3)" opacity=".25"/>
+          <text x="824" y="385" text-anchor="middle" class="t-small" fill="var(--s3)">商业目标 5–10</text>
+          <text x="930" y="406" class="t-small" fill="var(--s8)">尚无系统达到 1</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 3</span> · 靶增益、等离子体增益与工程增益 <span class="fig-sub">NIF 的 4.13 是靶增益，不是工程增益；全设施估算约 0.03，属于分析师口径。JET 的 Q=0.67 是 D-T 等离子体增益。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>1.4 聚变堆本质上是一座“氚工厂 + 中子源 + 热机”</h3>
+      <p>氚是放射性同位素，半衰期 12.3 年，自然界几乎不存在。D-T 聚变堆必须一边烧氚，一边用中子轰击锂包层造氚：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">⁶Li + n → ³H + ⁴He + 4.8 MeV　　（氚增殖主反应）<br>⁷Li + n → ³H + ⁴He + n − 2.5 MeV　（阈值反应，可额外产氚）</p>
+      <p>氚增殖比 TBR 必须大于 1，工程上通常瞄准 1.05–1.15，以覆盖提取损失、衰变和滞留。ITER 本身不靠增殖氚自持，它要用外部氚启动，并通过 Test Blanket Module 验证增殖概念；真正的自持要在 DEMO 及之后的电站上证明<span class="badge a">A</span>。这就是为什么“聚变燃料无限”是一句半真半假的话：氘无限，锂够用，但氚的循环工程极难。</p>
+      <p>与此同时，14.1 MeV 中子会把第一壁材料打出离位损伤（dpa）、产生氦泡和氢脆，还会活化结构材料。聚变堆的“核废料”比裂变少得多、寿命短得多，但不是零；远程维护、放射性废物处置和氚许可，都是电站设计的一部分。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 560" role="img" aria-label="D-T 燃料循环与氚增殖示意图">
+        <defs>
+          <marker id="fcArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/></marker>
+          <marker id="fcArrowT" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--s3)"/></marker>
+          <marker id="fcArrowH" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--s4)"/></marker>
+        </defs>
+        <text x="40" y="38" class="t-title">聚变堆的燃料闭环：烧掉一个氚，造回一个氚</text>
+        <text x="40" y="60" class="t-small t-muted">D-T 燃烧产生中子；中子必须在锂包层中被“捕获”，才能生成新的氚</text>
+
+        <rect x="60" y="100" width="230" height="86" rx="14" fill="var(--s1)" opacity=".1" stroke="var(--s1)"/>
+        <text x="175" y="132" text-anchor="middle" class="t-label" fill="var(--s1)">D + T 燃料</text>
+        <text x="175" y="154" text-anchor="middle" class="t-small t-muted">氘来自海水；氚由包层增殖</text>
+
+        <rect x="390" y="100" width="300" height="86" rx="14" fill="var(--s2)" opacity=".1" stroke="var(--s2)"/>
+        <text x="540" y="132" text-anchor="middle" class="t-label" fill="var(--s2)">燃烧等离子体</text>
+        <text x="540" y="154" text-anchor="middle" class="t-small t-muted">D + T → ⁴He + n + 17.59 MeV</text>
+
+        <rect x="790" y="88" width="270" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="925" y="110" text-anchor="middle" class="t-small">α 粒子 3.52 MeV</text>
+        <text x="925" y="127" text-anchor="middle" class="t-small t-muted">留在等离子体 → 自加热</text>
+
+        <rect x="790" y="154" width="270" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="925" y="176" text-anchor="middle" class="t-small">中子 14.06 MeV</text>
+        <text x="925" y="193" text-anchor="middle" class="t-small t-muted">不带电 → 进入包层</text>
+
+        <rect x="760" y="270" width="310" height="116" rx="14" fill="var(--s3)" opacity=".12" stroke="var(--s3)"/>
+        <text x="915" y="300" text-anchor="middle" class="t-label" fill="var(--s3)">氚增殖包层</text>
+        <text x="915" y="322" text-anchor="middle" class="t-small">⁶Li + n → ³H + ⁴He + 4.8 MeV</text>
+        <text x="915" y="342" text-anchor="middle" class="t-small t-muted">中子倍增剂（Be/Pb）+ 锂陶瓷/液态锂</text>
+        <text x="915" y="362" text-anchor="middle" class="t-small t-muted">目标 TBR &gt; 1.05–1.15</text>
+
+        <rect x="390" y="410" width="300" height="82" rx="14" fill="var(--s4)" opacity=".12" stroke="var(--s4)"/>
+        <text x="540" y="440" text-anchor="middle" class="t-label" fill="var(--s4)">热量 → 蒸汽/氦循环</text>
+        <text x="540" y="462" text-anchor="middle" class="t-small t-muted">热能 → 汽轮机/燃气轮机 → 发电机</text>
+
+        <rect x="790" y="410" width="270" height="82" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="925" y="440" text-anchor="middle" class="t-label">电力输出</text>
+        <text x="925" y="462" text-anchor="middle" class="t-small t-muted">扣除厂用电后的净电</text>
+
+        <rect x="60" y="410" width="250" height="82" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+        <text x="185" y="438" text-anchor="middle" class="t-label t-muted">损失与负担</text>
+        <text x="185" y="458" text-anchor="middle" class="t-small t-muted">中子活化 / 材料损伤</text>
+        <text x="185" y="476" text-anchor="middle" class="t-small t-muted">氚滞留 / 衰变 / 许可</text>
+
+        <path d="M290 143 L380 143" stroke="var(--ink-2)" stroke-width="1.8" marker-end="url(#fcArrow)"/>
+        <path d="M690 130 L780 112" stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#fcArrow)"/>
+        <path d="M690 158 L780 178" stroke="var(--s1)" stroke-width="1.8" marker-end="url(#fcArrow)"/>
+        <path d="M925 206 L925 260" stroke="var(--s1)" stroke-width="1.8" marker-end="url(#fcArrow)"/>
+        <path d="M760 328 L700 328 L700 186" stroke="var(--s3)" stroke-width="2" fill="none" marker-end="url(#fcArrowT)"/>
+        <text x="710" y="250" class="t-small" fill="var(--s3)" transform="rotate(-90 710 250)">T 返回燃料</text>
+        <path d="M840 386 L620 410" stroke="var(--s4)" stroke-width="1.8" marker-end="url(#fcArrowH)"/>
+        <path d="M690 451 L780 451" stroke="var(--ink-2)" stroke-width="1.8" marker-end="url(#fcArrow)"/>
+        <path d="M790 200 L790 220 L320 220 L320 190" stroke="var(--line-strong)" stroke-width="1.2" fill="none" marker-end="url(#fcArrow)"/>
+        <text x="555" y="212" text-anchor="middle" class="t-small t-muted">部分中子用于活化/屏蔽，不参与增殖</text>
+        <path d="M185 410 L185 200" stroke="var(--line-strong)" stroke-width="1.2" fill="none" marker-end="url(#fcArrow)"/>
+        <text x="198" y="300" class="t-small t-muted" transform="rotate(-90 198 300)">氚库存与燃料处理</text>
+      </svg>
+      <figcaption><span class="fig-num">图 4</span> · D-T 燃料循环与氚增殖 <span class="fig-sub">聚变堆不是“烧燃料”，而是“烧氚、造氚、再烧氚”。TBR 必须略大于 1，系统才能自持。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <div class="callout">
+        <span class="callout-label">物理直觉</span>
+        <p>把聚变想成“在房间里接住一颗以 5 万公里/秒飞出的中子”。磁场接不住它，只能让它撞进包层；包层既要把它变成热，又要用它造氚，还要扛住它造成的原子级损伤。<strong>聚变的工程难度，很大程度上是中子带来的。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 02 路径全景 ================= -->
+<section class="section" id="landscape">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02 / LANDSCAPE</div>
+      <div>
+        <h2>路线全景：约束方式与燃料，是两个维度</h2>
+        <p class="section-lede">媒体常把“托卡马克、仿星器、激光聚变、p-B¹¹”放在同一张清单里比较，仿佛它们互为替代。其实它们回答的是两个不同问题：<strong>用什么把等离子体按住</strong>，以及<strong>烧什么燃料</strong>。把这两个维度拆开，路线图会清楚很多。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>维度一：约束方式。</strong>磁约束用磁场把低密度等离子体约束较长时间（秒到千秒）；惯性约束用驱动器在极短时间内（纳秒）压缩高密度靶丸，靠燃料自身的惯性完成燃烧；磁惯性约束介于两者之间，先用磁场预热/磁化，再用机械或电磁方式压缩。</p>
+      <p><strong>维度二：燃料。</strong>D-T 最容易点火，但中子多、需要氚增殖；D-D 不需要氚，但反应率低、中子仍多；D-He³ 和 p-B¹¹ 被称为“无中子”或“低中子”，但点火温度高、反应率低、还伴随轫致辐射损失。约束方式与燃料可以交叉组合：托卡马克可以烧 D-T，也可以尝试 D-He³；FRC 可以烧 D-T，也可以瞄准 D-He³ 或 p-B¹¹。</p>
+      <div class="callout">
+        <span class="callout-label">关键框架</span>
+        <p>不要问“哪条路线最好”，要问“<strong>在什么时间尺度、用什么燃料、承担多大工程风险</strong>”。D-T 托卡马克是最近的路，p-B¹¹ 仿星器是最远的路，中间是一组风险—回报不同的期权。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 580" role="img" aria-label="聚变技术路线分类树">
+        <defs>
+          <marker id="treeArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line-strong)"/></marker>
+        </defs>
+        <text x="40" y="34" class="t-title">聚变路线分类：先看“怎么约束”，再看“烧什么”</text>
+        <text x="40" y="56" class="t-small t-muted">同一约束方式可以搭配不同燃料；同一燃料也可以用于不同约束方式</text>
+
+        <rect x="410" y="82" width="300" height="58" rx="14" fill="var(--brand)" opacity=".12" stroke="var(--brand)"/>
+        <text x="560" y="108" text-anchor="middle" class="t-label" fill="var(--brand)">聚变路线</text>
+        <text x="560" y="128" text-anchor="middle" class="t-small t-muted">约束方式 × 燃料循环</text>
+
+        <g stroke="var(--line-strong)" stroke-width="1.2" fill="none">
+          <path d="M560 140 L560 158 L120 158 L120 178"/>
+          <path d="M560 140 L560 158 L320 158 L320 178"/>
+          <path d="M560 140 L560 178"/>
+          <path d="M560 140 L560 158 L720 158 L720 178"/>
+          <path d="M560 140 L560 158 L920 158 L920 178"/>
+        </g>
+
+        <g>
+          <rect x="25" y="180" width="190" height="44" rx="10" fill="var(--s1)" opacity=".13" stroke="var(--s1)"/>
+          <text x="120" y="207" text-anchor="middle" class="t-label" fill="var(--s1)">磁约束</text>
+          <rect x="225" y="180" width="190" height="44" rx="10" fill="var(--s2)" opacity=".13" stroke="var(--s2)"/>
+          <text x="320" y="207" text-anchor="middle" class="t-label" fill="var(--s2)">惯性约束</text>
+          <rect x="425" y="180" width="190" height="44" rx="10" fill="var(--s3)" opacity=".13" stroke="var(--s3)"/>
+          <text x="520" y="207" text-anchor="middle" class="t-label" fill="var(--s3)">磁惯性</text>
+          <rect x="625" y="180" width="190" height="44" rx="10" fill="var(--s5)" opacity=".16" stroke="var(--s5)"/>
+          <text x="720" y="207" text-anchor="middle" class="t-label" fill="var(--s5)">无中子/低中子</text>
+          <rect x="825" y="180" width="190" height="44" rx="10" fill="var(--muted)" opacity=".1" stroke="var(--muted)"/>
+          <text x="920" y="207" text-anchor="middle" class="t-label t-muted">其他概念</text>
+        </g>
+
+        <g>
+          <rect x="25" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="264" text-anchor="middle" class="t-small">托卡马克</text>
+          <text x="120" y="280" text-anchor="middle" class="t-small t-muted">ITER · EAST · SPARC</text>
+          <rect x="25" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="320" text-anchor="middle" class="t-small">仿星器</text>
+          <text x="120" y="336" text-anchor="middle" class="t-small t-muted">W7-X · Proxima · Type One</text>
+          <rect x="25" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="376" text-anchor="middle" class="t-small">球形托卡马克</text>
+          <text x="120" y="392" text-anchor="middle" class="t-small t-muted">ST40 · STEP</text>
+          <rect x="25" y="414" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="432" text-anchor="middle" class="t-small">场反位形 FRC</text>
+          <text x="120" y="448" text-anchor="middle" class="t-small t-muted">Helion · TAE</text>
+          <rect x="25" y="470" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="488" text-anchor="middle" class="t-small">反场箍缩 / 磁镜</text>
+          <text x="120" y="504" text-anchor="middle" class="t-small t-muted">RFX · Realta</text>
+        </g>
+
+        <g>
+          <rect x="225" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="264" text-anchor="middle" class="t-small">激光间接驱动</text>
+          <text x="320" y="280" text-anchor="middle" class="t-small t-muted">NIF · Longview</text>
+          <rect x="225" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="320" text-anchor="middle" class="t-small">激光直接驱动</text>
+          <text x="320" y="336" text-anchor="middle" class="t-small t-muted">Focused · Marvel</text>
+          <rect x="225" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="376" text-anchor="middle" class="t-small">脉冲功率</text>
+          <text x="320" y="392" text-anchor="middle" class="t-small t-muted">Pacific · Sandia Z</text>
+          <rect x="225" y="414" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="432" text-anchor="middle" class="t-small">弹丸/冲击压缩</text>
+          <text x="320" y="448" text-anchor="middle" class="t-small t-muted">First Light</text>
+        </g>
+
+        <g>
+          <rect x="425" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="264" text-anchor="middle" class="t-small">磁惯性约束 MTF</text>
+          <text x="520" y="280" text-anchor="middle" class="t-small t-muted">General Fusion</text>
+          <rect x="425" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="320" text-anchor="middle" class="t-small">磁化靶</text>
+          <text x="520" y="336" text-anchor="middle" class="t-small t-muted">MagLIF · 研究阶段</text>
+          <rect x="425" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="376" text-anchor="middle" class="t-small">等离子体射流</text>
+          <text x="520" y="392" text-anchor="middle" class="t-small t-muted">概念/早期实验</text>
+        </g>
+
+        <g>
+          <rect x="625" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="720" y="264" text-anchor="middle" class="t-small">p-B¹¹</text>
+          <text x="720" y="280" text-anchor="middle" class="t-small t-muted">TAE · HB11 · Marvel</text>
+          <rect x="625" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="720" y="320" text-anchor="middle" class="t-small">D-He³</text>
+          <text x="720" y="336" text-anchor="middle" class="t-small t-muted">Helion · 氦-3 供应受限</text>
+        </g>
+
+        <g>
+          <rect x="825" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="264" text-anchor="middle" class="t-small">μ 子催化</text>
+          <text x="920" y="280" text-anchor="middle" class="t-small t-muted">μ 子寿命/能耗限制</text>
+          <rect x="825" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="320" text-anchor="middle" class="t-small">静电聚变</text>
+          <text x="920" y="336" text-anchor="middle" class="t-small t-muted">Fusor · 中子源</text>
+          <rect x="825" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="376" text-anchor="middle" class="t-small">对撞束 / 晶格</text>
+          <text x="920" y="392" text-anchor="middle" class="t-small t-muted">低截面 · 未证实</text>
+        </g>
+
+        <text x="40" y="552" class="t-small t-muted">注：分类是分析框架，不是严格互斥。例如“激光驱动 + 磁化靶”可同时归入惯性与磁惯性；p-B¹¹ 也可用托卡马克或仿星器约束。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 5</span> · 聚变路线分类树 <span class="fig-sub">先按约束方式分五大类，再在类内看燃料与装置形态。无中子燃料是“燃料维度”，不是独立的约束方式。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>2.1 五条主线的“性格”</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">磁约束 · 成熟度最高</div>
+          <h4>托卡马克：用电流“造”一个螺旋磁场</h4>
+          <p>环向场线圈产生环向磁场，中心螺线管感应等离子体电流，电流再产生极向磁场；两者叠加成螺旋磁力线。它的约束性能最好、数据库最大，但本质上是脉冲装置，稳态运行需要额外的电流驱动。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁约束 · 稳态最优</div>
+          <h4>仿星器：把螺旋磁场“刻”进线圈</h4>
+          <p>不用等离子体电流，靠三维模块化线圈直接产生旋转变换。天然适合稳态，理论上有望避免电流驱动带来的不稳定性；代价是线圈制造极复杂、优化计算量巨大、工程迭代慢。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁约束 · 高 β 期权</div>
+          <h4>FRC：让等离子体自己“捏”出磁场</h4>
+          <p>场反位形（FRC）没有环向场线圈，磁场由等离子体电流自组织形成，β 值接近 1。结构简单、可直接能量回收，但稳定性与约束 scaling 仍是核心难题。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">惯性 · 物理已验证</div>
+          <h4>激光 ICF：用“内爆”复制恒星核心</h4>
+          <p>激光烧蚀靶丸表面，反冲把燃料向内压缩到极端密度，热斑先点火，α 粒子加热周围冷燃料，形成燃烧波。NIF 已证明这条路径物理可行，但“每次打靶”离“每天发电”还有巨大距离。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁惯性 · 工程巧思</div>
+          <h4>MTF：用液态金属“挤”等离子体</h4>
+          <p>先用磁场磁化并预热等离子体，再用液态金属衬里和活塞/电磁力压缩。液态金属同时充当第一壁、氚增殖介质和热载体，工程上很优雅，但重复频率与衬里稳定性是难点。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">无中子 · 远期期权</div>
+          <h4>p-B¹¹：最干净的燃料，最难的物理</h4>
+          <p>主反应只产生三个 α 粒子，几乎不产生中子。但需要约 300–600 keV 的离子温度，反应率低几个数量级，轫致辐射损失严重。TAE、HB11、Marvel 在探索，整体仍处于原理验证阶段。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 磁约束 ================= -->
+<section class="section alt" id="magnetic">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03 / MAGNETIC</div>
+      <div>
+        <h2>磁约束：把 1 亿度的等离子体“悬”在空中</h2>
+        <p class="section-lede">磁约束是聚变领域最成熟、资金最密集、装置最多的主线。它的基本思想很朴素：带电粒子绕磁力线做螺旋运动，只要磁场足够强、位形足够好，等离子体就不会碰到壁。难的是“足够好”三个字。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>3.1 托卡马克：最接近“燃烧等离子体”的装置</h3>
+      <p>托卡马克（Tokamak）是苏联人在 1950 年代发明的环形装置。它的磁场由两部分叠加：</p>
+      <ul>
+        <li><strong>环向场（B<sub>t</sub>）</strong>：由围绕环面的 D 形超导线圈产生，让带电粒子沿环向旋转；</li>
+        <li><strong>极向场（B<sub>p</sub>）</strong>：由等离子体电流（以及外部极向场线圈）产生，让磁力线绕环面“拧”起来。</li>
+      </ul>
+      <p>两者叠加后，磁力线呈螺旋形，绕环面多圈后才回到起点。这个“绕转”由安全因子 q 描述；q 太低会触发扭曲模，q 太高则约束变差。托卡马克的许多工程复杂性——中心螺线管、电流驱动、破裂防护、偏滤器——都围绕“如何维持一个稳定的 q 剖面”展开。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 600" role="img" aria-label="托卡马克与球形托卡马克结构示意图">
+        <defs>
+          <radialGradient id="plasmaGlow"><stop offset="0" stop-color="#ffb27a" stop-opacity=".55"/><stop offset="1" stop-color="#eb6834" stop-opacity="0"/></radialGradient>
+        </defs>
+        <text x="40" y="36" class="t-title">托卡马克：环向场 + 等离子体电流 = 螺旋磁力线</text>
+        <text x="40" y="58" class="t-small t-muted">左：常规托卡马克（低 β、大体积）；右：球形托卡马克（低长宽比、高 β、紧凑）</text>
+
+        <g>
+          <ellipse cx="350" cy="320" rx="235" ry="140" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <path d="M115 320 A235 140 0 1 0 585 320 A235 140 0 1 0 115 320 M270 320 A80 48 0 1 1 430 320 A80 48 0 1 1 270 320" fill="var(--surface)" fill-rule="evenodd" stroke="var(--line)" stroke-width="1.5"/>
+          <ellipse cx="350" cy="320" rx="175" ry="100" fill="url(#plasmaGlow)" stroke="var(--s2)" stroke-width="14" opacity=".55"/>
+          <ellipse cx="350" cy="320" rx="175" ry="100" fill="none" stroke="var(--s2)" stroke-width="3"/>
+          <g stroke="#6b7f8f" stroke-width="9" stroke-linecap="round" opacity=".62">
+            <line x1="350" y1="180" x2="350" y2="62"/>
+            <line x1="350" y1="460" x2="350" y2="578"/>
+            <line x1="210" y1="320" x2="92" y2="320"/>
+            <line x1="490" y1="320" x2="608" y2="320"/>
+            <line x1="251" y1="221" x2="168" y2="138"/>
+            <line x1="449" y1="419" x2="532" y2="502"/>
+            <line x1="251" y1="419" x2="168" y2="502"/>
+            <line x1="449" y1="221" x2="532" y2="138"/>
+          </g>
+          <rect x="336" y="250" width="28" height="140" rx="14" fill="var(--surface)" stroke="var(--brand)" stroke-width="2"/>
+          <path d="M318 432 L342 448 L358 432" fill="none" stroke="var(--s4)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M382 432 L358 448 L342 432" fill="none" stroke="var(--s4)" stroke-width="4" stroke-linecap="round"/>
+          <text x="350" y="300" text-anchor="middle" class="t-small" fill="var(--brand)" transform="rotate(-90 350 300)">中心螺线管</text>
+          <text x="430" y="292" class="t-small" fill="var(--s2)">等离子体</text>
+          <line x1="425" y1="296" x2="390" y2="310" stroke="var(--s2)" stroke-width="1"/>
+          <text x="470" y="452" class="t-small t-muted">真空室</text>
+          <line x1="465" y1="445" x2="500" y2="410" stroke="var(--line-strong)" stroke-width="1"/>
+          <text x="86" y="120" class="t-small t-muted">环向场线圈</text>
+          <line x1="130" y1="128" x2="240" y2="205" stroke="var(--line-strong)" stroke-width="1"/>
+          <text x="320" y="536" class="t-small t-muted">偏滤器</text>
+          <line x1="360" y1="526" x2="340" y2="450" stroke="var(--s4)" stroke-width="1"/>
+        </g>
+
+        <g>
+          <ellipse cx="880" cy="320" rx="150" ry="125" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <path d="M730 320 A150 125 0 1 0 1030 320 A150 125 0 1 0 730 320 M846 320 A34 55 0 1 1 914 320 A34 55 0 1 1 846 320" fill="var(--surface)" fill-rule="evenodd" stroke="var(--line)" stroke-width="1.5"/>
+          <ellipse cx="880" cy="320" rx="112" ry="88" fill="url(#plasmaGlow)" stroke="var(--s1)" stroke-width="10" opacity=".55"/>
+          <ellipse cx="880" cy="320" rx="112" ry="88" fill="none" stroke="var(--s1)" stroke-width="3"/>
+          <g stroke="#6b7f8f" stroke-width="8" stroke-linecap="round" opacity=".62">
+            <line x1="880" y1="195" x2="880" y2="82"/>
+            <line x1="880" y1="445" x2="880" y2="558"/>
+            <line x1="755" y1="320" x2="642" y2="320"/>
+            <line x1="1005" y1="320" x2="1118" y2="320"/>
+            <line x1="791" y1="231" x2="711" y2="151"/>
+            <line x1="969" y1="409" x2="1049" y2="489"/>
+          </g>
+          <rect x="868" y="245" width="24" height="150" rx="12" fill="var(--surface)" stroke="var(--brand)" stroke-width="2"/>
+          <text x="880" y="205" text-anchor="middle" class="t-small" fill="var(--brand)">中心柱</text>
+          <text x="1005" y="250" class="t-small" fill="var(--s1)">等离子体</text>
+          <line x1="1002" y1="255" x2="955" y2="285" stroke="var(--s1)" stroke-width="1"/>
+          <text x="880" y="500" text-anchor="middle" class="t-small t-muted">球形托卡马克：低长宽比、高 β、结构紧凑</text>
+        </g>
+
+        <text x="40" y="586" class="t-small t-muted">磁力线 = 环向场 + 极向场，绕环面螺旋前进；q = 磁力线绕环向圈数 / 绕极向圈数。示意图，非按比例。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 6</span> · 托卡马克与球形托卡马克 <span class="fig-sub">托卡马克靠等离子体电流产生极向场；球形托卡马克把中心柱做细，换来更高的 β 和更紧凑的体积。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.1.1 优点与缺点</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">优点</div>
+          <h4>为什么它是主线</h4>
+          <p>• 约束性能最好：H 模、ELM、偏滤器、电流驱动都有几十年的实验数据库。<br>
+          • 工程生态最完整：超导磁体、真空室、包层、遥操作、氚工厂都有供应链。<br>
+          • 规模化路径清晰：ITER → DEMO → 电站，公共项目与私营项目共享物理与工程经验。<br>
+          • 已经接近“燃烧等离子体”：ITER 的目标是 Q≥10、500 MW 聚变功率、400 s 脉冲。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">缺点</div>
+          <h4>为什么它仍然难</h4>
+          <p>• 脉冲运行：感应电流本质上是变压器，只能驱动有限时间的脉冲；稳态需要非感应电流驱动，效率与可靠性待验证。<br>
+          • 破裂风险：等离子体电流突然熄灭会释放巨大电磁力与逃逸电子，可能损坏第一壁。<br>
+          • 偏滤器热负荷：稳态 10–20 MW/m²，ELM 瞬态更高，钨铜模块寿命是硬约束。<br>
+          • 资本成本高：大体积、强磁场、复杂低温系统，首堆造价可能数十亿美元。</p>
+        </div>
+      </div>
+
+      <h3>3.1.2 当前状态：从“参数纪录”到“燃烧等离子体”</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>装置</th><th>国家/机构</th><th>状态（截至 2026-10）</th><th>关键目标/纪录</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ITER</strong></td><td>欧盟/中国/印度/日本/韩国/俄罗斯/美国</td><td>建设中；真空室 9 个扇区已全部运抵，2026 年完成总装阶段关键节点</td><td>SRO 2034；D-T 2039；Q≥10，500 MW / 50 MW，400 s<span class="badge a">A</span></td></tr>
+            <tr><td><strong>EAST</strong></td><td>中科院合肥物质科学研究院（ASIPP）</td><td>运行中；2025 年实现 1,066 s 稳态 H 模</td><td>长脉冲、钨偏滤器、锂注入；约 7000 万 °C<span class="badge a">A</span></td></tr>
+            <tr><td><strong>WEST</strong></td><td>法国 CEA</td><td>运行中；2025 年 2 月实现 1,337 s 等离子体</td><td>钨偏滤器长脉冲；为 ITER 积累运行经验<span class="badge a">A</span></td></tr>
+            <tr><td><strong>KSTAR</strong></td><td>韩国聚变能研究所（KFE）</td><td>运行中；2025 年启动面向未来反应堆的全参数实验</td><td>1 亿 °C 20 s（2020）；目标 300 s 级<span class="badge a">A</span></td></tr>
+            <tr><td><strong>JT-60SA</strong></td><td>日本 QST / 欧盟</td><td>2023 年首次等离子体；2026–2027 年实验 campaign</td><td>支持 ITER 与 DEMO 的联合研究<span class="badge a">A</span></td></tr>
+            <tr><td><strong>SPARC</strong></td><td>美国 CFS / MIT</td><td>建设中；目标 2027 年 Q&gt;1</td><td>高温超导磁体、紧凑高场托卡马克<span class="badge c">C</span></td></tr>
+            <tr><td><strong>ARC</strong></td><td>美国 CFS</td><td>设计/选址阶段；弗吉尼亚州 Fall Line 场址</td><td>400 MW 净电、约 1.1 GW 聚变功率；2030 年代初并网目标<span class="badge c">C</span></td></tr>
+            <tr><td><strong>STEP</strong></td><td>英国 UKFE / UKAEA</td><td>概念设计；West Burton 场址</td><td>2040 年原型电站；球形托卡马克路线<span class="badge a">A</span></td></tr>
+            <tr><td><strong>BEST</strong></td><td>中国 ASIPP / 聚变新能</td><td>建设中；预计 2026 年建成、2027 年投运</td><td>紧凑型燃烧等离子体实验；总投资约 85 亿元人民币<span class="badge b">B</span></td></tr>
+            <tr><td><strong>CFETR</strong></td><td>中国</td><td>设计/预研阶段</td><td>2035 年前后建设；DEMO 级验证<span class="badge c">C</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>ITER 的最新基线值得单独说明：2024 年 7 月，ITER 理事会批准了新基线，把“开始研究运行”（SRO）定在 2034 年，D-T 运行定在 2039 年，并增加约 50 亿欧元预算，第一壁从铍改为钨<span class="badge a">A</span>。这不是“延期丑闻”，而是把工程现实写进计划：真空室扇区、磁体、偏滤器、氚工厂的制造与装配都比原计划复杂。2026 年 10 月，9 个真空室扇区全部运抵现场，总装进入新阶段<span class="badge a">A</span>。</p>
+      <p>中国的节奏则更快：EAST 在 2025 年实现 1,066 秒稳态 H 模，WEST 实现 1,337 秒，说明“长脉冲”不再是不可逾越的障碍；BEST 以约 85 亿元人民币的投资、2027 年投运为目标，走的是“紧凑型燃烧等离子体”路线<span class="badge b">B</span>。但“投运”不等于“发电”，更不等于“商业成功”。</p>
+
+      <h3>3.2 仿星器：把稳态写进几何</h3>
+      <p>仿星器（Stellarator）不走“等离子体电流”这条路。它用一组三维形状的模块化线圈，直接产生带有旋转变换的磁场。因为不需要净环向电流，仿星器天然适合稳态运行，也不会像托卡马克那样被电流破裂（disruption）威胁。代价是线圈形状极其复杂，制造误差要求极高，等离子体输运的优化也更难。</p>
+      <p>德国的 W7-X 是当今最大的仿星器。它 2015 年首次等离子体，2023 年实现 8 分钟量级的等离子体，2026 年 5 月又报告了长脉冲下的三重积纪录<span class="badge a">A</span>。W7-X 的意义不是“马上发电”，而是证明仿星器可以在稳态下维持高温、高密度，并且偏滤器概念可行。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="仿星器三维线圈与旋转变换示意图">
+        <text x="40" y="36" class="t-title">仿星器：用三维线圈“雕刻”磁场</text>
+        <text x="40" y="58" class="t-small t-muted">没有净等离子体电流，磁场的旋转变换由外部线圈的几何形状直接决定</text>
+
+        <g>
+          <ellipse cx="470" cy="270" rx="250" ry="135" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+          <ellipse cx="470" cy="270" rx="95" ry="50" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <g stroke-linecap="round" fill="none" opacity=".9">
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s3)" stroke-width="5" transform="rotate(72 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5" transform="rotate(144 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s3)" stroke-width="5" transform="rotate(216 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5" transform="rotate(288 470 270)"/>
+          </g>
+          <ellipse cx="470" cy="270" rx="160" ry="86" fill="none" stroke="var(--s2)" stroke-width="3"/>
+          <path d="M310 270 C330 230 400 210 470 230 C540 250 610 230 630 270 C610 310 540 330 470 310 C400 290 330 310 310 270" fill="none" stroke="var(--s2)" stroke-width="1.5" opacity=".8"/>
+          <path d="M330 270 C350 245 410 232 470 248 C530 264 590 248 610 270 C590 292 530 308 470 292 C410 276 350 292 330 270" fill="none" stroke="var(--s2)" stroke-width="1.5" opacity=".55"/>
+          <text x="470" y="470" text-anchor="middle" class="t-small t-muted">五个模块化线圈绕环面排列；等离子体没有净电流</text>
+        </g>
+
+        <g>
+          <text x="760" y="120" class="t-label" fill="var(--s1)">三维模块化线圈</text>
+          <text x="760" y="142" class="t-small t-muted">形状由优化计算决定，制造误差要求极高</text>
+          <text x="760" y="184" class="t-label" fill="var(--s3)">旋转变换（rotational transform）</text>
+          <text x="760" y="206" class="t-small t-muted">磁力线绕环面螺旋前进，天然稳态</text>
+          <text x="760" y="248" class="t-label" fill="var(--s2)">无净电流 → 低破裂风险</text>
+          <text x="760" y="270" class="t-small t-muted">不需要变压器式电流驱动，适合连续运行</text>
+          <text x="760" y="312" class="t-label t-muted">代价</text>
+          <text x="760" y="334" class="t-small t-muted">线圈制造、优化计算、工程迭代慢；数据库小于托卡马克</text>
+
+          <rect x="760" y="360" width="280" height="110" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="778" y="384" class="t-small t-muted">磁面示意</text>
+          <g transform="translate(900 415)">
+            <ellipse rx="70" ry="30" fill="none" stroke="var(--s1)" stroke-width="1.8"/>
+            <ellipse rx="52" ry="22" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(12)"/>
+            <ellipse rx="34" ry="14" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(24)"/>
+            <ellipse rx="16" ry="7" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(36)"/>
+          </g>
+          <text x="778" y="452" class="t-small t-muted">嵌套磁面被三维扭曲</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 7</span> · 仿星器的三维线圈与旋转变换 <span class="fig-sub">仿星器把“稳态”写进几何：不靠等离子体电流，而靠线圈形状产生螺旋磁场。W7-X 已证明长脉冲运行可行。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">仿星器 · 优点</div>
+          <h4>天生适合基荷</h4>
+          <p>• 无净电流驱动，稳态运行是“默认模式”，不是“附加功能”。<br>
+          • 没有托卡马克式的电流破裂，安全裕度更大。<br>
+          • 磁场位形可以优化，理论上有望抑制湍流与损失。<br>
+          • 高温超导磁体成熟后，紧凑型仿星器的工程空间变大。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">仿星器 · 缺点</div>
+          <h4>几何复杂，迭代慢</h4>
+          <p>• 三维线圈制造与装配难度高，误差会直接破坏磁场位形。<br>
+          • 新经典输运与湍流优化需要大规模计算，设计周期长。<br>
+          • 偏滤器与第一壁的几何设计更复杂。<br>
+          • 实验数据库远小于托卡马克， scaling 不确定性更大。</p>
+        </div>
+      </div>
+      <p>私营仿星器正在加速。德国的 Proxima Fusion 在 2026 年完成 4.11 亿欧元融资，推进 Alpha 演示装置，并与 RWE、巴伐利亚州、IPP 合作规划欧洲首座商业聚变电站<span class="badge b">B</span>。美国的 Type One Energy 在 2026 年 10 月完成 2 亿美元 B 轮，与 TVA 合作在田纳西州 Bull Run 建设电网级仿星器<span class="badge b">B</span>。它们的时间表同样属于 C 级：目标明确，但尚未经过独立工程验证。</p>
+
+      <h3>3.3 球形托卡马克：把“甜甜圈”压扁</h3>
+      <p>球形托卡马克（Spherical Tokamak）是托卡马克的“紧凑版”：长宽比接近 1，中心柱很细，等离子体更像一个球。它的优点是 β 值高（同样磁场下能约束更高压强的等离子体），体积小、成本低；缺点是中心柱空间有限，屏蔽与磁体设计困难，稳态电流驱动也更棘手。</p>
+      <p>英国的 Tokamak Energy 是这条路的代表。它的 ST40 在 2022 年实现 1 亿 °C 的离子温度；2026 年 9 月完成 Demo4 高温超导磁体的 14 个月测试 campaign；2026 年 4 月被选为英国 STEP 的磁体系统合作伙伴<span class="badge b">B</span>。STEP 本身是英国政府的原型电站计划，目标 2040 年在 West Burton 运行<span class="badge a">A</span>。</p>
+
+      <h3>3.4 场反位形 FRC：让等离子体自己“捏”磁场</h3>
+      <p>场反位形（Field-Reversed Configuration, FRC）是一种没有环向场线圈的磁约束位形。等离子体电流沿环向流动，产生的极向磁场把等离子体封闭在一个“闭场线”区域里；外部磁场在两端形成“自然偏滤器”，把 exhaust 引走。FRC 的 β 值接近 1，意味着磁场利用率极高，装置可以做得小而便宜。</p>
+      <p>但 FRC 的稳定性与约束 scaling 一直是难题。它的寿命受倾斜模、交换模、杂质和端损失影响；要把它做到反应堆级别，需要精确的 formation、加速、合并和压缩控制。Helion 和 TAE 是两家最有代表性的公司，但路线略有不同：Helion 用两个 FRC 加速对撞、合并、再用脉冲磁场压缩；TAE 用中性束注入形成并稳定 FRC，长期目标是 p-B¹¹。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 430" role="img" aria-label="场反位形 FRC 的形成、加速、合并与压缩四步示意图">
+        <text x="40" y="34" class="t-title">FRC 的四步：形成 → 加速 → 合并 → 压缩</text>
+        <text x="40" y="56" class="t-small t-muted">没有环向场线圈；等离子体电流自组织出闭场线，β 接近 1</text>
+
+        <g>
+          <rect x="30" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="120" cy="210" rx="38" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="190" cy="210" rx="38" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="120" cy="210" rx="56" ry="76" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <ellipse cx="190" cy="210" rx="56" ry="76" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <text x="155" y="300" text-anchor="middle" class="t-small" fill="var(--s1)">闭场线</text>
+          <text x="155" y="322" text-anchor="middle" class="t-small t-muted">① 形成两个 FRC</text>
+        </g>
+
+        <g>
+          <rect x="300" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="390" cy="210" rx="36" ry="54" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="460" cy="210" rx="36" ry="54" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <rect x="330" y="150" width="16" height="120" rx="8" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <rect x="504" y="150" width="16" height="120" rx="8" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <path d="M352 210 L380 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M498 210 L470 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="425" y="322" text-anchor="middle" class="t-small t-muted">② 脉冲线圈加速</text>
+        </g>
+
+        <g>
+          <rect x="570" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="695" cy="210" rx="68" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="695" cy="210" rx="94" ry="78" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <text x="695" y="300" text-anchor="middle" class="t-small" fill="var(--s3)">高 β 等离子体</text>
+          <text x="695" y="322" text-anchor="middle" class="t-small t-muted">③ 合并成一个 FRC</text>
+        </g>
+
+        <g>
+          <rect x="840" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="965" cy="210" rx="40" ry="56" fill="var(--s2)" opacity=".28" stroke="var(--s2)" stroke-width="2"/>
+          <rect x="900" y="150" width="14" height="120" rx="7" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <rect x="1016" y="150" width="14" height="120" rx="7" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <path d="M920 210 L940 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M1010 210 L990 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="965" y="300" text-anchor="middle" class="t-small" fill="var(--s2)">压缩 → 加热</text>
+          <text x="965" y="322" text-anchor="middle" class="t-small t-muted">④ 压缩至燃烧条件</text>
+        </g>
+
+        <text x="40" y="382" class="t-small t-muted">FRC 的优点：结构简单、β 高、可直接电磁回收能量；难点：稳定性、约束 scaling、杂质与端损失。</text>
+        <text x="40" y="404" class="t-small t-muted">代表机构：Helion（D-He³，Polaris/Orion）、TAE（p-B¹¹，Norm）。两家都尚未证明工程净电。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 8</span> · FRC 的形成、加速、合并与压缩 <span class="fig-sub">FRC 不靠环向场线圈，而靠等离子体电流自组织；高 β 是优势，稳定性是代价。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Helion 在 2026 年 2 月宣布，其第七代装置 Polaris 实现了可测量的 D-T 聚变，并达到 1.5 亿 °C（约 13 keV），称这是私营装置首次实现 D-T 聚变<span class="badge b">B</span>。这是一个真实的工程里程碑，但它不等于“净电”：Polaris 是实验装置，商业路线是 D-He³，Orion 目标 2028 年初始运行，微软的 50 MW PPA 是购电协议，不是已经送电<span class="badge c">C</span>。</p>
+      <p>TAE 走得更远，也更难：它用中性束注入形成并稳定 FRC，长期目标是 p-B¹¹。公司称已进行超过 10 万次实验，Norm 装置首次仅用中性束就形成 FRC，跳过了原计划的 Copernicus<span class="badge b">B</span>。p-B¹¹ 的物理挑战见第 5 节；TAE 的时间表（2030 年代初）属于 C 级目标。</p>
+
+      <h3>3.5 磁惯性约束 MTF：用液态金属“挤”等离子体</h3>
+      <p>磁惯性约束（Magneto-Inertial Fusion, MTF）把磁约束和惯性约束结合起来：先把等离子体磁化、预热，然后用机械活塞或电磁力驱动液态金属衬里，把等离子体压缩到高温高密度。液态金属同时充当第一壁、氚增殖介质和热载体，理论上可以降低第一壁材料损伤和重复频率问题。</p>
+      <p>General Fusion 是这条路的代表。它的 LM26 装置在 2026 年宣布实现 1 keV 电子温度，目标是把等离子体加热到 10 keV 并达到 Lawson 判据；公司计划 2028 年完成 Lawson 演示，2035 年建成首座商业示范电站<span class="badge b">B</span>。1 keV 离 10 keV 还有距离，但“从 0 到 1 keV”本身是 MTF 领域的重要一步。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 480" role="img" aria-label="磁惯性约束 MTF 液态金属衬里与活塞压缩示意图">
+        <text x="40" y="34" class="t-title">MTF：液态金属衬里 + 活塞压缩</text>
+        <text x="40" y="56" class="t-small t-muted">先磁化预热，再用机械/电磁压缩；液态金属同时承担第一壁、氚增殖和热载体</text>
+
+        <g>
+          <circle cx="380" cy="260" r="185" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="150" fill="var(--s3)" opacity=".12" stroke="var(--s3)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="118" fill="var(--surface)" stroke="var(--s3)" stroke-width="1.5"/>
+          <circle cx="380" cy="260" r="62" fill="var(--s2)" opacity=".35" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="24" fill="var(--s2)" opacity=".8"/>
+          <g fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="1.5">
+            <rect x="366" y="30" width="28" height="58" rx="8"/>
+            <rect x="366" y="432" width="28" height="58" rx="8"/>
+            <rect x="150" y="246" width="58" height="28" rx="8"/>
+            <rect x="552" y="246" width="58" height="28" rx="8"/>
+            <rect x="220" y="100" width="28" height="58" rx="8" transform="rotate(-45 234 129)"/>
+            <rect x="512" y="100" width="28" height="58" rx="8" transform="rotate(45 526 129)"/>
+            <rect x="220" y="362" width="28" height="58" rx="8" transform="rotate(45 234 391)"/>
+            <rect x="512" y="362" width="28" height="58" rx="8" transform="rotate(-45 526 391)"/>
+          </g>
+          <g stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)">
+            <line x1="380" y1="95" x2="380" y2="128"/>
+            <line x1="380" y1="425" x2="380" y2="392"/>
+            <line x1="215" y1="260" x2="248" y2="260"/>
+            <line x1="545" y1="260" x2="512" y2="260"/>
+            <line x1="262" y1="142" x2="288" y2="168"/>
+            <line x1="498" y1="142" x2="472" y2="168"/>
+            <line x1="262" y1="378" x2="288" y2="352"/>
+            <line x1="498" y1="378" x2="472" y2="352"/>
+          </g>
+          <text x="380" y="268" text-anchor="middle" class="t-small" fill="#3a1808">等离子体</text>
+          <text x="380" y="420" text-anchor="middle" class="t-small" fill="var(--s3)">液态金属衬里</text>
+        </g>
+
+        <g>
+          <text x="660" y="120" class="t-label" fill="var(--s3)">液态金属衬里</text>
+          <text x="660" y="142" class="t-small t-muted">锂/铅锂合金；吸收中子、增殖氚、带走热量</text>
+          <text x="660" y="184" class="t-label" fill="var(--s2)">等离子体靶</text>
+          <text x="660" y="206" class="t-small t-muted">先磁化、预热，再被压缩到燃烧条件</text>
+          <text x="660" y="248" class="t-label" fill="var(--s1)">活塞/电磁驱动</text>
+          <text x="660" y="270" class="t-small t-muted">机械活塞或脉冲电磁力，驱动衬里向内压缩</text>
+          <text x="660" y="312" class="t-label t-muted">四步循环</text>
+          <text x="660" y="334" class="t-small t-muted">注入等离子体 → 形成衬里 → 压缩 → 燃烧/膨胀</text>
+
+          <rect x="660" y="360" width="380" height="76" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="678" y="386" class="t-small t-muted">工程优点</text>
+          <text x="678" y="408" class="t-small">液态金属可承受高中子通量，减少固体第一壁损伤</text>
+          <text x="678" y="426" class="t-small">理论上有望降低首堆成本与重复频率压力</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 9</span> · 磁惯性约束 MTF 的液态金属压缩 <span class="fig-sub">General Fusion 的 LM26 已实现 1 keV 电子温度；从 1 keV 到 10 keV、再到 Lawson 判据，仍是长路。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.6 Z-pinch：让电流自己“捏”出等离子体</h3>
+      <p>Z-pinch 是最简单的聚变位形之一：沿轴向驱动强大电流，电流产生的环形磁场对等离子体施加向内的洛伦兹力，把等离子体“捏”成一根细丝。它的优点极其诱人——结构简单、磁场由电流自身产生、能量密度高、单次脉冲可以产生大量中子；缺点是等离子体柱极易发生“香肠不稳定性”（sausage）和“扭曲不稳定性”（kink），在纳秒尺度内就散掉。</p>
+      <p>Zap Energy 的方案是“剪切流稳定”（sheared-flow stabilization）：让等离子体沿轴向分层流动，不同半径的流速不同，从而抑制不稳定性。它的装置把等离子体约束在约 50 cm 长、1 mm 宽的细丝里，以约 10 Hz 的频率脉冲运行，并用液态金属壁处理热流与中子<span class="badge b">B</span>。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 470" role="img" aria-label="Z-pinch 装置与剪切流稳定示意图">
+        <text x="40" y="34" class="t-title">Z-pinch：电流自箍缩，剪切流稳住“细丝”</text>
+        <text x="40" y="56" class="t-small t-muted">轴向电流产生环形磁场，洛伦兹力向内；剪切流让不同半径的等离子体错开流动，抑制不稳定性</text>
+
+        <g>
+          <rect x="180" y="80" width="260" height="28" rx="6" fill="var(--surface-2)" stroke="var(--line-strong)"/>
+          <rect x="180" y="382" width="260" height="28" rx="6" fill="var(--surface-2)" stroke="var(--line-strong)"/>
+          <line x1="310" y1="108" x2="310" y2="382" stroke="var(--s2)" stroke-width="7"/>
+          <line x1="310" y1="108" x2="310" y2="382" stroke="var(--s4)" stroke-width="2" opacity=".7"/>
+          <g stroke="var(--s1)" stroke-width="1.8" fill="none" opacity=".8">
+            <ellipse cx="310" cy="150" rx="80" ry="18"/>
+            <ellipse cx="310" cy="240" rx="80" ry="18"/>
+            <ellipse cx="310" cy="330" rx="80" ry="18"/>
+          </g>
+          <g fill="var(--s2)">
+            <path d="M300 180 L320 180 L310 194 z"/>
+            <path d="M300 260 L320 260 L310 274 z"/>
+            <path d="M300 340 L320 340 L310 354 z"/>
+          </g>
+          <path d="M240 210 L282 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M380 210 L338 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="310" y="140" text-anchor="middle" class="t-small" fill="var(--s1)">B</text>
+          <text x="310" y="70" text-anchor="middle" class="t-small t-muted">电极</text>
+          <text x="310" y="430" text-anchor="middle" class="t-small t-muted">电极</text>
+          <text x="235" y="200" class="t-small" fill="var(--s2)">洛伦兹力</text>
+          <text x="310" y="450" text-anchor="middle" class="t-small t-muted">轴向电流 I → 环形磁场 B → 向内箍缩</text>
+        </g>
+
+        <g>
+          <text x="650" y="100" class="t-label" fill="var(--s3)">剪切流稳定</text>
+          <text x="650" y="122" class="t-small t-muted">不同半径的等离子体以不同速度流动，抑制香肠/扭曲模</text>
+          <line x1="730" y1="160" x2="730" y2="330" stroke="var(--s2)" stroke-width="5"/>
+          <path d="M780 160 C810 190 750 220 780 250 C810 280 750 310 780 330" fill="none" stroke="var(--s8)" stroke-width="4"/>
+          <text x="730" y="352" text-anchor="middle" class="t-small" fill="var(--s3)">稳定</text>
+          <text x="790" y="352" text-anchor="middle" class="t-small" fill="var(--s8)">不稳定</text>
+          <text x="650" y="386" class="t-small t-muted">Zap 的方案：50 cm 长、1 mm 宽，约 10 Hz 脉冲</text>
+          <text x="650" y="408" class="t-small t-muted">优点：简单、低成本、高中子产额</text>
+          <text x="650" y="430" class="t-small t-muted">难点：电极侵蚀、重复频率、脉冲电源寿命</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 10</span> · Z-pinch 的自箍缩与剪切流稳定 <span class="fig-sub">Z-pinch 用电流自身的磁场约束等离子体；剪切流是 Zap Energy 抑制不稳定性的核心设计。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.7 磁镜：简单，但端损失致命</h3>
+      <p>磁镜（Magnetic Mirror）用两端更强的磁场形成“磁瓶”，把带电粒子反射回去。它的结构简单、稳态运行容易，但端损失（粒子从两端逃逸）导致约束时间短，早期装置难以达到聚变条件。串联磁镜、串级磁镜等改进方案试图用静电势垒堵住端损失，但工程复杂性上升。</p>
+      <p>美国的 Realta Fusion 在 2026 年与 CFS 建立合作，探索磁镜与高温超导磁体的结合<span class="badge b">B</span>。磁镜路线整体处于早期，适合作为特定应用（中子源、材料测试）而非主线电站方案。</p>
+
+      <h3>3.8 磁约束路线横向对比</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>路线</th><th>约束原理</th><th>代表机构</th><th>优点</th><th>核心难点</th><th>TRL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>托卡马克</strong></td><td>环向场 + 等离子体电流</td><td>ITER、CFS、ASIPP、KFE、QST</td><td>约束最好、数据库最大、工程生态完整</td><td>稳态、破裂、偏滤器、成本</td><td>6–7</td></tr>
+            <tr><td><strong>仿星器</strong></td><td>三维线圈产生旋转变换</td><td>IPP、Proxima、Type One</td><td>天然稳态、低破裂风险</td><td>线圈制造、优化、数据库小</td><td>5–6</td></tr>
+            <tr><td><strong>球形托卡马克</strong></td><td>低长宽比托卡马克</td><td>Tokamak Energy、UKAEA</td><td>高 β、紧凑、成本低</td><td>中心柱、稳态、屏蔽</td><td>4–5</td></tr>
+            <tr><td><strong>FRC</strong></td><td>等离子体电流自组织闭场线</td><td>Helion、TAE</td><td>高 β、简单、直接能量回收</td><td>稳定性、约束 scaling、杂质</td><td>3–4</td></tr>
+            <tr><td><strong>MTF</strong></td><td>磁化 + 液态金属压缩</td><td>General Fusion</td><td>液态金属第一壁、成本潜力</td><td>重复频率、衬里稳定性、预热</td><td>3–4</td></tr>
+            <tr><td><strong>Z-pinch</strong></td><td>电流自箍缩 + 剪切流稳定</td><td>Zap Energy</td><td>简单、低成本、高中子产额</td><td>电极侵蚀、脉冲电源、稳定性</td><td>3–4</td></tr>
+            <tr><td><strong>磁镜</strong></td><td>两端强磁场反射</td><td>Realta</td><td>简单、稳态、适合中子源</td><td>端损失、约束时间</td><td>3–4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">TRL 为分析师综合评估（C 级），口径为“1–9 级技术成熟度”，不同机构可能相差 1–2 级。TRL 6–7 表示“系统级演示”，不等于“商业可用”。</p>
+    </div>
+  </div>
+</section>
+<!-- ================= 04 惯性约束 ================= -->
+<section class="section" id="inertial">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">04 / INERTIAL</div>
+      <div>
+        <h2>惯性约束：用“内爆”复制恒星核心</h2>
+        <p class="section-lede">惯性约束不走“长时间约束”的路，而是把燃料在纳秒内压缩到极端密度，让它在飞散之前完成燃烧。NIF 已经证明这条路在物理上可行；但“每次打靶”与“每天发电”之间，隔着驱动器效率、重复频率、靶丸成本和腔室寿命四道关。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>4.1 原理：烧蚀、内爆、热斑、燃烧波</h3>
+      <p>惯性约束聚变（Inertial Confinement Fusion, ICF）的核心是一个球形靶丸：外层是烧蚀层（ablator），里面是冷冻的 D-T 冰层，中心是 D-T 气体。驱动器（激光、X 射线、脉冲电流或弹丸）在极短时间内把能量沉积在烧蚀层表面，表面物质迅速汽化、向外喷射，反冲力把剩余靶丸向内压缩——这就是“火箭效应”。</p>
+      <p>内爆把燃料压缩到原来的几十倍半径、上千倍密度，中心形成高温“热斑”。热斑先发生聚变，α 粒子被周围高密度冷燃料阻止，把能量沉积下来，触发“燃烧波”向外传播。这个过程叫“点火”（ignition）；如果燃烧波能自持，靶增益可以远大于 1。</p>
+      <p>ICF 有两条主要驱动路线：</p>
+      <ul>
+        <li><strong>间接驱动</strong>：激光先打进金/铀做的黑体腔（hohlraum），转换成 X 射线，X 射线均匀烧蚀靶丸。优点是辐照均匀、对称性好；缺点是激光→X 射线的转换损失，以及黑体腔的工程复杂性。</li>
+        <li><strong>直接驱动</strong>：激光直接照射靶丸。能量效率更高，但光束均匀性、瑞利-泰勒不稳定性、靶丸支撑等挑战更大。</li>
+      </ul>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 620" role="img" aria-label="激光惯性约束的间接驱动与直接驱动示意图">
+        <defs>
+          <marker id="icfArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--s2)"/></marker>
+          <marker id="icfArrowBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--s1)"/></marker>
+          <radialGradient id="icfHot"><stop offset="0" stop-color="#fff1c9"/><stop offset=".55" stop-color="#eb6834"/><stop offset="1" stop-color="#b4441c"/></radialGradient>
+        </defs>
+        <text x="40" y="36" class="t-title">间接驱动 vs 直接驱动：两条激光聚变路线</text>
+        <text x="40" y="58" class="t-small t-muted">左：激光 → 黑体腔 → X 射线 → 内爆；右：激光直接烧蚀靶丸</text>
+
+        <g>
+          <text x="60" y="100" class="t-label" fill="var(--s2)">间接驱动（NIF 路线）</text>
+          <rect x="90" y="150" width="30" height="230" rx="8" fill="#b08a3e" opacity=".65"/>
+          <rect x="500" y="150" width="30" height="230" rx="8" fill="#b08a3e" opacity=".65"/>
+          <rect x="110" y="180" width="400" height="170" rx="38" fill="#d9b46a" opacity=".16" stroke="#b08a3e" stroke-width="2"/>
+          <g fill="var(--s2)" opacity=".28">
+            <polygon points="20,196 130,214 130,226 20,218"/>
+            <polygon points="20,246 130,250 130,262 20,266"/>
+            <polygon points="20,296 130,286 130,298 20,310"/>
+            <polygon points="20,346 130,322 130,334 20,356"/>
+            <polygon points="600,196 490,214 490,226 600,218"/>
+            <polygon points="600,246 490,250 490,262 600,266"/>
+            <polygon points="600,296 490,286 490,298 600,310"/>
+            <polygon points="600,346 490,322 490,334 600,356"/>
+          </g>
+          <circle cx="310" cy="265" r="44" fill="var(--s7)" opacity=".25" stroke="var(--s7)" stroke-width="2"/>
+          <circle cx="310" cy="265" r="29" fill="var(--s1)" opacity=".45" stroke="var(--s1)" stroke-width="1.5"/>
+          <circle cx="310" cy="265" r="11" fill="url(#icfHot)"/>
+          <g stroke="var(--s2)" stroke-width="1.2" fill="none" opacity=".8">
+            <path d="M150 200 Q220 190 265 235" marker-end="url(#icfArrow)"/>
+            <path d="M150 330 Q220 340 265 295" marker-end="url(#icfArrow)"/>
+            <path d="M470 200 Q400 190 355 235" marker-end="url(#icfArrow)"/>
+            <path d="M470 330 Q400 340 355 295" marker-end="url(#icfArrow)"/>
+          </g>
+          <text x="310" y="382" text-anchor="middle" class="t-small t-muted">X 射线均匀烧蚀 → 球对称内爆</text>
+          <text x="150" y="430" class="t-small t-muted">激光</text>
+          <text x="390" y="430" class="t-small t-muted">金/铀黑体腔</text>
+          <text x="390" y="452" class="t-small t-muted">烧蚀层 / DT 冰 / 热斑</text>
+        </g>
+
+        <g>
+          <text x="640" y="100" class="t-label" fill="var(--s1)">直接驱动</text>
+          <circle cx="860" cy="250" r="58" fill="var(--s7)" opacity=".22" stroke="var(--s7)" stroke-width="2"/>
+          <circle cx="860" cy="250" r="38" fill="var(--s1)" opacity=".38" stroke="var(--s1)" stroke-width="1.5"/>
+          <circle cx="860" cy="250" r="13" fill="url(#icfHot)"/>
+          <g stroke="var(--s1)" stroke-width="2" marker-end="url(#icfArrowBlue)">
+            <line x1="700" y1="160" x2="820" y2="218"/>
+            <line x1="700" y1="250" x2="800" y2="250"/>
+            <line x1="700" y1="340" x2="820" y2="282"/>
+            <line x1="1020" y1="160" x2="900" y2="218"/>
+            <line x1="1020" y1="250" x2="920" y2="250"/>
+            <line x1="1020" y1="340" x2="900" y2="282"/>
+            <line x1="790" y1="120" x2="838" y2="198"/>
+            <line x1="930" y1="120" x2="882" y2="198"/>
+          </g>
+          <text x="860" y="350" text-anchor="middle" class="t-small t-muted">激光直接烧蚀；效率更高，对称性更难</text>
+        </g>
+
+        <g>
+          <text x="640" y="410" class="t-label t-muted">内爆四阶段</text>
+          <g>
+            <circle cx="700" cy="490" r="34" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="700" cy="490" r="22" fill="var(--s1)" opacity=".3"/>
+            <text x="700" y="548" text-anchor="middle" class="t-small t-muted">烧蚀</text>
+            <circle cx="820" cy="490" r="27" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="820" cy="490" r="15" fill="var(--s1)" opacity=".3"/>
+            <text x="820" y="548" text-anchor="middle" class="t-small t-muted">内爆</text>
+            <circle cx="940" cy="490" r="19" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="940" cy="490" r="9" fill="var(--s2)" opacity=".55"/>
+            <text x="940" y="548" text-anchor="middle" class="t-small t-muted">滞止</text>
+            <circle cx="1060" cy="490" r="13" fill="var(--s2)" opacity=".3" stroke="var(--s2)" stroke-width="1.5"/>
+            <circle cx="1060" cy="490" r="5" fill="url(#icfHot)"/>
+            <text x="1060" y="548" text-anchor="middle" class="t-small t-muted">燃烧</text>
+            <g stroke="var(--line-strong)" stroke-width="1.5" marker-end="url(#icfArrow)">
+              <line x1="742" y1="490" x2="784" y2="490"/>
+              <line x1="855" y1="490" x2="912" y2="490"/>
+              <line x1="967" y1="490" x2="1038" y2="490"/>
+            </g>
+          </g>
+          <text x="640" y="590" class="t-small t-muted">从毫米级靶丸到微米级热斑：收敛比可达 30–40，内爆速度约 400 km/s。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 11</span> · 激光惯性约束的间接驱动与直接驱动 <span class="fig-sub">NIF 走间接驱动：激光先转成 X 射线，再烧蚀靶丸。直接驱动效率更高，但对光束均匀性要求更苛刻。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>4.2 NIF 的成绩：靶增益 4.13，但不是“净电”</h3>
+      <p>NIF 有 192 束激光，紫外波段总能量约 1.8 MJ，峰值功率约 500 TW。2022 年 12 月 5 日，它用 2.05 MJ 激光打出 3.15 MJ 聚变能，首次实现“聚变能大于激光能”<span class="badge a">A</span>。2025 年 4 月 7 日，NIF 用 2.08 MJ 激光打出 8.6 MJ，靶增益 4.13；到 2026 年 4 月，NIF 已累计实现 10 次点火<span class="badge a">A</span>。</p>
+      <p>这次提升的关键之一，是靶丸制造工艺：LLNL 用“连续梯度钨掺杂”的金刚石胶囊，改善了烧蚀层的密度均匀性，抑制了瑞利-泰勒不稳定性；2025 年 2 月 23 日首次全尺寸测试产出 5 MJ，4 月的实验是第二次使用新靶<span class="badge a">A</span>。</p>
+      <p>但 NIF 的账本必须算全：激光器闪光灯、电容组、冷却、真空、诊断，全设施每次打靶从电网取走的能量远大于 8.6 MJ。公开资料估算，NIF 每次打靶的全设施能耗在数百 MJ 量级，工程增益约 0.03——这是分析师口径（C 级），但量级足以说明问题<span class="badge c">C</span>。NIF 是一台物理实验装置，不是发电站原型。</p>
+
+      <div class="callout warn">
+        <span class="callout-label">常见误读</span>
+        <p>“NIF 实现了净能量增益”这句话，只有在“聚变能 / 激光能”这个口径下才成立。若把激光器效率、电容充电、冷却和厂用电算进去，NIF 仍然是净耗能。<strong>靶增益 4.13 ≠ 墙插增益 4.13。</strong></p>
+      </div>
+
+      <h3>4.3 私营激光聚变：从“打靶”到“电站”的四道关</h3>
+      <p>NIF 之后，一批私营公司试图把 ICF 推向商业。它们的方向不同，但都要回答四个工程问题：</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">关卡 01</div>
+          <h4>驱动器效率</h4>
+          <p>NIF 的闪光灯泵浦钕玻璃激光器效率约 1%，不适合电站。商业方案需要用二极管泵浦固体激光器（DPSSL）、KrF 准分子激光或脉冲功率，把“墙插→靶面”的效率提高到 10% 以上。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 02</div>
+          <h4>重复频率</h4>
+          <p>NIF 每天打几次靶；电站需要每秒 5–10 次。这意味着激光器、光学元件、靶定位、腔室排空、氚提取都要在 0.1 秒量级完成循环，热管理是巨大挑战。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 03</div>
+          <h4>靶丸成本</h4>
+          <p>NIF 靶丸是精密手工/半手工制造，单靶成本极高。电站要求单靶成本降到几美元甚至更低，且批次一致性极高。靶丸工厂可能成为聚变电站的“耗材瓶颈”。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 04</div>
+          <h4>腔室寿命</h4>
+          <p>每次内爆释放 14 MeV 中子、X 射线和碎片，第一壁要承受极端热脉冲与中子损伤。液态锂/铅锂第一壁、磁化保护、气体保护都是候选方案，但都未在电站条件下验证。</p>
+        </div>
+      </div>
+
+      <h4>代表性公司</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>路线</th><th>公开进展</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Longview Fusion</strong></td><td>激光 ICF，商业电站</td><td>NIF 点火团队背景；引用 NIF 8.6 MJ / 4.13 靶增益；规划车载/厂内氚生产</td><td>技术继承性强，但电站级重复频率未验证<span class="badge b">B</span></td></tr>
+            <tr><td><strong>Focused Energy</strong></td><td>激光聚变 + 靶工厂</td><td>NIF 点火科学家创立；SourceLight 中子源分拆；德国/美国布局</td><td>靶丸制造与激光系统并重<span class="badge b">B</span></td></tr>
+            <tr><td><strong>Marvel Fusion</strong></td><td>激光驱动，p-B¹¹ 远期</td><td>Caelora 激光系统；与西门子能源、科罗拉多州签署 LOI</td><td>激光与靶设计是核心，p-B¹¹ 仍早期<span class="badge b">B</span></td></tr>
+            <tr><td><strong>HB11 Energy</strong></td><td>激光 + 质子束，p-B¹¹</td><td>主张 1 GW 级模块、每秒 1 个豌豆大小靶丸、常规蒸汽循环</td><td>物理挑战极大，TRL 1–2<span class="badge c">C</span></td></tr>
+            <tr><td><strong>First Light Fusion</strong></td><td>弹丸/冲击压缩（非激光）</td><td>2026-09 在 M3 脉冲功率装置上演示关键燃料压缩原理；FLARE 两级靶</td><td>工程巧思，但离电站远；转向 defense/space 应用<span class="badge b">B</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4.4 脉冲功率与弹丸：ICF 的“非激光”分支</h3>
+      <p>激光不是唯一的驱动器。脉冲功率装置（如 Sandia 的 Z 机器）用巨大电流产生磁场，驱动金属套筒内爆，把靶丸压缩；弹丸聚变（First Light）用高超音速弹丸撞击靶丸，产生冲击波压缩。它们的共同优点是驱动器可能更便宜、能量转换效率更高；共同难点是重复频率、靶定位和腔室工程。</p>
+      <p>Pacific Fusion 是脉冲功率路线的代表，计划用模块化“pulser”驱动电磁内爆，已在新墨西哥州破土动工<span class="badge b">B</span>。它的目标不是 NIF 式的单次实验，而是可重复、可制造的电站模块。这个方向值得关注，但公开物理数据远少于激光 ICF。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 无中子 ================= -->
+<section class="section alt" id="aneutronic">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">05 / ANEUTRONIC</div>
+      <div>
+        <h2>无中子聚变：最干净的燃料，最难的物理</h2>
+        <p class="section-lede">“无中子”是聚变领域最诱人的宣传语：没有 14 MeV 中子，就没有材料活化、没有氚增殖、没有厚重的屏蔽。但物理没有免费午餐——p-B¹¹ 和 D-He³ 的点火条件比 D-T 苛刻得多，而且“无中子”往往只是“中子少”，不是“零中子”。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>5.1 p-B¹¹：三个 α 粒子，没有主反应中子</h3>
+      <p>质子与硼-11 的聚变反应为：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">p + ¹¹B → 3 ⁴He + 8.7 MeV　（主反应，无中子）</p>
+      <p>产物是三个 α 粒子，带电，可以被磁场直接约束，理论上甚至可以直接转换成电能。但这条路的物理门槛极高：</p>
+      <ul>
+        <li><strong>温度高</strong>：p-B¹¹ 的 ⟨σv⟩ 峰值在几百 keV 量级，远高于 D-T 的 64 keV；磁约束装置需要 300 keV 以上的离子温度，对磁体、加热和约束都是巨大挑战。</li>
+        <li><strong>反应率低</strong>：峰值截面约 0.6 barn，比 D-T 低近一个数量级；在可用温度区间，⟨σv⟩ 低几个数量级。</li>
+        <li><strong>轫致辐射</strong>：高温电子在离子电场中加速会辐射 X 射线，p-B¹¹ 的轫致辐射损失随温度上升很快，可能超过聚变功率。</li>
+        <li><strong>侧反应</strong>：p + ¹¹B 还会产生 ¹¹C + n 等中子侧反应；即使主反应无中子，工程上仍需要中子屏蔽。</li>
+      </ul>
+      <p>TAE 是 p-B¹¹ 路线最坚定的公司。它用 FRC + 中性束注入，声称已进行超过 10 万次实验，Norm 装置首次仅用中性束就形成 FRC<span class="badge b">B</span>。但 TAE 的时间表（2030 年代初）和“直接能量回收”效率，仍属于 C 级目标。HB11 和 Marvel 也在探索激光驱动 p-B¹¹，但整体处于原理验证阶段。</p>
+
+      <h3>5.2 D-He³：中子少，但氦-3 从哪里来？</h3>
+      <p>D-He³ 反应为：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">D + ³He → ⁴He + p + 18.3 MeV　（主反应，带电产物）</p>
+      <p>主反应不产生中子，但 D-D 侧反应会产生中子：两个氘核碰撞，一半分支生成氚 + 质子，另一半生成氦-3 + 中子。因此，只要燃料里有氘，就一定有中子。D-He³ 的“低中子”是相对的，不是绝对的。</p>
+      <p>更现实的问题是氦-3 的供应：地球上天然氦-3 极少，主要来自氚衰变和核武器生产；月球表面有氦-3，但开采与运输成本极高。Helion 的商业路线是 D-He³，它需要建立氦-3 供应链（包括从氚衰变中回收），这本身就是一个巨大的工程与商业挑战<span class="badge c">C</span>。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 410" role="img" aria-label="不同聚变燃料的中子能量份额对比">
+        <text x="40" y="36" class="t-title">“无中子”是程度问题，不是二元问题</text>
+        <text x="40" y="58" class="t-small t-muted">中子携带的能量占聚变释放能的比例（示意）；D-He³ 与 p-B¹¹ 的侧反应仍会产生中子</text>
+        <g>
+          <line x1="220" y1="330" x2="1040" y2="330" class="axis"/>
+          <line x1="220" y1="90" x2="220" y2="330" class="grid"/>
+          <line x1="384" y1="90" x2="384" y2="330" class="grid"/>
+          <line x1="548" y1="90" x2="548" y2="330" class="grid"/>
+          <line x1="712" y1="90" x2="712" y2="330" class="grid"/>
+          <line x1="876" y1="90" x2="876" y2="330" class="grid"/>
+          <line x1="1040" y1="90" x2="1040" y2="330" class="grid"/>
+          <text x="220" y="354" text-anchor="middle" class="tick">0</text>
+          <text x="384" y="354" text-anchor="middle" class="tick">20</text>
+          <text x="548" y="354" text-anchor="middle" class="tick">40</text>
+          <text x="712" y="354" text-anchor="middle" class="tick">60</text>
+          <text x="876" y="354" text-anchor="middle" class="tick">80</text>
+          <text x="1040" y="354" text-anchor="middle" class="tick">100</text>
+          <text x="630" y="386" text-anchor="middle" class="t-small t-muted">中子能量份额（%）</text>
+        </g>
+
+        <g>
+          <text x="40" y="122" class="t-label">D-T</text>
+          <rect x="220" y="106" width="656" height="28" rx="5" fill="var(--s2)"/>
+          <text x="888" y="125" class="t-label" fill="var(--s2)">约 80%</text>
+          <text x="40" y="190" class="t-label">D-D</text>
+          <rect x="220" y="174" width="287" height="28" rx="5" fill="var(--s4)"/>
+          <text x="519" y="193" class="t-label" fill="var(--s4)">约 35%</text>
+          <text x="40" y="258" class="t-label">D-He³</text>
+          <rect x="220" y="242" width="41" height="28" rx="5" fill="var(--s3)"/>
+          <text x="273" y="261" class="t-label" fill="var(--s3)">约 5%*</text>
+          <text x="40" y="326" class="t-label">p-B¹¹</text>
+          <rect x="220" y="310" width="9" height="28" rx="4" fill="var(--s5)"/>
+          <text x="241" y="329" class="t-label" fill="var(--s5)">&lt;1%*</text>
+        </g>
+        <text x="40" y="394" class="t-small t-muted">* D-He³ 与 p-B¹¹ 的数值取决于燃料纯度与运行温度；侧反应（D-D、p-¹¹B→¹¹C+n）会产生中子。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 12</span> · 不同燃料的中子能量份额 <span class="fig-sub">D-T 约 80% 能量由中子带走；D-He³ 和 p-B¹¹ 主反应中子少，但侧反应与杂质仍会产生中子。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>5.3 优点与代价</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">优点</div>
+          <h4>为什么值得追求</h4>
+          <p>• 中子活化大幅减少，废料处理与屏蔽简化。<br>
+          • 不需要氚增殖包层，燃料循环更简单。<br>
+          • 带电产物可直接能量转换，理论效率更高。<br>
+          • 对材料的中子损伤显著降低，第一壁寿命可能更长。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">代价</div>
+          <h4>为什么现在还不能押注</h4>
+          <p>• 点火温度高 5–10 倍，磁约束与加热技术难度陡增。<br>
+          • 反应率低几个数量级，Lawson 三重积要求更高。<br>
+          • 轫致辐射损失可能吞掉聚变增益。<br>
+          • 侧反应仍产生中子；氦-3 供应受限；TRL 仅 1–2。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <span class="callout-label">判断</span>
+        <p>p-B¹¹ 是“如果聚变成功了，下一步该做什么”的问题，不是“2030 年靠什么发电”的问题。它值得长期研发投入，但不应该成为近期商业化叙事的主角。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 其他概念 ================= -->
+<section class="section" id="others">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">06 / OTHERS</div>
+      <div>
+        <h2>其他概念：为什么它们不是“被忽视的捷径”</h2>
+        <p class="section-lede">聚变领域从不缺少“颠覆性”想法。大多数想法并非完全错误，而是被一个致命的物理或工程约束卡住：μ 子寿命太短、静电聚变密度太低、对撞束截面太小、晶格聚变无法自持。理解这些约束，能帮你快速识别下一个“室温聚变”新闻。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>概念</th><th>核心想法</th><th>致命约束</th><th>现状/用途</th></tr></thead>
+          <tbody>
+            <tr><td><strong>μ 子催化聚变</strong></td><td>μ 子替代电子，使 D-T 分子轨道缩小，原子核靠得更近，无需高温</td><td>μ 子寿命仅 2.2 μs；每个 μ 子最多催化约 150 次反应；产生 μ 子本身耗能远高于产出</td><td>物理上已演示，净能量为负；无商业前景<span class="badge b">B</span></td></tr>
+            <tr><td><strong>静电聚变（Fusor）</strong></td><td>用高压电场加速离子，让它们在对撞中心聚变</td><td>离子密度低、碰撞概率小；栅极损失大；净能量为负</td><td>成熟的中子源，广泛用于教学/探测；不是能源方案<span class="badge b">B</span></td></tr>
+            <tr><td><strong>对撞束 / Migma</strong></td><td>让加速器中的离子束对撞，提高质心能量</td><td>聚变截面极小；束流密度低；能量展宽大；净能量为负</td><td>早期概念，已被主流放弃<span class="badge c">C</span></td></tr>
+            <tr><td><strong>晶格/凝聚态聚变</strong></td><td>利用晶格中的电子屏蔽或集体效应，降低库仑势垒</td><td>屏蔽效应不足以把反应率提高十几个数量级；缺乏可重复的净增益证据</td><td>边缘研究；需严格区分“中子产额”与“净能量”<span class="badge d">D</span></td></tr>
+            <tr><td><strong>“冷聚变”</strong></td><td>在室温下通过电化学方式实现核聚变</td><td>1989 年以来的主要实验结果无法复现；缺乏可信的中子/能量证据</td><td>不被主流科学界接受<span class="badge d">D</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这些概念里，μ 子催化和 Fusor 都有真实的物理现象，只是“净能量”不成立；对撞束和晶格聚变则受限于截面与屏蔽的基本量级。把它们与 D-T 托卡马克放在同一张“路线图”上比较，是不公平的：前者是物理演示，后者是能源工程。</p>
+    </div>
+  </div>
+</section>
+<!-- ================= 07 横向比较 ================= -->
+<section class="section alt" id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">07 / COMPARE</div>
+      <div>
+        <h2>横向比较：没有“最好”，只有“最适合”</h2>
+        <p class="section-lede">把不同路线放在一张表里，最容易犯的错是用同一个指标衡量所有方案：托卡马克的 Q、NIF 的靶增益、Helion 的温度、Zap 的中子产额，根本不是一回事。下面这张表先统一口径，再给判断。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>7.1 技术成熟度：托卡马克领先，但领先不等于赢</h3>
+      <p>技术成熟度（TRL）是一个有用的粗筛工具，但不是预言机。托卡马克的 TRL 6–7，是因为它有 ITER 级别的系统集成、长时间运行和工程供应链；仿星器 5–6，是因为 W7-X 已证明长脉冲运行，但紧凑化与商业设计还在早期；FRC、MTF、Z-pinch 大多在 3–4，意味着“部件/子系统在相关环境中验证”，离“系统级演示”还有距离。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 660" role="img" aria-label="聚变路线技术成熟度 TRL 对比条形图">
+        <text x="40" y="36" class="t-title">技术成熟度（TRL）：托卡马克与仿星器领先</text>
+        <text x="40" y="58" class="t-small t-muted">分析师综合评估（C 级）；不同机构口径可能相差 1–2 级</text>
+
+        <g>
+          <line x1="320" y1="80" x2="320" y2="530" class="grid"/>
+          <line x1="410" y1="80" x2="410" y2="530" class="grid"/>
+          <line x1="500" y1="80" x2="500" y2="530" class="grid"/>
+          <line x1="590" y1="80" x2="590" y2="530" class="grid"/>
+          <line x1="680" y1="80" x2="680" y2="530" class="grid"/>
+          <line x1="770" y1="80" x2="770" y2="530" class="grid"/>
+          <line x1="860" y1="80" x2="860" y2="530" class="grid"/>
+          <line x1="950" y1="80" x2="950" y2="530" class="grid"/>
+          <line x1="1040" y1="80" x2="1040" y2="530" class="grid"/>
+          <text x="320" y="556" text-anchor="middle" class="tick">1</text>
+          <text x="410" y="556" text-anchor="middle" class="tick">2</text>
+          <text x="500" y="556" text-anchor="middle" class="tick">3</text>
+          <text x="590" y="556" text-anchor="middle" class="tick">4</text>
+          <text x="680" y="556" text-anchor="middle" class="tick">5</text>
+          <text x="770" y="556" text-anchor="middle" class="tick">6</text>
+          <text x="860" y="556" text-anchor="middle" class="tick">7</text>
+          <text x="950" y="556" text-anchor="middle" class="tick">8</text>
+          <text x="1040" y="556" text-anchor="middle" class="tick">9</text>
+          <text x="680" y="582" text-anchor="middle" class="t-small t-muted">TRL 1 = 原理验证　→　TRL 9 = 商业部署</text>
+        </g>
+
+        <g>
+          <text x="40" y="104" class="t-label">托卡马克</text>
+          <rect x="320" y="92" width="630" height="20" rx="5" fill="var(--s1)"/>
+          <text x="962" y="107" class="t-label" fill="var(--s1)">7</text>
+          <text x="40" y="149" class="t-label">仿星器</text>
+          <rect x="320" y="137" width="540" height="20" rx="5" fill="var(--s1)"/>
+          <text x="872" y="152" class="t-label" fill="var(--s1)">6</text>
+          <text x="40" y="194" class="t-label">球形托卡马克</text>
+          <rect x="320" y="182" width="450" height="20" rx="5" fill="var(--s1)"/>
+          <text x="782" y="197" class="t-label" fill="var(--s1)">5</text>
+          <text x="40" y="239" class="t-label">激光 ICF</text>
+          <rect x="320" y="227" width="450" height="20" rx="5" fill="var(--s2)"/>
+          <text x="782" y="242" class="t-label" fill="var(--s2)">5</text>
+          <text x="40" y="284" class="t-label">FRC</text>
+          <rect x="320" y="272" width="360" height="20" rx="5" fill="var(--s3)"/>
+          <text x="692" y="287" class="t-label" fill="var(--s3)">4</text>
+          <text x="40" y="329" class="t-label">MTF</text>
+          <rect x="320" y="317" width="360" height="20" rx="5" fill="var(--s3)"/>
+          <text x="692" y="332" class="t-label" fill="var(--s3)">4</text>
+          <text x="40" y="374" class="t-label">Z-pinch</text>
+          <rect x="320" y="362" width="270" height="20" rx="5" fill="var(--s3)"/>
+          <text x="602" y="377" class="t-label" fill="var(--s3)">3</text>
+          <text x="40" y="419" class="t-label">磁镜</text>
+          <rect x="320" y="407" width="360" height="20" rx="5" fill="var(--s1)"/>
+          <text x="692" y="422" class="t-label" fill="var(--s1)">4</text>
+          <text x="40" y="464" class="t-label">p-B¹¹</text>
+          <rect x="320" y="452" width="180" height="20" rx="5" fill="var(--s5)"/>
+          <text x="512" y="467" class="t-label" fill="var(--s5)">2</text>
+          <text x="40" y="509" class="t-label">μ 子/Fusor</text>
+          <rect x="320" y="497" width="90" height="20" rx="5" fill="var(--muted)"/>
+          <text x="422" y="512" class="t-label t-muted">1</text>
+        </g>
+
+        <g transform="translate(40 604)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <circle cx="18" cy="22" r="5" fill="var(--s1)"/><text x="30" y="26" class="t-small">磁约束</text>
+          <circle cx="218" cy="22" r="5" fill="var(--s2)"/><text x="230" y="26" class="t-small">惯性约束</text>
+          <circle cx="418" cy="22" r="5" fill="var(--s3)"/><text x="430" y="26" class="t-small">磁惯性</text>
+          <circle cx="618" cy="22" r="5" fill="var(--s5)"/><text x="630" y="26" class="t-small">无中子燃料</text>
+          <circle cx="818" cy="22" r="5" fill="var(--muted)"/><text x="830" y="26" class="t-small">其他概念</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 13</span> · 各路线技术成熟度 <span class="fig-sub">TRL 6–7 表示系统级演示/原型，不等于商业可用。激光 ICF 的 TRL 5 主要来自 NIF 点火，不代表电站集成。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>7.2 一张表看清：已实现什么，下一步是什么</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>路线</th><th>代表</th><th>燃料</th><th>已实现</th><th>最近目标</th><th>时间</th><th>TRL</th><th>主要风险</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>托卡马克</strong></td><td>ITER、SPARC、EAST、KSTAR</td><td>D-T / D-D</td><td>JET Q=0.67；EAST 1,066 s；NIF 不适用</td><td>SPARC Q&gt;1；ITER Q≥10</td><td>2027 / 2039</td><td>6–7</td><td>稳态、偏滤器、成本、氚</td><td>主线，最接近燃烧等离子体</td></tr>
+            <tr><td><strong>仿星器</strong></td><td>W7-X、Proxima、Type One</td><td>D-T / D-D</td><td>W7-X 8 分钟级长脉冲；2026 三重积纪录</td><td>Alpha 演示 / TVA 电网级</td><td>2030s</td><td>5–6</td><td>线圈制造、优化、成本</td><td>长周期备选，稳态优势</td></tr>
+            <tr><td><strong>球形托卡马克</strong></td><td>ST40、STEP</td><td>D-T</td><td>ST40 1 亿 °C 离子温度</td><td>STEP 原型电站</td><td>2040</td><td>4–5</td><td>中心柱、屏蔽、稳态</td><td>紧凑低成本路线</td></tr>
+            <tr><td><strong>FRC</strong></td><td>Helion、TAE</td><td>D-He³ / p-B¹¹</td><td>Polaris D-T 1.5 亿 °C；TAE 10 万次实验</td><td>Orion 初始运行 / TAE 示范</td><td>2028 / 2030s</td><td>3–4</td><td>稳定性、约束 scaling、燃料</td><td>高风险高回报</td></tr>
+            <tr><td><strong>MTF</strong></td><td>General Fusion</td><td>D-T</td><td>LM26 1 keV 电子温度</td><td>10 keV + Lawson</td><td>2028</td><td>3–4</td><td>重复频率、衬里、预热</td><td>工程巧思，需验证</td></tr>
+            <tr><td><strong>Z-pinch</strong></td><td>Zap</td><td>D-T / D-D</td><td>剪切流稳定等离子体；DOE 里程碑</td><td>Century 平台</td><td>2020s 末</td><td>3–4</td><td>电极寿命、脉冲电源</td><td>低成本中子源/聚变期权</td></tr>
+            <tr><td><strong>激光 ICF</strong></td><td>NIF、Longview、Focused</td><td>D-T</td><td>靶增益 4.13；10 次点火</td><td>10 Hz 重复频率、电站设计</td><td>2030s</td><td>4–5</td><td>驱动器效率、靶成本、腔室</td><td>物理已验证，工程未验证</td></tr>
+            <tr><td><strong>脉冲功率</strong></td><td>Pacific、Sandia Z</td><td>D-T</td><td>Z 机器单次高能密度实验</td><td>模块化 pulser 演示</td><td>2030s</td><td>3</td><td>重复频率、靶定位、寿命</td><td>早期，值得跟踪</td></tr>
+            <tr><td><strong>p-B¹¹</strong></td><td>TAE、HB11、Marvel</td><td>p-B¹¹</td><td>原理实验；无净增益</td><td>Q&gt;1 级演示</td><td>2030s+</td><td>1–2</td><td>温度、轫致辐射、侧反应</td><td>远期期权，不宜短期押注</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">“已实现”只列公开可验证的里程碑；“最近目标”与“时间”多为公司/项目目标（C 级），不构成承诺。</p>
+
+      <h3>7.3 如果只能押一条路线</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>主线仍是托卡马克</h4>
+          <p>如果你要在 2030 年代看到“并网”的概率最大，托卡马克是唯一有完整工程链、公共项目背书和私营资本同时下注的路线。SPARC 的 Q&gt;1 是关键分水岭：成功，则 ARC 和高场紧凑托卡马克的叙事成立；失败，则整个私营托卡马克时间表要重估。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最稳健的长期备选是仿星器</h4>
+          <p>如果聚变电站最终要求 80% 以上容量因子、少维护、少破裂，仿星器的几何优势会显现。它的风险是“慢”：线圈制造、优化、供应链都需要时间。Proxima 和 Type One 的进展值得跟踪，但不宜用 2030 年代的时间表去要求它。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最容易被高估的是 p-B¹¹</h4>
+          <p>“无中子”是极好的传播标签，但物理门槛高得多。TAE 的 FRC 进展是真实的，但从 FRC 到 p-B¹¹ 燃烧等离子体，中间还隔着加热、约束、轫致辐射和侧反应四道关。把 p-B¹¹ 当作 2030 年代的主力，是不负责任的。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最容易被低估的是“材料与氚”</h4>
+          <p>聚变讨论总聚焦在等离子体物理，但真正决定电站可用率的，是偏滤器寿命、包层增殖、氚提取和远程维护。这些领域的研发投入远低于等离子体物理，却是最可能拖慢商业化的环节。</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">组合视角</span>
+        <p>把聚变研发看成一个投资组合：托卡马克是“核心持仓”，仿星器是“长期成长”，FRC/MTF/Z-pinch 是“高风险期权”，激光 ICF 是“科学验证 + 专项应用”，p-B¹¹ 是“远期看涨期权”。<strong>不要用单一路线的成败，判断整个聚变行业的成败。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 最新进展 ================= -->
+<section class="section" id="updates">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">08 / PROGRESS</div>
+      <div>
+        <h2>最新进展：2022–2026，聚变从“论文”变成“工地”</h2>
+        <p class="section-lede">这四年最重要的变化，不是某一个数字，而是聚变第一次同时拥有了三样东西：可重复的点火物理、真实的工程工地、以及愿意继续掏钱的资本市场。下面按时间线、目标节点和资金三条线梳理。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="2022 至 2026 年聚变关键进展时间线">
+        <text x="40" y="36" class="t-title">2022–2026：关键节点</text>
+        <text x="40" y="58" class="t-small t-muted">科学、工程、资本三条线同时加速；注意“目标”与“已实现”的区别</text>
+        <line x1="80" y1="270" x2="1070" y2="270" class="axis"/>
+        <g>
+          <line x1="80" y1="262" x2="80" y2="278" class="axis"/>
+          <line x1="284" y1="262" x2="284" y2="278" class="axis"/>
+          <line x1="489" y1="262" x2="489" y2="278" class="axis"/>
+          <line x1="693" y1="262" x2="693" y2="278" class="axis"/>
+          <line x1="897" y1="262" x2="897" y2="278" class="axis"/>
+          <text x="80" y="300" text-anchor="middle" class="tick">2022</text>
+          <text x="284" y="300" text-anchor="middle" class="tick">2023</text>
+          <text x="489" y="300" text-anchor="middle" class="tick">2024</text>
+          <text x="693" y="300" text-anchor="middle" class="tick">2025</text>
+          <text x="897" y="300" text-anchor="middle" class="tick">2026</text>
+        </g>
+
+        <g>
+          <circle cx="270" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="270" y1="263" x2="270" y2="190" class="grid"/>
+          <text x="270" y="176" text-anchor="middle" class="t-small">NIF 首次点火</text>
+          <text x="270" y="160" text-anchor="middle" class="t-small t-muted">3.15 MJ / 2.05 MJ</text>
+
+          <circle cx="309" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="309" y1="277" x2="309" y2="340" class="grid"/>
+          <text x="309" y="358" text-anchor="middle" class="t-small">JET 59 MJ</text>
+          <text x="309" y="374" text-anchor="middle" class="t-small t-muted">Q ≈ 0.33</text>
+
+          <circle cx="599" cy="270" r="7" fill="var(--s1)"/>
+          <line x1="599" y1="263" x2="599" y2="190" class="grid"/>
+          <text x="599" y="176" text-anchor="middle" class="t-small">ITER 新基线</text>
+          <text x="599" y="160" text-anchor="middle" class="t-small t-muted">SRO 2034 · D-T 2039</text>
+
+          <circle cx="701" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="701" y1="277" x2="701" y2="340" class="grid"/>
+          <text x="701" y="358" text-anchor="middle" class="t-small">EAST 1,066 s</text>
+          <text x="701" y="374" text-anchor="middle" class="t-small t-muted">WEST 1,337 s</text>
+
+          <circle cx="748" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="748" y1="263" x2="748" y2="190" class="grid"/>
+          <text x="748" y="176" text-anchor="middle" class="t-small">NIF 8.6 MJ</text>
+          <text x="748" y="160" text-anchor="middle" class="t-small t-muted">靶增益 4.13</text>
+
+          <circle cx="922" cy="270" r="7" fill="var(--s3)"/>
+          <line x1="922" y1="277" x2="922" y2="340" class="grid"/>
+          <text x="922" y="358" text-anchor="middle" class="t-small">Helion Polaris</text>
+          <text x="922" y="374" text-anchor="middle" class="t-small t-muted">D-T 1.5 亿 °C</text>
+
+          <circle cx="1015" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="1015" y1="263" x2="1015" y2="190" class="grid"/>
+          <text x="1015" y="176" text-anchor="middle" class="t-small">CFS 累计 $4B</text>
+          <text x="1015" y="160" text-anchor="middle" class="t-small t-muted">ARC 400 MW</text>
+
+          <circle cx="1058" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="1058" y1="277" x2="1058" y2="340" class="grid"/>
+          <text x="1058" y="358" text-anchor="middle" class="t-small">ITER 真空室齐套</text>
+          <text x="1058" y="374" text-anchor="middle" class="t-small t-muted">Type One $200M</text>
+        </g>
+        <text x="80" y="440" class="t-small t-muted">颜色：蓝 = 公共项目/磁约束；橙 = 惯性/资本；绿 = 私营聚变里程碑。</text>
+        <text x="80" y="462" class="t-small t-muted">时间线只选代表性事件，不是完整列表；详见下方机构表与来源。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 14</span> · 2022–2026 年聚变关键进展 <span class="fig-sub">NIF 点火、ITER 新基线、EAST/WEST 长脉冲、Helion D-T、CFS 融资，是这四年最具信号意义的五件事。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.1 三条线：科学、工程、资本</h3>
+      <p><strong>科学线：</strong>NIF 从 2022 年的 3.15 MJ 走到 2025 年的 8.6 MJ，靶增益 4.13，并在 2026 年 4 月累计实现 10 次点火<span class="badge a">A</span>。这证明 α 粒子自加热和燃烧波不仅存在，而且可以被重复触发。磁约束这边，EAST 和 WEST 把长脉冲推到 1,000 秒以上，W7-X 把仿星器的长脉冲推到 8 分钟量级<span class="badge a">A</span>。</p>
+      <p><strong>工程线：</strong>ITER 在 2024 年 7 月确定新基线，2034 年 SRO、2039 年 D-T；2026 年 10 月，9 个真空室扇区全部运抵，偏滤器内垂直靶完成首件生产<span class="badge a">A</span>。中国的 BEST 在合肥建设，预计 2026 年建成、2027 年投运，总投资约 85 亿元人民币<span class="badge b">B</span>。私营方面，SPARC、Orion、LM26、FuZE、Norm 等装置同时进入建造/调试阶段。</p>
+      <p><strong>资本线：</strong>FIA 统计全球聚变产业累计投资超过 150 亿美元<span class="badge b">B</span>。CFS 在 2026 年 7 月再融 10 亿美元，累计 40 亿美元，约占全行业近三成<span class="badge b">B</span>。Helion、TAE、Proxima、Type One 也完成大额融资。公共资金方面，美国 DOE 的 FIRE 计划投入 1.07 亿美元、Milestone 计划首批 4,600 万美元，英国 STEP 投入 2.2 亿英镑概念设计，中国成立 CFEC 统筹聚变工程化<span class="badge a">A</span>。</p>
+
+      <h3>8.2 目标节点：哪些是承诺，哪些是愿望</h3>
+      <p>下面这张甘特图把公开目标节点放在同一时间轴上。请注意：公共项目（ITER、STEP、BEST、CFETR、EU DEMO）的节点经过政府/理事会批准，可信度较高；私营公司的节点是公司目标，属于 C 级证据。两者不能用同一种确定性去读。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 680" role="img" aria-label="主要聚变项目目标节点甘特图">
+        <text x="40" y="36" class="t-title">目标节点：公共项目 vs 私营公司</text>
+        <text x="40" y="58" class="t-small t-muted">横轴 2024–2045；菱形为公开目标年份，不是承诺</text>
+
+        <g>
+          <line x1="320" y1="86" x2="320" y2="560" class="grid"/>
+          <line x1="461" y1="86" x2="461" y2="560" class="grid"/>
+          <line x1="602" y1="86" x2="602" y2="560" class="grid"/>
+          <line x1="743" y1="86" x2="743" y2="560" class="grid"/>
+          <line x1="884" y1="86" x2="884" y2="560" class="grid"/>
+          <line x1="1025" y1="86" x2="1025" y2="560" class="grid"/>
+          <text x="320" y="584" text-anchor="middle" class="tick">2024</text>
+          <text x="461" y="584" text-anchor="middle" class="tick">2028</text>
+          <text x="602" y="584" text-anchor="middle" class="tick">2032</text>
+          <text x="743" y="584" text-anchor="middle" class="tick">2036</text>
+          <text x="884" y="584" text-anchor="middle" class="tick">2040</text>
+          <text x="1025" y="584" text-anchor="middle" class="tick">2044</text>
+        </g>
+
+        <g>
+          <text x="40" y="116" class="t-label">ITER</text>
+          <line x1="320" y1="110" x2="849" y2="110" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M673 102 L681 110 L673 118 L665 110 z" fill="var(--s1)"/>
+          <path d="M849 102 L857 110 L849 118 L841 110 z" fill="var(--s1)"/>
+          <text x="665" y="98" text-anchor="middle" class="t-small" fill="var(--s1)">SRO 2034</text>
+          <text x="857" y="98" text-anchor="middle" class="t-small" fill="var(--s1)">D-T 2039</text>
+
+          <text x="40" y="171" class="t-label">SPARC / ARC</text>
+          <line x1="320" y1="165" x2="602" y2="165" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M426 157 L434 165 L426 173 L418 165 z" fill="var(--s2)"/>
+          <path d="M602 157 L610 165 L602 173 L594 165 z" fill="var(--s2)"/>
+          <text x="426" y="153" text-anchor="middle" class="t-small" fill="var(--s2)">Q&gt;1 2027</text>
+          <text x="610" y="153" text-anchor="middle" class="t-small" fill="var(--s2)">ARC 2032</text>
+
+          <text x="40" y="226" class="t-label">Helion Orion</text>
+          <line x1="320" y1="220" x2="461" y2="220" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M461 212 L469 220 L461 228 L453 220 z" fill="var(--s2)"/>
+          <text x="477" y="224" class="t-small" fill="var(--s2)">2028</text>
+
+          <text x="40" y="281" class="t-label">General Fusion</text>
+          <line x1="320" y1="275" x2="708" y2="275" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M461 267 L469 275 L461 283 L453 275 z" fill="var(--s2)"/>
+          <path d="M708 267 L716 275 L708 283 L700 275 z" fill="var(--s2)"/>
+          <text x="477" y="263" class="t-small" fill="var(--s2)">Lawson 2028</text>
+          <text x="716" y="263" class="t-small" fill="var(--s2)">示范 2035</text>
+
+          <text x="40" y="336" class="t-label">STEP（UK）</text>
+          <line x1="320" y1="330" x2="884" y2="330" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M884 322 L892 330 L884 338 L876 330 z" fill="var(--s1)"/>
+          <text x="900" y="334" class="t-small" fill="var(--s1)">2040</text>
+
+          <text x="40" y="391" class="t-label">BEST（中国）</text>
+          <line x1="320" y1="385" x2="426" y2="385" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M426 377 L434 385 L426 393 L418 385 z" fill="var(--s1)"/>
+          <text x="442" y="389" class="t-small" fill="var(--s1)">2027</text>
+
+          <text x="40" y="446" class="t-label">CFETR（中国）</text>
+          <line x1="320" y1="440" x2="708" y2="440" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M708 432 L716 440 L708 448 L700 440 z" fill="var(--s1)"/>
+          <text x="724" y="444" class="t-small" fill="var(--s1)">2035</text>
+
+          <text x="40" y="501" class="t-label">EU DEMO</text>
+          <line x1="320" y1="495" x2="954" y2="495" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M954 487 L962 495 L954 503 L946 495 z" fill="var(--s1)"/>
+          <text x="970" y="499" class="t-small" fill="var(--s1)">2040s</text>
+
+          <text x="40" y="556" class="t-label">TAE</text>
+          <line x1="320" y1="550" x2="602" y2="550" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M602 542 L610 550 L602 558 L594 550 z" fill="var(--s2)"/>
+          <text x="618" y="554" class="t-small" fill="var(--s2)">2030s</text>
+        </g>
+
+        <g transform="translate(40 610)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <line x1="18" y1="22" x2="42" y2="22" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M30 16 L36 22 L30 28 L24 22 z" fill="var(--s1)"/>
+          <text x="52" y="26" class="t-small">公共项目（政府/理事会批准）</text>
+          <line x1="420" y1="22" x2="444" y2="22" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M432 16 L438 22 L432 28 L426 22 z" fill="var(--s2)"/>
+          <text x="454" y="26" class="t-small">私营目标（公司声明，C 级）</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 15</span> · 主要聚变项目的目标节点 <span class="fig-sub">公共项目节点来自官方基线；私营公司节点来自公司声明，属于目标而非承诺。ARC、TAE 等“2030 年代初”按 2032 年示意。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.3 资金：150 亿美元，集中在少数头部公司</h3>
+      <p>FIA 的“150 亿美元+”是一个行业口径，包含股权融资、政府拨款和部分承诺资本，不能简单等同于“已投入研发的现金”。从公开披露看，资本高度集中：CFS 一家约 40 亿美元，Helion 约 20 亿美元，TAE 约 15 亿美元；三家合计占全行业大头。这说明聚变已经跨过“概念融资”阶段，进入“装置建造”阶段，但也意味着多数公司仍依赖少数头部项目的技术外溢。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 470" role="img" aria-label="主要聚变公司公开披露累计融资对比">
+        <text x="40" y="36" class="t-title">头部公司的公开披露累计融资（约数）</text>
+        <text x="40" y="58" class="t-small t-muted">单位：亿美元；口径为公开披露的累计股权融资/承诺资本，不含市值与债务</text>
+
+        <g>
+          <line x1="280" y1="90" x2="280" y2="350" class="axis"/>
+          <line x1="449" y1="90" x2="449" y2="350" class="grid"/>
+          <line x1="618" y1="90" x2="618" y2="350" class="grid"/>
+          <line x1="787" y1="90" x2="787" y2="350" class="grid"/>
+          <line x1="956" y1="90" x2="956" y2="350" class="grid"/>
+          <text x="280" y="374" text-anchor="middle" class="tick">0</text>
+          <text x="449" y="374" text-anchor="middle" class="tick">10</text>
+          <text x="618" y="374" text-anchor="middle" class="tick">20</text>
+          <text x="787" y="374" text-anchor="middle" class="tick">30</text>
+          <text x="956" y="374" text-anchor="middle" class="tick">40</text>
+          <text x="618" y="400" text-anchor="middle" class="t-small t-muted">累计公开融资（亿美元）</text>
+        </g>
+
+        <g>
+          <text x="40" y="116" class="t-label">CFS</text>
+          <rect x="280" y="102" width="676" height="26" rx="5" fill="var(--s1)"/>
+          <text x="966" y="120" class="t-label" fill="var(--s1)">40</text>
+          <text x="40" y="176" class="t-label">Helion</text>
+          <rect x="280" y="162" width="338" height="26" rx="5" fill="var(--s1)"/>
+          <text x="628" y="180" class="t-label" fill="var(--s1)">20</text>
+          <text x="40" y="236" class="t-label">TAE</text>
+          <rect x="280" y="222" width="254" height="26" rx="5" fill="var(--s1)"/>
+          <text x="544" y="240" class="t-label" fill="var(--s1)">15</text>
+          <text x="40" y="296" class="t-label">Proxima</text>
+          <rect x="280" y="282" width="81" height="26" rx="5" fill="var(--s1)"/>
+          <text x="371" y="300" class="t-label" fill="var(--s1)">4.8</text>
+          <text x="40" y="356" class="t-label">Type One</text>
+          <rect x="280" y="342" width="34" height="26" rx="5" fill="var(--s1)"/>
+          <text x="324" y="360" class="t-label" fill="var(--s1)">2.0</text>
+        </g>
+
+        <g transform="translate(40 408)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="18" y="26" class="t-small">FIA 全球累计：$15B+</text>
+          <text x="300" y="26" class="t-small t-muted">CFS 约占 27%，头部集中度高</text>
+          <text x="700" y="26" class="t-small t-muted">口径：公开披露的累计股权融资/承诺资本，不含市值与债务</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 16</span> · 主要聚变公司的公开披露累计融资 <span class="fig-sub">数据来自公司公告与行业报告，约数；Proxima 的 4.11 亿欧元按 1.17 折算为美元。不可与 FIA 全行业口径直接相加。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.4 机构与网页：去哪里跟踪</h3>
+      <p>下表按“公共项目 / 私营公司 / 行业组织”分组。所有链接在 2026-10-24 可访问；部分站点可能有地区限制或改版，若 404 请用站内搜索，不要据此判断项目不存在。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>机构</th><th>路线/角色</th><th>为什么值得跟踪</th><th>官网</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ITER</strong></td><td>托卡马克，国际公共项目</td><td>2034 SRO、2039 D-T、Q≥10；全球最大的聚变工程集成</td><td><a href="https://www.iter.org/" target="_blank" rel="noopener">iter.org</a></td></tr>
+            <tr><td><strong>ASIPP / EAST</strong></td><td>托卡马克，中科院</td><td>1,066 s 长脉冲；BEST 的建设方</td><td><a href="http://english.ipp.cas.cn/" target="_blank" rel="noopener">english.ipp.cas.cn</a></td></tr>
+            <tr><td><strong>ITER China</strong></td><td>中国 ITER 执行机构</td><td>中国承担 ITER 采购包与聚变工程</td><td><a href="https://www.iterchina.cn/" target="_blank" rel="noopener">iterchina.cn</a></td></tr>
+            <tr><td><strong>KFE / KSTAR</strong></td><td>托卡马克，韩国</td><td>1 亿 °C 长脉冲；ITER 相关研究</td><td><a href="https://www.kfe.re.kr/eng/" target="_blank" rel="noopener">kfe.re.kr</a></td></tr>
+            <tr><td><strong>QST / JT-60SA</strong></td><td>托卡马克，日本</td><td>2026–2027 实验 campaign；支持 ITER/DEMO</td><td><a href="https://www.qst.go.jp/site/qst-english/" target="_blank" rel="noopener">qst.go.jp</a></td></tr>
+            <tr><td><strong>IPP / W7-X</strong></td><td>仿星器，德国</td><td>8 分钟级长脉冲；仿星器优化</td><td><a href="https://www.ipp.mpg.de/" target="_blank" rel="noopener">ipp.mpg.de</a></td></tr>
+            <tr><td><strong>UKFE / STEP</strong></td><td>球形托卡马克，英国</td><td>2040 年原型电站；West Burton 场址</td><td><a href="https://www.gov.uk/government/organisations/uk-fusion-energy" target="_blank" rel="noopener">gov.uk / UKFE</a></td></tr>
+            <tr><td><strong>CFS</strong></td><td>托卡马克，美国</td><td>SPARC Q&gt;1（2027）；ARC 400 MW；累计 $4B</td><td><a href="https://cfs.energy/" target="_blank" rel="noopener">cfs.energy</a></td></tr>
+            <tr><td><strong>Helion</strong></td><td>FRC，美国</td><td>Polaris D-T 1.5 亿 °C；Orion 2028；D-He³</td><td><a href="https://www.helionenergy.com/" target="_blank" rel="noopener">helionenergy.com</a></td></tr>
+            <tr><td><strong>TAE</strong></td><td>FRC，美国</td><td>Norm；p-B¹¹ 长期目标；10 万次实验</td><td><a href="https://tae.com/" target="_blank" rel="noopener">tae.com</a></td></tr>
+            <tr><td><strong>General Fusion</strong></td><td>MTF，加拿大</td><td>LM26 1 keV；2028 Lawson；2035 示范</td><td><a href="https://generalfusion.com/" target="_blank" rel="noopener">generalfusion.com</a></td></tr>
+            <tr><td><strong>Tokamak Energy</strong></td><td>球形托卡马克，英国</td><td>ST40 1 亿 °C；Demo4 HTS 磁体；STEP 伙伴</td><td><a href="https://tokamakenergy.com/" target="_blank" rel="noopener">tokamakenergy.com</a></td></tr>
+            <tr><td><strong>Proxima Fusion</strong></td><td>仿星器，德国</td><td>€411M 融资；Alpha 演示；RWE/巴伐利亚合作</td><td><a href="https://www.proximafusion.com/" target="_blank" rel="noopener">proximafusion.com</a></td></tr>
+            <tr><td><strong>Type One Energy</strong></td><td>仿星器，美国</td><td>$200M B 轮；TVA Bull Run 电网级项目</td><td><a href="https://typeoneenergy.com/" target="_blank" rel="noopener">typeoneenergy.com</a></td></tr>
+            <tr><td><strong>Zap Energy</strong></td><td>Z-pinch，美国</td><td>剪切流稳定；DOE 里程碑；Century 平台</td><td><a href="https://www.zapenergy.com/" target="_blank" rel="noopener">zapenergy.com</a></td></tr>
+            <tr><td><strong>First Light Fusion</strong></td><td>弹丸/冲击，英国</td><td>FLARE；2026 M3 压缩演示；防务/空间应用</td><td><a href="https://firstlightfusion.com/" target="_blank" rel="noopener">firstlightfusion.com</a></td></tr>
+            <tr><td><strong>Longview Fusion</strong></td><td>激光 ICF，美国</td><td>NIF 团队背景；商业电站设计</td><td><a href="https://www.longviewfusion.com/" target="_blank" rel="noopener">longviewfusion.com</a></td></tr>
+            <tr><td><strong>Focused Energy</strong></td><td>激光 ICF，德国/美国</td><td>NIF 点火科学家；靶工厂；SourceLight</td><td><a href="https://www.focused-energy.co/" target="_blank" rel="noopener">focused-energy.co</a></td></tr>
+            <tr><td><strong>Marvel Fusion</strong></td><td>激光 ICF，德国/美国</td><td>Caelora 激光；p-B¹¹ 远期；西门子能源 LOI</td><td><a href="https://www.marvelfusion.com/" target="_blank" rel="noopener">marvelfusion.com</a></td></tr>
+            <tr><td><strong>HB11 Energy</strong></td><td>激光 p-B¹¹，澳大利亚</td><td>质子束点火；1 GW 模块概念</td><td><a href="https://hb11.energy/" target="_blank" rel="noopener">hb11.energy</a></td></tr>
+            <tr><td><strong>Pacific Fusion</strong></td><td>脉冲功率，美国</td><td>模块化 pulser；新墨西哥州破土</td><td><a href="https://www.pacificfusion.com/" target="_blank" rel="noopener">pacificfusion.com</a></td></tr>
+            <tr><td><strong>Realta Fusion</strong></td><td>磁镜，美国</td><td>磁镜 + HTS；与 CFS 合作</td><td><a href="https://www.realtafusion.com/" target="_blank" rel="noopener">realtafusion.com</a></td></tr>
+            <tr><td><strong>FIA</strong></td><td>行业组织</td><td>全球聚变产业报告、投资统计、政策倡导</td><td><a href="https://www.fusionindustryassociation.org/" target="_blank" rel="noopener">fusionindustryassociation.org</a></td></tr>
+            <tr><td><strong>US DOE FES</strong></td><td>美国政府</td><td>FIRE、Milestone、聚变战略</td><td><a href="https://www.energy.gov/science/fes/fusion-energy-sciences" target="_blank" rel="noopener">energy.gov / FES</a></td></tr>
+            <tr><td><strong>NRC</strong></td><td>美国监管</td><td>2026 年聚变装置监管框架提案</td><td><a href="https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines" target="_blank" rel="noopener">Federal Register</a></td></tr>
+            <tr><td><strong>IAEA</strong></td><td>国际组织</td><td>聚变安全、核材料、国际合作</td><td><a href="https://www.iaea.org/topics/fusion" target="_blank" rel="noopener">iaea.org</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">链接仅作信息入口，不构成对任何公司技术或财务的背书。部分公司新闻页需要科学上网；若打不开，可先访问其官网首页或行业组织页面。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 工程瓶颈 ================= -->
+<section class="section alt" id="engineering">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">09 / ENGINEERING</div>
+      <div>
+        <h2>工程瓶颈：真正决定“能不能发电”的六件事</h2>
+        <p class="section-lede">等离子体物理决定“能不能烧”，工程决定“能不能一直烧、烧得便宜、烧得安全”。下面六件事，任何一件没有解决，聚变电站都只能停在图纸上。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>9.1 氚增殖：自己造燃料，而且要及时</h3>
+      <p>D-T 聚变堆没有天然氚供应，必须靠锂包层增殖。TBR 略大于 1 只是“物理上自持”，工程上还要考虑：氚在包层/提取系统/燃料净化系统中的滞留，氚的衰变（每年约 5.5%），以及启动库存。一个 1 GW 聚变电站的氚库存可能在公斤级，任何泄漏、滞留或提取延迟都会影响自持。</p>
+      <p>包层方案包括固态锂陶瓷（Li₄SiO₄、Li₂TiO₃）+ 铍中子倍增剂、液态铅锂（PbLi）、熔盐等。ITER 的 Test Blanket Module 会在 D-T 阶段测试几种概念，但 ITER 本身不靠增殖氚自持；DEMO 才是真正的“氚自持”验证平台<span class="badge a">A</span>。</p>
+
+      <h3>9.2 材料：14 MeV 中子会把金属“打碎”</h3>
+      <p>14.1 MeV 中子进入第一壁后，会把原子从晶格中撞出，形成离位损伤（dpa），同时产生氦和氢。聚变堆结构材料要承受 50–100 dpa 量级的损伤，远高于现有裂变堆的典型水平；中子还会活化材料，产生需要处置的放射性废物。</p>
+      <p>候选材料包括低活化铁素体/马氏体钢（RAFM，如 EUROFER）、氧化物弥散强化钢（ODS）、钨合金、SiC/SiC 复合材料。钨的熔点高、溅射低，是偏滤器面向等离子体材料的主流选择；但钨脆、加工难、中子活化后仍有放射性。材料数据的获取需要强流中子源，如 IFMIF-DONES，这类设施本身建设周期长、成本高。</p>
+
+      <h3>9.3 排热：偏滤器要承受“太阳表面级”的热流</h3>
+      <p>托卡马克的偏滤器要把等离子体边缘的热量和粒子排出去。ITER 的稳态热流设计值约 10–20 MW/m²，局部峰值更高；ELM（边缘局域模）爆发时，瞬态热流可以高出几个量级。钨铜 monoblock 是目前的主方案，但热疲劳、中子损伤、溅射侵蚀会限制寿命。</p>
+      <p>替代方案包括液态金属偏滤器（锂、锡、镓）、雪花偏滤器、X 点辐射偏滤器、以及更激进的“无偏滤器”位形。这些方案在实验上都有进展，但离“电站级长寿命”还有距离。</p>
+
+      <h3>9.4 磁体：高温超导让“紧凑化”成为可能</h3>
+      <p>托卡马克的磁场强度决定了等离子体性能与装置尺寸。传统低温超导（NbTi、Nb₃Sn）需要 4 K 液氦，磁体体积大；高温超导（HTS，REBCO 带材）可以在 20 K 左右运行，场强更高（20 T 级），使紧凑型高场托卡马克成为可能。CFS 的 SPARC 就是这一路线的代表。</p>
+      <p>HTS 的工程挑战包括：带材成本、磁体绕制、接头电阻、失超保护（quench protection）、辐照下的性能退化。SPARC 的磁体测试如果成功，会显著降低紧凑托卡马克的风险；如果失败，整个高场路线的时间表都要重估。</p>
+
+      <h3>9.5 破裂与稳态：托卡马克的“两个心结”</h3>
+      <p>托卡马克的等离子体电流储存巨大磁能，一旦破裂，能量会在毫秒级释放，产生电磁力、热负荷和逃逸电子。ITER 设计了破裂 mitigation 系统（SPI、破碎弹丸、磁扰动线圈），但“预测—避免—缓解”仍是运行中的核心挑战。</p>
+      <p>稳态运行则需要非感应电流驱动（中性束、射频波）或自举电流。电流驱动效率、电流分布控制、与偏滤器运行的兼容性，都是 ITER 和 DEMO 必须回答的问题。仿星器没有这个问题，但代价是线圈复杂性。</p>
+
+      <h3>9.6 成本：聚变的“最后一公里”是经济性</h3>
+      <p>聚变电站的资本成本高、建设周期长、退役成本不确定。即使等离子体物理全部达标，如果首堆造价 100 亿美元、容量因子 50%、每度电成本 150 美元/MWh，它在市场上仍然没有竞争力。反过来，如果 HTS 磁体、模块化制造、 learning curve 能把成本压到 50–80 美元/MWh，聚变才有规模化空间。</p>
+      <p>成本模型高度依赖：磁场强度、装置尺寸、包层/偏滤器寿命、氚自持、维护方案、许可周期。当前公开的聚变 LCOE 估算差异极大，且大多基于早期概念设计，属于 C 级证据。不要相信“聚变一定便宜”或“聚变永远昂贵”的绝对判断。</p>
+
+      <h3>9.7 监管：从“按裂变管”到“按副产物材料管”</h3>
+      <p>美国 NRC 在 2023 年决定用“副产物材料”框架监管聚变装置，而不是按裂变反应堆的许可框架。2026 年 2 月 26 日，NRC 发布《Regulatory Framework for Fusion Machines》拟议规则，拟修订 10 CFR Part 30，采用技术中立的要求，并发布 NUREG-1556 Vol. 22 草案指南；评论期到 2026 年 5 月 27 日<span class="badge a">A</span>。这意味着美国聚变监管正在从“政策方向”进入“可操作规则”阶段，但最终规则仍未落地。</p>
+      <p>英国通过环境许可、核场地许可和 STEP 计划推进监管；IAEA 则在聚变安全、辐射防护、核材料衡算方面提供国际框架。监管的不确定性会直接影响首堆的选址、设计、保险和融资成本。</p>
+
+      <h3>9.8 并网与厂址：聚变电站不是“放个反应堆”</h3>
+      <p>聚变电站需要：大量冷却水、稳定的电网接入、氚处理许可、放射性废物暂存、远程维护设施、应急计划。它的厂址条件比风光更接近裂变电站，但又有氚和活化材料的特殊要求。并网协议、容量市场、基荷定位、与可再生能源的互补，都是商业化必须回答的问题。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>瓶颈</th><th>严重度</th><th>当前状态</th><th>最近的验证节点</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>氚增殖</strong></td><td>高</td><td>ITER TBM 测试概念；DEMO 才能验证自持</td><td>ITER D-T 阶段（2039 起）</td><td>最可能拖慢商业化的环节之一</td></tr>
+            <tr><td><strong>中子材料</strong></td><td>高</td><td>RAFM/ODS/W/SiC 在研；缺乏电站级数据</td><td>IFMIF-DONES、DEMO 包层</td><td>需要长期、强流中子源</td></tr>
+            <tr><td><strong>偏滤器排热</strong></td><td>高</td><td>钨铜 monoblock 为主；液态金属在研</td><td>ITER 偏滤器、DEMO 设计</td><td>寿命与可靠性是硬约束</td></tr>
+            <tr><td><strong>HTS 磁体</strong></td><td>中高</td><td>SPARC 等在做 20 T 级演示</td><td>SPARC 磁体测试/首次等离子体</td><td>成功则紧凑化路线成立</td></tr>
+            <tr><td><strong>破裂/稳态</strong></td><td>中高</td><td>ITER 有 mitigation 系统；稳态电流驱动待验证</td><td>ITER 研究运行（2034 起）</td><td>托卡马克的“心结”</td></tr>
+            <tr><td><strong>成本</strong></td><td>高</td><td>首堆造价与 LCOE 不确定性极大</td><td>ARC/STEP 等首堆设计</td><td>决定聚变能否规模化</td></tr>
+            <tr><td><strong>监管</strong></td><td>中</td><td>美国 2026 拟议规则；英国/IAEA 框架推进</td><td>NRC 最终规则</td><td>影响选址、保险、融资</td></tr>
+            <tr><td><strong>并网/厂址</strong></td><td>中</td><td>尚无聚变电站并网案例</td><td>ARC/STEP 并网申请</td><td>工程问题，非物理问题</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">“严重度”为分析师评估（C 级），依据是“是否可能单独阻止商业化”，不是研发投入规模。</p>
+    </div>
+  </div>
+</section>
+<!-- ================= 10 时间表与情景 ================= -->
+<section class="section" id="outlook">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">10 / OUTLOOK</div>
+      <div>
+        <h2>时间表：2030 年代演示，2040 年代部署</h2>
+        <p class="section-lede">聚变的时间表最容易被两种叙事绑架：一种是“永远还要 30 年”，另一种是“五年后免费电”。更可取的读法是：把公开节点当成“概率分布”，而不是“承诺日期”，并盯着几个可证伪的信号。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>10.1 三种情景</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>情景</th><th>首台并网</th><th>2050 年全球电力份额</th><th>关键假设</th><th>概率判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>保守</strong></td><td>2045 年以后</td><td>&lt;1%</td><td>ITER 按期但 DEMO 延期；私营时间表普遍滑 5–10 年；氚/材料瓶颈未解</td><td>中等偏高<span class="badge c">C</span></td></tr>
+            <tr><td><strong>基准</strong></td><td>2040 年代初</td><td>1–3%</td><td>SPARC 2027 年 Q&gt;1；ITER 2039 年 D-T；一到两台首堆在 2040 年前后并网</td><td>中等<span class="badge c">C</span></td></tr>
+            <tr><td><strong>加速</strong></td><td>2030 年代中期</td><td>5–10%</td><td>SPARC/ARC 与 Helion 均成功；HTS 成本快速下降；监管与供应链同步成熟</td><td>偏低<span class="badge c">C</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>即使“加速”情景兑现，聚变在 2050 年的份额也只是个位数百分比。这不是聚变“没用”，而是能源系统的惯性极大：一座 1 GW 电站从开工到并网要 5–10 年，从首堆到规模化制造还要另一个 10 年。聚变的第一波影响，更可能是“证明可行、压低碳价、提供基荷选项”，而不是“取代所有能源”。</p>
+
+      <h3>10.2 五个可证伪的信号</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>时间</th><th>信号</th><th>为什么重要</th><th>如果失败</th></tr></thead>
+          <tbody>
+            <tr><td>2027</td><td>SPARC 实现 Q&gt;1</td><td>验证高温超导紧凑托卡马克路线；决定私营托卡马克叙事的可信度</td><td>ARC 时间表至少推迟 3–5 年；资本会转向仿星器/FRC</td></tr>
+            <tr><td>2028</td><td>Helion Orion 初始运行</td><td>验证 FRC + D-He³ + 直接能量回收的工程闭环</td><td>D-He³ 路线被降级；Helion 的 PPA 需要重谈</td></tr>
+            <tr><td>2028</td><td>General Fusion 完成 Lawson 演示</td><td>验证液态金属压缩 MTF 的物理可行性</td><td>MTF 仍停留在 TRL 3；商业时间表大幅后移</td></tr>
+            <tr><td>2034 / 2039</td><td>ITER SRO / D-T Q≥10</td><td>公共聚变项目的信誉锚点；燃烧等离子体的系统级验证</td><td>全球公共路线需要重新设计；DEMO 时间表连锁延期</td></tr>
+            <tr><td>2026–2027</td><td>NRC 聚变规则最终落地</td><td>美国首堆许可路径明确；影响选址、保险、融资</td><td>美国私营聚变项目面临监管不确定性</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-label">不要用“Q”作为唯一指标</span>
+        <p>Q=10 很漂亮，但如果只能跑 400 秒、每年停机维护 6 个月、每度电成本 200 美元，它仍然不是商业电站。真正该跟踪的指标是：<strong>容量因子、可用率、维护间隔、氚自持、$ / MWh</strong>。这些指标不会上头条，但决定聚变的命运。</p>
+      </div>
+
+      <h3>10.3 什么会改变我们的判断</h3>
+      <ul>
+        <li><strong>向上修正：</strong>SPARC 在 2027 年实现 Q&gt;1 且持续时间超过 10 秒；ARC 获得并网许可；NRC 最终规则在 2027 年前落地；HTS 带材价格下降 50%；氚增殖在 ITER TBM 中达到 TBR&gt;1.05。</li>
+        <li><strong>向下修正：</strong>ITER 再次延期超过 3 年；SPARC 磁体出现不可修复的失超；Helion Orion 推迟到 2030 年后；首堆造价估算超过 100 亿美元；监管把聚变按裂变反应堆管理。</li>
+        <li><strong>黑天鹅：</strong>室温超导若被证实，磁约束与脉冲功率的工程约束会被重写；但截至 2026 年，没有可重复的证据，不能纳入基准情景。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 结论 ================= -->
+<section class="section dark" id="conclusion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">11 / CONCLUSION</div>
+      <div>
+        <h2>结论：第一性原理没有障碍，系统工程才是</h2>
+        <p class="section-lede">聚变已经过了“能不能”的阶段，进入“值不值、快不快、稳不稳”的阶段。这个阶段没有单一的英雄装置，只有一组需要同时解决的工程问题。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <div class="quote">
+        聚变的第一性原理没有障碍；障碍是系统工程、材料、氚和钱。
+        <cite>本报告的核心判断</cite>
+      </div>
+
+      <h3>七条结论</h3>
+      <ol>
+        <li><strong>科学增益已经实现，工程增益还没有。</strong>NIF 的靶增益 4.13 是真实的物理里程碑；但没有一台装置实现工程净电。把两者混为一谈，是当前聚变传播中最大的噪音。</li>
+        <li><strong>托卡马克是主线，但不是终局。</strong>ITER、SPARC、EAST、KSTAR、STEP、BEST 共享同一套物理与工程语言；托卡马克最可能先演示“燃烧等离子体”，但稳态、偏滤器、成本和氚仍是硬约束。</li>
+        <li><strong>仿星器是长周期备选，不是短期替代。</strong>它的稳态优势是结构性的，但线圈制造与优化需要时间。W7-X、Proxima、Type One 的进展值得跟踪，不宜用 2030 年代的时间表去要求它。</li>
+        <li><strong>FRC / MTF / Z-pinch 是高风险期权。</strong>它们的工程巧思真实存在，但稳定性、约束 scaling、重复频率都未验证。成功会带来成本革命，失败也不会否定托卡马克主线。</li>
+        <li><strong>激光 ICF 的物理已验证，电站工程未验证。</strong>NIF 证明了点火与燃烧波；但 10 Hz 重复频率、10% 驱动器效率、低成本靶丸、耐中子腔室，四道关都还没过。</li>
+        <li><strong>“无中子”是程度问题。</strong>p-B¹¹ 和 D-He³ 的中子少，但侧反应、杂质、氦-3 供应仍是问题；它们的 TRL 只有 1–2，不适合作为近期商业化叙事。</li>
+        <li><strong>2030 年代是演示期，2040 年代是部署期。</strong>即便所有乐观时间表兑现，聚变对全球电力结构的实质贡献也要到 2040 年代；在此之前，它是一场值得投入、但需要耐心和证据纪律的长期竞赛。</li>
+      </ol>
+
+      <h3>最后一句</h3>
+      <p>对聚变，最危险的态度不是怀疑，而是两种极端的确定：要么“永远不可能”，要么“五年后免费”。前者忽略了 NIF、EAST、W7-X 已经发生的进步；后者忽略了氚、材料、排热、成本和监管的真实门槛。<strong>把它当成一场需要几十年、需要多路线、需要工程纪律的竞赛，才是对它最大的尊重。</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 证据与来源 ================= -->
+<section class="section" id="evidence">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">12 / EVIDENCE</div>
+      <div>
+        <h2>证据分级、修正与来源</h2>
+        <p class="section-lede">这份报告对每条非显然论断标注证据等级。等级不是“真假”的判决，而是“谁在说、说得有多确定”的提示。公司目标、分析师估算和官方数据必须分开读。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>12.1 分级标准</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>等级</th><th>含义</th><th>典型来源</th><th>使用方式</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge a">A</span></td><td>官方/一手/同行评议</td><td>ITER 基线文件、LLNL 发布、NRC 规则、政府公告、同行评议论文</td><td>可直接作为事实；仍需注意口径（如靶增益 vs 工程增益）</td></tr>
+            <tr><td><span class="badge b">B</span></td><td>媒体/行业/公司自述</td><td>公司新闻稿、FIA 报告、主流媒体、维基百科（有引用）</td><td>作为“已发生”的较强证据；关键数字尽量找一手来源</td></tr>
+            <tr><td><span class="badge c">C</span></td><td>分析师/公司目标/估算</td><td>公司路线图、TRL 评估、LCOE 模型、全设施能耗估算</td><td>作为情景与判断，不作为既成事实</td></tr>
+            <tr><td><span class="badge d">D</span></td><td>传闻/未证实/边缘主张</td><td>无来源的社交媒体、不可复现的实验、营销话术</td><td>不进入结论；仅在“为什么不信”时引用</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>12.2 被降级、修正或排除的说法</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>说法</th><th>问题</th><th>本报告的处理</th></tr></thead>
+          <tbody>
+            <tr><td>“NIF 已经实现净能量输出”</td><td>把靶增益（聚变能/激光能）当成墙插增益；未计激光器效率、电容充电、冷却与厂用电</td><td>保留“靶增益 4.13”作为 A 级事实；明确“工程增益约 0.03（C 级估算）”；结论改为“科学增益已实现，工程净电未实现”</td></tr>
+            <tr><td>“磁约束已经实现 Q&gt;1”</td><td>JET 最高 Q=0.67（1997）；JT-60U 的 1.25 是折算值，不是实际 D-T 运行</td><td>降级为“目标”：ITER Q≥10、SPARC Q&gt;1 均为目标，不是已实现</td></tr>
+            <tr><td>“Helion 已开始向微软售电”</td><td>PPA 是购电协议；Orion 目标 2028 年初始运行，尚未发电</td><td>保留“PPA 签署”作为 B 级；删去“已售电”表述</td></tr>
+            <tr><td>“BEST 2027 年实现发电”</td><td>公开目标是 2027 年投运/实验，不是商业发电；Q&gt;1 未有统一官方指标</td><td>改为“2027 年投运，开展燃烧等离子体实验”；发电与 Q&gt;1 标注为待验证</td></tr>
+            <tr><td>“中国 CFEC 注册资本 150 亿元”</td><td>来自工商变更与财经媒体，官方新闻未统一披露</td><td>标注 B 级；说明“2025-09-01 工商变更，注册资本由约 35.31 亿元增至 150 亿元”</td></tr>
+            <tr><td>“NIF 每次打靶耗电 300 MJ”</td><td>不是 LLNL 官方数字；不同口径（电容储能、闪光灯能量、电网取电）差异大</td><td>标注 C 级估算；只说“数百 MJ 量级”，不把 300 MJ 当精确值</td></tr>
+            <tr><td>“某公司 2030 年前建成商用聚变电站”</td><td>公司目标，无独立验证；首堆还受许可、供应链、氚供应约束</td><td>标注 C 级；在甘特图中用橙色区分“私营目标”</td></tr>
+            <tr><td>“聚变 2030 年能显著影响气候”</td><td>即便首堆并网，装机规模也太小；能源系统惯性大</td><td>降级为 C 级判断；基准情景把实质贡献放在 2040 年代</td></tr>
+            <tr><td>“p-B¹¹ 完全无中子”</td><td>主反应无中子，但 p-¹¹B→¹¹C+n 等侧反应会产生中子；高温下轫致辐射严重</td><td>改为“低中子/无主反应中子”；标注 TRL 1–2</td></tr>
+            <tr><td>“W7-X 8 分钟是世界纪录”</td><td>官方定性为仿星器长脉冲纪录；具体放电参数随实验条件变化</td><td>保留“8 分钟量级”定性；不把单次放电参数外推为电站性能</td></tr>
+            <tr><td>“CFETR 2035 年建成”</td><td>公开路线图目标，未见工程开工/批准文件</td><td>标注 C 级；表述为“2035 年前后建设目标”</td></tr>
+            <tr><td>“室温超导将拯救聚变”</td><td>截至 2026 年没有可重复证据</td><td>列为黑天鹅，不纳入基准情景；标注 D 级</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>12.3 方法与 404 说明</h3>
+      <p>本报告调研截止 2026-10-24。由于运行环境的 WebFetch 域名安全校验限制，部分站点无法通过 WebFetch 访问；实际检索使用 <code>curl</code>/Python <code>urllib</code> 抓取官方页面与新闻页，辅以 Bing/360 搜索中文媒体。未使用 Google News RSS。</p>
+      <p>调研中遇到多个 404/403：NRC 旧版聚变页面、EUROfusion 旧新闻 slug、部分公司新闻页、UKAEA/STEP 旧域名等。这些 404 只说明 URL 失效或站点改版，<strong>不构成“相关项目不存在”或“相关说法为假”的证据</strong>。处理方式是：改用官网首页、站内搜索、政府公告、Federal Register API 或行业组织页面交叉验证。凡未能找到一手来源的数字，均降级为 B/C，并在文中注明。</p>
+      <p>货币与数字均按来源原文；美元/欧元/人民币不做实时汇率换算，除非特别说明。TRL、LCOE、严重度评分为分析师判断，不是官方数据。本报告不构成投资建议。</p>
+
+      <h3>12.4 术语表</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>术语</th><th>解释</th></tr></thead>
+          <tbody>
+            <tr><td><strong>等离子体</strong></td><td>原子核与电子分离后的带电气体；聚变燃料在 1 亿 °C 以上处于等离子体态。</td></tr>
+            <tr><td><strong>Lawson 判据 / 三重积</strong></td><td>nTτE 需超过阈值，D-T 点火约 3×10²¹ keV·s/m³；密度、温度、约束时间必须同时达标。</td></tr>
+            <tr><td><strong>Q（等离子体增益）</strong></td><td>聚变功率 / 外部加热功率；Q=1 为科学盈亏平衡，Q=10 为 ITER 目标。</td></tr>
+            <tr><td><strong>靶增益</strong></td><td>聚变能 / 激光能；NIF 2025 年达到 4.13。</td></tr>
+            <tr><td><strong>工程增益</strong></td><td>净电输出 / 全厂输入；商业电站通常需要 5–10。</td></tr>
+            <tr><td><strong>H 模</strong></td><td>高约束模式；等离子体边缘形成输运垒，约束性能显著提升。</td></tr>
+            <tr><td><strong>偏滤器</strong></td><td>托卡马克底部排除热量与杂质的部件；承受 10–20 MW/m² 热流。</td></tr>
+            <tr><td><strong>ELM</strong></td><td>边缘局域模；周期性爆发，瞬态热流可损伤第一壁。</td></tr>
+            <tr><td><strong>破裂（disruption）</strong></td><td>等离子体电流突然熄灭，释放磁能、产生逃逸电子，可能损坏装置。</td></tr>
+            <tr><td><strong>自举电流</strong></td><td>等离子体压力梯度自发驱动的电流，可减少外部电流驱动需求。</td></tr>
+            <tr><td><strong>TBR</strong></td><td>氚增殖比；包层产生的氚 / 消耗的氚，需略大于 1。</td></tr>
+            <tr><td><strong>dpa</strong></td><td>每个原子的离位次数；衡量中子辐照对材料的损伤。</td></tr>
+            <tr><td><strong>黑体腔（hohlraum）</strong></td><td>激光 ICF 的金属腔，把激光转换为 X 射线，均匀辐照靶丸。</td></tr>
+            <tr><td><strong>烧蚀层（ablator）</strong></td><td>靶丸最外层，吸收能量后向外喷射，反冲压缩燃料。</td></tr>
+            <tr><td><strong>热斑</strong></td><td>内爆中心的高温低密度区，首先点火并触发燃烧波。</td></tr>
+            <tr><td><strong>FRC</strong></td><td>场反位形；等离子体电流自组织出闭场线，β 接近 1。</td></tr>
+            <tr><td><strong>MTF</strong></td><td>磁惯性约束；磁化预热 + 机械/电磁压缩。</td></tr>
+            <tr><td><strong>Z-pinch</strong></td><td>轴向电流产生的环形磁场把等离子体向内箍缩。</td></tr>
+            <tr><td><strong>仿星器</strong></td><td>用三维模块化线圈产生旋转变换的磁约束装置，天然适合稳态。</td></tr>
+            <tr><td><strong>球形托卡马克</strong></td><td>低长宽比托卡马克，高 β、紧凑，但中心柱空间受限。</td></tr>
+            <tr><td><strong>HTS</strong></td><td>高温超导；REBCO 带材可在 20 K 左右产生 20 T 级磁场。</td></tr>
+            <tr><td><strong>RAFM</strong></td><td>低活化铁素体/马氏体钢；聚变第一壁候选结构材料。</td></tr>
+            <tr><td><strong>LCOE</strong></td><td>平准化度电成本；聚变商业化的最终经济指标之一。</td></tr>
+            <tr><td><strong>TRL</strong></td><td>技术成熟度等级 1–9；本报告的 TRL 为分析师综合评估。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>12.5 来源</h3>
+      <ol class="sources">
+        <li><span class="src-title">ITER Organization, “ITER Baseline 2024 — press conference summary.”</span><span class="src-meta">2024-07；官方基线：SRO 2034、D-T 2039、Q≥10、新增约 €5B。</span><a class="src-url" href="https://www.iter.org/sites/default/files/media/2024-07/baseline_press_conference_summary_july-2024_b.pdf" target="_blank" rel="noopener">https://www.iter.org/sites/default/files/media/2024-07/baseline_press_conference_summary_july-2024_b.pdf</a></li>
+        <li><span class="src-title">ITER Organization, “News.”</span><span class="src-meta">2026-10 访问；真空室扇区、偏滤器、总装节点。</span><a class="src-url" href="https://www.iter.org/news" target="_blank" rel="noopener">https://www.iter.org/news</a></li>
+        <li><span class="src-title">ITER Organization, “Achievements of EAST and WEST.”</span><span class="src-meta">2025；EAST 1,066 s、WEST 1,337 s。</span><a class="src-url" href="https://www.iter.org/node/20687/achievements-east-and-west" target="_blank" rel="noopener">https://www.iter.org/node/20687/achievements-east-and-west</a></li>
+        <li><span class="src-title">Lawrence Livermore National Laboratory, “Target breakthrough enabled fusion record at NIF.”</span><span class="src-meta">2026-04-15；8.6 MJ / 2.08 MJ、靶增益 4.13、10 次点火。</span><a class="src-url" href="https://lasers.llnl.gov/news/target-breakthrough-enabled-fusion-record-nif" target="_blank" rel="noopener">https://lasers.llnl.gov/news/target-breakthrough-enabled-fusion-record-nif</a></li>
+        <li><span class="src-title">Lawrence Livermore National Laboratory, “National Ignition Facility.”</span><span class="src-meta">官方主页；NIF 装置参数与新闻。</span><a class="src-url" href="https://lasers.llnl.gov/" target="_blank" rel="noopener">https://lasers.llnl.gov/</a></li>
+        <li><span class="src-title">Commonwealth Fusion Systems, “SPARC.”</span><span class="src-meta">公司页面；SPARC 目标 Q&gt;1（2027）。</span><a class="src-url" href="https://cfs.energy/technology/sparc/" target="_blank" rel="noopener">https://cfs.energy/technology/sparc/</a></li>
+        <li><span class="src-title">Commonwealth Fusion Systems, “CFS raises another $1 billion, bringing total capital raised to $4 billion.”</span><span class="src-meta">2026-07-30；累计 $4B；ARC 400 MW；Google/Eni PPA。</span><a class="src-url" href="https://cfs.energy/news-and-media/commonwealth-fusion-systems-raises-another-1-billion-bringing-total-capital-raised-to-4-billion/" target="_blank" rel="noopener">https://cfs.energy/news-and-media/commonwealth-fusion-systems-raises-another-1-billion-bringing-total-capital-raised-to-4-billion/</a></li>
+        <li><span class="src-title">Commonwealth Fusion Systems, “Five peer-reviewed papers validating ARC physics.”</span><span class="src-meta">2026-06-04；ARC 物理设计论文。</span><a class="src-url" href="https://cfs.energy/news-and-media/commonwealth-fusion-systems-builds-on-learnings-from-sparc-to-publish-five-peer-reviewed-papers-validating-the-physics-of-the-arc-fusion-power-plant/" target="_blank" rel="noopener">https://cfs.energy/news-and-media/commonwealth-fusion-systems-builds-on-learnings-from-sparc-to-publish-five-peer-reviewed-papers-validating-the-physics-of-the-arc-fusion-power-plant/</a></li>
+        <li><span class="src-title">Helion Energy, “Helion achieves new fusion energy milestones.”</span><span class="src-meta">2026-02-13；Polaris D-T、1.5 亿 °C。</span><a class="src-url" href="https://www.helionenergy.com/newsroom/helion-achieves-new-fusion-energy-milestones" target="_blank" rel="noopener">https://www.helionenergy.com/newsroom/helion-achieves-new-fusion-energy-milestones</a></li>
+        <li><span class="src-title">Helion Energy, “Technology.”</span><span class="src-meta">FRC、D-He³、直接电磁能量回收。</span><a class="src-url" href="https://www.helionenergy.com/technology" target="_blank" rel="noopener">https://www.helionenergy.com/technology</a></li>
+        <li><span class="src-title">Helion Energy, “Orion.”</span><span class="src-meta">Orion 场址、2028 年初始运行目标、微软 PPA。</span><a class="src-url" href="https://www.helionenergy.com/orion" target="_blank" rel="noopener">https://www.helionenergy.com/orion</a></li>
+        <li><span class="src-title">TAE Technologies, “FAQ — Fusion.”</span><span class="src-meta">FRC、p-B¹¹、Norm、时间表。</span><a class="src-url" href="https://tae.com/faq-fusion/" target="_blank" rel="noopener">https://tae.com/faq-fusion/</a></li>
+        <li><span class="src-title">TAE Technologies, “About us.”</span><span class="src-meta">$1.5B 私人资本、1,600 项专利、10 万次实验。</span><a class="src-url" href="https://tae.com/about-us/" target="_blank" rel="noopener">https://tae.com/about-us/</a></li>
+        <li><span class="src-title">General Fusion, “LM26 Program.”</span><span class="src-meta">MTF、1 keV、10 keV/Lawson 目标、2035 示范。</span><a class="src-url" href="https://generalfusion.com/path-to-commercialization/lm26-program/" target="_blank" rel="noopener">https://generalfusion.com/path-to-commercialization/lm26-program/</a></li>
+        <li><span class="src-title">Tokamak Energy, “Latest news.”</span><span class="src-meta">ST40 1 亿 °C、Demo4 HTS 磁体、STEP 伙伴。</span><a class="src-url" href="https://tokamakenergy.com/latest-news/" target="_blank" rel="noopener">https://tokamakenergy.com/latest-news/</a></li>
+        <li><span class="src-title">ITER Organization, “Wendelstein 7-X: ten years of world-leading fusion research.”</span><span class="src-meta">W7-X 8 分钟、2026 三重积纪录。</span><a class="src-url" href="https://www.iter.org/node/20687/wendelstein-7-x-ten-years-world-leading-fusion-research" target="_blank" rel="noopener">https://www.iter.org/node/20687/wendelstein-7-x-ten-years-world-leading-fusion-research</a></li>
+        <li><span class="src-title">Max Planck Institute for Plasma Physics (IPP).</span><span class="src-meta">W7-X 官方机构。</span><a class="src-url" href="https://www.ipp.mpg.de/" target="_blank" rel="noopener">https://www.ipp.mpg.de/</a></li>
+        <li><span class="src-title">Proxima Fusion, “News.”</span><span class="src-meta">€411M 融资、Alpha 演示、RWE/巴伐利亚合作。</span><a class="src-url" href="https://www.proximafusion.com/news" target="_blank" rel="noopener">https://www.proximafusion.com/news</a></li>
+        <li><span class="src-title">Type One Energy.</span><span class="src-meta">$200M B 轮、TVA Bull Run 电网级仿星器。</span><a class="src-url" href="https://typeoneenergy.com/" target="_blank" rel="noopener">https://typeoneenergy.com/</a></li>
+        <li><span class="src-title">Zap Energy, “Fusion technology.”</span><span class="src-meta">剪切流稳定 Z-pinch、50 cm/1 mm、10 Hz。</span><a class="src-url" href="https://www.zapenergy.com/technologies/fusion" target="_blank" rel="noopener">https://www.zapenergy.com/technologies/fusion</a></li>
+        <li><span class="src-title">Zap Energy, “Zap Energy advances integrated nuclear strategy…”</span><span class="src-meta">2026-04；CEO 变更、DOE 里程碑、Century 平台。</span><a class="src-url" href="https://www.zapenergy.com/updates/2026/04/zap-energy-advances-integrated-nuclear-strategy-and-appoints-zabrina-johal-as-ceo" target="_blank" rel="noopener">https://www.zapenergy.com/updates/2026/04/zap-energy-advances-integrated-nuclear-strategy-and-appoints-zabrina-johal-as-ceo</a></li>
+        <li><span class="src-title">First Light Fusion.</span><span class="src-meta">FLARE、M3 压缩演示、防务/空间应用。</span><a class="src-url" href="https://firstlightfusion.com/" target="_blank" rel="noopener">https://firstlightfusion.com/</a></li>
+        <li><span class="src-title">Longview Fusion.</span><span class="src-meta">激光 ICF 商业电站、NIF 团队背景。</span><a class="src-url" href="https://www.longviewfusion.com/" target="_blank" rel="noopener">https://www.longviewfusion.com/</a></li>
+        <li><span class="src-title">Focused Energy.</span><span class="src-meta">激光聚变、靶工厂、SourceLight。</span><a class="src-url" href="https://www.focused-energy.co/" target="_blank" rel="noopener">https://www.focused-energy.co/</a></li>
+        <li><span class="src-title">Marvel Fusion.</span><span class="src-meta">Caelora 激光、p-B¹¹ 远期、西门子能源 LOI。</span><a class="src-url" href="https://www.marvelfusion.com/" target="_blank" rel="noopener">https://www.marvelfusion.com/</a></li>
+        <li><span class="src-title">HB11 Energy.</span><span class="src-meta">激光 p-B¹¹、质子束点火、1 GW 模块概念。</span><a class="src-url" href="https://hb11.energy/" target="_blank" rel="noopener">https://hb11.energy/</a></li>
+        <li><span class="src-title">Pacific Fusion.</span><span class="src-meta">脉冲功率、模块化 pulser、新墨西哥州。</span><a class="src-url" href="https://www.pacificfusion.com/" target="_blank" rel="noopener">https://www.pacificfusion.com/</a></li>
+        <li><span class="src-title">Realta Fusion.</span><span class="src-meta">磁镜 + HTS、与 CFS 合作。</span><a class="src-url" href="https://www.realtafusion.com/" target="_blank" rel="noopener">https://www.realtafusion.com/</a></li>
+        <li><span class="src-title">UK Government, “West Burton selected as home of STEP fusion plant.”</span><span class="src-meta">官方公告；2040 年原型电站、£220M 概念设计。</span><a class="src-url" href="https://www.gov.uk/government/news/west-burton-selected-as-home-of-step-fusion-plant" target="_blank" rel="noopener">https://www.gov.uk/government/news/west-burton-selected-as-home-of-step-fusion-plant</a></li>
+        <li><span class="src-title">UK Government, “UK Fusion Energy.”</span><span class="src-meta">UKFE 机构页；STEP 交付主体。</span><a class="src-url" href="https://www.gov.uk/government/organisations/uk-fusion-energy" target="_blank" rel="noopener">https://www.gov.uk/government/organisations/uk-fusion-energy</a></li>
+        <li><span class="src-title">U.S. Department of Energy, “Fusion Energy Sciences.”</span><span class="src-meta">FES 项目、FIRE、Milestone。</span><a class="src-url" href="https://www.energy.gov/science/fes/fusion-energy-sciences" target="_blank" rel="noopener">https://www.energy.gov/science/fes/fusion-energy-sciences</a></li>
+        <li><span class="src-title">U.S. Department of Energy, “DOE announces new decadal fusion energy strategy.”</span><span class="src-meta">2024；三大支柱、$180M FIRE Collaboratives。</span><a class="src-url" href="https://www.energy.gov/articles/doe-announces-new-decadal-fusion-energy-strategy" target="_blank" rel="noopener">https://www.energy.gov/articles/doe-announces-new-decadal-fusion-energy-strategy</a></li>
+        <li><span class="src-title">U.S. Department of Energy, “$107 million for FIRE projects.”</span><span class="src-meta">六个 FIRE 项目；Milestone 计划。</span><a class="src-url" href="https://www.energy.gov/articles/us-department-energy-announces-selectees-107-million-fusion-innovation-research-engine" target="_blank" rel="noopener">https://www.energy.gov/articles/us-department-energy-announces-selectees-107-million-fusion-innovation-research-engine</a></li>
+        <li><span class="src-title">Fusion Industry Association.</span><span class="src-meta">$15B+ 累计投资、2026 行业报告、政策倡导。</span><a class="src-url" href="https://www.fusionindustryassociation.org/" target="_blank" rel="noopener">https://www.fusionindustryassociation.org/</a></li>
+        <li><span class="src-title">Korea Institute of Fusion Energy (KFE).</span><span class="src-meta">KSTAR 官方机构。</span><a class="src-url" href="https://www.kfe.re.kr/eng/" target="_blank" rel="noopener">https://www.kfe.re.kr/eng/</a></li>
+        <li><span class="src-title">National Institutes for Quantum Science and Technology (QST).</span><span class="src-meta">JT-60SA 官方机构。</span><a class="src-url" href="https://www.qst.go.jp/site/qst-english/" target="_blank" rel="noopener">https://www.qst.go.jp/site/qst-english/</a></li>
+        <li><span class="src-title">Institute of Plasma Physics, Chinese Academy of Sciences (ASIPP).</span><span class="src-meta">EAST、BEST 官方机构。</span><a class="src-url" href="http://english.ipp.cas.cn/" target="_blank" rel="noopener">http://english.ipp.cas.cn/</a></li>
+        <li><span class="src-title">ITER China.</span><span class="src-meta">中国 ITER 执行机构。</span><a class="src-url" href="https://www.iterchina.cn/" target="_blank" rel="noopener">https://www.iterchina.cn/</a></li>
+        <li><span class="src-title">China National Nuclear Corporation (CNNC), English site.</span><span class="src-meta">中核集团；CFEC 相关背景。</span><a class="src-url" href="https://en.cnnc.com.cn/" target="_blank" rel="noopener">https://en.cnnc.com.cn/</a></li>
+        <li><span class="src-title">维基百科，“紧凑型聚变能实验装置（BEST）.”</span><span class="src-meta">B 级；引用环评报告、央视、EUROfusion 等；2026 建成/2027 投运、投资 85 亿元。</span><a class="src-url" href="https://zh.wikipedia.org/wiki/%E7%B4%A7%E5%87%91%E5%9E%8B%E8%81%9A%E5%8F%98%E8%83%BD%E5%AE%9E%E9%AA%8C%E8%A3%85%E7%BD%AE" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/紧凑型聚变能实验装置</a></li>
+        <li><span class="src-title">U.S. Nuclear Regulatory Commission, “Regulatory Framework for Fusion Machines.”</span><span class="src-meta">2026-02-26 拟议规则；10 CFR Part 30；评论期至 2026-05-27。</span><a class="src-url" href="https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines" target="_blank" rel="noopener">https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines</a></li>
+        <li><span class="src-title">International Atomic Energy Agency (IAEA), “Fusion.”</span><span class="src-meta">聚变安全、核材料、国际合作。</span><a class="src-url" href="https://www.iaea.org/topics/fusion" target="_blank" rel="noopener">https://www.iaea.org/topics/fusion</a></li>
+        <li><span class="src-title">EUROfusion, “JET.”</span><span class="src-meta">JET 装置与历史；1997 年 Q=0.67、2021 年 59 MJ。</span><a class="src-url" href="https://euro-fusion.org/devices/jet/" target="_blank" rel="noopener">https://euro-fusion.org/devices/jet/</a></li>
+        <li><span class="src-title">东方财富网/南方财经，“中国聚变能源有限公司工商变更，注册资本增至 150 亿元.”</span><span class="src-meta">2025-09-01；B 级媒体；注册资本由约 35.31 亿元增至 150 亿元。</span><a class="src-url" href="https://caifuhao.eastmoney.com/news/20250901180809406083470" target="_blank" rel="noopener">https://caifuhao.eastmoney.com/news/20250901180809406083470</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>关于本报告</h5>
+        <p>《把太阳装进盒子》是一份关于可控核聚变技术路径的独立调研报告，覆盖原理、路线、优缺点、工程瓶颈、最新进展与机构链接。</p>
+        <p>调研与撰写：Claude · 截止 2026-10-24。所有图表为手绘 SVG，报告为单文件、无外部依赖。</p>
+      </div>
+      <div>
+        <h5>阅读提示</h5>
+        <p>证据等级：<span class="badge a">A</span> 官方/一手　<span class="badge b">B</span> 媒体/行业　<span class="badge c">C</span> 分析师/目标　<span class="badge d">D</span> 未证实。</p>
+        <p>公司时间表不等于承诺；靶增益不等于工程增益；Q 不等于度电成本。</p>
+      </div>
+      <div>
+        <h5>继续跟踪</h5>
+        <p><a href="https://www.iter.org/news" target="_blank" rel="noopener">ITER News</a> · <a href="https://lasers.llnl.gov/" target="_blank" rel="noopener">LLNL NIF</a><br>
+        <a href="https://cfs.energy/" target="_blank" rel="noopener">CFS</a> · <a href="https://www.helionenergy.com/" target="_blank" rel="noopener">Helion</a> · <a href="https://tae.com/" target="_blank" rel="noopener">TAE</a><br>
+        <a href="https://www.fusionindustryassociation.org/" target="_blank" rel="noopener">FIA</a> · <a href="https://www.iaea.org/topics/fusion" target="_blank" rel="noopener">IAEA</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 · 独立调研 · 不构成投资建议</span>
+      <span>单文件 HTML · 16 图 · 44 条来源 · 证据分级 A–D</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  function updateProgress(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var y = window.scrollY || h.scrollTop || 0;
+    var pct = max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 0;
+    if (progress) progress.style.width = pct + '%';
+  }
+  function setActive(id){
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('is-active', on);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    }, {rootMargin: '-42% 0px -52% 0px', threshold: 0});
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+})();
+</script>
+</body>
+</html>

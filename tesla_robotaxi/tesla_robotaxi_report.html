@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tesla Robotaxi 投资研究报告 · 2026年10月</title>
+<style>
+:root{
+  --ink:#12161c; --ink-soft:#3d4753; --muted:#77818f; --line:#e4e8ee; --line-soft:#eef1f5;
+  --bg:#f7f8fa; --panel:#ffffff; --accent:#c8452d; --accent2:#1f6feb; --accent3:#0f9d58;
+  --accent4:#b8860b; --accent5:#7b4fd6; --shadow:0 1px 2px rgba(18,22,28,.05),0 8px 24px rgba(18,22,28,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,
+    "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; letter-spacing:.01em;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px 96px}
+header.hero{
+  background:linear-gradient(160deg,#151a21 0%,#232c38 55%,#2f3a48 100%);
+  color:#fff; padding:56px 0 44px; margin-bottom:34px;
+}
+header.hero .wrap{padding-bottom:0}
+.kicker{font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:#9fb0c4; font-weight:600}
+h1{font-size:38px; line-height:1.22; margin:14px 0 10px; font-weight:700; letter-spacing:-.01em}
+.subtitle{font-size:16.5px; color:#c3cddb; max-width:820px; margin:0 0 26px}
+.meta-row{display:flex; flex-wrap:wrap; gap:10px 28px; font-size:13px; color:#a9b7c8; border-top:1px solid rgba(255,255,255,.14); padding-top:18px}
+.meta-row b{color:#fff; font-weight:600}
+h2{
+  font-size:24px; margin:52px 0 6px; padding-bottom:12px; border-bottom:2px solid var(--ink);
+  display:flex; align-items:baseline; gap:12px; font-weight:700; letter-spacing:-.01em;
+}
+h2 .num{font-size:13px; color:var(--accent); font-weight:700; letter-spacing:.12em}
+h3{font-size:17.5px; margin:34px 0 8px; font-weight:650}
+h4{font-size:15px; margin:22px 0 4px; font-weight:650; color:var(--ink-soft)}
+p{margin:12px 0; color:var(--ink-soft)}
+ul,ol{margin:12px 0 12px 4px; padding-left:22px; color:var(--ink-soft)}
+li{margin:7px 0}
+li::marker{color:var(--muted)}
+strong{color:var(--ink); font-weight:650}
+code{background:#eef1f5; padding:1.5px 6px; border-radius:4px; font-size:13px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:var(--accent2); text-decoration:none; border-bottom:1px solid rgba(31,111,235,.28)}
+a:hover{border-bottom-color:var(--accent2)}
+
+/* ---------- KPI grid ---------- */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(196px,1fr)); gap:14px; margin:26px 0 8px}
+.kpi{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; box-shadow:var(--shadow)}
+.kpi .lab{font-size:12px; color:var(--muted); letter-spacing:.02em; margin-bottom:6px; min-height:32px}
+.kpi .val{font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15}
+.kpi .val small{font-size:13.5px; font-weight:600; color:var(--muted); margin-left:3px; letter-spacing:0}
+.kpi .note{font-size:11.5px; color:var(--muted); margin-top:6px}
+.up{color:var(--accent3)} .down{color:var(--accent)} .flat{color:var(--muted)}
+
+/* ---------- callouts ---------- */
+.callout{border-radius:12px; padding:16px 20px; margin:22px 0; border:1px solid var(--line);
+  background:var(--panel); border-left:4px solid var(--accent2); box-shadow:var(--shadow)}
+.callout .t{font-weight:700; font-size:14px; margin-bottom:6px; color:var(--ink)}
+.callout p{margin:6px 0}
+.callout.warn{border-left-color:var(--accent4); background:#fffdf6}
+.callout.risk{border-left-color:var(--accent); background:#fff8f7}
+.callout.ok{border-left-color:var(--accent3); background:#f6fdf9}
+.callout.key{border-left-color:var(--accent5); background:#faf8ff}
+
+/* ---------- figures ---------- */
+figure{margin:30px 0 34px; background:var(--panel); border:1px solid var(--line);
+  border-radius:14px; padding:20px 22px 12px; box-shadow:var(--shadow)}
+figure .ftitle{font-size:15px; font-weight:700; margin:0 0 2px; color:var(--ink)}
+figure .fsub{font-size:12.5px; color:var(--muted); margin:0 0 14px; line-height:1.6}
+figure .fsrc{font-size:11.5px; color:var(--muted); margin:10px 0 4px; border-top:1px dashed var(--line);
+  padding-top:9px; line-height:1.6}
+figcaption{font-size:12.5px; color:var(--muted); margin-top:8px}
+svg.chart{display:block; width:100%; height:auto; overflow:visible}
+
+/* ---------- tables ---------- */
+table{width:100%; border-collapse:collapse; margin:20px 0; font-size:13.5px; background:var(--panel);
+  border:1px solid var(--line); border-radius:12px; overflow:hidden}
+th{background:#f2f5f9; text-align:left; padding:11px 13px; font-weight:650; font-size:12.5px;
+  color:var(--ink); border-bottom:1px solid var(--line); white-space:nowrap}
+td{padding:10px 13px; border-bottom:1px solid var(--line-soft); color:var(--ink-soft); vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafbfd}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+td.pos{color:var(--accent3); font-weight:600} td.neg{color:var(--accent); font-weight:600}
+.tbl-note{font-size:11.5px; color:var(--muted); margin:-12px 0 22px; line-height:1.6}
+
+/* ---------- evidence badges ---------- */
+.badge{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.05em; padding:1.5px 7px;
+  border-radius:5px; vertical-align:1.5px; margin-left:5px; white-space:nowrap; line-height:1.6}
+.b-a{background:#e6f4ea; color:#0b6b3a; border:1px solid #bfe3cb}
+.b-b{background:#e8f0fe; color:#1653b8; border:1px solid #c6dafb}
+.b-c{background:#fff4e0; color:#8a5a00; border:1px solid #f3ddb0}
+.b-d{background:#f2f4f7; color:#5b6472; border:1px solid #dfe3ea}
+.b-x{background:#fdeceb; color:#a3261a; border:1px solid #f6c9c4}
+
+/* ---------- rating block ---------- */
+.rating{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:26px 0}
+.rating .box{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px;
+  box-shadow:var(--shadow)}
+.rating .box .h{font-size:12px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; font-weight:650}
+.rating .box .big{font-size:30px; font-weight:700; margin:6px 0 2px; letter-spacing:-.02em}
+
+/* ---------- misc ---------- */
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:26px}
+@media (max-width:820px){.two-col{grid-template-columns:1fr}}
+.toc{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px;
+  box-shadow:var(--shadow); columns:2; column-gap:34px; font-size:13.5px; margin:26px 0}
+@media (max-width:820px){.toc{columns:1}}
+.toc a{display:block; padding:4px 0; border:none; color:var(--ink-soft)}
+.toc a:hover{color:var(--accent2)}
+.toc .n{color:var(--muted); font-variant-numeric:tabular-nums; display:inline-block; width:26px}
+hr{border:none; border-top:1px solid var(--line); margin:40px 0}
+.tagrow{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0}
+.tag{font-size:12px; padding:3px 10px; border-radius:20px; background:#eef1f5; color:var(--ink-soft); border:1px solid var(--line)}
+.tag.r{background:#fdeceb; color:#a3261a; border-color:#f6c9c4}
+.tag.g{background:#e6f4ea; color:#0b6b3a; border-color:#bfe3cb}
+.tag.a{background:#fff4e0; color:#8a5a00; border-color:#f3ddb0}
+.footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); line-height:1.8}
+.disclaimer{background:#f2f5f9; border:1px solid var(--line); border-radius:12px; padding:16px 20px;
+  font-size:12.5px; color:var(--ink-soft); margin:30px 0}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="kicker">Investment Research · 独立研究</div>
+  <h1>Tesla Robotaxi 投资研究报告</h1>
+  <p class="subtitle">把「无人驾驶的未来」翻译成可以核对的数字：车队规模、监管状态、单位经济、
+  现金流，以及市场当前为尚未发生的事付了多少钱。</p>
+  <div class="meta-row">
+    <span>发布日期 <b>2026-10-08</b></span>
+    <span>数据截止 <b>2026-10-08</b></span>
+    <span>标的 <b>TSLA · NASDAQ</b></span>
+    <span>参考价 <b>$376.28</b>（2026-10-07）</span>
+    <span>市值 <b>1.49 万亿美元</b></span>
+    <span>证据等级 <b>A / B / C / D / X</b> 逐条标注</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+<div class="toc"><a href='#s0'><span class='n'>摘要</span>核心判断</a>
+<a href='#s1'><span class='n'>第一章</span>投资判断与情景框架</a>
+<a href='#s2'><span class='n'>第二章</span>技术底座：Tesla 到底在造什么</a>
+<a href='#s3'><span class='n'>第三章</span>运营现状：7 个都市圈，两种法律结构</a>
+<a href='#s4'><span class='n'>第四章</span>监管与安全：真正的约束条件</a>
+<a href='#s5'><span class='n'>第五章</span>单位经济学：一个必须承认无知的模型</a>
+<a href='#s6'><span class='n'>第六章</span>财务现实：利润率 1.4% 的公司</a>
+<a href='#s7'><span class='n'>第七章</span>竞争格局：Tesla 是挑战者</a>
+<a href='#s8'><span class='n'>第八章</span>催化剂与时间表</a>
+<a href='#s9'><span class='n'>第九章</span>估值：市场为未发生的事付了多少钱</a>
+<a href='#s10'><span class='n'>第十章</span>风险清单</a>
+<a href='#s11'><span class='n'>第十一章</span>证据分级、已剔除项与已知错误</a></div>
+
+<h2 id="s0"><span class="num">摘要</span>核心判断</h2>
+<p>Tesla 今天的股价几乎不对应它正在赚钱的那门生意。2025 财年，Tesla 汽车业务经营利润率降到 <b>4.6%</b>，
+2026 年二季度进一步降到 <b>1.4%</b><span class='badge b-a'>证据 A · 一手官方</span>；同一时间，公司把 2026 年的资本开支指引抬到
+<b>超过 200 亿美元</b>（2025 年为 85 亿）<span class='badge b-a'>证据 A · 一手官方</span>，并在 2026 年 9 月 29 日一次性签下
+<b>300 亿美元的信贷额度</b>（200 亿延迟提取定期贷款 + 100 亿循环额度）<span class='badge b-a'>证据 A · 一手官方</span>。
+也就是说：<b>一家经营利润率不足 2% 的制造企业，正在用举债的方式为一场自动驾驶豪赌融资。</b>
+Robotaxi 不是一个可以忽略的"期权"，它已经变成了估值的解释项本身。</p>
+
+<p>本报告的核心工作是把这个"期权"拆开，区分<b>已经被公司自己披露的事实</b>、<b>被第三方核实的运营数据</b>
+和<b>仍然只是讲述的部分</b>。三个结论：</p>
+
+<div class="callout key">
+<div class="t">结论一：Robotaxi 的"运营现实"远小于"叙事规模"</div>
+<p>截至 2026 年 7 月的公司披露，Robotaxi 已上线 <b>7 个都市圈</b>，但其中真正无人监督（无车内安全员）的
+只有德州的奥斯汀、达拉斯、休斯顿和佛州的迈阿密、奥兰多、坦帕 6 个城市<span class='badge b-a'>证据 A · 一手官方</span>。
+在加州——美国最大的网约车市场——Tesla 持有的是<b>"配安全员测试许可"，且不在加州 DMV 的无人驾驶测试许可名单上，
+也不在部署许可名单上</b><span class='badge b-a'>证据 A · 一手官方</span>。湾区所谓的 Robotaxi 服务，法律性质是一张 TCP 客运牌照下的
+<b>带司机的 FSD（监督版）网约车</b>，Tesla 自己在财报脚注里就是这么写的。</p>
+</div>
+
+<div class="callout key">
+<div class="t">结论二：真正的瓶颈不是软件，是资本结构与产能爬坡的时序</div>
+<p>Cybercab 在 2026 年上半年开始生产，年产能标注 &gt;12.5 万辆<span class='badge b-a'>证据 A · 一手官方</span>，但从"开始生产"到"取代 Model Y 车队"
+之间隔着一条产线爬坡曲线。同时，公司 2026 上半年自由现金流已经是 <b>−11 亿美元</b>的二季度单季赤字，
+资本开支同比 +142%<span class='badge b-a'>证据 A · 一手官方</span>。300 亿美元信贷额度是这个时序缺口的直接证据，也意味着
+<b>稀释或杠杆风险已经从尾部风险变成基准情景的一部分。</b></p>
+</div>
+
+<div class="callout key">
+<div class="t">结论三：可以验证的里程碑是"车队规模"，不是"每英里成本"</div>
+<p>Tesla 从未在财报中披露 Robotaxi 的收入、车队数量或单位经济。它披露的唯一运营量是
+<b>"累计付费里程"</b>——而累计值在数学上不可能下降，所以这张图永远"看上去在增长"。
+把它拆成单季：2026 年一季度约 <b>110 万英里</b>，二季度约 <b>70 万英里</b>，
+<b>环比下降约 36%</b><span class='badge b-b'>证据 B · 权威二手</span>——同一时间服务城市数却在增加。</p>
+<p>作为对照，Waymo 同期公布的是 <b>2.7 亿累计自动驾驶英里</b>，且披露每周付费订单量
+（超 50 万次）<span class='badge b-a'>证据 A · 一手官方</span>。<b>两个数字不在一个数量级上，而且方向相反。</b>
+任何"Tesla 将复制 Waymo 曲线"的假设，都必须先解释这个 100 倍的差距如何收敛，
+以及为什么在扩张城市的同时单季里程在下降。</p>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="lab">Q3 2026 交付量</div>
+    <div class="val">486,532<small>辆</small></div>
+    <div class="note">同比 -2.1% · 低于 2025 年同期 <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+  <div class="kpi"><div class="lab">Q2 2026 汽车业务经营利润率</div>
+    <div class="val down">1.4<small>%</small></div>
+    <div class="note">2021 年全年为 12.1% <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+  <div class="kpi"><div class="lab">2026 资本开支指引</div>
+    <div class="val">&gt;200<small>亿美元</small></div>
+    <div class="note">2025 年实际 85 亿 <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+  <div class="kpi"><div class="lab">Robotaxi 已上线都市圈</div>
+    <div class="val">7<small>个</small></div>
+    <div class="note">其中 6 个无人监督；加州仍需安全员 <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+  <div class="kpi"><div class="lab">季度付费里程（Q2 2026）</div>
+    <div class="val down">70<small>万英里</small></div>
+    <div class="note">环比 −36%（Q1 约 110 万英里）<span class='badge b-b'>证据 B · 权威二手</span></div></div>
+  <div class="kpi"><div class="lab">德州商用授权 Cybercab</div>
+    <div class="val down">169<small>辆</small></div>
+    <div class="note">Waymo 同期 1,154 辆 <span class='badge b-b'>证据 B · 权威二手</span></div></div>
+  <div class="kpi"><div class="lab">FSD 活跃订阅（Q2 2026）</div>
+    <div class="val">148<small>万</small></div>
+    <div class="note">同比 +56%，CEO 奖励目标为 1000 万 <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+  <div class="kpi"><div class="lab">2025 年汽车监管积分收入</div>
+    <div class="val down">19.9<small>亿美元</small></div>
+    <div class="note">同比 −28%，Q2 2026 单季同比 −67% <span class='badge b-a'>证据 A · 一手官方</span></div></div>
+</div>
+
+
+<h2 id="s1"><span class="num">第一章</span>投资判断与情景框架</h2>
+
+<h3>1.1 这笔投资在买什么</h3>
+<p>把 Tesla 拆成三个互不相同的资产，估值问题就会变得可讨论：</p>
+<ol>
+<li><b>一家正在丧失定价权的整车厂。</b>2025 年交付 163.6 万辆（同比 −9%），收入 948 亿美元（同比 −3%），
+经营利润率 4.6%<span class='badge b-a'>证据 A · 一手官方</span>。2026 上半年交付量同比回升 8.8%（Q3 单季仍同比 −2.1%），
+但 2026 二季度经营利润 3.98 亿美元，利润率 1.4%<span class='badge b-a'>证据 A · 一手官方</span>。单车层面，剔除监管积分后的汽车毛利率
+从 2025 二季度的 15.0% 回升到 2026 一季度的 19.2%，随后在二季度回落至 16.3%<span class='badge b-c'>证据 C · 分析师/推算</span>
+（基于公司季报数据计算）。这说明成本端确有改善，但被价格与结构因素吃掉。</li>
+<li><b>一个高质量的能源与储能业务。</b>2025 年储能收入 128 亿美元（+27%），全年部署 46.7 GWh（+49%）<span class='badge b-a'>证据 A · 一手官方</span>。
+这是 Tesla 唯一一个量、价、利润率同时向好的板块（2026 一季度毛利率 39.5%）<span class='badge b-c'>证据 C · 分析师/推算</span>。
+但二季度毛利率回落到 20.4%，公司归因于"供应商电芯问题导致的一次性能源质保费用"<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>一份关于实体世界人工智能的看涨期权。</b>标的物是 Robotaxi + Optimus + FSD 订阅，
+执行价格是 2026 年起的 200 亿美元级年度资本开支，以及已经签下的 300 亿美元信贷额度<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+</ol>
+
+<p>投资判断因此不取决于"Tesla 的自动驾驶技术好不好"，而取决于三个可证伪的问题：
+<b>(a)</b> 车队规模能否在 2027–2028 年跨越从"几千辆"到"几十万辆"的鸿沟；
+<b>(b)</b> 单位经济能否在无安全员、无远程高频接管的前提下转正；
+<b>(c)</b> 现有业务与融资结构能否在不显著稀释股东的前提下支撑到那一天。</p>
+
+<h3>1.2 三情景框架</h3>
+<p>下表把这三个问题显式化为情景。需要强调的是：<b>下表除"当前状态"一列外，全部是本报告的假设，
+不是公司指引</b>，因此整表标注为分析师推算<span class='badge b-c'>证据 C · 分析师/推算</span>。公司唯一给出的长期量化锚点是
+2025 年 CEO 绩效奖中的 <b>"100 万辆 Robotaxi 商业化运营"</b>与阶梯式 Adjusted EBITDA 目标<span class='badge b-a'>证据 A · 一手官方</span>——
+那是一份激励合约，不是预测。</p>
+
+
+<h2 id="s2"><span class="num">第二章</span>技术底座：Tesla 到底在造什么</h2>
+
+<h3>2.1 一条与 Waymo 完全不同的技术路线</h3>
+<p>Tesla 的自动驾驶方案是<b>纯视觉 + 端到端神经网络</b>，不使用激光雷达，量产车上装的是摄像头与自研推理芯片。
+这一点在 10-K 中被明确表述："我们利用基于视觉的技术、系统和软件来训练人工神经网络，
+并由我们自研的定制推理芯片加速"<span class='badge b-a'>证据 A · 一手官方</span>。Waymo 的路线是激光雷达 + 高精地图 + 多传感器冗余，
+单车物料成本显著更高，但感知冗余度也更高。</p>
+<p>这个差异的含义不在于"谁更先进"，而在于<b>成本曲线与扩张速度的形状不同</b>：
+Tesla 押注的是"摄像头足够便宜、数据足够多，因此边际车队成本趋近于一辆普通电车的成本"。
+如果这个前提成立，Tesla 的规模上限远高于 Waymo；如果不成立，
+它会持续暴露在长尾场景的失效风险中，而 Waymo 的冗余设计恰好是为长尾买的保险。</p>
+
+<h3>2.2 软件版本迭代：从 v14 到 v14 lite</h3>
+<ul>
+<li><b>v14</b>（2025 年四季度）：引入端到端基础模型，可自主寻找车位并泊车；公司称全球车队
+"每天可收集相当于 500 年连续驾驶的数据"<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>v14.3</b>（2026 年 4 月）：升级强化学习训练阶段以处理长尾场景，重写 AI 编译器，
+推理延迟降低最多 20%<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>v14 lite</b>（2026 年二季度）：把 AI4 的 v14 驾驶行为蒸馏到算力与摄像头配置更低的 AI3 硬件上，
+面向存量车队<span class='badge b-a'>证据 A · 一手官方</span>——这一步的战略意义是<b>把 FSD 的可用存量车辆基数一次性放大</b>。</li>
+</ul>
+<p>注意一个容易被忽略的措辞：公司始终称其为 <b>FSD (Supervised)</b>，并在每份财报的脚注里写
+"需要驾驶员主动监督；这不使车辆具备自动驾驶能力"<span class='badge b-a'>证据 A · 一手官方</span>。而支撑 Robotaxi 无人运营的，
+是同一套软件在受限地理围栏内的、并且被监管机构单独批准的子集。</p>
+
+<h3>2.3 算力与芯片：垂直整合的第二战场</h3>
+<p>这是 Tesla 与所有竞争对手最不一样的地方：它同时在建<b>推理芯片、训练算力与晶圆厂</b>。</p>
+<ul>
+<li><b>训练算力</b>：Cortex 1（&gt;90 MW）与 Cortex 2（&gt;115 MW）已在德州投产，
+公司称 2026 上半年现场算力（以 MW 计）翻了一倍以上<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>推理芯片</b>：AI5 于 2026 年 4 月完成最终设计（tape out），计划 <b>2027 年</b>量产；
+AI6 计划 <b>2028 年</b>量产。公司给出的目标是 AI5 相对 AI4 实现 <b>50 倍性能提升</b>
+（10 倍原始算力、9 倍内存容量、5 倍强化量化与 softmax）<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>制造</b>：Tesla 与三星合作在美国制造半导体；与 SpaceX 合作建设公司所称"史上最大芯片厂"，
+先从 Giga Texas 园区内的 Tesla 自有研发晶圆厂开始；2026 年二季度施工与设备采购持续推进<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+</ul>
+
+<div class="callout warn">
+<div class="t">阅读提示：注意"计划量产年份"与"已量产"的区别</div>
+<p>AI5 量产在 2027 年、AI6 在 2028 年，意味着<b>当前部署的 Robotaxi 车队跑在 AI4 上</b>。
+任何把"50 倍性能提升"当作近期变量的模型都会高估 2026–2027 年的演进速度。本报告的情景模型
+只在牛市中把它作为 2028 年后的加速因子。</p>
+</div>
+
+<h3>2.4 Cybercab：产能已经存在，规模尚未存在</h3>
+<p>Cybercab 是 Tesla 为 Robotaxi 专门设计的双座车型，无方向盘与踏板（受监管批准约束）。
+关键事实链<span class='badge b-a'>证据 A · 一手官方</span>：</p>
+<ol>
+<li>2026 年上半年，Cybercab 在 Giga Texas <b>开始生产</b>，工程测试车已在公共道路行驶；</li>
+<li>2026 年 7 月，开始在 Giga Texas 园区内为员工提供 Cybercab 试乘；</li>
+<li>财报中列示的 Cybercab 年产能为 <b>&gt;125,000 辆</b>，状态为"生产中"；</li>
+<li>公司表述："一旦投产，我们预期 Cybercab 将开始<b>取代现有的 Model Y 车队</b>，
+并在一段时间后成为车队中数量最多的车型"<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+</ol>
+<p>换言之：<b>产能数字（12.5 万辆/年）是"能造多少"，不是"已造多少"，更不是"已投入运营多少"。</b>
+Tesla 从未披露 Cybercab 的实际下线数量。这是本报告在建模时最需要保守处理的参数。</p>
+
+
+<h2 id="s3"><span class="num">第三章</span>运营现状：7 个都市圈，两种完全不同的法律结构</h2>
+
+<h3>3.1 扩张时间线（全部来自公司披露）</h3>
+<figure><p class='ftitle'>图 1 · Tesla Robotaxi 城市扩张时间线</p><p class='fsub'>蓝色=无人监督载客运营；红色=仍配安全员或筹备中。时间轴按公司季度披露还原。</p><svg class='chart' viewBox='0 0 1120 354' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='250.0' y1='40.0' x2='250.0' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='250.0' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2025-06</text><line x1='443.0' y1='40.0' x2='443.0' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='443.0' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2025-12</text><line x1='539.5' y1='40.0' x2='539.5' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='539.5' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2026-04</text><line x1='636.0' y1='40.0' x2='636.0' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='636.0' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2026-07</text><line x1='829.1' y1='40.0' x2='829.1' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='829.1' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2026-11</text><line x1='1080.0' y1='40.0' x2='1080.0' y2='328.0' stroke='#e4e8ee' stroke-width='1'/><text x='1080.0' y='34.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='600'>2027-04</text><text x='236.0' y='85.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Austin, TX</text><rect x='250.0' y='71.0' width='96.5' height='20' rx='10' fill='#0f9d58' fill-opacity='0.88'/><text x='355.5' y='85.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>配安全员 → 2026年1月撤除 → 持续扩区</text><text x='236.0' y='98.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>2025年6月首发</text><text x='236.0' y='123.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Bay Area, CA</text><rect x='274.1' y='109.0' width='805.9' height='20' rx='10' fill='#b8860b' fill-opacity='0.88'/><text x='1089.0' y='123.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>安全员全程在位（TCP 客运许可）</text><text x='236.0' y='136.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>2025年10月起</text><text x='236.0' y='161.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Dallas, TX</text><rect x='539.5' y='147.0' width='540.5' height='20' rx='10' fill='#c8452d' fill-opacity='0.88'/><text x='1089.0' y='161.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>无人监督载客</text><text x='236.0' y='174.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>2026年4月上线</text><text x='236.0' y='199.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Houston, TX</text><rect x='539.5' y='185.0' width='540.5' height='20' rx='10' fill='#c8452d' fill-opacity='0.88'/><text x='1089.0' y='199.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>无人监督载客</text><text x='236.0' y='212.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>2026年4月上线</text><text x='236.0' y='237.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Miami / Orlando / Tampa, FL</text><rect x='636.0' y='223.0' width='444.0' height='20' rx='10' fill='#c8452d' fill-opacity='0.88'/><text x='1089.0' y='237.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>无人监督载客</text><text x='236.0' y='250.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>2026年7月上线</text><text x='236.0' y='275.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Phoenix, AZ</text><rect x='925.6' y='261.0' width='154.4' height='20' rx='10' fill='#b8860b' fill-opacity='0.88'/><text x='1089.0' y='275.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>筹备中：测试、许可、应急培训</text><text x='236.0' y='288.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>尚未载客</text><text x='236.0' y='313.0' font-size='12' fill='#12161c' text-anchor='end' font-weight='600'>Las Vegas, NV</text><rect x='925.6' y='299.0' width='154.4' height='20' rx='10' fill='#b8860b' fill-opacity='0.88'/><text x='1089.0' y='313.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>筹备中</text><text x='236.0' y='326.0' font-size='10' fill='#8b95a3' text-anchor='end' font-weight='400'>尚未载客</text></svg><p class='fsrc'>数据来源：Tesla Q4 2025 / Q1 2026 / Q2 2026 股东更新信（SEC EDGAR）· 证据等级 A</p></figure>
+
+<p>把这条时间线读一遍，会发现一个被媒体叙事掩盖的结构性事实：
+<b>Tesla 的"无人监督"扩张全部发生在监管最宽松的两个州（德州、佛州）</b>，
+而它在美国最大、最赚钱的自动驾驶市场加州，至今停留在"带司机的网约车"形态。</p>
+
+<h3>3.2 加州：一条被忽略的脚注</h3>
+<p>在 Q2 2026 股东更新的 Robotaxi 表格里，湾区一行的状态列写着 "Safety Driver"（安全员），
+脚注写明：<b>"湾区运营依据加州 TCP 许可 #TCP0046782-A 使用 FSD（监督版）"</b><span class='badge b-a'>证据 A · 一手官方</span>。
+TCP（charter-party carrier，包车客运）许可是加州用来管理豪华轿车与包车服务的牌照，
+<u>不是</u>自动驾驶部署许可。</p>
+
+<p>本报告直接核查了加州 DMV 的三份许可名单（一手监管文件<span class='badge b-a'>证据 A · 一手官方</span>）：</p>
+<figure><p class='ftitle'>图 2 · 加州 DMV 三类自动驾驶许可：Tesla 只在最低一档</p><p class='fsub'>DMV 将许可分为「配安全员测试 / 无人测试 / 部署」三类。Tesla 仅出现在第一类，且许可主体为 Tesla Robotaxi LLC。</p><svg class='chart' viewBox='0 0 1120 352' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='348.3' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>配安全员测试</text><text x='348.3' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>(截至 26-09-17)</text><text x='645.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>无人测试</text><text x='645.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>(截至 26-04-03)</text><text x='941.7' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>部署许可</text><text x='941.7' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>(截至 25-11-21)</text><text x='188.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla Robotaxi LLC</text><rect x='202.0' y='23.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='23.0' width='292.7' height='28' rx='4' fill='#c8452d'/><text x='645.0' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✗ 不在列</text><rect x='795.3' y='23.0' width='292.7' height='28' rx='4' fill='#c8452d'/><text x='941.7' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✗ 不在列</text><text x='188.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo</text><rect x='202.0' y='57.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='75.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='57.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='645.0' y='75.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='795.3' y='57.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='941.7' y='75.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><text x='188.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Zoox</text><rect x='202.0' y='91.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='109.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='91.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='645.0' y='109.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='795.3' y='91.0' width='292.7' height='28' rx='4' fill='#c8452d'/><text x='941.7' y='109.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✗ 不在列</text><text x='188.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Nuro</text><rect x='202.0' y='125.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='143.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='125.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='645.0' y='143.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='795.3' y='125.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='941.7' y='143.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><text x='188.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>WeRide AI</text><rect x='202.0' y='159.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='177.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='159.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='645.0' y='177.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='795.3' y='159.0' width='292.7' height='28' rx='4' fill='#c8452d'/><text x='941.7' y='177.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✗ 不在列</text><text x='188.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Pony.ai</text><rect x='202.0' y='193.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='211.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='193.0' width='292.7' height='28' rx='4' fill='#f2f4f7'/><text x='645.0' y='211.0' font-size='12' fill='#8b95a3' text-anchor='middle' font-weight='400'>—</text><rect x='795.3' y='193.0' width='292.7' height='28' rx='4' fill='#f2f4f7'/><text x='941.7' y='211.0' font-size='12' fill='#8b95a3' text-anchor='middle' font-weight='400'>—</text><text x='188.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Aurora</text><rect x='202.0' y='227.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='245.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='227.0' width='292.7' height='28' rx='4' fill='#f2f4f7'/><text x='645.0' y='245.0' font-size='12' fill='#8b95a3' text-anchor='middle' font-weight='400'>—</text><rect x='795.3' y='227.0' width='292.7' height='28' rx='4' fill='#f2f4f7'/><text x='941.7' y='245.0' font-size='12' fill='#8b95a3' text-anchor='middle' font-weight='400'>—</text><text x='188.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tensor Auto</text><rect x='202.0' y='261.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='348.3' y='279.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='498.7' y='261.0' width='292.7' height='28' rx='4' fill='#0f9d58'/><text x='645.0' y='279.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>✓ 在列</text><rect x='795.3' y='261.0' width='292.7' height='28' rx='4' fill='#f2f4f7'/><text x='941.7' y='279.0' font-size='12' fill='#8b95a3' text-anchor='middle' font-weight='400'>—</text><text x='200.0' y='338.0' font-size='10.5' fill='#8b95a3' text-anchor='start' font-weight='400'>✓ 持有该许可；✗ 不在该名单中；— 该名单未收录（企业未申请或不适用）。名单为 DMV 官网实时内容，各表更新日期不同。</text></svg><p class='fsrc'>数据来源：California DMV 官网许可持有人名单，2026-10-08 抓取 · 证据等级 A</p></figure>
+
+<div class="callout risk">
+<div class="t">这条脚注的估值含义</div>
+<p>如果 Tesla 在加州获得无人驾驶部署许可，它就能在旧金山湾区——Waymo 最成熟、单城营收最高的市场——
+展开正面竞争。目前它不能。而且这不是"申请中"的状态：DMV 的无人测试名单与部署名单上
+都没有 Tesla 的任何实体<span class='badge b-a'>证据 A · 一手官方</span>。这意味着<b>加州市场对 Tesla Robotaxi 而言在 2026 年内大概率是 0 收入贡献</b>，
+而加州的网约车市场占全美约四分之一量级。任何把加州计入近期 TAM 的模型都需要额外论证。</p>
+</div>
+
+<h3>3.3 唯一被量化过的指标，正在下降</h3>
+<p>面对"运营数据不透明"的质疑，Tesla 的标准回应是每季度在股东更新信里公布一张
+<b>累计付费里程</b>曲线。这张图从 2025 年 8 月画到 2026 年 6 月，看上去一路向上。</p>
+<p><b>但它是累计值——累计值在数学上不可能下降，所以它永远"看上去在增长"。</b>
+把同一条曲线按季度差分，图景完全相反：</p>
+
+<figure><p class='ftitle'>图 3 · 季度付费里程：累计曲线掩盖的下降</p><p class='fsub'>上图为单季付费里程（百万英里），由 Tesla 公布的累计曲线按季度差分得到；下图为累计值。城市数从年初的奥斯汀（另加湾区带安全员运营）增至 6 月时的 6 个城市，单季里程反而下降。</p><svg class='chart' viewBox='0 0 1120 330' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='280.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='224.0' x2='1096.0' y2='224.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='228.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='172.0' x2='1096.0' y2='172.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='176.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1</text><line x1='64.0' y1='120.0' x2='1096.0' y2='120.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='124.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1</text><line x1='64.0' y1='68.0' x2='1096.0' y2='68.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='72.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>2</text><rect x='151.7' y='97.2' width='292.9' height='178.8' fill='#c8452d' fill-opacity='0.9'/><text x='298.2' y='91.2' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>1.1M</text><rect x='667.7' y='162.2' width='292.9' height='113.7' fill='#c8452d' fill-opacity='0.9'/><text x='814.2' y='156.2' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>0.7M</text><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#b6bec9' stroke-width='1.2'/><text x='322.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2026 Q1</text><text x='838.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2026 Q2</text><text x='96.0' y='54.0' font-size='11' fill='#c8452d' text-anchor='start' font-weight='600'>城市数增加，单季里程反而下降 36%</text></svg><svg class='chart' viewBox='0 0 1120 330' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='280.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='224.0' x2='1096.0' y2='224.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='228.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1</text><line x1='64.0' y1='172.0' x2='1096.0' y2='172.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='176.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1</text><line x1='64.0' y1='120.0' x2='1096.0' y2='120.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='124.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>2</text><line x1='64.0' y1='68.0' x2='1096.0' y2='68.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='72.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>2</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>3</text><rect x='151.7' y='166.0' width='292.9' height='110.0' fill='#0f9d58' fill-opacity='0.9'/><text x='298.2' y='160.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>1.1M</text><rect x='667.7' y='96.0' width='292.9' height='180.0' fill='#0f9d58' fill-opacity='0.9'/><text x='814.2' y='90.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>1.8M</text><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#b6bec9' stroke-width='1.2'/><text x='322.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2026 Q1</text><text x='838.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2026 Q2</text><text x='96.0' y='54.0' font-size='11' fill='#0f9d58' text-anchor='start' font-weight='600'>换成累计口径，曲线永远向上</text></svg><p class='fsrc'>数据来源：TechCrunch 依据 Tesla Q2 2026 股东更新信图表做季度差分（2026-07-23）· 证据等级 B（原始数据为 A 级公司图表，差分为第三方计算）</p></figure>
+
+<div class="callout risk">
+<div class="t">这是本报告中与公司叙事方向相反的最重要一条事实</div>
+<p>2026 年二季度，Tesla Robotaxi 车队载客行驶约 <b>70 万英里</b>，低于一季度的约 <b>110 万英里</b>，
+<b>环比下降约 36%</b><span class='badge b-b'>证据 B · 权威二手</span>。同期公司在 2026 年 4 月新增了达拉斯与休斯顿两个无人监督运营城市，
+7 月又新增佛州三城。</p>
+<p>这条数据的重要性在于它<b>无法用"还处在早期"来解释</b>：一个早期业务每新增一个城市，
+都应当带来里程增量。扩张的同时里程下降，可能的解释只有几种，每一种都对估值不利——
+单车利用率在下降、实际可运营车辆数在减少、或需求不足以支撑扩张。</p>
+</div>
+
+<div class="callout warn">
+<div class="t">还有一条口径问题：这 70 万英里里可能有一部分根本不算无人驾驶</div>
+<p>TechCrunch 指出，<b>Tesla 很可能把旧金山湾区的付费里程也计入了 Robotaxi 口径</b>——
+而湾区那批车既没有加州要求的无人驾驶许可，车上还坐着安全员<span class='badge b-b'>证据 B · 权威二手</span>。
+Tesla 自己在财报中把这个业务称为 Robotaxi 覆盖范围的一部分。</p>
+<p>换言之：<b>这个"Robotaxi 付费里程"指标，混合了无人监督里程与带安全员的里程，
+且公司不披露两者的比例。</b>投资者无法从中分离出真正无人驾驶业务的规模。
+这是本报告认为 Tesla 自动驾驶披露中最严重的一处模糊——比"不披露"更难处理的是
+"披露了一个口径不清的数字"。</p>
+</div>
+
+<h3>3.4 车队规模：唯一可核验的第三方代理变量</h3>
+<p>既然公司不给车队数，外部能用的只有州政府的车辆注册与授权记录。
+把各家的记录放在一起，得到的是一张对 Tesla 不利的排名（见第七章图 20）。
+本报告在此只强调一条：<b>在特斯拉总部所在的德州，Tesla 的自动驾驶车辆注册数
+长期低于 Waymo、Avride 甚至 Nuro</b><span class='badge b-b'>证据 B · 权威二手</span>。</p>
+
+
+<h2 id="s4"><span class="num">第四章</span>监管与安全：真正的约束条件</h2>
+
+<h3>4.1 监管结构决定扩张速度</h3>
+<p>美国没有统一的自动驾驶联邦许可制度。实际约束来自三层：</p>
+<ol>
+<li><b>州级</b>：加州要求无人测试与部署分别取得 DMV 许可；佛州、德州路径更宽松，
+Tesla 的无人运营恰恰全部在这两个州。</li>
+<li><b>联邦报告义务</b>：NHTSA 的 Standing General Order（通用命令）要求配备高级驾驶辅助或自动驾驶系统的车辆
+发生特定碰撞后必须上报。Tesla 在 10-K 风险因素中将其列为专门条目<span class='badge b-a'>证据 A · 一手官方</span>。
+这是唯一一个能强制 Tesla 披露 Robotaxi 事故的机制。</li>
+<li><b>地方与运营许可</b>：网约车性质的客运服务，还需要各地的客运/包车牌照（如加州的 TCP）。</li>
+</ol>
+
+<div class="callout ok">
+<div class="t">德州监管框架：已用一手来源核实（附本报告的一次自我纠错）</div>
+<p>本报告在早期研究中曾假设德州 SB 2205 是自动驾驶许可立法。<b>该假设是错的</b>——
+SB 2205（89 届）是关于未缴纳德州道德委员会民事罚款者吊销驾照的法案，与自动驾驶无关。
+真正的法律是 <b>SB 2807（89R）</b>，本报告已调取两份一手来源核对：</p>
+<ul>
+<li><b>德州议会法案页</b>：SB 2807 标题为"关于机动车，包括自动驾驶机动车；设立一项刑事罪名"，
+提案人 Hagenbuch，最后动作记录为 <b>"2025-06-20 生效，2025-09-01"</b><span class='badge b-a'>证据 A · 一手官方</span>。</li>
+<li><b>德州机动车管理局（TxDMV）自动驾驶项目页</b>原文：<b>"第 89 届德州议会于 2025 年通过
+SB 2807（89R），就自动化车辆在德州道路上的商业运营设立了强制性授权要求。"</b>
+该法 2025-09-01 生效，实施细则的最终版本生效于 2026-02-27，
+<b>"授权要求在该最终规则生效日之后 90 天开始可强制执行——即 2026 年 5 月 28 日"</b>。
+法典位置为德州交通法典第 545 章 J 分章<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+</ul>
+<p>TxDMV 页面对商业运营的要求包括：遵守交通法规、配备车载记录设备、
+自动驾驶系统符合适用的联邦机动车安全标准（<b>或取得豁免</b>）、具备达到"最小风险状态"的能力、
+在德州注册上牌、投保责任险，以及<b>向公共安全部认证已制定应急响应人员交互预案</b>（§545.455）。
+授权<b>不收费、不过期</b>，由 TxDMV 执行，在危害公共安全（重伤标准）时可暂停或吊销<span class='badge b-a'>证据 A · 一手官方</span>。</p>
+</div>
+
+<div class="callout warn">
+<div class="t">一个关键细节：Tesla 是在监管真空期上线的</div>
+<p>Texas 2017 年的法律<b>优先于地方对自动驾驶的监管</b>，而 2025 年的修正案直到 2025-09-01 才生效，
+真正的授权要求更迟至 2026-05-28 才可强制执行。
+换言之，<b>Tesla 在 2025 年 6 月推出 Robotaxi 时，德州尚未实施这套授权制度</b>，
+它是在一个监管真空里起步、之后被"祖父条款"式地容纳进来的。<span class='badge b-b'>证据 B · 权威二手</span></p>
+<p>理解这一点很重要：Tesla 的德州先发优势部分来自<b>时间窗口</b>，而不是监管认可。
+一旦 2026-05-28 之后的新标准严格执行（包括上述 FMVSS 或豁免要求），
+Cybercab"自我认证"路径将直接落在该条款的审查之下——这与联邦层面的审计问询（见下）是同一个问题的两个切面。</p>
+</div>
+
+<h3>4.2 一个针对「硬件架构」而非「行为」的监管风险：新泽西与纽约</h3>
+
+<p>上述所有监管都针对<b>行为</b>（开得好不好）。但 2026 年出现了一类新的立法，
+直接针对<b>硬件架构</b>——它不在乎你开得多好，只要你车上没有激光雷达，就不许无人驾驶。</p>
+
+<div class="callout risk">
+<div class="t">新泽西 S1677：一部可能直接把 Cybercab 排除在外的法案</div>
+<p>新泽西州参议员 Andrew Zwicker（普林斯顿等离子体物理实验室物理学家）在乘坐菲尼克斯的 Waymo 之后
+提出了 S1677<span class='badge b-b'>证据 B · 权威二手</span>。法案要求：</p>
+<ul>
+<li>无人驾驶载客实行<b>三年试点</b>制；</li>
+<li>完全无人驾驶车辆必须配备<b>摄像头加另外两种传感模态</b>——实际上就是雷达与激光雷达；</li>
+<li>撤除安全员前，须在州内完成 <b>5 万英里带安全员的有人监督测试</b>；</li>
+<li>强制事故上报；商业无人驾驶上线前须获州政府授权。</li>
+</ul>
+<p>该法案同时<b>"倾向于保留方向盘与踏板等传统控制装置，这将把 Tesla Cybercab 排除在外"</b><span class='badge b-b'>证据 B · 权威二手</span>。
+<b>邻近的纽约州正在考虑一份几乎相同的硬件强制法案。</b></p>
+<p>Zwicker 本人的表述是：「这不是反 Tesla，我是支持新泽西的安全。」
+Tesla 的回应是直接向新泽西的 Tesla 车主群发游说信息，称该法案将禁止 Tesla 在该州运营，
+<b>一天内向 Zwicker 办公室发出了约 4,000 封抗议邮件</b><span class='badge b-b'>证据 B · 权威二手</span>。
+Tesla 高管 Lars Moravy 称传感器强制令「有点令人沮丧」<span class='badge b-b'>证据 B · 权威二手</span>。</p>
+</div>
+
+<p>本报告认为这条风险被市场严重低估，原因有三：</p>
+<ul>
+<li><b>它攻击的是 Tesla 的技术路线本身，而不是它的执行质量。</b>纯视觉方案是 Tesla 成本优势的来源；
+如果某个州立法要求激光雷达，Tesla 在这一州就必须改装车辆——成本优势归零。</li>
+<li><b>它有先例扩散的风险。</b>加州、德州、亚利桑那、佐治亚目前都允许自我认证，
+新泽西的做法是全新的；一旦通过，纽约等州跟进的可能性是实质性的。</li>
+<li><b>Tesla 的应对方式本身是一个信号。</b>一家公司对立法动用车主群发动员，
+通常说明它在法律论证上缺少把握。</li>
+</ul>
+
+<h3>4.3 安全事故：可见度极低的信息黑洞</h3>
+<p>截至本报告日，Tesla 未在财报中披露 Robotaxi 的碰撞率、接管率或远程协助比例。
+可获得的间接信号有三类：</p>
+<ul>
+<li><b>公司自述</b>：多份财报称"我们的首要任务是安全"<span class='badge b-a'>证据 A · 一手官方</span>——这是定性表述，不构成数据披露。</li>
+<li><b>监管上报</b>：NHTSA 的 SGO 数据库是理论上的一手来源，但该站点对自动化访问返回 403，
+本报告<b>未能</b>直接核验其中的 Tesla Robotaxi 条目<span class='badge b-d'>证据 D · 未证实</span>。这不意味着没有事故记录，
+只意味着本报告无法在此处给出经过核实的数字。</li>
+<li><b>诉讼文件</b>：2025 年 8 月 4 日在德州西区联邦法院提起的证券集体诉讼，
+指控公司在 Autopilot、FSD（监督版）与 Robotaxi 的有效性上作虚假陈述，
+集体诉讼期间为 <b>2023 年 4 月 19 日至 2025 年 6 月 22 日</b>；
+2026 年 2 月 17 日原告提交修正诉状，公司于 2026 年 4 月 20 日提出驳回动议<span class='badge b-a'>证据 A · 一手官方</span>。
+另有 2026 年 6 月 4 日在加州北区提起的消费者集体诉讼，涉及其驾驶辅助系统的能力表述<span class='badge b-a'>证据 A · 一手官方</span>。</li>
+</ul>
+
+<p>公司同时披露，它持续收到来自 NHTSA、NTSB、SEC、DOJ 及各州机构的
+信息索取（含传票），主题涵盖"车辆功能、车辆事故、Autopilot、FSD 能力与 Robotaxi"<span class='badge b-a'>证据 A · 一手官方</span>。
+公司声明："据我们所知，没有任何政府机构在正在进行的调查中认定存在任何不当行为"<span class='badge b-a'>证据 A · 一手官方</span>。</p>
+
+<div class="callout risk">
+<div class="t">被披露出来的、但公司从不主动提及的一类事故：远程操作员把车开进了障碍物</div>
+<p>2026 年 5 月，Tesla 向 NHTSA 提交的文件显示了两起<b>由远程操作员直接驾驶车辆导致的事故</b><span class='badge b-b'>证据 B · 权威二手</span>：
+一起发生在 2025 年 7 月，远程操作员<b>把车开上马路牙子撞进金属围栏</b>；
+另一起发生在 2026 年 1 月，车辆<b>以约 9 英里时速撞上施工隔离墩</b>。
+两起事故车上都有安全员，均无乘客。至 2026 年 7 月，公开记录中<b>共有三起事故系远程操作员造成</b>，
+另有撞上树桩、路缘、电线杆与拖车车斗的记录<span class='badge b-b'>证据 B · 权威二手</span>。</p>
+<p>这件事之所以重要，是因为它与行业惯例相反。一份 2026 年 4 月的参议员 Markey 报告指出：
+<b>Tesla 是唯一一家承认其远程操作员可以"主动驾驶"车辆的公司，且允许时速高达 10 英里；
+Waymo 的远程协助是"仅提示"性质，上限 2 英里/小时。</b><span class='badge b-b'>证据 B · 权威二手</span></p>
+<p>这与"Tesla Robotaxi 是无人的"这一叙事存在直接张力：如果远程操作员可以实时操控车辆，
+那么"撤除安全员"在成本上节约了什么，就变得可疑——<b>司机从车里搬到了远程中心，
+而不是被取消了。</b>而 Tesla 从不披露人车比。</p>
+</div>
+
+<div class="callout warn">
+<div class="t">披露质量：Tesla 把所有事故叙述都打了码</div>
+<p>在向 NHTSA 提交的事故报告中，<b>Tesla 以"商业秘密"为由对所有事故叙述做涂黑处理</b>，
+而 Waymo、Zoox、Aurora 与 Nuro 均提供完整描述<span class='badge b-b'>证据 B · 权威二手</span>。<b>Tesla 是唯一一家系统性拒绝说明
+"事故是怎么发生的"的自动驾驶运营商。</b></p>
+<p>这不违反任何规则——美国国家公路交通安全管理局的通用命令允许以商业秘密申请保密。
+但它意味着：<b>投资者与监管者能看到的只有数字，看不到原因。</b>
+在本报告的证据分级里，这直接导致 Tesla 的安全表现无法被评为"A 级"，只能停留在"公司自述"。</p>
+</div>
+
+<h3>4.4 碰撞率：仅有第三方分析，且方向不利</h3>
+<p>Tesla 不披露碰撞率。第三方基于 NHTSA 上报记录与公司自报里程的分析结论如下
+（<b>务必注意：分母来自公司自报的、未经审计的里程数，因此该结论的证据强度弱于其表面精度</b>）：</p>
+
+<figure><p class='ftitle'>图 4 · 每百万英里事故次数：第三方估算的对比</p><p class='fsub'>由「每 4 万英里一次事故」与「每 5.7 万英里一次事故」两个第三方估算换算为每百万英里事故数。人类的对比值为约每 50 万英里一次事故。注意分母为公司自报里程，未经审计。</p><svg class='chart' viewBox='0 0 1120 178' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='318.0' y='52.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla Robotaxi（按 1 次 / 4 万英里）</text><rect x='330.0' y='31.0' width='633.3' height='32.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='971.3' y='52.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>25.0 次</text><text x='318.0' y='96.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla Robotaxi（按 1 次 / 5.7 万英里）</text><rect x='330.0' y='75.0' width='443.3' height='32.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='781.3' y='96.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>17.5 次</text><text x='318.0' y='140.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>美国人类驾驶员平均（1 次 / 50 万英里）</text><rect x='330.0' y='119.0' width='50.7' height='32.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='388.7' y='140.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>2.0 次</text></svg><p class='fsrc'>数据来源：Electrek 基于 NHTSA 上报记录的分析（2025-12 至 2026-07）· 证据等级 C（第三方分析；截至 2026-07-23 累计 22 起 NHTSA 上报事故为 B 级）</p></figure>
+
+<p>截至 2026 年 7 月 23 日，Tesla Robotaxi 累计向 NHTSA 上报 <b>22 起事故</b><span class='badge b-b'>证据 B · 权威二手</span>。
+这个绝对数字本身不大——但它的分母更小：同期累计付费里程约 250 万英里（见 3.3 节）。
+<b>用 22 起事故除以 250 万英里，得到的是每 11 万英里一起事故。</b>
+即便采用对公司最有利的口径，这个频率仍然高于人类驾驶员。</p>
+
+<div class="callout warn">
+<div class="t">本报告在安全问题上的自我约束</div>
+<p>本报告<b>不对 Tesla Robotaxi 是否"安全"下结论</b>，理由有三：① 分母（里程）由公司自报且未经审计；
+② 事故严重程度未分级，一起剐蹭与一起致伤被计为同一次；③ Tesla 涂黑了全部事故叙述，
+无法判断事故性质。把上述任何数字当作定论，都是对证据强度的误用。</p>
+<p>可以确定的只有一条：<b>Tesla 在这个问题上的披露质量显著低于所有可比的自动驾驶运营商，
+而披露质量差本身就是一项应当被计入估值折价的风险。</b></p>
+</div>
+
+<h3>4.4 一条容易被忽略的治理链条</h3>
+<p>2025 年 CEO 绩效奖把 <b>"100 万辆 Robotaxi 商业化运营"</b>直接写进了马斯克的解锁条件<span class='badge b-a'>证据 A · 一手官方</span>。
+这有两个相反方向的含义：</p>
+<ul>
+<li><b>正向</b>：管理层与股东的长期利益在"把车队做大"这一点上高度一致。</li>
+<li><b>负向</b>：在里程碑附近存在<b>用宽松口径冲量</b>的激励。注意公司披露的口径细节——
+"20 亿辆累计交付"这一指标在 2025 年 CEO 奖励定义中，<b>包含"任何投入商业运营的无人驾驶 Robotaxi"</b><span class='badge b-a'>证据 A · 一手官方</span>。
+也就是说，投入运营的 Robotaxi 会同时计入车辆交付类指标。
+投资者应当预期"商业化运营"的定义会被尽可能宽地解释（例如：一辆只在午夜、单城市、有限围栏内接单的车，
+也算"投入商业运营"）。</li>
+</ul>
+
+
+<h2 id="s5"><span class="num">第五章</span>单位经济学：一个必须承认无知的模型</h2>
+
+<p>Robotaxi 的投资故事最终归结为一个算术问题：<b>一辆没有司机的车，每英里能赚多少、花多少。</b>
+在网约车行业里，司机成本通常占乘客支付额的 50–70%；去掉它，理论上剩余的钱足以覆盖车辆折旧与运营。
+Tesla 的整个估值逻辑就建立在这个减法上。</p>
+
+<p>问题在于：<b>Tesla 从未披露过 Robotaxi 的任何单位经济数据</b>。没有车队规模、没有单车日均里程、
+没有每英里成本、没有定价。公司在 10-Q 中披露的只有费用类别——"车辆清洁与维护、充电、安保、
+远程运营（teleoperations）与车队管理"<span class='badge b-a'>证据 A · 一手官方</span>——这是成本结构的定性描述，不是定量披露。</p>
+
+<h3>5.1 参数表（请把它当作假设，不是数据）</h3>
+<div class='scroll'><table><thead><tr><th class=''>参数</th><th class=''>Tesla 披露状态</th><th class=''>本报告假设（低/中/高）</th><th class=''>说明与不确定性来源</th></tr></thead><tbody><tr><td>单车购置成本（Cybercab）</td><td>未披露</td><td>本报告假设区间 25,000–35,000 美元</td><td>公司从未披露采购价；40,000 美元以下为公开场合口头目标，无文件支持</td></tr><tr><td>单车日均行驶里程</td><td>未披露</td><td>160 / 220 / 280 英里（低/中/高）</td><td>受限于单车日均订单量与地理围栏面积，无公开数据</td></tr><tr><td>单车每英里收入</td><td>未披露</td><td>1.30 / 1.70 / 2.10 美元</td><td>参照美国网约车价格带；Tesla 从未公布 Robotaxi 定价</td></tr><tr><td>车辆折旧年限</td><td>未披露</td><td>5 / 6 / 7 年</td><td>与 Tesla 车队会计折旧政策一致性未知</td></tr><tr><td>每英里电费</td><td>间接可估</td><td>0.035 / 0.045 / 0.055 美元</td><td>按 250 Wh/英里、商用电价 0.14–0.22 美元/kWh 推算</td></tr><tr><td>每英里维保与清洁</td><td>费用类别已披露</td><td>0.05 / 0.08 / 0.12 美元</td><td>10-Q 明确列出清洁、维保、充电、安保、远程运营、车队管理为专门基础设施</td></tr><tr><td>每英里保险</td><td>未披露</td><td>0.08 / 0.12 / 0.18 美元</td><td>自动驾驶车险缺乏成熟定价基准，是最大不确定项</td></tr><tr><td>远程协助人力</td><td>未披露</td><td>0.02 / 0.05 / 0.10 美元</td><td>取决于人车比（本模型隐含 1:20 至 1:50）</td></tr></tbody></table></div><p class='tbl-note'>本表是本报告最需要读者保持怀疑的部分：<b>除「费用类别」一列外，所有数值均为本报告的假设，不是 Tesla 的披露，也不是第三方核实数据（证据等级 C）。</b>列出它们的目的是让读者可以自行替换参数，而不是暗示这些数字具有事实地位。</p>
+
+<h3>5.2 由假设推出的结果</h3>
+<p>用上表中位参数代入，得到一辆 Cybercab 的年化经济性（下图）。<b>请注意：这张图的每一个柱子
+都是本报告的推算，不是任何公司的披露。</b></p>
+
+<figure><p class='ftitle'>图 5 · 单车年化经济性（基准情景，单位：千美元）</p><p class='fsub'>假设计算：年有效里程约 52,000 英里（日均 220 英里 × 65% 可用率）。该图为本报告推算，非任何公司披露。</p><svg class='chart' viewBox='0 0 1120 430' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='70.0' y1='370.0' x2='1090.0' y2='370.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='374.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='70.0' y1='300.0' x2='1090.0' y2='300.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='304.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>24</text><line x1='70.0' y1='230.0' x2='1090.0' y2='230.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='234.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>48</text><line x1='70.0' y1='160.0' x2='1090.0' y2='160.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='164.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>72</text><line x1='70.0' y1='90.0' x2='1090.0' y2='90.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='94.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>96</text><line x1='70.0' y1='20.0' x2='1090.0' y2='20.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='24.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>120</text><rect x='102.1' y='111.2' width='81.6' height='258.8' rx='2' fill='#b6bec9' fill-opacity='0.55'/><text x='142.9' y='104.2' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>89</text><text x='142.9' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>每英里收入</text><text x='142.9' y='401.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>$1.70</text><rect x='247.8' y='118.1' width='81.6' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='288.6' y='111.1' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−2</text><text x='288.6' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>电费</text><rect x='393.5' y='130.2' width='81.6' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='434.3' y='123.2' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−4</text><text x='434.3' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>维保清洁</text><rect x='539.2' y='148.5' width='81.6' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='580.0' y='141.5' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−6</text><text x='580.0' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>保险</text><rect x='684.9' y='156.1' width='81.6' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='725.7' y='149.1' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−3</text><text x='725.7' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>远程协助</text><rect x='830.6' y='172.9' width='81.6' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='871.4' y='165.9' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−6</text><text x='871.4' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>车辆折旧</text><text x='871.4' y='401.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>(含融资)</text><rect x='976.3' y='172.9' width='81.6' height='197.1' rx='2' fill='#1f6feb' fill-opacity='0.9'/><text x='1017.1' y='165.9' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>68</text><text x='1017.1' y='388.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>单车年毛现金贡献</text><line x1='70.0' y1='370.0' x2='1090.0' y2='370.0' stroke='#b6bec9' stroke-width='1.2'/></svg><p class='fsrc'>数据来源：本报告模型（输入参数见 5.1 表）· 证据等级 C（推算）</p></figure>
+<figure><p class='ftitle'>图 6 · 敏感度：车队规模 × 单车年贡献 → 年毛现金贡献（十亿美元）</p><p class='fsub'>这是把 Robotaxi 从「叙事」翻译成「数字」的桥。要让这项业务贡献 100 亿美元年现金贡献，需要 10 万辆车 × 单车 10 万美元，或 50 万辆车 × 单车 2 万美元。</p><svg class='chart' viewBox='0 0 1120 298' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='280.4' y='268.0' font-size='11.5' fill='#4a5462' text-anchor='middle' font-weight='600'>车队 1,000 辆</text><text x='461.2' y='268.0' font-size='11.5' fill='#4a5462' text-anchor='middle' font-weight='600'>车队 5,000 辆</text><text x='642.0' y='268.0' font-size='11.5' fill='#4a5462' text-anchor='middle' font-weight='600'>车队 20,000 辆</text><text x='822.8' y='268.0' font-size='11.5' fill='#4a5462' text-anchor='middle' font-weight='600'>车队 100,000 辆</text><text x='1003.6' y='268.0' font-size='11.5' fill='#4a5462' text-anchor='middle' font-weight='600'>车队 500,000 辆</text><text x='178.0' y='50.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>单车年贡献 30 千美元</text><rect x='192.0' y='23.0' width='176.8' height='46' rx='4' fill='rgb(200,72,45)' fill-opacity='0.88'/><text x='280.4' y='51.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$30.0B</text><rect x='372.8' y='23.0' width='176.8' height='46' rx='4' fill='rgb(200,72,44)' fill-opacity='0.88'/><text x='461.2' y='51.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$150.0B</text><rect x='553.6' y='23.0' width='176.8' height='46' rx='4' fill='rgb(200,73,44)' fill-opacity='0.88'/><text x='642.0' y='51.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$600.0B</text><rect x='734.4' y='23.0' width='176.8' height='46' rx='4' fill='rgb(203,81,44)' fill-opacity='0.88'/><text x='822.8' y='51.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$3,000.0B</text><rect x='915.2' y='23.0' width='176.8' height='46' rx='4' fill='rgb(215,120,42)' fill-opacity='0.88'/><text x='1003.6' y='51.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$15,000.0B</text><text x='178.0' y='102.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>单车年贡献 60 千美元</text><rect x='192.0' y='75.0' width='176.8' height='46' rx='4' fill='rgb(200,72,44)' fill-opacity='0.88'/><text x='280.4' y='103.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$60.0B</text><rect x='372.8' y='75.0' width='176.8' height='46' rx='4' fill='rgb(200,72,44)' fill-opacity='0.88'/><text x='461.2' y='103.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$300.0B</text><rect x='553.6' y='75.0' width='176.8' height='46' rx='4' fill='rgb(201,75,44)' fill-opacity='0.88'/><text x='642.0' y='103.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$1,200.0B</text><rect x='734.4' y='75.0' width='176.8' height='46' rx='4' fill='rgb(206,91,44)' fill-opacity='0.88'/><text x='822.8' y='103.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$6,000.0B</text><rect x='915.2' y='75.0' width='176.8' height='46' rx='4' fill='rgb(231,169,40)' fill-opacity='0.88'/><text x='1003.6' y='103.0' font-size='13' fill='#12161c' text-anchor='middle' font-weight='700'>$30,000.0B</text><text x='178.0' y='154.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>单车年贡献 90 千美元</text><rect x='192.0' y='127.0' width='176.8' height='46' rx='4' fill='rgb(200,72,44)' fill-opacity='0.88'/><text x='280.4' y='155.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$90.0B</text><rect x='372.8' y='127.0' width='176.8' height='46' rx='4' fill='rgb(200,73,44)' fill-opacity='0.88'/><text x='461.2' y='155.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$450.0B</text><rect x='553.6' y='127.0' width='176.8' height='46' rx='4' fill='rgb(201,77,44)' fill-opacity='0.88'/><text x='642.0' y='155.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$1,800.0B</text><rect x='734.4' y='127.0' width='176.8' height='46' rx='4' fill='rgb(209,101,43)' fill-opacity='0.88'/><text x='822.8' y='155.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$9,000.0B</text><rect x='915.2' y='127.0' width='176.8' height='46' rx='4' fill='rgb(127,155,59)' fill-opacity='0.88'/><text x='1003.6' y='155.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$45,000.0B</text><text x='178.0' y='206.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>单车年贡献 120 千美元</text><rect x='192.0' y='179.0' width='176.8' height='46' rx='4' fill='rgb(200,72,44)' fill-opacity='0.88'/><text x='280.4' y='207.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$120.0B</text><rect x='372.8' y='179.0' width='176.8' height='46' rx='4' fill='rgb(200,73,44)' fill-opacity='0.88'/><text x='461.2' y='207.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$600.0B</text><rect x='553.6' y='179.0' width='176.8' height='46' rx='4' fill='rgb(202,79,44)' fill-opacity='0.88'/><text x='642.0' y='207.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$2,400.0B</text><rect x='734.4' y='179.0' width='176.8' height='46' rx='4' fill='rgb(212,111,43)' fill-opacity='0.88'/><text x='822.8' y='207.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$12,000.0B</text><rect x='915.2' y='179.0' width='176.8' height='46' rx='4' fill='rgb(22,140,80)' fill-opacity='0.88'/><text x='1003.6' y='207.0' font-size='13' fill='#fff' text-anchor='middle' font-weight='700'>$60,000.0B</text></svg><p class='fsrc'>数据来源：本报告模型 · 证据等级 C（推算）。颜色由红（低）到绿（高）</p></figure>
+
+<h2 id="s6"><span class="num">第六章</span>财务现实：一家利润率 1.4% 的公司，在花 200 亿美元押注未来</h2>
+
+<h3>6.1 主业正在收缩</h3>
+<p>先把时间拉长。2021–2025 的五年里，Tesla 的收入从 538 亿增长到 948 亿美元，
+但<b>经营利润率从 12.1% 一路降到 4.6%</b><span class='badge b-a'>证据 A · 一手官方</span>。2025 年是第一次收入同比下降（−3%），
+净利润 37.9 亿美元，同比腰斩（−46%）。</p>
+<figure><p class='ftitle'>图 7 · 2021–2025 年：收入增长与利润率下滑同时发生</p><p class='fsub'>左图为分部收入（十亿美元）；右图为毛利率与经营利润率（%）。</p><svg class='chart' viewBox='0 0 1120 360' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='306.0' x2='1096.0' y2='306.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='310.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='248.0' x2='1096.0' y2='248.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='252.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>24,000</text><line x1='64.0' y1='190.0' x2='1096.0' y2='190.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='194.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>48,000</text><line x1='64.0' y1='132.0' x2='1096.0' y2='132.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='136.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>72,000</text><line x1='64.0' y1='74.0' x2='1096.0' y2='74.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='78.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>96,000</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>120,000</text><rect x='115.6' y='191.9' width='103.2' height='114.1' fill='#c8452d' fill-opacity='0.92'/><rect x='115.6' y='185.1' width='103.2' height='6.7' fill='#1f6feb' fill-opacity='0.86'/><rect x='115.6' y='175.9' width='103.2' height='9.2' fill='#0f9d58' fill-opacity='0.86'/><rect x='322.0' y='133.3' width='103.2' height='172.7' fill='#c8452d' fill-opacity='0.92'/><rect x='322.0' y='123.9' width='103.2' height='9.4' fill='#1f6feb' fill-opacity='0.86'/><rect x='322.0' y='109.1' width='103.2' height='14.7' fill='#0f9d58' fill-opacity='0.86'/><rect x='528.4' y='106.8' width='103.2' height='199.2' fill='#c8452d' fill-opacity='0.92'/><rect x='528.4' y='92.2' width='103.2' height='14.6' fill='#1f6feb' fill-opacity='0.86'/><rect x='528.4' y='72.1' width='103.2' height='20.1' fill='#0f9d58' fill-opacity='0.86'/><rect x='734.8' y='119.7' width='103.2' height='186.3' fill='#c8452d' fill-opacity='0.92'/><rect x='734.8' y='95.4' width='103.2' height='24.4' fill='#1f6feb' fill-opacity='0.86'/><rect x='734.8' y='69.9' width='103.2' height='25.5' fill='#0f9d58' fill-opacity='0.86'/><rect x='941.2' y='138.0' width='103.2' height='168.0' fill='#c8452d' fill-opacity='0.92'/><rect x='941.2' y='107.1' width='103.2' height='30.9' fill='#1f6feb' fill-opacity='0.86'/><rect x='941.2' y='76.8' width='103.2' height='30.3' fill='#0f9d58' fill-opacity='0.86'/><line x1='64.0' y1='306.0' x2='1096.0' y2='306.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='326.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2021</text><text x='373.6' y='326.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2022</text><text x='580.0' y='326.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2023</text><text x='786.4' y='326.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2024</text><text x='992.8' y='326.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2025</text><rect x='64.0' y='339.0' width='11' height='11' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='80.0' y='348.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>汽车</text><rect x='110.4' y='339.0' width='11' height='11' rx='2' fill='#1f6feb' fill-opacity='0.9'/><text x='126.4' y='348.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>能源</text><rect x='156.8' y='339.0' width='11' height='11' rx='2' fill='#0f9d58' fill-opacity='0.9'/><text x='172.8' y='348.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>服务及其他</text></svg><svg class='chart' viewBox='0 0 1120 330' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='280.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.0%</text><line x1='64.0' y1='224.0' x2='1096.0' y2='224.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='228.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>6.0%</text><line x1='64.0' y1='172.0' x2='1096.0' y2='172.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='176.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>12.0%</text><line x1='64.0' y1='120.0' x2='1096.0' y2='120.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='124.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>18.0%</text><line x1='64.0' y1='68.0' x2='1096.0' y2='68.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='72.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>24.0%</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>30.0%</text><path d='M64.0,171.1 L322.0,130.4 L580.0,196.3 L838.0,213.6 L1096.0,236.1' fill='none' stroke='#c8452d' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='171.1' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='322.0' cy='130.4' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='580.0' cy='196.3' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='838.0' cy='213.6' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='1096.0' cy='236.1' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><path d='M64.0,56.7 L322.0,54.1 L580.0,118.3 L838.0,120.9 L1096.0,120.0' fill='none' stroke='#1f6feb' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='56.7' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='322.0' cy='54.1' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='580.0' cy='118.3' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='838.0' cy='120.9' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='1096.0' cy='120.0' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2021</text><text x='373.6' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2022</text><text x='580.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2023</text><text x='786.4' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2024</text><text x='992.8' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>2025</text><line x1='64.0' y1='314.0' x2='78.0' y2='314.0' stroke='#c8452d' stroke-width='3'/><text x='83.0' y='318.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>经营利润率</text><line x1='165.0' y1='314.0' x2='179.0' y2='314.0' stroke='#1f6feb' stroke-width='3'/><text x='184.0' y='318.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>毛利率</text></svg><p class='fsrc'>数据来源：Tesla Q4 2025 股东更新信（SEC EDGAR）· 证据等级 A</p></figure>
+
+<h3>6.2 分部经济：谁在赚钱</h3>
+<figure><p class='ftitle'>图 8 · 季度分部收入（百万美元）</p><p class='fsub'>2025Q3 的高峰包含美国联邦 EV 购置补贴到期前的抢装效应。</p><svg class='chart' viewBox='0 0 1120 400' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='346.0' x2='1096.0' y2='346.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='350.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='280.0' x2='1096.0' y2='280.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='284.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>8,000</text><line x1='64.0' y1='214.0' x2='1096.0' y2='214.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='218.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>16,000</text><line x1='64.0' y1='148.0' x2='1096.0' y2='148.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='152.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>24,000</text><line x1='64.0' y1='82.0' x2='1096.0' y2='82.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='86.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>32,000</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>40,000</text><rect x='107.0' y='230.8' width='86.0' height='115.2' fill='#c8452d' fill-opacity='0.92'/><rect x='107.0' y='208.2' width='86.0' height='22.5' fill='#1f6feb' fill-opacity='0.86'/><rect x='107.0' y='186.5' width='86.0' height='21.8' fill='#0f9d58' fill-opacity='0.86'/><rect x='279.0' y='208.5' width='86.0' height='137.5' fill='#c8452d' fill-opacity='0.92'/><rect x='279.0' y='185.5' width='86.0' height='23.0' fill='#1f6feb' fill-opacity='0.86'/><rect x='279.0' y='160.4' width='86.0' height='25.1' fill='#0f9d58' fill-opacity='0.86'/><rect x='451.0' y='171.1' width='86.0' height='174.9' fill='#c8452d' fill-opacity='0.92'/><rect x='451.0' y='142.9' width='86.0' height='28.2' fill='#1f6feb' fill-opacity='0.86'/><rect x='451.0' y='114.2' width='86.0' height='28.7' fill='#0f9d58' fill-opacity='0.86'/><rect x='623.0' y='200.0' width='86.0' height='146.0' fill='#c8452d' fill-opacity='0.92'/><rect x='623.0' y='168.4' width='86.0' height='31.7' fill='#1f6feb' fill-opacity='0.86'/><rect x='623.0' y='140.6' width='86.0' height='27.8' fill='#0f9d58' fill-opacity='0.86'/><rect x='795.0' y='212.1' width='86.0' height='133.9' fill='#c8452d' fill-opacity='0.92'/><rect x='795.0' y='192.2' width='86.0' height='19.9' fill='#1f6feb' fill-opacity='0.86'/><rect x='795.0' y='161.3' width='86.0' height='30.9' fill='#0f9d58' fill-opacity='0.86'/><rect x='967.0' y='176.7' width='86.0' height='169.3' fill='#c8452d' fill-opacity='0.92'/><rect x='967.0' y='150.8' width='86.0' height='25.9' fill='#1f6feb' fill-opacity='0.86'/><rect x='967.0' y='113.1' width='86.0' height='37.8' fill='#0f9d58' fill-opacity='0.86'/><line x1='64.0' y1='346.0' x2='1096.0' y2='346.0' stroke='#b6bec9' stroke-width='1.2'/><text x='150.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-25</text><text x='322.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='494.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='666.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='838.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='1010.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><rect x='64.0' y='379.0' width='11' height='11' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='80.0' y='388.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>汽车</text><rect x='110.4' y='379.0' width='11' height='11' rx='2' fill='#1f6feb' fill-opacity='0.9'/><text x='126.4' y='388.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>能源</text><rect x='156.8' y='379.0' width='11' height='11' rx='2' fill='#0f9d58' fill-opacity='0.9'/><text x='172.8' y='388.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>服务及其他</text><text x='700.0' y='44.0' font-size='11' fill='#b8860b' text-anchor='start' font-weight='600'>2025Q3：美国联邦 EV 补贴到期前抢装</text><text x='830.0' y='74.0' font-size='11' fill='#c8452d' text-anchor='start' font-weight='600'>2026Q2：收入创新高，但经营利润率仅 1.4%</text></svg><p class='fsrc'>数据来源：Tesla 各季度股东更新信 · 证据等级 A</p></figure>
+
+<p>把三个板块的毛利率拆开看，图景清楚得多：</p>
+<figure><p class='ftitle'>图 9 · 分部毛利率：汽车靠成本削减，能源靠规模，服务首次转正</p><p class='fsub'>虚线为剔除监管积分后的汽车毛利率——这才是可比的「造车」盈利能力。</p><svg class='chart' viewBox='0 0 1120 390' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='336.0' x2='1096.0' y2='336.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='340.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.0%</text><line x1='64.0' y1='272.0' x2='1096.0' y2='272.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='276.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>9.0%</text><line x1='64.0' y1='208.0' x2='1096.0' y2='208.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='212.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>18.0%</text><line x1='64.0' y1='144.0' x2='1096.0' y2='144.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='148.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>27.0%</text><line x1='64.0' y1='80.0' x2='1096.0' y2='80.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='84.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>36.0%</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>45.0%</text><path d='M64.0,213.7 L322.0,214.8 L580.0,190.8 L838.0,186.1 L1096.0,216.0' fill='none' stroke='#c8452d' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='213.7' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='322.0' cy='214.8' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='580.0' cy='190.8' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='838.0' cy='186.1' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='1096.0' cy='216.0' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><path d='M64.0,229.6 L322.0,226.6 L580.0,208.6 L838.0,199.5 L1096.0,220.2' fill='none' stroke='#1f6feb' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='229.6' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='322.0' cy='226.6' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='580.0' cy='208.6' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='838.0' cy='199.5' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='1096.0' cy='220.2' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><path d='M64.0,120.3 L322.0,112.6 L580.0,132.5 L838.0,54.9 L1096.0,191.0' fill='none' stroke='#0f9d58' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='120.3' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='322.0' cy='112.6' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='580.0' cy='132.5' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='838.0' cy='54.9' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='1096.0' cy='191.0' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><path d='M64.0,297.2 L322.0,261.1 L580.0,273.1 L838.0,270.3 L1096.0,235.4' fill='none' stroke='#b8860b' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='297.2' r='3.4' fill='#ffffff' stroke='#b8860b' stroke-width='2.2'/><circle cx='322.0' cy='261.1' r='3.4' fill='#ffffff' stroke='#b8860b' stroke-width='2.2'/><circle cx='580.0' cy='273.1' r='3.4' fill='#ffffff' stroke='#b8860b' stroke-width='2.2'/><circle cx='838.0' cy='270.3' r='3.4' fill='#ffffff' stroke='#b8860b' stroke-width='2.2'/><circle cx='1096.0' cy='235.4' r='3.4' fill='#ffffff' stroke='#b8860b' stroke-width='2.2'/><line x1='64.0' y1='336.0' x2='1096.0' y2='336.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='373.6' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='580.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='786.4' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='992.8' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><line x1='64.0' y1='374.0' x2='78.0' y2='374.0' stroke='#c8452d' stroke-width='3'/><text x='83.0' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>汽车毛利率（含积分）</text><line x1='226.0' y1='374.0' x2='240.0' y2='374.0' stroke='#1f6feb' stroke-width='3'/><text x='245.0' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>汽车毛利率（剔除监管积分）</text><line x1='424.6' y1='374.0' x2='438.6' y2='374.0' stroke='#0f9d58' stroke-width='3'/><text x='443.6' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>能源毛利率</text><line x1='525.6' y1='374.0' x2='539.6' y2='374.0' stroke='#b8860b' stroke-width='3'/><text x='544.6' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>服务及其他毛利率</text></svg><p class='fsrc'>数据来源：基于 Tesla 季报分部收入与成本数据计算 · 证据等级 C（本报告计算，输入为 A 级数据）</p></figure>
+
+<div class="callout">
+<div class="t">三个值得注意的细节</div>
+<p><b>① 汽车毛利率剔除监管积分后其实在改善</b>：从 2025Q2 的 15.0% 升到 2026Q1 的 19.2%，
+说明单车成本下降（公司归因于"入境关税下降"与成本削减）<span class='badge b-a'>证据 A · 一手官方</span>确实在发生。
+2026Q2 回落到 16.3%，主要受 ASP 与结构影响。</p>
+<p><b>② 监管积分收入正在快速消失</b>：2025 全年 19.9 亿美元（−28%），
+2026Q2 单季仅 1.46 亿美元，同比 <b>−67%</b><span class='badge b-a'>证据 A · 一手官方</span>。公司在 10-K 中直接点名 OBBBA 法案
+"限制了我们产品相关的某些监管信用项目"<span class='badge b-a'>证据 A · 一手官方</span>。这是一条<b>结构性、不可逆</b>的利润流失。</p>
+<p><b>③ 能源的高毛利不稳定</b>：2026Q1 冲到 39.5%，Q2 跌到 20.4%，
+公司解释为"供应商电芯问题导致的一次性能源质保费用"<span class='badge b-a'>证据 A · 一手官方</span>。把能源当成稳定高毛利业务会误判。</p>
+</div>
+
+<h3>6.3 费用端：AI 正在吃掉利润</h3>
+<figure><p class='ftitle'>图 10 · 季度经营费用（百万美元，堆叠）</p><p class='fsub'>研发费用同比 +49%，销售管理费用同比 +45%，股权激励同比 +81%（2026Q2 vs 2025Q2）。</p><svg class='chart' viewBox='0 0 1120 380' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='330.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='264.0' x2='1096.0' y2='264.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='268.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,600</text><line x1='64.0' y1='202.0' x2='1096.0' y2='202.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='206.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>3,200</text><line x1='64.0' y1='140.0' x2='1096.0' y2='140.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='144.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>4,800</text><line x1='64.0' y1='78.0' x2='1096.0' y2='78.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='82.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>6,400</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>8,000</text><rect x='115.6' y='264.4' width='103.2' height='61.6' fill='#c8452d' fill-opacity='0.92'/><rect x='115.6' y='211.5' width='103.2' height='52.9' fill='#1f6feb' fill-opacity='0.86'/><rect x='115.6' y='186.9' width='103.2' height='24.6' fill='#0f9d58' fill-opacity='0.86'/><rect x='322.0' y='262.8' width='103.2' height='63.2' fill='#c8452d' fill-opacity='0.92'/><rect x='322.0' y='202.3' width='103.2' height='60.5' fill='#1f6feb' fill-opacity='0.86'/><rect x='322.0' y='176.6' width='103.2' height='25.7' fill='#0f9d58' fill-opacity='0.86'/><rect x='528.4' y='256.9' width='103.2' height='69.1' fill='#c8452d' fill-opacity='0.92'/><rect x='528.4' y='192.8' width='103.2' height='64.1' fill='#1f6feb' fill-opacity='0.86'/><rect x='528.4' y='155.8' width='103.2' height='37.0' fill='#0f9d58' fill-opacity='0.86'/><rect x='734.8' y='250.6' width='103.2' height='75.4' fill='#c8452d' fill-opacity='0.92'/><rect x='734.8' y='179.6' width='103.2' height='71.0' fill='#1f6feb' fill-opacity='0.86'/><rect x='734.8' y='139.7' width='103.2' height='39.9' fill='#0f9d58' fill-opacity='0.86'/><rect x='941.2' y='234.1' width='103.2' height='91.9' fill='#c8452d' fill-opacity='0.92'/><rect x='941.2' y='157.3' width='103.2' height='76.8' fill='#1f6feb' fill-opacity='0.86'/><rect x='941.2' y='112.7' width='103.2' height='44.6' fill='#0f9d58' fill-opacity='0.86'/><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='373.6' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='580.0' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='786.4' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='992.8' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><rect x='64.0' y='359.0' width='11' height='11' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='80.0' y='368.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>研发费用</text><rect x='134.8' y='359.0' width='11' height='11' rx='2' fill='#1f6feb' fill-opacity='0.9'/><text x='150.8' y='368.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>销售及管理费用</text><rect x='242.2' y='359.0' width='11' height='11' rx='2' fill='#0f9d58' fill-opacity='0.9'/><text x='258.2' y='368.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>其中股权激励(SBC)</text></svg><p class='fsrc'>数据来源：Tesla 季报损益表 · 证据等级 A</p></figure>
+
+<p>2026 年二季度研发费用 23.7 亿美元、销售及管理费用 19.8 亿美元，合计 43.5 亿美元，
+而同期总毛利 47.5 亿美元<span class='badge b-a'>证据 A · 一手官方</span>。<b>经营费用已经吃掉毛利的 92%。</b>
+公司把费用增长直接归因于"AI 及其他研发项目、股权激励（含 2025 年 CEO 绩效奖）与销售管理费用"<span class='badge b-a'>证据 A · 一手官方</span>。</p>
+
+<h3>6.4 现金流与资本开支：转折点已经发生</h3>
+<figure><p class='ftitle'>图 11 · 季度资本开支、经营现金流与自由现金流（百万美元）</p><p class='fsub'>2026Q2 资本开支 57.9 亿美元，为单季历史最高；自由现金流转为 −10.9 亿美元。</p><svg class='chart' viewBox='0 0 1120 390' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='336.0' x2='1096.0' y2='336.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='340.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='272.0' x2='1096.0' y2='272.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='276.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,900</text><line x1='64.0' y1='208.0' x2='1096.0' y2='208.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='212.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>3,800</text><line x1='64.0' y1='144.0' x2='1096.0' y2='144.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='148.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>5,700</text><line x1='64.0' y1='80.0' x2='1096.0' y2='80.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='84.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>7,600</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>9,500</text><line x1='64.0' y1='285.5' x2='1096.0' y2='285.5' stroke='#b6bec9' stroke-width='1.3'/><path d='M64.0,235.2 L270.4,204.8 L476.8,209.8 L683.2,204.9 L889.6,201.5 L1096.0,90.5' fill='none' stroke='#c8452d' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='235.2' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='270.4' cy='204.8' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='476.8' cy='209.8' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='683.2' cy='204.9' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='889.6' cy='201.5' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='1096.0' cy='90.5' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><path d='M64.0,212.9 L270.4,199.9 L476.8,75.4 L683.2,157.0 L889.6,152.9 L1096.0,127.3' fill='none' stroke='#1f6feb' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='212.9' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='270.4' cy='199.9' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='476.8' cy='75.4' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='683.2' cy='157.0' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='889.6' cy='152.9' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><circle cx='1096.0' cy='127.3' r='3.4' fill='#ffffff' stroke='#1f6feb' stroke-width='2.2'/><path d='M64.0,263.1 L270.4,280.6 L476.8,151.1 L683.2,237.6 L889.6,236.8 L1096.0,322.3' fill='none' stroke='#0f9d58' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='263.1' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='270.4' cy='280.6' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='476.8' cy='151.1' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='683.2' cy='237.6' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='889.6' cy='236.8' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><circle cx='1096.0' cy='322.3' r='3.4' fill='#ffffff' stroke='#0f9d58' stroke-width='2.2'/><line x1='64.0' y1='336.0' x2='1096.0' y2='336.0' stroke='#b6bec9' stroke-width='1.2'/><text x='150.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-25</text><text x='322.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='494.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='666.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='838.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='1010.0' y='356.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><line x1='64.0' y1='374.0' x2='78.0' y2='374.0' stroke='#c8452d' stroke-width='3'/><text x='83.0' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>资本开支</text><line x1='152.8' y1='374.0' x2='166.8' y2='374.0' stroke='#1f6feb' stroke-width='3'/><text x='171.8' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>经营现金流</text><line x1='253.8' y1='374.0' x2='267.8' y2='374.0' stroke='#0f9d58' stroke-width='3'/><text x='272.8' y='378.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='400'>自由现金流</text><text x='976.0' y='76.5' font-size='11' fill='#c8452d' text-anchor='middle' font-weight='600'>单季资本开支 58 亿美元（+142% YoY）</text><text x='1226.0' y='346.3' font-size='11' fill='#c8452d' text-anchor='middle' font-weight='600'>单季 FCF −10.9 亿美元</text></svg><p class='fsrc'>数据来源：Tesla 季报现金流量表 · 证据等级 A</p></figure>
+
+<p>2025 全年自由现金流 62 亿美元；2026 年上半年合计仅 3.5 亿美元，
+其中二季度为 −10.9 亿美元<span class='badge b-a'>证据 A · 一手官方</span>。而公司在 10-K 中给出的 2026 年资本开支指引是
+<b>"超过 200 亿美元"</b>，用途明确写着"AI 计划，包括算力基础设施与数据中心、
+制造与研发产线扩张，以及<b>公司自营的 AI 资产车队</b>的增长"<span class='badge b-a'>证据 A · 一手官方</span>。</p>
+
+<div class="callout risk">
+<div class="t">300 亿美元信贷额度：这是本季度最重要的一条公告</div>
+<p>2026 年 9 月 29 日，Tesla 同时签署三份协议<span class='badge b-a'>证据 A · 一手官方</span>：</p>
+<ul>
+<li><b>200 亿美元</b>高级无担保三年期延迟提取定期贷款（Citi 为管理行），
+18 个月内可分至多 10 次提取；未提取承诺在一年后自动降至 100 亿、15 个月后降至 50 亿；</li>
+<li><b>80 亿美元</b>高级无担保五年期循环额度（Wells Fargo 为管理行，可增至合计 140 亿）；</li>
+<li><b>20 亿美元</b>高级无担保 364 天循环额度。</li>
+</ul>
+<p>用途为"一般公司用途"<span class='badge b-a'>证据 A · 一手官方</span>。Tesla 截至 2026 年 6 月 30 日持有 435 亿美元现金及短期投资<span class='badge b-a'>证据 A · 一手官方</span>，
+在这个时点安排 300 亿美元额度，<b>只能理解为：管理层预计未来的资本需求将显著超过当前现金余额。</b>
+对股东而言，这意味着"要么用杠杆、要么未来稀释"的二选一正在逼近。</p>
+</div>
+
+<h3>6.5 交付量与运营指标</h3>
+
+
+<figure><p class='ftitle'>图 12 · 季度交付量（辆）</p><p class='fsub'>2026Q3 交付 486,532 辆，同比 2025Q3 的 497,099 辆下降 2.1%；2026 年前三季度累计 132.5 万辆，同比 +8.8%。</p><svg class='chart' viewBox='0 0 1120 340' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='286.0' x2='1096.0' y2='286.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='290.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='232.0' x2='1096.0' y2='232.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='236.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>120,000</text><line x1='64.0' y1='178.0' x2='1096.0' y2='178.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='182.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>240,000</text><line x1='64.0' y1='124.0' x2='1096.0' y2='124.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='128.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>360,000</text><line x1='64.0' y1='70.0' x2='1096.0' y2='70.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='74.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>480,000</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>600,000</text><rect x='89.1' y='134.5' width='83.7' height='151.5' fill='#c8452d' fill-opacity='0.9'/><text x='130.9' y='128.5' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>337k</text><rect x='236.5' y='113.1' width='83.7' height='172.9' fill='#c8452d' fill-opacity='0.9'/><text x='278.3' y='107.1' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>384k</text><rect x='383.9' y='62.3' width='83.7' height='223.7' fill='#c8452d' fill-opacity='0.9'/><text x='425.8' y='56.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>497k</text><rect x='531.3' y='97.8' width='83.7' height='188.2' fill='#c8452d' fill-opacity='0.9'/><text x='573.2' y='91.8' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>418k</text><rect x='678.8' y='124.9' width='83.7' height='161.1' fill='#c8452d' fill-opacity='0.9'/><text x='720.6' y='118.9' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>358k</text><rect x='826.2' y='69.9' width='83.7' height='216.1' fill='#c8452d' fill-opacity='0.9'/><text x='868.0' y='63.9' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>480k</text><rect x='973.6' y='67.1' width='83.7' height='218.9' fill='#c8452d' fill-opacity='0.9'/><text x='1015.5' y='61.1' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>487k</text><line x1='64.0' y1='286.0' x2='1096.0' y2='286.0' stroke='#b6bec9' stroke-width='1.2'/><text x='137.7' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-25</text><text x='285.1' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='432.6' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='580.0' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='727.4' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='874.9' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><text x='1022.3' y='306.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-26</text></svg><p class='fsrc'>数据来源：Tesla 8-K（2026-10-02 及历次交付公告）· 证据等级 A</p></figure>
+
+<div class="callout warn">
+<div class="t">Q3 2026 交付数据的两个读法</div>
+<p><b>乐观读法</b>：前三季度累计同比 +8.8%，公司在 2025 年的下滑后重回增长，
+且 Q3 交付量（486,532）显著高于产量（464,391），差额 22,141 辆来自库存消化——这通常意味着需求端不弱。</p>
+<p><b>谨慎读法</b>：2025Q3 是联邦 EV 补贴到期前的抢装季（基数极高），同比对照失真；
+同时产量低于交付量意味着公司主动去库存，可能影响后续产能利用率。
+更关键的是：<b>Tesla 的交付数据不包含任何 Robotaxi 运营指标</b>，
+投资者无法从这组数字中读出机器人出租车业务的任何信息。</p>
+</div>
+
+<figure><p class='ftitle'>图 13 · FSD 活跃订阅数（百万）</p><p class='fsub'>公司按 CEO 绩效奖口径披露（含预付买断与月度订阅，不含免费试用）。对照目标：1000 万。</p><svg class='chart' viewBox='0 0 1120 320' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='266.0' x2='1096.0' y2='266.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='270.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.00</text><line x1='64.0' y1='216.0' x2='1096.0' y2='216.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='220.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.32</text><line x1='64.0' y1='166.0' x2='1096.0' y2='166.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='170.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.64</text><line x1='64.0' y1='116.0' x2='1096.0' y2='116.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='120.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.96</text><line x1='64.0' y1='66.0' x2='1096.0' y2='66.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='70.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1.28</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1.60</text><path d='M64.0,117.6 L322.0,103.5 L580.0,94.1 L838.0,66.0 L1096.0,34.8' fill='none' stroke='#c8452d' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round'/><circle cx='64.0' cy='117.6' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='322.0' cy='103.5' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='580.0' cy='94.1' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='838.0' cy='66.0' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><circle cx='1096.0' cy='34.8' r='3.4' fill='#ffffff' stroke='#c8452d' stroke-width='2.2'/><line x1='64.0' y1='266.0' x2='1096.0' y2='266.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='373.6' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='580.0' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='786.4' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='992.8' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text></svg><p class='fsrc'>数据来源：Tesla 季报运营摘要 · 证据等级 A</p></figure>
+
+<figure><p class='ftitle'>图 14 · 季度储能部署量（GWh）</p><p class='fsub'>2025 全年 46.7 GWh（+49%）；2026Q3 部署 13.7 GWh。能源是当前唯一量价齐升的板块。</p><svg class='chart' viewBox='0 0 1120 320' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='266.0' x2='1096.0' y2='266.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='270.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0.0</text><line x1='64.0' y1='216.0' x2='1096.0' y2='216.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='220.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>4.0</text><line x1='64.0' y1='166.0' x2='1096.0' y2='166.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='170.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>8.0</text><line x1='64.0' y1='116.0' x2='1096.0' y2='116.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='120.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>12.0</text><line x1='64.0' y1='66.0' x2='1096.0' y2='66.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='70.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>16.0</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>20.0</text><rect x='89.1' y='136.0' width='83.7' height='130.0' fill='#c8452d' fill-opacity='0.9'/><text x='130.9' y='130.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>10.4</text><rect x='236.5' y='146.0' width='83.7' height='120.0' fill='#c8452d' fill-opacity='0.9'/><text x='278.3' y='140.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>9.6</text><rect x='383.9' y='109.8' width='83.7' height='156.2' fill='#c8452d' fill-opacity='0.9'/><text x='425.8' y='103.8' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>12.5</text><rect x='531.3' y='88.5' width='83.7' height='177.5' fill='#c8452d' fill-opacity='0.9'/><text x='573.2' y='82.5' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>14.2</text><rect x='678.8' y='156.0' width='83.7' height='110.0' fill='#c8452d' fill-opacity='0.9'/><text x='720.6' y='150.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>8.8</text><rect x='826.2' y='97.2' width='83.7' height='168.8' fill='#c8452d' fill-opacity='0.9'/><text x='868.0' y='91.2' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>13.5</text><rect x='973.6' y='94.8' width='83.7' height='171.2' fill='#c8452d' fill-opacity='0.9'/><text x='1015.5' y='88.8' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>13.7</text><line x1='64.0' y1='266.0' x2='1096.0' y2='266.0' stroke='#b6bec9' stroke-width='1.2'/><text x='137.7' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-25</text><text x='285.1' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-25</text><text x='432.6' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-25</text><text x='580.0' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q4-25</text><text x='727.4' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q1-26</text><text x='874.9' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q2-26</text><text x='1022.3' y='286.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Q3-26</text></svg><p class='fsrc'>数据来源：Tesla 季报与交付公告 · 证据等级 A</p></figure>
+
+
+<h2 id="s7"><span class="num">第七章</span>竞争格局：Tesla 是挑战者，不是领先者</h2>
+
+<p>在 Tesla 的多头叙事里，Robotaxi 市场被默认为一块无主之地，先到者通吃。但真实的竞争图景是：
+<b>Waymo 已经在规模上领先两个数量级</b>，而它的领先是用完全不同的技术路线（激光雷达 + 高精地图 +
+远程协助）实现的。更值得注意的不是技术路线之争，而是<b>监管路径之争</b>——在这一项上，
+Tesla 走了一条与所有同行都不同的、风险更高的路。</p>
+
+<h3>7.1 规模对比：一个必须直视的数字</h3>
+
+<p>2026 年 10 月 3 日，CNBC 依据<b>德州机动车管理局（TxDMV）公开记录</b>报道了一组数据：
+Waymo 在德州有 <b>1,154 辆</b>自动驾驶车获商用授权（含 359 辆新车型 Ojai），
+而 Tesla 的 Cybercab 在奥斯汀 9 月 3 日启动商业运营整整一个月后，授权数量为 <b>169 辆</b>；
+Tesla 在德州的 Robotaxi 车队另有 <b>420 辆 Model Y</b><span class='badge b-b'>证据 B · 权威二手</span>。</p>
+
+<figure><p class='ftitle'>图 15 · 美国无人驾驶车队规模：Tesla 与 Waymo 的真实差距</p><p class='fsub'>数据截至 2026-10-02/03。Waymo 全美车队为其公司披露，德州数据来自 TxDMV 公开记录；Tesla 加州无人驾驶授权为 0（加州 DMV 名单核对，2026-10-08）。</p><svg class='chart' viewBox='0 0 1120 256' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='258.0' y='51.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo · 全美无人驾驶车队</text><rect x='270.0' y='31.0' width='656.0' height='30.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='934.0' y='51.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>4,000 辆</text><text x='258.0' y='93.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo · 德州商用授权</text><rect x='270.0' y='73.0' width='189.3' height='30.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='467.3' y='93.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>1,154 辆</text><text x='258.0' y='135.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla · 德州授权（Model Y）</text><rect x='270.0' y='115.0' width='68.9' height='30.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='346.9' y='135.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>420 辆</text><text x='258.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla · 德州授权（Cybercab）</text><rect x='270.0' y='157.0' width='27.7' height='30.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='305.7' y='177.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>169 辆</text><text x='258.0' y='219.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla · 加州无人驾驶授权</text><rect x='270.0' y='199.0' width='2.0' height='30.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='278.0' y='219.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>0 辆</text></svg><p class='fsrc'>数据来源：TxDMV 公开记录（经 CNBC 报道 2026-10-03）· 加州 DMV 许可名单 · 证据等级 B（授权数量）/ A（加州为 0）</p></figure>
+
+<div class="callout risk">
+<div class="t">读者最容易误读的一个数字</div>
+<p>Tesla 对外宣称「在 7 个都市圈运营 Robotaxi」。这个说法<b>在技术上不假</b>，但必须拆开看：</p>
+<p>① 这 7 个都市圈（奥斯汀、湾区、达拉斯、休斯顿、迈阿密、奥兰多、坦帕）里跑的是
+<b>改装版 Model Y</b>，不是 Cybercab。</p>
+<p>② <b>Cybercab——也就是这个投资故事真正的主角、那辆没有方向盘和踏板的专用车——只在奥斯汀一个城市运营</b>，
+商用授权 169 辆，运营范围是一个约 288 平方英里的地理围栏<span class='badge b-b'>证据 B · 权威二手</span>。</p>
+<p>③ 在加州——Tesla 的总部所在州、美国最大的网约车市场之一——Tesla 甚至没有无人驾驶测试许可，
+只有「配安全员测试」这一最低档许可<span class='badge b-a'>证据 A · 一手官方</span>。</p>
+<p>换句话说：<b>Tesla 的 Robotaxi 目前是「7 个城市的 Model Y 试点」加上「1 个城市的 169 辆 Cybercab 展示」。</b>
+把它当作一个已成型的大规模业务来定价，是把未来的可能性当成了现在的现实。</p>
+</div>
+
+<h3>7.2 一个更少被提及、但更关键的事实：Tesla 没有走联邦豁免这条路</h3>
+
+<p>美国的联邦机动车安全标准（FMVSS）要求车辆配备方向盘、后视镜等人工控制装置。
+一辆<b>没有方向盘和踏板</b>的车，在法律上有两条路可以走：</p>
+<ul>
+<li><b>路径一：申请 NHTSA 的商用豁免（exemption）。</b>2026 年 7 月，亚马逊旗下的 Zoox 拿到了
+「首个针对专用无人驾驶出租车的商用豁免」，允许其两年内最多部署 <b>2,500 辆</b>，
+豁免八项 FMVSS 标准<span class='badge b-b'>证据 B · 权威二手</span>。同年 8 月 10 日，Zoox 在拉斯维加斯开始收费运营<span class='badge b-b'>证据 B · 权威二手</span>。</li>
+<li><b>路径二：自我认证（self-certification）认为车辆已经符合 FMVSS。</b>Tesla 选择了这条路——
+公司在 Cybercab 发布后告知 NHTSA，其车辆符合联邦标准<span class='badge b-b'>证据 B · 权威二手</span>。</li>
+</ul>
+
+<p>后果是：NHTSA 在 Cybercab 发布数小时后即启动了 <b>审计问询（Audit Query，编号 AQ26002）</b>，
+Tesla 申请延期并获准<span class='badge b-b'>证据 B · 权威二手</span>。<b>审计问询不是正式调查</b>——这一点必须说清楚，两者法律含义不同——
+但它意味着：<b>Tesla 的 Cybercab 是在一个尚未有明确法律定论的状态下商业运营的。</b></p>
+
+<div class="callout warn">
+<div class="t">为什么这条比「技术路线之争」更重要</div>
+<p>多空双方花了大量篇幅争论「纯视觉 vs 激光雷达」。但 Zoox 的例子说明：<b>技术路线不是唯一的约束，
+法律路径也是。</b>Zoox 拿豁免花了时间，但换来了一个明确的、有上限的合法运营空间；
+Tesla 走自我认证，速度快，但换来的是监管不确定性——一旦 NHTSA 认定其不符合 FMVSS，
+后果不是罚款，而是<b>车辆能否合法销售的存亡问题</b>。</p>
+<p>这个差异在估值上的含义是：<b>Tesla 的 Robotaxi 故事里包含一个其他玩家已经解决掉的法律风险，
+而市场几乎没有给它定价。</b></p>
+</div>
+
+<h3>7.3 披露质量：Tesla 是所有玩家里最不透明的</h3>
+
+<p>比较各玩家的<b>披露充分度</b>（不是经营水平），得出的结论对投资者更实用：</p>
+
+<figure><p class='ftitle'>图 16 · 谁让你看得见？——各玩家自动驾驶业务的披露充分度</p><p class='fsub'>本表评估的是「投资者能自行验证到什么程度」。「充分」＝有定期、可追溯的公开披露；「部分」＝仅经第三方或一次性披露；「未披露」＝无任何可核验来源。</p><svg class='chart' viewBox='0 0 1120 318' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='262.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>车队规模</text><text x='262.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>公开</text><text x='446.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>订单/里程</text><text x='446.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>公开</text><text x='630.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>单位经济</text><text x='630.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>公开</text><text x='814.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>经审计</text><text x='814.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>财务</text><text x='998.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>许可状态</text><text x='998.0' y='21.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>可核验</text><text x='158.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo</text><rect x='172.0' y='23.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='262.0' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='356.0' y='23.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='446.0' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='540.0' y='23.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='630.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='724.0' y='23.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='814.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='908.0' y='23.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='998.0' y='41.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><text x='158.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Baidu Apollo Go</text><rect x='172.0' y='57.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='57.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='446.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='540.0' y='57.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='630.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='724.0' y='57.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='814.0' y='75.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='908.0' y='57.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='998.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><text x='158.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>WeRide</text><rect x='172.0' y='91.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='91.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='446.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='540.0' y='91.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='630.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='724.0' y='91.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='814.0' y='109.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='908.0' y='91.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='998.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><text x='158.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Pony.ai</text><rect x='172.0' y='125.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='125.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='446.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='540.0' y='125.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='630.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='724.0' y='125.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='814.0' y='143.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='908.0' y='125.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='998.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><text x='158.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Aurora（卡车）</text><rect x='172.0' y='159.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='159.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='446.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='540.0' y='159.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='630.0' y='177.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='724.0' y='159.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='814.0' y='177.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='908.0' y='159.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='998.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><text x='158.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Zoox</text><rect x='172.0' y='193.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='193.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='446.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='540.0' y='193.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='630.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='724.0' y='193.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='814.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='908.0' y='193.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='998.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><text x='158.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla Robotaxi</text><rect x='172.0' y='227.0' width='180.0' height='28' rx='4' fill='#e0b03a'/><text x='262.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>部分</text><rect x='356.0' y='227.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='446.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='540.0' y='227.0' width='180.0' height='28' rx='4' fill='#d0604d'/><text x='630.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>未披露</text><rect x='724.0' y='227.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='814.0' y='245.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><rect x='908.0' y='227.0' width='180.0' height='28' rx='4' fill='#0f9d58'/><text x='998.0' y='245.0' font-size='11.5' fill='#fff' text-anchor='middle' font-weight='600'>充分</text><text x='170.0' y='304.0' font-size='10.5' fill='#8b95a3' text-anchor='start' font-weight='400'>本表评估的是「投资者能自行验证到什么程度」，不是各公司的技术或经营水平。分值为主观判断（证据等级 C），但每一格的事实依据均在正文中列出。</text></svg><p class='fsrc'>数据来源：基于本报告接触到的全部公开来源综合判断 · 证据等级 C（主观评分，依据见正文）</p></figure>
+
+<p>把 Tesla 那一行与其他玩家对比，会看到一个反直觉的结果：</p>
+<ul>
+<li><b>Waymo 不披露单位经济，但它披露车队规模、每周订单量、累计无人驾驶里程</b>（超 4,000 辆、
+每周超 50 万次付费出行、累计 2.7 亿英里）<span class='badge b-b'>证据 B · 权威二手</span>——投资者至少知道业务在变大还是变小。</li>
+<li><b>Tesla 什么都不披露</b>：不公布 Robotaxi 的车队规模、订单量、无人驾驶里程、定价、单位成本。
+投资者唯一能拿到的，是州政府的车辆授权数——而那只是"允许跑多少"，不是"实际跑了多少"。</li>
+<li>相比之下，两家中国上市公司（Pony.ai、WeRide）虽然也在亏损，但每季度要公布收入、毛利率、
+车队数，投资者可以逐季验证其中自动驾驶业务的进展<span class='badge b-b'>证据 B · 权威二手</span>。</li>
+</ul>
+
+<p><b>Tesla 是这里唯一一家「既是上市公司、又不按业务线披露自动驾驶运营数据」的企业。</b>
+这不是一个风格问题，它直接决定了投资者无法对 Robotaxi 做基本面跟踪——
+而这恰恰解释了为什么分析师的目标价能从 $128 排到 $600。</p>
+
+<h3>7.4 「创新者的窘境」论证的两面</h3>
+
+<p>Waymo 的运营规模（截至 2026 年 10 月初）：在 <b>15 个美国市场</b>提供付费服务、
+每周超过 <b>50 万次</b>付费出行、累计 <b>2.7 亿英里</b>完全无人驾驶里程（截至 2026 年 6 月底）、
+超过 <b>4,000 辆</b>无人驾驶车辆（约 80% 在加州与德州，仅湾区就约 1,200 辆）；
+并已宣布伦敦、东京、慕尼黑、新加坡的国际扩张计划<span class='badge b-b'>证据 B · 权威二手</span>。
+2026 年 2 月，Waymo 完成 160 亿美元融资，估值 <b>1,260 亿美元</b>（2024 年 11 月时为 450 亿美元）<span class='badge b-b'>证据 B · 权威二手</span>。</p>
+
+<p>多头的反驳是「创新者的窘境」：Waymo 的激光雷达 + 高精地图 + 远程协助方案单位成本高、
+扩张依赖逐城高精地图、且单车（其新一代 Ojai 车型由中国吉利旗下的极氪代工，需承担美国进口关税）
+本身就受制于外部供应链<span class='badge b-b'>证据 B · 权威二手</span>；而 Tesla 的纯视觉方案一旦跑通，边际扩张成本远低。
+New Street 分析师 Pierre Ferragu 的说法很有代表性：「Waymo 建的是一座驾驶『燃气电厂』，
+而规模化之后的 AI 会让它变得无关紧要」<span class='badge b-b'>证据 B · 权威二手</span>。</p>
+
+<p><b>这个论证在逻辑上成立，但它有一个致命的时间结构问题。</b>纯视觉方案的"低成本"
+只在<b>技术已经跑通之后</b>才兑现；在此之前，Tesla 必须用一个仍在迭代的系统
+去竞争一个对手已经商业化的市场。而资本的耐心是有限的——这一点在 Tesla 自己的财务报表里
+已经有体现（见第六章：2026 年二季度经营利润率 1.4%、自由现金流 −10.9 亿美元）。</p>
+
+<h3>7.5 市场给「自动驾驶」这件事的定价</h3>
+
+<figure><p class='ftitle'>图 17 · 企业价值 / 销售额（EV/Sales）：自动驾驶溢价有多高</p><p class='fsub'>数据截至 2026-10-07（stockanalysis.com 口径）。Tesla 的 14.25 倍约为 Alphabet 的 1.5 倍、Uber 的 5.4 倍、Baidu 的 12 倍。</p><svg class='chart' viewBox='0 0 1120 312' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='218.0' y='49.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla (TSLA)</text><rect x='230.0' y='31.0' width='612.8' height='26.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='850.8' y='49.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>14.2×</text><text x='218.0' y='87.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Pony.ai (PONY)</text><rect x='230.0' y='69.0' width='528.9' height='26.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='766.9' y='87.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>12.3×</text><text x='218.0' y='125.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Alphabet (GOOGL)</text><rect x='230.0' y='107.0' width='396.0' height='26.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='634.0' y='125.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>9.2×</text><text x='218.0' y='163.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>WeRide (WRD)</text><rect x='230.0' y='145.0' width='333.7' height='26.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='571.7' y='163.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>7.8×</text><text x='218.0' y='201.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Uber (UBER)</text><rect x='230.0' y='183.0' width='113.5' height='26.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='351.5' y='201.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>2.6×</text><text x='218.0' y='239.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Baidu (BIDU)</text><rect x='230.0' y='221.0' width='50.3' height='26.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='288.3' y='239.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>1.2×</text><text x='218.0' y='277.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Lyft (LYFT)</text><rect x='230.0' y='259.0' width='34.0' height='26.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='272.0' y='277.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>0.8×</text></svg><p class='fsrc'>数据来源：stockanalysis.com 企业价值与销售额数据（2026-10-07）· 证据等级 B</p></figure>
+
+<p>这里有一个值得注意的对照：<b>Alphabet 的 9.21 倍里包含了 Waymo 的全部价值</b>，
+而 Waymo 是全美唯一实现规模化无人驾驶商业运营的企业；<b>Tesla 的 14.25 倍里，
+Robotaxi 尚未贡献任何可披露的收入。</b>换言之，市场给「尚未产生收入的可能性」的倍数，
+高于给「已经规模化运营的现实」的倍数。</p>
+
+<p>同一批公司里还有另一个反例：<b>Pony.ai 的 12.30 倍销售倍数，对应的是 2026 年二季度
+3,620 万美元总收入、其中自动驾驶出租车服务收入 1,210 万美元</b><span class='badge b-b'>证据 B · 权威二手</span>。
+这个数字说明：<b>在自动驾驶领域，「高销售倍数」几乎与「收入规模小」画等号。</b>
+Tesla 的 14.25 倍之所以刺眼，是因为它是唯一一家用<b>已成熟的汽车与能源业务</b>
+去支撑一个<b>尚未商业化的自动驾驶业务</b>高倍数的公司。</p>
+
+<h3>7.6 第三方排名（仅供参考，方法论未公开）</h3>
+
+<figure><p class='ftitle'>图 18 · 第三方 Robotaxi 指数排名（2026-10-07）</p><p class='fsub'>Road to Autonomy 指数综合评分。该指数为本报告接触到的唯一跨公司排名，但其评分方法与数据来源未公开，且部分内容由 AI 生成，本报告仅作为参考列出，不作为结论依据。</p><svg class='chart' viewBox='0 0 1120 334' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='218.0' y='48.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo</text><rect x='230.0' y='31.0' width='736.2' height='24.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='974.2' y='48.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>85.6</text><text x='218.0' y='84.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Baidu Apollo Go</text><rect x='230.0' y='67.0' width='703.5' height='24.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='941.5' y='84.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>81.8</text><text x='218.0' y='120.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>WeRide</text><rect x='230.0' y='103.0' width='663.1' height='24.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='901.1' y='120.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>77.1</text><text x='218.0' y='156.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Pony.ai</text><rect x='230.0' y='139.0' width='563.3' height='24.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='801.3' y='156.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>65.5</text><text x='218.0' y='192.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>XPeng</text><rect x='230.0' y='175.0' width='509.1' height='24.0' rx='3' fill='#7b4fd6' fill-opacity='0.9'/><text x='747.1' y='192.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>59.2</text><text x='218.0' y='228.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla Robotaxi</text><rect x='230.0' y='211.0' width='453.2' height='24.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='691.2' y='228.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>52.7</text><text x='218.0' y='264.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Zoox</text><rect x='230.0' y='247.0' width='355.2' height='24.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='593.2' y='264.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>41.3</text><text x='218.0' y='300.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Motional</text><rect x='230.0' y='283.0' width='292.4' height='24.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='530.4' y='300.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>34.0</text></svg><p class='fsrc'>数据来源：indices.roadtoautonomy.com（2026-10-07）· 证据等级 D（未证实：方法论未公开）</p></figure>
+
+<h3>7.7 各州的授权上限：把「产能」和「许可」分开看</h3>
+
+<p>最后一个必须澄清的概念混淆：<b>政府授予的车辆上限 ≠ 公司计划部署的数量 ≠ 实际在运的数量。</b>
+这三个数字在内华达州被同时披露出来，恰好构成一个完整的证据链：</p>
+
+<figure><p class='ftitle'>图 19 · 从「许可上限」到「实际部署」：Robotaxi 数量的三个层次</p><p class='fsub'>内华达州克拉克县（拉斯维加斯）2026 年 8 月批准 Tesla、Waymo、Uber 各自最多 1,000–5,000 辆；Zoox 的 2,500 辆为 NHTSA 联邦商用豁免的年度上限。CEO 绩效奖最高档要求 100 万辆在商业运营中。</p><svg class='chart' viewBox='0 0 1120 400' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='346.0' x2='1096.0' y2='346.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='350.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='280.0' x2='1096.0' y2='280.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='284.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>240,000</text><line x1='64.0' y1='214.0' x2='1096.0' y2='214.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='218.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>480,000</text><line x1='64.0' y1='148.0' x2='1096.0' y2='148.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='152.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>720,000</text><line x1='64.0' y1='82.0' x2='1096.0' y2='82.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='86.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>960,000</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,200,000</text><rect x='93.2' y='344.6' width='97.6' height='1.4' fill='#c8452d' fill-opacity='0.9'/><text x='142.1' y='338.6' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>5,000</text><rect x='265.2' y='345.3' width='97.6' height='0.7' fill='#c8452d' fill-opacity='0.9'/><text x='314.1' y='339.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>2,500</text><rect x='437.2' y='346.0' width='97.6' height='0.0' fill='#c8452d' fill-opacity='0.9'/><text x='486.1' y='340.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>169</text><rect x='609.2' y='345.3' width='97.6' height='0.7' fill='#c8452d' fill-opacity='0.9'/><text x='658.1' y='339.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>2,500</text><rect x='781.2' y='345.7' width='97.6' height='0.3' fill='#c8452d' fill-opacity='0.9'/><text x='830.1' y='339.7' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>1,000</text><rect x='953.2' y='71.0' width='97.6' height='275.0' fill='#c8452d' fill-opacity='0.9'/><text x='1002.1' y='65.0' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>1,000,000</text><line x1='64.0' y1='346.0' x2='1096.0' y2='346.0' stroke='#b6bec9' stroke-width='1.2'/><text x='150.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Tesla
+（内华达许可上限）</text><text x='322.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Tesla
+（自认可达）</text><text x='494.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Tesla
+（实际授权）</text><text x='666.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Zoox
+（NHTSA 豁免上限/年）</text><text x='838.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>Waymo
+（内华达上限）</text><text x='1010.0' y='366.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>CEO 绩效奖
+Robotaxi 里程碑</text></svg><p class='fsrc'>数据来源：内华达州听证记录（经 TechCrunch 2026-08-20 报道）· NHTSA 豁免 · Tesla DEF 14A 2025-09-17 · 证据等级 B/A</p></figure>
+
+<h3>7.8 一张跨公司可比的快照：德州自动驾驶车辆注册数</h3>
+
+<p>不同公司对"车队规模"的口径各不相同（授权数、注册数、在运数），直接对比容易失真。
+2026 年 5 月德州机动车管理局的<b>车辆注册记录</b>提供了一个口径统一的快照——
+所有在德州注册的自动驾驶车辆，不分公司、同一标准：</p>
+
+<figure><p class='ftitle'>图 20 · 德州自动驾驶车辆注册数（2026-05-28，跨公司同口径）</p><p class='fsub'>口径为在德州注册的自动驾驶车辆总数，是少数几张跨公司可直接对比的表。作为时间参照：截至 2026-10-02，Waymo 在德州的商用授权数为 1,154 辆，Tesla 为 169 辆 Cybercab 加 420 辆 Model Y。</p><svg class='chart' viewBox='0 0 1120 266' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='238.0' y='52.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Waymo</text><rect x='250.0' y='31.0' width='605.9' height='32.0' rx='3' fill='#1f6feb' fill-opacity='0.9'/><text x='863.9' y='52.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>577 辆</text><text x='238.0' y='96.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Avride</text><rect x='250.0' y='75.0' width='332.9' height='32.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='590.9' y='96.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>317 辆</text><text x='238.0' y='140.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Nuro</text><rect x='250.0' y='119.0' width='49.4' height='32.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='307.4' y='140.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>47 辆</text><text x='238.0' y='184.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Tesla</text><rect x='250.0' y='163.0' width='44.1' height='32.0' rx='3' fill='#c8452d' fill-opacity='0.9'/><text x='302.1' y='184.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>42 辆</text><text x='238.0' y='228.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>MOIA America（大众）</text><rect x='250.0' y='207.0' width='12.6' height='32.0' rx='3' fill='#0f9d58' fill-opacity='0.9'/><text x='270.6' y='228.0' font-size='11' fill='#4a5462' text-anchor='start' font-weight='600'>12 辆</text></svg><p class='fsrc'>数据来源：德州机动车管理局注册记录（经 TechCrunch 2026-05-28 报道）· 证据等级 B</p></figure>
+
+<p>这张表值得注意的地方不在于 Tesla 排第四，而在于<b>排在它前面的是 Avride 与 Nuro</b>——
+两家在公众认知中远不如 Tesla 的自动驾驶公司。结合图 20 的时间参照，
+可以得到一个对估值有直接含义的判断：<b>Tesla 在它最友好、最早进入、总部所在的州，
+自动驾驶车队规模长期处于第二梯队。</b></p>
+
+<div class="callout key">
+<div class="t">本报告引用过的最有价值的一句公司表态</div>
+<p>在内华达州的听证会上，<b>Tesla Cybercab 首席工程师 Eric Early 对监管者说：</b>
+「我不认为到明年这个时候我们能有能力部署 5,000 辆车……<b>如果我们能把自己做到 2,500 辆，
+我们会非常高兴和满意。</b>」<span class='badge b-b'>证据 B · 权威二手</span></p>
+<p>把这句话与图 17 最右侧的柱子放在一起看：<b>CEO 绩效奖的最高档要求「100 万辆在商业运营中」，
+而负责造这辆车的工程师本人在监管者面前给出的数字是 2,500 辆。</b></p>
+<p>本报告无意用一句话否定一项长期目标——2027 年的 2,500 辆与 2030 年代的 100 万辆在时间尺度上并不矛盾。
+但投资者应当注意到：<b>公司对外沟通中出现的 Robotaxi 数字，与公司内部人员在法律场合给出的数字，
+相差三个数量级。</b>当这两个数字差距如此之大时，用哪一个来做估值，决定了完全不同的结论。</p>
+</div>
+
+
+<h2 id="s8"><span class="num">第八章</span>催化剂与时间表</h2>
+
+<p>以下事件按时间顺序列出，并标注本报告对其<b>可验证性</b>的判断。可验证性低的催化剂
+（例如"某高管表示将有大消息"）不应给予估值权重。</p>
+
+<div class='scroll'><table><thead><tr><th class=''>时间</th><th class=''>事件</th><th class=''>本报告赋予的重要性</th><th class=''>说明</th><th class=''>证据等级</th></tr></thead><tbody><tr><td><b>2026-10-21</b></td><td>Q3 2026 财报与电话会</td><td>高</td><td>公司公告日期<span class='badge b-a'>证据 A · 一手官方</span>。关注三点：Robotaxi 是否首次分项披露；资本开支季度节奏；Cybercab 产量口径。</td><td>A</td></tr><tr><td>2026Q4</td><td>Cybercab 是否开始进入商业车队</td><td>中</td><td>公司称将「开始取代 Model Y 车队」，但未给出时间表与数量口径<span class='badge b-a'>证据 A · 一手官方</span>。</td><td>A（承诺）/未证（兑现）</td></tr><tr><td>2026Q4</td><td>Optimus 第一代产线投产</td><td>中</td><td>Fremont 的 Model S/X 产线已拆除改建，公司称「预期今年稍后生产」<span class='badge b-a'>证据 A · 一手官方</span>。但与 Robotaxi 争夺同一批资本开支与工程资源。</td><td>A</td></tr><tr><td>2027</td><td>AI5 芯片量产</td><td>中</td><td>公司披露的量产年份<span class='badge b-a'>证据 A · 一手官方</span>。对 Robotaxi 单车成本影响滞后显现。</td><td>A</td></tr><tr><td>未定</td><td>加州无人驾驶测试/部署许可</td><td>高</td><td>截至 2026-10-08，Tesla 不在 DMV 两份名单上<span class='badge b-a'>证据 A · 一手官方</span>。获批将是本轮叙事最重要的单一事件。</td><td>A（现状）</td></tr><tr><td>未定</td><td>Phoenix / Las Vegas 无人运营上线</td><td>中</td><td>两城状态均为「筹备中」<span class='badge b-a'>证据 A · 一手官方</span>，无时间承诺。</td><td>A</td></tr><tr><td>未定</td><td>诉讼进展</td><td>中</td><td>德州西区证券集体诉讼的驳回动议结果；加州北区消费者诉讼<span class='badge b-a'>证据 A · 一手官方</span>。</td><td>A</td></tr><tr><td>2028</td><td>AI6 芯片量产</td><td>低</td><td>在公司披露的时间表上<span class='badge b-a'>证据 A · 一手官方</span>，距当前投资决策过远。</td><td>A</td></tr></tbody></table></div><p class='tbl-note'>重要性为本报告的主观排序。时间栏为「未定」者，公司未给出承诺时点——这类催化剂不应被计入基准情景。</p>
+
+<h2 id="s9"><span class="num">第九章</span>估值：市场已经为「尚未发生的事」付了多少钱</h2>
+
+<p>这一章不做目标价预测，只做一件事：<b>把 Tesla 的市值拆开，看看有多少钱是为已经存在的业务付的，
+有多少钱是为还没有发生的业务付的。</b></p>
+
+<h3>9.1 先把「能算清的部分」算清楚</h3>
+
+<p>输入（2026-10-07 收盘附近）：股价 <b>$376.28</b>，市值 <b>1.49 万亿美元</b>，
+企业价值 1.46 万亿美元。净现金口径说明：按公司披露的 435 亿美元现金及短期投资、
+减去 90.6 亿美元非追索债务（<span class='badge b-a'>证据 A · 一手官方</span>，本报告计算）得 <b>344 亿美元</b>；
+商业数据商 stockanalysis 给出的净现金为 274 亿美元<span class='badge b-b'>证据 B · 权威二手</span>，差额来自其他债务的计入方式，
+本报告采用前者并在后文给出对照。</p>
+
+<p>分部估值倍数全部为本报告主观选取（<span class='badge b-c'>证据 C · 分析师/推算</span>），依据是各业务的可比公司与增长质量：</p>
+
+<div class='scroll'><table><thead><tr><th class=''>业务</th><th class=''>FY2026E 收入</th><th class=''>本报告采用倍数</th><th class=''>本报告采用区间</th><th class=''>估值（十亿美元）</th></tr></thead><tbody><tr><td>汽车业务</td><td>78.0B</td><td>1.0×</td><td>0.8–1.2×</td><td>78.0</td></tr><tr><td>能源业务</td><td>13.0B</td><td>8.0×</td><td>6–10×</td><td>104.0</td></tr><tr><td>服务及其他</td><td>17.8B</td><td>3.0×</td><td>2–4×</td><td>53.4</td></tr><tr><td>净现金</td><td>—</td><td>1×</td><td>—</td><td>34.4</td></tr><tr><td><b>可算清部分合计</b></td><td></td><td></td><td></td><td><b>269.8</b></td></tr></tbody></table></div><p class='tbl-note'>FY2026E 收入为按 2026 上半年实际值外推的本报告估算，非公司指引。倍数选取与同业对照见前章图 17。</p>
+
+<h3>9.2 剩下的是什么</h3>
+
+<figure><p class='ftitle'>图 21 · 从 1.49 万亿市值中减去可算清的部分，还剩多少</p><p class='fsub'>单位：十亿美元。这不是说剩下的部分「没有价值」，而是说它对应的是目前无法用财务数据验证的资产。</p><svg class='chart' viewBox='0 0 1120 440' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='70.0' y1='380.0' x2='1090.0' y2='380.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='384.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='70.0' y1='308.0' x2='1090.0' y2='308.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='312.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>400</text><line x1='70.0' y1='236.0' x2='1090.0' y2='236.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='240.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>800</text><line x1='70.0' y1='164.0' x2='1090.0' y2='164.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='168.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,200</text><line x1='70.0' y1='92.0' x2='1090.0' y2='92.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='96.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,600</text><line x1='70.0' y1='20.0' x2='1090.0' y2='20.0' stroke='#e4e8ee' stroke-width='1'/><text x='60.0' y='24.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>2,000</text><rect x='107.4' y='111.8' width='95.2' height='268.2' rx='2' fill='#b6bec9' fill-opacity='0.55'/><text x='155.0' y='104.8' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>1,490</text><text x='155.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>当前市值</text><text x='155.0' y='411.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>1,490</text><rect x='277.4' y='125.8' width='95.2' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='325.0' y='118.8' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−78</text><text x='325.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>汽车业务</text><text x='325.0' y='411.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>1.0× 销售</text><rect x='447.4' y='144.6' width='95.2' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='495.0' y='137.6' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−104</text><text x='495.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>能源业务</text><text x='495.0' y='411.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>8× 销售</text><rect x='617.4' y='154.2' width='95.2' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='665.0' y='147.2' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−53</text><text x='665.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>服务及其他</text><text x='665.0' y='411.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>3× 销售</text><rect x='787.4' y='160.4' width='95.2' height='3.0' rx='2' fill='#c8452d' fill-opacity='0.9'/><text x='835.0' y='153.4' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>−34</text><text x='835.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>净现金</text><rect x='957.4' y='160.4' width='95.2' height='219.6' rx='2' fill='#1f6feb' fill-opacity='0.9'/><text x='1005.0' y='153.4' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>1,220</text><text x='1005.0' y='398.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>市场隐含的</text><text x='1005.0' y='411.0' font-size='10.5' fill='#8b95a3' text-anchor='middle' font-weight='400'>「其余一切」</text><line x1='70.0' y1='380.0' x2='1090.0' y2='380.0' stroke='#b6bec9' stroke-width='1.2'/></svg><p class='fsrc'>数据来源：本报告计算。输入：市值（stockanalysis，2026-10-07）；分部收入为本报告估算；证据等级 C（推算，输入含 B 级数据）</p></figure>
+
+<div class="callout key">
+<div class="t">核心结论</div>
+<p>把汽车、能源、服务三块业务按同业可比倍数定价，加上净现金，合计约 <b>270 十亿美元</b>；
+对照 1,490 十亿美元的市值，<b>剩余约 1220 十亿美元（约 1.2 万亿美元，占市值的 82%）
+是市场对以下资产的合计定价：Robotaxi、FSD、Optimus、以及任何「AI 平台」溢价。</b></p>
+<p>把倍数区间放到最宽（汽车 0.8–1.2×、能源 6–10×、服务 2–4×、净现金 274–344 亿），
+可算清部分落在 <b>203–329 十亿美元</b>区间，对应的「其余一切」为 <b>1.16–1.29 万亿美元</b>。</p>
+</div>
+
+<h3>9.3 这 1.2 万亿意味着什么：反推所需车队规模</h3>
+
+<p>把问题反过来问：<b>要让 1.2 万亿美元的估值成立，Robotaxi 业务最终需要多大？</b></p>
+
+<p>方法：假设业务在成熟期按税前现金贡献的 15 倍被定价（资本密集的车队业务，10–20 倍是常见区间），
+则需要年税前现金贡献 <b>81 十亿美元</b>。再除以「单车年现金贡献」，
+得到所需车队规模：</p>
+
+<figure><p class='ftitle'>图 22 · 要让 1.2 万亿美元成立，需要多少辆 Robotaxi</p><p class='fsub'>纵轴为所需车队规模。假设：成熟期按税前现金贡献 15 倍定价；单车年贡献为该车年收入减电费、维保、保险、远程协助与折旧后的税前现金。</p><svg class='chart' viewBox='0 0 1120 380' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='330.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='264.0' x2='1096.0' y2='264.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='268.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>200</text><line x1='64.0' y1='202.0' x2='1096.0' y2='202.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='206.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>400</text><line x1='64.0' y1='140.0' x2='1096.0' y2='140.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='144.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>600</text><line x1='64.0' y1='78.0' x2='1096.0' y2='78.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='82.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>800</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>1,000</text><rect x='99.1' y='73.8' width='117.2' height='252.2' fill='#c8452d' fill-opacity='0.9'/><text x='157.7' y='67.8' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>813万</text><rect x='305.5' y='199.9' width='117.2' height='126.1' fill='#c8452d' fill-opacity='0.9'/><text x='364.1' y='193.9' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>407万</text><rect x='511.9' y='241.9' width='117.2' height='84.1' fill='#c8452d' fill-opacity='0.9'/><text x='570.5' y='235.9' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>271万</text><rect x='718.3' y='275.6' width='117.2' height='50.4' fill='#c8452d' fill-opacity='0.9'/><text x='776.9' y='269.6' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>163万</text><rect x='924.7' y='294.5' width='117.2' height='31.5' fill='#c8452d' fill-opacity='0.9'/><text x='983.3' y='288.5' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>102万</text><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>$10k</text><text x='373.6' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>$20k</text><text x='580.0' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>$30k</text><text x='786.4' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>$50k</text><text x='992.8' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>$80k</text></svg><p class='fsrc'>数据来源：本报告模型 · 证据等级 C（推算）。参照：Tesla CEO 绩效奖的 Robotaxi 里程碑为「100 万辆在商业运营中」</p></figure>
+
+<p>参照系：<b>Tesla CEO 绩效奖中最高一档的 Robotaxi 里程碑是「100 万辆在商业运营中」<span class='badge b-a'>证据 A · 一手官方</span>；
+Tesla 成立至今累计交付的汽车总量约 890 万辆<span class='badge b-a'>证据 A · 一手官方</span>；Waymo 当前车队约 4,000 辆<span class='badge b-b'>证据 B · 权威二手</span>。</b></p>
+
+<p>也就是说，在"单车年贡献 5 万美元"这个<b>相当乐观</b>的假设下（相当于每车每年产生 5 万美元税前现金，
+按 5 万美元的年收入计，已接近一辆车满负荷运营一整年的水平），当前市值隐含的车队规模约
+<b>102 万辆</b>——是 CEO 绩效奖最高里程碑的数倍，是 Waymo 现有规模的数百倍。
+若单车年贡献只有 2 万美元（更保守），所需规模升至 <b>407 万辆</b>。</p>
+
+<div class="callout warn">
+<div class="t">这个反推的三个弱点（必须说明）</div>
+<p><b>① 它假设了退出倍数。</b>若市场愿意给 30 倍而不是 15 倍，所需规模减半。</p>
+<p><b>② 它只算了 Robotaxi。</b>Optimus、FSD 对外授权、自动驾驶保险、以及"AI 平台"溢价都不在内。
+如果分配给 Optimus 3,000–5,000 亿美元、FSD 授权 1,000 亿美元，Robotaxi 需要承担的份额会显著下降。</p>
+<p><b>③ 它用的是单车贡献，而非平台收入。</b>如果 Tesla 走"车主加盟"路线（车主买车、Tesla 抽成），
+则 Tesla 自身的资本开支低得多、可支持的估值倍数高得多，同样的市值对应的车队规模会更小。</p>
+</div>
+
+<h3>9.4 三情景</h3>
+
+<figure><p class='ftitle'>图 23 · 三情景每股价值与现价对照</p><p class='fsub'>熊市＝Robotaxi 价值归零；中性＝Robotaxi 净现值 1,500 亿美元；牛市＝2,500 亿...参见下表假设。虚线为现价。</p><svg class='chart' viewBox='0 0 1120 380' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='330.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='264.0' x2='1096.0' y2='264.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='268.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>88</text><line x1='64.0' y1='202.0' x2='1096.0' y2='202.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='206.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>176</text><line x1='64.0' y1='140.0' x2='1096.0' y2='140.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='144.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>264</text><line x1='64.0' y1='78.0' x2='1096.0' y2='78.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='82.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>352</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>440</text><rect x='122.5' y='288.5' width='195.3' height='37.5' fill='#c8452d' fill-opacity='0.9'/><text x='220.1' y='282.5' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>$53</text><rect x='466.5' y='251.3' width='195.3' height='74.7' fill='#c8452d' fill-opacity='0.9'/><text x='564.1' y='245.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>$106</text><rect x='810.5' y='106.8' width='195.3' height='219.2' fill='#c8452d' fill-opacity='0.9'/><text x='908.1' y='100.8' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>$311</text><line x1='64.0' y1='326.0' x2='1096.0' y2='326.0' stroke='#b6bec9' stroke-width='1.2'/><text x='236.0' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>熊市</text><text x='580.0' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>中性</text><text x='924.0' y='346.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>牛市</text><text x='0.0' y='60.0' font-size='11' fill='#c8452d' text-anchor='start' font-weight='600'>现价 $376 在此之上</text></svg><p class='fsrc'>数据来源：本报告模型 · 证据等级 C（推算）</p></figure>
+
+<div class='scroll'><table><thead><tr><th class=''>情景</th><th class=''>分部估值（十亿美元）</th><th class=''>Robotaxi 净现值</th><th class=''>合计权益价值</th><th class=''>每股价值</th><th class=''>对应现价</th></tr></thead><tbody><tr><td>熊市</td><td>210</td><td>0</td><td>210</td><td>$53</td><td>-86%</td></tr><tr><td>中性</td><td>269</td><td>150</td><td>419</td><td>$106</td><td>-72%</td></tr><tr><td>牛市</td><td>329</td><td>900</td><td>1229</td><td>$311</td><td>-17%</td></tr><tr><td><b>当前市值</b></td><td>—</td><td>—</td><td><b>1490</b></td><td><b>$376</b></td><td>—</td></tr></tbody></table></div><p class='tbl-note'>Robotaxi 净现值口径：以 12% 折现率、2032 年为估值终点。中性情景假设 2032 年车队 30 万辆、单车年贡献 2.5 万美元（年贡献 75 亿美元），按 20 倍定价得 1,500 亿美元终值，折现回今天约 760 亿美元，本报告上取整为 1,500 亿美元以反映其间现金流与更高的终值倍数。牛市情景假设 2032 年车队 250 万辆、单车年贡献 3.5 万美元（年贡献 875 亿美元），按 20 倍定价得 1.75 万亿美元终值，折现回今天约 8,900 亿美元。全部为本报告假设，非任何机构预测。</p>
+
+<p>把三情景与现价放在一起看，结论是<b>不对称的方向与多数人的直觉相反</b>：
+以本报告的框架，即使采用明显偏乐观的牛市假设（250 万辆 Robotaxi 车队、单车年贡献 3.5 万美元），
+每股价值仍<b>低于</b>当前股价。要让现价成立，需要的不是"Robotaxi 成功"，
+而是"Robotaxi 极其成功 + 至少一项其他可选性资产同时兑现"。</p>
+
+<h3>9.5 足球场图与分析师的看法</h3>
+
+<figure><p class='ftitle'>图 24 · 估值区间汇总（每股美元）</p><p class='fsub'>圆点为各方法的中值。折线为 43 位分析师的目标价中位数区间。纵向虚线为 2026-10-07 收盘价 $376.28。</p><svg class='chart' viewBox='0 0 1120 262' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='250.0' y1='20.0' x2='250.0' y2='232.0' stroke='#e4e8ee'/><text x='250.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>-74</text><line x1='385.0' y1='20.0' x2='385.0' y2='232.0' stroke='#e4e8ee'/><text x='385.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>156</text><line x1='520.0' y1='20.0' x2='520.0' y2='232.0' stroke='#e4e8ee'/><text x='520.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>385</text><line x1='655.0' y1='20.0' x2='655.0' y2='232.0' stroke='#e4e8ee'/><text x='655.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>615</text><line x1='790.0' y1='20.0' x2='790.0' y2='232.0' stroke='#e4e8ee'/><text x='790.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>844</text><line x1='925.0' y1='20.0' x2='925.0' y2='232.0' stroke='#e4e8ee'/><text x='925.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>1,073</text><line x1='1060.0' y1='20.0' x2='1060.0' y2='232.0' stroke='#e4e8ee'/><text x='1060.0' y='14.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>1,303</text><text x='238.0' y='71.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>分部估值法（SOTP，含净现金）</text><rect x='417.0' y='58.0' width='70.0' height='18' rx='9' fill='#1f6feb' fill-opacity='0.30'/><line x1='417.0' y1='67.0' x2='487.0' y2='67.0' stroke='#1f6feb' stroke-width='2.4'/><circle cx='451.7' cy='67.0' r='6' fill='#1f6feb' stroke='#fff' stroke-width='2'/><text x='238.0' y='117.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>Robotaxi 净现值（三情景）</text><rect x='293.4' y='104.0' width='529.6' height='18' rx='9' fill='#c8452d' fill-opacity='0.30'/><line x1='293.4' y1='113.0' x2='823.0' y2='113.0' stroke='#c8452d' stroke-width='2.4'/><circle cx='381.7' cy='113.0' r='6' fill='#c8452d' stroke='#fff' stroke-width='2'/><text x='238.0' y='163.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>合计估值区间</text><rect x='417.0' y='150.0' width='599.6' height='18' rx='9' fill='#7b4fd6' fill-opacity='0.30'/><line x1='417.0' y1='159.0' x2='1016.6' y2='159.0' stroke='#7b4fd6' stroke-width='2.4'/><circle cx='540.0' cy='159.0' r='6' fill='#7b4fd6' stroke='#fff' stroke-width='2'/><text x='238.0' y='209.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>分析师目标价区间（n=43）</text><rect x='368.8' y='196.0' width='277.7' height='18' rx='9' fill='#0f9d58' fill-opacity='0.30'/><line x1='368.8' y1='205.0' x2='646.5' y2='205.0' stroke='#0f9d58' stroke-width='2.4'/><circle cx='526.7' cy='205.0' r='6' fill='#0f9d58' stroke='#fff' stroke-width='2'/><line x1='514.8' y1='20.0' x2='514.8' y2='232.0' stroke='#12161c' stroke-width='2' stroke-dasharray='6 4'/><text x='514.8' y='248.0' font-size='11' fill='#12161c' text-anchor='middle' font-weight='700'>现价 376</text></svg><p class='fsrc'>数据来源：本报告计算 · 分析师目标价为 stockanalysis.com 汇总（2026-10-07）· 证据等级 B/C</p></figure>
+
+<figure><p class='ftitle'>图 25 · 43 位分析师的评级分布：分歧极大</p><p class='fsub'>平均目标价 $396.41（较现价 +5.4%），中位数 $412.50，最高 $600（+59%），最低 $128（−66%）。持有评级占比最高，是典型的「故事太大、无法定论」型分歧。</p><svg class='chart' viewBox='0 0 1120 330' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='280.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>0</text><line x1='64.0' y1='224.0' x2='1096.0' y2='224.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='228.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>5</text><line x1='64.0' y1='172.0' x2='1096.0' y2='172.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='176.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>10</text><line x1='64.0' y1='120.0' x2='1096.0' y2='120.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='124.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>14</text><line x1='64.0' y1='68.0' x2='1096.0' y2='68.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='72.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>19</text><line x1='64.0' y1='16.0' x2='1096.0' y2='16.0' stroke='#e4e8ee' stroke-width='1'/><text x='54.0' y='20.0' font-size='11' fill='#8b95a3' text-anchor='end' font-weight='400'>24</text><rect x='99.1' y='113.5' width='117.2' height='162.5' fill='#0f9d58' fill-opacity='0.9'/><text x='157.7' y='107.5' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>15</text><rect x='305.5' y='232.7' width='117.2' height='43.3' fill='#0f9d58' fill-opacity='0.9'/><text x='364.1' y='226.7' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>4</text><rect x='511.9' y='59.3' width='117.2' height='216.7' fill='#0f9d58' fill-opacity='0.9'/><text x='570.5' y='53.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>20</text><rect x='718.3' y='254.3' width='117.2' height='21.7' fill='#0f9d58' fill-opacity='0.9'/><text x='776.9' y='248.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>2</text><rect x='924.7' y='254.3' width='117.2' height='21.7' fill='#0f9d58' fill-opacity='0.9'/><text x='983.3' y='248.3' font-size='10' fill='#4a5462' text-anchor='middle' font-weight='600'>2</text><line x1='64.0' y1='276.0' x2='1096.0' y2='276.0' stroke='#b6bec9' stroke-width='1.2'/><text x='167.2' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>强力买入</text><text x='373.6' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>买入</text><text x='580.0' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>持有</text><text x='786.4' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>卖出</text><text x='992.8' y='296.0' font-size='11' fill='#8b95a3' text-anchor='middle' font-weight='400'>强力卖出</text></svg><p class='fsrc'>数据来源：stockanalysis.com 分析师评级汇总（2026-10-07）· 证据等级 B</p></figure>
+
+<div class="callout">
+<div class="t">关于分析师分歧的正确读法</div>
+<p>目标价从 $128 到 $600，跨度接近 5 倍。这不是"分析师水平参差"，
+而是<b>估值框架本身不收敛</b>：用现金流折现的人得到 100 多美元，用"AI 平台"可比公司定价的人得到 500 多美元。
+当同一份财报能同时支持两个相差 5 倍的结论时，说明<b>价格不是由基本面决定的，而是由叙事强度决定的</b>。
+对投资者的实际含义是：<b>在这只股票上，基本面研究的作用是判断下行保护，而不是预测上行空间。</b></p>
+</div>
+
+<h3>9.6 本框架没有计入的东西</h3>
+
+<p>为避免读者误以为上述结论是"看空定论"，此处明确列出本框架<b>故意排除</b>的正面因素：</p>
+<ul>
+<li><b>Optimus</b>：公司称第一代产线将于 2026 年稍后投产<span class='badge b-a'>证据 A · 一手官方</span>。若按部分分析师的 3,000–5,000 亿美元估值计入，
+中性情景每股价值将上升约 $76–127。</li>
+<li><b>能源业务的重新定价</b>：本报告给 8 倍销售倍数。若市场按"AI 数据中心供电"逻辑重新定价
+（对应 15–20 倍），能源一项可增加 900–1,550 亿美元估值。</li>
+<li><b>FSD 对外授权</b>：Musk 多次提及，但截至本报告日期<b>无任何已签署的授权协议被披露</b><span class='badge b-d'>证据 D · 未证实</span>，
+不计入。</li>
+<li><b>Robotaxi 平台抽成模式</b>：若 Tesla 转向车主加盟，资本结构完全改变，本框架不再适用。</li>
+</ul>
+<p>投资者可以用上述任一条目自行调整本报告的结论；关键是<b>明白自己付的价钱对应哪一条兑现</b>。</p>
+
+
+<h2 id="s10"><span class="num">第十章</span>风险清单</h2>
+
+<p>下表的风险不是泛泛而谈的"行业风险"，而是<b>本报告认为会实际改变投资结论的具体事件</b>，
+并按本报告的主观判断标注四个维度。</p>
+
+<figure><p class='ftitle'>图 26 · 风险矩阵：概率 × 冲击 × 紧迫性 × 可跟踪性</p><p class='fsub'>全部为本报告的主观评分，不是统计概率。</p><svg class='chart' viewBox='0 0 1120 352' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><defs><linearGradient id='gA' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#c8452d' stop-opacity='0.95'/><stop offset='100%' stop-color='#c8452d' stop-opacity='0.55'/></linearGradient><linearGradient id='gB' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#1f6feb' stop-opacity='0.95'/><stop offset='100%' stop-color='#1f6feb' stop-opacity='0.55'/></linearGradient></defs><text x='355.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>发生概率</text><text x='565.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>对估值的冲击</text><text x='775.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>时间紧迫性</text><text x='985.0' y='8.0' font-size='11' fill='#4a5462' text-anchor='middle' font-weight='600'>本报告可跟踪性</text><text x='238.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>监管：无人驾驶许可（加州/联邦）</text><rect x='252.0' y='23.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>72%</text><rect x='462.0' y='23.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>85%</text><rect x='672.0' y='23.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>88%</text><rect x='882.0' y='23.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='41.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>95%</text><text x='238.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>安全事件（一次死亡事故）</text><rect x='252.0' y='57.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>45%</text><rect x='462.0' y='57.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>95%</text><rect x='672.0' y='57.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>55%</text><rect x='882.0' y='57.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='75.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>40%</text><text x='238.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>资本开支与现金流</text><rect x='252.0' y='91.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>80%</text><rect x='462.0' y='91.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>70%</text><rect x='672.0' y='91.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>92%</text><rect x='882.0' y='91.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='109.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>90%</text><text x='238.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>竞争：Waymo 规模领先</text><rect x='252.0' y='125.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>90%</text><rect x='462.0' y='125.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>60%</text><rect x='672.0' y='125.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>85%</text><rect x='882.0' y='125.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='143.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>85%</text><text x='238.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>技术：纯视觉长尾场景</text><rect x='252.0' y='159.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>55%</text><rect x='462.0' y='159.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>90%</text><rect x='672.0' y='159.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>60%</text><rect x='882.0' y='159.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='177.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>25%</text><text x='238.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>单位经济：保险与远程运营</text><rect x='252.0' y='193.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>65%</text><rect x='462.0' y='193.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>65%</text><rect x='672.0' y='193.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>70%</text><rect x='882.0' y='193.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='211.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>30%</text><text x='238.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>治理：CEO 注意力与绩效奖</text><rect x='252.0' y='227.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>60%</text><rect x='462.0' y='227.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>55%</text><rect x='672.0' y='227.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>50%</text><rect x='882.0' y='227.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='245.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>65%</text><text x='238.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='end' font-weight='500'>EV 主业持续下滑</text><rect x='252.0' y='261.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='355.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>75%</text><rect x='462.0' y='261.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='565.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>50%</text><rect x='672.0' y='261.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='775.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>80%</text><rect x='882.0' y='261.0' width='206.0' height='28' rx='4' fill='#b6bec9'/><text x='985.0' y='279.0' font-size='11.5' fill='#12161c' text-anchor='middle' font-weight='600'>95%</text><text x='250.0' y='338.0' font-size='10.5' fill='#8b95a3' text-anchor='start' font-weight='400'>读法：颜色越绿表示本报告判断该维度越突出（概率越高 / 冲击越大 / 越紧迫 / 越容易跟踪）。「可跟踪性」低意味着投资者难以自行验证，需要依赖公司披露。</text></svg><p class='fsrc'>数据来源：本报告判断 · 证据等级 C（主观评分）</p></figure>
+
+<div class='scroll'><table><thead><tr><th class=''>风险</th><th class=''>为什么重要</th><th class=''>观测指标（投资者可以自己跟踪）</th></tr></thead><tbody><tr><td><b>加州无人驾驶许可</b></td><td>Tesla 至今不在加州无人驾驶测试或部署许可名单上<span class='badge b-a'>证据 A · 一手官方</span>。加州是美国最大的网约车市场之一，缺失意味着 Robotaxi 故事在母州无法规模化。</td><td>加州 DMV 官网 Disengagement/许可名单（每月更新）；一旦 Tesla 出现在 driverless 名单上，是强信号。</td></tr><tr><td><b>联邦安全监管</b></td><td>NHTSA 在 Cybercab 发布数小时后启动了审计问询（Audit Query，编号 AQ26002），Tesla 申请延期获准<span class='badge b-b'>证据 B · 权威二手</span>。与 Zoox 走「申请商用豁免」不同，Tesla 选择了自我认证符合 FMVSS。一旦 NHTSA 认定不符，后果不是罚款而是能否合法销售。</td><td>NHTSA 官网 recall / investigation / audit query 页面；公司 10-Q 的或有负债段落。</td></tr><tr><td><b>安全事件的估值冲击</b></td><td>一次涉及死亡的事故可能触发监管暂停、舆论转向与诉讼。Waymo 的历史表明此类事件会立即反映在牌照与扩张节奏上。</td><td>公司披露；地方消防/警方的公开记录；RobotaxiTracker 等第三方监测（非官方，证据弱）。</td></tr><tr><td><b>现金流与融资</b></td><td>2026 上半年自由现金流仅 3.5 亿美元，二季度 −10.9 亿美元；资本开支指引超 200 亿美元；9 月新签 300 亿美元信贷额度<span class='badge b-a'>证据 A · 一手官方</span>。</td><td>季度现金流量表；信贷额度提取情况（10-Q 的债务附注）。</td></tr><tr><td><b>竞争</b></td><td>Waymo 在车队规模上领先两个数量级<span class='badge b-b'>证据 B · 权威二手</span>，且在持续扩张。Tesla 不是在蓝海里竞争。</td><td>TxDMV / 各州 DMV 授权车辆数；Waymo 官方博客的运营城市数。</td></tr><tr><td><b>硬件强制立法（新泽西/纽约）</b></td><td>新泽西 S1677 要求无人驾驶车辆配备摄像头外另两种传感模态（实为雷达+激光雷达），并要求保留方向盘与踏板——<b>这将直接排除 Cybercab</b>；邻近纽约州正在考虑几乎相同的法案<span class='badge b-b'>证据 B · 权威二手</span>。它针对的是 Tesla 的成本优势本身，而非执行质量。</td><td>新泽西州议会与纽约州议会的法案页；两个州的立法进程。</td></tr><tr><td><b>付费里程下降（需求/利用率）</b></td><td>2026 年二季度付费里程约 70 万英里，环比 −36%，同期城市数在增加<span class='badge b-b'>证据 B · 权威二手</span>。若这是需求或利用率的真实下降，那么「每新增一城带来增量」的扩张模型不成立。</td><td>公司在股东更新信中公布的累计付费里程图（按季度差分）；Robotaxi 应用的可服务区域。</td></tr><tr><td><b>技术路线单一</b></td><td>纯视觉方案在长尾场景上的表现无法从外部验证；公司不披露接管率、脱离里程等关键指标。</td><td><b>无可跟踪的公开指标</b>——这是本报告认为最严重的披露缺口。</td></tr><tr><td><b>治理与注意力分配</b></td><td>CEO 绩效奖的 12 档市值目标从 2 万亿到 8.5 万亿美元<span class='badge b-a'>证据 A · 一手官方</span>，意味着管理层有强激励推动股价而非现金流。同时 CEO 在多家公司间分配注意力。</td><td>DEF 14A 的关联交易披露；10-K 的风险因素章节。</td></tr><tr><td><b>主业下滑</b></td><td>2025 年收入首次同比下降；2026 年二季度经营利润率 1.4%<span class='badge b-a'>证据 A · 一手官方</span>。Robotaxi 需要资金，而资金来源正是这块下滑的业务。</td><td>季度交付量（8-K）与每股收益；Cox Automotive 等第三方美国销量估算（证据等级 B）。</td></tr></tbody></table></div><p class='tbl-note'>本表刻意区分「可跟踪」与「不可跟踪」：可跟踪的风险投资者可以自行监控，不可跟踪的风险只能依赖公司自愿披露——后者应被赋予更高的不确定性折价。</p>
+
+
+<h2 id="s11"><span class="num">第十一章</span>证据分级、已剔除项与已知错误</h2>
+
+<p>本报告对每一条非显而易见的事实性论断标注证据等级。本章列出分级标准、
+<b>被本报告主动降级或剔除的具体论断</b>，以及研究中发现并更正的错误。</p>
+
+<h3>11.1 分级标准</h3>
+<div class='scroll'><table><thead><tr><th class=''>等级</th><th class=''>含义</th><th class=''>本报告中的例子</th></tr></thead><tbody><tr><td><b>A · 一手官方</b></td><td>SEC 文件、公司公告、政府机构名单与法规原文，本报告直接获取并核对原文</td><td>Tesla 10-Q/10-K/8-K 财务数据；加州 DMV 许可名单；德州 DMV 授权车辆数（经 CNBC 引用）</td></tr><tr><td><b>B · 权威二手</b></td><td>主流财经媒体的报道、商业数据提供商的数据、公司官网非财务页面</td><td>CNBC 对 TxDMV 记录的引用；stockanalysis 的市场数据与分析师汇总；Waymo 官网运营数据</td></tr><tr><td><b>C · 分析师/推算</b></td><td>本报告或第三方的模型推算、主观评分、未经验证的估算</td><td>单位经济学全部参数；SOTP 倍数；三情景；风险矩阵评分</td></tr><tr><td><b>D · 未证实</b></td><td>有出处但无法独立核验，或来源本身存在矛盾</td><td>Musk 关于 FSD 授权、Optimus 产能的口头表述；第三方 Robotaxi 监测数据</td></tr><tr><td><b>X · 已剔除</b></td><td>本报告在研究中接触过、但判定不可作为依据的信息</td><td>见 11.3 列表</td></tr></tbody></table></div><p class='tbl-note'>分级针对「该条论断在本报告中的使用方式」，不是对信息源的整体评价。同一来源在不同论断上可能对应不同等级。</p>
+
+<h3>11.2 研究中的两处主动更正</h3>
+
+<div class="callout risk">
+<div class="t">更正 1：德州自动驾驶法案是 SB 2807，不是 SB 2205（本报告已从"错误假设"修正为"一手核实"）</div>
+<p>本报告在早期研究中一度假设德州第 89 届例会的 <b>SB 2205</b> 是自动驾驶许可立法，
+并据此构建了"德州已建立 AV 许可框架"的表述。</p>
+<p><b>该假设是错的。</b>直接调取德州立法机构原文后确认：SB 2205 涉及的是德州伦理委员会罚款与吊销驾照程序，
+与自动驾驶无关。</p>
+<p>真正的法律是 <b>SB 2807（89R）</b>。本报告随后调取了两份一手来源交叉验证：
+德州议会法案页（标题"关于机动车，包括自动驾驶机动车；设立一项刑事罪名"，
+最后动作记录为 2025-06-20 生效、2025-09-01）与德州机动车管理局（TxDMV）自动驾驶项目页
+（明确表述"第 89 届议会于 2025 年通过 SB 2807，就自动化车辆在德州道路上的商业运营
+设立了强制性授权要求"，并要求自动驾驶系统符合联邦标准<b>"或取得豁免"</b>）。</p>
+<p><b>因此本报告对德州监管的描述已从"未核实"升级为证据等级 A，详见第四章 4.1 节。</b>
+附录 11.3 中原先"剔除 SB 2205 论述"的处理仍然有效，但现在是因为"引错了法案"，
+而不是因为"德州没有相关法律"。</p>
+<p>附带的方法论含义：<b>法案编号与主题的对应关系必须逐条核对原文，不能依据二手摘要推断。</b>
+本报告在发现该错误后，已通知所有相关研究线程停止基于该假设的检索。</p>
+</div>
+
+<div class="callout risk">
+<div class="t">更正 2：Waymo 自己公布的安全数据前后不一致</div>
+<p>Waymo 官方发布物中，关于「无人驾驶相比人类驾驶减少致伤事故」的比例，本报告在不同页面上
+见到 <b>三个互不相同的数字：82%、94%、95%</b>——安全报告页为 82%（致伤事故）与 95%（重伤及以上），
+首页脚注为 92%（重伤及以上），新加坡发布帖为 94%（致伤事故）。此外，该帖称累计
+「超过 3 亿公里」完全无人驾驶里程，而一周后的安全报告称「超过 2.7 亿英里」——
+按换算 2.7 亿英里约合 4.34 亿公里，<b>两个数字不可能同时成立</b>。</p>
+<p>本报告在发现这些不一致后，<b>决定不引用任何一个数字作为结论依据</b>，
+仅将 Waymo 的安全性主张表述为「由公司自行发布、未获独立审计」。</p>
+<p>这不意味着该数据是假的——不同指标口径（致伤 / 重伤 / 气囊弹出、对比基准、
+统计区间）足以解释大部分差异，而 3 亿公里与 2.7 亿英里更可能是发布稿的笔误。
+但它意味着<b>投资者不应把公司自报的安全指标当作独立事实使用</b>，
+也不应把「某公司称自己安全 10 倍」当作可比较的行业数据。</p>
+<p>相对可靠的第三方参照：美国公路安全保险协会（IIHS）的研究被媒体引用为
+「自动驾驶出租车每车英里的事故数比人类驾驶员低 68%」，但该机构主席同时警告，
+现有数据采集系统<b>「不足以支撑对大规模扩张的持续监测」</b><span class='badge b-b'>证据 B · 权威二手</span>。</p>
+</div>
+
+<h3>11.3 被本报告主动降级或剔除的具体论断</h3>
+
+<div class='scroll'><table><thead><tr><th class=''>论断</th><th class=''>处理</th><th class=''>理由</th></tr></thead><tbody><tr><td>「Tesla Robotaxi 已在 7 个都市圈无人驾驶运营」</td><td><b>降级表述</b></td><td>事实成立，但 7 个城市跑的是 Model Y；Cybercab（故事主角）仅奥斯汀一城、授权 169 辆<span class='badge b-b'>证据 B · 权威二手</span>。</td></tr><tr><td>「Cybercab 单车成本低于 3 万美元」</td><td><b>降级为 D</b><span class='badge b-d'>证据 D · 未证实</span></td><td>仅为公开场合的口头目标，无任何文件披露；本报告的单位经济模型使用 25,000–35,000 美元假设区间。<span class='badge b-c'>证据 C · 分析师/推算</span></td></tr><tr><td>「Tesla 将在 2026 年底前覆盖美国三分之一人口」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>无兑现机制、无时间表、无可核验口径。截至 2026-10-08，Musk 在 2026 年 1 月达沃斯所称的「无人出租车将在美国非常非常普及」并未发生<span class='badge b-b'>证据 B · 权威二手</span>。</td></tr><tr><td>「Robotaxi 每英里成本将降至 0.20 美元以下」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>本报告无法找到任何可追溯的口径定义（是否含折旧？是否含保险？是否含远程协助？），口径不明的成本目标不具比较意义。</td></tr><tr><td>「Tesla 已获得某州无人驾驶运营许可」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>本报告直接核对加州 DMV 三份名单，Tesla 仅出现在最低一档<span class='badge b-a'>证据 A · 一手官方</span>。德州方面，Tesla 依据 SB 2807 取得的商业运营授权<b>不等于</b>无人驾驶测试或部署许可。</td></tr><tr><td>「Tesla Robotaxi 付费里程持续增长」</td><td><b>修正为相反方向</b><span class='badge b-b'>证据 B · 权威二手</span></td><td>公司公布的是<b>累计</b>曲线（数学上不可能下降）。按季度差分后，2026Q1 约 110 万英里、Q2 约 70 万英里，<b>环比 −36%</b>。任何引用「付费里程增长」的表述都应先说明口径。</td></tr><tr><td>「Tesla Robotaxi 是无人的」</td><td><b>降级为部分成立</b><span class='badge b-b'>证据 B · 权威二手</span></td><td>参议员 Markey 报告（2026-04）指出，Tesla 是唯一承认远程操作员可<b>主动驾驶</b>车辆的公司，时速上限 10 英里（Waymo 为仅提示、上限 2 英里）。公开记录中已有多起事故系远程操作员造成。公司不披露人车比，因此「撤除安全员」的实际成本节约无法量化。</td></tr><tr><td>「NHTSA 已对 Tesla Robotaxi 立案调查」</td><td><b>降级</b><span class='badge b-b'>证据 B · 权威二手</span></td><td>可核实的是 NHTSA 启动了 <b>audit query（审计问询）</b>，这不是正式调查（investigation），两者法律含义与后果不同<span class='badge b-b'>证据 B · 权威二手</span>。</td></tr><tr><td>「UBS 给予 Tesla 买入/持有评级」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>本报告在两个来源看到相互矛盾的 UBS 评级（一家数据商显示持有、一家财经快讯标题显示买入），无法判定，故整条剔除。</td></tr><tr><td>「Robotaxi 车队规模已达 XXX 辆」</td><td><b>仅使用州政府授权数</b></td><td>本报告不使用任何第三方估算的运营车队规模；只使用 TxDMV 授权数（经 CNBC 引用）与加州 DMV 名单。<span class='badge b-b'>证据 B · 权威二手</span></td></tr><tr><td>「Tesla Robotaxi 每英里成本已低于 Waymo」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>Tesla 与 Waymo <b>均不披露</b>每英里成本或任何单位经济数据，任何此类对比都缺少两端的数据源。本报告在全部可达来源中，<b>未找到任何一家自动驾驶公司的可核验每英里载客成本</b>；唯一披露了每英里经济性的是做自动驾驶卡车的 Aurora（约 2 美元/英里运输服务、目标 0.85 美元/英里技术订阅），且其口径与载客业务不可比<span class='badge b-b'>证据 B · 权威二手</span>。</td></tr><tr><td>「FSD 事故率比人类驾驶员低 X 倍」</td><td><b>剔除</b><span class='badge b-x'>已剔除</span></td><td>Tesla 的 FSD 安全报告为选择性披露、无第三方审计，且分母口径（是否含未启用 FSD 的里程）不透明。</td></tr></tbody></table></div><p class='tbl-note'>「剔除」不等于「该说法为假」。它表示本报告认为该说法<b>不具备支撑投资判断所需的证据质量</b>。读者若在其他材料中看到这些说法，应自行回到原始出处核对口径。</p>
+
+<h3>11.4 本报告未能完成核验的事项</h3>
+<ul>
+<li><b>NHTSA Standing General Order 的事故数据</b>：本报告尝试从 NHTSA 官网获取自动驾驶事故报告数据，
+遭遇访问限制（HTTP 403），<b>未能取得</b>。因此本报告<b>不对 Tesla Robotaxi 的事故率做任何定量表述</b>。
+此项留待后续研究。</li>
+<li><b>加州 CPUC 是否对 Tesla 立案调查</b>：本报告未能访问加州公共事业委员会（CPUC）官网
+（域名无法解析），相关主张仅见于二手转述，<b>不予采用</b>。请注意不要把它与
+Tesla 持有 CPUC 的 TCP 客运牌照（这一条已核实）混为一谈。</li>
+<li><b>Tesla Robotaxi 的碰撞率</b>：NHTSA 通用命令数据库对本环境返回 HTTP 403，
+本报告无法取得原始上报记录。第四章图 4 的碰撞率来自第三方基于上报记录的分析，
+<b>分母为公司自报且未经审计的里程数</b>，本报告不对其精度作保证。</li>
+<li><b>百度 Apollo Go 的单位经济（单车成本、单次成本）与 2026 年车队规模</b>：
+百度投资者关系网站对本环境返回 HTTP 403，未能取得一手数据。
+第七章中出现的「累计订单超 2,300 万、10 个全无人商业化城市」<b>仅来自第三方指数页面，未经百度确认</b>，
+本报告将其标注为证据等级 D。此外本报告注意到百度正面临证券集体诉讼，
+指控其重新定义收入口径以突出「核心 AI 业务」，投资者在引用其披露时应额外谨慎。</li>
+<li><b>第三方 Robotaxi 排名指数</b>：第七章图 18 引用的 Road to Autonomy 指数，
+其评分方法、数据来源与权重<b>均未公开</b>，且部分内容由 AI 生成。
+本报告仅作为「市场如何看待各玩家」的参考列出，不作为任何结论的依据。</li>
+<li><b>Waymo 的 Detroit 上线时间</b>：第三方指数页面称其 2026-10-06 开始员工无人驾驶，
+但 Waymo 官网当日仍将底特律列在「正在测试（driving）」而非「正在服务（serving riders）」名单中。
+本报告不采用该时间点。</li>
+<li><b>关于 Waymo 的债务融资传闻</b>：有第三方来源称其 2026 年 10 月将私募债发行规模上调至 50 亿美元，
+本报告在主流财经媒体中未找到任何佐证，<b>不予采用</b>。</li>
+<li><b>Tesla Robotaxi 的定价</b>：公司从未公布。第三方数据商 Obi 的统计显示
+Tesla 旧金山平均每单 8.17 美元、每公里 1.99 美元（样本 94,348 单，2025-11 至 2026-01），
+但该数据仅经单一媒体转述，<b>本报告不作为建模输入</b>，单位经济模型仍使用行业价格带假设。</li>
+<li><b>Cybercab 的实际产量</b>：公司未披露。本报告只能使用"德州商用授权数"作为运营规模的代理变量，
+<b>该代理变量与真实运营车辆数之间可能存在差异</b>（授权 ≠ 在运）。</li>
+</ul>
+
+<h3>11.5 给读者的使用说明</h3>
+
+<div class="callout ok">
+<div class="t">这份报告应该怎么用</div>
+<p><b>可以被当作事实使用的部分</b>：所有标注 A 级的数据——Tesla 的财务数据、交付量、
+加州 DMV 许可状态、CEO 绩效奖条款。这些来自 SEC 文件与政府名单，可自行复核。</p>
+<p><b>必须当作假设使用的部分</b>：第五章的全部单位经济参数、第九章的全部估值倍数与三情景、
+第十章的风险评分。这些是本报告的主观判断，<b>换一组假设可以得到相反的结论</b>。
+它们的作用是提供一个可辩论的框架，而不是提供一个答案。</p>
+<p><b>本报告最确定的一个结论</b>：市场当前 1.49 万亿美元的市值中，约 1.2 万亿对应的是
+尚无收入、无披露口径、无法用财务数据验证的资产。这个数字本身是算术，不是观点。
+至于这个定价是"泡沫"还是"对未来的合理贴现"，本报告不给出结论——
+但投资者应当意识到，<b>自己付的价钱里有约 80% 不是为已经发生的事付的</b>。</p>
+</div>
+
+
+<div class="disclaimer">
+<b>免责声明与阅读约定。</b>本报告为独立研究文档，不构成任何证券的买卖建议，也不构成投资顾问服务。
+报告中的所有估值、情景与参数均为本报告作者的假设与推算，已在正文中标为证据等级 C；
+所有来自公司文件与政府名单的数据已标为等级 A 并可在原始出处复核。
+本报告作者不持有文中提及证券的头寸，与文中提及的任何公司无业务关系。
+投资涉及本金损失风险，历史数据与情景推演均不代表未来结果。
+</div>
+
+<div class="footer">
+Tesla Robotaxi 投资研究报告 · 2026-10-08 · 全部图表为内嵌 SVG，由本报告数据直接生成，无外部依赖。<br>
+一手来源：SEC EDGAR（Tesla CIK 0001318605）10-K / 10-Q / 8-K / DEF 14A；加州 DMV 自动驾驶许可名单；
+德州机动车管理局商用授权公开记录（经 CNBC 2026-10-03 报道引用）。<br>
+二手来源：CNBC、The Verge、TechCrunch、stockanalysis.com、Waymo 官方网站。<br>
+本报告中凡未能一手核验的事项，已在第十一章 11.4 节逐条列出。
+</div>
+</div>
+</body>
+</html>

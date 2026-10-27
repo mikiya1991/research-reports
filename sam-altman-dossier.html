@@ -1,0 +1,698 @@
+<title>不持股的控制者</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Noto+Serif+SC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 布局：单栏取证文档 —— 顶部案件抬头 + 证据分级图例 + 编号事实行 + 闭环关系图 */
+:root{
+  color-scheme: light;
+  --paper:#eceff1;
+  --surface:#f9fbfb;
+  --ink:#121a20;
+  --ink-2:#5a6874;
+  --ink-3:#8b98a3;
+  --rule:#d2dade;
+  --rule-soft:#e2e8ea;
+  --accent:#1b4d75;
+  --caution:#8a5a12;
+  --display:"Spectral","Noto Serif SC","Songti SC",Georgia,serif;
+  --body:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --step-0:0.9375rem;
+  --step-1:1.0625rem;
+  --step-2:1.375rem;
+  --step-3:1.875rem;
+  --step-4:clamp(2.125rem,5vw,3.125rem);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#0c1115;
+    --surface:#141c22;
+    --ink:#e3eaee;
+    --ink-2:#94a3af;
+    --ink-3:#6d7c88;
+    --rule:#28343c;
+    --rule-soft:#1e272e;
+    --accent:#7cb2da;
+    --caution:#d5a352;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#0c1115;
+  --surface:#141c22;
+  --ink:#e3eaee;
+  --ink-2:#94a3af;
+  --ink-3:#6d7c88;
+  --rule:#28343c;
+  --rule-soft:#1e272e;
+  --accent:#7cb2da;
+  --caution:#d5a352;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:var(--step-1);
+  line-height:1.72;
+  padding-inline:clamp(16px,4vw,40px);
+  padding-block:0 6rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px;margin:0 auto;}
+.prose{max-width:68ch;}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);}
+a:hover{border-bottom-color:var(--accent);}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px;}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.24;margin:0;}
+p{margin:0;}
+code,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+
+/* 抬头 */
+.masthead{padding-block:2.5rem 1.5rem;border-bottom:2px solid var(--ink);}
+.fileline{
+  display:flex;flex-wrap:wrap;gap:0.5rem 1.25rem;
+  font-family:var(--mono);font-size:0.75rem;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:1.75rem;
+}
+.fileline b{color:var(--accent);font-weight:500;}
+h1{font-size:var(--step-4);font-weight:600;letter-spacing:-0.015em;}
+.subtitle{
+  font-family:var(--display);font-size:var(--step-2);font-weight:400;
+  color:var(--ink-2);margin-top:0.5rem;
+}
+.metastrip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);margin-top:2rem;
+}
+.metastrip div{background:var(--paper);padding:0.85rem 1rem;}
+.metastrip dt{font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);}
+.metastrip dd{margin:0.2rem 0 0;font-size:var(--step-0);font-weight:500;}
+
+/* 分区 */
+section{padding-block:3rem 0;}
+.eyebrow{
+  font-family:var(--mono);font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.9rem;
+}
+h2{font-size:var(--step-3);font-weight:600;margin-bottom:1.25rem;}
+h3{font-size:var(--step-1);font-weight:700;margin-bottom:0.35rem;}
+.lede{font-size:1.1875rem;line-height:1.68;}
+
+/* 证据分级图例 */
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);}
+.legend div{background:var(--surface);padding:0.85rem 1rem;}
+.legend dt{margin-bottom:0.3rem;}
+.legend dd{margin:0;font-size:0.8125rem;color:var(--ink-2);line-height:1.55;}
+
+/* 证据等级标签：同一色相的四级台阶，序数而非分类 */
+.chip{
+  display:inline-block;font-family:var(--mono);font-size:0.6875rem;font-weight:500;
+  letter-spacing:0.06em;padding:0.1rem 0.42rem;border-radius:2px;
+  border:1px solid var(--accent);color:var(--accent);white-space:nowrap;
+}
+.chip[data-l="1"]{background:var(--accent);color:var(--paper);}
+.chip[data-l="2"]{background:color-mix(in srgb,var(--accent) 16%,transparent);}
+.chip[data-l="3"]{border-style:dashed;color:var(--ink-2);border-color:var(--ink-3);}
+.chip[data-l="4"]{border-color:var(--caution);color:var(--caution);background:color-mix(in srgb,var(--caution) 10%,transparent);}
+.chip[data-l="5"]{border-color:var(--rule);color:var(--ink-3);text-decoration:line-through;}
+
+/* 声明框 */
+.note{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:3px solid var(--accent);padding:1.35rem 1.5rem;
+}
+.note.warn{border-left-color:var(--caution);}
+.note p+p{margin-top:0.75rem;}
+.stack{display:flex;flex-direction:column;gap:1rem;}
+
+/* 时间线 */
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule);}
+.tl li{
+  display:grid;grid-template-columns:7.5rem 1fr;gap:0 1.5rem;
+  padding-block:1rem;border-bottom:1px solid var(--rule-soft);
+}
+.tl-date{font-family:var(--mono);font-size:0.8125rem;color:var(--ink-2);font-variant-numeric:tabular-nums;padding-top:0.15rem;}
+.tl-body p{font-size:var(--step-0);line-height:1.68;}
+.tl-meta{margin-top:0.45rem;display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem 0.7rem;font-size:0.75rem;color:var(--ink-2);}
+.tl-meta a{font-family:var(--mono);font-size:0.6875rem;}
+.tl li.hi .tl-body p{font-weight:500;}
+@media (max-width:560px){
+  .tl li{grid-template-columns:1fr;gap:0.35rem;}
+  .tl-date{padding-top:0;}
+}
+
+/* 模式卡 */
+.patterns{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;}
+.pattern{background:var(--surface);border:1px solid var(--rule);padding:1.35rem 1.5rem;}
+.pattern h3{font-family:var(--body);font-size:1rem;line-height:1.5;}
+.pattern ol{margin:0.9rem 0 0;padding-left:1.15rem;font-size:var(--step-0);color:var(--ink-2);}
+.pattern li+li{margin-top:0.45rem;}
+.pattern .verdict{
+  margin-top:1rem;padding-top:0.85rem;border-top:1px dashed var(--rule);
+  font-size:0.8125rem;color:var(--ink-2);
+}
+.pattern .verdict b{color:var(--ink);font-weight:600;}
+
+/* 双栏 */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
+.deflist{list-style:none;margin:0;padding:0;font-size:var(--step-0);}
+.deflist li{padding-block:0.7rem;border-bottom:1px solid var(--rule-soft);}
+.deflist li:first-child{border-top:1px solid var(--rule);}
+.deflist b{font-weight:600;}
+.deflist span{color:var(--ink-2);}
+
+/* 表格 */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:0.875rem;}
+th,td{text-align:left;padding:0.7rem 0.9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.6;}
+th{
+  font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;border-bottom:1px solid var(--rule);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0;}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+/* 图 */
+figure{margin:0;}
+figure svg{display:block;width:100%;max-width:100%;height:auto;color:var(--ink);}
+figcaption{margin-top:1rem;font-size:0.8125rem;color:var(--ink-2);max-width:68ch;line-height:1.65;}
+.figbox{background:var(--surface);border:1px solid var(--rule);padding:1.5rem;}
+
+/* 解释卡 */
+.expl{border-top:2px solid var(--rule);padding-top:1.1rem;}
+.expl.a{border-top-color:var(--accent);}
+.expl .tag{
+  font-family:var(--mono);font-size:0.6875rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:0.4rem;
+}
+.falsify{margin-top:0.7rem;font-size:0.8125rem;color:var(--ink-2);border-left:2px solid var(--rule);padding-left:0.85rem;}
+
+footer{margin-top:4rem;border-top:2px solid var(--ink);padding-top:1.5rem;font-size:0.8125rem;color:var(--ink-2);}
+footer p+p{margin-top:0.6rem;}
+footer .mono{font-size:0.75rem;}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="fileline">
+    <span>事实驱动画像</span>
+    <span>证据分级 <b>L1–L5</b></span>
+    <span>检索截止 <b>2026-10-08</b></span>
+    <span>未决程序 <b>2</b></span>
+    <span>二次补检 <b>已完成</b></span>
+  </div>
+  <h1>不持股的控制者</h1>
+  <p class="subtitle">Sam Altman 的行为序列、利益网络与制度约束</p>
+  <dl class="metastrip">
+    <div><dt>对象</dt><dd>OpenAI 联合创办人兼 CEO</dd></div>
+    <div><dt>方法</dt><dd>行为优先于言辞 · 时间线优先于结论</dd></div>
+    <div><dt>结论强度</dt><dd>中高（承重事实为 L2）</dd></div>
+    <div><dt>未决</dt><dd>Musk 上诉 · 亲属诉讼</dd></div>
+  </dl>
+</header>
+
+<section>
+  <div class="eyebrow">证据可得性</div>
+  <div class="stack">
+    <div class="note">
+      <p><b>本次拿到什么。</b>通过检索回溯到多份文件的逐字引用：OpenAI 2023-11-17 与 2024-03-08 的官方声明、联邦法院 docket 与裁定摘要、SEC 备案要点、公司财务披露摘要，以及多家媒体对原始文件的转述。</p>
+      <p><b>本次拿不到什么。</b><span class="mono">openai.com</span> 与 <span class="mono">web.archive.org</span> 均被网络策略拦截；<span class="mono">SEC.gov</span>、PACER、FEC.gov、Delaware 与 California 总检察长官网本轮均未能直连。所有司法与财务细节均经由媒体逐字引用获得，而非本人调取原文。</p>
+      <p>因此全文引入降级标记 <span class="chip" data-l="1">L1 转引</span>：文件性质为一手，但本轮未直连原始域名，内容经两家以上媒体逐字引用交叉验证。凡只有单一来源的关键事实，一律标 L4 并排除出结论依据。</p>
+    </div>
+    <div class="note warn">
+      <p><b>二次补检结果（同日）。</b>网络恢复后补到七项此前缺失的材料，其中两项改变结论强度：</p>
+      <p><b>已补上。</b>① OpenAI 自身声明页存在（<span class="mono">statement-on-openai-nonprofit-and-pbc</span>，由董事会主席 Bret Taylor 署名），但域名仍返回 403，内容经 NBC、路透等逐字引用获得；② 2024 年度 IRS 990 表的使命表述变更，属 L1 级披露；③ Sutskever 的视频证词节选已公开于法院档案（CourtListener，62 页节选，全文 365 页），这是 2023 年解职事件唯一可直接调取的一手文件；④ 2026 年 4 月《纽约客》调查所依据的内部文件清单；⑤ 重组的完整股权分配；⑥ 微软条款细节；⑦ Musk 案的真实案号与立案年份。</p>
+      <p><b>仍未找到，且方向已明确。</b>「OpenAI 向 SEC 支付罚款以了结内控指控」经四轮不同措辞检索，<b>无任何一手来源</b>——现已倾向于认为这是本报告规划阶段的记忆错误，而非检索遗漏。同样，「CFO 于 2025 年 12 月公开 2023 年董事会文件」一说亦无来源；检索指向的是相反方向：她与 Altman 在 IPO 时机与六千亿美元算力承诺上存在分歧，据报道自 2025 年 8 月起不再直接向 Altman 汇报。</p>
+    </div>
+    <dl class="legend">
+      <div><dt><span class="chip" data-l="1">L1</span></dt><dd>可直接调取的原文：法律文本、法院裁定、备案文件、逐字引用的官方声明。</dd></div>
+      <div><dt><span class="chip" data-l="2">L2</span></dt><dd>需一步推理但可交叉验证：日程、人事变动、资金流水、多源一致的公开言论。</dd></div>
+      <div><dt><span class="chip" data-l="3">L3</span></dt><dd>从重复行为模式推断动机、功能或网络角色。</dd></div>
+      <div><dt><span class="chip" data-l="4">L4</span></dt><dd>单一来源、匿名消息、未经验证的文件。可入库，但不得作为任何结论的唯一依据。</dd></div>
+      <div><dt><span class="chip" data-l="5">L5</span></dt><dd>纯观点与党派标签，不进事实库。</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">一句话画像</div>
+  <p class="lede prose">他把「控制权」与「所有权」拆开经营：在 OpenAI 不持有股权、只领约 7.6 万美元年薪，却在算力、能源、身份、数据四个交界处持有大量关联权益。每一次被指出的利益冲突，他都以回避与披露消解，而不是以切割消解；每一次被否定的领导权，他都以改写结构消解，而不是以对抗规则消解——换董事会、改制 PBC。控制来自关系、信息位置与可选项，不来自股权或合同。与之配套的第二根轴是叙述的弹性：九年六次修改的使命表述、被内部人反复记录的「并非一贯坦诚」，都指向同一件事——他的位置依赖他人持续自愿的托付，而叙述弹性正是维持这种托付的手段。</p>
+</section>
+
+<section>
+  <div class="eyebrow">关系闭环</div>
+  <figure class="figbox">
+    <svg viewBox="0 0 760 400" role="img" aria-label="微软、OpenAI、Helion 三家机构构成一个闭环：微软同时是 OpenAI 的最大股东（27%）与 Helion 的首个购电客户；OpenAI 又向 Helion 洽购电力。Sam Altman 同时是 OpenAI 的 CEO 与 Helion 的董事长，占据了三个节点中的两个，并回避了 OpenAI 与 Helion 之间的谈判。">
+      <defs>
+        <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <polygon points="0,0 10,5 0,10" fill="context-stroke"></polygon>
+        </marker>
+      </defs>
+
+      <!-- 微软 -->
+      <rect x="280" y="20" width="200" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="1.25" opacity="0.55"></rect>
+      <text x="380" y="45" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="500" fill="currentColor">Microsoft</text>
+      <text x="380" y="65" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.62">最大股东 · 首个购电客户</text>
+
+      <!-- OpenAI -->
+      <rect x="55" y="278" width="210" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="2"></rect>
+      <text x="160" y="303" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="500" fill="currentColor">OpenAI</text>
+      <text x="160" y="323" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.62">Group PBC</text>
+
+      <!-- Helion -->
+      <rect x="495" y="278" width="210" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="2"></rect>
+      <text x="600" y="303" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="500" fill="currentColor">Helion</text>
+      <text x="600" y="323" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.62">聚变能源</text>
+
+      <!-- 边：OpenAI - 微软 -->
+      <line x1="172" y1="272" x2="298" y2="86" stroke="currentColor" stroke-width="1.25" opacity="0.5" marker-end="url(#arw)"></line>
+      <text x="146" y="176" text-anchor="end" font-size="12" fill="currentColor" opacity="0.75">股权 27%</text>
+      <text x="146" y="194" text-anchor="end" font-size="12" fill="currentColor" opacity="0.75">Azure 独家算力</text>
+
+      <!-- 边：微软 - Helion -->
+      <line x1="462" y1="86" x2="588" y2="272" stroke="currentColor" stroke-width="1.25" opacity="0.5" marker-end="url(#arw)"></line>
+      <text x="616" y="176" font-size="12" fill="currentColor" opacity="0.75">首个购电客户</text>
+      <text x="616" y="194" font-size="12" fill="currentColor" opacity="0.75">2023 年签约</text>
+
+      <!-- 边：OpenAI - Helion（被回避的那条） -->
+      <line x1="267" y1="308" x2="493" y2="308" stroke="currentColor" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arw)"></line>
+      <text x="380" y="294" text-anchor="middle" font-size="12" fill="currentColor">洽购电力 —— 他回避了这次谈判</text>
+
+      <!-- 占据标注 -->
+      <text x="160" y="362" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500" fill="currentColor">Altman：CEO · 无股权 · 年薪约 7.6 万</text>
+      <text x="600" y="362" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500" fill="currentColor">Altman：董事长 · 个人投 3.75 亿</text>
+    </svg>
+    <figcaption>三个节点、三条边，他是唯一同时占据两个节点的角色——墨蓝描边的两个方框都由他直接领导，第三个不是。这个闭环里唯一由他同时连接两端的边，正是他行使回避的那一条。回避切断了法律形式，保留了持仓与对接通道。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="eyebrow">事实时间线</div>
+  <ol class="tl">
+    <li>
+      <div class="tl-date">2014</div>
+      <div class="tl-body">
+        <p>领投 Reddit 并短暂出任其 CEO（八天），任董事至 2022 年。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><span>Reddit S-1 及报道</span></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2014–15</div>
+      <div class="tl-body">
+        <p>把 Helion 招入 Y Combinator，随后出任其<b>董事长</b>；2021 年个人投资 3.75 亿美元，为其最大单笔。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.sec.gov/Archives/edgar/data/1849056/000110465924007900/tm2324337-10_s4a.htm">SEC S-4</a><a href="https://www.chinaventure.com.cn/news/78-20240604-381367.html">报道</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2015-12</div>
+      <div class="tl-body">
+        <p>OpenAI 以 501(c)(3) 非营利注册，他与 Musk 任共同主席。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><span>公司文件</span></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2019-03</div>
+      <div class="tl-body">
+        <p>设立 OpenAI LP（capped-profit），出任 CEO。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><span>公司文件</span></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2023-03-29</div>
+      <div class="tl-body">
+        <p><b>Startup Fund 治理变更。</b>他卸任 GP，控制权移交合伙人 Ian Hathaway。该基金以「OpenAI」品牌向外部 LP 募资 1.753 亿美元，此前由他本人做投资决策；公司声明他「无财务利益」。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.nbd.com.cn/rss/hexun/articles/3310088.html">SEC 备案及报道</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2023-05-16</div>
+      <div class="tl-body">
+        <p>参议院司法委员会作证，主张对超过能力阈值的模型设立<b>许可与测试制度</b>，并设一个可吊销许可的联邦机构：「政府的监管介入对缓解越来越强的模型的风险至关重要」。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><a href="https://www.rte.ie/news/business/2023/0516/1383933-openai-before-us-congress-committee/">RTE</a><a href="https://www.cbc.ca/news/world/artificial-intelligence-regulated-1.6845389">CBC</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2023-11-17</div>
+      <div class="tl-body">
+        <p><b>董事会在其缺席的会议中解除其 CEO 职务</b>，理由：「在与其沟通中<b>并非一贯坦诚</b>，妨碍董事会履职」；Brockman 被解除主席职务。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><a href="https://openai.com/index/openai-announces-leadership-transition/">OpenAI 声明</a><a href="https://apnews.com/article/altman-ai-chatgpt-murati-893e4a460c10eb3a8f1afefa6156eca3">AP</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2023-11-18–20</div>
+      <div class="tl-body">
+        <p><b>770 名员工中 700 余人联署</b>，要求董事会辞职并让他复职，否则集体加入微软；Nadella 宣布已聘用他与 Brockman，并承诺薪酬对标全员。联署者包括投下解职票的首席科学家 Ilya Sutskever。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.cbc.ca/news/business/microsoft-sam-altman-openai-chatgpt-1.7033588">CBC</a><a href="https://www.bbc.co.uk/news/technology-67484455">BBC</a><a href="https://www.nasdaq.com/articles/747-of-770-openai-employees-including-the-one-who-fired-him-ask-the-board-to-resign-and">Nasdaq</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2023-11-21</div>
+      <div class="tl-body">
+        <p>复职 CEO。原董事会多数被替换，微软取得无投票权观察员席位。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><span>公司声明及报道</span></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2024-03-08</div>
+      <div class="tl-body">
+        <p><b>WilmerHale 独立审查结论</b>（审阅逾三万份文件）：解职源于「前董事会与 Altman 之间的信任破裂」，<b>不是</b>产品安全、开发速度、财务状况，也不是对投资人、客户或合作方的陈述问题；前董事会「在其广泛裁量权内行事」，但<b>其行为不构成必须解职</b>。他重回董事会，公司同步新增利益冲突政策、吹哨人热线与新委员会。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><a href="https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/">OpenAI 声明</a><a href="https://www.bloomberg.com/news/articles/2024-03-08/openai-s-altman-returns-to-board-after-probe-clears-him">Bloomberg</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2024-05-16</div>
+      <div class="tl-body">
+        <p><b>OpenAI 与 Reddit 达成数据授权交易。</b>他通过五家实体持有 Reddit 8.7%（第三大股东），S-1 中声明「除其金钱利益范围外不主张受益所有权」；他<b>回避</b>，交易由独立董事会批准。Reddit 盘后涨约 11%。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://techcrunch.com/2024/05/16/openai-inks-deal-to-train-ai-on-reddit-data/">TechCrunch</a><a href="https://apnews.com/article/reddit-openai-chatgpt-bd2291fcc226bc737a44dbef4a31563f">AP</a><a href="https://www.businessinsider.com/sam-altman-investory-reddit-stock-worth-value">Business Insider</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2024-08</div>
+      <div class="tl-body">
+        <p>OpenAI 致函反对加州 SB 1047 法案，主张联邦优先——与 2023 年公开呼吁加强监管的立场形成对照。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><span>公开信及报道</span></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2024-08</div>
+      <div class="tl-body">
+        <p>Musk 在加州北区联邦法院起诉，案号 <span class="mono">4:24-cv-04722-YGR</span>，主审法官 Yvonne Gonzalez Rogers。此前同月已撤回州法院诉讼。<span style="color:var(--ink-3);">（此条修正首版中的日期空缺。）</span></p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><span>法院 docket</span></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2024-12</div>
+      <div class="tl-body">
+        <p><b>政治献金双向对冲。</b>个人向 Trump 就职基金捐 100 万美元；其共同创办的 Tools for Humanity 向 MAGA Inc. 超级 PAC 捐 500 万美元；2024 周期向共和党参议员 Cruz、Blackburn 捐法定上限。此前长期捐 Biden、Obama 与民主党委员会。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.bloomberg.com/news/articles/2024-12-13/openai-ceo-perplexity-give-1-million-to-trump-s-inaugural-fund">Bloomberg</a><a href="https://www.ndtv.com/world-news/sam-altman-slams-democrats-over-inquiry-into-donald-trump-inaugural-fund-donation-7501700">NDTV</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2025-01</div>
+      <div class="tl-body">
+        <p>参议员 Warren 与 Bennet 致函质询献金；他公开反击：「他们从没为捐给民主党问过我。」</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.axios.com/2025/01/17/trump-donation-altman-openai-democrats-letter">Axios</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2025-01-21</div>
+      <div class="tl-body">
+        <p>Stargate 发布（SoftBank、OpenAI、Oracle），宣称最高 5000 亿美元、10 吉瓦。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><span>白宫活动及报道</span></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2025-04</div>
+      <div class="tl-body">
+        <p>Worldcoin 在美国上线；他的身份为 Tools for Humanity <b>共同创办人兼董事长</b>。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://iapp.org/news/a/gps-2025-sam-altman-alex-blania-discuss-tools-for-humanity-s-biometric-technology">IAPP</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2025-10-01</div>
+      <div class="tl-body">
+        <p><b>Sutskever 视频证词录制</b>（旧金山）。节选 62 页、全文 365 页以诉讼证据形式提交，2025-10-29 归入公开档案，标注「高度机密」。这是 2023 年解职事件目前<b>唯一可直接调取的一手文件</b>。他同时作证持有约 70 亿美元的 OpenAI 权益。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1</span><a href="https://storage.courtlistener.com/recap/gov.uscourts.cand.433688/gov.uscourts.cand.433688.342.4_1.pdf">CourtListener 证据 3402-14</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2025-10-28</div>
+      <div class="tl-body">
+        <p><b>重组完成。</b>OpenAI Foundation 持 26% 加认股权证并保留控制权，微软持 27%（约 1350 亿美元），商业实体改为 OpenAI Group PBC。<b>他不获股权，薪酬不变，约 7.6 万美元／年。</b>宣布 AGI 的独立小组条款保留，与微软绑定至 2032 年。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://openai.com/zh-Hant/index/statement-on-openai-nonprofit-and-pbc/">OpenAI 声明（Bret Taylor 署名）</a><a href="https://www.nbcnews.com/tech/tech-news/openai-restructuring-company-struct-chatgpt-invest-own-rcna240138">NBC News</a><a href="https://ca.investing.com/news/stock-market-news/microsoft-openai-reach-new-deal-to-allow-openai-to-restructure-4271575">Reuters</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2025-11</div>
+      <div class="tl-body">
+        <p><b>2024 年度 IRS 990 表披露：使命表述被改写。</b>上两个年度的表述是「构建<b>安全地</b>造福人类、<b>不受财务回报约束</b>的通用人工智能」；2024 年度改为「确保通用人工智能造福全人类」——「safely」与「unconstrained by a need to generate financial return」同时消失。这是九次申报中的第六次修改，也是它最后一次以非营利身份申报。公司回应称「措辞与路径改变是为了服务同一目标」。同期有报道称其「使命对齐」团队被解散。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1</span><a href="https://fortune.com/2026/02/23/openai-mission-statement-changed-restructuring-forprofit-business/">Fortune</a><a href="https://theconversation.com/openai-has-deleted-the-word-safely-from-its-mission-and-its-new-structure-is-a-test-for-whether-ai-serves-society-or-shareholders-274467">The Conversation</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2026-02/03</div>
+      <div class="tl-body">
+        <p>融资约 1220 亿美元，投后估值 8520 亿美元。同期网传一份「股权结构表」显示他持股 0%——来源不明，标 L4，不作为依据。</p>
+        <div class="tl-meta"><span class="chip" data-l="4">L4</span><a href="https://www.moomooapp.com/news/post/67905296/a-purported-openai-equity-structure-table-circulated-online-indicates-that">报道</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2026-03</div>
+      <div class="tl-body">
+        <p>Oracle 与 OpenAI 放弃 Abilene 数据中心扩建，Stargate 从合资结构转向一系列双边合同。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.manilatimes.net/2026/03/08/business/top-business/oracle-and-openai-drop-texas-data-center-expansion-plan/2295241">Bloomberg 转载</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2026-03-20</div>
+      <div class="tl-body">
+        <p>其妹提起的诉讼（案号 <span class="mono">4:25-cv-00017</span>，E.D. Mo.）中，性侵与殴击主张<b>因超过诉讼时效被驳回</b>——程序理由，非实体认定，法院准许修订；他提出的诽谤反诉获准继续。案件仍在进行，本文不对实体作任何判断。</p>
+        <div class="tl-meta"><span class="chip" data-l="1">L1 转引</span><a href="https://www.courtlistener.com/docket/69520118/48/altman-v-altman/">法院裁定 #48</a></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2026-04</div>
+      <div class="tl-body">
+        <p><b>《纽约客》刊出 Ronan Farrow 与 Andrew Marantz 的调查。</b>基于一年内 100 余次访谈、约 200 页此前未公开的内部文件，另有 12 次以上对 Altman 本人的访谈。报道称：Sutskever 曾整理约 70 页材料、把「撒谎」列在首位，并于 2019 年说过「我不认为 Sam 是该把手指放在按钮上的人」；Dario Amodei 在 200 余页笔记中写下「OpenAI 的问题就是 Sam 本人」；一名前董事称他兼有「几乎不会同时出现在同一个人身上的两种特质：强烈的取悦他人的欲望，与对欺骗后果近乎反社会式的漠不关心」；董事会成员另整理过一份 70 页文件，指其对内部安全流程的陈述不实。<b>报道同时写明：未找到「冒烟的枪」。</b>Altman 对部分说法予以否认或称已不记得，并将叙述的变化归因于环境变化，承认自己过去回避冲突。</p>
+        <div class="tl-meta"><span class="chip" data-l="4">L4</span><span>单一媒体调查 · 当事人否认 · 原始文件未公开</span><a href="https://arstechnica.com/tech-policy/2026/04/the-problem-is-sam-altman-openai-insiders-dont-trust-ceo/">Ars Technica</a><a href="https://www.semafor.com/article/04/06/2026/new-yorker-investigation-raises-questions-over-sam-altmans-trustworthiness">Semafor</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2026-05-11</div>
+      <div class="tl-body">
+        <p>Sutskever 出庭作证（与 Nadella 同日，Musk 举证结束），当庭陈述其参与解职与复职的经过。据庭审报道，他此前用「阅后即焚」邮件向独立董事发送过一份 52 页简报，内容为「一贯的撒谎、削弱高管、让高管互斗」，材料主要来自 Mira Murati。</p>
+        <div class="tl-meta"><span class="chip" data-l="4">L4</span><span>庭审报道 · 简报原文未公开</span></div>
+      </div>
+    </li>
+    <li class="hi">
+      <div class="tl-date">2026-05-18</div>
+      <div class="tl-body">
+        <p><b>Musk 案陪审团裁定被告方胜诉</b>，决定性理由是诉讼时效——陪审团未进入实体审理；法官认可「无责任」结论。Musk 宣布上诉。本案在<b>程序</b>上被切断，实体争议未决。</p>
+        <div class="tl-meta"><span class="chip" data-l="2">L2</span><a href="https://www.bbc.co.uk/news/articles/cewpyv79pw1o">BBC</a><a href="https://english.elpais.com/technology/2026-05-20/why-the-jury-ruled-against-elon-musk-the-key-takeaways-from-the-landmark-ai-trial.html">El País</a></div>
+      </div>
+    </li>
+    <li>
+      <div class="tl-date">2026-06 起</div>
+      <div class="tl-body">
+        <p>有报道称 OpenAI 已保密提交 S-1 草案（公司未确认）；9 月他确认 2026 年不上市。此后若完成 PBC 转换或上市，其股权状态可能改变——这是画像承重事实的可撤销之处。</p>
+        <div class="tl-meta"><span class="chip" data-l="4">L4</span><a href="https://www.nasdaq.com/articles/sam-altman-pushing-1-trillion-ipo-valuation-openai-even-softbank-faces-40-billion-loan">Nasdaq</a><a href="https://www.thestreet.com/investing/openai-ipo-delay-2027-altman-1-trillion-valuation">TheStreet</a></div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <div class="eyebrow">行为模式</div>
+  <p class="prose" style="margin-bottom:1.5rem;color:var(--ink-2);font-size:var(--step-0);">每条模式挂三个以上具体事件；挂不住的降级为「观察」，不列为模式。</p>
+  <div class="patterns">
+    <div class="pattern">
+      <h3>一 · 在信息节点与关联经济利益之间反复就位，冲突用回避处理</h3>
+      <ol>
+        <li>Reddit：2014 投资 → 2022 前任董事 → 2024 年其公司与 Reddit 签约，他回避、由独立董事会批准、主动披露持股。</li>
+        <li>Helion：招入 YC → 任董事长 → 个人投 3.75 亿美元 → OpenAI 洽购其电力时回避。</li>
+        <li>Oklo：任 SPAC 的 CEO 与标的公司董事，在合并中回避，并在 S-4 中披露换算后约 716 万股权益。</li>
+        <li>Startup Fund：以 OpenAI 品牌对外募资、由他做决策，2023 年 3 月移交控制权。</li>
+      </ol>
+      <p class="verdict"><b>区分问题：</b>宣称目标是隔离冲突，实际结果是保持了四个交界处的持仓与对接通道——切断的只是法律形式。</p>
+    </div>
+    <div class="pattern">
+      <h3>二 · 约束出现时改写制度安排，而不是对抗规则</h3>
+      <ol>
+        <li>Startup Fund 被质疑 → 交控制权，保留品牌关联（2023-03）。</li>
+        <li>被董事会解职 → 不承认该决定，但也不否认董事会权限；经员工联署与投资人接收承诺回到岗位（2023-11）。</li>
+        <li>复职后立即产出制度化文件：治理准则、利益冲突政策、吹哨人热线（2024-03）。</li>
+        <li>非营利改制 → 不是取消非营利，而是让基金会持股 26% 加认股权证并保留控制（2025-10）。</li>
+      </ol>
+      <p class="verdict"><b>唯一的例外：</b>对被指出的<b>具体利益冲突</b>他止损；对被否定的<b>领导权</b>他升级。</p>
+    </div>
+    <div class="pattern">
+      <h3>三 · 政治关系双向对冲，不绑定意识形态</h3>
+      <ol>
+        <li>2019–2024 向 Biden 竞选、Obama 与民主党参院委员会捐款，六位数级别。</li>
+        <li>2024 周期向共和党 Cruz、Blackburn 捐法定上限；12 月向 Trump 就职基金捐 100 万美元，其共同创办的公司另捐 500 万美元给 MAGA Inc.。</li>
+        <li>2025 年 1 月面对民主党参议员质询，公开反击。</li>
+        <li>2026 年 6 月又称希望金钱退出政治、不再资助竞选。</li>
+      </ol>
+      <p class="verdict"><b>与监管立场同一逻辑：</b>2023 年公开呼吁加强监管，2024 年反对州级法案、主张联邦优先——两次都指向「由他参与定义规则的那一层」。此模式仅在政治单一域出现，降级为领域风格，不并入人格模式。</p>
+    </div>
+    <div class="pattern">
+      <h3>四 · 以外部联盟而非股权或合同持有机构</h3>
+      <ol>
+        <li>2023-11：770 名员工中 700 余人联署，构成他复职的实际杠杆。</li>
+        <li>Nadella 宣布接收全员并承诺薪酬对标——最大投资人站到他一边。</li>
+        <li>复职后未取回股权，至今无 OpenAI 股权、年薪约 7.6 万美元。</li>
+        <li>结果是：董事会对他的约束力不来自所有权结构，而来自他离开的成本——2023 年那次已把成本公开演示过一遍。</li>
+      </ol>
+      <p class="verdict"><b>跨域检验：</b>模式一、二在商业、财务、机构治理三个独立域重复出现，可称为人格模式。</p>
+    </div>
+    <div class="pattern">
+      <h3>五 · 叙述随环境调整，而不随事实固定</h3>
+      <ol>
+        <li>2024 年度 990 表：使命表述中「安全地」与「不受财务回报约束」同时消失，九年申报中的第六次修改（L1）。</li>
+        <li>2023-11 董事会以「并非一贯坦诚」解职；2024-03 独立审查又称解职与安全、财务、投资人陈述无关——两份公司口径本身就互相拉扯。</li>
+        <li>2026-04《纽约客》引述内部文件：承诺投入 20% 算力于安全研究，实际为 1–2%（L4，当事人否认）。</li>
+        <li>他本人承认过回避冲突，并把叙述的变化归因于环境变化（L4，转述）。</li>
+      </ol>
+      <p class="verdict"><b>区分问题：</b>这是「随事实修正」还是「随需要重构」？本轮证据只能确认<b>叙述确实在反复变更</b>（L1），无法确认变更的动机（L4）。此模式落在「言行一致性」单一域，未达跨域标准，且核心指控未经裁决、当事人否认——<b>它是被反复记录的质疑轴，不是已被认定的结论。</b></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">动机结构</div>
+  <div class="cols">
+    <div>
+      <h3>核心驱动</h3>
+      <p style="font-size:var(--step-0);color:var(--ink-2);">保持「不可替代的连接位置」。他横跨资本、算力、能源、身份与支付、数据、政策六个领域；持有单一公司股权会把这个位置锁定在一个坐标上，他反而没有要。<b>置信度：中。</b></p>
+      <h3 style="margin-top:1.5rem;">次要驱动</h3>
+      <p style="font-size:var(--step-0);color:var(--ink-2);">「AGI 治理」叙事是跨政府、跨行业、跨意识形态的通行证，而这一叙事必须由他持续讲述才有效，因此叙事的连续性本身成为利益。<b>置信度：中低。</b></p>
+    </div>
+    <div>
+      <h3>从行为反推</h3>
+      <ul class="deflist">
+        <li><b>他得到了</b> <span>可选项（任何一条线断掉都不致命）、信息先行（四个交界处的最早信号）、政策准入（连续两届政府）。</span></li>
+        <li><b>他避免了</b> <span>被单一机构的治理文件锁死——2023 年 11 月的教训。</span></li>
+        <li><b>竞争性解释</b> <span>这也可能只是创投出身的路径依赖：YC 训练的是「选点与人」，不是「持股与运营」，无需引入任何战略意图即可解释同一组行为。此项未被证伪，故核心驱动只给到「中」。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">约束与底线</div>
+  <div class="cols">
+    <div>
+      <h3>法律文本</h3>
+      <ul class="deflist">
+        <li><b>非营利法</b> <span>OpenAI 原为 501(c)(3)，其资产受慈善目的约束，Delaware 与 California 总检察长对改制有审查权。</span></li>
+        <li><b>PBC 双重目的</b> <span>基金会持 26% 加权证——控制权与利润分配被制度性绑在两张不同的纸上。</span></li>
+        <li><b>合同</b> <span>微软协议保留「由独立小组宣布 AGI」的触发条款与 2032 年绑定期限。这是目前唯一能单方面改变他与微软关系的书面条款。</span></li>
+        <li><b>司法</b> <span>两案均在时效上被切断，实体未审、均可上诉或修订——约束目前只挡住了程序，没挡住实体争议。</span></li>
+        <li><b>「基金会控制」比标题弱</b> <span>据一份诉讼文件中的论点：罢免 CEO 需 PBC 董事会五分之三特别多数，交错董事会使基金会每年只能改选五分之一董事，故其控制「可能只是门面」。此项为诉讼一方的主张，非法院认定。</span></li>
+        <li><b>2040 年权证</b> <span>基金会另有一项合同权利：若估值在 2040 年达到约 5 万亿美元，可获更多股权。微软的模型知识产权保留至 2032 年，且不论是否宣布 AGI 均保留。</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>不成文规范</h3>
+      <p style="font-size:var(--step-0);color:var(--ink-2);">董事会治理、回避义务、创始人不得自我交易。他在每一处已知交界都留下了回避或披露记录——规范对他有约束力，但强度低：代价是多签一份披露，不是放弃持仓。</p>
+      <h3 style="margin-top:1.5rem;">什么能真正阻止他</h3>
+      <ul class="deflist">
+        <li><b>资本市场的融资条件</b> <span>SoftBank 于 2027 年 3 月到期的 400 亿美元过桥贷款是硬时点（L4）。</span></li>
+        <li><b>关键对手方的合同条款</b> <span>微软、Oracle、Nvidia。</span></li>
+        <li><b>离开的成本是否再次变得可承受</b> <span>2023 年已证明一次不可承受。</span></li>
+        <li><b>监管机构</b> <span>两州总检察长、欧盟。</span></li>
+        <li><b>未找到</b> <span>无 L1／L2 证据显示存在情报机构关系或强制手段的运用。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">网络与资金</div>
+  <div class="cols">
+    <div>
+      <h3>节点</h3>
+      <p style="font-size:var(--step-0);color:var(--ink-2);">重组后的完整分配：<b>OpenAI Foundation 26%、微软 27%（约 1350 亿美元）、员工 26%、2025 年 400 亿美元轮参与者（SoftBank、Thrive）15%、其他投资人 6%</b>；<b>他本人 0%</b>。基金会持股份额按其自身声明价值逾 1000 亿美元，并已启动首轮 5000 万美元资助。其余节点：Nvidia 与 Amazon（2026 轮）；Tools for Humanity／Worldcoin（共同创办人兼董事长）；Helion（董事长）；Oklo（董事）；Reddit（第三大股东，权益经五家实体持有并声明不主张受益所有权）；Y Combinator 校友网络。</p>
+      <h3 style="margin-top:1.5rem;">连接</h3>
+      <p style="font-size:var(--step-0);color:var(--ink-2);">真正值得注意的三角：<b>微软同时是 OpenAI 的最大股东、Helion 的首个客户，以及这条闭环上唯一的第三方</b>。三个节点里，他是唯一占据两个的共同节点，且每一段关系都由他本人促成。</p>
+    </div>
+    <div>
+      <h3>资金流向</h3>
+      <ul class="deflist">
+        <li><b>个人 → 政治</b> <span>就职基金 100 万美元；Cruz、Blackburn 法定上限。</span></li>
+        <li><b>公司 → 政治</b> <span>Tools for Humanity 向 MAGA Inc. 捐 500 万美元。</span></li>
+        <li><b>外部 LP → Startup Fund</b> <span>1.753 亿美元，OpenAI 本身不是投资人。</span></li>
+        <li><b>他的财富来源</b> <span>外部组合（Stripe、Reddit、Helion），而非 OpenAI 薪酬。</span></li>
+      </ul>
+      <h3 style="margin-top:1.5rem;">纪律声明</h3>
+      <p style="font-size:0.8125rem;color:var(--ink-2);">重叠不等于协调。此网络中多处存在人员重叠，先用共同利益结构解释；本轮未发现任何 L1／L2 的指令、通信或协同证据，故不升级为「协调」。媒体与政治功能有 L2 证据；<b>情报功能未找到任何证据，不预设</b>。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">最大似然描述</div>
+  <div class="prose stack">
+    <p>他经营的不是一家公司的股权，而是一个<b>连接位置</b>。在 OpenAI 刻意不持股，却在四个交界处保留持仓；他的权力不来自所有权或合同，而来自<b>离开的成本</b>——2023 年 11 月，770 名员工中的 700 余人同最大的投资人同时站到他一边，把这一成本公开演示了一次。此后他对制度约束的标准反应不是对抗，而是改写制度。对于被具体指出的利益冲突，他一律以回避与披露消解，三处止损均有记录；对于被否定的领导权，零止损。<b>整体置信度：中高。</b></p>
+    <p><b>区分度。</b>与 Zuckerberg（双重股权、保留所有权、不设回避文化）、Musk（以自有股权行事、亲自兼任、把诉讼当策略）、Huang（无交界处个人组合）相比，「用关系而非股权持有机构、用回避而非切割处理冲突」的组合不是同地位同行业者的通用描述，具备区分度，可作为该对象的画像交付。</p>
+    <p><b>第二根轴：叙述弹性（补检后新增，置信度：中）。</b>补检把一条原先只有单一来源的线索补成了有文件支撑的轴线：九年间六次修改的使命表述、2024 年度 990 表里同时消失的「安全地」与「不受财务回报约束」、2023 年董事会「并非一贯坦诚」的认定、2026 年公开的证词与内部文件，方向一致——他调整叙述的频次高于多数同行。但这条轴上没有裁决、没有「冒烟的枪」，当事人否认，且公司内部的另一份材料（2024 年独立审查摘要）明确否认解职与安全、财务有关。它可以解释「为何他周围总在发生治理冲突」——他的位置依赖他人持续自愿的托付，而叙述弹性正是维持这种托付的手段；它<b>不能</b>支撑「他实施了某项具体欺骗」的结论。</p>
+    <p><b>反事实检验。</b>整个画像有一根承重梁：他在重组后不持股权（L2，公司发言人）。若此事实为假，核心论点崩塌，画像需重写为「隐性控制加形式让渡」。而我未能直连一手公司文件，且多个来源称其股权状态在 PBC 转换完成时可能改变。<b>因此该承重梁的置信度上限为「中高」，不是「高」。</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">竞争性解释</div>
+  <div class="stack" style="gap:1.75rem;">
+    <div class="expl a">
+      <span class="tag">解释 A · 最可能</span>
+      <p>控制权与所有权分离的操作者：以关系、信息位置与可选项持有机构，用法律形式（回避、披露、改制）容纳互相冲突的利益。</p>
+      <p class="falsify"><b>反证检验：</b>已尽力证伪。最有力的反证是 2023 年 11 月的解职本可终结其地位，说明该位置并非无懈可击；但该事件最终被其反转为权力演示，反而加强本解释。未找到推翻它的事实。</p>
+    </div>
+    <div class="expl">
+      <span class="tag">解释 B · 次可能</span>
+      <p>使命驱动的管家，在必要的商业化中做必要妥协。无股权、回避记录、基金会保留控制权、独立审查未认定财务不当，都支持它。</p>
+      <p class="falsify"><b>反证检验：</b>它需要额外假设来解释「为何管家需要在其共同创办的公司向 MAGA Inc. 捐款 500 万美元时保持沉默」，以及「为何四个交界处的持仓都恰好是 OpenAI 的上下游」。证伪未完成，但需假设更多，故列次位。</p>
+    </div>
+    <div class="expl">
+      <span class="tag">解释 C · 证据不足</span>
+      <p>把回避与披露当作形式合规的外衣，实质自我交易。</p>
+      <p class="falsify"><b>反证检验：</b>已主动寻找——未找到任何 L1／L2 证据显示存在一笔未披露、且他通过职务捕获价值的交易；已披露的每笔交易都有回避或独立审批记录。证据不足，不作为结论。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">证据表</div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>结论</th><th>依据事实</th><th>等级</th><th>置信度</th></tr></thead>
+      <tbody>
+        <tr><td>他在 OpenAI 不持股权、薪酬约 7.6 万美元</td><td>2025-10-28 公司口径，多源引用</td><td><span class="chip" data-l="2">L2</span></td><td>中高（承重梁，状态可撤销）</td></tr>
+        <tr><td>2023 年解职的官方理由是「沟通并非一贯坦诚」</td><td>OpenAI 2023-11-17 声明原文</td><td><span class="chip" data-l="1">L1 转引</span></td><td>高</td></tr>
+        <tr><td>独立审查未发现产品安全、财务或投资人陈述方面的问题</td><td>WilmerHale 摘要，2024-03-08</td><td><span class="chip" data-l="1">L1 转引</span></td><td>中（审查由回归后的董事会委托，全文未公开）</td></tr>
+        <tr><td>复职的杠杆是员工联署与微软的接收承诺</td><td>700 余人联署、Nadella 声明</td><td><span class="chip" data-l="2">L2</span></td><td>高</td></tr>
+        <tr><td>他在 Reddit、Helion、Oklo 三处均有关联权益且均回避</td><td>S-1、S-4、TechCrunch 与 AP</td><td><span class="chip" data-l="2">L2</span></td><td>高</td></tr>
+        <tr><td>关联交易中他保留持仓、仅做形式隔离</td><td>同上，行为序列</td><td><span class="chip" data-l="3">L3</span></td><td>中</td></tr>
+        <tr><td>政治献金双向对冲</td><td>献金披露经多家报道</td><td><span class="chip" data-l="2">L2</span></td><td>中高</td></tr>
+        <tr><td>对具体利益冲突止损、对领导权否定升级</td><td>三个止损事件与 2023-11</td><td><span class="chip" data-l="3">L3</span></td><td>中</td></tr>
+        <tr><td>无情报机构关联</td><td>已尝试检索，未找到</td><td>—</td><td>无证据（不等于证据表明不存在）</td></tr>
+        <tr><td>使命表述在九年间六次修改，2024 年度同时删除「安全地」与「不受财务回报约束」</td><td>IRS 990 表原文</td><td><span class="chip" data-l="1">L1</span></td><td>高</td></tr>
+        <tr><td>2023 年解职的实质分歧涉及内部安全流程</td><td>Sutskever 备忘录与 Amodei 笔记（经《纽约客》引述）与 2024-03 公司审查摘要，两手材料方向相反</td><td><span class="chip" data-l="4">L4</span></td><td>低（原始文件未公开，当事人否认）</td></tr>
+        <tr><td>基金会对 PBC 的控制是间接的</td><td>诉讼文件中的一方论点（五分之三特别多数、交错董事会）</td><td><span class="chip" data-l="4">L4</span></td><td>低（未获法院认定）</td></tr>
+        <tr><td>Musk 指控成立与否</td><td>2026-05-18 陪审团以时效裁定，实体未审</td><td><span class="chip" data-l="2">L2</span></td><td>不作判断（未决，上诉中）</td></tr>
+        <tr><td>亲属诉讼中的性侵主张成立与否</td><td>2026-03-20 以时效驳回，实体未审</td><td><span class="chip" data-l="1">L1 转引</span></td><td>不作判断（未决）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">未解问题与下一步取证</div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>空缺</th><th>应查文件</th><th>数据库</th><th>能证实或证伪什么</th></tr></thead>
+      <tbody>
+        <tr><td>他股权与薪酬的一手状态</td><td>OpenAI 990 表的薪酬明细与关联交易附注、Delaware 改制备案</td><td>IRS TEOS；Delaware Div. of Corporations <span style="color:var(--ink-3);">（申报文件已于 2025-11 公开，本轮只取到使命表述部分）</span></td><td>承重梁是否为真，以及是否已悄然授予股权</td></tr>
+        <tr><td>改制是否附带监管承诺</td><td>两州总检察长审查文件与保证函</td><td>DE／CA 总检察长官网公开信函</td><td>基金会 26% 是否为可被稀释的形式安排</td></tr>
+        <tr><td>「SEC 与 OpenAI 和解」这一说法</td><td>SEC 行政裁定全文</td><td>SEC.gov 行政程序全文检索 <span class="mono">OpenAI</span></td><td><b>四轮不同措辞检索均无一手来源</b>；现按「规划阶段的记忆错误」处理，不再作为假设使用</td></tr>
+        <tr><td>「承诺 20% 算力用于安全研究、实际 1–2%」</td><td>内部算力分配记录</td><td>《纽约客》报道原文及其引用的文件</td><td>该差值是否可独立核实；目前仅单一媒体来源</td></tr>
+        <tr><td>关联交易的条款而非存在</td><td>Helion 与 OpenAI 购电协议、Oklo 合同</td><td>FERC／DOE 备案、EDGAR 8-K</td><td>关联方价格是否偏离市场价</td></tr>
+        <tr><td>2022 年旧金山政治支出</td><td>捐款明细</td><td>SF Ethics Commission，检索 <span class="mono">Altman</span></td><td>模式三始于 2022 年还是 2024 年</td></tr>
+        <tr><td>「并非一贯坦诚」所指的具体事项</td><td>Sutskever 备忘录（约 70 页）、董事会的 70 页文件、Amodei 笔记（200 余页）<b>原文</b>；WilmerHale 完整报告</td><td>Musk 案公开证据库（CourtListener 案号 <span class="mono">4:24-cv-04722-YGR</span>）；后续庭审公开记录</td><td>已从「所指不明」推进到「有具体指控但原始文件未公开」；仍需原文判定两份公司口径谁更接近事实</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p><b>方法论备注。</b>规划阶段曾把「OpenAI 向 SEC 支付罚款以了结内控指控」当作可引用事实；四轮不同措辞检索后仍未回溯到任何一手来源，现按本报告自身的记忆错误处理，不作为假设继续使用。「CFO 于 2025 年 12 月公开 2023 年董事会文件」同此。两次都是同一个失效模式：把模型记忆中的媒体框架当成行为记录。这一条比本报告任何结论都更值得保留在案。</p>
+  <p><b>边界声明。</b>本报告只分析其公共角色。亲属诉讼与 Musk 案均涉及在世具名个人且未决，仅记录程序状态，明确排除于画像结论之外，区分「被指控」与「被认定」。文中所有「未找到」均为「没有找到证据」，不等于「有证据表明不存在」。</p>
+  <p class="mono">检索截止 2026-10-08 · 全文结论强度：中高 · 未经一手数据库直连验证</p>
+</footer>
+
+</div>

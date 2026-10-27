@@ -1,0 +1,467 @@
+<!-- ================= 07 横向比较 ================= -->
+<section class="section alt" id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">07 / COMPARE</div>
+      <div>
+        <h2>横向比较：没有“最好”，只有“最适合”</h2>
+        <p class="section-lede">把不同路线放在一张表里，最容易犯的错是用同一个指标衡量所有方案：托卡马克的 Q、NIF 的靶增益、Helion 的温度、Zap 的中子产额，根本不是一回事。下面这张表先统一口径，再给判断。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>7.1 技术成熟度：托卡马克领先，但领先不等于赢</h3>
+      <p>技术成熟度（TRL）是一个有用的粗筛工具，但不是预言机。托卡马克的 TRL 6–7，是因为它有 ITER 级别的系统集成、长时间运行和工程供应链；仿星器 5–6，是因为 W7-X 已证明长脉冲运行，但紧凑化与商业设计还在早期；FRC、MTF、Z-pinch 大多在 3–4，意味着“部件/子系统在相关环境中验证”，离“系统级演示”还有距离。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 660" role="img" aria-label="聚变路线技术成熟度 TRL 对比条形图">
+        <text x="40" y="36" class="t-title">技术成熟度（TRL）：托卡马克与仿星器领先</text>
+        <text x="40" y="58" class="t-small t-muted">分析师综合评估（C 级）；不同机构口径可能相差 1–2 级</text>
+
+        <g>
+          <line x1="320" y1="80" x2="320" y2="530" class="grid"/>
+          <line x1="410" y1="80" x2="410" y2="530" class="grid"/>
+          <line x1="500" y1="80" x2="500" y2="530" class="grid"/>
+          <line x1="590" y1="80" x2="590" y2="530" class="grid"/>
+          <line x1="680" y1="80" x2="680" y2="530" class="grid"/>
+          <line x1="770" y1="80" x2="770" y2="530" class="grid"/>
+          <line x1="860" y1="80" x2="860" y2="530" class="grid"/>
+          <line x1="950" y1="80" x2="950" y2="530" class="grid"/>
+          <line x1="1040" y1="80" x2="1040" y2="530" class="grid"/>
+          <text x="320" y="556" text-anchor="middle" class="tick">1</text>
+          <text x="410" y="556" text-anchor="middle" class="tick">2</text>
+          <text x="500" y="556" text-anchor="middle" class="tick">3</text>
+          <text x="590" y="556" text-anchor="middle" class="tick">4</text>
+          <text x="680" y="556" text-anchor="middle" class="tick">5</text>
+          <text x="770" y="556" text-anchor="middle" class="tick">6</text>
+          <text x="860" y="556" text-anchor="middle" class="tick">7</text>
+          <text x="950" y="556" text-anchor="middle" class="tick">8</text>
+          <text x="1040" y="556" text-anchor="middle" class="tick">9</text>
+          <text x="680" y="582" text-anchor="middle" class="t-small t-muted">TRL 1 = 原理验证　→　TRL 9 = 商业部署</text>
+        </g>
+
+        <g>
+          <text x="40" y="104" class="t-label">托卡马克</text>
+          <rect x="320" y="92" width="630" height="20" rx="5" fill="var(--s1)"/>
+          <text x="962" y="107" class="t-label" fill="var(--s1)">7</text>
+          <text x="40" y="149" class="t-label">仿星器</text>
+          <rect x="320" y="137" width="540" height="20" rx="5" fill="var(--s1)"/>
+          <text x="872" y="152" class="t-label" fill="var(--s1)">6</text>
+          <text x="40" y="194" class="t-label">球形托卡马克</text>
+          <rect x="320" y="182" width="450" height="20" rx="5" fill="var(--s1)"/>
+          <text x="782" y="197" class="t-label" fill="var(--s1)">5</text>
+          <text x="40" y="239" class="t-label">激光 ICF</text>
+          <rect x="320" y="227" width="450" height="20" rx="5" fill="var(--s2)"/>
+          <text x="782" y="242" class="t-label" fill="var(--s2)">5</text>
+          <text x="40" y="284" class="t-label">FRC</text>
+          <rect x="320" y="272" width="360" height="20" rx="5" fill="var(--s3)"/>
+          <text x="692" y="287" class="t-label" fill="var(--s3)">4</text>
+          <text x="40" y="329" class="t-label">MTF</text>
+          <rect x="320" y="317" width="360" height="20" rx="5" fill="var(--s3)"/>
+          <text x="692" y="332" class="t-label" fill="var(--s3)">4</text>
+          <text x="40" y="374" class="t-label">Z-pinch</text>
+          <rect x="320" y="362" width="270" height="20" rx="5" fill="var(--s3)"/>
+          <text x="602" y="377" class="t-label" fill="var(--s3)">3</text>
+          <text x="40" y="419" class="t-label">磁镜</text>
+          <rect x="320" y="407" width="360" height="20" rx="5" fill="var(--s1)"/>
+          <text x="692" y="422" class="t-label" fill="var(--s1)">4</text>
+          <text x="40" y="464" class="t-label">p-B¹¹</text>
+          <rect x="320" y="452" width="180" height="20" rx="5" fill="var(--s5)"/>
+          <text x="512" y="467" class="t-label" fill="var(--s5)">2</text>
+          <text x="40" y="509" class="t-label">μ 子/Fusor</text>
+          <rect x="320" y="497" width="90" height="20" rx="5" fill="var(--muted)"/>
+          <text x="422" y="512" class="t-label t-muted">1</text>
+        </g>
+
+        <g transform="translate(40 604)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <circle cx="18" cy="22" r="5" fill="var(--s1)"/><text x="30" y="26" class="t-small">磁约束</text>
+          <circle cx="218" cy="22" r="5" fill="var(--s2)"/><text x="230" y="26" class="t-small">惯性约束</text>
+          <circle cx="418" cy="22" r="5" fill="var(--s3)"/><text x="430" y="26" class="t-small">磁惯性</text>
+          <circle cx="618" cy="22" r="5" fill="var(--s5)"/><text x="630" y="26" class="t-small">无中子燃料</text>
+          <circle cx="818" cy="22" r="5" fill="var(--muted)"/><text x="830" y="26" class="t-small">其他概念</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 13</span> · 各路线技术成熟度 <span class="fig-sub">TRL 6–7 表示系统级演示/原型，不等于商业可用。激光 ICF 的 TRL 5 主要来自 NIF 点火，不代表电站集成。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>7.2 一张表看清：已实现什么，下一步是什么</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>路线</th><th>代表</th><th>燃料</th><th>已实现</th><th>最近目标</th><th>时间</th><th>TRL</th><th>主要风险</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>托卡马克</strong></td><td>ITER、SPARC、EAST、KSTAR</td><td>D-T / D-D</td><td>JET Q=0.67；EAST 1,066 s；NIF 不适用</td><td>SPARC Q&gt;1；ITER Q≥10</td><td>2027 / 2039</td><td>6–7</td><td>稳态、偏滤器、成本、氚</td><td>主线，最接近燃烧等离子体</td></tr>
+            <tr><td><strong>仿星器</strong></td><td>W7-X、Proxima、Type One</td><td>D-T / D-D</td><td>W7-X 8 分钟级长脉冲；2026 三重积纪录</td><td>Alpha 演示 / TVA 电网级</td><td>2030s</td><td>5–6</td><td>线圈制造、优化、成本</td><td>长周期备选，稳态优势</td></tr>
+            <tr><td><strong>球形托卡马克</strong></td><td>ST40、STEP</td><td>D-T</td><td>ST40 1 亿 °C 离子温度</td><td>STEP 原型电站</td><td>2040</td><td>4–5</td><td>中心柱、屏蔽、稳态</td><td>紧凑低成本路线</td></tr>
+            <tr><td><strong>FRC</strong></td><td>Helion、TAE</td><td>D-He³ / p-B¹¹</td><td>Polaris D-T 1.5 亿 °C；TAE 10 万次实验</td><td>Orion 初始运行 / TAE 示范</td><td>2028 / 2030s</td><td>3–4</td><td>稳定性、约束 scaling、燃料</td><td>高风险高回报</td></tr>
+            <tr><td><strong>MTF</strong></td><td>General Fusion</td><td>D-T</td><td>LM26 1 keV 电子温度</td><td>10 keV + Lawson</td><td>2028</td><td>3–4</td><td>重复频率、衬里、预热</td><td>工程巧思，需验证</td></tr>
+            <tr><td><strong>Z-pinch</strong></td><td>Zap</td><td>D-T / D-D</td><td>剪切流稳定等离子体；DOE 里程碑</td><td>Century 平台</td><td>2020s 末</td><td>3–4</td><td>电极寿命、脉冲电源</td><td>低成本中子源/聚变期权</td></tr>
+            <tr><td><strong>激光 ICF</strong></td><td>NIF、Longview、Focused</td><td>D-T</td><td>靶增益 4.13；10 次点火</td><td>10 Hz 重复频率、电站设计</td><td>2030s</td><td>4–5</td><td>驱动器效率、靶成本、腔室</td><td>物理已验证，工程未验证</td></tr>
+            <tr><td><strong>脉冲功率</strong></td><td>Pacific、Sandia Z</td><td>D-T</td><td>Z 机器单次高能密度实验</td><td>模块化 pulser 演示</td><td>2030s</td><td>3</td><td>重复频率、靶定位、寿命</td><td>早期，值得跟踪</td></tr>
+            <tr><td><strong>p-B¹¹</strong></td><td>TAE、HB11、Marvel</td><td>p-B¹¹</td><td>原理实验；无净增益</td><td>Q&gt;1 级演示</td><td>2030s+</td><td>1–2</td><td>温度、轫致辐射、侧反应</td><td>远期期权，不宜短期押注</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">“已实现”只列公开可验证的里程碑；“最近目标”与“时间”多为公司/项目目标（C 级），不构成承诺。</p>
+
+      <h3>7.3 如果只能押一条路线</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>主线仍是托卡马克</h4>
+          <p>如果你要在 2030 年代看到“并网”的概率最大，托卡马克是唯一有完整工程链、公共项目背书和私营资本同时下注的路线。SPARC 的 Q&gt;1 是关键分水岭：成功，则 ARC 和高场紧凑托卡马克的叙事成立；失败，则整个私营托卡马克时间表要重估。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最稳健的长期备选是仿星器</h4>
+          <p>如果聚变电站最终要求 80% 以上容量因子、少维护、少破裂，仿星器的几何优势会显现。它的风险是“慢”：线圈制造、优化、供应链都需要时间。Proxima 和 Type One 的进展值得跟踪，但不宜用 2030 年代的时间表去要求它。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最容易被高估的是 p-B¹¹</h4>
+          <p>“无中子”是极好的传播标签，但物理门槛高得多。TAE 的 FRC 进展是真实的，但从 FRC 到 p-B¹¹ 燃烧等离子体，中间还隔着加热、约束、轫致辐射和侧反应四道关。把 p-B¹¹ 当作 2030 年代的主力，是不负责任的。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">分析判断 · C 级</div>
+          <h4>最容易被低估的是“材料与氚”</h4>
+          <p>聚变讨论总聚焦在等离子体物理，但真正决定电站可用率的，是偏滤器寿命、包层增殖、氚提取和远程维护。这些领域的研发投入远低于等离子体物理，却是最可能拖慢商业化的环节。</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">组合视角</span>
+        <p>把聚变研发看成一个投资组合：托卡马克是“核心持仓”，仿星器是“长期成长”，FRC/MTF/Z-pinch 是“高风险期权”，激光 ICF 是“科学验证 + 专项应用”，p-B¹¹ 是“远期看涨期权”。<strong>不要用单一路线的成败，判断整个聚变行业的成败。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 最新进展 ================= -->
+<section class="section" id="progress">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">08 / PROGRESS</div>
+      <div>
+        <h2>最新进展：2022–2026，聚变从“论文”变成“工地”</h2>
+        <p class="section-lede">这四年最重要的变化，不是某一个数字，而是聚变第一次同时拥有了三样东西：可重复的点火物理、真实的工程工地、以及愿意继续掏钱的资本市场。下面按时间线、目标节点和资金三条线梳理。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="2022 至 2026 年聚变关键进展时间线">
+        <text x="40" y="36" class="t-title">2022–2026：关键节点</text>
+        <text x="40" y="58" class="t-small t-muted">科学、工程、资本三条线同时加速；注意“目标”与“已实现”的区别</text>
+        <line x1="80" y1="270" x2="1070" y2="270" class="axis"/>
+        <g>
+          <line x1="80" y1="262" x2="80" y2="278" class="axis"/>
+          <line x1="284" y1="262" x2="284" y2="278" class="axis"/>
+          <line x1="489" y1="262" x2="489" y2="278" class="axis"/>
+          <line x1="693" y1="262" x2="693" y2="278" class="axis"/>
+          <line x1="897" y1="262" x2="897" y2="278" class="axis"/>
+          <text x="80" y="300" text-anchor="middle" class="tick">2022</text>
+          <text x="284" y="300" text-anchor="middle" class="tick">2023</text>
+          <text x="489" y="300" text-anchor="middle" class="tick">2024</text>
+          <text x="693" y="300" text-anchor="middle" class="tick">2025</text>
+          <text x="897" y="300" text-anchor="middle" class="tick">2026</text>
+        </g>
+
+        <g>
+          <circle cx="270" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="270" y1="263" x2="270" y2="190" class="grid"/>
+          <text x="270" y="176" text-anchor="middle" class="t-small">NIF 首次点火</text>
+          <text x="270" y="160" text-anchor="middle" class="t-small t-muted">3.15 MJ / 2.05 MJ</text>
+
+          <circle cx="309" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="309" y1="277" x2="309" y2="340" class="grid"/>
+          <text x="309" y="358" text-anchor="middle" class="t-small">JET 59 MJ</text>
+          <text x="309" y="374" text-anchor="middle" class="t-small t-muted">Q ≈ 0.33</text>
+
+          <circle cx="599" cy="270" r="7" fill="var(--s1)"/>
+          <line x1="599" y1="263" x2="599" y2="190" class="grid"/>
+          <text x="599" y="176" text-anchor="middle" class="t-small">ITER 新基线</text>
+          <text x="599" y="160" text-anchor="middle" class="t-small t-muted">SRO 2034 · D-T 2039</text>
+
+          <circle cx="701" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="701" y1="277" x2="701" y2="340" class="grid"/>
+          <text x="701" y="358" text-anchor="middle" class="t-small">EAST 1,066 s</text>
+          <text x="701" y="374" text-anchor="middle" class="t-small t-muted">WEST 1,337 s</text>
+
+          <circle cx="748" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="748" y1="263" x2="748" y2="190" class="grid"/>
+          <text x="748" y="176" text-anchor="middle" class="t-small">NIF 8.6 MJ</text>
+          <text x="748" y="160" text-anchor="middle" class="t-small t-muted">靶增益 4.13</text>
+
+          <circle cx="922" cy="270" r="7" fill="var(--s3)"/>
+          <line x1="922" y1="277" x2="922" y2="340" class="grid"/>
+          <text x="922" y="358" text-anchor="middle" class="t-small">Helion Polaris</text>
+          <text x="922" y="374" text-anchor="middle" class="t-small t-muted">D-T 1.5 亿 °C</text>
+
+          <circle cx="1015" cy="270" r="7" fill="var(--s2)"/>
+          <line x1="1015" y1="263" x2="1015" y2="190" class="grid"/>
+          <text x="1015" y="176" text-anchor="middle" class="t-small">CFS 累计 $4B</text>
+          <text x="1015" y="160" text-anchor="middle" class="t-small t-muted">ARC 400 MW</text>
+
+          <circle cx="1058" cy="270" r="6" fill="var(--s1)"/>
+          <line x1="1058" y1="277" x2="1058" y2="340" class="grid"/>
+          <text x="1058" y="358" text-anchor="middle" class="t-small">ITER 真空室齐套</text>
+          <text x="1058" y="374" text-anchor="middle" class="t-small t-muted">Type One $200M</text>
+        </g>
+        <text x="80" y="440" class="t-small t-muted">颜色：蓝 = 公共项目/磁约束；橙 = 惯性/资本；绿 = 私营聚变里程碑。</text>
+        <text x="80" y="462" class="t-small t-muted">时间线只选代表性事件，不是完整列表；详见下方机构表与来源。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 14</span> · 2022–2026 年聚变关键进展 <span class="fig-sub">NIF 点火、ITER 新基线、EAST/WEST 长脉冲、Helion D-T、CFS 融资，是这四年最具信号意义的五件事。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.1 三条线：科学、工程、资本</h3>
+      <p><strong>科学线：</strong>NIF 从 2022 年的 3.15 MJ 走到 2025 年的 8.6 MJ，靶增益 4.13，并在 2026 年 4 月累计实现 10 次点火<span class="badge a">A</span>。这证明 α 粒子自加热和燃烧波不仅存在，而且可以被重复触发。磁约束这边，EAST 和 WEST 把长脉冲推到 1,000 秒以上，W7-X 把仿星器的长脉冲推到 8 分钟量级<span class="badge a">A</span>。</p>
+      <p><strong>工程线：</strong>ITER 在 2024 年 7 月确定新基线，2034 年 SRO、2039 年 D-T；2026 年 10 月，9 个真空室扇区全部运抵，偏滤器内垂直靶完成首件生产<span class="badge a">A</span>。中国的 BEST 在合肥建设，预计 2026 年建成、2027 年投运，总投资约 85 亿元人民币<span class="badge b">B</span>。私营方面，SPARC、Orion、LM26、FuZE、Norm 等装置同时进入建造/调试阶段。</p>
+      <p><strong>资本线：</strong>FIA 统计全球聚变产业累计投资超过 150 亿美元<span class="badge b">B</span>。CFS 在 2026 年 7 月再融 10 亿美元，累计 40 亿美元，约占全行业近三成<span class="badge b">B</span>。Helion、TAE、Proxima、Type One 也完成大额融资。公共资金方面，美国 DOE 的 FIRE 计划投入 1.07 亿美元、Milestone 计划首批 4,600 万美元，英国 STEP 投入 2.2 亿英镑概念设计，中国成立 CFEC 统筹聚变工程化<span class="badge a">A</span>。</p>
+
+      <h3>8.2 目标节点：哪些是承诺，哪些是愿望</h3>
+      <p>下面这张甘特图把公开目标节点放在同一时间轴上。请注意：公共项目（ITER、STEP、BEST、CFETR、EU DEMO）的节点经过政府/理事会批准，可信度较高；私营公司的节点是公司目标，属于 C 级证据。两者不能用同一种确定性去读。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 680" role="img" aria-label="主要聚变项目目标节点甘特图">
+        <text x="40" y="36" class="t-title">目标节点：公共项目 vs 私营公司</text>
+        <text x="40" y="58" class="t-small t-muted">横轴 2024–2045；菱形为公开目标年份，不是承诺</text>
+
+        <g>
+          <line x1="320" y1="86" x2="320" y2="560" class="grid"/>
+          <line x1="461" y1="86" x2="461" y2="560" class="grid"/>
+          <line x1="602" y1="86" x2="602" y2="560" class="grid"/>
+          <line x1="743" y1="86" x2="743" y2="560" class="grid"/>
+          <line x1="884" y1="86" x2="884" y2="560" class="grid"/>
+          <line x1="1025" y1="86" x2="1025" y2="560" class="grid"/>
+          <text x="320" y="584" text-anchor="middle" class="tick">2024</text>
+          <text x="461" y="584" text-anchor="middle" class="tick">2028</text>
+          <text x="602" y="584" text-anchor="middle" class="tick">2032</text>
+          <text x="743" y="584" text-anchor="middle" class="tick">2036</text>
+          <text x="884" y="584" text-anchor="middle" class="tick">2040</text>
+          <text x="1025" y="584" text-anchor="middle" class="tick">2044</text>
+        </g>
+
+        <g>
+          <text x="40" y="116" class="t-label">ITER</text>
+          <line x1="320" y1="110" x2="849" y2="110" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M673 102 L681 110 L673 118 L665 110 z" fill="var(--s1)"/>
+          <path d="M849 102 L857 110 L849 118 L841 110 z" fill="var(--s1)"/>
+          <text x="665" y="98" text-anchor="middle" class="t-small" fill="var(--s1)">SRO 2034</text>
+          <text x="857" y="98" text-anchor="middle" class="t-small" fill="var(--s1)">D-T 2039</text>
+
+          <text x="40" y="171" class="t-label">SPARC / ARC</text>
+          <line x1="320" y1="165" x2="602" y2="165" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M426 157 L434 165 L426 173 L418 165 z" fill="var(--s2)"/>
+          <path d="M602 157 L610 165 L602 173 L594 165 z" fill="var(--s2)"/>
+          <text x="426" y="153" text-anchor="middle" class="t-small" fill="var(--s2)">Q&gt;1 2027</text>
+          <text x="610" y="153" text-anchor="middle" class="t-small" fill="var(--s2)">ARC 2032</text>
+
+          <text x="40" y="226" class="t-label">Helion Orion</text>
+          <line x1="320" y1="220" x2="461" y2="220" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M461 212 L469 220 L461 228 L453 220 z" fill="var(--s2)"/>
+          <text x="477" y="224" class="t-small" fill="var(--s2)">2028</text>
+
+          <text x="40" y="281" class="t-label">General Fusion</text>
+          <line x1="320" y1="275" x2="708" y2="275" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M461 267 L469 275 L461 283 L453 275 z" fill="var(--s2)"/>
+          <path d="M708 267 L716 275 L708 283 L700 275 z" fill="var(--s2)"/>
+          <text x="477" y="263" class="t-small" fill="var(--s2)">Lawson 2028</text>
+          <text x="716" y="263" class="t-small" fill="var(--s2)">示范 2035</text>
+
+          <text x="40" y="336" class="t-label">STEP（UK）</text>
+          <line x1="320" y1="330" x2="884" y2="330" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M884 322 L892 330 L884 338 L876 330 z" fill="var(--s1)"/>
+          <text x="900" y="334" class="t-small" fill="var(--s1)">2040</text>
+
+          <text x="40" y="391" class="t-label">BEST（中国）</text>
+          <line x1="320" y1="385" x2="426" y2="385" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M426 377 L434 385 L426 393 L418 385 z" fill="var(--s1)"/>
+          <text x="442" y="389" class="t-small" fill="var(--s1)">2027</text>
+
+          <text x="40" y="446" class="t-label">CFETR（中国）</text>
+          <line x1="320" y1="440" x2="708" y2="440" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M708 432 L716 440 L708 448 L700 440 z" fill="var(--s1)"/>
+          <text x="724" y="444" class="t-small" fill="var(--s1)">2035</text>
+
+          <text x="40" y="501" class="t-label">EU DEMO</text>
+          <line x1="320" y1="495" x2="954" y2="495" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M954 487 L962 495 L954 503 L946 495 z" fill="var(--s1)"/>
+          <text x="970" y="499" class="t-small" fill="var(--s1)">2040s</text>
+
+          <text x="40" y="556" class="t-label">TAE</text>
+          <line x1="320" y1="550" x2="602" y2="550" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M602 542 L610 550 L602 558 L594 550 z" fill="var(--s2)"/>
+          <text x="618" y="554" class="t-small" fill="var(--s2)">2030s</text>
+        </g>
+
+        <g transform="translate(40 610)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <line x1="18" y1="22" x2="42" y2="22" stroke="var(--s1)" stroke-width="2"/>
+          <path d="M30 16 L36 22 L30 28 L24 22 z" fill="var(--s1)"/>
+          <text x="52" y="26" class="t-small">公共项目（政府/理事会批准）</text>
+          <line x1="420" y1="22" x2="444" y2="22" stroke="var(--s2)" stroke-width="2"/>
+          <path d="M432 16 L438 22 L432 28 L426 22 z" fill="var(--s2)"/>
+          <text x="454" y="26" class="t-small">私营目标（公司声明，C 级）</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 15</span> · 主要聚变项目的目标节点 <span class="fig-sub">公共项目节点来自官方基线；私营公司节点来自公司声明，属于目标而非承诺。ARC、TAE 等“2030 年代初”按 2032 年示意。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.3 资金：150 亿美元，集中在少数头部公司</h3>
+      <p>FIA 的“150 亿美元+”是一个行业口径，包含股权融资、政府拨款和部分承诺资本，不能简单等同于“已投入研发的现金”。从公开披露看，资本高度集中：CFS 一家约 40 亿美元，Helion 约 20 亿美元，TAE 约 15 亿美元；三家合计占全行业大头。这说明聚变已经跨过“概念融资”阶段，进入“装置建造”阶段，但也意味着多数公司仍依赖少数头部项目的技术外溢。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 470" role="img" aria-label="主要聚变公司公开披露累计融资对比">
+        <text x="40" y="36" class="t-title">头部公司的公开披露累计融资（约数）</text>
+        <text x="40" y="58" class="t-small t-muted">单位：亿美元；口径为公开披露的累计股权融资/承诺资本，不含市值与债务</text>
+
+        <g>
+          <line x1="280" y1="90" x2="280" y2="350" class="axis"/>
+          <line x1="449" y1="90" x2="449" y2="350" class="grid"/>
+          <line x1="618" y1="90" x2="618" y2="350" class="grid"/>
+          <line x1="787" y1="90" x2="787" y2="350" class="grid"/>
+          <line x1="956" y1="90" x2="956" y2="350" class="grid"/>
+          <text x="280" y="374" text-anchor="middle" class="tick">0</text>
+          <text x="449" y="374" text-anchor="middle" class="tick">10</text>
+          <text x="618" y="374" text-anchor="middle" class="tick">20</text>
+          <text x="787" y="374" text-anchor="middle" class="tick">30</text>
+          <text x="956" y="374" text-anchor="middle" class="tick">40</text>
+          <text x="618" y="400" text-anchor="middle" class="t-small t-muted">累计公开融资（亿美元）</text>
+        </g>
+
+        <g>
+          <text x="40" y="116" class="t-label">CFS</text>
+          <rect x="280" y="102" width="676" height="26" rx="5" fill="var(--s1)"/>
+          <text x="966" y="120" class="t-label" fill="var(--s1)">40</text>
+          <text x="40" y="176" class="t-label">Helion</text>
+          <rect x="280" y="162" width="338" height="26" rx="5" fill="var(--s1)"/>
+          <text x="628" y="180" class="t-label" fill="var(--s1)">20</text>
+          <text x="40" y="236" class="t-label">TAE</text>
+          <rect x="280" y="222" width="254" height="26" rx="5" fill="var(--s1)"/>
+          <text x="544" y="240" class="t-label" fill="var(--s1)">15</text>
+          <text x="40" y="296" class="t-label">Proxima</text>
+          <rect x="280" y="282" width="81" height="26" rx="5" fill="var(--s1)"/>
+          <text x="371" y="300" class="t-label" fill="var(--s1)">4.8</text>
+          <text x="40" y="356" class="t-label">Type One</text>
+          <rect x="280" y="342" width="34" height="26" rx="5" fill="var(--s1)"/>
+          <text x="324" y="360" class="t-label" fill="var(--s1)">2.0</text>
+        </g>
+
+        <g transform="translate(40 408)">
+          <rect x="0" y="0" width="1040" height="44" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="18" y="26" class="t-small">FIA 全球累计：$15B+</text>
+          <text x="300" y="26" class="t-small t-muted">CFS 约占 27%，头部集中度高</text>
+          <text x="700" y="26" class="t-small t-muted">口径：公开披露的累计股权融资/承诺资本，不含市值与债务</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 16</span> · 主要聚变公司的公开披露累计融资 <span class="fig-sub">数据来自公司公告与行业报告，约数；Proxima 的 4.11 亿欧元按 1.17 折算为美元。不可与 FIA 全行业口径直接相加。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>8.4 机构与网页：去哪里跟踪</h3>
+      <p>下表按“公共项目 / 私营公司 / 行业组织”分组。所有链接在 2026-10-24 可访问；部分站点可能有地区限制或改版，若 404 请用站内搜索，不要据此判断项目不存在。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>机构</th><th>路线/角色</th><th>为什么值得跟踪</th><th>官网</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ITER</strong></td><td>托卡马克，国际公共项目</td><td>2034 SRO、2039 D-T、Q≥10；全球最大的聚变工程集成</td><td><a href="https://www.iter.org/" target="_blank" rel="noopener">iter.org</a></td></tr>
+            <tr><td><strong>ASIPP / EAST</strong></td><td>托卡马克，中科院</td><td>1,066 s 长脉冲；BEST 的建设方</td><td><a href="http://english.ipp.cas.cn/" target="_blank" rel="noopener">english.ipp.cas.cn</a></td></tr>
+            <tr><td><strong>ITER China</strong></td><td>中国 ITER 执行机构</td><td>中国承担 ITER 采购包与聚变工程</td><td><a href="https://www.iterchina.cn/" target="_blank" rel="noopener">iterchina.cn</a></td></tr>
+            <tr><td><strong>KFE / KSTAR</strong></td><td>托卡马克，韩国</td><td>1 亿 °C 长脉冲；ITER 相关研究</td><td><a href="https://www.kfe.re.kr/eng/" target="_blank" rel="noopener">kfe.re.kr</a></td></tr>
+            <tr><td><strong>QST / JT-60SA</strong></td><td>托卡马克，日本</td><td>2026–2027 实验 campaign；支持 ITER/DEMO</td><td><a href="https://www.qst.go.jp/site/qst-english/" target="_blank" rel="noopener">qst.go.jp</a></td></tr>
+            <tr><td><strong>IPP / W7-X</strong></td><td>仿星器，德国</td><td>8 分钟级长脉冲；仿星器优化</td><td><a href="https://www.ipp.mpg.de/" target="_blank" rel="noopener">ipp.mpg.de</a></td></tr>
+            <tr><td><strong>UKFE / STEP</strong></td><td>球形托卡马克，英国</td><td>2040 年原型电站；West Burton 场址</td><td><a href="https://www.gov.uk/government/organisations/uk-fusion-energy" target="_blank" rel="noopener">gov.uk / UKFE</a></td></tr>
+            <tr><td><strong>CFS</strong></td><td>托卡马克，美国</td><td>SPARC Q&gt;1（2027）；ARC 400 MW；累计 $4B</td><td><a href="https://cfs.energy/" target="_blank" rel="noopener">cfs.energy</a></td></tr>
+            <tr><td><strong>Helion</strong></td><td>FRC，美国</td><td>Polaris D-T 1.5 亿 °C；Orion 2028；D-He³</td><td><a href="https://www.helionenergy.com/" target="_blank" rel="noopener">helionenergy.com</a></td></tr>
+            <tr><td><strong>TAE</strong></td><td>FRC，美国</td><td>Norm；p-B¹¹ 长期目标；10 万次实验</td><td><a href="https://tae.com/" target="_blank" rel="noopener">tae.com</a></td></tr>
+            <tr><td><strong>General Fusion</strong></td><td>MTF，加拿大</td><td>LM26 1 keV；2028 Lawson；2035 示范</td><td><a href="https://generalfusion.com/" target="_blank" rel="noopener">generalfusion.com</a></td></tr>
+            <tr><td><strong>Tokamak Energy</strong></td><td>球形托卡马克，英国</td><td>ST40 1 亿 °C；Demo4 HTS 磁体；STEP 伙伴</td><td><a href="https://tokamakenergy.com/" target="_blank" rel="noopener">tokamakenergy.com</a></td></tr>
+            <tr><td><strong>Proxima Fusion</strong></td><td>仿星器，德国</td><td>€411M 融资；Alpha 演示；RWE/巴伐利亚合作</td><td><a href="https://www.proximafusion.com/" target="_blank" rel="noopener">proximafusion.com</a></td></tr>
+            <tr><td><strong>Type One Energy</strong></td><td>仿星器，美国</td><td>$200M B 轮；TVA Bull Run 电网级项目</td><td><a href="https://typeoneenergy.com/" target="_blank" rel="noopener">typeoneenergy.com</a></td></tr>
+            <tr><td><strong>Zap Energy</strong></td><td>Z-pinch，美国</td><td>剪切流稳定；DOE 里程碑；Century 平台</td><td><a href="https://www.zapenergy.com/" target="_blank" rel="noopener">zapenergy.com</a></td></tr>
+            <tr><td><strong>First Light Fusion</strong></td><td>弹丸/冲击，英国</td><td>FLARE；2026 M3 压缩演示；防务/空间应用</td><td><a href="https://firstlightfusion.com/" target="_blank" rel="noopener">firstlightfusion.com</a></td></tr>
+            <tr><td><strong>Longview Fusion</strong></td><td>激光 ICF，美国</td><td>NIF 团队背景；商业电站设计</td><td><a href="https://www.longviewfusion.com/" target="_blank" rel="noopener">longviewfusion.com</a></td></tr>
+            <tr><td><strong>Focused Energy</strong></td><td>激光 ICF，德国/美国</td><td>NIF 点火科学家；靶工厂；SourceLight</td><td><a href="https://www.focused-energy.co/" target="_blank" rel="noopener">focused-energy.co</a></td></tr>
+            <tr><td><strong>Marvel Fusion</strong></td><td>激光 ICF，德国/美国</td><td>Caelora 激光；p-B¹¹ 远期；西门子能源 LOI</td><td><a href="https://www.marvelfusion.com/" target="_blank" rel="noopener">marvelfusion.com</a></td></tr>
+            <tr><td><strong>HB11 Energy</strong></td><td>激光 p-B¹¹，澳大利亚</td><td>质子束点火；1 GW 模块概念</td><td><a href="https://hb11.energy/" target="_blank" rel="noopener">hb11.energy</a></td></tr>
+            <tr><td><strong>Pacific Fusion</strong></td><td>脉冲功率，美国</td><td>模块化 pulser；新墨西哥州破土</td><td><a href="https://www.pacificfusion.com/" target="_blank" rel="noopener">pacificfusion.com</a></td></tr>
+            <tr><td><strong>Realta Fusion</strong></td><td>磁镜，美国</td><td>磁镜 + HTS；与 CFS 合作</td><td><a href="https://www.realtafusion.com/" target="_blank" rel="noopener">realtafusion.com</a></td></tr>
+            <tr><td><strong>FIA</strong></td><td>行业组织</td><td>全球聚变产业报告、投资统计、政策倡导</td><td><a href="https://www.fusionindustryassociation.org/" target="_blank" rel="noopener">fusionindustryassociation.org</a></td></tr>
+            <tr><td><strong>US DOE FES</strong></td><td>美国政府</td><td>FIRE、Milestone、聚变战略</td><td><a href="https://www.energy.gov/science/fes/fusion-energy-sciences" target="_blank" rel="noopener">energy.gov / FES</a></td></tr>
+            <tr><td><strong>NRC</strong></td><td>美国监管</td><td>2026 年聚变装置监管框架提案</td><td><a href="https://www.federalregister.gov/documents/2026/02/26/2026-03865/regulatory-framework-for-fusion-machines" target="_blank" rel="noopener">Federal Register</a></td></tr>
+            <tr><td><strong>IAEA</strong></td><td>国际组织</td><td>聚变安全、核材料、国际合作</td><td><a href="https://www.iaea.org/topics/fusion" target="_blank" rel="noopener">iaea.org</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">链接仅作信息入口，不构成对任何公司技术或财务的背书。部分公司新闻页需要科学上网；若打不开，可先访问其官网首页或行业组织页面。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 工程瓶颈 ================= -->
+<section class="section alt" id="engineering">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">09 / ENGINEERING</div>
+      <div>
+        <h2>工程瓶颈：真正决定“能不能发电”的六件事</h2>
+        <p class="section-lede">等离子体物理决定“能不能烧”，工程决定“能不能一直烧、烧得便宜、烧得安全”。下面六件事，任何一件没有解决，聚变电站都只能停在图纸上。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>9.1 氚增殖：自己造燃料，而且要及时</h3>
+      <p>D-T 聚变堆没有天然氚供应，必须靠锂包层增殖。TBR 略大于 1 只是“物理上自持”，工程上还要考虑：氚在包层/提取系统/燃料净化系统中的滞留，氚的衰变（每年约 5.5%），以及启动库存。一个 1 GW 聚变电站的氚库存可能在公斤级，任何泄漏、滞留或提取延迟都会影响自持。</p>
+      <p>包层方案包括固态锂陶瓷（Li₄SiO₄、Li₂TiO₃）+ 铍中子倍增剂、液态铅锂（PbLi）、熔盐等。ITER 的 Test Blanket Module 会在 D-T 阶段测试几种概念，但 ITER 本身不靠增殖氚自持；DEMO 才是真正的“氚自持”验证平台<span class="badge a">A</span>。</p>
+
+      <h3>9.2 材料：14 MeV 中子会把金属“打碎”</h3>
+      <p>14.1 MeV 中子进入第一壁后，会把原子从晶格中撞出，形成离位损伤（dpa），同时产生氦和氢。聚变堆结构材料要承受 50–100 dpa 量级的损伤，远高于现有裂变堆的典型水平；中子还会活化材料，产生需要处置的放射性废物。</p>
+      <p>候选材料包括低活化铁素体/马氏体钢（RAFM，如 EUROFER）、氧化物弥散强化钢（ODS）、钨合金、SiC/SiC 复合材料。钨的熔点高、溅射低，是偏滤器面向等离子体材料的主流选择；但钨脆、加工难、中子活化后仍有放射性。材料数据的获取需要强流中子源，如 IFMIF-DONES，这类设施本身建设周期长、成本高。</p>
+
+      <h3>9.3 排热：偏滤器要承受“太阳表面级”的热流</h3>
+      <p>托卡马克的偏滤器要把等离子体边缘的热量和粒子排出去。ITER 的稳态热流设计值约 10–20 MW/m²，局部峰值更高；ELM（边缘局域模）爆发时，瞬态热流可以高出几个量级。钨铜 monoblock 是目前的主方案，但热疲劳、中子损伤、溅射侵蚀会限制寿命。</p>
+      <p>替代方案包括液态金属偏滤器（锂、锡、镓）、雪花偏滤器、X 点辐射偏滤器、以及更激进的“无偏滤器”位形。这些方案在实验上都有进展，但离“电站级长寿命”还有距离。</p>
+
+      <h3>9.4 磁体：高温超导让“紧凑化”成为可能</h3>
+      <p>托卡马克的磁场强度决定了等离子体性能与装置尺寸。传统低温超导（NbTi、Nb₃Sn）需要 4 K 液氦，磁体体积大；高温超导（HTS，REBCO 带材）可以在 20 K 左右运行，场强更高（20 T 级），使紧凑型高场托卡马克成为可能。CFS 的 SPARC 就是这一路线的代表。</p>
+      <p>HTS 的工程挑战包括：带材成本、磁体绕制、接头电阻、失超保护（quench protection）、辐照下的性能退化。SPARC 的磁体测试如果成功，会显著降低紧凑托卡马克的风险；如果失败，整个高场路线的时间表都要重估。</p>
+
+      <h3>9.5 破裂与稳态：托卡马克的“两个心结”</h3>
+      <p>托卡马克的等离子体电流储存巨大磁能，一旦破裂，能量会在毫秒级释放，产生电磁力、热负荷和逃逸电子。ITER 设计了破裂 mitigation 系统（SPI、破碎弹丸、磁扰动线圈），但“预测—避免—缓解”仍是运行中的核心挑战。</p>
+      <p>稳态运行则需要非感应电流驱动（中性束、射频波）或自举电流。电流驱动效率、电流分布控制、与偏滤器运行的兼容性，都是 ITER 和 DEMO 必须回答的问题。仿星器没有这个问题，但代价是线圈复杂性。</p>
+
+      <h3>9.6 成本：聚变的“最后一公里”是经济性</h3>
+      <p>聚变电站的资本成本高、建设周期长、退役成本不确定。即使等离子体物理全部达标，如果首堆造价 100 亿美元、容量因子 50%、每度电成本 150 美元/MWh，它在市场上仍然没有竞争力。反过来，如果 HTS 磁体、模块化制造、 learning curve 能把成本压到 50–80 美元/MWh，聚变才有规模化空间。</p>
+      <p>成本模型高度依赖：磁场强度、装置尺寸、包层/偏滤器寿命、氚自持、维护方案、许可周期。当前公开的聚变 LCOE 估算差异极大，且大多基于早期概念设计，属于 C 级证据。不要相信“聚变一定便宜”或“聚变永远昂贵”的绝对判断。</p>
+
+      <h3>9.7 监管：从“按裂变管”到“按副产物材料管”</h3>
+      <p>美国 NRC 在 2023 年决定用“副产物材料”框架监管聚变装置，而不是按裂变反应堆的许可框架。2026 年 2 月 26 日，NRC 发布《Regulatory Framework for Fusion Machines》拟议规则，拟修订 10 CFR Part 30，采用技术中立的要求，并发布 NUREG-1556 Vol. 22 草案指南；评论期到 2026 年 5 月 27 日<span class="badge a">A</span>。这意味着美国聚变监管正在从“政策方向”进入“可操作规则”阶段，但最终规则仍未落地。</p>
+      <p>英国通过环境许可、核场地许可和 STEP 计划推进监管；IAEA 则在聚变安全、辐射防护、核材料衡算方面提供国际框架。监管的不确定性会直接影响首堆的选址、设计、保险和融资成本。</p>
+
+      <h3>9.8 并网与厂址：聚变电站不是“放个反应堆”</h3>
+      <p>聚变电站需要：大量冷却水、稳定的电网接入、氚处理许可、放射性废物暂存、远程维护设施、应急计划。它的厂址条件比风光更接近裂变电站，但又有氚和活化材料的特殊要求。并网协议、容量市场、基荷定位、与可再生能源的互补，都是商业化必须回答的问题。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>瓶颈</th><th>严重度</th><th>当前状态</th><th>最近的验证节点</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>氚增殖</strong></td><td>高</td><td>ITER TBM 测试概念；DEMO 才能验证自持</td><td>ITER D-T 阶段（2039 起）</td><td>最可能拖慢商业化的环节之一</td></tr>
+            <tr><td><strong>中子材料</strong></td><td>高</td><td>RAFM/ODS/W/SiC 在研；缺乏电站级数据</td><td>IFMIF-DONES、DEMO 包层</td><td>需要长期、强流中子源</td></tr>
+            <tr><td><strong>偏滤器排热</strong></td><td>高</td><td>钨铜 monoblock 为主；液态金属在研</td><td>ITER 偏滤器、DEMO 设计</td><td>寿命与可靠性是硬约束</td></tr>
+            <tr><td><strong>HTS 磁体</strong></td><td>中高</td><td>SPARC 等在做 20 T 级演示</td><td>SPARC 磁体测试/首次等离子体</td><td>成功则紧凑化路线成立</td></tr>
+            <tr><td><strong>破裂/稳态</strong></td><td>中高</td><td>ITER 有 mitigation 系统；稳态电流驱动待验证</td><td>ITER 研究运行（2034 起）</td><td>托卡马克的“心结”</td></tr>
+            <tr><td><strong>成本</strong></td><td>高</td><td>首堆造价与 LCOE 不确定性极大</td><td>ARC/STEP 等首堆设计</td><td>决定聚变能否规模化</td></tr>
+            <tr><td><strong>监管</strong></td><td>中</td><td>美国 2026 拟议规则；英国/IAEA 框架推进</td><td>NRC 最终规则</td><td>影响选址、保险、融资</td></tr>
+            <tr><td><strong>并网/厂址</strong></td><td>中</td><td>尚无聚变电站并网案例</td><td>ARC/STEP 并网申请</td><td>工程问题，非物理问题</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">“严重度”为分析师评估（C 级），依据是“是否可能单独阻止商业化”，不是研发投入规模。</p>
+    </div>
+  </div>
+</section>

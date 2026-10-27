@@ -1,0 +1,291 @@
+<!-- ================= 04 惯性约束 ================= -->
+<section class="section" id="inertial">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">04 / INERTIAL</div>
+      <div>
+        <h2>惯性约束：用“内爆”复制恒星核心</h2>
+        <p class="section-lede">惯性约束不走“长时间约束”的路，而是把燃料在纳秒内压缩到极端密度，让它在飞散之前完成燃烧。NIF 已经证明这条路在物理上可行；但“每次打靶”与“每天发电”之间，隔着驱动器效率、重复频率、靶丸成本和腔室寿命四道关。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>4.1 原理：烧蚀、内爆、热斑、燃烧波</h3>
+      <p>惯性约束聚变（Inertial Confinement Fusion, ICF）的核心是一个球形靶丸：外层是烧蚀层（ablator），里面是冷冻的 D-T 冰层，中心是 D-T 气体。驱动器（激光、X 射线、脉冲电流或弹丸）在极短时间内把能量沉积在烧蚀层表面，表面物质迅速汽化、向外喷射，反冲力把剩余靶丸向内压缩——这就是“火箭效应”。</p>
+      <p>内爆把燃料压缩到原来的几十倍半径、上千倍密度，中心形成高温“热斑”。热斑先发生聚变，α 粒子被周围高密度冷燃料阻止，把能量沉积下来，触发“燃烧波”向外传播。这个过程叫“点火”（ignition）；如果燃烧波能自持，靶增益可以远大于 1。</p>
+      <p>ICF 有两条主要驱动路线：</p>
+      <ul>
+        <li><strong>间接驱动</strong>：激光先打进金/铀做的黑体腔（hohlraum），转换成 X 射线，X 射线均匀烧蚀靶丸。优点是辐照均匀、对称性好；缺点是激光→X 射线的转换损失，以及黑体腔的工程复杂性。</li>
+        <li><strong>直接驱动</strong>：激光直接照射靶丸。能量效率更高，但光束均匀性、瑞利-泰勒不稳定性、靶丸支撑等挑战更大。</li>
+      </ul>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 620" role="img" aria-label="激光惯性约束的间接驱动与直接驱动示意图">
+        <defs>
+          <marker id="icfArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--s2)"/></marker>
+          <marker id="icfArrowBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--s1)"/></marker>
+          <radialGradient id="icfHot"><stop offset="0" stop-color="#fff1c9"/><stop offset=".55" stop-color="#eb6834"/><stop offset="1" stop-color="#b4441c"/></radialGradient>
+        </defs>
+        <text x="40" y="36" class="t-title">间接驱动 vs 直接驱动：两条激光聚变路线</text>
+        <text x="40" y="58" class="t-small t-muted">左：激光 → 黑体腔 → X 射线 → 内爆；右：激光直接烧蚀靶丸</text>
+
+        <g>
+          <text x="60" y="100" class="t-label" fill="var(--s2)">间接驱动（NIF 路线）</text>
+          <rect x="90" y="150" width="30" height="230" rx="8" fill="#b08a3e" opacity=".65"/>
+          <rect x="500" y="150" width="30" height="230" rx="8" fill="#b08a3e" opacity=".65"/>
+          <rect x="110" y="180" width="400" height="170" rx="38" fill="#d9b46a" opacity=".16" stroke="#b08a3e" stroke-width="2"/>
+          <g fill="var(--s2)" opacity=".28">
+            <polygon points="20,196 130,214 130,226 20,218"/>
+            <polygon points="20,246 130,250 130,262 20,266"/>
+            <polygon points="20,296 130,286 130,298 20,310"/>
+            <polygon points="20,346 130,322 130,334 20,356"/>
+            <polygon points="600,196 490,214 490,226 600,218"/>
+            <polygon points="600,246 490,250 490,262 600,266"/>
+            <polygon points="600,296 490,286 490,298 600,310"/>
+            <polygon points="600,346 490,322 490,334 600,356"/>
+          </g>
+          <circle cx="310" cy="265" r="44" fill="var(--s7)" opacity=".25" stroke="var(--s7)" stroke-width="2"/>
+          <circle cx="310" cy="265" r="29" fill="var(--s1)" opacity=".45" stroke="var(--s1)" stroke-width="1.5"/>
+          <circle cx="310" cy="265" r="11" fill="url(#icfHot)"/>
+          <g stroke="var(--s2)" stroke-width="1.2" fill="none" opacity=".8">
+            <path d="M150 200 Q220 190 265 235" marker-end="url(#icfArrow)"/>
+            <path d="M150 330 Q220 340 265 295" marker-end="url(#icfArrow)"/>
+            <path d="M470 200 Q400 190 355 235" marker-end="url(#icfArrow)"/>
+            <path d="M470 330 Q400 340 355 295" marker-end="url(#icfArrow)"/>
+          </g>
+          <text x="310" y="382" text-anchor="middle" class="t-small t-muted">X 射线均匀烧蚀 → 球对称内爆</text>
+          <text x="150" y="430" class="t-small t-muted">激光</text>
+          <text x="390" y="430" class="t-small t-muted">金/铀黑体腔</text>
+          <text x="390" y="452" class="t-small t-muted">烧蚀层 / DT 冰 / 热斑</text>
+        </g>
+
+        <g>
+          <text x="640" y="100" class="t-label" fill="var(--s1)">直接驱动</text>
+          <circle cx="860" cy="250" r="58" fill="var(--s7)" opacity=".22" stroke="var(--s7)" stroke-width="2"/>
+          <circle cx="860" cy="250" r="38" fill="var(--s1)" opacity=".38" stroke="var(--s1)" stroke-width="1.5"/>
+          <circle cx="860" cy="250" r="13" fill="url(#icfHot)"/>
+          <g stroke="var(--s1)" stroke-width="2" marker-end="url(#icfArrowBlue)">
+            <line x1="700" y1="160" x2="820" y2="218"/>
+            <line x1="700" y1="250" x2="800" y2="250"/>
+            <line x1="700" y1="340" x2="820" y2="282"/>
+            <line x1="1020" y1="160" x2="900" y2="218"/>
+            <line x1="1020" y1="250" x2="920" y2="250"/>
+            <line x1="1020" y1="340" x2="900" y2="282"/>
+            <line x1="790" y1="120" x2="838" y2="198"/>
+            <line x1="930" y1="120" x2="882" y2="198"/>
+          </g>
+          <text x="860" y="350" text-anchor="middle" class="t-small t-muted">激光直接烧蚀；效率更高，对称性更难</text>
+        </g>
+
+        <g>
+          <text x="640" y="410" class="t-label t-muted">内爆四阶段</text>
+          <g>
+            <circle cx="700" cy="490" r="34" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="700" cy="490" r="22" fill="var(--s1)" opacity=".3"/>
+            <text x="700" y="548" text-anchor="middle" class="t-small t-muted">烧蚀</text>
+            <circle cx="820" cy="490" r="27" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="820" cy="490" r="15" fill="var(--s1)" opacity=".3"/>
+            <text x="820" y="548" text-anchor="middle" class="t-small t-muted">内爆</text>
+            <circle cx="940" cy="490" r="19" fill="var(--s7)" opacity=".18" stroke="var(--s7)" stroke-width="1.5"/>
+            <circle cx="940" cy="490" r="9" fill="var(--s2)" opacity=".55"/>
+            <text x="940" y="548" text-anchor="middle" class="t-small t-muted">滞止</text>
+            <circle cx="1060" cy="490" r="13" fill="var(--s2)" opacity=".3" stroke="var(--s2)" stroke-width="1.5"/>
+            <circle cx="1060" cy="490" r="5" fill="url(#icfHot)"/>
+            <text x="1060" y="548" text-anchor="middle" class="t-small t-muted">燃烧</text>
+            <g stroke="var(--line-strong)" stroke-width="1.5" marker-end="url(#icfArrow)">
+              <line x1="742" y1="490" x2="784" y2="490"/>
+              <line x1="855" y1="490" x2="912" y2="490"/>
+              <line x1="967" y1="490" x2="1038" y2="490"/>
+            </g>
+          </g>
+          <text x="640" y="590" class="t-small t-muted">从毫米级靶丸到微米级热斑：收敛比可达 30–40，内爆速度约 400 km/s。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 11</span> · 激光惯性约束的间接驱动与直接驱动 <span class="fig-sub">NIF 走间接驱动：激光先转成 X 射线，再烧蚀靶丸。直接驱动效率更高，但对光束均匀性要求更苛刻。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>4.2 NIF 的成绩：靶增益 4.13，但不是“净电”</h3>
+      <p>NIF 有 192 束激光，紫外波段总能量约 1.8 MJ，峰值功率约 500 TW。2022 年 12 月 5 日，它用 2.05 MJ 激光打出 3.15 MJ 聚变能，首次实现“聚变能大于激光能”<span class="badge a">A</span>。2025 年 4 月 7 日，NIF 用 2.08 MJ 激光打出 8.6 MJ，靶增益 4.13；到 2026 年 4 月，NIF 已累计实现 10 次点火<span class="badge a">A</span>。</p>
+      <p>这次提升的关键之一，是靶丸制造工艺：LLNL 用“连续梯度钨掺杂”的金刚石胶囊，改善了烧蚀层的密度均匀性，抑制了瑞利-泰勒不稳定性；2025 年 2 月 23 日首次全尺寸测试产出 5 MJ，4 月的实验是第二次使用新靶<span class="badge a">A</span>。</p>
+      <p>但 NIF 的账本必须算全：激光器闪光灯、电容组、冷却、真空、诊断，全设施每次打靶从电网取走的能量远大于 8.6 MJ。公开资料估算，NIF 每次打靶的全设施能耗在数百 MJ 量级，工程增益约 0.03——这是分析师口径（C 级），但量级足以说明问题<span class="badge c">C</span>。NIF 是一台物理实验装置，不是发电站原型。</p>
+
+      <div class="callout warn">
+        <span class="callout-label">常见误读</span>
+        <p>“NIF 实现了净能量增益”这句话，只有在“聚变能 / 激光能”这个口径下才成立。若把激光器效率、电容充电、冷却和厂用电算进去，NIF 仍然是净耗能。<strong>靶增益 4.13 ≠ 墙插增益 4.13。</strong></p>
+      </div>
+
+      <h3>4.3 私营激光聚变：从“打靶”到“电站”的四道关</h3>
+      <p>NIF 之后，一批私营公司试图把 ICF 推向商业。它们的方向不同，但都要回答四个工程问题：</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">关卡 01</div>
+          <h4>驱动器效率</h4>
+          <p>NIF 的闪光灯泵浦钕玻璃激光器效率约 1%，不适合电站。商业方案需要用二极管泵浦固体激光器（DPSSL）、KrF 准分子激光或脉冲功率，把“墙插→靶面”的效率提高到 10% 以上。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 02</div>
+          <h4>重复频率</h4>
+          <p>NIF 每天打几次靶；电站需要每秒 5–10 次。这意味着激光器、光学元件、靶定位、腔室排空、氚提取都要在 0.1 秒量级完成循环，热管理是巨大挑战。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 03</div>
+          <h4>靶丸成本</h4>
+          <p>NIF 靶丸是精密手工/半手工制造，单靶成本极高。电站要求单靶成本降到几美元甚至更低，且批次一致性极高。靶丸工厂可能成为聚变电站的“耗材瓶颈”。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">关卡 04</div>
+          <h4>腔室寿命</h4>
+          <p>每次内爆释放 14 MeV 中子、X 射线和碎片，第一壁要承受极端热脉冲与中子损伤。液态锂/铅锂第一壁、磁化保护、气体保护都是候选方案，但都未在电站条件下验证。</p>
+        </div>
+      </div>
+
+      <h4>代表性公司</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>路线</th><th>公开进展</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Longview Fusion</strong></td><td>激光 ICF，商业电站</td><td>NIF 点火团队背景；引用 NIF 8.6 MJ / 4.13 靶增益；规划车载/厂内氚生产</td><td>技术继承性强，但电站级重复频率未验证<span class="badge b">B</span></td></tr>
+            <tr><td><strong>Focused Energy</strong></td><td>激光聚变 + 靶工厂</td><td>NIF 点火科学家创立；SourceLight 中子源分拆；德国/美国布局</td><td>靶丸制造与激光系统并重<span class="badge b">B</span></td></tr>
+            <tr><td><strong>Marvel Fusion</strong></td><td>激光驱动，p-B¹¹ 远期</td><td>Caelora 激光系统；与西门子能源、科罗拉多州签署 LOI</td><td>激光与靶设计是核心，p-B¹¹ 仍早期<span class="badge b">B</span></td></tr>
+            <tr><td><strong>HB11 Energy</strong></td><td>激光 + 质子束，p-B¹¹</td><td>主张 1 GW 级模块、每秒 1 个豌豆大小靶丸、常规蒸汽循环</td><td>物理挑战极大，TRL 1–2<span class="badge c">C</span></td></tr>
+            <tr><td><strong>First Light Fusion</strong></td><td>弹丸/冲击压缩（非激光）</td><td>2026-09 在 M3 脉冲功率装置上演示关键燃料压缩原理；FLARE 两级靶</td><td>工程巧思，但离电站远；转向 defense/space 应用<span class="badge b">B</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4.4 脉冲功率与弹丸：ICF 的“非激光”分支</h3>
+      <p>激光不是唯一的驱动器。脉冲功率装置（如 Sandia 的 Z 机器）用巨大电流产生磁场，驱动金属套筒内爆，把靶丸压缩；弹丸聚变（First Light）用高超音速弹丸撞击靶丸，产生冲击波压缩。它们的共同优点是驱动器可能更便宜、能量转换效率更高；共同难点是重复频率、靶定位和腔室工程。</p>
+      <p>Pacific Fusion 是脉冲功率路线的代表，计划用模块化“pulser”驱动电磁内爆，已在新墨西哥州破土动工<span class="badge b">B</span>。它的目标不是 NIF 式的单次实验，而是可重复、可制造的电站模块。这个方向值得关注，但公开物理数据远少于激光 ICF。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 无中子 ================= -->
+<section class="section alt" id="aneutronic">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">05 / ANEUTRONIC</div>
+      <div>
+        <h2>无中子聚变：最干净的燃料，最难的物理</h2>
+        <p class="section-lede">“无中子”是聚变领域最诱人的宣传语：没有 14 MeV 中子，就没有材料活化、没有氚增殖、没有厚重的屏蔽。但物理没有免费午餐——p-B¹¹ 和 D-He³ 的点火条件比 D-T 苛刻得多，而且“无中子”往往只是“中子少”，不是“零中子”。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>5.1 p-B¹¹：三个 α 粒子，没有主反应中子</h3>
+      <p>质子与硼-11 的聚变反应为：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">p + ¹¹B → 3 ⁴He + 8.7 MeV　（主反应，无中子）</p>
+      <p>产物是三个 α 粒子，带电，可以被磁场直接约束，理论上甚至可以直接转换成电能。但这条路的物理门槛极高：</p>
+      <ul>
+        <li><strong>温度高</strong>：p-B¹¹ 的 ⟨σv⟩ 峰值在几百 keV 量级，远高于 D-T 的 64 keV；磁约束装置需要 300 keV 以上的离子温度，对磁体、加热和约束都是巨大挑战。</li>
+        <li><strong>反应率低</strong>：峰值截面约 0.6 barn，比 D-T 低近一个数量级；在可用温度区间，⟨σv⟩ 低几个数量级。</li>
+        <li><strong>轫致辐射</strong>：高温电子在离子电场中加速会辐射 X 射线，p-B¹¹ 的轫致辐射损失随温度上升很快，可能超过聚变功率。</li>
+        <li><strong>侧反应</strong>：p + ¹¹B 还会产生 ¹¹C + n 等中子侧反应；即使主反应无中子，工程上仍需要中子屏蔽。</li>
+      </ul>
+      <p>TAE 是 p-B¹¹ 路线最坚定的公司。它用 FRC + 中性束注入，声称已进行超过 10 万次实验，Norm 装置首次仅用中性束就形成 FRC<span class="badge b">B</span>。但 TAE 的时间表（2030 年代初）和“直接能量回收”效率，仍属于 C 级目标。HB11 和 Marvel 也在探索激光驱动 p-B¹¹，但整体处于原理验证阶段。</p>
+
+      <h3>5.2 D-He³：中子少，但氦-3 从哪里来？</h3>
+      <p>D-He³ 反应为：</p>
+      <p style="font-family:var(--mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow-x:auto">D + ³He → ⁴He + p + 18.3 MeV　（主反应，带电产物）</p>
+      <p>主反应不产生中子，但 D-D 侧反应会产生中子：两个氘核碰撞，一半分支生成氚 + 质子，另一半生成氦-3 + 中子。因此，只要燃料里有氘，就一定有中子。D-He³ 的“低中子”是相对的，不是绝对的。</p>
+      <p>更现实的问题是氦-3 的供应：地球上天然氦-3 极少，主要来自氚衰变和核武器生产；月球表面有氦-3，但开采与运输成本极高。Helion 的商业路线是 D-He³，它需要建立氦-3 供应链（包括从氚衰变中回收），这本身就是一个巨大的工程与商业挑战<span class="badge c">C</span>。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 410" role="img" aria-label="不同聚变燃料的中子能量份额对比">
+        <text x="40" y="36" class="t-title">“无中子”是程度问题，不是二元问题</text>
+        <text x="40" y="58" class="t-small t-muted">中子携带的能量占聚变释放能的比例（示意）；D-He³ 与 p-B¹¹ 的侧反应仍会产生中子</text>
+        <g>
+          <line x1="220" y1="330" x2="1040" y2="330" class="axis"/>
+          <line x1="220" y1="90" x2="220" y2="330" class="grid"/>
+          <line x1="384" y1="90" x2="384" y2="330" class="grid"/>
+          <line x1="548" y1="90" x2="548" y2="330" class="grid"/>
+          <line x1="712" y1="90" x2="712" y2="330" class="grid"/>
+          <line x1="876" y1="90" x2="876" y2="330" class="grid"/>
+          <line x1="1040" y1="90" x2="1040" y2="330" class="grid"/>
+          <text x="220" y="354" text-anchor="middle" class="tick">0</text>
+          <text x="384" y="354" text-anchor="middle" class="tick">20</text>
+          <text x="548" y="354" text-anchor="middle" class="tick">40</text>
+          <text x="712" y="354" text-anchor="middle" class="tick">60</text>
+          <text x="876" y="354" text-anchor="middle" class="tick">80</text>
+          <text x="1040" y="354" text-anchor="middle" class="tick">100</text>
+          <text x="630" y="386" text-anchor="middle" class="t-small t-muted">中子能量份额（%）</text>
+        </g>
+
+        <g>
+          <text x="40" y="122" class="t-label">D-T</text>
+          <rect x="220" y="106" width="656" height="28" rx="5" fill="var(--s2)"/>
+          <text x="888" y="125" class="t-label" fill="var(--s2)">约 80%</text>
+          <text x="40" y="190" class="t-label">D-D</text>
+          <rect x="220" y="174" width="287" height="28" rx="5" fill="var(--s4)"/>
+          <text x="519" y="193" class="t-label" fill="var(--s4)">约 35%</text>
+          <text x="40" y="258" class="t-label">D-He³</text>
+          <rect x="220" y="242" width="41" height="28" rx="5" fill="var(--s3)"/>
+          <text x="273" y="261" class="t-label" fill="var(--s3)">约 5%*</text>
+          <text x="40" y="326" class="t-label">p-B¹¹</text>
+          <rect x="220" y="310" width="9" height="28" rx="4" fill="var(--s5)"/>
+          <text x="241" y="329" class="t-label" fill="var(--s5)">&lt;1%*</text>
+        </g>
+        <text x="40" y="394" class="t-small t-muted">* D-He³ 与 p-B¹¹ 的数值取决于燃料纯度与运行温度；侧反应（D-D、p-¹¹B→¹¹C+n）会产生中子。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 12</span> · 不同燃料的中子能量份额 <span class="fig-sub">D-T 约 80% 能量由中子带走；D-He³ 和 p-B¹¹ 主反应中子少，但侧反应与杂质仍会产生中子。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>5.3 优点与代价</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">优点</div>
+          <h4>为什么值得追求</h4>
+          <p>• 中子活化大幅减少，废料处理与屏蔽简化。<br>
+          • 不需要氚增殖包层，燃料循环更简单。<br>
+          • 带电产物可直接能量转换，理论效率更高。<br>
+          • 对材料的中子损伤显著降低，第一壁寿命可能更长。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">代价</div>
+          <h4>为什么现在还不能押注</h4>
+          <p>• 点火温度高 5–10 倍，磁约束与加热技术难度陡增。<br>
+          • 反应率低几个数量级，Lawson 三重积要求更高。<br>
+          • 轫致辐射损失可能吞掉聚变增益。<br>
+          • 侧反应仍产生中子；氦-3 供应受限；TRL 仅 1–2。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <span class="callout-label">判断</span>
+        <p>p-B¹¹ 是“如果聚变成功了，下一步该做什么”的问题，不是“2030 年靠什么发电”的问题。它值得长期研发投入，但不应该成为近期商业化叙事的主角。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 其他概念 ================= -->
+<section class="section" id="others">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">06 / OTHERS</div>
+      <div>
+        <h2>其他概念：为什么它们不是“被忽视的捷径”</h2>
+        <p class="section-lede">聚变领域从不缺少“颠覆性”想法。大多数想法并非完全错误，而是被一个致命的物理或工程约束卡住：μ 子寿命太短、静电聚变密度太低、对撞束截面太小、晶格聚变无法自持。理解这些约束，能帮你快速识别下一个“室温聚变”新闻。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>概念</th><th>核心想法</th><th>致命约束</th><th>现状/用途</th></tr></thead>
+          <tbody>
+            <tr><td><strong>μ 子催化聚变</strong></td><td>μ 子替代电子，使 D-T 分子轨道缩小，原子核靠得更近，无需高温</td><td>μ 子寿命仅 2.2 μs；每个 μ 子最多催化约 150 次反应；产生 μ 子本身耗能远高于产出</td><td>物理上已演示，净能量为负；无商业前景<span class="badge b">B</span></td></tr>
+            <tr><td><strong>静电聚变（Fusor）</strong></td><td>用高压电场加速离子，让它们在对撞中心聚变</td><td>离子密度低、碰撞概率小；栅极损失大；净能量为负</td><td>成熟的中子源，广泛用于教学/探测；不是能源方案<span class="badge b">B</span></td></tr>
+            <tr><td><strong>对撞束 / Migma</strong></td><td>让加速器中的离子束对撞，提高质心能量</td><td>聚变截面极小；束流密度低；能量展宽大；净能量为负</td><td>早期概念，已被主流放弃<span class="badge c">C</span></td></tr>
+            <tr><td><strong>晶格/凝聚态聚变</strong></td><td>利用晶格中的电子屏蔽或集体效应，降低库仑势垒</td><td>屏蔽效应不足以把反应率提高十几个数量级；缺乏可重复的净增益证据</td><td>边缘研究；需严格区分“中子产额”与“净能量”<span class="badge d">D</span></td></tr>
+            <tr><td><strong>“冷聚变”</strong></td><td>在室温下通过电化学方式实现核聚变</td><td>1989 年以来的主要实验结果无法复现；缺乏可信的中子/能量证据</td><td>不被主流科学界接受<span class="badge d">D</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这些概念里，μ 子催化和 Fusor 都有真实的物理现象，只是“净能量”不成立；对撞束和晶格聚变则受限于截面与屏蔽的基本量级。把它们与 D-T 托卡马克放在同一张“路线图”上比较，是不公平的：前者是物理演示，后者是能源工程。</p>
+    </div>
+  </div>
+</section>

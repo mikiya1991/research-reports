@@ -1,0 +1,555 @@
+<!-- ================= 02 路径全景 ================= -->
+<section class="section" id="landscape">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02 / LANDSCAPE</div>
+      <div>
+        <h2>路线全景：约束方式与燃料，是两个维度</h2>
+        <p class="section-lede">媒体常把“托卡马克、仿星器、激光聚变、p-B¹¹”放在同一张清单里比较，仿佛它们互为替代。其实它们回答的是两个不同问题：<strong>用什么把等离子体按住</strong>，以及<strong>烧什么燃料</strong>。把这两个维度拆开，路线图会清楚很多。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>维度一：约束方式。</strong>磁约束用磁场把低密度等离子体约束较长时间（秒到千秒）；惯性约束用驱动器在极短时间内（纳秒）压缩高密度靶丸，靠燃料自身的惯性完成燃烧；磁惯性约束介于两者之间，先用磁场预热/磁化，再用机械或电磁方式压缩。</p>
+      <p><strong>维度二：燃料。</strong>D-T 最容易点火，但中子多、需要氚增殖；D-D 不需要氚，但反应率低、中子仍多；D-He³ 和 p-B¹¹ 被称为“无中子”或“低中子”，但点火温度高、反应率低、还伴随轫致辐射损失。约束方式与燃料可以交叉组合：托卡马克可以烧 D-T，也可以尝试 D-He³；FRC 可以烧 D-T，也可以瞄准 D-He³ 或 p-B¹¹。</p>
+      <div class="callout">
+        <span class="callout-label">关键框架</span>
+        <p>不要问“哪条路线最好”，要问“<strong>在什么时间尺度、用什么燃料、承担多大工程风险</strong>”。D-T 托卡马克是最近的路，p-B¹¹ 仿星器是最远的路，中间是一组风险—回报不同的期权。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 580" role="img" aria-label="聚变技术路线分类树">
+        <defs>
+          <marker id="treeArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line-strong)"/></marker>
+        </defs>
+        <text x="40" y="34" class="t-title">聚变路线分类：先看“怎么约束”，再看“烧什么”</text>
+        <text x="40" y="56" class="t-small t-muted">同一约束方式可以搭配不同燃料；同一燃料也可以用于不同约束方式</text>
+
+        <rect x="410" y="82" width="300" height="58" rx="14" fill="var(--brand)" opacity=".12" stroke="var(--brand)"/>
+        <text x="560" y="108" text-anchor="middle" class="t-label" fill="var(--brand)">聚变路线</text>
+        <text x="560" y="128" text-anchor="middle" class="t-small t-muted">约束方式 × 燃料循环</text>
+
+        <g stroke="var(--line-strong)" stroke-width="1.2" fill="none">
+          <path d="M560 140 L560 158 L120 158 L120 178"/>
+          <path d="M560 140 L560 158 L320 158 L320 178"/>
+          <path d="M560 140 L560 178"/>
+          <path d="M560 140 L560 158 L720 158 L720 178"/>
+          <path d="M560 140 L560 158 L920 158 L920 178"/>
+        </g>
+
+        <g>
+          <rect x="25" y="180" width="190" height="44" rx="10" fill="var(--s1)" opacity=".13" stroke="var(--s1)"/>
+          <text x="120" y="207" text-anchor="middle" class="t-label" fill="var(--s1)">磁约束</text>
+          <rect x="225" y="180" width="190" height="44" rx="10" fill="var(--s2)" opacity=".13" stroke="var(--s2)"/>
+          <text x="320" y="207" text-anchor="middle" class="t-label" fill="var(--s2)">惯性约束</text>
+          <rect x="425" y="180" width="190" height="44" rx="10" fill="var(--s3)" opacity=".13" stroke="var(--s3)"/>
+          <text x="520" y="207" text-anchor="middle" class="t-label" fill="var(--s3)">磁惯性</text>
+          <rect x="625" y="180" width="190" height="44" rx="10" fill="var(--s5)" opacity=".16" stroke="var(--s5)"/>
+          <text x="720" y="207" text-anchor="middle" class="t-label" fill="var(--s5)">无中子/低中子</text>
+          <rect x="825" y="180" width="190" height="44" rx="10" fill="var(--muted)" opacity=".1" stroke="var(--muted)"/>
+          <text x="920" y="207" text-anchor="middle" class="t-label t-muted">其他概念</text>
+        </g>
+
+        <g>
+          <rect x="25" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="264" text-anchor="middle" class="t-small">托卡马克</text>
+          <text x="120" y="280" text-anchor="middle" class="t-small t-muted">ITER · EAST · SPARC</text>
+          <rect x="25" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="320" text-anchor="middle" class="t-small">仿星器</text>
+          <text x="120" y="336" text-anchor="middle" class="t-small t-muted">W7-X · Proxima · Type One</text>
+          <rect x="25" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="376" text-anchor="middle" class="t-small">球形托卡马克</text>
+          <text x="120" y="392" text-anchor="middle" class="t-small t-muted">ST40 · STEP</text>
+          <rect x="25" y="414" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="432" text-anchor="middle" class="t-small">场反位形 FRC</text>
+          <text x="120" y="448" text-anchor="middle" class="t-small t-muted">Helion · TAE</text>
+          <rect x="25" y="470" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="120" y="488" text-anchor="middle" class="t-small">反场箍缩 / 磁镜</text>
+          <text x="120" y="504" text-anchor="middle" class="t-small t-muted">RFX · Realta</text>
+        </g>
+
+        <g>
+          <rect x="225" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="264" text-anchor="middle" class="t-small">激光间接驱动</text>
+          <text x="320" y="280" text-anchor="middle" class="t-small t-muted">NIF · Longview</text>
+          <rect x="225" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="320" text-anchor="middle" class="t-small">激光直接驱动</text>
+          <text x="320" y="336" text-anchor="middle" class="t-small t-muted">Focused · Marvel</text>
+          <rect x="225" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="376" text-anchor="middle" class="t-small">脉冲功率</text>
+          <text x="320" y="392" text-anchor="middle" class="t-small t-muted">Pacific · Sandia Z</text>
+          <rect x="225" y="414" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="320" y="432" text-anchor="middle" class="t-small">弹丸/冲击压缩</text>
+          <text x="320" y="448" text-anchor="middle" class="t-small t-muted">First Light</text>
+        </g>
+
+        <g>
+          <rect x="425" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="264" text-anchor="middle" class="t-small">磁惯性约束 MTF</text>
+          <text x="520" y="280" text-anchor="middle" class="t-small t-muted">General Fusion</text>
+          <rect x="425" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="320" text-anchor="middle" class="t-small">磁化靶</text>
+          <text x="520" y="336" text-anchor="middle" class="t-small t-muted">MagLIF · 研究阶段</text>
+          <rect x="425" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="520" y="376" text-anchor="middle" class="t-small">等离子体射流</text>
+          <text x="520" y="392" text-anchor="middle" class="t-small t-muted">概念/早期实验</text>
+        </g>
+
+        <g>
+          <rect x="625" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="720" y="264" text-anchor="middle" class="t-small">p-B¹¹</text>
+          <text x="720" y="280" text-anchor="middle" class="t-small t-muted">TAE · HB11 · Marvel</text>
+          <rect x="625" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="720" y="320" text-anchor="middle" class="t-small">D-He³</text>
+          <text x="720" y="336" text-anchor="middle" class="t-small t-muted">Helion · 氦-3 供应受限</text>
+        </g>
+
+        <g>
+          <rect x="825" y="246" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="264" text-anchor="middle" class="t-small">μ 子催化</text>
+          <text x="920" y="280" text-anchor="middle" class="t-small t-muted">μ 子寿命/能耗限制</text>
+          <rect x="825" y="302" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="320" text-anchor="middle" class="t-small">静电聚变</text>
+          <text x="920" y="336" text-anchor="middle" class="t-small t-muted">Fusor · 中子源</text>
+          <rect x="825" y="358" width="190" height="46" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="920" y="376" text-anchor="middle" class="t-small">对撞束 / 晶格</text>
+          <text x="920" y="392" text-anchor="middle" class="t-small t-muted">低截面 · 未证实</text>
+        </g>
+
+        <text x="40" y="552" class="t-small t-muted">注：分类是分析框架，不是严格互斥。例如“激光驱动 + 磁化靶”可同时归入惯性与磁惯性；p-B¹¹ 也可用托卡马克或仿星器约束。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 5</span> · 聚变路线分类树 <span class="fig-sub">先按约束方式分五大类，再在类内看燃料与装置形态。无中子燃料是“燃料维度”，不是独立的约束方式。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>2.1 五条主线的“性格”</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">磁约束 · 成熟度最高</div>
+          <h4>托卡马克：用电流“造”一个螺旋磁场</h4>
+          <p>环向场线圈产生环向磁场，中心螺线管感应等离子体电流，电流再产生极向磁场；两者叠加成螺旋磁力线。它的约束性能最好、数据库最大，但本质上是脉冲装置，稳态运行需要额外的电流驱动。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁约束 · 稳态最优</div>
+          <h4>仿星器：把螺旋磁场“刻”进线圈</h4>
+          <p>不用等离子体电流，靠三维模块化线圈直接产生旋转变换。天然适合稳态，理论上有望避免电流驱动带来的不稳定性；代价是线圈制造极复杂、优化计算量巨大、工程迭代慢。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁约束 · 高 β 期权</div>
+          <h4>FRC：让等离子体自己“捏”出磁场</h4>
+          <p>场反位形（FRC）没有环向场线圈，磁场由等离子体电流自组织形成，β 值接近 1。结构简单、可直接能量回收，但稳定性与约束 scaling 仍是核心难题。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">惯性 · 物理已验证</div>
+          <h4>激光 ICF：用“内爆”复制恒星核心</h4>
+          <p>激光烧蚀靶丸表面，反冲把燃料向内压缩到极端密度，热斑先点火，α 粒子加热周围冷燃料，形成燃烧波。NIF 已证明这条路径物理可行，但“每次打靶”离“每天发电”还有巨大距离。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">磁惯性 · 工程巧思</div>
+          <h4>MTF：用液态金属“挤”等离子体</h4>
+          <p>先用磁场磁化并预热等离子体，再用液态金属衬里和活塞/电磁力压缩。液态金属同时充当第一壁、氚增殖介质和热载体，工程上很优雅，但重复频率与衬里稳定性是难点。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">无中子 · 远期期权</div>
+          <h4>p-B¹¹：最干净的燃料，最难的物理</h4>
+          <p>主反应只产生三个 α 粒子，几乎不产生中子。但需要约 300–600 keV 的离子温度，反应率低几个数量级，轫致辐射损失严重。TAE、HB11、Marvel 在探索，整体仍处于原理验证阶段。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 磁约束 ================= -->
+<section class="section alt" id="magnetic">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03 / MAGNETIC</div>
+      <div>
+        <h2>磁约束：把 1 亿度的等离子体“悬”在空中</h2>
+        <p class="section-lede">磁约束是聚变领域最成熟、资金最密集、装置最多的主线。它的基本思想很朴素：带电粒子绕磁力线做螺旋运动，只要磁场足够强、位形足够好，等离子体就不会碰到壁。难的是“足够好”三个字。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>3.1 托卡马克：最接近“燃烧等离子体”的装置</h3>
+      <p>托卡马克（Tokamak）是苏联人在 1950 年代发明的环形装置。它的磁场由两部分叠加：</p>
+      <ul>
+        <li><strong>环向场（B<sub>t</sub>）</strong>：由围绕环面的 D 形超导线圈产生，让带电粒子沿环向旋转；</li>
+        <li><strong>极向场（B<sub>p</sub>）</strong>：由等离子体电流（以及外部极向场线圈）产生，让磁力线绕环面“拧”起来。</li>
+      </ul>
+      <p>两者叠加后，磁力线呈螺旋形，绕环面多圈后才回到起点。这个“绕转”由安全因子 q 描述；q 太低会触发扭曲模，q 太高则约束变差。托卡马克的许多工程复杂性——中心螺线管、电流驱动、破裂防护、偏滤器——都围绕“如何维持一个稳定的 q 剖面”展开。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 600" role="img" aria-label="托卡马克与球形托卡马克结构示意图">
+        <defs>
+          <radialGradient id="plasmaGlow"><stop offset="0" stop-color="#ffb27a" stop-opacity=".55"/><stop offset="1" stop-color="#eb6834" stop-opacity="0"/></radialGradient>
+        </defs>
+        <text x="40" y="36" class="t-title">托卡马克：环向场 + 等离子体电流 = 螺旋磁力线</text>
+        <text x="40" y="58" class="t-small t-muted">左：常规托卡马克（低 β、大体积）；右：球形托卡马克（低长宽比、高 β、紧凑）</text>
+
+        <g>
+          <ellipse cx="350" cy="320" rx="235" ry="140" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <path d="M115 320 A235 140 0 1 0 585 320 A235 140 0 1 0 115 320 M270 320 A80 48 0 1 1 430 320 A80 48 0 1 1 270 320" fill="var(--surface)" fill-rule="evenodd" stroke="var(--line)" stroke-width="1.5"/>
+          <ellipse cx="350" cy="320" rx="175" ry="100" fill="url(#plasmaGlow)" stroke="var(--s2)" stroke-width="14" opacity=".55"/>
+          <ellipse cx="350" cy="320" rx="175" ry="100" fill="none" stroke="var(--s2)" stroke-width="3"/>
+          <g stroke="#6b7f8f" stroke-width="9" stroke-linecap="round" opacity=".62">
+            <line x1="350" y1="180" x2="350" y2="62"/>
+            <line x1="350" y1="460" x2="350" y2="578"/>
+            <line x1="210" y1="320" x2="92" y2="320"/>
+            <line x1="490" y1="320" x2="608" y2="320"/>
+            <line x1="251" y1="221" x2="168" y2="138"/>
+            <line x1="449" y1="419" x2="532" y2="502"/>
+            <line x1="251" y1="419" x2="168" y2="502"/>
+            <line x1="449" y1="221" x2="532" y2="138"/>
+          </g>
+          <rect x="336" y="250" width="28" height="140" rx="14" fill="var(--surface)" stroke="var(--brand)" stroke-width="2"/>
+          <path d="M318 432 L342 448 L358 432" fill="none" stroke="var(--s4)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M382 432 L358 448 L342 432" fill="none" stroke="var(--s4)" stroke-width="4" stroke-linecap="round"/>
+          <text x="350" y="300" text-anchor="middle" class="t-small" fill="var(--brand)" transform="rotate(-90 350 300)">中心螺线管</text>
+          <text x="430" y="292" class="t-small" fill="var(--s2)">等离子体</text>
+          <line x1="425" y1="296" x2="390" y2="310" stroke="var(--s2)" stroke-width="1"/>
+          <text x="470" y="452" class="t-small t-muted">真空室</text>
+          <line x1="465" y1="445" x2="500" y2="410" stroke="var(--line-strong)" stroke-width="1"/>
+          <text x="86" y="120" class="t-small t-muted">环向场线圈</text>
+          <line x1="130" y1="128" x2="240" y2="205" stroke="var(--line-strong)" stroke-width="1"/>
+          <text x="320" y="536" class="t-small t-muted">偏滤器</text>
+          <line x1="360" y1="526" x2="340" y2="450" stroke="var(--s4)" stroke-width="1"/>
+        </g>
+
+        <g>
+          <ellipse cx="880" cy="320" rx="150" ry="125" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <path d="M730 320 A150 125 0 1 0 1030 320 A150 125 0 1 0 730 320 M846 320 A34 55 0 1 1 914 320 A34 55 0 1 1 846 320" fill="var(--surface)" fill-rule="evenodd" stroke="var(--line)" stroke-width="1.5"/>
+          <ellipse cx="880" cy="320" rx="112" ry="88" fill="url(#plasmaGlow)" stroke="var(--s1)" stroke-width="10" opacity=".55"/>
+          <ellipse cx="880" cy="320" rx="112" ry="88" fill="none" stroke="var(--s1)" stroke-width="3"/>
+          <g stroke="#6b7f8f" stroke-width="8" stroke-linecap="round" opacity=".62">
+            <line x1="880" y1="195" x2="880" y2="82"/>
+            <line x1="880" y1="445" x2="880" y2="558"/>
+            <line x1="755" y1="320" x2="642" y2="320"/>
+            <line x1="1005" y1="320" x2="1118" y2="320"/>
+            <line x1="791" y1="231" x2="711" y2="151"/>
+            <line x1="969" y1="409" x2="1049" y2="489"/>
+          </g>
+          <rect x="868" y="245" width="24" height="150" rx="12" fill="var(--surface)" stroke="var(--brand)" stroke-width="2"/>
+          <text x="880" y="205" text-anchor="middle" class="t-small" fill="var(--brand)">中心柱</text>
+          <text x="1005" y="250" class="t-small" fill="var(--s1)">等离子体</text>
+          <line x1="1002" y1="255" x2="955" y2="285" stroke="var(--s1)" stroke-width="1"/>
+          <text x="880" y="500" text-anchor="middle" class="t-small t-muted">球形托卡马克：低长宽比、高 β、结构紧凑</text>
+        </g>
+
+        <text x="40" y="586" class="t-small t-muted">磁力线 = 环向场 + 极向场，绕环面螺旋前进；q = 磁力线绕环向圈数 / 绕极向圈数。示意图，非按比例。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 6</span> · 托卡马克与球形托卡马克 <span class="fig-sub">托卡马克靠等离子体电流产生极向场；球形托卡马克把中心柱做细，换来更高的 β 和更紧凑的体积。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.1.1 优点与缺点</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">优点</div>
+          <h4>为什么它是主线</h4>
+          <p>• 约束性能最好：H 模、ELM、偏滤器、电流驱动都有几十年的实验数据库。<br>
+          • 工程生态最完整：超导磁体、真空室、包层、遥操作、氚工厂都有供应链。<br>
+          • 规模化路径清晰：ITER → DEMO → 电站，公共项目与私营项目共享物理与工程经验。<br>
+          • 已经接近“燃烧等离子体”：ITER 的目标是 Q≥10、500 MW 聚变功率、400 s 脉冲。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">缺点</div>
+          <h4>为什么它仍然难</h4>
+          <p>• 脉冲运行：感应电流本质上是变压器，只能驱动有限时间的脉冲；稳态需要非感应电流驱动，效率与可靠性待验证。<br>
+          • 破裂风险：等离子体电流突然熄灭会释放巨大电磁力与逃逸电子，可能损坏第一壁。<br>
+          • 偏滤器热负荷：稳态 10–20 MW/m²，ELM 瞬态更高，钨铜模块寿命是硬约束。<br>
+          • 资本成本高：大体积、强磁场、复杂低温系统，首堆造价可能数十亿美元。</p>
+        </div>
+      </div>
+
+      <h3>3.1.2 当前状态：从“参数纪录”到“燃烧等离子体”</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>装置</th><th>国家/机构</th><th>状态（截至 2026-10）</th><th>关键目标/纪录</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ITER</strong></td><td>欧盟/中国/印度/日本/韩国/俄罗斯/美国</td><td>建设中；真空室 9 个扇区已全部运抵，2026 年完成总装阶段关键节点</td><td>SRO 2034；D-T 2039；Q≥10，500 MW / 50 MW，400 s<span class="badge a">A</span></td></tr>
+            <tr><td><strong>EAST</strong></td><td>中科院合肥物质科学研究院（ASIPP）</td><td>运行中；2025 年实现 1,066 s 稳态 H 模</td><td>长脉冲、钨偏滤器、锂注入；约 7000 万 °C<span class="badge a">A</span></td></tr>
+            <tr><td><strong>WEST</strong></td><td>法国 CEA</td><td>运行中；2025 年 2 月实现 1,337 s 等离子体</td><td>钨偏滤器长脉冲；为 ITER 积累运行经验<span class="badge a">A</span></td></tr>
+            <tr><td><strong>KSTAR</strong></td><td>韩国聚变能研究所（KFE）</td><td>运行中；2025 年启动面向未来反应堆的全参数实验</td><td>1 亿 °C 20 s（2020）；目标 300 s 级<span class="badge a">A</span></td></tr>
+            <tr><td><strong>JT-60SA</strong></td><td>日本 QST / 欧盟</td><td>2023 年首次等离子体；2026–2027 年实验 campaign</td><td>支持 ITER 与 DEMO 的联合研究<span class="badge a">A</span></td></tr>
+            <tr><td><strong>SPARC</strong></td><td>美国 CFS / MIT</td><td>建设中；目标 2027 年 Q&gt;1</td><td>高温超导磁体、紧凑高场托卡马克<span class="badge c">C</span></td></tr>
+            <tr><td><strong>ARC</strong></td><td>美国 CFS</td><td>设计/选址阶段；弗吉尼亚州 Fall Line 场址</td><td>400 MW 净电、约 1.1 GW 聚变功率；2030 年代初并网目标<span class="badge c">C</span></td></tr>
+            <tr><td><strong>STEP</strong></td><td>英国 UKFE / UKAEA</td><td>概念设计；West Burton 场址</td><td>2040 年原型电站；球形托卡马克路线<span class="badge a">A</span></td></tr>
+            <tr><td><strong>BEST</strong></td><td>中国 ASIPP / 聚变新能</td><td>建设中；预计 2026 年建成、2027 年投运</td><td>紧凑型燃烧等离子体实验；总投资约 85 亿元人民币<span class="badge b">B</span></td></tr>
+            <tr><td><strong>CFETR</strong></td><td>中国</td><td>设计/预研阶段</td><td>2035 年前后建设；DEMO 级验证<span class="badge c">C</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>ITER 的最新基线值得单独说明：2024 年 7 月，ITER 理事会批准了新基线，把“开始研究运行”（SRO）定在 2034 年，D-T 运行定在 2039 年，并增加约 50 亿欧元预算，第一壁从铍改为钨<span class="badge a">A</span>。这不是“延期丑闻”，而是把工程现实写进计划：真空室扇区、磁体、偏滤器、氚工厂的制造与装配都比原计划复杂。2026 年 10 月，9 个真空室扇区全部运抵现场，总装进入新阶段<span class="badge a">A</span>。</p>
+      <p>中国的节奏则更快：EAST 在 2025 年实现 1,066 秒稳态 H 模，WEST 实现 1,337 秒，说明“长脉冲”不再是不可逾越的障碍；BEST 以约 85 亿元人民币的投资、2027 年投运为目标，走的是“紧凑型燃烧等离子体”路线<span class="badge b">B</span>。但“投运”不等于“发电”，更不等于“商业成功”。</p>
+
+      <h3>3.2 仿星器：把稳态写进几何</h3>
+      <p>仿星器（Stellarator）不走“等离子体电流”这条路。它用一组三维形状的模块化线圈，直接产生带有旋转变换的磁场。因为不需要净环向电流，仿星器天然适合稳态运行，也不会像托卡马克那样被电流破裂（disruption）威胁。代价是线圈形状极其复杂，制造误差要求极高，等离子体输运的优化也更难。</p>
+      <p>德国的 W7-X 是当今最大的仿星器。它 2015 年首次等离子体，2023 年实现 8 分钟量级的等离子体，2026 年 5 月又报告了长脉冲下的三重积纪录<span class="badge a">A</span>。W7-X 的意义不是“马上发电”，而是证明仿星器可以在稳态下维持高温、高密度，并且偏滤器概念可行。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="仿星器三维线圈与旋转变换示意图">
+        <text x="40" y="36" class="t-title">仿星器：用三维线圈“雕刻”磁场</text>
+        <text x="40" y="58" class="t-small t-muted">没有净等离子体电流，磁场的旋转变换由外部线圈的几何形状直接决定</text>
+
+        <g>
+          <ellipse cx="470" cy="270" rx="250" ry="135" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+          <ellipse cx="470" cy="270" rx="95" ry="50" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <g stroke-linecap="round" fill="none" opacity=".9">
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s3)" stroke-width="5" transform="rotate(72 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5" transform="rotate(144 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s3)" stroke-width="5" transform="rotate(216 470 270)"/>
+            <path d="M470 120 C590 130 680 200 660 290 C640 380 550 430 470 430 C390 430 300 380 280 290 C260 200 350 130 470 120" stroke="var(--s1)" stroke-width="5" transform="rotate(288 470 270)"/>
+          </g>
+          <ellipse cx="470" cy="270" rx="160" ry="86" fill="none" stroke="var(--s2)" stroke-width="3"/>
+          <path d="M310 270 C330 230 400 210 470 230 C540 250 610 230 630 270 C610 310 540 330 470 310 C400 290 330 310 310 270" fill="none" stroke="var(--s2)" stroke-width="1.5" opacity=".8"/>
+          <path d="M330 270 C350 245 410 232 470 248 C530 264 590 248 610 270 C590 292 530 308 470 292 C410 276 350 292 330 270" fill="none" stroke="var(--s2)" stroke-width="1.5" opacity=".55"/>
+          <text x="470" y="470" text-anchor="middle" class="t-small t-muted">五个模块化线圈绕环面排列；等离子体没有净电流</text>
+        </g>
+
+        <g>
+          <text x="760" y="120" class="t-label" fill="var(--s1)">三维模块化线圈</text>
+          <text x="760" y="142" class="t-small t-muted">形状由优化计算决定，制造误差要求极高</text>
+          <text x="760" y="184" class="t-label" fill="var(--s3)">旋转变换（rotational transform）</text>
+          <text x="760" y="206" class="t-small t-muted">磁力线绕环面螺旋前进，天然稳态</text>
+          <text x="760" y="248" class="t-label" fill="var(--s2)">无净电流 → 低破裂风险</text>
+          <text x="760" y="270" class="t-small t-muted">不需要变压器式电流驱动，适合连续运行</text>
+          <text x="760" y="312" class="t-label t-muted">代价</text>
+          <text x="760" y="334" class="t-small t-muted">线圈制造、优化计算、工程迭代慢；数据库小于托卡马克</text>
+
+          <rect x="760" y="360" width="280" height="110" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="778" y="384" class="t-small t-muted">磁面示意</text>
+          <g transform="translate(900 415)">
+            <ellipse rx="70" ry="30" fill="none" stroke="var(--s1)" stroke-width="1.8"/>
+            <ellipse rx="52" ry="22" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(12)"/>
+            <ellipse rx="34" ry="14" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(24)"/>
+            <ellipse rx="16" ry="7" fill="none" stroke="var(--s1)" stroke-width="1.8" transform="rotate(36)"/>
+          </g>
+          <text x="778" y="452" class="t-small t-muted">嵌套磁面被三维扭曲</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 7</span> · 仿星器的三维线圈与旋转变换 <span class="fig-sub">仿星器把“稳态”写进几何：不靠等离子体电流，而靠线圈形状产生螺旋磁场。W7-X 已证明长脉冲运行可行。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">仿星器 · 优点</div>
+          <h4>天生适合基荷</h4>
+          <p>• 无净电流驱动，稳态运行是“默认模式”，不是“附加功能”。<br>
+          • 没有托卡马克式的电流破裂，安全裕度更大。<br>
+          • 磁场位形可以优化，理论上有望抑制湍流与损失。<br>
+          • 高温超导磁体成熟后，紧凑型仿星器的工程空间变大。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">仿星器 · 缺点</div>
+          <h4>几何复杂，迭代慢</h4>
+          <p>• 三维线圈制造与装配难度高，误差会直接破坏磁场位形。<br>
+          • 新经典输运与湍流优化需要大规模计算，设计周期长。<br>
+          • 偏滤器与第一壁的几何设计更复杂。<br>
+          • 实验数据库远小于托卡马克， scaling 不确定性更大。</p>
+        </div>
+      </div>
+      <p>私营仿星器正在加速。德国的 Proxima Fusion 在 2026 年完成 4.11 亿欧元融资，推进 Alpha 演示装置，并与 RWE、巴伐利亚州、IPP 合作规划欧洲首座商业聚变电站<span class="badge b">B</span>。美国的 Type One Energy 在 2026 年 10 月完成 2 亿美元 B 轮，与 TVA 合作在田纳西州 Bull Run 建设电网级仿星器<span class="badge b">B</span>。它们的时间表同样属于 C 级：目标明确，但尚未经过独立工程验证。</p>
+
+      <h3>3.3 球形托卡马克：把“甜甜圈”压扁</h3>
+      <p>球形托卡马克（Spherical Tokamak）是托卡马克的“紧凑版”：长宽比接近 1，中心柱很细，等离子体更像一个球。它的优点是 β 值高（同样磁场下能约束更高压强的等离子体），体积小、成本低；缺点是中心柱空间有限，屏蔽与磁体设计困难，稳态电流驱动也更棘手。</p>
+      <p>英国的 Tokamak Energy 是这条路的代表。它的 ST40 在 2022 年实现 1 亿 °C 的离子温度；2026 年 9 月完成 Demo4 高温超导磁体的 14 个月测试 campaign；2026 年 4 月被选为英国 STEP 的磁体系统合作伙伴<span class="badge b">B</span>。STEP 本身是英国政府的原型电站计划，目标 2040 年在 West Burton 运行<span class="badge a">A</span>。</p>
+
+      <h3>3.4 场反位形 FRC：让等离子体自己“捏”磁场</h3>
+      <p>场反位形（Field-Reversed Configuration, FRC）是一种没有环向场线圈的磁约束位形。等离子体电流沿环向流动，产生的极向磁场把等离子体封闭在一个“闭场线”区域里；外部磁场在两端形成“自然偏滤器”，把 exhaust 引走。FRC 的 β 值接近 1，意味着磁场利用率极高，装置可以做得小而便宜。</p>
+      <p>但 FRC 的稳定性与约束 scaling 一直是难题。它的寿命受倾斜模、交换模、杂质和端损失影响；要把它做到反应堆级别，需要精确的 formation、加速、合并和压缩控制。Helion 和 TAE 是两家最有代表性的公司，但路线略有不同：Helion 用两个 FRC 加速对撞、合并、再用脉冲磁场压缩；TAE 用中性束注入形成并稳定 FRC，长期目标是 p-B¹¹。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 430" role="img" aria-label="场反位形 FRC 的形成、加速、合并与压缩四步示意图">
+        <text x="40" y="34" class="t-title">FRC 的四步：形成 → 加速 → 合并 → 压缩</text>
+        <text x="40" y="56" class="t-small t-muted">没有环向场线圈；等离子体电流自组织出闭场线，β 接近 1</text>
+
+        <g>
+          <rect x="30" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="120" cy="210" rx="38" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="190" cy="210" rx="38" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="120" cy="210" rx="56" ry="76" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <ellipse cx="190" cy="210" rx="56" ry="76" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <text x="155" y="300" text-anchor="middle" class="t-small" fill="var(--s1)">闭场线</text>
+          <text x="155" y="322" text-anchor="middle" class="t-small t-muted">① 形成两个 FRC</text>
+        </g>
+
+        <g>
+          <rect x="300" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="390" cy="210" rx="36" ry="54" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="460" cy="210" rx="36" ry="54" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <rect x="330" y="150" width="16" height="120" rx="8" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <rect x="504" y="150" width="16" height="120" rx="8" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <path d="M352 210 L380 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M498 210 L470 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="425" y="322" text-anchor="middle" class="t-small t-muted">② 脉冲线圈加速</text>
+        </g>
+
+        <g>
+          <rect x="570" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="695" cy="210" rx="68" ry="56" fill="var(--s3)" opacity=".18" stroke="var(--s3)" stroke-width="2"/>
+          <ellipse cx="695" cy="210" rx="94" ry="78" fill="none" stroke="var(--s1)" stroke-width="1.5"/>
+          <text x="695" y="300" text-anchor="middle" class="t-small" fill="var(--s3)">高 β 等离子体</text>
+          <text x="695" y="322" text-anchor="middle" class="t-small t-muted">③ 合并成一个 FRC</text>
+        </g>
+
+        <g>
+          <rect x="840" y="86" width="250" height="250" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>
+          <ellipse cx="965" cy="210" rx="40" ry="56" fill="var(--s2)" opacity=".28" stroke="var(--s2)" stroke-width="2"/>
+          <rect x="900" y="150" width="14" height="120" rx="7" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <rect x="1016" y="150" width="14" height="120" rx="7" fill="var(--surface)" stroke="var(--line-strong)"/>
+          <path d="M920 210 L940 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M1010 210 L990 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="965" y="300" text-anchor="middle" class="t-small" fill="var(--s2)">压缩 → 加热</text>
+          <text x="965" y="322" text-anchor="middle" class="t-small t-muted">④ 压缩至燃烧条件</text>
+        </g>
+
+        <text x="40" y="382" class="t-small t-muted">FRC 的优点：结构简单、β 高、可直接电磁回收能量；难点：稳定性、约束 scaling、杂质与端损失。</text>
+        <text x="40" y="404" class="t-small t-muted">代表机构：Helion（D-He³，Polaris/Orion）、TAE（p-B¹¹，Norm）。两家都尚未证明工程净电。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 8</span> · FRC 的形成、加速、合并与压缩 <span class="fig-sub">FRC 不靠环向场线圈，而靠等离子体电流自组织；高 β 是优势，稳定性是代价。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Helion 在 2026 年 2 月宣布，其第七代装置 Polaris 实现了可测量的 D-T 聚变，并达到 1.5 亿 °C（约 13 keV），称这是私营装置首次实现 D-T 聚变<span class="badge b">B</span>。这是一个真实的工程里程碑，但它不等于“净电”：Polaris 是实验装置，商业路线是 D-He³，Orion 目标 2028 年初始运行，微软的 50 MW PPA 是购电协议，不是已经送电<span class="badge c">C</span>。</p>
+      <p>TAE 走得更远，也更难：它用中性束注入形成并稳定 FRC，长期目标是 p-B¹¹。公司称已进行超过 10 万次实验，Norm 装置首次仅用中性束就形成 FRC，跳过了原计划的 Copernicus<span class="badge b">B</span>。p-B¹¹ 的物理挑战见第 5 节；TAE 的时间表（2030 年代初）属于 C 级目标。</p>
+
+      <h3>3.5 磁惯性约束 MTF：用液态金属“挤”等离子体</h3>
+      <p>磁惯性约束（Magneto-Inertial Fusion, MTF）把磁约束和惯性约束结合起来：先把等离子体磁化、预热，然后用机械活塞或电磁力驱动液态金属衬里，把等离子体压缩到高温高密度。液态金属同时充当第一壁、氚增殖介质和热载体，理论上可以降低第一壁材料损伤和重复频率问题。</p>
+      <p>General Fusion 是这条路的代表。它的 LM26 装置在 2026 年宣布实现 1 keV 电子温度，目标是把等离子体加热到 10 keV 并达到 Lawson 判据；公司计划 2028 年完成 Lawson 演示，2035 年建成首座商业示范电站<span class="badge b">B</span>。1 keV 离 10 keV 还有距离，但“从 0 到 1 keV”本身是 MTF 领域的重要一步。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 480" role="img" aria-label="磁惯性约束 MTF 液态金属衬里与活塞压缩示意图">
+        <text x="40" y="34" class="t-title">MTF：液态金属衬里 + 活塞压缩</text>
+        <text x="40" y="56" class="t-small t-muted">先磁化预热，再用机械/电磁压缩；液态金属同时承担第一壁、氚增殖和热载体</text>
+
+        <g>
+          <circle cx="380" cy="260" r="185" fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="150" fill="var(--s3)" opacity=".12" stroke="var(--s3)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="118" fill="var(--surface)" stroke="var(--s3)" stroke-width="1.5"/>
+          <circle cx="380" cy="260" r="62" fill="var(--s2)" opacity=".35" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="380" cy="260" r="24" fill="var(--s2)" opacity=".8"/>
+          <g fill="var(--surface-2)" stroke="var(--line-strong)" stroke-width="1.5">
+            <rect x="366" y="30" width="28" height="58" rx="8"/>
+            <rect x="366" y="432" width="28" height="58" rx="8"/>
+            <rect x="150" y="246" width="58" height="28" rx="8"/>
+            <rect x="552" y="246" width="58" height="28" rx="8"/>
+            <rect x="220" y="100" width="28" height="58" rx="8" transform="rotate(-45 234 129)"/>
+            <rect x="512" y="100" width="28" height="58" rx="8" transform="rotate(45 526 129)"/>
+            <rect x="220" y="362" width="28" height="58" rx="8" transform="rotate(45 234 391)"/>
+            <rect x="512" y="362" width="28" height="58" rx="8" transform="rotate(-45 526 391)"/>
+          </g>
+          <g stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)">
+            <line x1="380" y1="95" x2="380" y2="128"/>
+            <line x1="380" y1="425" x2="380" y2="392"/>
+            <line x1="215" y1="260" x2="248" y2="260"/>
+            <line x1="545" y1="260" x2="512" y2="260"/>
+            <line x1="262" y1="142" x2="288" y2="168"/>
+            <line x1="498" y1="142" x2="472" y2="168"/>
+            <line x1="262" y1="378" x2="288" y2="352"/>
+            <line x1="498" y1="378" x2="472" y2="352"/>
+          </g>
+          <text x="380" y="268" text-anchor="middle" class="t-small" fill="#3a1808">等离子体</text>
+          <text x="380" y="420" text-anchor="middle" class="t-small" fill="var(--s3)">液态金属衬里</text>
+        </g>
+
+        <g>
+          <text x="660" y="120" class="t-label" fill="var(--s3)">液态金属衬里</text>
+          <text x="660" y="142" class="t-small t-muted">锂/铅锂合金；吸收中子、增殖氚、带走热量</text>
+          <text x="660" y="184" class="t-label" fill="var(--s2)">等离子体靶</text>
+          <text x="660" y="206" class="t-small t-muted">先磁化、预热，再被压缩到燃烧条件</text>
+          <text x="660" y="248" class="t-label" fill="var(--s1)">活塞/电磁驱动</text>
+          <text x="660" y="270" class="t-small t-muted">机械活塞或脉冲电磁力，驱动衬里向内压缩</text>
+          <text x="660" y="312" class="t-label t-muted">四步循环</text>
+          <text x="660" y="334" class="t-small t-muted">注入等离子体 → 形成衬里 → 压缩 → 燃烧/膨胀</text>
+
+          <rect x="660" y="360" width="380" height="76" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="678" y="386" class="t-small t-muted">工程优点</text>
+          <text x="678" y="408" class="t-small">液态金属可承受高中子通量，减少固体第一壁损伤</text>
+          <text x="678" y="426" class="t-small">理论上有望降低首堆成本与重复频率压力</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 9</span> · 磁惯性约束 MTF 的液态金属压缩 <span class="fig-sub">General Fusion 的 LM26 已实现 1 keV 电子温度；从 1 keV 到 10 keV、再到 Lawson 判据，仍是长路。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.6 Z-pinch：让电流自己“捏”出等离子体</h3>
+      <p>Z-pinch 是最简单的聚变位形之一：沿轴向驱动强大电流，电流产生的环形磁场对等离子体施加向内的洛伦兹力，把等离子体“捏”成一根细丝。它的优点极其诱人——结构简单、磁场由电流自身产生、能量密度高、单次脉冲可以产生大量中子；缺点是等离子体柱极易发生“香肠不稳定性”（sausage）和“扭曲不稳定性”（kink），在纳秒尺度内就散掉。</p>
+      <p>Zap Energy 的方案是“剪切流稳定”（sheared-flow stabilization）：让等离子体沿轴向分层流动，不同半径的流速不同，从而抑制不稳定性。它的装置把等离子体约束在约 50 cm 长、1 mm 宽的细丝里，以约 10 Hz 的频率脉冲运行，并用液态金属壁处理热流与中子<span class="badge b">B</span>。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 470" role="img" aria-label="Z-pinch 装置与剪切流稳定示意图">
+        <text x="40" y="34" class="t-title">Z-pinch：电流自箍缩，剪切流稳住“细丝”</text>
+        <text x="40" y="56" class="t-small t-muted">轴向电流产生环形磁场，洛伦兹力向内；剪切流让不同半径的等离子体错开流动，抑制不稳定性</text>
+
+        <g>
+          <rect x="180" y="80" width="260" height="28" rx="6" fill="var(--surface-2)" stroke="var(--line-strong)"/>
+          <rect x="180" y="382" width="260" height="28" rx="6" fill="var(--surface-2)" stroke="var(--line-strong)"/>
+          <line x1="310" y1="108" x2="310" y2="382" stroke="var(--s2)" stroke-width="7"/>
+          <line x1="310" y1="108" x2="310" y2="382" stroke="var(--s4)" stroke-width="2" opacity=".7"/>
+          <g stroke="var(--s1)" stroke-width="1.8" fill="none" opacity=".8">
+            <ellipse cx="310" cy="150" rx="80" ry="18"/>
+            <ellipse cx="310" cy="240" rx="80" ry="18"/>
+            <ellipse cx="310" cy="330" rx="80" ry="18"/>
+          </g>
+          <g fill="var(--s2)">
+            <path d="M300 180 L320 180 L310 194 z"/>
+            <path d="M300 260 L320 260 L310 274 z"/>
+            <path d="M300 340 L320 340 L310 354 z"/>
+          </g>
+          <path d="M240 210 L282 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <path d="M380 210 L338 210" stroke="var(--s2)" stroke-width="2" marker-end="url(#arrOrange)"/>
+          <text x="310" y="140" text-anchor="middle" class="t-small" fill="var(--s1)">B</text>
+          <text x="310" y="70" text-anchor="middle" class="t-small t-muted">电极</text>
+          <text x="310" y="430" text-anchor="middle" class="t-small t-muted">电极</text>
+          <text x="235" y="200" class="t-small" fill="var(--s2)">洛伦兹力</text>
+          <text x="310" y="450" text-anchor="middle" class="t-small t-muted">轴向电流 I → 环形磁场 B → 向内箍缩</text>
+        </g>
+
+        <g>
+          <text x="650" y="100" class="t-label" fill="var(--s3)">剪切流稳定</text>
+          <text x="650" y="122" class="t-small t-muted">不同半径的等离子体以不同速度流动，抑制香肠/扭曲模</text>
+          <line x1="730" y1="160" x2="730" y2="330" stroke="var(--s2)" stroke-width="5"/>
+          <path d="M780 160 C810 190 750 220 780 250 C810 280 750 310 780 330" fill="none" stroke="var(--s8)" stroke-width="4"/>
+          <text x="730" y="352" text-anchor="middle" class="t-small" fill="var(--s3)">稳定</text>
+          <text x="790" y="352" text-anchor="middle" class="t-small" fill="var(--s8)">不稳定</text>
+          <text x="650" y="386" class="t-small t-muted">Zap 的方案：50 cm 长、1 mm 宽，约 10 Hz 脉冲</text>
+          <text x="650" y="408" class="t-small t-muted">优点：简单、低成本、高中子产额</text>
+          <text x="650" y="430" class="t-small t-muted">难点：电极侵蚀、重复频率、脉冲电源寿命</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 10</span> · Z-pinch 的自箍缩与剪切流稳定 <span class="fig-sub">Z-pinch 用电流自身的磁场约束等离子体；剪切流是 Zap Energy 抑制不稳定性的核心设计。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.7 磁镜：简单，但端损失致命</h3>
+      <p>磁镜（Magnetic Mirror）用两端更强的磁场形成“磁瓶”，把带电粒子反射回去。它的结构简单、稳态运行容易，但端损失（粒子从两端逃逸）导致约束时间短，早期装置难以达到聚变条件。串联磁镜、串级磁镜等改进方案试图用静电势垒堵住端损失，但工程复杂性上升。</p>
+      <p>美国的 Realta Fusion 在 2026 年与 CFS 建立合作，探索磁镜与高温超导磁体的结合<span class="badge b">B</span>。磁镜路线整体处于早期，适合作为特定应用（中子源、材料测试）而非主线电站方案。</p>
+
+      <h3>3.8 磁约束路线横向对比</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>路线</th><th>约束原理</th><th>代表机构</th><th>优点</th><th>核心难点</th><th>TRL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>托卡马克</strong></td><td>环向场 + 等离子体电流</td><td>ITER、CFS、ASIPP、KFE、QST</td><td>约束最好、数据库最大、工程生态完整</td><td>稳态、破裂、偏滤器、成本</td><td>6–7</td></tr>
+            <tr><td><strong>仿星器</strong></td><td>三维线圈产生旋转变换</td><td>IPP、Proxima、Type One</td><td>天然稳态、低破裂风险</td><td>线圈制造、优化、数据库小</td><td>5–6</td></tr>
+            <tr><td><strong>球形托卡马克</strong></td><td>低长宽比托卡马克</td><td>Tokamak Energy、UKAEA</td><td>高 β、紧凑、成本低</td><td>中心柱、稳态、屏蔽</td><td>4–5</td></tr>
+            <tr><td><strong>FRC</strong></td><td>等离子体电流自组织闭场线</td><td>Helion、TAE</td><td>高 β、简单、直接能量回收</td><td>稳定性、约束 scaling、杂质</td><td>3–4</td></tr>
+            <tr><td><strong>MTF</strong></td><td>磁化 + 液态金属压缩</td><td>General Fusion</td><td>液态金属第一壁、成本潜力</td><td>重复频率、衬里稳定性、预热</td><td>3–4</td></tr>
+            <tr><td><strong>Z-pinch</strong></td><td>电流自箍缩 + 剪切流稳定</td><td>Zap Energy</td><td>简单、低成本、高中子产额</td><td>电极侵蚀、脉冲电源、稳定性</td><td>3–4</td></tr>
+            <tr><td><strong>磁镜</strong></td><td>两端强磁场反射</td><td>Realta</td><td>简单、稳态、适合中子源</td><td>端损失、约束时间</td><td>3–4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">TRL 为分析师综合评估（C 级），口径为“1–9 级技术成熟度”，不同机构可能相差 1–2 级。TRL 6–7 表示“系统级演示”，不等于“商业可用”。</p>
+    </div>
+  </div>
+</section>

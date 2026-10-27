@@ -1,0 +1,592 @@
+<title>马斯克兑现了多少</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root{
+  color-scheme: light;
+  --bg:#f4f6f9; --surface:#ffffff; --surface-2:#eef1f6; --surface-3:#e6eaf0;
+  --ink:#10141a; --ink-2:#4c5562; --ink-3:#7d8794;
+  --hairline:rgba(16,20,26,.12);
+  --accent:#2a78d6; --accent-soft:rgba(42,120,214,.09);
+  --v-met:#0a8c0a; --v-late:#0f9e6f; --v-part:#b87b00; --v-miss:#c23a3a; --v-pend:#7d8794; --v-unv:#7d8794;
+  --v-met-bg:rgba(12,163,12,.10); --v-late-bg:rgba(27,175,122,.10); --v-part-bg:rgba(250,178,25,.13); --v-miss-bg:rgba(208,59,59,.09); --v-pend-bg:rgba(125,135,148,.10);
+  --seq-blue:#2a78d6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0a0e14; --surface:#10151d; --surface-2:#161d28; --surface-3:#1c2532;
+    --ink:#e8ecf2; --ink-2:#9aa5b3; --ink-3:#5c6b7c;
+    --hairline:rgba(232,236,242,.10);
+    --accent:#3987e5; --accent-soft:rgba(57,135,229,.10);
+    --v-met:#0ca30c; --v-late:#199e70; --v-part:#fab219; --v-miss:#e05252; --v-pend:#8a94a3; --v-unv:#8a94a3;
+    --v-met-bg:rgba(12,163,12,.12); --v-late-bg:rgba(25,158,112,.12); --v-part-bg:rgba(250,178,25,.10); --v-miss-bg:rgba(208,59,59,.12); --v-pend-bg:rgba(138,148,163,.10);
+    --seq-blue:#3987e5;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0a0e14; --surface:#10151d; --surface-2:#161d28; --surface-3:#1c2532;
+  --ink:#e8ecf2; --ink-2:#9aa5b3; --ink-3:#5c6b7c;
+  --hairline:rgba(232,236,242,.10);
+  --accent:#3987e5; --accent-soft:rgba(57,135,229,.10);
+  --v-met:#0ca30c; --v-late:#199e70; --v-part:#fab219; --v-miss:#e05252; --v-pend:#8a94a3; --v-unv:#8a94a3;
+  --v-met-bg:rgba(12,163,12,.12); --v-late-bg:rgba(25,158,112,.12); --v-part-bg:rgba(250,178,25,.10); --v-miss-bg:rgba(208,59,59,.12); --v-pend-bg:rgba(138,148,163,.10);
+  --seq-blue:#3987e5;
+}
+/* ============ base ============ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.65;
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+h1,h2,h3{font-weight:700; text-wrap:balance; margin:0}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+/* ============ telemetry bar ============ */
+.telemetry{
+  border-bottom:1px solid var(--hairline); background:var(--surface);
+  position:sticky; top:0; z-index:20;
+}
+.telemetry .wrap{display:flex; align-items:center; gap:14px; padding-top:9px; padding-bottom:9px; overflow-x:auto}
+.telemetry .brand{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em; color:var(--ink); white-space:nowrap}
+.telemetry .brand b{color:var(--accent); font-weight:600}
+.telemetry .seg{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3); white-space:nowrap; border-left:1px solid var(--hairline); padding-left:14px}
+.telemetry .seg b{color:var(--ink-2); font-weight:500}
+/* ============ hero ============ */
+.hero{padding:52px 0 8px}
+.hero-grid{display:grid; grid-template-columns:1fr 1.35fr; gap:40px; align-items:center}
+.bignum{font-family:"Archivo Black",sans-serif; font-size:92px; line-height:1; color:var(--ink); letter-spacing:-.01em}
+.bignum .pct{color:var(--v-miss)}
+.hero-sub{margin-top:14px; color:var(--ink-2); max-width:46ch}
+.hero-sub b{color:var(--ink)}
+.stack-legend{display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:12px}
+.lg{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-2)}
+.lg i{width:9px; height:9px; border-radius:2px; display:inline-block}
+.stack{margin-top:10px; height:26px; border-radius:4px; display:flex; gap:2px; overflow:hidden; background:var(--surface-3)}
+.stack .seg{height:100%; min-width:2px}
+.stack .seg:hover{filter:brightness(1.15)}
+.kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:10px; overflow:hidden; margin-top:44px}
+.kpi{background:var(--surface); padding:18px 20px}
+.kpi .v{font-family:"Archivo Black",sans-serif; font-size:34px; line-height:1.05; margin-top:6px}
+.kpi .v small{font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:500; color:var(--ink-3)}
+.kpi .d{font-size:12.5px; color:var(--ink-2); margin-top:6px; line-height:1.5}
+.kpi .rate{display:inline-block; margin-top:8px; font-family:"IBM Plex Mono",monospace; font-size:11px; padding:2px 8px; border-radius:3px}
+/* ============ sections ============ */
+section{padding:44px 0; border-bottom:1px solid var(--hairline)}
+h2{font-size:22px; margin-bottom:6px}
+.section-lead{color:var(--ink-2); max-width:72ch; margin:6px 0 22px}
+h3{font-size:16px; margin:26px 0 10px}
+/* verdict badges */
+.vd{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; padding:2px 9px; border-radius:999px; white-space:nowrap}
+.vd svg{width:11px; height:11px; flex:none}
+.vd.met{color:var(--v-met); background:var(--v-met-bg)}
+.vd.late{color:var(--v-late); background:var(--v-late-bg)}
+.vd.partial{color:var(--v-part); background:var(--v-part-bg)}
+.vd.missed{color:var(--v-miss); background:var(--v-miss-bg)}
+.vd.pending, .vd.unverified{color:var(--v-pend); background:var(--v-pend-bg)}
+/* ============ method cards ============ */
+.method-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.mc{background:var(--surface); border:1px solid var(--hairline); border-radius:8px; padding:16px 18px}
+.mc .eyebrow{margin-bottom:8px; display:block}
+.mc p{font-size:13.5px; color:var(--ink-2); margin:0}
+/* ============ filters ============ */
+.filters{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.fgroup{display:flex; flex-wrap:wrap; gap:6px}
+.chip{appearance:none; border:1px solid var(--hairline); background:var(--surface); color:var(--ink-2); font-family:inherit; font-size:12.5px; padding:5px 12px; border-radius:999px; cursor:pointer; transition:border-color .15s,color .15s,background .15s}
+.chip:hover{border-color:var(--accent); color:var(--ink)}
+.chip.on{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+.fcount{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3); margin-left:auto}
+/* ============ domain summary ============ */
+.dom{background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:16px 20px; margin-bottom:10px}
+.dom-top{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.dom-name{font-weight:700; font-size:15px}
+.dom-stats{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3)}
+.dom-stats b{color:var(--ink-2); font-weight:600}
+.dom-bar{height:10px; border-radius:3px; display:flex; gap:2px; overflow:hidden; margin-top:10px; background:var(--surface-3)}
+.dom-bar i{height:100%}
+.dom-legend{display:flex; flex-wrap:wrap; gap:4px 14px; margin-top:8px; font-size:11.5px; color:var(--ink-2); font-family:"IBM Plex Mono",monospace}
+.dom-legend i{width:8px; height:8px; border-radius:2px; display:inline-block; margin-right:4px; vertical-align:-1px}
+/* ============ ledger table ============ */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--hairline); border-radius:10px; background:var(--surface)}
+table{width:100%; border-collapse:collapse; font-size:13px; min-width:960px}
+thead th{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); text-align:left; padding:10px 14px; border-bottom:1px solid var(--hairline);
+  background:var(--surface); white-space:nowrap;
+}
+tbody td{padding:11px 14px; border-bottom:1px solid var(--hairline); vertical-align:top}
+tbody tr:hover td{background:var(--surface-2)}
+tr.group-row td{background:var(--surface-2); font-weight:700; font-size:13px; padding:9px 14px; border-bottom:1px solid var(--hairline)}
+tr.group-row .g-stat{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:11.5px; color:var(--ink-3)}
+td.claim{min-width:300px; max-width:400px}
+td.claim .q{color:var(--ink)}
+td.claim .w{display:block; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3); margin-top:3px}
+td.actual{min-width:280px; max-width:420px; color:var(--ink-2)}
+td.target{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2); white-space:nowrap}
+td.when{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3); white-space:nowrap}
+td.src{min-width:150px}
+td.src a{display:block; font-size:12px; margin-bottom:2px}
+.s-strength{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--ink-3); border:1px solid var(--hairline); border-radius:3px; padding:0 5px; margin-right:4px; vertical-align:1px}
+.num{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3); padding-left:10px}
+.hidden-row{display:none}
+/* ============ delay chart ============ */
+.delay-rows{display:flex; flex-direction:column; gap:7px; margin-top:14px}
+.drow{display:grid; grid-template-columns:230px 1fr 60px; align-items:center; gap:12px}
+.drow .dl{font-size:12.5px; color:var(--ink-2); text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.drow .track{background:var(--surface-3); border-radius:3px; height:14px; position:relative; min-width:40px}
+.drow .bar{position:absolute; left:0; top:0; bottom:0; background:var(--seq-blue); border-radius:3px 0 0 3px}
+.drow .bar.far{background:var(--v-miss)}
+.drow .dv{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2)}
+.drow .bar:hover{filter:brightness(1.2)}
+.delay-note{font-size:12.5px; color:var(--ink-3); margin-top:12px}
+/* ============ wins ============ */
+.wins{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px}
+.win{background:var(--surface); border:1px solid var(--hairline); border-left:3px solid var(--v-met); border-radius:8px; padding:14px 16px}
+.win h4{margin:0 0 4px; font-size:14px}
+.win p{margin:0; font-size:12.5px; color:var(--ink-2)}
+/* ============ notes/citations ============ */
+.note{background:var(--surface); border:1px solid var(--hairline); border-radius:8px; padding:16px 18px; margin-bottom:12px}
+.note p{margin:0 0 8px; font-size:13.5px; color:var(--ink-2)}
+.note p:last-child{margin-bottom:0}
+.note b{color:var(--ink)}
+.note .src-line{font-family:"IBM Plex Mono",monospace; font-size:12px}
+blockquote{border-left:3px solid var(--accent); margin:10px 0; padding:4px 0 4px 16px; color:var(--ink-2); font-size:13.5px}
+blockquote .who{display:block; margin-top:4px; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-3)}
+/* ============ footer ============ */
+footer{padding:40px 0 60px; color:var(--ink-3); font-size:12.5px}
+footer .wrap{border-top:1px solid var(--hairline); padding-top:26px}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr; gap:22px}
+  .bignum{font-size:64px}
+  .kpis{grid-template-columns:1fr}
+  .drow{grid-template-columns:120px 1fr 44px; gap:8px}
+}
+</style>
+
+<header class="telemetry">
+  <div class="wrap">
+    <span class="brand">AUDIT<b>-2026</b></span>
+    <span class="seg">SUBJECT&nbsp;<b>ELON MUSK · CLAIMS LEDGER</b></span>
+    <span class="seg">WINDOW&nbsp;<b>2011.12 – 2026.09</b></span>
+    <span class="seg">SAMPLE&nbsp;<b id="t-n">0</b> CLAIMS</span>
+    <span class="seg">CUTOFF&nbsp;<b>2026-09-22</b></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" style="border-bottom:none; padding-bottom:0">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">严格兑现率 · 按量级一致判定</div>
+        <div class="bignum"><span class="pct">7.8</span><span style="font-size:34px">%</span></div>
+        <p class="hero-sub">127 条可核验承诺中，<b>9 条</b>按承诺的量级与时间完全兑现。<b>把"跳票后兑现"计入，是 20.0%</b>；把"部分兑现"也计入，42.6% 的承诺以某种形式落了地。</p>
+        <div class="stack-legend" id="hero-legend"></div>
+      </div>
+      <div>
+        <div class="eyebrow">判定分布 · 127 条</div>
+        <div class="stack" id="hero-stack" role="img" aria-label="判定分布堆叠条"></div>
+        <div class="kpis">
+          <div class="kpi"><div class="eyebrow">未兑现</div><div class="v">66 <small>/ 115</small></div><div class="d">57.4% — 从未交付、被取消，或交付物与承诺量级相去甚远</div><span class="rate" style="color:var(--v-miss); background:var(--v-miss-bg)">MISSED</span></div>
+          <div class="kpi"><div class="eyebrow">部分兑现</div><div class="v">26 <small>/ 115</small></div><div class="d">22.6% — 交付了，但价格、性能、规模或时间至少一项显著缩水</div><span class="rate" style="color:var(--v-part); background:var(--v-part-bg)">PARTIAL</span></div>
+          <div class="kpi"><div class="eyebrow">跳票后兑现</div><div class="v">14 <small>/ 115</small></div><div class="d">12.2% — 晚于承诺，但最终交付且量级相当（平均晚 3.9 年）</div><span class="rate" style="color:var(--v-late); background:var(--v-late-bg)">LATE</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section id="method">
+    <h2>口径与方法</h2>
+    <p class="section-lead">兑现率这个数字本身有口径陷阱，先把规则说清，再给数字。</p>
+    <div class="method-grid">
+      <div class="mc"><span class="eyebrow">样本规则</span><p>只收<b>有明确数字或明确时间点、可核验</b>的公开承诺（发布会、财报会、X 帖文、访谈）。"让人类成为多行星物种"这类愿景、以及"估值上涨"这类非承诺结果，不收入。</p></div>
+      <div class="mc"><span class="eyebrow">判定标准</span><p><b>完全兑现</b>：交付物与承诺的量级、时间一致。<b>跳票后兑现</b>：晚到但量级相当。<b>部分兑现</b>：交付但显著缩水。<b>未兑现</b>：未交付或已取消。沾边不算兑现。</p></div>
+      <div class="mc"><span class="eyebrow">分母规则</span><p><b>进行中</b>（期限未到，9 条）与<b>无法核实</b>（3 条）不参与率计算——把未到期承诺算进分母会稀释结果。可判定样本 <b>115 条</b>。</p></div>
+      <div class="mc"><span class="eyebrow">证据分级</span><p>每条附来源链接与强度：<b>强</b>＝官方数据或多源交叉报道；<b>中</b>＝单一权威媒体；<b>弱</b>＝传闻或单一来源且未交叉。</p></div>
+    </div>
+  </section>
+
+  <!-- ================= FILTERS + DOMAINS ================= -->
+  <section id="ledger-section" style="border-bottom:none; padding-bottom:0">
+    <h2>承诺台账</h2>
+    <p class="section-lead">全部 127 条，按领域分组。点击筛选，逐条可查证。</p>
+    <div class="filters">
+      <div class="fgroup" id="f-domain"></div>
+    </div>
+    <div class="filters" style="margin-top:8px">
+      <div class="fgroup" id="f-verdict"></div>
+      <span class="fcount" id="f-count"></span>
+    </div>
+    <div id="domain-summaries" style="margin-top:22px"></div>
+    <div class="tbl-wrap" id="ledger" style="margin-top:22px"></div>
+  </section>
+
+  <!-- ================= DELAY ================= -->
+  <section id="delay">
+    <h2>跳票幅度：晚到的那 14 条</h2>
+    <p class="section-lead">兑现但晚到的承诺，平均晚 3.9 年，最长 7 年（Falcon Heavy 与 Hyperloop 载人演示）。浅蓝条＝延迟年数，深色条＝晚 4 年以上。</p>
+    <div class="delay-rows" id="delay-rows"></div>
+    <p class="delay-note">未兑现的 66 条里，最长的是四个"十年级"跳票：火星时间表（2011 年称十年内抵达，15 年未至）、FSD 完全自动驾驶（2015 年承诺 2018 年，11 年未至）、Solar Roof（2016 年承诺 2017 年，2026 年停产终结）、Roadster 2（2017 年承诺 2020 年投产，9 年未至）。</p>
+  </section>
+
+  <!-- ================= WINS ================= -->
+  <section id="wins">
+    <h2>确实兑现的那 9 条（及跳票后兑现的硬成就）</h2>
+    <p class="section-lead">统计对成败一视同仁。这些是样本里货真价实的兑现——其中多数当年同样被嘲笑为不可能。</p>
+    <div class="wins" id="wins-grid"></div>
+  </section>
+
+  <!-- ================= CROSS-CHECK ================= -->
+  <section id="crosscheck">
+    <h2>与第三方独立统计交叉验证</h2>
+    <p class="section-lead">三个相互独立的量化盘点，与本样本结论高度收敛：<b>约五分之一能按期兑现，是所有口径的共同下界。</b></p>
+    <div class="note">
+      <p><b>《纽约时报》2026-06-02</b> — 扫描 2011 年以来 6.9 万条帖文与 19 场财报会，提取 <b>602 条</b>带期限的商业目标，记者人工逐条核实：<b>约 19% 按期达成</b>；约 35% 延期或从未达成；约 33% 表述过模糊无法评估；约 13% 未到期。兑现率随年份下降：2015 年的目标近 3/4 兑现，2020 年的不到一半。</p>
+      <p class="src-line">src: nytimes.com/interactive/2026/06/02/technology/elon-musk-promises-spacex-ipo.html</p>
+    </div>
+    <div class="note">
+      <p><b>ClearerThinking 2025-04</b> — 独立研究组织，公开完整方法：<b>43 条</b>已到期预测，仅 <b>7 条按期成真（16.28%）</b>。关键论证：Musk 自称以"50% 概率日期"为目标，意味着他预期一半预测会晚——实测 16.28% 说明他的校准比自称的差三倍。</p>
+      <p class="src-line">src: clearerthinking.org/post/how-good-is-elon-musk-at-predicting-the-future</p>
+    </div>
+    <div class="note">
+      <p><b>Bloomberg《The Future According to Elon Musk》</b> — 持续滚动更新的逐条 tracker（未给总比率），对模糊日期取区间最晚一天后逐条标注状态；Tesorb 社区记分卡 20 条中 4 条交付、5 条部分交付（含部分交付口径为 45%）。</p>
+      <p class="src-line">src: bloomberg.com/features/elon-musk-goals · tesorb.com</p>
+    </div>
+    <div class="note" style="border-color:var(--v-late)">
+      <p><b>口径差异说明</b>：本页 7.8% 是"量级一致"的严格口径，比 NYT 的"按期"更严；把"跳票后兑现"计入得 20.0%，与 NYT 19%、ClearerThinking 16.3% 收敛。若采用 Musk 自己的口径（"我的预测迟早都会成真"），把"部分兑现"也计入是 42.6%——但其中多数是 Cybercab 45 辆级别的"成真"。</p>
+    </div>
+  </section>
+
+  <!-- ================= ADMISSIONS ================= -->
+  <section id="admissions">
+    <h2>他自己承认过的部分</h2>
+    <p class="section-lead">用他本人的话收束"为什么系统性偏乐观"：</p>
+    <blockquote>"I think I do have an issue with time... I'm a naturally optimistic person. I'm trying to recalibrate as much as possible."<span class="who">— 2018 年特斯拉股东大会，回应股东"我该不该继续按 Elon time 打折"</span></blockquote>
+    <blockquote>"I generally aim for the 50% percentile date, which means that half my predictions will be late and half will be early."<span class="who">— 2024 年 X 帖文；ClearerThinking 实测 16.28%，校准差三倍</span></blockquote>
+    <blockquote>"Unfortunately, Hardware 3 — I wish it were otherwise — but Hardware 3 simply does not have the capability to achieve unsupervised FSD."<span class="who">— 2026 年 1 月财报会，承认 2016 年以来"所有新车硬件就绪可全自动驾驶"的说法不成立</span></blockquote>
+    <blockquote>"For Cybercab and Optimus, almost everything is new, so the early production rate will be agonizingly slow."<span class="who">— 2026-01-20 X 帖文</span></blockquote>
+    <blockquote>"I was clearly wrong about Anthropic. They are obviously currently the leader in AI."<span class="who">— 2026-07 X 帖文，此前他称 Anthropic"注定完蛋"</span></blockquote>
+    <blockquote>"It actually ended up being way harder to do Falcon Heavy than we thought... We were pretty naive about that."<span class="who">— 2017 年，Falcon Heavy 从 2013 年推迟到 2018 年首飞后</span></blockquote>
+  </section>
+
+  <!-- ================= COUNTER ================= -->
+  <section id="counter">
+    <h2>反向观点：为这套时间表辩护的人怎么说</h2>
+    <p class="section-lead">未找到任何投行或研究机构基于数据论证"兑现率不低"。存在的是三种重述框架，如实列出：</p>
+    <div class="note">
+      <p><b>① 口径论</b>：NYT 测的是"按期"，若测"最终是否以某种形式实现"，数字显著上升——Musk 自己就说"我的预测很少最终不成真"。本页 42.6% 的宽口径即此。</p>
+    </div>
+    <div class="note">
+      <p><b>② 承诺是管理工具论</b>：激进期限不是预测，而是"maniacal sense of urgency"的管理强制机制（Isaacson 传记与 Musk 本人都如此表述）。即使 5 年承诺花 10 年，只要别人需要 20 年，就是赢。</p>
+    </div>
+    <div class="note">
+      <p><b>③ 换赛道估值论</b>：Morgan Stanley 的 Adam Jonas 承认汽车交付不及预期"not particularly narrative changing"，将估值逻辑整体换到 Optimus/AI——JPMorgan 的 Ryan Brinkman 对此反驳：过去 10 个季度有 9 个季度 EBIT 不及预期，买入评级占比却不降反升，"估值与基本面脱离"。</p>
+    </div>
+    <div class="note">
+      <p><b>结构事实（比立场更有用）</b>：兑现集中在<b>全栈工程可行性</b>（火箭复用、载人飞船、星链组网、车型销量登顶），系统性落空集中在<b>四类</b>：规模量产、成本与价格、监管与安全、以及"首次"的时间表。Michael Burry 的总结最准确：他"always decades early"——卖的是方向，不是日期。</p>
+    </div>
+  </section>
+
+  <!-- ================= CAVEATS ================= -->
+  <section id="caveats">
+    <h2>本页局限</h2>
+    <p class="section-lead">样本 127 条，远小于 NYT 的 602 条；样本偏向被媒体反复报道的"大承诺"，因此严格口径可能<b>低估</b>兑现率（小承诺未被收录，而小承诺更可能兑现）；"部分/未兑现"的边界含主观判断，每条均附证据链接供独立核验；数据截止 2026-09-22，此后进展不反映。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    本页所有判定基于 2026-09-22 前公开信息。每条承诺的证据链接与强度见台账右侧。数据来源：Wikipedia、Reuters、Bloomberg、NYT、Electrek、The Verge、Ars Technica、NASA OIG、SEC 文件及各公司官方披露。点击链接可独立核验。
+  </div>
+</footer>
+
+<script>
+/* ============ data ============ */
+const DOM = {fsl:'自动驾驶', vehicle:'特斯拉车辆', spacex:'SpaceX 体系', mars:'— 火星', neuro:'Neuralink', boring:'Boring', hyper:'Hyperloop', robot:'Optimus', xai:'xAI', x:'X / Twitter', other:'其他'};
+const VD = {met:'完全兑现', late:'跳票后兑现', partial:'部分兑现', missed:'未兑现', pending:'进行中', unverified:'无法核实'};
+const VDCLS = {met:'met', late:'late', partial:'partial', missed:'missed', pending:'pending', unverified:'unverified'};
+const GLYPH = {met:'✓', late:'◷', partial:'◐', missed:'✕', pending:'○', unverified:'?'};
+const STR = {强:'S+', 中:'S', 弱:'S-'};
+function C(d,c,w,t,a,v,yp,ya,src){ return {d,c,w,t,a,v,yp,ya,src}; }
+const CLAIMS = [
+C('fsl','“Complete autonomy” 在 2018 年实现','2015-12','2018 年完全自动驾驶','2026 年消费级 FSD 仍是 L2 监督版（Supervised），晚 8 年未至','missed',2015,0,[['Wikipedia','https://en.wikipedia.org/wiki/Tesla_Autopilot','中'],['Jalopnik','https://www.jalopnik.com/elon-musk-full-self-driving-may-be-feature-complete-1841338970/','中']]),
+C('fsl','2017 年底 LA→NY 横跨美国零干预自动驾驶演示','2016-10','2017 年底','从未完成；2018-02 自认 missed the mark；2025 年网红重走路线 60 英里即碰撞','missed',2016,0,[['TechCrunch','https://techcrunch.com/2016/10/19/musk-targeting-coast-to-coast-test-drive-of-fully-self-driving-tesla-by-late-2017/','强'],['Electrek','https://electrek.co/2025/09/21/tesla-influencers-tried-elon-musk-coast-to-coast-self-driving-crashed-before-60-miles/','强']]),
+C('fsl','2016-10 起所有新产特斯拉硬件就绪，OTA 即可全自动驾驶','2016-10','所有 HW2+ 车辆','HW2/2.5 无法运行 FSD 须换 HW3；2026-01 承认 HW3 也无法无监督','missed',2016,0,[['Wikipedia','https://en.wikipedia.org/wiki/Tesla_Autopilot_hardware','中'],['Futurism','https://futurism.com/advanced-transport/elon-musk-admits-tesla-full-self-driving','强']]),
+C('fsl','2020 年将有 100 万辆 robotaxi 上路（“Next year, for sure”）','2019-04','2020 年底 100 万辆','2020 年为零；2026-09 得州登记自动驾驶特斯拉仅 420 辆','missed',2019,0,[['FastCompany','https://www.fastcompany.com/90338840/elon-musk-thinks-tesla-can-build-1m-robotaxis-in-the-next-year','强'],['Electrek','https://electrek.co/2026/09/07/tesla-cybercab-fleet-profitable-wouldnt-sell/','强']]),
+C('fsl','车主加入 Tesla Network 每年赚 $30,000，车辆是增值资产','2019-04','2019 起','无任何车主赚到一分钱；CFO 承认没有第三方车辆接入流程','missed',2019,0,[['FastCompany','https://www.fastcompany.com/90338840/elon-musk-thinks-tesla-can-build-1m-robotaxis-in-the-next-year','强'],['Electrek','https://electrek.co/2026/09/07/tesla-cybercab-fleet-profitable-wouldnt-sell/','强']]),
+C('fsl','租赁车“你必须还回来”做 robotaxi（You don\'t have the option of buying）','2019','长期政策','2024-11 前后悄悄取消禁令，把到期租赁车加价转售','missed',2019,0,[['Reuters/U.S.News','https://www.usnews.com/news/top-news/articles/2025-05-15/exclusive-musk-took-leased-cars-back-so-tesla-could-use-them-as-robotaxis-instead-tesla-sold-them','强']]),
+C('fsl','FSD “feature complete”：先承诺 2019 年，再承诺 2020 年底','2019-02 / 2020-01','2020 年底','2020-10 才向少数测试者推 FSD Beta，须全程监督；窄义上部分达成','partial',2019,2020,[['Electrek','https://electrek.co/2020/07/23/tesla-self-driving-elon-musk-house-to-work/','中']]),
+C('fsl','2020 年完成 L5 自动驾驶基本功能（上海 WAIC）','2020-07','2020 年','未实现；特斯拉向加州 DMV 书面承认 FSD 实为 L2','missed',2020,0,[['Electrek','https://electrek.co/2020/07/09/tesla-tsla-elon-musk-level-5-autonomy-complete/','强']]),
+C('fsl','2021 年实现比人安全的全自动驾驶（highly confident）','2021-01','2021 年','未实现','missed',2021,0,[['Electrek','https://electrek.co/2022/01/31/elon-musk-tesla-full-self-driving-safer-than-human-this-year-5-years-ahead-of-everyone/','强']]),
+C('fsl','2022 年实现比人安全的 FSD（would be shocked if not）','2022-01','2022 年','未实现；连续两年“今年就实现”落空','missed',2022,0,[['Electrek','https://electrek.co/2022/01/31/elon-musk-tesla-full-self-driving-safer-than-human-this-year-5-years-ahead-of-everyone/','强'],['Wired','https://www.wired.com/story/theres-a-very-simple-pattern-to-elon-musks-broken-promises/','强']]),
+C('fsl','2023 年底达到 L4/L5 自动驾驶（上海 WAIC）','2023-07','2023 年','未实现，仍是 L2；自嘲 “the boy who cried FSD”','missed',2023,0,[['InsideEVs','https://insideevs.com/news/675701/tesla-fsd-might-reach-level-4-level-5-autonomy-this-year-musk/','强']]),
+C('fsl','2025 年德州+加州推无监督 FSD，奥斯汀车队年底 500 辆','2024','2025 年','奥斯汀 2025-06 上线但带安全员约 32 辆；无监督车队 2026 年中仅约 20–25 辆','partial',2024,2026,[['CNBC','https://www.cnbc.com/2026/01/22/musk-says-tesla-takes-safety-supervisors-out-of-some-austin-robotaxis.html','强'],['BusinessInsider','https://www.businessinsider.com/tesla-robotaxi-unsupervised-service-area-austin-stock-2026-6','强']]),
+C('fsl','2025 年底前撤掉 robotaxi 安全员','2025','2025 年底','2026-01-22 起少量无监督车混编运营，晚约 3 周','late',2025,2026,[['CNBC','https://www.cnbc.com/2026/01/22/musk-says-tesla-takes-safety-supervisors-out-of-some-austin-robotaxis.html','强'],['Electrek','https://electrek.co/2026/01/22/tesla-starts-robotaxi-rides-without-safety-monitor-in-austin-what-you-need-to-know/','强']]),
+C('fsl','一键把私家车加入共享车队赚钱 + 跨州召唤（Master Plan 2）','2016-07','—','两项均未实现；现有召唤仅限停车场级','missed',2016,0,[['FastCompany','https://www.fastcompany.com/90338840/elon-musk-thinks-tesla-can-build-1m-robotaxis-in-the-next-year','中']]),
+C('vehicle','Roadster 2：$200,000 起、620 英里、0-60 1.9s，2020 年投产','2017-11','2020 年投产','至今未量产；2026-10-01 才开发布会，交付最早 2027–28，设计已推倒重做','missed',2017,0,[['Electrek','https://electrek.co/2026/04/21/tesla-roadster-unveil-imminent-after-years-delays/','强'],['MotorTrend','https://www.motortrend.com/news/321-tesla-roadster-2-set-to-launch-on-october-1','强']]),
+C('vehicle','Semi：$180,000/500 英里，2019 年量产','2017-11','2019 年量产','2022-12 才交付 PepsiCo 36 辆；2026-04 才宣布规模量产规划 5 万辆/年','partial',2017,2022,[['Reuters','https://www.reuters.com/technology/musk-says-pepsico-take-delivery-tesla-semi-electric-trucks-dec-1-2022-10-07/','强'],['Engadget','https://www.engadget.com/tesla-finally-delivers-its-first-production-semi-to-pepsi-014214184.html','强']]),
+C('vehicle','Semi 100 万英里动力总成保修','2017-11','随车兑现','写入销售条件，交付车辆附带','met',2017,2022,[['Wikipedia','https://en.wikipedia.org/wiki/Tesla_Semi','中']]),
+C('vehicle','Model 3 起售价 $35,000，2017 年底交付','2016-03','2017 年底','交付 2017-07 开始（早于承诺）；但 $35,000 版 2019-02 才开放订购且很快下架','partial',2016,2019,[['Forbes','https://www.forbes.com/sites/alanohnsman/2018/02/20/the-elusive-35000-model-3-a-godot-like-wait-for-the-mass-market-tesla/','强']]),
+C('vehicle','2017 年底 Model 3 周产 5,000 辆','2016–2017','2017 年底','2017 全年仅产 2,685 辆；2018-07-01 凌晨达成 5,031/周，晚 6 个月','late',2017,2018,[['Forbes','https://www.forbes.com/sites/alanohnsman/2018/07/02/musks-next-task-after-mad-dash-to-tesla-model-3-assembly-goal-do-it-every-week/','强']]),
+C('vehicle','Battery Day：约三年内推出 $25,000 全自驾入门车','2020-09','2023 年','2024 年取消 Model 2；Musk：regular $25,000 model would be pointless and silly','missed',2020,0,[['Electrek','https://electrek.co/2025/06/28/wasnt-tesla-supposed-to-start-making-a-more-affordable-model-2-days-from-now/','强'],['CarBuzz','https://carbuzz.com/musk-claimed-25k-ev-was-on-company-didnt-know/','中']]),
+C('vehicle','2024 年起加速更便宜车型，2025 上半年投产','2024-04','2025 上半年','仅推出 $37k 起的 Model 3/Y 简化版，$25k 车无影；2026-04 传闻重启小 SUV 项目','missed',2024,0,[['Electrek','https://electrek.co/2025/06/28/wasnt-tesla-supposed-to-start-making-a-more-affordable-model-2-days-from-now/','中']]),
+C('vehicle','Solar Roof 2017 年夏上市，比普通屋顶+光伏便宜 10–15%','2016-10','2017 年夏','2018 年才量产；实际均价 $106,000（传统方案约 $60k），涨价遭集体诉讼','missed',2016,0,[['Nasdaq','https://www.nasdaq.com/articles/tesla-tsla-begins-solar-roof-production-at-buffalo-plant-2018-01-10','强'],['MIT TechReview','https://www.technologyreview.com/2019/05/15/135368','强']]),
+C('vehicle','每周安装 1,000 个太阳能屋顶','2019–2020','2019/2020 年底','峰值仅 21–32 套/周（缺口 >95%）；2026-08 停产停供，产品线终结','missed',2019,0,[['Electrek','https://electrek.co/2026/09/01/tesla-solar-roof-exit-installers-losses/','强'],['RenewEconomy','https://reneweconomy.com.au/tesla-reportedly-discontinues-solar-roof-tiles-and-will-now-focus-only-on-conventional-pv-modules/','强']]),
+C('vehicle','布法罗工厂 1GW+ 产能与 1,460 个就业岗位','2015–2018','逐年','实际约 500 名员工、单产线，岗位承诺多年未达标','partial',2015,2019,[['MIT TechReview','https://www.technologyreview.com/2019/05/15/135368','中']]),
+C('vehicle','Cybertruck $39,900 起、500+ 英里、2021 年量产','2019-11','2021 年','2023-11 才交付，起价 $60,990+；续航最高 340 英里；500 英里版从未出现','missed',2019,0,[['The Verge','https://www.theverge.com/2019/11/21/20975475/tesla-cybertruck-announcement-musk-electric-truck-pickup-features-range-price-release-date','强'],['PCMag','https://me.pcmag.com/en/cars-auto/20863/after-years-of-delays-tesla-delivers-first-12-cybertrucks-confirms-price-and-range','强']]),
+C('vehicle','Cybertruck 四电机版坦克掉头/蟹行','2021','首批车型','从未交付；总工自认试过但“无实际用途”','missed',2021,0,[['BusinessInsider','https://www.businessinsider.de/wirtschaft/tesla-5-versprechen-zum-cybertruck-die-musk-nicht-eingehalten-hat/','中']]),
+C('vehicle','Cyberquad 与卡车同期上市','2019-11','—','仅 $1,900 儿童版（曾召回），全尺寸版从未出现','partial',2019,0,[['Yahoo','https://finance.yahoo.com/news/5-promises-elon-musk-made-093813601.html','中']]),
+C('vehicle','$16,000 增程器把 Cybertruck 续航提到 470+ 英里','2023–2024','2025 年初','续航先下调至 445，2025-05 彻底取消并退款','missed',2023,0,[['The Drive','https://www.thedrive.com/news/tesla-cybertruck-16k-range-extender-and-original-promised-range-is-officially-not-happening','强']]),
+C('vehicle','Cybertruck 能过河过湖甚至过海，可当船开 100 米','2019–2022','—','只有 30 英寸 Wade Mode；有车主开进湖里报废','missed',2019,0,[['Futurism','https://futurism.com/advanced-transport/man-drives-cybertruck-into-lake','中']]),
+C('vehicle','Cybercab <$30,000、$0.20/英里、2026 投产（We, Robot）','2024-10','2026 年','2026-02 首车下线、09-03 奥斯汀投运；但未公布售价、不对个人销售、运营成本未公布','partial',2024,2026,[['Reuters','https://www.reuters.com/technology/teslas-musk-unveil-robotaxis-amid-fanfare-skepticism-2024-10-10/','强'],['Electrek','https://electrek.co/2026/09/07/tesla-cybercab-fleet-profitable-wouldnt-sell/','强']]),
+C('vehicle','Cybercab 只用无线充电、没有充电口','2024-10','—','量产版加了 NACS 物理充电口，无线充电搁置','missed',2024,0,[['IT之家','https://www.ithome.com/0/930/658.htm','中']]),
+C('vehicle','Cybercab 年产 200 万辆愿景','2024–2026','远期','现有产线规划数百辆/周；“2026 规模化量产”表述已从股东信删除','missed',2024,0,[['Nasdaq','https://www.nasdaq.com/articles/tesla-launched-cybercab-thursday-6-weeks-after-removing-volume-production-it-years-plan','强']]),
+C('vehicle','2018 年产 50 万辆（Master Plan 2）','2016-07','2018 年','2018 年交付 245,240 辆，约为目标一半','missed',2016,0,[['AP News','https://apnews.com/teslas-annual-sales-up-36-but-comes-short-of-delivery-goal-e3a64a3a86ee9d9ffdb3330b9e0f43b8','强']]),
+C('vehicle','2020 年产 100 万辆（Master Plan 2）','2016-07','2020 年','2022 年才突破 100 万辆/年，晚 2 年','late',2016,2022,[['AP News','https://apnews.com/teslas-annual-sales-up-36-but-comes-short-of-delivery-goal-e3a64a3a86ee9d9ffdb3330b9e0f43b8','强']]),
+C('vehicle','2020 年 comfortably exceed 50 万辆交付','2020-01','2020 年','交付 499,550 辆，差 450 辆（0.09%）','partial',2020,2020,[['Automotive News','https://www.autonews.com/automakers/tesla-delivers-499550-vehicles-below-2020-target/','强']]),
+C('vehicle','2030 年年产 2,000 万辆（Battery Day / MP3）','2020-09','2030 年','2024 年后交付下滑（2025 年 164 万辆），距目标差一个数量级','pending',2020,0,[['Electrek','https://electrek.co/2025/04/16/elon-musk-shut-down-internal-tesla-analysis-that-showed-robotaxi-would-lose-money/','中']]),
+C('vehicle','Model Y 成为全球最畅销车型','2022','2023 年','2023 年以 121 万辆登顶全球销量榜，首款电动车达成','met',2022,2023,[['Wikipedia','https://en.wikipedia.org/wiki/Tesla_Model_Y','强']]),
+C('vehicle','90 秒换电 + 全美换电站网络','2013-06','—','全美仅建 1 座（Harris Ranch）后停摆；Musk 自认没人用','missed',2013,0,[['CleanTechnica','https://cleantechnica.com/2025/04/04/what-did-elon-musk-know-about-ev-battery-swapping-and-when-did-he-know-it/','中']]),
+C('vehicle','Model S Plaid+ 520+ 英里，2021 年中交付','2020-09','2021 年中','2021-06 宣布取消','missed',2020,0,[['Electrek','https://electrek.co/2021/06/06/tesla-model-s-plaid-plus-canceled/','中']]),
+C('vehicle','Cybertruck 0–60 加速 2.9 秒','2019-11','—','Cyberbeast 实测约 2.6 秒，超额兑现','met',2019,2024,[['PCMag','https://me.pcmag.com/en/cars-auto/20863/after-years-of-delays-tesla-delivers-first-12-cybertrucks-confirms-price-and-range','强']]),
+C('vehicle','防弹装甲玻璃（发布会现场演示）','2019-11','—','发布演示当场砸碎；量产从未按防弹玻璃宣传','missed',2019,0,[['The Verge','https://www.theverge.com/2019/11/21/20975475/tesla-cybertruck-announcement-musk-electric-truck-pickup-features-range-price-release-date','强']]),
+C('vehicle','防弹不锈钢车身','2019-11','—','门板可挡部分手枪弹；说法降级为“防 .22 口径”','partial',2019,2023,[['汽车之家','https://chejiahao.autohome.com.cn/info/20224217','中']]),
+C('vehicle','不锈钢“外骨骼”承力结构','2019-11','—','拆解显示面板为非承力蒙皮，exoskeleton 说法被收回','partial',2019,2023,[['汽车之家','https://chejiahao.autohome.com.cn/info/20224217','中']]),
+C('vehicle','太阳能车顶每天补 15 英里续航','2019–2022','选装','从未提供','missed',2019,0,[['汽车之家','https://chejiahao.autohome.com.cn/info/20224217','中']]),
+C('vehicle','Cybertruck 6 座布局','2019-11','—','量产为 5 座','missed',2019,0,[['汽车之家','https://chejiahao.autohome.com.cn/info/20224217','中']]),
+C('vehicle','Cybertruck 年销 25 万辆','2019–2023','爬坡后','最好一年 3.9 万辆；2026 上半年仅 7,263 辆，被比作福特 Edsel','missed',2019,0,[['SlashGear','https://www.slashgear.com/2230580/tesla-cybertruck-sales-data-flop-ford-edsel/','强']]),
+C('vehicle','Cybercab 2026 年开始生产','2024-10','2026 年','2026-02-17 首台下线，04 月量产启动','met',2024,2026,[['Mashable','https://mashable.com/article/elon-musk-tesla-cybercab-in-production','强']]),
+C('vehicle','Cybercab 无方向盘、无踏板、无后视镜','2024-10','—','量产版与概念一致（另有带方向盘版应对监管）','met',2024,2026,[['Yahoo','https://finance.yahoo.com/technology/articles/elon-musk-touts-storm-tesla-203024849.html','强']]),
+C('vehicle','Cybercab 投入 Robotaxi 收费运营','2024-10','2026 年','2026-09-03 奥斯汀投运收费，约 45 辆注册','met',2024,2026,[['Yahoo','https://finance.yahoo.com/technology/articles/elon-musk-touts-storm-tesla-203024849.html','强']]),
+C('vehicle','2025 年 6 月奥斯汀 Robotaxi 上线','2024','2025-06','按点上线，但是 Model Y + 安全员，非无人 Cybercab','partial',2024,2025,[['Automotive World','https://www.automotiveworld.com/news/tesla-starts-removing-safety-drivers-from-austin-robotaxis/','强']]),
+C('vehicle','2025 年在得州+加州落地无监督 FSD','2024','2025 年','得州 2026-01 才部分实现且曾用远程操作员/跟随车；加州至今带安全员','partial',2024,2026,[['Engadget','https://www.engadget.com/2240859/tesla-robotaxi-fleet-might-finally-be-driving-around-austin-unsupervised/','强']]),
+C('vehicle','2026 年底前以 ≤$30,000 交付一台 Cybercab 给个人客户（MKBHD 打赌语境）','2026-02','2026 年底','截至 2026-09 未开放个人购买，仅企业意向表；赌约仍未决','missed',2026,0,[['Electrek','https://electrek.co/2026/02/19/tesla-fans-think-reviewer-have-to-shave-his-air-due-to-musk-30000-cybercab-claim/','强']]),
+
+C('spacex','Starship Mk1“一两个月内”飞 20km、“六个月内”入轨','2019-09','2020 年 3 月前入轨','Mk1 当年 11 月炸毁；首次 10km 跳跃 2020-12；首次全栈飞行 2023-04','missed',2019,0,[['Space.com','https://www.space.com/spacex-starship-reach-orbit-six-months.html','强']]),
+C('spacex','Starship 2022 年 1 月首飞入轨 + 当年十余次轨道飞行','2021-11','2022 年 1 月','2022 年 0 次发射；首飞 2023-04-20 且未入轨','missed',2021,0,[['SpaceNews','https://spacenews.com/musk-predicts-first-starship-orbital-launch-in-early-2022/','强']]),
+C('spacex','2025 年 25 次 Starship 发射','2025-01','2025 年','实际 5 次试飞（含三连败）；2026 年至 9 月仅 2 次','missed',2025,0,[['Ars Technica','https://arstechnica.com/civis/threads/faa-clears-spacex-for-25-launches-a-year-from-its-texas-launch-site.1507218/','中']]),
+C('spacex','发射塔“筷子”回收 Super Heavy 助推器','2020','复用路线图','2024-10-13 首次塔捕成功，晚约 4 年','late',2020,2024,[['Wikipedia','https://en.wikipedia.org/wiki/List_of_Super_Heavy_boosters','强']]),
+C('spacex','发射塔回收 Starship 飞船','2020','飞船塔捕','至 2026-09 仍未尝试；Flight 13 飞船首次完整软溅落','pending',2020,0,[['Ars Technica','https://arstechnica.com/space/2026/07/spacex-eyes-tower-catch-for-next-starship-after-auspicious-end-to-13th-flight/','强']]),
+C('spacex','Starship 完全快速复用、24 小时周转','2019–2024','小时–天级','助推器复用周转 131–221 天；V3 助推器均硬溅落丢失，差数量级','missed',2019,0,[['Wikipedia','https://en.wikipedia.org/wiki/List_of_Super_Heavy_boosters','强'],['The Register','https://www.theregister.com/science/2026/07/27/spacex-just-about-nails-starship-test-flight-13/','强']]),
+C('spacex','单次发射成本 $2M / 3 年内 <$10M、整箭造价 $100M','2019 / 2022','2022–2024','第三方估算整箭约 $90M–数亿美元、单次约 $50M 级；项目累计投入超 $150 亿','missed',2019,0,[['Nasdaq','https://www.nasdaq.com/articles/the-secret-to-spacexs-10-million-starship-and-how-spacex-will-dominate-space-for-years-to','中']]),
+C('spacex','Starship 运力 100–150 t（ITS 时代曾承诺 300 t）','2016–2020','Block 1/2','Block 1 约 15t、Block 2 估 35t；V3 标称 100t 2026-05 首飞，未验证','partial',2016,2026,[['Wikipedia','https://en.wikipedia.org/wiki/SpaceX_Starship','中']]),
+C('spacex','在轨推进剂加注演示（HLS 关键里程碑）','2021','原定 2025-03 → 2026-03','至 2026-09 未发生；唯一验证是 2024-03 舱内 5t 液氧转移','missed',2021,0,[['SpaceDaily','https://spacedaily.com/t-starship-13-test-flights-orbital-refueling-mars-hurdle/','强']]),
+C('spacex','Starship 载人首飞（2024 → 2026 承诺线）','2020–2024','2024–2026','至 2026-09 从未载人、从未入轨；分析预计最早 2029–31','missed',2020,0,[['BBC','https://www.bbc.co.uk/news/articles/cx2g88y52y8o','强']]),
+C('spacex','Falcon Heavy 2013 年首飞','2011-04','2013 年','2018-02-06 首飞成功，晚约 5 年；“way harder… pretty naive”','late',2011,2018,[['Wikipedia','https://en.wikipedia.org/wiki/Falcon_Heavy','强']]),
+C('spacex','Crew Dragon 2017 年恢复美国载人发射','2014','2017 年','2020-05-30 Demo-2 成功，晚约 3 年，结束 9 年空窗','late',2014,2020,[['Al Jazeera','https://www.aljazeera.com/economy/2020/5/30/spacex-and-nasa-astronauts-make-historic-launch','强']]),
+C('spacex','dearMoon 2023 年底私人绕月','2018-09','2023 年底','2024-06-01 取消，从未飞行','missed',2018,0,[['Reuters','https://www.reuters.com/technology/space/japanese-billionaire-maezawa-dearmoon-mission-cancels-moon-flyby-2024-06-01/','强']]),
+C('spacex','NASA HLS：2022 加注演示、2023 无人登月、2024 载人登月','2021-04','2024 年','三里程碑全未达成；载人落月移至 Artemis IV（2028 初），内部文件称最早 2028-09','missed',2021,0,[['NASA OIG','https://oig.nasa.gov/wp-content/uploads/2026/03/final-report-ig-26-004-nasas-management-of-the-human-landing-system-contracts.pdf','强']]),
+C('spacex','Falcon 9 一级 2015 年完全快速复用','2013','2014–2015','2015-12 首次着陆、2017-03 首次复飞，晚约 2 年','late',2013,2017,[['Wikipedia','https://en.wikipedia.org/wiki/SpaceX_reusable_launch_system_development_program','强']]),
+C('spacex','Falcon 9 Block 5：免翻新 10 次、上限 100 次','2018','10 次/100 次','10 次被大幅超越（多枚超 30 次，纪录 37 次）；100 次未达','partial',2018,2026,[['UPI','https://www.upi.com/Top_News/US/2026/08/25/SpaceX-sets-a-rocket-reuse-record-with-Falcon-9-launch/7011787681645/','强']]),
+C('spacex','复用把发射成本降一个数量级','2011–2018','客户价格下降','内部成本确实降至 $15–28M/次；但公开报价从 $50M 涨到 $74M，降价未惠及客户','partial',2011,2026,[['Wikipedia','https://en.wikipedia.org/wiki/Falcon_9','中']]),
+C('spacex','Starlink 2025 年收入 >$300 亿（2015 投资者材料）','2015','2025 年','2025 年实际 $114 亿（总盘子 $300 亿的 1/3）；2022 年 2000 万用户目标实际 100 万','missed',2015,0,[['Nasdaq','https://www.nasdaq.com/articles/elon-musk-predicted-starlink-would-generate-%2430-billion-in-revenue.-dont-believe-it.-2021','中']]),
+C('spacex','Starlink 星座 12,000 → 42,000 颗','2015–2022','12,000+','在轨约 10,400 颗（占全球机动卫星 75%），Gen1 尚未完成、Gen2 未实质部署','partial',2015,2026,[['SEC S-1','https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm','强']]),
+C('spacex','Starlink 服务数千万用户','2015–2022','数千万','2026-06 用户 1,200 万+（164 国），2025 年收入 $114 亿、营业利润率 38.8%','met',2015,2026,[['SEC S-1','https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm','强'],['Wikipedia','https://en.wikipedia.org/wiki/Starlink','强']]),
+C('spacex','手机直连卫星：2024 年短信、2025 年语音数据','2022-08','2024/2025','2025-02 beta、2025-07 T-Mobile 全国商用，晚约 14 个月','late',2022,2025,[['Light Reading','https://www.lightreading.com/satellite/2025-in-review-d2d-rolls-out','强']]),
+C('spacex','Starlink 单独分拆上市','2020–2023','现金流可预测后','未发生；2026-06-12 SpaceX 整体 IPO（募资 $750 亿、估值 $1.77 万亿）','partial',2020,2026,[['Fortune','https://fortune.com/2026/06/12/spacex-ipo-trading-first-day-live-updates-elon-musk/','强']]),
+C('spacex','Starlink 延迟 <20ms、Gigabit 速率','2015–2024','<20ms','独立实测中位 45–50ms（自报 25.7ms）；Gigabit 未实现','missed',2015,0,[['PCMag','https://uk.pcmag.com/networking/159134/starlink-maintains-huge-lead-over-hughesnet-and-viasat-in-latency','强']]),
+C('mars','ITS：2018 年无人 Red Dragon 着陆、2024 年载人登火','2016-09','2018 / 2024','Red Dragon 2017 年取消；至今无任何载人火星任务','missed',2016,0,[['Mars Society','https://www.marssociety.org/news/2016/09/27/spacexs-elon-musk-unveils-interplanetary-spaceship-to-colonize-mars/','强']]),
+C('mars','2022 年无人货运、2024 年载人（“不是笔误”）','2017-09','2022 / 2024','均未发生；2026 年窗口也已放弃','missed',2017,0,[['TIME','https://time.com/7373155/elon-musk-mars-moon-city/','中']]),
+C('mars','2026 年前载人登火“高度自信”','2020','2026 年前','未发生；2025 年底改口 2026 窗口是“distraction”','missed',2020,0,[['TIME','https://time.com/7373155/elon-musk-mars-moon-city/','中']]),
+C('mars','五年内登陆火星（TIME 年度人物专访）','2021-12','2026 年前','未发生','missed',2021,0,[['TIME','https://time.com/7373155/elon-musk-mars-moon-city/','强']]),
+C('mars','2026 窗口 5 艘无人 Starship 赴火，载人约 2028','2024-09','2026 年 11–12 月','2026 窗口正式放弃（成功率自降到 50% → small chance → 放弃）','missed',2024,0,[['BBC','https://www.bbc.co.uk/news/articles/cx2g88y52y8o','强']]),
+C('mars','载人登火最早 2029、更可能 2031','2025-03','2029/2031','未到期；但 2026 窗口弃用后前置条件已滑期','pending',2025,0,[['Washington Examiner','https://www.washingtonexaminer.com/news/washington-secrets/3352510/musk-wants-to-land-on-mars-by-2029-build-city-of-1-million-before-civilization-dies/','中']]),
+C('mars','2026-02 重置：月球城市 <10 年、火星推迟 20+ 年','2026-02','—','对全部既有火星时间表的公开撤回（此前 2025-01 刚说“月球是 distraction”）','missed',2026,0,[['TIME','https://time.com/7373155/elon-musk-mars-moon-city/','强']]),
+C('mars','2050 年前建成百万人口自给火星城市','2017–2025','2050 年','时间表已事实性后移（先 30 年再 20+ 年）；无硬件进展支撑','pending',2017,0,[['The Independent','https://www.the-independent.com/tech/elon-musk-million-people-mars-spacex-ipo-b2989374.html','中']]),
+C('neuro','2020 年启动人体试验','2019','2020 年','首例植入 2024-01-28，晚约 4 年','late',2019,2024,[['Wikipedia','https://en.wikipedia.org/wiki/Neuralink','强']]),
+C('neuro','FDA 快速获批进入人体（2020 年称已获突破性认定）','2020-07','2020–2021','2022 年被 FDA 驳回；2023-05 才获批、2023-09 启动试验','late',2020,2023,[['Wikipedia','https://en.wikipedia.org/wiki/Neuralink','强']]),
+C('neuro','6 个月内首例人体植入','2022-11','2023 年 5 月前','实际 2024-01-28，晚约 8 个月','late',2022,2024,[['Wikipedia','https://en.wikipedia.org/wiki/Neuralink','中']]),
+C('neuro','瘫痪者用意念控制电脑/鼠标/玩游戏（Telepathy）','2020–2024','—','已实现但有限：2024-03 患者演示光标与下棋；首例约 85% 电极丝脱落','partial',2020,2024,[['Wikipedia','https://en.wikipedia.org/wiki/Neuralink','强']]),
+C('neuro','患者数量快速规模化','2024–2025','—','2026-01 官方 21 人、2026-05 约 26 例（PRIME 目标 30 人）；零严重器械不良事件','pending',2024,0,[['CBC','https://www.cbc.ca/lite/story/9.7253579','中']]),
+C('neuro','Blindsight 让先天全盲者复明（“耶稣级奇迹”）','2024-03','2026 年内首例（2026-01 说法）','尚未植入任何人类；仅获 FDA 突破性器械认定（≠批准）','missed',2024,0,[['Mathrubhumi','https://english.mathrubhumi.com/technology/neuralink-blindsight-vision-restoration-human-trials-ud5rdmzo','中']]),
+C('neuro','“没有猴子因 Neuralink 设备死亡或重伤”','2024-03','—','记录显示 2018–22 至少 1,500 只动物、部分瘫痪与安乐死，与说法相抵','unverified',2024,0,[['Wikipedia','https://en.wikipedia.org/wiki/Neuralink','中']]),
+C('boring','霍桑测试隧道约 4 个月完工','2016-12','2017 年','2018-12 开放，仅 1.14 英里、40mph 颠簸试乘，属演示隧道','partial',2016,2018,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','强']]),
+C('boring','芝加哥 O\'Hare 快线 2–3 年内运营','2018','2020–2021','2021 年计划放弃，从未开工','missed',2018,0,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','强']]),
+C('boring','华盛顿–纽约隧道（“已获政府口头批准”）','2017-07','—','无任何批准证据；2021 年项目从公司官网移除','missed',2017,0,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','强']]),
+C('boring','Prufrock 掘进机“每周一英里”、MB3 每天 7 英里','2022','—','均未实现；MB2 2026-06 才完成测试','missed',2022,0,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','强']]),
+C('boring','Las Vegas Loop 68 英里/104 站/9 万人小时','2020–2023','满建','建成约 11 英里、仅 3.5 英里客运、11 站；累计乘客 400 万+，实测峰值约 6,600 人/小时','partial',2020,2026,[['Tesorb','https://tesorb.com/vegas-loop-tracker/','中']]),
+C('boring','隧道成本降低 100 倍','2018','—','多项隧道项目取消；2023 年报道 7 年仅挖 2.4 英里','missed',2018,0,[['Nashville Scene','https://www.nashvillescene.com/news/coverstory/inside-the-boring-company/article_afb3f7e9-659d-4f67-8267-8dd1418c7836.html','强']]),
+C('boring','Fort Lauderdale Loop（$90–100M，5 英里）','2021','—','2022-12 暂停，未建成','missed',2021,0,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','强']]),
+C('hyper','Hyperloop 白皮书：LA–SF 35 分钟、760mph、造价 $60 亿','2013-08','—','从未建成任何客运线路；批评者估实际成本近 $1,000 亿','missed',2013,0,[['Wikipedia','https://en.wikipedia.org/wiki/Hyperloop','强']]),
+C('hyper','约 3 年后载客（即 2016 年）','2013-08','2016 年','首次载人测试 2020-11，500 米测试道、仅 172km/h 演示','late',2013,2020,[['Wikipedia','https://en.wikipedia.org/wiki/Hyperloop','强']]),
+C('hyper','纽约–DC 29 分钟（“口头批准”）','2017-07','—','无任何后续证据，从未推进','missed',2017,0,[['Wikipedia','https://en.wikipedia.org/wiki/The_Boring_Company','中']]),
+C('hyper','学生舱竞赛最高速（1 英里测试道）','2015-06','—','2017 年慕尼黑工大 324km/h 夺冠，2019 年达 463km/h','met',2015,2017,[['Wikipedia','https://en.wikipedia.org/wiki/Hyperloop','强']]),
+C('hyper','商业 Hyperloop 客运服务','2017–2020','2020 年代','Virgin 2022-02 放弃客运；Hyperloop One 2023-12 破产；全球零商业运营','missed',2017,0,[['Wikipedia','https://en.wikipedia.org/wiki/Hyperloop','强']]),
+C('robot','Optimus 原型“大概明年”（2022）推出','2021-08','2022 年','2022-09-30 AI Day 展示半功能原型，晚约 1 年','late',2021,2022,[['Wikipedia','https://en.wikipedia.org/wiki/Optimus_(robot)','中']]),
+C('robot','2023 年量产就绪（Cyber Rodeo）','2022-04','2023 年','2023 年无任何量产；仅发布分拣积木视频','missed',2022,0,[['Wikipedia','https://en.wikipedia.org/wiki/Optimus_(robot)','强']]),
+C('robot','2025 年数千台、2026 年 50,000 台 Optimus','2024–2025','2025/2026','截至 2026-08 财报会未披露任何量产台数；第三方估 1,000–1,200 台全部内部使用、零对外销售','missed',2024,0,[['IIoT World','https://www.iiot-world.com/smart-manufacturing/tesla-optimus-manufacturing-2026/','强'],['Nasdaq','https://www.nasdaq.com/articles/why-teslas-optimus-story-more-promise-progress','强']]),
+C('robot','Optimus 售价 $30,000 → <$20,000','2024-10 / 2026-01','—','当前制造成本 $50,000–100,000/台，无售价可言','missed',2024,0,[['IIoT World','https://www.iiot-world.com/smart-manufacturing/tesla-optimus-manufacturing-2026/','强']]),
+C('robot','Optimus 是“史上最大产品”、长期 $10 万亿销售额','2022–2025','远期','无任何可核验产出支撑；关键数字仅管理层口头，从未进财报','unverified',2022,0,[['Nasdaq','https://www.nasdaq.com/articles/why-teslas-optimus-story-more-promise-progress','中']]),
+C('robot','Optimus 产线 2026 年 7–8 月投产','2026','2026 年中','Fremont 产线改造中；供应商口径 5,000 台零件订单，未经特斯拉确认','pending',2026,0,[['IIoT World','https://www.iiot-world.com/smart-manufacturing/tesla-optimus-manufacturing-2026/','中']]),
+C('robot','Optimus 2027 年底公开销售（达沃斯 2026）','2026-01','2027 年底','未到期','pending',2026,0,[['3DVF','https://3dvf.com/en/at-davos-elon-musk-makes-a-series-of-shock-announcements-on-spacex-tesla-ai-and-energy/','中']]),
+C('xai','xAI 使命：maximally truth-seeking 最大程度求真','2023-07','—','不可证伪；2025-07 Grok 生成称颂希特勒内容后道歉删除，形成反证','unverified',2023,0,[['Wikipedia','https://en.wikipedia.org/wiki/XAI_(company)','中']]),
+C('xai','Grok 各版本按节奏发布（1→4）','2023–2025','—','Grok-1 至 Grok-4 均按节奏发布（2023-11 至 2025-07）','met',2023,2025,[['Wikipedia','https://en.wikipedia.org/wiki/XAI_(company)','强']]),
+C('xai','开源所有 Grok 模型','2023–2024','—','仅 Grok-1（2024-03）、Grok-2（2025-08）开源权重；3/4 及后续闭源','partial',2023,2025,[['Wikipedia','https://en.wikipedia.org/wiki/XAI_(company)','强']]),
+C('xai','Grok 5 在 2025 年底前发布（后推 2026 Q1 → Q2）','2025-08','2025 年底','截至 2026 年中仍在训练；Polymarket 6 月前发布概率一度仅 7%','missed',2025,0,[['WaveSpeed','https://wavespeed.ai/blog/posts/grok-5-launch-tracker/','中']]),
+C('xai','Colossus 扩至 100,000 张 H100（后加码 200,000、100 万）','2024-06','2024-12','10 万卡 122 天建成按期投运；百万卡未达成','partial',2024,2024,[['Wikipedia','https://en.wikipedia.org/wiki/XAI_(company)','强']]),
+C('xai','2024 年底前追上 OpenAI/Google','2023–2024','2024 年底','Grok 属第一梯队，但无独立基准确认其为第一','missed',2023,0,[['Wikipedia','https://en.wikipedia.org/wiki/XAI_(company)','中']]),
+C('xai','AI 在 2030 年超越人类（达沃斯 2026）','2026-01','2030 年','未到期','pending',2026,0,[['3DVF','https://3dvf.com/en/at-davos-elon-musk-makes-a-series-of-shock-announcements-on-spacex-tesla-ai-and-energy/','中']]),
+C('x','消灭水军机器人否则死而后已（defeat the spam bots or die trying）','2022-04','收购后','无证据显示机器人总量下降；2024 自认 hard；从未公布核实数据','missed',2022,0,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','强']]),
+C('x','$8/月认证所有真人（authenticate all real humans）','2022-04','2022-11','蓝标上线即遇冒充潮暂停；“认证所有真人”未实现，付费即可获得','partial',2022,2022,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','强']]),
+C('x','把推荐算法开源到 GitHub','2022','—','2023-07 发布部分代码，长期未有效维护','partial',2022,2023,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','中']]),
+C('x','成立内容审核委员会再恢复账号','2022-10','2022 年内','委员会从未成立','missed',2022,0,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','强']]),
+C('x','广告商会回来、我不在乎经济性','2022–2023','—','欧盟停投；部分广告主 2024–25 回流但未恢复承诺幅度','partial',2022,2025,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','中']]),
+C('x','把 X 变成 WeChat 式万能应用（everything app）','2022-10','—','X Money 2026-07 在美上线（转账/账单/借记卡），晚约 4 年；离超级 App 尚远','late',2022,2026,[['Bloomberg','https://www.bloomberg.com/news/articles/2026-04-26/musk-vies-to-turn-x-into-super-app-with-banking-tool-near-launch','强']]),
+C('x','言论自由绝对主义','2022','—','自相矛盾：既限流又审查（cis 列入侮辱词、服从巴西法院封号）','partial',2022,2026,[['Wikipedia','https://en.wikipedia.org/wiki/Twitter_under_Elon_Musk','强']]),
+C('other','$420/股私有化特斯拉，“funding secured”','2018-08','2018 年','融资从未落实；SEC 认定欺诈，Musk 与特斯拉各罚 $2,000 万、辞任董事长','missed',2018,0,[['SEC','https://www.sec.gov/news/press-release/2018-226','强']]),
+C('other','特斯拉将生产呼吸机支援医院','2020-03','2020 年','交付的是 BiPAP/CPAP 而非呼吸机；从未量产呼吸机','missed',2020,0,[['Wikipedia','https://en.wikipedia.org/wiki/Views_of_Elon_Musk','中']]),
+C('other','美国新冠“4 月底新增病例接近零”','2020-03','2020-04','完全错误；同期称新冠恐慌“愚蠢”','missed',2020,0,[['Wikipedia','https://en.wikipedia.org/wiki/Views_of_Elon_Musk','中']]),
+C('other','美国太阳能产能 2029 年 100GW（达沃斯 2026）','2026-01','2029 年','未到期；得州太阳能工厂尚在建设','pending',2026,0,[['3DVF','https://3dvf.com/en/at-davos-elon-musk-makes-a-series-of-shock-announcements-on-spacex-tesla-ai-and-energy/','中']]),
+];
+/* ============ derived ============ */
+const RATEABLE = c => c.v!=='pending' && c.v!=='unverified';
+const tally = arr => arr.reduce((m,c)=>{ if(RATEABLE(c)) m[c.v]=(m[c.v]||0)+1; return m; },{});
+const countV = (arr,v)=>arr.filter(c=>c.v===v).length;
+/* ============ render: stack ============ */
+const ORDER=['met','late','partial','missed'];
+function renderHeroStack(){
+  const box=document.getElementById('hero-stack');
+  const N=CLAIMS.length;
+  box.innerHTML='';
+  const t={met:countV(CLAIMS,'met'), late:countV(CLAIMS,'late'), partial:countV(CLAIMS,'partial'), missed:countV(CLAIMS,'missed')};
+  ORDER.forEach(k=>{
+    const s=document.createElement('div'); s.className='seg';
+    s.style.width=(t[k]/N*100)+'%';
+    s.style.background='var(--v-'+k+')';
+    s.title=VD[k]+'：'+t[k]+' 条';
+    box.appendChild(s);
+  });
+  const lg=document.getElementById('hero-legend');
+  lg.innerHTML='';
+  [['met','完全兑现'],['late','跳票后兑现'],['partial','部分兑现'],['missed','未兑现'],['pending','进行中·不计入'],['unverified','无法核实·不计入']].forEach(([k,l])=>{
+    const n=countV(CLAIMS,k);
+    const el=document.createElement('span'); el.className='lg';
+    el.innerHTML='<i style="background:var(--v-'+k+')"></i>'+l+' <span class="mono" style="color:var(--ink-3)">'+n+'</span>';
+    lg.appendChild(el);
+  });
+  document.getElementById('t-n').textContent=N;
+}
+/* ============ render: filters ============ */
+let fDomain='all', fVerdict='all';
+function renderFilters(){
+  const fd=document.getElementById('f-domain');
+  const mk=(label,val,on)=>{const b=document.createElement('button');b.className='chip'+(on?' on':'');b.textContent=label;b.onclick=()=>{if(val==='all'&&fDomain==='all'){} fDomain=val;renderFilters();renderAll();};return b;};
+  const mkv=(label,val)=>{const b=document.createElement('button');b.className='chip'+(fVerdict===val?' on':'');b.textContent=label;b.onclick=()=>{fVerdict=val;renderFilters();renderAll();};return b;};
+  fd.innerHTML='';
+  fd.appendChild(mk('全部领域','all'));
+  Object.entries(DOM).forEach(([k,l])=>{
+    const b=document.createElement('button'); b.className='chip'+(fDomain===k?' on':''); b.textContent=l;
+    b.onclick=()=>{fDomain=k; renderFilters(); renderAll();};
+    fd.appendChild(b);
+  });
+  const fv=document.getElementById('f-verdict'); fv.innerHTML='';
+  fv.appendChild(mkv('全部判定','all'));
+  Object.entries(VD).forEach(([k,l])=>{const b=document.createElement('button');b.className='chip'+(fVerdict===k?' on':'');b.textContent=l;b.onclick=()=>{fVerdict=k;renderFilters();renderAll();};fv.appendChild(b);});
+}
+/* ============ render: domain summaries ============ */
+function renderDomains(){
+  const box=document.getElementById('domain-summaries'); box.innerHTML='';
+  const order=['fsl','vehicle','spacex','mars','neuro','boring','hyper','robot','xai','x','other'];
+  order.forEach(k=>{
+    let arr=CLAIMS.filter(c=>c.d===k);
+    if(fDomain!=='all') arr=arr.filter(c=>c.d===fDomain);
+    if(fVerdict!=='all') arr=arr.filter(c=>c.v===fVerdict);
+    if(!arr.length) return;
+    const t=tally(arr); const total=arr.length; const rateable=arr.filter(RATEABLE).length;
+    const met=t.met||0, late=t.late||0, partial=t.partial||0, missed=t.missed||0;
+    const pct = rateable? (met/rateable*100).toFixed(0):'—';
+    const el=document.createElement('div'); el.className='dom';
+    el.innerHTML='<div class="dom-top"><span class="dom-name">'+DOM[k]+'</span>'+
+      '<span class="dom-stats">'+total+' 条 · 可判定 <b>'+rateable+'</b> · 严格兑现 <b style="color:var(--v-met)">'+(met||0)+'</b> ('+pct+'%) · 跳票后 <b>'+late+'</b> · 部分 <b>'+partial+'</b> · 未兑现 <b style="color:var(--v-miss)">'+missed+'</b></span></div>'+
+      '<div class="dom-bar">'+
+      ORDER.map(o=>'<i style="width:'+( (t[o]||0)/total*100 )+'%; background:var(--v-'+o+')" title="'+VD[o]+' '+(t[o]||0)+'"></i>').join('')+
+      '</div>';
+    box.appendChild(el);
+  });
+}
+/* ============ render: ledger ============ */
+function srcCell(src){
+  if(!src||!src.length) return '<span class="s-strength">—</span>';
+  return src.map(s=>'<a href="'+s[1]+'" target="_blank" rel="noopener"><span class="s-strength">'+(STR[s[2]]||'S')+'</span>'+s[0]+'</a>').join('');
+}
+function renderLedger(){
+  const box=document.getElementById('ledger'); box.innerHTML='';
+  const tbl=document.createElement('table');
+  let html='<thead><tr><th style="width:30px">#</th><th>承诺</th><th>时间</th><th>目标</th><th>实际结果</th><th>判定</th><th>证据</th></tr></thead><tbody>';
+  const order=['fsl','vehicle','spacex','mars','neuro','boring','hyper','robot','xai','x','other'];
+  let n=0, shown=0;
+  order.forEach(k=>{
+    const arr=CLAIMS.filter(c=>c.d===k && (fDomain==='all'||c.d===fDomain) && (fVerdict==='all'||c.v===fVerdict));
+    if(!arr.length) return;
+    const t=tally(arr); const rateable=arr.filter(RATEABLE).length;
+    const met=t.met||0;
+    html+='<tr class="group-row"><td></td><td>'+DOM[k]+'</td><td colspan="3" class="g-stat mono">'+arr.length+' 条 · 可判定 '+rateable+' · 严格兑现 '+met+' / '+rateable+'（'+(rateable?(met/rateable*100).toFixed(0):'—')+'%）</td><td></td><td></td></tr>';
+    arr.forEach(c=>{
+      n++; shown++;
+      html+='<tr data-d="'+c.d+'" data-v="'+c.v+'"><td class="num">'+(c.d==='mars'?'·':n)+'</td>'+
+        '<td class="claim"><span class="q">'+c.c+'</span><span class="w">'+c.w+'</span></td>'+
+        '<td class="when">'+c.w+'</td>'+
+        '<td class="target">'+c.t+'</td>'+
+        '<td class="actual">'+c.a+'</td>'+
+        '<td><span class="vd '+VDCLS[c.v]+'"><svg viewBox="0 0 12 12" fill="currentColor"><text x="6" y="9.5" text-anchor="middle" font-size="9" font-weight="700">'+GLYPH[c.v]+'</text></svg>'+VD[c.v]+'</span></td>'+
+        '<td class="src">'+srcCell(c.src)+'</td></tr>';
+    });
+  });
+  html+='</tbody>';
+  tbl.innerHTML=html;
+  box.appendChild(tbl);
+  document.getElementById('f-count').textContent='当前显示 '+shown+' / '+CLAIMS.length+' 条';
+}
+/* ============ render: delay ============ */
+function renderDelay(){
+  const box=document.getElementById('delay-rows'); box.innerHTML='';
+  const late=CLAIMS.filter(c=>c.v==='late' && c.ya && c.yp).sort((a,b)=>(b.ya-b.yp)-(a.ya-a.yp));
+  const max=Math.max(...late.map(c=>c.ya-c.yp));
+  late.forEach(c=>{
+    const d=c.ya-c.yp;
+    const row=document.createElement('div'); row.className='drow';
+    row.innerHTML='<div class="dl" title="'+c.c+'">'+c.c.slice(0,26)+(c.c.length>26?'…':'')+'</div>'+
+      '<div class="track"><div class="bar'+(d>=4?' far':'')+'" style="width:'+(d/max*100)+'%"></div></div>'+
+      '<div class="dv">'+d+' 年</div>';
+    box.appendChild(row);
+  });
+}
+/* ============ render: wins ============ */
+function renderWins(){
+  const wins=[
+    ['Falcon 9 火箭复用','2013 年承诺 2015 年复用 → 2015 着陆、2017 复飞。如今单枚助推器超 30 次飞行、累计着陆 598 次，是"迟到但成真"的典范。'],
+    ['Crew Dragon 载人','2017 年目标 → 2020-05-30 首飞成功，结束美国 9 年载人空窗，持续运营至今。'],
+    ['Falcon Heavy','2013 年承诺 → 2018-02-06 首飞成功，双助推器同步回收。'],
+    ['Starlink 用户规模','2026-06 用户 1,200 万+（164 国），2025 年收入 $114 亿、营业利润率 38.8%——SpaceX 唯一盈利板块。'],
+    ['手机直连卫星 D2C','2022 年发布"消灭死区"→ 2025-07 T-Mobile 全国商用，晚 14 个月。'],
+    ['筷子回收 Super Heavy 助推器','2024-10 首次塔捕成功；飞船塔捕仍在进行中。'],
+    ['Model Y 全球最畅销','2023 年以 121 万辆登顶全球车型销量榜，首款电动车达成。'],
+    ['Cybercab 下线与投运','2026-02-17 首车下线、2026-09-03 奥斯汀收费运营——"造出来"这一步确实按期。'],
+    ['Model 3 周产 5,000 辆','2017 年底目标 → 2018-07-01 凌晨达成，晚 6 个月。'],
+    ['Neuralink 人体植入','2020 年目标 → 2024-01 首例，2026 年 21 人植入、零严重器械不良事件。'],
+    ['X Money 上线','2022 年"万能应用"承诺 → 2026-07 在美国推出转账支付，晚 4 年。'],
+    ['Colossus 算力集群','2024 年承诺 10 万张 H100 → 122 天建成投运，按期。'],
+  ];
+  const box=document.getElementById('wins-grid'); box.innerHTML='';
+  wins.forEach(([h,p])=>{
+    const el=document.createElement('div'); el.className='win';
+    el.innerHTML='<h4>'+h+'</h4><p>'+p+'</p>';
+    box.appendChild(el);
+  });
+}
+/* ============ go ============ */
+function renderAll(){ renderDomains(); renderLedger(); }
+renderHeroStack(); renderFilters(); renderAll(); renderDelay(); renderWins();
+</script>

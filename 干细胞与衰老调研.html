@@ -1,0 +1,2790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="干细胞与衰老专题调研：为什么衰老导致干细胞变化、发生了什么变化、对组织与寿命的影响有多大。证据分级 A–D，调研截止 2026-10-28。">
+<title>干细胞的衰老 · 为什么、变什么、影响多大</title>
+<style>
+/* ========== 变量 ========== */
+:root{
+  color-scheme: light;
+  --bg:#f4f1e8;
+  --surface:#fffdf7;
+  --surface-2:#ece8dc;
+  --surface-3:#e2ddcf;
+  --ink:#14181d;
+  --ink-2:#3f4650;
+  --muted:#6f7681;
+  --line:#dcd6c7;
+  --line-strong:#b8b1a1;
+  --brand:#0d5c63;
+  --brand-2:#a33b28;
+  --navy:#07141a;
+  --navy-2:#0d2029;
+  --s1:#2a6fb0;
+  --s2:#c95a2b;
+  --s3:#2e8b68;
+  --s4:#b07d12;
+  --s5:#9a4d78;
+  --s6:#6b7f3a;
+  --s7:#5b4b8a;
+  --s8:#b03a3a;
+  --good:#0f7a4a;
+  --warn:#b07d12;
+  --critical:#b03a3a;
+  --shadow:0 18px 50px rgba(20,24,29,.08);
+  --shadow-sm:0 6px 18px rgba(20,24,29,.06);
+  --radius:18px;
+  --sans:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --mono:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:#0d1014;
+    --surface:#151a1f;
+    --surface-2:#1c2228;
+    --surface-3:#252c33;
+    --ink:#f1eee5;
+    --ink-2:#c8c4b8;
+    --muted:#9b988e;
+    --line:#2a3037;
+    --line-strong:#454b53;
+    --brand:#63c6cf;
+    --brand-2:#e58a66;
+    --navy:#04090c;
+    --navy-2:#0a171d;
+    --s1:#4a90d9;
+    --s2:#e07a4b;
+    --s3:#43b183;
+    --s4:#d0a02e;
+    --s5:#c06f9c;
+    --s6:#8fa356;
+    --s7:#8a7cc0;
+    --s8:#d45c5c;
+    --shadow:0 18px 50px rgba(0,0,0,.4);
+    --shadow-sm:0 6px 18px rgba(0,0,0,.3);
+  }
+}
+/* ========== 基础 ========== */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--serif);font-size:17px;line-height:1.86;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%}
+a{color:var(--brand);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+a:hover{text-decoration-color:var(--brand)}
+p{margin:0 0 16px}
+strong{font-weight:700}
+em{font-style:normal;color:var(--brand)}
+small{font-size:.84em}
+h1,h2,h3,h4,h5,.sans{font-family:var(--sans)}
+h2{font-size:clamp(30px,4vw,46px);line-height:1.16;letter-spacing:-.025em;margin:0 0 18px;font-weight:800}
+h3{font-size:24px;line-height:1.32;letter-spacing:-.01em;margin:40px 0 12px;font-weight:750}
+h4{font-size:18px;line-height:1.4;margin:26px 0 8px;font-weight:700}
+::selection{background:var(--brand);color:#fff}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--brand);color:#fff;padding:10px 14px;z-index:200;font-family:var(--sans)}
+.skip-link:focus{left:12px;top:12px}
+/* ========== 进度条与导航 ========== */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--s3),var(--brand));z-index:120}
+.toc{position:sticky;top:0;z-index:100;background:rgba(244,241,232,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+@media (prefers-color-scheme: dark){.toc{background:rgba(13,16,20,.94)}}
+.toc-inner{max-width:1180px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.toc-inner::-webkit-scrollbar{display:none}
+.toc a{font-family:var(--sans);font-size:12.5px;line-height:1;color:var(--ink-2);text-decoration:none;padding:16px 10px 14px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--brand)}
+.toc a.is-active{color:var(--brand);border-bottom-color:var(--brand)}
+/* ========== 首屏 ========== */
+.hero{position:relative;min-height:100svh;background:radial-gradient(1100px 680px at 78% 20%,#123a40 0%,#07141a 58%,#040a0d 100%);color:#f7f4ea;overflow:hidden;display:flex;align-items:center}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%,rgba(255,255,255,.55),transparent 60%),
+    radial-gradient(1px 1px at 24% 72%,rgba(255,255,255,.4),transparent 60%),
+    radial-gradient(1.4px 1.4px at 38% 28%,rgba(255,255,255,.5),transparent 60%),
+    radial-gradient(1px 1px at 52% 82%,rgba(255,255,255,.35),transparent 60%),
+    radial-gradient(1.1px 1.1px at 66% 14%,rgba(255,255,255,.45),transparent 60%),
+    radial-gradient(1.3px 1.3px at 78% 64%,rgba(255,255,255,.4),transparent 60%),
+    radial-gradient(1px 1px at 88% 32%,rgba(255,255,255,.5),transparent 60%),
+    radial-gradient(1px 1px at 8% 88%,rgba(255,255,255,.3),transparent 60%),
+    radial-gradient(1.2px 1.2px at 44% 52%,rgba(255,255,255,.3),transparent 60%),
+    radial-gradient(1px 1px at 92% 86%,rgba(255,255,255,.4),transparent 60%);
+  opacity:.85;
+}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,10,13,0) 58%,rgba(4,10,13,.76) 100%)}
+.hero-copy{min-width:0}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:auto;padding:118px 28px 76px;display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+.kicker{font-family:var(--sans);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#8fd7d3;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:46px;height:1px;background:#8fd7d3;display:inline-block}
+.hero-title{font-family:var(--sans);font-size:clamp(52px,7.6vw,106px);line-height:.98;letter-spacing:-.045em;margin:24px 0 26px;font-weight:850;color:#fbf8ef}
+.hero-title span{display:block;color:#8fd7d3;font-size:clamp(24px,3.2vw,42px);line-height:1.2;letter-spacing:-.02em;margin-top:18px;font-weight:650}
+.hero-sub{font-family:var(--sans);font-size:clamp(17px,1.9vw,21px);line-height:1.65;color:#c9d5d7;max-width:640px;font-weight:400}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:28px;font-family:var(--sans);font-size:12px;color:#8fa4a8;letter-spacing:.03em}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+.hero-meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:#35c5c9;display:inline-block}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1;padding:15px 20px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:#8fd7d3;color:#061018;border:1px solid #8fd7d3}
+.btn-primary:hover{background:#b8e8e4}
+.btn-ghost{background:transparent;color:#d7e2e4;border:1px solid rgba(255,255,255,.24)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.55)}
+.hero-art{position:relative;min-height:430px;display:flex;align-items:center;justify-content:center}
+.hero-art-svg{width:100%;max-width:540px;height:auto;overflow:visible}
+.hero-art-caption{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#6f8b8e;text-transform:uppercase}
+.hero-stats{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 28px 46px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat{background:#07141a;padding:20px 18px 18px}
+.hero-stat .v{font-family:var(--sans);font-size:26px;font-weight:750;line-height:1.1;color:#fbf8ef;letter-spacing:-.02em}
+.hero-stat .l{font-family:var(--sans);font-size:10.5px;line-height:1.45;color:#7f9598;margin-top:6px;letter-spacing:.04em}
+/* ========== 布局 ========== */
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.prose{max-width:840px}
+.prose-wide{max-width:980px}
+.section{padding:82px 0;border-bottom:1px solid var(--line);position:relative}
+.section.alt{background:var(--surface-2)}
+.section.dark{background:var(--navy);color:#e9eef2;border-bottom:none}
+.section.dark h2,.section.dark h3,.section.dark h4{color:#fbf8ef}
+.section.dark p,.section.dark li{color:#c9d5dd}
+.section.dark a{color:#8fd7d3;text-decoration-color:#3c6b6d}
+.section-head{display:grid;grid-template-columns:110px 1fr;gap:26px;align-items:start;margin-bottom:38px}
+.section-num{font-family:var(--mono);font-size:13px;letter-spacing:.12em;color:var(--brand);padding-top:10px}
+.section-lede{font-family:var(--sans);font-size:18.5px;line-height:1.72;color:var(--ink-2);max-width:850px;margin:0}
+.section.dark .section-lede{color:#a9bcc8}
+/* ========== 组件 ========== */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--kpi-accent,var(--brand));opacity:.85}
+.kpi-label{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kpi-value{font-family:var(--sans);font-size:clamp(28px,3.2vw,38px);line-height:1.08;font-weight:800;margin:10px 0 5px;letter-spacing:-.035em;color:var(--ink)}
+.kpi-note{font-family:var(--sans);font-size:12px;line-height:1.5;color:var(--ink-2)}
+.callout{border-left:3px solid var(--brand);background:var(--surface);padding:20px 24px;border-radius:0 14px 14px 0;margin:28px 0;font-family:var(--sans);font-size:15px;line-height:1.78;box-shadow:var(--shadow-sm)}
+.callout .callout-label{display:block;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--brand);margin-bottom:7px;font-weight:750}
+.callout p{margin:0;color:var(--ink-2)}
+.callout.warn{border-left-color:var(--s2)}
+.callout.warn .callout-label{color:var(--brand-2)}
+.callout.plain{background:transparent;box-shadow:none}
+.callout.dark{background:rgba(255,255,255,.05);border-left-color:#8fd7d3}
+.callout.dark .callout-label{color:#8fd7d3}
+.callout.dark p{color:#c9d5dd}
+.badge{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:10px;font-weight:750;letter-spacing:.03em;line-height:1;padding:4px 7px;border-radius:999px;border:1px solid;vertical-align:2px;white-space:nowrap;margin-left:3px;text-decoration:none}
+.badge.a{color:#0f6b3d;background:#e6f4ec;border-color:#b7dfc8}
+.badge.b{color:#1d4ed8;background:#e8eefc;border-color:#c3d2f7}
+.badge.c{color:#8a5a00;background:#fbf0d9;border-color:#ecd39a}
+.badge.d{color:#9f1d1d;background:#fbe9e7;border-color:#efc0ba}
+@media (prefers-color-scheme: dark){
+  .badge.a{color:#8ee0b0;background:#10291d;border-color:#245c3b}
+  .badge.b{color:#9dbcf7;background:#111d33;border-color:#29436e}
+  .badge.c{color:#f0c66a;background:#2a210e;border-color:#5c4a1d}
+  .badge.d{color:#f0a39a;background:#2b1413;border-color:#63302b}
+}
+td .badge{margin-left:0}
+/* ========== 图 ========== */
+figure{margin:34px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px 10px;box-shadow:var(--shadow-sm);overflow:hidden}
+.fig-svg{display:block;width:100%;height:auto}
+figcaption{font-family:var(--sans);font-size:13px;color:var(--ink-2);line-height:1.6;padding:12px 6px 2px;border-top:1px solid var(--line);margin-top:12px}
+.fig-num{color:var(--brand);font-weight:750;letter-spacing:.04em}
+.fig-sub{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.fig-svg text{font-family:var(--sans);fill:var(--ink)}
+.fig-svg .t-muted{fill:var(--muted)}
+.fig-svg .t-ink2{fill:var(--ink-2)}
+.fig-svg .t-brand{fill:var(--brand)}
+.fig-svg .t-small{font-size:11px}
+.fig-svg .t-label{font-size:12.5px}
+.fig-svg .t-body{font-size:13.5px}
+.fig-svg .t-title{font-size:16px;font-weight:750}
+.fig-svg .t-hero{font-size:26px;font-weight:800}
+.fig-svg .t-mono{font-family:var(--mono);font-size:11px}
+.fig-svg .axis{stroke:var(--line-strong);stroke-width:1;fill:none}
+.fig-svg .grid{stroke:var(--line);stroke-width:1;fill:none}
+.fig-svg .stroke-1{stroke:var(--s1);fill:none}
+.fig-svg .stroke-2{stroke:var(--s2);fill:none}
+.fig-svg .stroke-3{stroke:var(--s3);fill:none}
+.fig-svg .stroke-4{stroke:var(--s4);fill:none}
+.fig-svg .stroke-5{stroke:var(--s5);fill:none}
+.fig-svg .stroke-6{stroke:var(--s6);fill:none}
+.fig-svg .stroke-7{stroke:var(--s7);fill:none}
+.fig-svg .stroke-8{stroke:var(--s8);fill:none}
+.fig-svg .stroke-brand{stroke:var(--brand);fill:none}
+.fig-svg .stroke-muted{stroke:var(--muted);fill:none}
+.fig-svg .stroke-line{stroke:var(--line-strong);fill:none}
+.fig-svg .fill-1{fill:var(--s1)}
+.fig-svg .fill-2{fill:var(--s2)}
+.fig-svg .fill-3{fill:var(--s3)}
+.fig-svg .fill-4{fill:var(--s4)}
+.fig-svg .fill-5{fill:var(--s5)}
+.fig-svg .fill-6{fill:var(--s6)}
+.fig-svg .fill-7{fill:var(--s7)}
+.fig-svg .fill-8{fill:var(--s8)}
+.fig-svg .fill-brand{fill:var(--brand)}
+.fig-svg .fill-surface{fill:var(--surface)}
+.fig-svg .fill-surface2{fill:var(--surface-2)}
+.fig-svg .fill-ink{fill:var(--ink)}
+.fig-svg .fill-ink2{fill:var(--ink-2)}
+.fig-svg .fill-muted{fill:var(--muted)}
+.fig-svg .fill-line{fill:var(--line)}
+.fig-svg .w-thin{stroke-width:1.5}
+.fig-svg .w-med{stroke-width:2.5}
+.fig-svg .w-thick{stroke-width:5}
+/* ========== 表格 ========== */
+.table-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13.5px;line-height:1.6;min-width:720px}
+caption{caption-side:top;text-align:left;font-family:var(--sans);font-size:12px;color:var(--muted);padding:14px 16px 0}
+th{text-align:left;font-weight:750;color:var(--ink);background:var(--surface-2);padding:12px 14px;border-bottom:1px solid var(--line-strong);vertical-align:bottom;font-size:12px;letter-spacing:.02em}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--ink)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl-note{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.6;margin:8px 2px 0}
+/* ========== 卡片与网格 ========== */
+.grid-2,.grid-3{display:grid;gap:16px;margin:26px 0}
+.grid-2{grid-template-columns:1fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow-sm)}
+.card h4{margin:0 0 8px;font-size:16px}
+.card p{font-family:var(--sans);font-size:13.5px;line-height:1.7;color:var(--ink-2);margin:0}
+.card .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--brand);letter-spacing:.06em;margin-bottom:8px}
+/* ========== 其他 ========== */
+.ref{font-family:var(--sans);font-size:10.5px;vertical-align:super;line-height:0;color:var(--brand);text-decoration:none;margin-left:1px}
+.sources{list-style:none;padding:0;margin:0;counter-reset:src}
+.sources li{counter-increment:src;position:relative;padding:13px 0 13px 52px;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:13px;line-height:1.62;color:var(--ink-2)}
+.sources li::before{content:"[" counter(src) "]";position:absolute;left:0;top:13px;font-family:var(--mono);font-size:11.5px;color:var(--brand)}
+.sources li:last-child{border-bottom:none}
+.sources .src-title{color:var(--ink);font-weight:650}
+.sources .src-meta{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.sources .src-url{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;margin-top:3px;text-decoration:none}
+.details{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--surface);margin:10px 0}
+.details summary{cursor:pointer;font-family:var(--sans);font-weight:650;font-size:15px}
+.details p{font-size:15px;margin:10px 0 0;color:var(--ink-2)}
+.footer{background:var(--navy);color:#a9bcc8;padding:64px 0 38px;font-family:var(--sans);font-size:13px;line-height:1.7}
+.footer a{color:#8fd7d3;text-decoration-color:#2f5560}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px}
+.footer h5{color:#fbf8ef;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
+.footer p{margin:0 0 10px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11.5px;color:#6f8796}
+.hr{height:1px;background:var(--line);border:0;margin:34px 0}
+.small-note{font-family:var(--sans);font-size:12px;color:var(--muted);line-height:1.65}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pill{font-family:var(--sans);font-size:11.5px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface)}
+.quote{font-family:var(--serif);font-size:21px;line-height:1.65;color:var(--ink);border-left:3px solid var(--s3);padding-left:22px;margin:30px 0}
+.quote cite{display:block;font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:8px;font-style:normal}
+.lede{font-family:var(--sans);font-size:19px;line-height:1.72;color:var(--ink-2);margin:0 0 22px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:24px 0}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:26px 0}
+.stat-strip div{background:var(--surface);padding:18px 20px}
+.stat-strip .v{font-family:var(--sans);font-size:26px;font-weight:800;line-height:1.1;color:var(--brand)}
+.stat-strip .l{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:4px}
+/* ========== 列表与术语 ========== */
+.summary-list{list-style:none;counter-reset:sum;padding:0;margin:26px 0}
+.summary-list li{counter-increment:sum;position:relative;padding:14px 0 14px 54px;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:15.5px;line-height:1.72;color:var(--ink-2)}
+.summary-list li::before{content:counter(sum,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:var(--mono);font-size:12px;color:var(--brand);letter-spacing:.05em}
+.summary-list li strong{color:var(--ink)}
+.glossary{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin:24px 0}
+.glossary dt{font-family:var(--sans);font-weight:750;font-size:14px;color:var(--ink);margin-top:10px}
+.glossary dd{font-family:var(--sans);font-size:13.5px;line-height:1.65;color:var(--ink-2);margin:2px 0 0}
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}
+.tier{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface)}
+.tier .t{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tier .h{font-family:var(--sans);font-weight:750;font-size:15px;margin:6px 0 8px}
+.tier p{font-family:var(--sans);font-size:12.5px;line-height:1.6;color:var(--ink-2);margin:0}
+/* ========== 响应式 ========== */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:20px;padding-top:96px}
+  .hero-art{min-height:320px;max-width:480px;margin:0 auto}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid-3,.three-col{grid-template-columns:1fr 1fr}
+  .section-head{grid-template-columns:1fr;gap:4px}
+  .section-num{padding-top:0}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+  .tier-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .toc-inner{padding:0 18px}
+  .hero-inner{padding:88px 18px 50px}
+  .hero-stats{padding:0 18px 34px}
+  .hero-stat .v{font-size:22px}
+  .kpis{grid-template-columns:1fr}
+  .grid-2,.grid-3,.three-col,.glossary,.tier-grid{grid-template-columns:1fr}
+  .section{padding:58px 0}
+  figure{padding:12px 10px 8px;border-radius:14px}
+  .footer-grid{grid-template-columns:1fr}
+  .quote{font-size:18px}
+  .stat-strip{grid-template-columns:1fr}
+}
+@media print{
+  .toc,.progress,.hero-actions,.skip-link,.hero-art{display:none!important}
+  .hero{min-height:auto;background:#fff;color:#000}
+  .hero *{color:#000!important}
+  .hero-stats{display:none}
+  .section{page-break-inside:avoid;border-bottom:1px solid #ccc}
+  figure,.card,.kpi{box-shadow:none}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="kicker">衰老生物学 · 专题报告</div>
+      <h1 class="hero-title">干细胞的衰老<span>为什么 · 变什么 · 影响多大</span></h1>
+      <p class="hero-sub">身体里最会修复的细胞，为什么会在时间里失去修复能力？这不是一个“数量耗尽”的故事，而是维护、选择与 niche 的三重失效。</p>
+      <div class="hero-meta">
+        <span>调研截止 2026-10-28</span>
+        <span>17 张释义图</span>
+        <span>约 45 条来源</span>
+        <span>证据分级 A–D</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#summary">先看结论 →</a>
+        <a class="btn btn-ghost" href="#what">直接看“变什么”</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="hero-art-svg" viewBox="0 0 560 560" role="img" aria-label="干细胞龛概念图：中央干细胞被 niche 细胞、血管与信号包围">
+        <defs>
+          <radialGradient id="heroGlow">
+            <stop offset="0" stop-color="#8fe8e0" stop-opacity=".55"/>
+            <stop offset=".45" stop-color="#2aa5a5" stop-opacity=".16"/>
+            <stop offset="1" stop-color="#07141a" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="cellFill">
+            <stop offset="0" stop-color="#b8f2ea"/>
+            <stop offset=".55" stop-color="#4cc3bd"/>
+            <stop offset="1" stop-color="#13706f"/>
+          </radialGradient>
+          <linearGradient id="vessel" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#a33b28" stop-opacity=".2"/>
+            <stop offset=".5" stop-color="#e07a5a" stop-opacity=".95"/>
+            <stop offset="1" stop-color="#a33b28" stop-opacity=".2"/>
+          </linearGradient>
+        </defs>
+        <circle cx="280" cy="270" r="240" fill="url(#heroGlow)"/>
+        <g fill="none" stroke="#8fd7d3" stroke-opacity=".16">
+          <circle cx="280" cy="270" r="190" stroke-dasharray="3 10"/>
+          <circle cx="280" cy="270" r="145" stroke-dasharray="2 8"/>
+          <circle cx="280" cy="270" r="100" stroke-dasharray="1 7"/>
+        </g>
+        <path d="M80 380 C150 340 200 420 280 392 C360 364 410 430 490 386" stroke="url(#vessel)" stroke-width="14" fill="none" stroke-linecap="round" opacity=".85"/>
+        <path d="M80 380 C150 340 200 420 280 392 C360 364 410 430 490 386" stroke="#ffd9c9" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/>
+        <g>
+          <circle cx="280" cy="270" r="54" fill="url(#cellFill)" stroke="#d8fff8" stroke-width="1.5"/>
+          <circle cx="280" cy="270" r="33" fill="#0a3a3d" opacity=".55"/>
+          <circle cx="292" cy="258" r="9" fill="#b8f2ea" opacity=".8"/>
+        </g>
+        <g fill="#8fd7d3">
+          <circle cx="170" cy="190" r="13" opacity=".75"/>
+          <circle cx="390" cy="200" r="10" opacity=".6"/>
+          <circle cx="155" cy="330" r="9" opacity=".55"/>
+          <circle cx="405" cy="330" r="14" opacity=".7"/>
+          <circle cx="250" cy="150" r="8" opacity=".5"/>
+          <circle cx="330" cy="400" r="11" opacity=".6"/>
+        </g>
+        <g fill="#e0a06a">
+          <circle cx="220" cy="430" r="7" opacity=".8"/>
+          <circle cx="350" cy="440" r="5" opacity=".7"/>
+          <circle cx="440" cy="260" r="6" opacity=".65"/>
+          <circle cx="120" cy="250" r="5" opacity=".6"/>
+        </g>
+        <g stroke="#8fd7d3" stroke-opacity=".35" stroke-width="1">
+          <path d="M224 232 L190 208"/><path d="M336 232 L370 208"/>
+          <path d="M224 308 L190 332"/><path d="M336 308 L370 332"/>
+        </g>
+        <text x="280" y="516" text-anchor="middle" fill="#6f8b8e" font-family="monospace" font-size="10" letter-spacing="3">STEM CELL · NICHE · SYSTEM</text>
+      </svg>
+      <div class="hero-art-caption">一个被 niche、血管与炎症信号包围的干细胞</div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="v">3 层</div><div class="l">演化 · 机制 · 选择</div></div>
+    <div class="hero-stat"><div class="v">5 个</div><div class="l">干细胞衰老的功能标志</div></div>
+    <div class="hero-stat"><div class="v">17 张</div><div class="l">手绘 SVG 释义图</div></div>
+    <div class="hero-stat"><div class="v">A–D</div><div class="l">逐条论断证据分级</div></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目录">
+  <div class="toc-inner">
+    <a href="#summary">摘要</a>
+    <a href="#define">定义与测量</a>
+    <a href="#why">为什么</a>
+    <a href="#what">变什么</a>
+    <a href="#impact">影响多大</a>
+    <a href="#intervene">干预</a>
+    <a href="#debate">争议与降级</a>
+    <a href="#conclusion">结论</a>
+    <a href="#appendix">附录</a>
+  </div>
+</nav>
+<main id="main">
+
+<!-- ================= 00 摘要 ================= -->
+<section class="section" id="summary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">00 / SUMMARY</div>
+      <div>
+        <h2>先给结论</h2>
+        <p class="section-lede">如果只记住一句话：衰老不是把干细胞“用完”，而是让干细胞池在数量、状态、命运和选择上同时偏离最优。数量可以不变甚至上升，功能却已经下降。</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi" style="--kpi-accent:var(--s2)">
+        <div class="kpi-label">小鼠寿命效应</div>
+        <div class="kpi-value">9.5–24.8%</div>
+        <div class="kpi-note">移植年轻或“返老还童”的 HSC 后，中位寿命提升范围；不同研究设计不可直接比较</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s1)">
+        <div class="kpi-label">90 岁以上 CHIP</div>
+        <div class="kpi-value">18.4%</div>
+        <div class="kpi-note">70–79 岁为 9.5%，80–89 岁为 11.7%；40 岁以下罕见</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s3)">
+        <div class="kpi-label">II 型肌纤维卫星细胞</div>
+        <div class="kpi-value">−40~47%</div>
+        <div class="kpi-note">老年与衰老组相对年轻组的平均内容下降；I 型纤维基本维持</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s5)">
+        <div class="kpi-label">功能标志</div>
+        <div class="kpi-value">5 个</div>
+        <div class="kpi-note">静息深度、自我更新、命运、韧性、群体异质性</div>
+      </div>
+    </div>
+
+    <ol class="summary-list">
+      <li><strong>“干细胞耗竭”是一个功能标签，不是数量描述。</strong>老年小鼠和人的 HSC 频率可以升高，但每个细胞的竞争性再增殖能力下降；肌肉、肠道、卵巢等组织的变化方向又各不相同。把它理解成“池子干了”会错过真正的机制。<span class="badge a">A</span><span class="badge b">B</span></li>
+      <li><strong>为什么衰老会导致干细胞变化？答案分三层。</strong>演化上，维护投资被选择阴影、拮抗多效性和可抛弃体细胞调在“够用到繁殖期”的水平；机制上，DNA/端粒/表观/线粒体/蛋白稳态/衰老细胞六类损伤叠加，niche 与全身炎症放大；选择上，功能差的克隆可能因自我更新优势而扩张。<span class="badge b">B</span></li>
+      <li><strong>“变什么”可以用五个功能标志来组织。</strong>静息深度、自我更新倾向、子代命运、韧性/存活、群体异质性。每个标志在不同组织中可以升高或降低，方向本身不是“好”或“坏”，偏离最优才是问题。<span class="badge a">A</span><span class="badge b">B</span></li>
+      <li><strong>不同干细胞类型不是一起、同向地老。</strong>HSC 数量升、功能降、髓系偏倚；MuSC 的 II 型纤维卫星细胞选择性丢失；ISC 与表皮在基线更新上维持得较好，但损伤修复下降；卵巢生殖储备直接耗尽；NSC 的变化真实存在，但对人类认知的因果贡献仍未定。<span class="badge a">A</span><span class="badge b">B</span><span class="badge c">C</span></li>
+      <li><strong>人体中最硬、最可量化的干细胞衰老后果是克隆性造血（CHIP）。</strong>70–79 岁 9.5%、80–89 岁 11.7%、90 岁以上 18.4%；与血液肿瘤（HR 11.1）、缺血性卒中（HR 2.6）、冠心病（HR 2.0）和全因死亡（HR 1.4）相关。<span class="badge a">A</span></li>
+      <li><strong>因果实验能把“相关”推到“足够”：</strong>移植年轻 HSC、移植经 Cdc42 抑制处理的老年 HSC、或清除功能缺陷的旧 HSC 亚群，都能改善老年小鼠的健康并延长寿命（中位寿命 +9.5% 到 +24.8%）。但受体多为免疫缺陷小鼠、样本量有限，不能直接外推到人。<span class="badge b">B</span></li>
+      <li><strong>“影响多大”没有单一数字，必须按组织分层。</strong>卵巢储备耗竭对绝经是决定性的；HSC 衰老对 CHIP、免疫衰老和贫血是主要的；肠道、肌肉、骨是重要贡献者；脑和皮肤基线的贡献更不确定。<span class="badge b">B</span><span class="badge c">C</span></li>
+      <li><strong>基线正常不等于储备正常。</strong>干细胞衰老最容易被“静息状态下的正常”掩盖；受伤、感染、化疗或移植压力会把储备缺口暴露出来。这是“为什么老年人平时还好、一病就垮”的一个机制解释。<span class="badge b">B</span></li>
+      <li><strong>干预证据必须分层。</strong>运动对人类肌肉功能与卫星细胞的人体证据最强；热量限制、雷帕霉素、senolytics、NAD⁺、部分重编程、IL-11 抑制、Cdc42 抑制大多仍停留在小鼠或早期人体阶段；目前没有获批的“抗衰老干细胞疗法”。<span class="badge a">A</span><span class="badge c">C</span></li>
+      <li><strong>一句话总结：</strong>干细胞衰老是“维护失败 + 选择失控”的叠加；它既是衰老的标志，也是可干预的节点，但不是衰老的唯一原因。<span class="badge b">B</span></li>
+    </ol>
+
+    <div class="callout">
+      <span class="callout-label">阅读提示</span>
+      <p>本报告是《衰老的机制：从演化逻辑到分子网络》的专题续篇，重点只回答三个问题：为什么、变什么、影响多大。证据等级 A/B/C/D 的定义见附录 B；所有非显然的论断都尽量给出原始研究或系统综述，而不是只给“专家说”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 定义与测量 ================= -->
+<section class="section alt" id="define">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">01 / DEFINITION</div>
+      <div>
+        <h2>先把问题拆开：干细胞衰老是什么，不是什么</h2>
+        <p class="section-lede">干细胞衰老不是一个单一表型，而是“数量、状态、功能、输出”四个层面的偏离。把它们混为一谈，是这一领域最常见的误读。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="lede">干细胞的定义包含三件事：<strong>自我更新</strong>（分裂后至少保留一个干细胞）、<strong>多向分化</strong>（产生组织和修复所需的多种细胞）、以及<strong>长期维持组织</strong>（在稳态和损伤后持续供细胞）。衰老改变的不是其中某一项，而是这三项在不同时间尺度上的组合。</p>
+
+      <p>在老年医学里，“干细胞耗竭”（stem cell exhaustion）是十二个衰老标志之一。<span class="badge a">A</span> 但这个标签很容易被误解为“干细胞数量减少”。实际上，至少存在四种不同的变化：</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">数量 / NUMBER</div>
+          <h4>池子的大小</h4>
+          <p>某些组织（如老年 HSC）频率上升，某些组织（如卵巢生殖储备、黑素细胞干细胞）数量下降，还有一些组织（如人骨髓 MSC 的 CFU-F）在成年后基本维持。数量本身既不是好指标，也不是坏指标。</p>
+        </div>
+        <div class="card">
+          <div class="tag">状态 / STATE</div>
+          <h4>细胞处在什么模式</h4>
+          <p>静息深度、细胞极性、代谢方式、染色质开放度、DNA 损伤反应。一个“还在”的干细胞，可能已经进入过深或过浅的静息，或者带着未修复的损伤等待激活。</p>
+        </div>
+        <div class="card">
+          <div class="tag">功能 / FUNCTION</div>
+          <h4>单个细胞能做什么</h4>
+          <p>自我更新、分化、克隆输出、抗压存活。经典读出是竞争性骨髓移植、类器官形成、损伤后的谱系追踪；这些读出常常比数量更早显示出衰老。</p>
+        </div>
+        <div class="card">
+          <div class="tag">输出 / OUTPUT</div>
+          <h4>对组织做了什么</h4>
+          <p>稳态维持、损伤修复、疾病风险、寿命。输出是数量 × 单细胞功能 × niche 支持 × 选择压力的乘积，任何一项变化都可能被其他项掩盖。</p>
+        </div>
+      </div>
+
+      <p>这四个层面并不总是同向。最典型的例子是 HSC：老年小鼠和人的免疫表型 HSC 频率升高，但每个细胞的竞争性再增殖能力下降；两者相乘，池子的“总功能”可能看起来变化不大，但克隆组成、分化偏向和应激韧性已经不同。<span class="badge a">A</span><span class="badge b">B</span>（Pang et al., 2011；Rando et al., 2025）</p>
+
+      <div class="callout warn">
+        <span class="callout-label">常见误读</span>
+        <p>“干细胞耗竭”里的“耗竭”是功能性的，不是数字性的。一个数量正常、甚至扩张的干细胞池，完全可以是“耗竭”的——如果它的细胞不能有效自我更新、不能分化成正确的子代、或者被一个坏克隆主导。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 560" role="img" aria-label="干细胞衰老的四个测量层次与数量功能背离示意">
+        <text x="40" y="34" class="t-title">同一群干细胞，四个不同的“衰老读数”</text>
+        <text x="40" y="56" class="t-small t-muted">从数量到输出，越往下越接近组织与个体；越往下也越难测量</text>
+
+        <g>
+          <rect x="40" y="84" width="610" height="92" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <circle cx="76" cy="130" r="16" fill="var(--s1)" opacity=".14"/>
+          <text x="76" y="135" text-anchor="middle" class="t-small" fill="var(--s1)">01</text>
+          <text x="108" y="116" class="t-label">数量 · 池子有多大</text>
+          <text x="108" y="140" class="t-small t-ink2">组织内干细胞频率、绝对数、克隆数</text>
+          <text x="108" y="160" class="t-small t-muted">例：HSC 频率、卫星细胞/纤维、CFU-F、卵巢原始卵泡数</text>
+        </g>
+        <g>
+          <rect x="40" y="190" width="610" height="92" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <circle cx="76" cy="236" r="16" fill="var(--s4)" opacity=".16"/>
+          <text x="76" y="241" text-anchor="middle" class="t-small" fill="var(--s4)">02</text>
+          <text x="108" y="222" class="t-label">状态 · 细胞处在什么模式</text>
+          <text x="108" y="246" class="t-small t-ink2">静息深度、极性、代谢、染色质、DNA 损伤反应</text>
+          <text x="108" y="266" class="t-small t-muted">例：HSC 静息、MuSC 极性、NSC 染色质开放度</text>
+        </g>
+        <g>
+          <rect x="40" y="296" width="610" height="92" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <circle cx="76" cy="342" r="16" fill="var(--s3)" opacity=".16"/>
+          <text x="76" y="347" text-anchor="middle" class="t-small" fill="var(--s3)">03</text>
+          <text x="108" y="328" class="t-label">功能 · 单个细胞能做什么</text>
+          <text x="108" y="352" class="t-small t-ink2">自我更新、分化、克隆输出、抗压存活</text>
+          <text x="108" y="372" class="t-small t-muted">例：竞争性移植、类器官形成、损伤后谱系追踪</text>
+        </g>
+        <g>
+          <rect x="40" y="402" width="610" height="92" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <circle cx="76" cy="448" r="16" fill="var(--s5)" opacity=".16"/>
+          <text x="76" y="453" text-anchor="middle" class="t-small" fill="var(--s5)">04</text>
+          <text x="108" y="434" class="t-label">输出 · 对组织做了什么</text>
+          <text x="108" y="458" class="t-small t-ink2">稳态维持、损伤修复、疾病风险、寿命</text>
+          <text x="108" y="478" class="t-small t-muted">例：CHIP、肌少症、绝经、化疗后恢复</text>
+        </g>
+
+        <g stroke="var(--line-strong)" stroke-width="1.2" fill="none">
+          <path d="M345 176 L345 190"/><path d="M345 282 L345 296"/><path d="M345 388 L345 402"/>
+        </g>
+        <g fill="var(--line-strong)">
+          <path d="M341 186 L345 192 L349 186 z"/><path d="M341 292 L345 298 L349 292 z"/><path d="M341 398 L345 404 L349 398 z"/>
+        </g>
+
+        <rect x="700" y="84" width="380" height="410" rx="16" class="fill-surface2" stroke="var(--line)"/>
+        <text x="726" y="112" class="t-label">同一个池子，两个相反的方向</text>
+        <text x="726" y="132" class="t-small t-muted">示意图，非原始数据</text>
+
+        <g class="axis">
+          <path d="M740 160 L740 410 L1050 410"/>
+          <path d="M736 160 L744 160"/><path d="M736 410 L744 410"/>
+        </g>
+        <g class="grid">
+          <path d="M740 220 L1050 220"/><path d="M740 280 L1050 280"/><path d="M740 340 L1050 340"/>
+        </g>
+        <text x="732" y="164" text-anchor="end" class="t-small t-muted">高</text>
+        <text x="732" y="414" text-anchor="end" class="t-small t-muted">低</text>
+        <text x="740" y="430" class="t-small t-muted">年轻</text>
+        <text x="1042" y="430" text-anchor="end" class="t-small t-muted">老年</text>
+
+        <path d="M750 300 C820 270 900 240 1035 198" class="stroke-1 w-med"/>
+        <path d="M750 230 C830 260 920 330 1035 382" class="stroke-2 w-med"/>
+        <circle cx="1035" cy="198" r="4" class="fill-1"/>
+        <circle cx="1035" cy="382" r="4" class="fill-2"/>
+        <text x="1018" y="188" text-anchor="end" class="t-small" fill="var(--s1)">HSC 数量 / 频率 ↑</text>
+        <text x="1018" y="400" text-anchor="end" class="t-small" fill="var(--s2)">每细胞再增殖能力 ↓</text>
+
+        <path d="M750 268 C840 268 930 272 1035 276" class="stroke-muted w-thin" stroke-dasharray="5 6"/>
+        <text x="1018" y="266" text-anchor="end" class="t-small t-muted">池的“总功能” ≈ 数量 × 单细胞功能</text>
+
+        <text x="726" y="462" class="t-small t-ink2">这就是“耗竭”的悖论：</text>
+        <text x="726" y="480" class="t-small t-muted">池子看起来没变小，但每个细胞已经不同。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 1</span> · 干细胞衰老的四个测量层次 <span class="fig-sub">数量只是最外层。真正决定组织后果的是状态、功能与输出；而这三层常常与数量不同向。右侧为 HSC 的概念示意，不是原始数据。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>1.2 为什么“耗竭”这个词容易误导</h3>
+      <p>“Exhaustion”在免疫学里原本指 T 细胞在慢性抗原刺激下失去效应功能；借用到干细胞领域后，容易被理解成“细胞用完了”。但干细胞衰老至少有三种不同的失败模式：</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">MODE 1</div>
+          <h4>数量型失败</h4>
+          <p>干细胞或生殖储备真的减少。最典型的是卵巢原始卵泡：出生后只减不增，绝经时接近耗尽。黑素细胞干细胞减少也属于这一类。</p>
+        </div>
+        <div class="card">
+          <div class="tag">MODE 2</div>
+          <h4>质量型失败</h4>
+          <p>细胞还在，但每个细胞的功能下降：再增殖能力、分化保真度、抗压存活、克隆输出变差。HSC 和 MuSC 的衰老更接近这一类。</p>
+        </div>
+        <div class="card">
+          <div class="tag">MODE 3</div>
+          <h4>结构型失败</h4>
+          <p>干细胞本身变化不大，但 niche 或系统环境不再支持它。ISC 的 Notum/Wnt 变化、骨髓 niche 的 IL-1β、肌肉 niche 的 FGF2 都属于这一类。</p>
+        </div>
+      </div>
+      <p>这三种模式可以叠加，也可以互相转化。例如，长期的质量型失败会增加细胞死亡，最终变成数量型失败；而 niche 的结构型失败会让本来正常的干细胞“看起来”变老。<span class="badge b">B</span></p>
+
+      <h3>1.3 证据从哪里来，以及它的边界</h3>
+      <p>干细胞衰老的证据主要有四类，强度依次不同：</p>
+      <div class="table-wrap">
+        <table>
+          <caption>表 1 · 四类证据及其局限</caption>
+          <thead><tr><th style="width:18%">证据类型</th><th style="width:34%">能回答什么</th><th>主要局限</th></tr></thead>
+          <tbody>
+            <tr><td><strong>横断面人体组织</strong></td><td>年龄与干细胞数量/标志物的相关；可以覆盖大样本</td><td>不能区分因果；活检部位、取材、免疫表型定义都会影响结果</td></tr>
+            <tr><td><strong>小鼠遗传与移植</strong></td><td>因果：基因敲除、谱系追踪、竞争性移植、异体共生</td><td>小鼠寿命短、品系差异大；移植需要预处理，可能改变 niche</td></tr>
+            <tr><td><strong>类器官与体外重建</strong></td><td>细胞自主缺陷 vs niche 缺陷；可做药物筛选</td><td>失去全身环境；培养条件会选择特定克隆</td></tr>
+            <tr><td><strong>人体遗传学与流行病学</strong></td><td>CHIP、端粒生物学疾病、克隆组成与疾病风险</td><td>多为关联；暴露、混杂、反向因果难以完全排除</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tbl-note">一个实用原则：<strong>看到“干细胞衰老”的论断，先问它用的是哪一类证据。</strong>横断面的人体数据能说明“现象存在”，但不能单独说明“这条通路导致了这个表型”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 为什么 ================= -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02 / WHY</div>
+      <div>
+        <h2>为什么衰老会导致干细胞变化？</h2>
+        <p class="section-lede">这个问题有三个层次的答案：演化上，维护系统被选择调在“够用”而不是“永久”；机制上，损伤累积、修复不足、niche 改变；选择上，功能差的克隆可能反而扩张。三层合起来，才解释得通。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="lede">在生物学里，问“为什么”要先分清两种答案：<strong>终极原因</strong>（为什么演化会留下这个设计）和<strong>近因机制</strong>（这个设计在分子和细胞层面怎样失效）。干细胞衰老两者都需要。</p>
+      <p>只讲机制，会漏掉“为什么维护系统不做到完美”；只讲演化，会漏掉“为什么偏偏是 HSC、MuSC、NSC 先出问题”。下面的三层框架，是为了把这两类答案接起来。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 620" role="img" aria-label="解释干细胞衰老的三层框架：演化层、机制层、选择层">
+        <text x="40" y="34" class="t-title">同一个问题，三个层次的答案</text>
+        <text x="40" y="56" class="t-small t-muted">演化解释“为什么维护不完美”；机制解释“细胞怎样变坏”；选择解释“坏细胞为什么留下来”</text>
+
+        <g>
+          <rect x="40" y="86" width="320" height="58" rx="14" fill="var(--s1)" opacity=".12" stroke="var(--s1)"/>
+          <text x="200" y="110" text-anchor="middle" class="t-label" fill="var(--s1)">演化层 · 为什么维护不做满</text>
+          <text x="200" y="130" text-anchor="middle" class="t-small t-muted">ultimate explanation</text>
+
+          <rect x="40" y="162" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="58" y="186" class="t-small">选择阴影</text>
+          <text x="58" y="208" class="t-small t-muted">繁殖期后的效应逃过选择</text>
+          <rect x="40" y="238" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="58" y="262" class="t-small">拮抗多效性</text>
+          <text x="58" y="284" class="t-small t-muted">早期有益的通路，晚期有害</text>
+          <rect x="40" y="314" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="58" y="338" class="t-small">可抛弃体细胞</text>
+          <text x="58" y="360" class="t-small t-muted">维护与繁殖的资源权衡</text>
+        </g>
+
+        <g>
+          <rect x="400" y="86" width="320" height="58" rx="14" fill="var(--s4)" opacity=".14" stroke="var(--s4)"/>
+          <text x="560" y="110" text-anchor="middle" class="t-label" fill="var(--s4)">机制层 · 细胞怎样变坏</text>
+          <text x="560" y="130" text-anchor="middle" class="t-small t-muted">proximate mechanisms</text>
+
+          <rect x="400" y="162" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="418" y="186" class="t-small">损伤累积</text>
+          <text x="418" y="208" class="t-small t-muted">DNA、端粒、蛋白、线粒体</text>
+          <rect x="400" y="238" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="418" y="262" class="t-small">修复与清除不足</text>
+          <text x="418" y="284" class="t-small t-muted">自噬、DNA 修复、蛋白酶体</text>
+          <rect x="400" y="314" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="418" y="338" class="t-small">niche 与系统环境改变</text>
+          <text x="418" y="360" class="t-small t-muted">炎症、脂肪、血管、神经、ECM</text>
+        </g>
+
+        <g>
+          <rect x="760" y="86" width="320" height="58" rx="14" fill="var(--s2)" opacity=".12" stroke="var(--s2)"/>
+          <text x="920" y="110" text-anchor="middle" class="t-label" fill="var(--s2)">选择层 · 坏细胞为什么留下</text>
+          <text x="920" y="130" text-anchor="middle" class="t-small t-muted">somatic selection</text>
+
+          <rect x="760" y="162" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="778" y="186" class="t-small">克隆竞争</text>
+          <text x="778" y="208" class="t-small t-muted">突变克隆获得自我更新优势</text>
+          <rect x="760" y="238" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="778" y="262" class="t-small">功能解耦</text>
+          <text x="778" y="284" class="t-small t-muted">适合度 ≠ 对组织的功能贡献</text>
+          <rect x="760" y="314" width="320" height="64" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="778" y="338" class="t-small">池子假象</text>
+          <text x="778" y="360" class="t-small t-muted">数量正常，质量已变</text>
+        </g>
+
+        <g stroke="var(--line-strong)" stroke-width="1.4" fill="none">
+          <path d="M360 280 L396 280"/><path d="M720 280 L756 280"/>
+        </g>
+        <g fill="var(--line-strong)">
+          <path d="M390 276 L398 280 L390 284 z"/><path d="M750 276 L758 280 L750 284 z"/>
+        </g>
+
+        <rect x="40" y="414" width="1040" height="74" rx="14" fill="var(--brand)" opacity=".08" stroke="var(--brand)" stroke-dasharray="6 5"/>
+        <text x="560" y="446" text-anchor="middle" class="t-label" fill="var(--brand)">表型：数量可以维持甚至上升，功能与修复能力下降</text>
+        <text x="560" y="468" text-anchor="middle" class="t-small t-muted">三个层次不是替代关系，而是同一现象在不同尺度上的解释</text>
+
+        <g>
+          <rect x="40" y="516" width="330" height="64" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="58" y="540" class="t-small">干预点 1</text>
+          <text x="58" y="562" class="t-small t-muted">减少损伤：抗氧化、DNA 修复、自噬</text>
+          <rect x="395" y="516" width="330" height="64" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="413" y="540" class="t-small">干预点 2</text>
+          <text x="413" y="562" class="t-small t-muted">修复 niche：抗 IL-1/IL-6/IL-11、运动</text>
+          <rect x="750" y="516" width="330" height="64" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="768" y="540" class="t-small">干预点 3</text>
+          <text x="768" y="562" class="t-small t-muted">改变选择：减少坏克隆、保护功能性克隆</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 2</span> · 解释干细胞衰老的三层框架 <span class="fig-sub">演化层回答“为什么维护不完美”，机制层回答“细胞怎样变坏”，选择层回答“坏细胞为什么留下来”。三层的干预点不同，不能互相替代。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>2.1 演化层：为什么自然选择不造一个“永远年轻”的干细胞池</h3>
+      <p>自然选择优化的不是“最长寿命”，而是“在繁殖窗口内把基因传下去”。干细胞维护是体细胞维护的一部分，它的投入要和繁殖、生长、免疫防御竞争资源。于是，维护系统被调在一个<strong>经济上合理</strong>的水平，而不是物理上可能的最高水平。<span class="badge b">B</span>（Kirkwood, 1977；López-Otín et al., 2023）</p>
+
+      <h4>选择阴影：晚期效应逃过选择</h4>
+      <p>Medawar 的“选择阴影”指出：一个有害基因如果在生命早期就造成损害，会被选择清除；如果它只在繁殖期之后才起作用，选择就“看不见”它。<span class="badge b">B</span> 干细胞衰老的许多表型——HSC 的髓系偏倚、MuSC 的修复延迟、NSC 的神经发生下降——主要出现在繁殖期之后，因此没有被强选择压力清除。</p>
+
+      <h4>拮抗多效性：早期有益，晚期有害</h4>
+      <p>Williams 的拮抗多效性模型更进一步：同一个基因/通路可能早期有益、晚期有害。<span class="badge b">B</span> 在干细胞层面，这个逻辑尤其明显，因为很多“维护”与“防癌”共用同一套通路：</p>
+      <div class="table-wrap">
+        <table>
+          <caption>表 2 · 干细胞层面的拮抗多效性：同一通路的两面</caption>
+          <thead><tr><th style="width:20%">通路</th><th style="width:36%">早期/繁殖期的收益</th><th>晚期/干细胞层面的代价</th></tr></thead>
+          <tbody>
+            <tr><td><strong>端粒酶</strong></td><td>维持干细胞池、支持组织再生</td><td>组成性激活增加癌症风险；生理性端粒缩短是一种抑癌屏障</td></tr>
+            <tr><td><strong>p53 / p16</strong></td><td>清除受损细胞、抑制肿瘤</td><td>促进干细胞静息/衰老，减少再生；p16 积累与 HSC、MuSC 功能下降相关</td></tr>
+            <tr><td><strong>mTOR / IGF-1</strong></td><td>生长、修复、繁殖</td><td>持续激活加速干细胞耗竭；抑制可延长小鼠寿命</td></tr>
+            <tr><td><strong>炎症 / IL-6 家族</strong></td><td>抗感染、组织修复</td><td>慢性化后损伤 niche，IL-11 抑制可延长小鼠健康寿命</td></tr>
+            <tr><td><strong>Wnt / Notch / TGF-β</strong></td><td>发育、损伤修复、干细胞维持</td><td>失调后导致纤维化、克隆扩张、分化偏向</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tbl-note">这张表不是说“这些通路是坏的”，而是说：<strong>同一个保护机制，在时间尺度变长后会变成限制因素。</strong>这是理解“为什么抗衰老干预总有副作用”的关键。</p>
+
+      <h4>可抛弃体细胞：维护是一种投资</h4>
+      <p>Kirkwood 的“可抛弃体细胞”理论认为，机体把有限资源在繁殖和体细胞维护之间分配；最优策略不是无限维护，而是把维护维持在一个经济上合理的水平。<span class="badge b">B</span> 干细胞池的维护——静息、DNA 修复、自噬、端粒维持、niche 支持——每一项都有成本。自然选择会倾向于“够用到繁殖期”，而不是“永久”。</p>
+      <p>这个理论有一个可检验的推论：<strong>提高繁殖投入，可能压缩体细胞维护</strong>。物种间和种内都有一些支持证据，但并非普遍，人类中的直接实验更不可能。<span class="badge c">C</span> 它更适合作为一个“为什么维护不做满”的解释框架，而不是精确的预测模型。</p>
+
+      <h4>第四种力量：体细胞层面的选择</h4>
+      <p>以上三种是经典的演化解释。干细胞衰老还有一个额外的、经常被忽略的层面：<strong>在一个个体内部，干细胞克隆之间也在竞争</strong>。一个突变如果让干细胞自我更新得更好，即使它分化得更差，也可能在池子里扩张。这就是“体细胞选择”或“克隆性造血”的逻辑。<span class="badge b">B</span></p>
+      <p>它解释了一个经典悖论：为什么老年 HSC 的数量可以上升，功能却下降。因为池子的扩张可能来自“更会自我更新、但更不会分化”的克隆，而不是来自更健康的干细胞。<span class="badge b">B</span>（详见 2.4 与图 5）</p>
+
+      <div class="callout">
+        <span class="callout-label">一个反直觉的推论</span>
+        <p>干细胞池的“质量”不只由修复能力决定，也由<strong>谁在竞争中胜出</strong>决定。单纯扩增干细胞数量的干预，如果不改变选择压力，可能同时扩增了功能差的克隆。这是目前干细胞抗衰老疗法的一个理论风险，也是“为什么不能只看数量”的深层原因。<span class="badge c">C</span></p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 646" role="img" aria-label="干细胞衰老的六条细胞内在损伤通路">
+        <text x="40" y="34" class="t-title">细胞内在的六条损伤通路</text>
+        <text x="40" y="56" class="t-small t-muted">它们不是六个独立的“开关”，而是一张互相放大的网；没有一条单独充分</text>
+
+        <!-- 1 DNA -->
+        <g>
+          <rect x="30" y="86" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(56,112)">
+            <path d="M0 0 C18 18 18 42 0 60 C-18 78 -18 102 0 120" class="stroke-1 w-med"/>
+            <path d="M30 0 C48 18 48 42 30 60 C12 78 12 102 30 120" class="stroke-1 w-med"/>
+            <g class="stroke-1" stroke-width="1.2" opacity=".7">
+              <path d="M7 16 L23 22"/><path d="M2 40 L28 46"/><path d="M7 64 L23 70"/><path d="M2 88 L28 94"/>
+            </g>
+            <circle cx="16" cy="70" r="3" fill="var(--s8)"/>
+          </g>
+          <text x="150" y="118" class="t-label">DNA 损伤与修复</text>
+          <text x="150" y="142" class="t-small t-ink2">ROS、复制压力、辐射；HR/NHEJ 随年龄下降</text>
+          <text x="56" y="270" class="t-small t-muted">证据：DNA 修复缺陷限制 HSC 寿命</text>
+          <text x="56" y="290" class="t-small t-muted">Nijnik 2007；Rossi 2007</text>
+        </g>
+
+        <!-- 2 telomere -->
+        <g>
+          <rect x="390" y="86" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(416,120)">
+            <rect x="0" y="20" width="110" height="26" rx="13" class="fill-surface2" stroke="var(--line-strong)"/>
+            <rect x="0" y="20" width="18" height="26" rx="9" fill="var(--s2)" opacity=".8"/>
+            <rect x="92" y="20" width="18" height="26" rx="9" fill="var(--s2)" opacity=".8"/>
+            <text x="55" y="38" text-anchor="middle" class="t-small t-muted">染色体</text>
+            <text x="9" y="66" text-anchor="middle" class="t-small" fill="var(--s2)">端粒</text>
+            <path d="M128 32 L150 32" stroke="var(--s2)" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <text x="156" y="28" class="t-small t-muted">每轮复制</text>
+            <text x="156" y="46" class="t-small t-muted">缩短 50–100 bp</text>
+          </g>
+          <text x="410" y="188" class="t-label">端粒磨损</text>
+          <text x="410" y="212" class="t-small t-ink2">触发 DNA 损伤反应、p53/p21、干细胞退出循环</text>
+          <text x="416" y="270" class="t-small t-muted">证据：端粒生物学疾病以骨髓衰竭为特征</text>
+          <text x="416" y="290" class="t-small t-muted">端粒酶缺失/端粒缩短 → HSC 功能下降</text>
+        </g>
+
+        <!-- 3 epigenome -->
+        <g>
+          <rect x="750" y="86" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(776,124)">
+            <path d="M0 28 L120 28" stroke="var(--line-strong)" stroke-width="2"/>
+            <g>
+              <circle cx="18" cy="28" r="12" fill="var(--s7)" opacity=".2" stroke="var(--s7)"/>
+              <circle cx="52" cy="28" r="12" fill="var(--s7)" opacity=".2" stroke="var(--s7)"/>
+              <circle cx="86" cy="28" r="12" fill="var(--s7)" opacity=".2" stroke="var(--s7)"/>
+            </g>
+            <g fill="var(--s7)">
+              <circle cx="18" cy="12" r="3"/><circle cx="52" cy="44" r="3"/><circle cx="86" cy="12" r="3"/>
+            </g>
+            <text x="0" y="66" class="t-small t-muted">DNA 甲基化 · 组蛋白修饰 · 染色质可及性</text>
+          </g>
+          <text x="770" y="206" class="t-label">表观遗传漂移</text>
+          <text x="770" y="230" class="t-small t-ink2">调控网络改变；单细胞多组学可见 NSC/HSC 的染色质变化</text>
+          <text x="776" y="270" class="t-small t-muted">证据：部分重编程可逆转部分衰老表型</text>
+          <text x="776" y="290" class="t-small t-muted">Ocampo 2016；Lu 2020</text>
+        </g>
+
+        <!-- 4 mitochondria -->
+        <g>
+          <rect x="30" y="346" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(56,376)">
+            <ellipse cx="58" cy="46" rx="52" ry="30" fill="var(--s3)" opacity=".14" stroke="var(--s3)" stroke-width="1.5"/>
+            <path d="M18 46 C28 30 40 62 50 46 C60 30 72 62 82 46 C92 30 100 58 104 46" stroke="var(--s3)" stroke-width="2" fill="none"/>
+            <circle cx="28" cy="28" r="3" fill="var(--s8)"/>
+            <circle cx="88" cy="64" r="2.5" fill="var(--s8)"/>
+            <text x="0" y="96" class="t-small t-muted">ROS ↑ · 膜电位 ↓ · 脂肪酸氧化失衡</text>
+          </g>
+          <text x="150" y="386" class="t-label">线粒体功能障碍</text>
+          <text x="150" y="410" class="t-small t-ink2">老化 HSC 线粒体质量增加、自噬清除下降</text>
+          <text x="56" y="530" class="t-small t-muted">证据：线粒体自噬/代谢干预改善 HSC 功能</text>
+          <text x="56" y="550" class="t-small t-muted">NAD⁺ 补充可改善小鼠干细胞功能（C）</text>
+        </g>
+
+        <!-- 5 proteostasis -->
+        <g>
+          <rect x="390" y="346" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(416,378)">
+            <rect x="8" y="18" width="54" height="66" rx="10" fill="var(--s6)" opacity=".18" stroke="var(--s6)" stroke-width="1.5"/>
+            <rect x="20" y="10" width="30" height="12" rx="4" fill="var(--s6)" opacity=".45"/>
+            <circle cx="86" cy="34" r="6" fill="var(--s4)"/><circle cx="102" cy="50" r="5" fill="var(--s4)"/><circle cx="82" cy="58" r="4" fill="var(--s4)"/>
+            <path d="M66 34 L78 34" stroke="var(--s6)" stroke-width="1.2" stroke-dasharray="2 3"/>
+            <text x="0" y="104" class="t-small t-muted">泛素-蛋白酶体 · 自噬 · CMA</text>
+          </g>
+          <text x="510" y="386" class="t-label">蛋白稳态失衡</text>
+          <text x="510" y="410" class="t-small t-ink2">聚集蛋白、错误折叠、清除能力下降</text>
+          <text x="416" y="530" class="t-small t-muted">证据：自噬下降与 HSC/NSC 衰老相关</text>
+          <text x="416" y="550" class="t-small t-muted">增强自噬可改善部分干细胞功能（B/C）</text>
+        </g>
+
+        <!-- 6 senescence -->
+        <g>
+          <rect x="750" y="346" width="340" height="240" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <g transform="translate(776,376)">
+            <circle cx="58" cy="46" r="34" fill="var(--s5)" opacity=".14" stroke="var(--s5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <circle cx="58" cy="46" r="14" fill="var(--s5)" opacity=".25"/>
+            <g stroke="var(--s2)" stroke-width="1.5">
+              <path d="M58 4 L58 -8"/><path d="M58 88 L58 100"/><path d="M16 46 L4 46"/><path d="M100 46 L112 46"/>
+              <path d="M28 16 L20 8"/><path d="M88 76 L96 84"/><path d="M88 16 L96 8"/><path d="M28 76 L20 84"/>
+            </g>
+            <text x="0" y="120" class="t-small t-muted">SASP：IL-6、IL-1β、TNF、MMP</text>
+          </g>
+          <text x="870" y="386" class="t-label">细胞衰老与 SASP</text>
+          <text x="870" y="410" class="t-small t-ink2">p16Ink4a 阳性细胞积累，分泌炎症因子</text>
+          <text x="776" y="530" class="t-small t-muted">证据：清除 p16⁺ 细胞改善部分组织功能</text>
+          <text x="776" y="550" class="t-small t-muted">Baker 2011；Xu 2018</text>
+        </g>
+
+        <text x="560" y="620" text-anchor="middle" class="t-small t-muted">六条通路通过 ROS、NAD⁺、炎症与表观遗传互相放大；它们共同构成“维护失败”的分子底座。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 3</span> · 六条细胞内在损伤通路 <span class="fig-sub">DNA 损伤、端粒磨损、表观漂移、线粒体功能障碍、蛋白稳态失衡、细胞衰老。每一格给出最有力的证据方向，而不是完整机制。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>这六条通路之间不是并列关系。DNA 损伤会消耗 NAD⁺、激活 p53/p16、触发 SASP；线粒体功能障碍会增加 ROS，进一步损伤 DNA；表观漂移会让修复基因和分化程序同时失调；衰老细胞则把细胞内的损伤转化为组织层面的炎症。<span class="badge b">B</span> 因此，试图只修一条通路，通常会遇到补偿和反弹。</p>
+
+      <h3>2.2 细胞外在：niche 不是背景板</h3>
+      <p>干细胞不是孤岛。它的静息、激活、定位和分化，都依赖 niche 提供的黏附、信号、代谢和免疫环境。衰老改变 niche 的方式，往往比改变干细胞本身更早、更明显。<span class="badge b">B</span>（Brunet et al., 2023；Rando et al., 2025）</p>
+
+      <p>以骨髓为例，老年 niche 至少发生四类变化：</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">INFLAMMATION</div>
+          <h4>IL-1β 把炎症“跨区”传播</h4>
+          <p>老年小鼠骨内膜的骨祖细胞减少，中央骨髓的 LepR⁺ 基质细胞扩张，窦状血管退化；受损骨内膜产生的 IL-1β 作用于中央骨髓，驱动紧急髓系生成，抑制造血再生。阻断 IL-1 信号可改善 niche 与 HSC 功能。<span class="badge b">B</span>（Mitchell et al., 2023）</p>
+        </div>
+        <div class="card">
+          <div class="tag">ADIPOCYTES</div>
+          <h4>骨髓脂肪增生</h4>
+          <p>老年骨髓脂肪细胞增多，分泌脂肪酸、脂肪因子和炎症因子，抑制造血、改变 HSC 的代谢与定位。骨髓脂肪含量在人体中可通过影像测量，是与年龄相关的可量化变化。<span class="badge b">B</span><span class="badge c">C</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">VASCULATURE &amp; NERVE</div>
+          <h4>血管与神经退化</h4>
+          <p>窦状血管结构退化、通透性改变；交感神经末梢减少，β2-肾上腺素能信号下降。血管和神经既是营养/信号通道，也是 HSC 定位的坐标。<span class="badge b">B</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">ECM</div>
+          <h4>基质硬度与黏附改变</h4>
+          <p>胶原交联、基质硬度增加，整合素信号改变。在肌肉中，老年 niche 的 FGF2 升高会破坏卫星细胞静息；在骨髓中，ECM 重塑影响 HSC 的滞留与动员。<span class="badge b">B</span></p>
+        </div>
+      </div>
+
+      <p>肌肉的 niche 变化提供了一个互补的例子：老年小鼠肌肉中 FGF2 升高，破坏卫星细胞的静息状态；而年轻血液中的 GDF11 等因子（具体因子仍有争议）可以部分恢复老年肌肉的修复能力。<span class="badge b">B</span><span class="badge c">C</span>（Chakkalakal et al., 2012；Conboy et al., 2005）</p>
+
+      <p>肠道则展示了“ niche 通过改变信号分子让干细胞变老”的清晰案例：老年 Paneth 细胞中 mTORC1 活性升高、PPAR-α 活性下降，导致 Wnt 抑制因子 Notum 分泌增加；Notum 抑制 Wnt，降低 ISC 的干性。遗传或药物抑制 Notum 可恢复老年肠道类器官的功能，并改善化疗后的再生。<span class="badge b">B</span>（Pentinmikko et al., 2019）</p>
+
+      <div class="callout">
+        <span class="callout-label">为什么局部损伤会变成系统性问题</span>
+        <p>niche 和循环因子把局部炎症传播到远处：骨髓的 IL-1β 影响 HSC，肠道的 Notum 影响 ISC，肌肉的 FGF2 影响 MuSC，而循环中的 IL-6/IL-11/TNF 又把炎症信号带到多个组织。这就是“干细胞衰老”与“慢性炎症”互相咬合的地方。<span class="badge b">B</span></p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 640" role="img" aria-label="年轻与老年骨髓 niche 的对比示意">
+        <text x="40" y="34" class="t-title">骨髓 niche 的年轻态与衰老态</text>
+        <text x="40" y="56" class="t-small t-muted">同一张示意图里的两类变化：骨祖细胞减少、脂肪细胞扩张、窦状血管退化、IL-1β 炎症传播</text>
+
+        <!-- young panel -->
+        <g>
+          <rect x="30" y="84" width="520" height="470" rx="16" class="fill-surface" stroke="var(--line)"/>
+          <text x="56" y="116" class="t-label" fill="var(--s3)">年轻骨髓</text>
+          <text x="56" y="136" class="t-small t-muted">骨内膜完整 · 窦状血管规则 · 脂肪细胞少</text>
+
+          <path d="M30 160 C120 140 200 178 290 158 C380 138 460 176 550 156 L550 196 C460 216 380 178 290 198 C200 218 120 180 30 200 Z" fill="var(--surface-3)" stroke="var(--line-strong)"/>
+          <text x="290" y="184" text-anchor="middle" class="t-small t-muted">骨小梁 / 骨内膜</text>
+
+          <!-- osteoprogenitors -->
+          <g fill="var(--s1)" opacity=".8">
+            <path d="M90 206 l10 -14 l10 14 z"/><path d="M140 204 l10 -14 l10 14 z"/><path d="M190 208 l10 -14 l10 14 z"/><path d="M240 204 l10 -14 l10 14 z"/>
+          </g>
+          <text x="90" y="232" class="t-small" fill="var(--s1)">骨祖细胞</text>
+
+          <!-- sinusoid -->
+          <path d="M60 330 C160 300 230 356 320 330 C410 304 470 350 530 326" stroke="#c96a4a" stroke-width="16" fill="none" stroke-linecap="round" opacity=".8"/>
+          <path d="M60 330 C160 300 230 356 320 330 C410 304 470 350 530 326" stroke="#ffd9c9" stroke-width="2" fill="none" opacity=".6"/>
+          <text x="60" y="360" class="t-small" fill="var(--s2)">窦状血管</text>
+
+          <!-- LepR MSC -->
+          <g fill="var(--s3)" opacity=".75">
+            <circle cx="230" cy="292" r="8"/><circle cx="360" cy="300" r="8"/><circle cx="450" cy="288" r="7"/>
+          </g>
+          <text x="230" y="278" text-anchor="middle" class="t-small" fill="var(--s3)">LepR⁺ MSC</text>
+
+          <!-- HSC -->
+          <circle cx="300" cy="258" r="9" fill="var(--s7)"/>
+          <circle cx="300" cy="258" r="3" fill="#fff" opacity=".8"/>
+          <text x="316" y="252" class="t-small" fill="var(--s7)">静息 HSC</text>
+
+          <!-- adipocytes -->
+          <circle cx="120" cy="410" r="26" fill="var(--surface-2)" stroke="var(--line)"/>
+          <circle cx="120" cy="410" r="20" fill="var(--s4)" opacity=".12"/>
+          <circle cx="470" cy="420" r="22" fill="var(--surface-2)" stroke="var(--line)"/>
+          <circle cx="470" cy="420" r="16" fill="var(--s4)" opacity=".12"/>
+          <text x="120" y="456" text-anchor="middle" class="t-small t-muted">脂肪细胞</text>
+
+          <!-- nerve -->
+          <path d="M70 480 C160 460 220 500 300 480 C380 460 440 500 520 478" stroke="var(--s4)" stroke-width="3" fill="none" stroke-dasharray="7 5" opacity=".7"/>
+          <text x="70" y="508" class="t-small" fill="var(--s4)">交感神经</text>
+
+          <!-- macrophages -->
+          <circle cx="400" cy="390" r="10" fill="var(--s2)" opacity=".55"/>
+          <text x="416" y="394" class="t-small t-muted">巨噬细胞</text>
+        </g>
+
+        <!-- old panel -->
+        <g>
+          <rect x="570" y="84" width="520" height="470" rx="16" class="fill-surface" stroke="var(--line)"/>
+          <text x="596" y="116" class="t-label" fill="var(--s2)">老年骨髓</text>
+          <text x="596" y="136" class="t-small t-muted">骨祖细胞减少 · 脂肪细胞扩张 · 血管渗漏 · IL-1β ↑</text>
+
+          <path d="M570 160 C660 140 740 178 830 158 C920 138 1000 176 1090 156 L1090 196 C1000 216 920 178 830 198 C740 218 660 180 570 200 Z" fill="var(--surface-3)" stroke="var(--line-strong)"/>
+          <text x="830" y="184" text-anchor="middle" class="t-small t-muted">骨小梁 / 骨内膜</text>
+
+          <!-- fewer osteoprogenitors -->
+          <g fill="var(--s1)" opacity=".55">
+            <path d="M630 206 l10 -14 l10 14 z"/><path d="M690 208 l10 -14 l10 14 z"/>
+          </g>
+          <text x="630" y="232" class="t-small" fill="var(--s1)">骨祖细胞 ↓</text>
+
+          <!-- leaky sinusoid -->
+          <path d="M600 330 C700 300 770 360 860 330 C950 300 1010 350 1070 324" stroke="#c96a4a" stroke-width="22" fill="none" stroke-linecap="round" opacity=".55"/>
+          <path d="M600 330 C700 300 770 360 860 330 C950 300 1010 350 1070 324" stroke="#ffd9c9" stroke-width="2" fill="none" opacity=".5" stroke-dasharray="10 8"/>
+          <text x="600" y="366" class="t-small" fill="var(--s2)">窦状血管（渗漏/扩张）</text>
+
+          <!-- big adipocytes -->
+          <circle cx="680" cy="420" r="40" fill="var(--surface-2)" stroke="var(--line)"/>
+          <circle cx="680" cy="420" r="32" fill="var(--s4)" opacity=".14"/>
+          <circle cx="790" cy="440" r="34" fill="var(--surface-2)" stroke="var(--line)"/>
+          <circle cx="790" cy="440" r="26" fill="var(--s4)" opacity=".14"/>
+          <circle cx="910" cy="420" r="38" fill="var(--surface-2)" stroke="var(--line)"/>
+          <circle cx="910" cy="420" r="30" fill="var(--s4)" opacity=".14"/>
+          <text x="790" y="492" text-anchor="middle" class="t-small t-muted">脂肪细胞 ↑</text>
+
+          <!-- inflammatory macrophages and IL-1 -->
+          <circle cx="990" cy="390" r="11" fill="var(--s2)" opacity=".8"/>
+          <circle cx="1010" cy="410" r="8" fill="var(--s2)" opacity=".6"/>
+          <g fill="var(--s8)">
+            <circle cx="960" cy="250" r="3"/><circle cx="990" cy="270" r="3"/><circle cx="1020" cy="245" r="3"/><circle cx="1040" cy="285" r="3"/>
+          </g>
+          <text x="960" y="228" class="t-small" fill="var(--s8)">IL-1β</text>
+          <path d="M960 236 C930 270 900 300 860 318" stroke="var(--s8)" stroke-width="1.4" fill="none" stroke-dasharray="4 4"/>
+          <path d="M1040 292 C1010 320 980 340 940 350" stroke="var(--s8)" stroke-width="1.4" fill="none" stroke-dasharray="4 4"/>
+
+          <!-- HSC myeloid biased -->
+          <circle cx="860" cy="258" r="10" fill="var(--s7)"/>
+          <circle cx="860" cy="258" r="3" fill="#fff" opacity=".8"/>
+          <g fill="var(--s2)">
+            <circle cx="856" cy="254" r="1.6"/><circle cx="864" cy="262" r="1.6"/><circle cx="862" cy="252" r="1.6"/>
+          </g>
+          <text x="878" y="252" class="t-small" fill="var(--s7)">HSC：髓系偏倚</text>
+
+          <!-- nerve loss -->
+          <path d="M610 480 C700 460 760 500 840 480" stroke="var(--s4)" stroke-width="2" fill="none" stroke-dasharray="3 7" opacity=".35"/>
+          <text x="610" y="508" class="t-small t-muted">交感神经末梢 ↓</text>
+        </g>
+
+        <text x="560" y="594" text-anchor="middle" class="t-small t-muted">IL-1β 从受损骨内膜向中央骨髓“跨区”传播；阻断 IL-1 信号可改善老年小鼠的 niche 与 HSC 功能（Mitchell et al., 2023）。</text>
+        <text x="560" y="616" text-anchor="middle" class="t-small t-muted">示意图；细胞类型与位置经过简化，不代表真实比例。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 4</span> · 骨髓 niche 的年轻态与衰老态 <span class="fig-sub">老年 niche 的关键变化不是“一个细胞变坏”，而是骨祖细胞、脂肪细胞、血管、神经和免疫细胞共同重塑。IL-1β 是其中一个可干预的节点。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>2.3 选择层：为什么“坏细胞”会留下来</h3>
+      <p>如果只有损伤和修复不足，我们会预期干细胞池随年龄逐渐变小、变弱。但实际观察到的常常是<strong>数量维持甚至上升，功能下降</strong>。这提示还有第三种力量：选择。</p>
+
+      <p>体细胞在生命周期中会积累突变。大多数突变是中性的或有害的，但少数突变会给干细胞一个<strong>自我更新优势</strong>。在骨髓中，DNMT3A、TET2、ASXL1 等基因的突变会让 HSC 克隆扩张，形成“意义未明的克隆性造血”（CHIP）。这些克隆往往分化偏差、炎症增强，但在池子里却更有竞争力。<span class="badge a">A</span><span class="badge b">B</span>（Jaiswal et al., 2014；Rando et al., 2025）</p>
+
+      <p>同样的逻辑也出现在其他组织：肠道隐窝中的干细胞克隆会随年龄发生单克隆化；线粒体 DNA 突变可以在隐窝中固定；皮肤毛囊中的干细胞克隆也会竞争 niche 空间。<span class="badge b">B</span><span class="badge c">C</span> 这些过程的共同点是：<strong>克隆的“适合度”与它对组织的“功能贡献”不是一回事。</strong></p>
+
+      <div class="callout warn">
+        <span class="callout-label">关键区分</span>
+        <p>“干细胞池的适合度”是克隆在池子里扩张的能力；“干细胞池的功能”是它给组织提供正确细胞的能力。衰老可以选择出前者强、后者弱的克隆。这就是为什么只看数量、甚至只看“池子是否扩大”会得出错误结论。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 610" role="img" aria-label="从损伤累积到克隆扩张的四阶段模型">
+        <text x="40" y="34" class="t-title">从损伤到克隆扩张：功能与适合度怎样解耦</text>
+        <text x="40" y="56" class="t-small t-muted">衰老不是一条单向的“磨损”曲线，而是一个不断筛选克隆的过程</text>
+
+        <!-- stage 1 -->
+        <g>
+          <rect x="30" y="90" width="240" height="250" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="50" y="118" class="t-small t-muted">阶段 1</text>
+          <text x="50" y="142" class="t-label">损伤累积</text>
+          <circle cx="150" cy="218" r="46" fill="var(--s1)" opacity=".12" stroke="var(--s1)"/>
+          <circle cx="150" cy="218" r="24" fill="var(--s1)" opacity=".2"/>
+          <g fill="var(--s8)">
+            <circle cx="128" cy="196" r="3"/><circle cx="170" cy="210" r="3"/><circle cx="140" cy="238" r="3"/><circle cx="165" cy="240" r="2.5"/>
+          </g>
+          <text x="50" y="296" class="t-small t-ink2">DNA 损伤、端粒缩短、</text>
+          <text x="50" y="316" class="t-small t-ink2">蛋白聚集、线粒体 ROS</text>
+        </g>
+
+        <!-- stage 2 -->
+        <g>
+          <rect x="300" y="90" width="240" height="250" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="320" y="118" class="t-small t-muted">阶段 2</text>
+          <text x="320" y="142" class="t-label">应激与炎症</text>
+          <circle cx="420" cy="218" r="46" fill="var(--s5)" opacity=".12" stroke="var(--s5)" stroke-dasharray="5 4"/>
+          <circle cx="420" cy="218" r="22" fill="var(--s5)" opacity=".18"/>
+          <g stroke="var(--s2)" stroke-width="1.5">
+            <path d="M420 160 L420 148"/><path d="M420 276 L420 288"/><path d="M362 218 L350 218"/><path d="M478 218 L490 218"/>
+            <path d="M380 178 L370 168"/><path d="M460 258 L470 268"/><path d="M460 178 L470 168"/><path d="M380 258 L370 268"/>
+          </g>
+          <text x="320" y="296" class="t-small t-ink2">p16/p53 激活、SASP、</text>
+          <text x="320" y="316" class="t-small t-ink2">静息加深或退出循环</text>
+        </g>
+
+        <!-- stage 3 -->
+        <g>
+          <rect x="570" y="90" width="240" height="250" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="590" y="118" class="t-small t-muted">阶段 3</text>
+          <text x="590" y="142" class="t-label">选择压力改变</text>
+          <g transform="translate(690,218)">
+            <path d="M-56 0 L56 0" stroke="var(--line-strong)" stroke-width="3"/>
+            <path d="M0 0 L0 52" stroke="var(--line-strong)" stroke-width="3"/>
+            <path d="M-52 0 L-52 30 L-18 30" stroke="var(--s1)" stroke-width="3" fill="none"/>
+            <path d="M52 0 L52 14 L18 14" stroke="var(--s2)" stroke-width="3" fill="none"/>
+            <circle cx="-18" cy="30" r="8" fill="var(--s1)" opacity=".5"/>
+            <circle cx="18" cy="14" r="10" fill="var(--s2)" opacity=".7"/>
+          </g>
+          <text x="590" y="296" class="t-small t-ink2">炎症与 niche 改变</text>
+          <text x="590" y="316" class="t-small t-ink2">让“会自我更新”的克隆占优</text>
+        </g>
+
+        <!-- stage 4 -->
+        <g>
+          <rect x="840" y="90" width="250" height="250" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="860" y="118" class="t-small t-muted">阶段 4</text>
+          <text x="860" y="142" class="t-label">克隆扩张</text>
+          <g>
+            <circle cx="900" cy="200" r="14" fill="var(--s1)" opacity=".25"/>
+            <circle cx="940" cy="188" r="13" fill="var(--s1)" opacity=".22"/>
+            <circle cx="980" cy="206" r="14" fill="var(--s1)" opacity=".2"/>
+            <circle cx="1018" cy="190" r="12" fill="var(--s1)" opacity=".22"/>
+            <circle cx="1030" cy="232" r="13" fill="var(--s1)" opacity=".2"/>
+            <circle cx="985" cy="246" r="12" fill="var(--s1)" opacity=".22"/>
+            <circle cx="942" cy="238" r="14" fill="var(--s1)" opacity=".2"/>
+            <circle cx="900" cy="252" r="12" fill="var(--s1)" opacity=".22"/>
+            <circle cx="962" cy="210" r="22" fill="var(--s2)" opacity=".85"/>
+            <circle cx="962" cy="210" r="8" fill="#fff" opacity=".7"/>
+          </g>
+          <text x="860" y="296" class="t-small t-ink2">一个克隆占据优势；</text>
+          <text x="860" y="316" class="t-small t-ink2">输出偏向髓系/炎症</text>
+        </g>
+
+        <g stroke="var(--line-strong)" stroke-width="1.4" fill="none">
+          <path d="M270 215 L296 215"/><path d="M540 215 L566 215"/><path d="M810 215 L836 215"/>
+        </g>
+        <g fill="var(--line-strong)">
+          <path d="M290 211 L298 215 L290 219 z"/><path d="M560 211 L568 215 L560 219 z"/><path d="M830 211 L838 215 L830 219 z"/>
+        </g>
+
+        <rect x="30" y="380" width="1060" height="190" rx="16" class="fill-surface2" stroke="var(--line)"/>
+        <text x="56" y="412" class="t-label">池子的组成随年龄变化（示意）</text>
+        <g class="axis"><path d="M80 440 L80 530 L540 530"/></g>
+        <text x="80" y="548" class="t-small t-muted">年轻</text>
+        <text x="520" y="548" text-anchor="end" class="t-small t-muted">老年</text>
+        <path d="M90 458 C180 470 280 492 520 512" class="stroke-1 w-med"/>
+        <path d="M90 512 C190 504 300 476 520 452" class="stroke-2 w-med"/>
+        <text x="300" y="470" class="t-small" fill="var(--s1)">功能性 HSC</text>
+        <text x="330" y="500" class="t-small" fill="var(--s2)">克隆性/炎症性 HSC</text>
+
+        <text x="600" y="440" class="t-small t-ink2">关键：克隆的“适合度”（在池子里扩张）</text>
+        <text x="600" y="462" class="t-small t-ink2">与它对组织的“功能贡献”不是一回事。</text>
+        <text x="600" y="490" class="t-small t-muted">这解释了为什么数量可以上升、功能却下降；</text>
+        <text x="600" y="512" class="t-small t-muted">也解释了为什么“扩增干细胞”不是天然安全的。</text>
+        <text x="600" y="540" class="t-small t-muted">CHIP 是这一逻辑在人体中最清晰的例子。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 5</span> · 从损伤到克隆扩张的四阶段模型 <span class="fig-sub">损伤让细胞变坏，炎症改变选择压力，克隆扩张把“坏”固定下来。这个模型把“磨损”和“选择”接在了一条链上。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>2.4 把三层合起来：一个完整的回答</h3>
+      <p>现在可以把“为什么衰老会导致干细胞变化”回答完整：</p>
+      <ol>
+        <li><strong>演化上</strong>，维护系统被选择调在“够用到繁殖期”的水平；端粒酶、p53/p16、mTOR、炎症等通路的权衡，让“永久维护”既昂贵又危险。<span class="badge b">B</span></li>
+        <li><strong>机制上</strong>，DNA/端粒/表观/线粒体/蛋白稳态/衰老细胞六类损伤叠加，niche 与全身炎症放大，修复与清除能力下降。<span class="badge a">A</span><span class="badge b">B</span></li>
+        <li><strong>选择上</strong>，体细胞突变与克隆竞争让“会自我更新、但功能差”的克隆扩张，导致数量与功能解耦。<span class="badge b">B</span></li>
+      </ol>
+      <p>这三层分别对应不同的干预点：减少损伤、修复 niche、改变选择压力。也对应不同的失败模式：质量型、结构型、数量型。下面的“变什么”会把这些抽象层次落到具体的干细胞类型和表型上。</p>
+
+      <div class="callout">
+        <span class="callout-label">一句话回答“为什么”</span>
+        <p>衰老导致干细胞变化，是因为<strong>维护系统本来就不是为无限期运行设计的</strong>；损伤和 niche 改变让细胞逐渐变坏；而体细胞选择又让一部分坏细胞留了下来。三者叠加，才形成“数量还可以、功能已经不行”的典型老年干细胞池。<span class="badge b">B</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 03 变什么 ================= -->
+<section class="section alt" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">03 / WHAT</div>
+      <div>
+        <h2>变的是什么？五个功能标志，七类干细胞</h2>
+        <p class="section-lede">“变老”不是单一表型。2025 年的一篇综述把干细胞衰老归纳为五个功能标志；但每个标志在不同组织中的方向不同。理解这一点，比记住“干细胞下降”四个字重要得多。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="lede">Rando、Brunet 和 Goodell 在 2025 年提出，干细胞衰老可以用五个<strong>功能性</strong>标志来描述，而不是按分子通路罗列：静息深度、自我更新倾向、子代命运、韧性/存活、群体异质性。<span class="badge a">A</span> 这个框架的价值在于：它把“干细胞变老”拆成了可测量、可比较的维度。（Rando et al., 2025）</p>
+      <p>需要强调的是，这五个标志描述的是<strong>偏离最优</strong>，不是单向的“下降”。同一个标志，在不同组织、不同亚群里可以升高或降低；升高不一定是好事，降低也不一定是坏事。比如 HSC 的自我更新倾向升高，听起来像“更年轻”，实际上却是池子扩张、分化不足、髓系偏倚的一部分。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 620" role="img" aria-label="干细胞衰老的五个功能标志">
+        <text x="40" y="34" class="t-title">五个功能标志：不是五个“下降”，而是五个“偏离”</text>
+        <text x="40" y="56" class="t-small t-muted">同一个标志在不同组织中可以升高或降低；方向本身不是好坏，偏离最优才是问题</text>
+
+        <!-- card 1 -->
+        <g>
+          <rect x="30" y="88" width="202" height="440" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="50" y="118" class="t-mono t-muted">01</text>
+          <g transform="translate(50,140)">
+            <circle cx="30" cy="30" r="26" fill="var(--s1)" opacity=".12" stroke="var(--s1)"/>
+            <rect x="20" y="18" width="5" height="24" rx="2" fill="var(--s1)"/>
+            <rect x="35" y="18" width="5" height="24" rx="2" fill="var(--s1)"/>
+          </g>
+          <text x="50" y="222" class="t-label">静息深度</text>
+          <text x="50" y="246" class="t-small t-ink2">干细胞退出细胞周期、</text>
+          <text x="50" y="264" class="t-small t-ink2">进入可逆的静息状态。</text>
+          <text x="50" y="292" class="t-small t-muted">老年可以更深（激活变慢）</text>
+          <text x="50" y="310" class="t-small t-muted">或更浅（提前激活、不能</text>
+          <text x="50" y="328" class="t-small t-muted">自我更新）。</text>
+          <text x="50" y="360" class="t-small" fill="var(--s1)">例：MuSC 深静息亚群；</text>
+          <text x="50" y="378" class="t-small" fill="var(--s1)">NSC 的 sFRP5；HSC 浅静息</text>
+          <text x="50" y="410" class="t-small t-muted">证据：B</text>
+        </g>
+
+        <!-- card 2 -->
+        <g>
+          <rect x="246" y="88" width="202" height="440" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="266" y="118" class="t-mono t-muted">02</text>
+          <g transform="translate(266,140)">
+            <circle cx="30" cy="30" r="26" fill="var(--s3)" opacity=".12" stroke="var(--s3)"/>
+            <path d="M30 12 A18 18 0 1 1 16 22" stroke="var(--s3)" stroke-width="3" fill="none"/>
+            <path d="M16 22 L16 12 L26 12" stroke="var(--s3)" stroke-width="3" fill="none"/>
+          </g>
+          <text x="266" y="222" class="t-label">自我更新倾向</text>
+          <text x="266" y="246" class="t-small t-ink2">分裂后保留干细胞池的</text>
+          <text x="266" y="264" class="t-small t-ink2">能力，而非只产生子代。</text>
+          <text x="266" y="292" class="t-small t-muted">HSC 自我更新↑但分化↓，</text>
+          <text x="266" y="310" class="t-small t-muted">池子扩张、每细胞功能↓；</text>
+          <text x="266" y="328" class="t-small t-muted">MuSC/ISC 自我更新↓。</text>
+          <text x="266" y="360" class="t-small" fill="var(--s3)">例：HSC 池扩张；MuSC</text>
+          <text x="266" y="378" class="t-small" fill="var(--s3)">再生后池子恢复不足</text>
+          <text x="266" y="410" class="t-small t-muted">证据：A/B</text>
+        </g>
+
+        <!-- card 3 -->
+        <g>
+          <rect x="462" y="88" width="202" height="440" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="482" y="118" class="t-mono t-muted">03</text>
+          <g transform="translate(482,140)">
+            <circle cx="30" cy="30" r="26" fill="var(--s4)" opacity=".14" stroke="var(--s4)"/>
+            <path d="M30 52 L30 34 M30 34 L16 18 M30 34 L44 18" stroke="var(--s4)" stroke-width="3" fill="none"/>
+            <circle cx="16" cy="16" r="5" fill="var(--s4)"/><circle cx="44" cy="16" r="5" fill="var(--s4)"/>
+          </g>
+          <text x="482" y="222" class="t-label">子代命运</text>
+          <text x="482" y="246" class="t-small t-ink2">干细胞产生什么类型的</text>
+          <text x="482" y="264" class="t-small t-ink2">子代，比例是否偏移。</text>
+          <text x="482" y="292" class="t-small t-muted">HSC 髓系↑/淋系↓；NSC</text>
+          <text x="482" y="310" class="t-small t-muted">神经元↓/胶质↑；ISC 分泌</text>
+          <text x="482" y="328" class="t-small t-muted">细胞↑；MSC 脂肪↑/骨↓。</text>
+          <text x="482" y="360" class="t-small" fill="var(--s4)">例：髓系偏倚、胶质增生、</text>
+          <text x="482" y="378" class="t-small" fill="var(--s4)">杯状细胞增多</text>
+          <text x="482" y="410" class="t-small t-muted">证据：A/B</text>
+        </g>
+
+        <!-- card 4 -->
+        <g>
+          <rect x="678" y="88" width="202" height="440" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="698" y="118" class="t-mono t-muted">04</text>
+          <g transform="translate(698,140)">
+            <circle cx="30" cy="30" r="26" fill="var(--s5)" opacity=".12" stroke="var(--s5)"/>
+            <path d="M30 10 L44 16 L42 34 C40 44 34 50 30 52 C26 50 20 44 18 34 L16 16 Z" fill="var(--s5)" opacity=".2" stroke="var(--s5)" stroke-width="2"/>
+          </g>
+          <text x="698" y="222" class="t-label">韧性 / 存活</text>
+          <text x="698" y="246" class="t-small t-ink2">承受应激、修复损伤、</text>
+          <text x="698" y="264" class="t-small t-ink2">避免死亡的能力。</text>
+          <text x="698" y="292" class="t-small t-muted">老年干细胞对移植、辐照、</text>
+          <text x="698" y="310" class="t-small t-muted">氧化应激更敏感；MuSC</text>
+          <text x="698" y="328" class="t-small t-muted">发生衰老转换。</text>
+          <text x="698" y="360" class="t-small" fill="var(--s5)">例：移植后存活率↓；</text>
+          <text x="698" y="378" class="t-small" fill="var(--s5)">损伤后凋亡↑</text>
+          <text x="698" y="410" class="t-small t-muted">证据：B</text>
+        </g>
+
+        <!-- card 5 -->
+        <g>
+          <rect x="894" y="88" width="196" height="440" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="914" y="118" class="t-mono t-muted">05</text>
+          <g transform="translate(914,140)">
+            <circle cx="30" cy="30" r="26" fill="var(--s7)" opacity=".12" stroke="var(--s7)"/>
+            <g fill="var(--s7)">
+              <circle cx="20" cy="20" r="4"/><circle cx="36" cy="18" r="4"/><circle cx="44" cy="32" r="4"/>
+              <circle cx="28" cy="38" r="4"/><circle cx="16" cy="34" r="4"/><circle cx="32" cy="28" r="3" opacity=".5"/>
+            </g>
+          </g>
+          <text x="914" y="222" class="t-label">群体异质性</text>
+          <text x="914" y="246" class="t-small t-ink2">同一个池子里细胞之间</text>
+          <text x="914" y="264" class="t-small t-ink2">的差异程度。</text>
+          <text x="914" y="292" class="t-small t-muted">老年干细胞积累不同的</text>
+          <text x="914" y="310" class="t-small t-muted">突变、表观标记和功能</text>
+          <text x="914" y="328" class="t-small t-muted">状态；克隆性扩张增加。</text>
+          <text x="914" y="360" class="t-small" fill="var(--s7)">例：CHIP；HSC 功能</text>
+          <text x="914" y="378" class="t-small" fill="var(--s7)">测定范围变宽</text>
+          <text x="914" y="410" class="t-small t-muted">证据：A/B</text>
+        </g>
+
+        <text x="560" y="566" text-anchor="middle" class="t-small t-muted">五个标志不是独立的：静息深度的改变会影响自我更新，命运偏移会改变异质性，韧性下降会加速数量减少。</text>
+        <text x="560" y="588" text-anchor="middle" class="t-small t-muted">框架来源：Rando, Brunet &amp; Goodell, Cell Stem Cell, 2025。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 6</span> · 干细胞衰老的五个功能标志 <span class="fig-sub">静息深度、自我更新倾向、子代命运、韧性/存活、群体异质性。每个标志都可能是“升高”“降低”或“双向”，关键是偏离了组织需要的最优状态。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.1 五个标志，逐一拆开</h3>
+      <h4>（1）静息深度：不是“睡得越久越健康”</h4>
+      <p>静息（quiescence）是干细胞退出细胞周期、但保留重新进入周期能力的可逆状态。它降低代谢负担、减少复制错误，是长期维持池子的核心策略。<span class="badge a">A</span> 但静息不是越深越好：太深，损伤后激活太慢；太浅，细胞频繁进入周期，容易耗竭或积累损伤。</p>
+      <p>老年 MuSC 中会出现一个“深静息”亚群，谷胱甘肽水平较低，激活变慢，肌肉再生受损；补充谷胱甘肽可以部分 rescue。<span class="badge b">B</span> 与之相反，老年 HSC 在人体中表现得“更浅”——免疫表型 HSC 频率升高、静息比例下降、更偏向髓系。<span class="badge b">B</span>（Pang et al., 2011；Rando et al., 2025）</p>
+
+      <h4>（2）自我更新倾向：池子变大，不等于变好</h4>
+      <p>自我更新是干细胞分裂后保留至少一个干细胞的能力。老年 HSC 的自我更新倾向升高，但分化能力下降，结果是<strong>池子扩张、每细胞再生能力下降</strong>。这不是“更年轻”，而是“更会自我复制、更不会做本职工作”。<span class="badge a">A</span><span class="badge b">B</span></p>
+      <p>MuSC 和 ISC 的情况不同：它们的自我更新倾向下降，损伤后池子恢复不足。同一个标志，在不同组织中方向相反，这正是“不能一概而论”的原因。<span class="badge b">B</span></p>
+
+      <h4>（3）子代命运：衰老改变“产出组合”</h4>
+      <p>多能干细胞的分化通常是一个分布，而不是单一命运。衰老会改变这个分布：HSC 髓系输出增加、淋系输出减少；NSC 神经元生成减少、胶质细胞生成增加；ISC 向分泌细胞（杯状、Paneth）偏移；MSC/骨骼干细胞向脂肪细胞偏移、成骨减少。<span class="badge a">A</span><span class="badge b">B</span></p>
+      <p>这些偏移不只是“细胞类型变了”，还会改变组织功能：髓系偏倚增加炎症，胶质增生改变神经环路，分泌细胞偏移改变肠道屏障，脂肪偏移改变骨强度。<span class="badge b">B</span></p>
+
+      <h4>（4）韧性/存活：移植实验的第一个门槛</h4>
+      <p>韧性（resilience）是细胞承受应激、修复损伤、避免死亡的能力。老年干细胞在移植、辐照、氧化应激下更容易死亡；老年 MuSC 会从可逆静息转入不可逆的衰老前状态（geroconversion），损伤后无法正常激活。<span class="badge b">B</span>（Sousa-Victor et al., 2014）</p>
+      <p>这一点常被忽略：移植实验的成功，首先取决于细胞能否活下来，其次才是能否增殖和分化。老年 HSC 的“功能下降”里，有一部分其实是“存活下降”。<span class="badge b">B</span></p>
+
+      <h4>（5）群体异质性：池子内部的分化</h4>
+      <p>老年干细胞池的异质性通常增加：每个细胞积累不同的突变、表观标记和功能状态；克隆性扩张让少数克隆占据更大比例。<span class="badge a">A</span> 异质性增加本身不是坏事——它可能是适应性的——但它让“平均值”越来越没有意义：一个池子的平均功能可能正常，但关键克隆已经丢失或失控。</p>
+      <p>CHIP 是异质性增加最清晰的例子：一个 DNMT3A/TET2/ASXL1 突变克隆可以在血液中占到很大比例，而其他克隆被压缩。<span class="badge a">A</span>（Jaiswal et al., 2014）</p>
+    </div>
+
+    <div class="prose">
+      <h3>3.2 一张矩阵：不同干细胞类型，不同方向</h3>
+      <p>把五个标志放在行、干细胞类型放在列，可以得到一张“衰老方向矩阵”。它的目的不是给出精确分数，而是显示<strong>哪些变化是共通的、哪些是组织特异的</strong>。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 610" role="img" aria-label="七类干细胞在五个功能标志上的衰老方向矩阵">
+        <text x="30" y="34" class="t-title">衰老方向矩阵：同一标志，不同组织可以相反</text>
+        <text x="30" y="56" class="t-small t-muted">箭头为老年相对年轻的方向；↔ 表示基本维持；— 表示该组织不以静息为主或证据不足</text>
+
+        <!-- headers -->
+        <g>
+          <rect x="30" y="86" width="190" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="125" y="118" text-anchor="middle" class="t-small t-muted">干细胞类型</text>
+          <rect x="226" y="86" width="168" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="310" y="118" text-anchor="middle" class="t-small t-muted">静息深度</text>
+          <rect x="400" y="86" width="168" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="484" y="118" text-anchor="middle" class="t-small t-muted">自我更新</text>
+          <rect x="574" y="86" width="168" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="658" y="118" text-anchor="middle" class="t-small t-muted">子代命运</text>
+          <rect x="748" y="86" width="168" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="832" y="118" text-anchor="middle" class="t-small t-muted">韧性 / 存活</text>
+          <rect x="922" y="86" width="168" height="54" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="1006" y="118" text-anchor="middle" class="t-small t-muted">群体异质性</text>
+        </g>
+
+        <!-- HSC -->
+        <g>
+          <rect x="30" y="146" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="177" class="t-small">HSC（造血）</text>
+          <rect x="226" y="146" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="310" y="177" text-anchor="middle" class="t-small" fill="var(--s4)">↕ A</text>
+          <rect x="400" y="146" width="168" height="52" rx="6" fill="var(--s3)" fill-opacity=".18" stroke="var(--line)"/>
+          <text x="484" y="177" text-anchor="middle" class="t-small" fill="var(--s3)">↑ A</text>
+          <rect x="574" y="146" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="658" y="177" text-anchor="middle" class="t-small" fill="var(--s1)">髓系↑ B</text>
+          <rect x="748" y="146" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="832" y="177" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="922" y="146" width="168" height="52" rx="6" fill="var(--s3)" fill-opacity=".18" stroke="var(--line)"/>
+          <text x="1006" y="177" text-anchor="middle" class="t-small" fill="var(--s3)">↑ A</text>
+        </g>
+
+        <!-- NSC -->
+        <g>
+          <rect x="30" y="202" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="233" class="t-small">NSC（神经）</text>
+          <rect x="226" y="202" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="310" y="233" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+          <rect x="400" y="202" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="233" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="574" y="202" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="658" y="233" text-anchor="middle" class="t-small" fill="var(--s1)">胶质↑ B</text>
+          <rect x="748" y="202" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="832" y="233" text-anchor="middle" class="t-small" fill="var(--s4)">↓ C</text>
+          <rect x="922" y="202" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="1006" y="233" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+        </g>
+
+        <!-- MuSC -->
+        <g>
+          <rect x="30" y="258" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="289" class="t-small">MuSC（肌肉）</text>
+          <rect x="226" y="258" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="310" y="289" text-anchor="middle" class="t-small" fill="var(--s1)">↕ B</text>
+          <rect x="400" y="258" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="289" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="574" y="258" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="658" y="289" text-anchor="middle" class="t-small" fill="var(--s4)">纤维脂肪↑ C</text>
+          <rect x="748" y="258" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="832" y="289" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="922" y="258" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="1006" y="289" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+        </g>
+
+        <!-- ISC -->
+        <g>
+          <rect x="30" y="314" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="345" class="t-small">ISC（肠道）</text>
+          <rect x="226" y="314" width="168" height="52" rx="6" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="310" y="345" text-anchor="middle" class="t-small t-muted">—</text>
+          <rect x="400" y="314" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="345" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="574" y="314" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="658" y="345" text-anchor="middle" class="t-small" fill="var(--s1)">分泌↑ B</text>
+          <rect x="748" y="314" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="832" y="345" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="922" y="314" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="1006" y="345" text-anchor="middle" class="t-small" fill="var(--s4)">↑ C</text>
+        </g>
+
+        <!-- epidermis -->
+        <g>
+          <rect x="30" y="370" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="401" class="t-small">表皮（EpSC）</text>
+          <rect x="226" y="370" width="168" height="52" rx="6" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="310" y="401" text-anchor="middle" class="t-small t-muted">—</text>
+          <rect x="400" y="370" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="401" text-anchor="middle" class="t-small" fill="var(--s1)">↔ B</text>
+          <rect x="574" y="370" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="658" y="401" text-anchor="middle" class="t-small" fill="var(--s1)">↔ B</text>
+          <rect x="748" y="370" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="832" y="401" text-anchor="middle" class="t-small" fill="var(--s4)">↓ C</text>
+          <rect x="922" y="370" width="168" height="52" rx="6" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="1006" y="401" text-anchor="middle" class="t-small t-muted">—</text>
+        </g>
+
+        <!-- HFSC -->
+        <g>
+          <rect x="30" y="426" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="457" class="t-small">毛囊（HFSC）</text>
+          <rect x="226" y="426" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="310" y="457" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+          <rect x="400" y="426" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="457" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="574" y="426" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="658" y="457" text-anchor="middle" class="t-small" fill="var(--s1)">毛发↓ B</text>
+          <rect x="748" y="426" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="832" y="457" text-anchor="middle" class="t-small" fill="var(--s4)">↓ C</text>
+          <rect x="922" y="426" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="1006" y="457" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+        </g>
+
+        <!-- MSC -->
+        <g>
+          <rect x="30" y="482" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="44" y="513" class="t-small">MSC / 骨骼干细胞</text>
+          <rect x="226" y="482" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="310" y="513" text-anchor="middle" class="t-small" fill="var(--s1)">↑ B</text>
+          <rect x="400" y="482" width="168" height="52" rx="6" fill="var(--s1)" fill-opacity=".14" stroke="var(--line)"/>
+          <text x="484" y="513" text-anchor="middle" class="t-small" fill="var(--s1)">↓ B</text>
+          <rect x="574" y="482" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="658" y="513" text-anchor="middle" class="t-small" fill="var(--s4)">成骨↓ C</text>
+          <rect x="748" y="482" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="832" y="513" text-anchor="middle" class="t-small" fill="var(--s4)">↓ C</text>
+          <rect x="922" y="482" width="168" height="52" rx="6" fill="var(--s4)" fill-opacity=".16" stroke="var(--line)"/>
+          <text x="1006" y="513" text-anchor="middle" class="t-small" fill="var(--s4)">— C</text>
+        </g>
+
+        <!-- legend -->
+        <g>
+          <rect x="30" y="556" width="14" height="14" rx="3" fill="var(--s3)" fill-opacity=".3" stroke="var(--line)"/>
+          <text x="50" y="568" class="t-small t-muted">A</text>
+          <rect x="78" y="556" width="14" height="14" rx="3" fill="var(--s1)" fill-opacity=".3" stroke="var(--line)"/>
+          <text x="98" y="568" class="t-small t-muted">B</text>
+          <rect x="126" y="556" width="14" height="14" rx="3" fill="var(--s4)" fill-opacity=".3" stroke="var(--line)"/>
+          <text x="146" y="568" class="t-small t-muted">C</text>
+          <rect x="174" y="556" width="14" height="14" rx="3" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="194" y="568" class="t-small t-muted">— / 不适用</text>
+          <text x="300" y="568" class="t-small t-muted">↑ 升高 · ↓ 降低 · ↕ 双向 · ↔ 基本维持</text>
+          <text x="690" y="568" class="t-small t-muted">矩阵为综合评估；空白不代表“没有变化”，只代表证据不足。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 7</span> · 七类干细胞 × 五个功能标志的衰老方向矩阵 <span class="fig-sub">HSC 的自我更新升高但功能下降；MuSC 的 II 型纤维卫星细胞选择性丢失；ISC 与表皮在基线更新上维持较好；MSC 的数量维持但激活/增殖下降。方向矩阵比“统一下降”的叙事更接近事实。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>3.3 逐组织看：谁在变，怎么变</h3>
+      <h4>造血干细胞（HSC）：数量上升，功能下降</h4>
+      <p>HSC 是研究得最透的干细胞衰老模型。人体骨髓的免疫表型 HSC 随年龄<strong>频率升高、静息比例下降、髓系分化偏倚</strong>；小鼠中 HSC 池扩张、每细胞竞争性再增殖能力下降。<span class="badge a">A</span><span class="badge b">B</span>（Pang et al., 2011；Beerman et al., 2010；Rando et al., 2025）</p>
+      <p>这种“数量↑、功能↓”的组合，是理解干细胞衰老的关键。它说明“耗竭”不是池子空了，而是池子的组成和单细胞质量变了。老年 HSC 的髓系偏倚会增加炎症性髓系细胞、减少淋系输出，进而影响免疫应答和疫苗反应。<span class="badge b">B</span></p>
+      <p>在人体中，HSC 衰老最可量化的后果是<strong>克隆性造血（CHIP）</strong>：DNMT3A、TET2、ASXL1 等突变克隆随年龄扩张，70–79 岁检出率 9.5%，90 岁以上 18.4%。CHIP 与血液肿瘤、冠心病、卒中和全因死亡风险升高相关。<span class="badge a">A</span>（Jaiswal et al., 2014）</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="HSC 衰老的三张脸：数量上升、每细胞功能下降、髓系输出偏倚">
+        <text x="40" y="34" class="t-title">HSC 衰老的三张脸：同一个池子，三个方向</text>
+        <text x="40" y="56" class="t-small t-muted">示意图；方向来自人体免疫表型与小鼠竞争性移植研究，坐标为相对值，不是原始数据</text>
+
+        <!-- panel a -->
+        <g>
+          <rect x="30" y="88" width="330" height="360" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="52" y="118" class="t-label">A · 数量 / 频率</text>
+          <text x="52" y="138" class="t-small t-muted">老年 HSC 池可以扩张</text>
+          <g class="axis"><path d="M70 170 L70 390 L330 390"/></g>
+          <g class="grid"><path d="M70 230 L330 230"/><path d="M70 290 L330 290"/><path d="M70 350 L330 350"/></g>
+          <text x="62" y="174" text-anchor="end" class="t-small t-muted">高</text>
+          <text x="62" y="394" text-anchor="end" class="t-small t-muted">低</text>
+          <text x="70" y="410" class="t-small t-muted">年轻</text>
+          <text x="322" y="410" text-anchor="end" class="t-small t-muted">老年</text>
+          <path d="M85 330 C150 305 230 260 315 205" class="stroke-1 w-med"/>
+          <circle cx="315" cy="205" r="4" class="fill-1"/>
+          <text x="300" y="192" text-anchor="end" class="t-small" fill="var(--s1)">频率 ↑</text>
+          <text x="52" y="438" class="t-small t-muted">人体：免疫表型 HSC 频率升高；</text>
+          <text x="52" y="456" class="t-small t-muted">小鼠：长期 HSC 池扩张。</text>
+        </g>
+
+        <!-- panel b -->
+        <g>
+          <rect x="395" y="88" width="330" height="360" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="417" y="118" class="t-label">B · 每细胞功能</text>
+          <text x="417" y="138" class="t-small t-muted">竞争性再增殖能力下降</text>
+          <g class="axis"><path d="M435 170 L435 390 L695 390"/></g>
+          <g class="grid"><path d="M435 230 L695 230"/><path d="M435 290 L695 290"/><path d="M435 350 L695 350"/></g>
+          <text x="427" y="174" text-anchor="end" class="t-small t-muted">高</text>
+          <text x="427" y="394" text-anchor="end" class="t-small t-muted">低</text>
+          <text x="435" y="410" class="t-small t-muted">年轻</text>
+          <text x="687" y="410" text-anchor="end" class="t-small t-muted">老年</text>
+          <path d="M450 205 C520 230 600 290 680 350" class="stroke-2 w-med"/>
+          <circle cx="680" cy="350" r="4" class="fill-2"/>
+          <text x="665" y="338" text-anchor="end" class="t-small" fill="var(--s2)">再增殖 ↓</text>
+          <text x="417" y="438" class="t-small t-muted">移植后每个细胞的克隆输出下降；</text>
+          <text x="417" y="456" class="t-small t-muted">池的“总功能”可能被数量掩盖。</text>
+        </g>
+
+        <!-- panel c -->
+        <g>
+          <rect x="760" y="88" width="330" height="360" rx="14" class="fill-surface" stroke="var(--line)"/>
+          <text x="782" y="118" class="t-label">C · 输出偏向</text>
+          <text x="782" y="138" class="t-small t-muted">髓系↑ / 淋系↓</text>
+          <g class="axis"><path d="M800 170 L800 390 L1060 390"/></g>
+          <g class="grid"><path d="M800 230 L1060 230"/><path d="M800 290 L1060 290"/><path d="M800 350 L1060 350"/></g>
+          <text x="792" y="174" text-anchor="end" class="t-small t-muted">高</text>
+          <text x="792" y="394" text-anchor="end" class="t-small t-muted">低</text>
+          <text x="800" y="410" class="t-small t-muted">年轻</text>
+          <text x="1052" y="410" text-anchor="end" class="t-small t-muted">老年</text>
+          <path d="M815 330 C880 305 960 260 1045 205" class="stroke-2 w-med"/>
+          <path d="M815 215 C890 240 960 300 1045 352" class="stroke-1 w-med"/>
+          <circle cx="1045" cy="205" r="4" class="fill-2"/><circle cx="1045" cy="352" r="4" class="fill-1"/>
+          <text x="1030" y="192" text-anchor="end" class="t-small" fill="var(--s2)">髓系 ↑</text>
+          <text x="1030" y="368" text-anchor="end" class="t-small" fill="var(--s1)">淋系 ↓</text>
+          <text x="782" y="438" class="t-small t-muted">髓系偏倚增加炎症性输出；</text>
+          <text x="782" y="456" class="t-small t-muted">淋系减少影响适应性免疫。</text>
+        </g>
+
+        <text x="560" y="500" text-anchor="middle" class="t-small t-muted">三张图合起来：数量、单细胞功能、分化输出不是同一个“衰老刻度”。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 8</span> · HSC 衰老的三张脸 <span class="fig-sub">数量可以上升，每细胞再增殖能力下降，髓系输出增加。这三件事同时为真，正是“干细胞耗竭”这个词容易误导的原因。</span></figcaption>
+    </figure>
+    <div class="prose">
+      <h4>骨骼肌卫星细胞（MuSC）：II 型纤维的选择性丢失</h4>
+      <p>MuSC 位于肌纤维基底膜下，平时处于深静息，损伤后被激活、增殖、融合成新的肌纤维，同时补充池子。老年肌肉的 MuSC 数量下降，但更重要的是<strong>分布和功能的变化</strong>：II 型（快肌）纤维上的卫星细胞丢失更明显，而 I 型（慢肌）纤维相对保留。<span class="badge b">B</span></p>
+      <p>人体证据来自 Verdijk 等人的横断面研究：165 名受试者，按年龄分为年轻、年长和衰老组，免疫组化定量每根纤维上的卫星细胞数。年轻组 II 型纤维约 0.085/纤维，年长组降到约 0.051，衰老组约 0.045；I 型纤维在各组间基本稳定（约 0.080–0.089）。II 型纤维卫星细胞数与年龄呈负相关（r = −0.57, P &lt; 0.001）。<span class="badge b">B</span>（Verdijk et al., 2014）</p>
+      <p>这项研究还发现，12 周阻力训练可以增加 II 型纤维的卫星细胞数和纤维横截面积——说明这种丢失<strong>不是完全不可逆</strong>的。<span class="badge b">B</span> 机制上，老年 MuSC 的深静息亚群谷胱甘肽低、激活慢； niche 中的 FGF2 升高会诱导 MuSC 退出静息，导致池子耗竭；再生过程中还会出现有丝分裂灾难。<span class="badge b">B</span>（Chakkalakal et al., 2012；Sousa-Victor et al., 2014）</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 540" role="img" aria-label="人体骨骼肌卫星细胞随年龄的变化">
+        <text x="40" y="34" class="t-title">人体卫星细胞：II 型纤维的选择性丢失</text>
+        <text x="40" y="56" class="t-small t-muted">每根肌纤维上的卫星细胞数（均值）；I 型纤维相对稳定，II 型纤维在年长后明显下降</text>
+
+        <!-- axes -->
+        <g class="axis">
+          <path d="M80 110 L80 420 L720 420"/>
+        </g>
+        <g class="grid">
+          <path d="M80 345 L720 345"/><path d="M80 270 L720 270"/><path d="M80 195 L720 195"/><path d="M80 120 L720 120"/>
+        </g>
+        <!-- y labels -->
+        <text x="72" y="424" text-anchor="end" class="t-small t-muted">0</text>
+        <text x="72" y="349" text-anchor="end" class="t-small t-muted">0.03</text>
+        <text x="72" y="274" text-anchor="end" class="t-small t-muted">0.06</text>
+        <text x="72" y="199" text-anchor="end" class="t-small t-muted">0.09</text>
+        <text x="72" y="124" text-anchor="end" class="t-small t-muted">0.12</text>
+        <text x="50" y="270" class="t-small t-muted" transform="rotate(-90 50 270)" text-anchor="middle">卫星细胞 / 纤维</text>
+
+        <!-- group 1 young -->
+        <g>
+          <rect x="130" y="198" width="54" height="222" rx="4" fill="var(--s1)" opacity=".85"/>
+          <rect x="192" y="208" width="54" height="212" rx="4" fill="var(--s2)" opacity=".85"/>
+          <line x1="157" y1="128" x2="157" y2="268" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="151" y1="128" x2="163" y2="128" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="151" y1="268" x2="163" y2="268" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="219" y1="125" x2="219" y2="290" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="213" y1="125" x2="225" y2="125" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="213" y1="290" x2="225" y2="290" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="188" y="445" text-anchor="middle" class="t-small">年轻</text>
+        </g>
+
+        <!-- group 2 older -->
+        <g>
+          <rect x="340" y="220" width="54" height="200" rx="4" fill="var(--s1)" opacity=".85"/>
+          <rect x="402" y="293" width="54" height="127" rx="4" fill="var(--s2)" opacity=".85"/>
+          <line x1="367" y1="145" x2="367" y2="295" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="361" y1="145" x2="373" y2="145" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="361" y1="295" x2="373" y2="295" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="429" y1="248" x2="429" y2="338" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="423" y1="248" x2="435" y2="248" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="423" y1="338" x2="435" y2="338" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="398" y="445" text-anchor="middle" class="t-small">年长</text>
+        </g>
+
+        <!-- group 3 senescent -->
+        <g>
+          <rect x="550" y="220" width="54" height="200" rx="4" fill="var(--s1)" opacity=".85"/>
+          <rect x="612" y="308" width="54" height="112" rx="4" fill="var(--s2)" opacity=".85"/>
+          <line x1="639" y1="260" x2="639" y2="356" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="633" y1="260" x2="645" y2="260" stroke="var(--ink)" stroke-width="1.2"/>
+          <line x1="633" y1="356" x2="645" y2="356" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="608" y="445" text-anchor="middle" class="t-small">衰老</text>
+          <text x="577" y="212" text-anchor="middle" class="t-small t-muted">≈</text>
+        </g>
+
+        <!-- value labels -->
+        <text x="157" y="188" text-anchor="middle" class="t-small t-mono">.089</text>
+        <text x="219" y="198" text-anchor="middle" class="t-small t-mono">.085</text>
+        <text x="367" y="210" text-anchor="middle" class="t-small t-mono">.080</text>
+        <text x="429" y="283" text-anchor="middle" class="t-small t-mono">.051</text>
+        <text x="577" y="210" text-anchor="middle" class="t-small t-mono">.080</text>
+        <text x="639" y="298" text-anchor="middle" class="t-small t-mono">.045</text>
+
+        <!-- annotations -->
+        <g>
+          <rect x="760" y="100" width="330" height="96" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="778" y="126" class="t-small t-label">II 型纤维：随年龄下降</text>
+          <text x="778" y="150" class="t-small t-ink2">r = −0.57，P &lt; 0.001</text>
+          <text x="778" y="172" class="t-small t-muted">II 型纤维的卫星细胞数</text>
+          <text x="778" y="188" class="t-small t-muted">与年龄呈中等强度负相关</text>
+        </g>
+        <g>
+          <rect x="760" y="212" width="330" height="110" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="778" y="238" class="t-small t-label">12 周阻力训练</text>
+          <text x="778" y="262" class="t-small t-ink2">II 型纤维卫星细胞 ↑</text>
+          <text x="778" y="284" class="t-small t-ink2">纤维横截面积 ↑</text>
+          <text x="778" y="306" class="t-small t-muted">说明丢失并非完全不可逆</text>
+        </g>
+        <g>
+          <rect x="760" y="338" width="330" height="76" rx="10" fill="var(--s3)" fill-opacity=".08" stroke="var(--line)"/>
+          <text x="778" y="364" class="t-small t-label">I 型纤维：相对稳定</text>
+          <text x="778" y="388" class="t-small t-muted">各年龄组约 0.080–0.089/纤维</text>
+          <text x="778" y="404" class="t-small t-muted">衰老不是“所有纤维一起掉”</text>
+        </g>
+
+        <!-- legend -->
+        <g>
+          <rect x="80" y="482" width="14" height="14" rx="3" fill="var(--s1)"/>
+          <text x="100" y="494" class="t-small t-muted">I 型纤维</text>
+          <rect x="180" y="482" width="14" height="14" rx="3" fill="var(--s2)"/>
+          <text x="200" y="494" class="t-small t-muted">II 型纤维</text>
+          <text x="310" y="494" class="t-small t-muted">误差棒为 SD（部分组）；“≈”表示原文未给出该组 SD。</text>
+        </g>
+        <text x="80" y="522" class="t-small t-muted">数据：Verdijk et al., 2014，165 名受试者；每根纤维的卫星细胞数由免疫组化计数。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 9</span> · 人体骨骼肌卫星细胞：II 型纤维的选择性丢失 <span class="fig-sub">I 型纤维的卫星细胞在各年龄组基本稳定，II 型纤维从年轻时的约 0.085/纤维降到衰老组的约 0.045/纤维。阻力训练可以部分逆转。这说明“肌肉干细胞衰老”有明确的纤维类型结构。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h4>神经干细胞（NSC）：2026 年的人体证据，把争论往前推了一步</h4>
+      <p>成年人海马是否持续生成新神经元，争论了几十年。2026 年 <em>Nature</em> 的一项研究用 355,997 个海马细胞核的单核多组学，在年轻成人、健康老年、SuperAgers、临床前 AD 和 AD 患者中鉴定出 NSC、神经母细胞和未成熟神经元，并发现神经发生失调主要与染色质可及性改变相关。<span class="badge b">B</span>（Nature, 2026）</p>
+      <p>这项研究的重要性有两层。第一，它把“成人神经发生”从“有没有”推进到“有多少、什么状态”；第二，它显示 NSC 的衰老不是单纯的数量问题，还包括<strong>谱系偏向和表观遗传状态</strong>的改变。不过，海马神经发生与认知功能的因果关系仍然主要是相关性证据；人体干预能否通过 NSC 改善认知，目前没有可靠答案。<span class="badge c">C</span></p>
+      <p>在机制层面，老年 NSC 的静息加深、Wnt 信号下降、局部炎症和 niche 血管/星形胶质细胞改变都可能参与。<span class="badge b">B</span> 小鼠中运动、丰富环境和部分代谢干预可以增加神经发生，但从“增加新生神经元”到“改善人类认知”之间，还有很长的验证链。</p>
+
+      <h4>肠道干细胞（ISC）：基线维持，损伤修复变差</h4>
+      <p>ISC 位于隐窝底部，每几天更新一次肠上皮。老年小鼠的 ISC 在基线状态下仍然能维持上皮更新，但<strong>损伤后的再生能力下降</strong>。机制之一来自 niche：老年肠道的潘氏细胞和间质细胞分泌 Notum 增加，抑制 Wnt 信号，降低 ISC 的再生能力；抑制 Notum 可以恢复老年小鼠的损伤修复。<span class="badge b">B</span>（Pentinmikko et al., 2019）</p>
+      <p>人体证据主要来自结肠类器官：老年供者的类器官形成效率和生长速度下降，但个体差异很大。<span class="badge b">B</span> 这再次说明，ISC 衰老的典型表现不是“基线更新崩塌”，而是“应激储备不足”。</p>
+
+      <h4>表皮、毛囊与黑素细胞：三种不同的衰老轨迹</h4>
+      <p>表皮干细胞（EpSC）负责日常表皮更新，终生高频分裂。老年表皮在基线状态下仍能维持屏障和更新，但伤口愈合变慢、表皮更薄。<span class="badge b">B</span> 毛囊干细胞（HFSC）的衰老更明显：COL17A1 下降导致干细胞竞争失衡，毛囊小型化、毛发变细；毛囊周期中的静息期延长。<span class="badge b">B</span>（Matsumura et al., 2016；Science, 2021）</p>
+      <p>黑素细胞干细胞（McSC）的衰老与白发直接相关：McSC 在毛囊 niche 中逐渐丧失自我维持能力，分化后的黑素细胞不能回到干细胞池，最终白发。<span class="badge b">B</span> 这三种细胞说明：即使都在皮肤里，不同干细胞的衰老速度、方向和可见表型也完全不同。</p>
+
+      <h4>间充质/骨骼干细胞（MSC/SSC）：数量维持，质量下降</h4>
+      <p>骨髓 MSC 是最容易被“体外扩增”误导的群体。Dexheimer 等人的研究比较了 28 名不同年龄供者（5–80 岁）：骨髓中 CFU-F（成纤维细胞集落形成单位）的频率没有随年龄显著下降，但<strong>单细胞克隆效率和早期增殖速度下降</strong>；体外谱系选择（成骨/脂肪/软骨）在该研究中<strong>没有随年龄改变</strong>。<span class="badge b">B</span>（Dexheimer et al., 2011）</p>
+      <p>也就是说，MSC 的“数量”可能维持，但“激活和增殖质量”下降；至少在体外，谱系选择未必改变。骨骼干细胞（SSC）的衰老还受到 niche 影响：小鼠老年 SSC 的成骨/软骨形成能力下降，转而产生更多表达炎症和促破骨因子的基质细胞，形成“炎症性退化 niche”。<span class="badge b">B</span>（Ambrosi et al., 2021） 这与骨质疏松、骨折修复变慢相关，但人体因果证据仍以相关性为主。<span class="badge b">B</span><span class="badge c">C</span></p>
+
+      <h4>卵巢生殖储备：一个“用完即止”的特殊案例</h4>
+      <p>卵巢的生殖储备与其他干细胞不同：原始卵泡池在出生前就已确定，出生后不再有可信的自我更新来源。按 Wallace &amp; Kelsey 的模型（每侧卵巢），原始卵泡在胎龄 18–22 周达到峰值，平均约 30 万个；出生时约 29.5 万；30 岁时只剩峰值的约 12%（约 3.6 万）；40 岁时约 3%（约 9,000）；平均 49.6 岁绝经时不足 1,000 个。个体差异很大：出生时的 95% 预测区间约为 3.5 万–253 万。<span class="badge a">A</span>（Wallace &amp; Kelsey, 2010；Faddy et al., 1992）</p>
+      <p>这不是“干细胞功能下降”，而是<strong>储备被时间消耗</strong>：卵泡持续被招募、闭锁，池子以对数速度下降；30 岁后下降加快，末段加速，最终触发绝经。它是“干细胞衰老影响多大”的最清晰案例——影响是决定性的、时间可预测的，而且不可逆。<span class="badge a">A</span></p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 540" role="img" aria-label="卵巢原始卵泡储备随年龄的对数下降">
+        <text x="40" y="34" class="t-title">卵巢储备：一条对数下降曲线，决定绝经时间</text>
+        <text x="40" y="56" class="t-small t-muted">原始卵泡数（对数坐标，每侧卵巢）；平均绝经年龄 49.6 岁</text>
+
+        <!-- peak note -->
+        <g>
+          <rect x="590" y="76" width="490" height="46" rx="8" fill="var(--s3)" fill-opacity=".08" stroke="var(--line)"/>
+          <text x="606" y="96" class="t-small t-label">峰值不在出生时，而在胎龄 18–22 周</text>
+          <text x="606" y="114" class="t-small t-muted">平均约 30 万/侧卵巢；出生时约 29.5 万（95% 区间 3.5 万–253 万）</text>
+        </g>
+
+        <!-- accelerated zone -->
+        <rect x="820" y="132" width="180" height="298" fill="var(--s2)" opacity=".07"/>
+        <text x="910" y="152" text-anchor="middle" class="t-small" fill="var(--s2)">末段加速</text>
+
+        <!-- axes -->
+        <g class="axis"><path d="M100 132 L100 430 L1000 430"/></g>
+        <g class="grid">
+          <path d="M100 217 L1000 217"/><path d="M100 323 L1000 323"/>
+        </g>
+        <text x="92" y="221" text-anchor="end" class="t-small t-muted">100,000</text>
+        <text x="92" y="327" text-anchor="end" class="t-small t-muted">10,000</text>
+        <text x="92" y="434" text-anchor="end" class="t-small t-muted">1,000</text>
+        <text x="50" y="270" class="t-small t-muted" transform="rotate(-90 50 270)" text-anchor="middle">原始卵泡数</text>
+
+        <!-- x ticks -->
+        <text x="100" y="452" text-anchor="middle" class="t-small t-muted">0</text>
+        <text x="280" y="452" text-anchor="middle" class="t-small t-muted">10</text>
+        <text x="460" y="452" text-anchor="middle" class="t-small t-muted">20</text>
+        <text x="640" y="452" text-anchor="middle" class="t-small t-muted">30</text>
+        <text x="820" y="452" text-anchor="middle" class="t-small t-muted">40</text>
+        <text x="1000" y="452" text-anchor="middle" class="t-small t-muted">50</text>
+        <text x="550" y="478" text-anchor="middle" class="t-small t-muted">年龄（岁）</text>
+
+        <!-- curve -->
+        <path d="M100 167 C220 185 380 220 640 264 C730 280 790 305 820 328 C880 360 940 400 1000 430"
+              fill="none" stroke="var(--brand)" stroke-width="3"/>
+        <circle cx="100" cy="167" r="5" fill="var(--brand)"/>
+        <circle cx="640" cy="264" r="5" fill="var(--brand)"/>
+        <circle cx="820" cy="328" r="5" fill="var(--brand)"/>
+        <circle cx="1000" cy="430" r="5" fill="var(--brand)"/>
+
+        <!-- labels -->
+        <g>
+          <rect x="120" y="180" width="186" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="134" y="200" class="t-small t-label">出生</text>
+          <text x="134" y="220" class="t-small t-muted">约 29.5 万</text>
+        </g>
+        <g>
+          <rect x="430" y="212" width="190" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="444" y="232" class="t-small t-label">30 岁</text>
+          <text x="444" y="252" class="t-small t-muted">约 3.6 万（峰值的 12%）</text>
+        </g>
+        <g>
+          <rect x="618" y="300" width="184" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="632" y="320" class="t-small t-label">40 岁</text>
+          <text x="632" y="340" class="t-small t-muted">约 9,000（峰值的 3%）</text>
+        </g>
+        <g>
+          <rect x="840" y="382" width="152" height="52" rx="8" class="fill-surface" stroke="var(--line)"/>
+          <text x="854" y="402" class="t-small t-label">绝经</text>
+          <text x="854" y="422" class="t-small t-muted">不足 1,000</text>
+        </g>
+
+        <text x="100" y="516" class="t-small t-muted">数据：Wallace &amp; Kelsey, 2010（n = 325，8 项组织学研究）；曲线为 ADC 模型拟合，个体差异很大。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 10</span> · 卵巢原始卵泡储备随年龄的对数下降 <span class="fig-sub">峰值出现在胎龄 18–22 周（平均约 30 万/侧卵巢），出生时约 29.5 万，30 岁约剩 12%，40 岁约剩 3%，平均 49.6 岁绝经时不足 1,000。卵巢不是“干细胞逐渐变老”，而是“有限储备被时间消耗”；这也是干细胞衰老影响最决定性的案例。</span></figcaption>
+    </figure>
+
+    <div class="table-wrap">
+      <table>
+        <caption>表 3 · 七类干细胞的关键衰老变化与人体证据</caption>
+        <thead>
+          <tr><th>干细胞类型</th><th>关键变化</th><th>人体证据</th><th>等级</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>HSC（造血）</td><td>频率↑、静息↓、每细胞再增殖↓、髓系偏倚、CHIP</td><td>骨髓免疫表型；CHIP 队列（9.5%–18.4%）</td><td><span class="badge a">A</span></td></tr>
+          <tr><td>NSC（神经）</td><td>NSC/神经母细胞↓、染色质改变、胶质偏向</td><td>0–78 岁海马单核多组学（2026）</td><td><span class="badge b">B</span></td></tr>
+          <tr><td>MuSC（肌肉）</td><td>II 型纤维卫星细胞↓、深静息亚群、修复延迟</td><td>165 人横断面；12 周训练干预</td><td><span class="badge b">B</span></td></tr>
+          <tr><td>ISC（肠道）</td><td>Notum↑/Wnt↓、类器官形成↓、损伤修复↓</td><td>人结肠类器官；小鼠机制</td><td><span class="badge b">B</span></td></tr>
+          <tr><td>表皮 / 毛囊 / 黑素细胞</td><td>表皮基线维持；HFSC 减少、COL17A1↓；McSC 耗竭</td><td>人体组织学与小鼠机制</td><td><span class="badge b">B</span><span class="badge c">C</span></td></tr>
+          <tr><td>MSC / 骨骼干细胞</td><td>CFU-F 维持、克隆效率↓、体外谱系选择未变；小鼠 SSC 成骨↓</td><td>28 名供者骨髓；小鼠 niche 研究</td><td><span class="badge b">B</span><span class="badge c">C</span></td></tr>
+          <tr><td>卵巢生殖储备</td><td>原始卵泡对数下降、37 岁后加速、绝经耗尽</td><td>组织学模型与人群数据</td><td><span class="badge a">A</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>3.4 三个常见误解</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">误解一</div>
+          <h4>“干细胞衰老 = 数量下降”</h4>
+          <p>HSC 的频率可以随年龄升高；MSC 的 CFU-F 可以维持；表皮干细胞在基线状态下仍能更新。数量只是四个测量层中最容易测的一层，也是最容易误导的一层。<span class="badge a">A</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">误解二</div>
+          <h4>“所有干细胞同步衰老”</h4>
+          <p>ISC 和表皮在基线更新上维持较好，MuSC 的 II 型纤维选择性丢失，卵巢则是有限储备耗尽。不同组织的时间表、方向和幅度都不同。<span class="badge b">B</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">误解三</div>
+          <h4>“干细胞衰老不可逆”</h4>
+          <p>阻力训练可以增加老年 II 型纤维的卫星细胞；抑制 Notum 可以恢复老年 ISC 的修复； niche 年轻化可以部分 rescue 老年 HSC。可逆性有限，但不是零。<span class="badge b">B</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">一句话回答“变什么”</span>
+      <p>变的不只是数量，而是<strong>静息深度、自我更新倾向、子代命运、韧性和群体异质性</strong>五个维度；不同干细胞类型的方向不同，HSC 是“数量↑、功能↓”，MuSC 是“II 型纤维选择性丢失”，卵巢是“储备耗尽”。<span class="badge b">B</span></p>
+    </div>
+  </div>
+</section>
+<!-- ================= 04 影响多大 ================= -->
+<section class="section" id="impact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">04 / HOW MUCH</div>
+      <div>
+        <h2>影响多大？从相关到寿命，再到人体结局</h2>
+        <p class="section-lede">同一个“干细胞衰老”，在卵巢可以是决定性的，在脑可能只是中等且不确定。回答“多大”，必须同时指明<strong>组织、结局和证据层级</strong>；否则数字会被误读。</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi" style="--kpi-accent:var(--s1)">
+        <div class="kpi-label">小鼠中位寿命</div>
+        <div class="kpi-value">+9.4% ~ +24.8%</div>
+        <div class="kpi-note">三项 HSC 移植/ rejuvenation 实验；方案不同，不能直接比较。</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s2)">
+        <div class="kpi-label">CHIP 检出率</div>
+        <div class="kpi-value">9.5% → 18.4%</div>
+        <div class="kpi-note">70–79 岁到 90 岁以上；DNMT3A/TET2/ASXL1 为主。</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s3)">
+        <div class="kpi-label">II 型纤维卫星细胞</div>
+        <div class="kpi-value">−40% ~ −47%</div>
+        <div class="kpi-note">年老/衰老组相对年轻组；I 型纤维基本稳定。</div>
+      </div>
+      <div class="kpi" style="--kpi-accent:var(--s4)">
+        <div class="kpi-label">平均绝经年龄</div>
+        <div class="kpi-value">49.6 岁</div>
+        <div class="kpi-note">原始卵泡降至不足 1,000 个；个体差异很大。</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>4.1 先分清证据层级：相关、清除、移植、rescue、寿命</h3>
+      <p>“干细胞衰老影响多大”之所以容易吵架，是因为不同研究回答的是不同层级的问题。一个横断面研究说“老年干细胞数量下降”，一个移植实验说“换掉干细胞可以延长寿命”，两者都真实，但证据强度差了好几级。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 560" role="img" aria-label="干细胞衰老因果证据的五级阶梯">
+        <text x="40" y="34" class="t-title">证据阶梯：从“看到相关”到“改变寿命”</text>
+        <text x="40" y="56" class="t-small t-muted">越往右，因果推断越强；但每一步都有它不能证明的东西</text>
+
+        <!-- arrow -->
+        <path d="M60 150 L1040 150" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 5"/>
+        <path d="M1040 150 L1028 144 M1040 150 L1028 156" stroke="var(--muted)" stroke-width="1.2"/>
+        <text x="550" y="138" text-anchor="middle" class="t-small t-muted">证据强度增加 →</text>
+
+        <!-- step 1 -->
+        <g>
+          <rect x="50" y="360" width="180" height="70" rx="8" fill="var(--s1)" fill-opacity=".12" stroke="var(--s1)"/>
+          <text x="66" y="386" class="t-mono" fill="var(--s1)">01</text>
+          <text x="66" y="408" class="t-label">相关性</text>
+          <text x="66" y="424" class="t-small t-muted">年龄 ↔ 指标</text>
+          <text x="140" y="452" text-anchor="middle" class="t-small t-muted">不能排除混杂与反向因果</text>
+        </g>
+        <!-- step 2 -->
+        <g>
+          <rect x="250" y="320" width="180" height="110" rx="8" fill="var(--s1)" fill-opacity=".14" stroke="var(--s1)"/>
+          <text x="266" y="346" class="t-mono" fill="var(--s1)">02</text>
+          <text x="266" y="368" class="t-label">耗竭 / 清除</text>
+          <text x="266" y="386" class="t-small t-muted">去掉细胞 → 表型</text>
+          <text x="340" y="452" text-anchor="middle" class="t-small t-muted">特异性有限：清除的未必</text>
+          <text x="340" y="468" text-anchor="middle" class="t-small t-muted">只是“干细胞”</text>
+        </g>
+        <!-- step 3 -->
+        <g>
+          <rect x="450" y="280" width="180" height="150" rx="8" fill="var(--s3)" fill-opacity=".14" stroke="var(--s3)"/>
+          <text x="466" y="306" class="t-mono" fill="var(--s3)">03</text>
+          <text x="466" y="328" class="t-label">移植</text>
+          <text x="466" y="346" class="t-small t-muted">换细胞 → 功能</text>
+          <text x="540" y="452" text-anchor="middle" class="t-small t-muted">强因果，但依赖受者</text>
+          <text x="540" y="468" text-anchor="middle" class="t-small t-muted">环境与免疫状态</text>
+        </g>
+        <!-- step 4 -->
+        <g>
+          <rect x="650" y="240" width="180" height="190" rx="8" fill="var(--s3)" fill-opacity=".16" stroke="var(--s3)"/>
+          <text x="666" y="266" class="t-mono" fill="var(--s3)">04</text>
+          <text x="666" y="288" class="t-label">Rescue</text>
+          <text x="666" y="306" class="t-small t-muted">修机制 → 恢复</text>
+          <text x="740" y="452" text-anchor="middle" class="t-small t-muted">证明机制可逆、可靶向；</text>
+          <text x="740" y="468" text-anchor="middle" class="t-small t-muted">不证明它是唯一机制</text>
+        </g>
+        <!-- step 5 -->
+        <g>
+          <rect x="850" y="200" width="220" height="230" rx="8" fill="var(--s2)" fill-opacity=".14" stroke="var(--s2)"/>
+          <text x="866" y="226" class="t-mono" fill="var(--s2)">05</text>
+          <text x="866" y="248" class="t-label">寿命 / 疾病终点</text>
+          <text x="866" y="266" class="t-small t-muted">整体结局</text>
+          <text x="960" y="452" text-anchor="middle" class="t-small t-muted">最强终点，但小鼠 ≠ 人；</text>
+          <text x="960" y="468" text-anchor="middle" class="t-small t-muted">寿命延长也不等于健康延长</text>
+        </g>
+
+        <text x="560" y="512" text-anchor="middle" class="t-small t-muted">同一句话“干细胞衰老导致衰老”，放在第 1 级只是假设，放在第 5 级才是经过检验的因果主张。</text>
+        <text x="560" y="534" text-anchor="middle" class="t-small t-muted">本图的排序是方法学层级，不是每条研究的绝对评级；具体论断仍按 A–D 单独标注。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 11</span> · 干细胞衰老因果证据的五级阶梯 <span class="fig-sub">相关、清除、移植、rescue、寿命/疾病终点。层级越高，因果推断越强，但每一级都有特异性、受者环境或物种外推的代价。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>4.2 最强的一类证据：换掉老年 HSC，小鼠活得更久</h3>
+      <p>目前最接近“干细胞衰老因果驱动整体衰老”的证据，来自三项独立的 HSC 移植/ rejuvenation 实验。它们的设计不同、效应量不同，但方向一致：<strong>改善老年 HSC 的质量，可以改善老年小鼠的健康表型，并延长寿命。</strong><span class="badge b">B</span></p>
+      <p><strong>Guderyon 等（2020）</strong>用动员方式采集年轻供体 HSC，移植给老年小鼠，避免传统清髓预处理的毒性。结果：中位寿命延长 <strong>12%</strong>，总体死亡风险比 <strong>0.42</strong>（95% CI 0.273–0.638），并伴随衰弱指标下降、进食和体重增加。<span class="badge b">B</span>（Guderyon et al., 2020）</p>
+      <p><strong>Wang 等（2025）</strong>没有换“年轻 HSC”，而是从老年小鼠中分出一个 CD150<sup>low</sup> 亚群——它的分子和功能特征更“年轻”。把老年 CD150<sup>low</sup> HSC 移植给老年小鼠，相比移植未分选或 CD150<sup>high</sup> HSC，中位寿命延长 <strong>9.4%</strong>，最大寿命延长 <strong>7.2%</strong>；反过来，减少功能缺陷的 CD150<sup>high</sup> HSC 也能减轻老年小鼠的衰老表型。<span class="badge b">B</span>（Wang et al., 2025）</p>
+      <p><strong>Montserrat-Vazquez 等（2022）</strong>先用 Cdc42 抑制剂 CASIN 短期处理老年小鼠，再把它们的 HSC 移植给老年免疫缺陷 NBSGW 小鼠。结果：中位寿命延长 <strong>24.8%</strong>，最大寿命延长 <strong>34.0%</strong>；而未处理的老年 HSC 移植组与未移植组没有差异。<span class="badge b">B</span>（Montserrat-Vazquez et al., 2022）</p>
+      <p>这三项研究的设计差异很大：供体年龄、HSC 分选方式、受者免疫状态、是否清髓、样本量都不同。Montserrat-Vazquez 的受者是免疫缺陷小鼠，每组只有 7–9 只；Guderyon 用的是动员 HSC，不是纯化的单一细胞；Wang 的效应是“选出一个更年轻的亚群”，不是“让所有老年 HSC 变年轻”。因此，<strong>不能把 +9.4%、+12%、+24.8% 当作可叠加或可外推的效应量</strong>。<span class="badge b">B</span></p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 540" role="img" aria-label="三项 HSC 移植实验对小鼠寿命的效应">
+        <text x="40" y="34" class="t-title">三项 HSC 移植实验：中位寿命与最大寿命</text>
+        <text x="40" y="56" class="t-small t-muted">相对对照组的寿命延长百分比；方案不同，柱高不能直接相加或比较</text>
+
+        <!-- grid -->
+        <g class="grid">
+          <path d="M260 110 L260 390"/><path d="M443 110 L443 390"/><path d="M626 110 L626 390"/><path d="M809 110 L809 390"/>
+        </g>
+        <g class="axis"><path d="M260 390 L920 390"/></g>
+        <text x="260" y="412" text-anchor="middle" class="t-small t-muted">0</text>
+        <text x="443" y="412" text-anchor="middle" class="t-small t-muted">10%</text>
+        <text x="626" y="412" text-anchor="middle" class="t-small t-muted">20%</text>
+        <text x="809" y="412" text-anchor="middle" class="t-small t-muted">30%</text>
+
+        <!-- legend -->
+        <g>
+          <rect x="700" y="88" width="14" height="14" rx="3" fill="var(--s1)"/>
+          <text x="720" y="100" class="t-small t-muted">中位寿命</text>
+          <rect x="810" y="88" width="14" height="14" rx="3" fill="var(--surface)" stroke="var(--s1)" stroke-width="2"/>
+          <text x="830" y="100" class="t-small t-muted">最大寿命</text>
+        </g>
+
+        <!-- row 1 -->
+        <g>
+          <text x="40" y="140" class="t-label">Guderyon 2020</text>
+          <text x="40" y="160" class="t-small t-muted">年轻供体 HSC 移植</text>
+          <rect x="260" y="126" width="219" height="24" rx="4" fill="var(--s1)" opacity=".85"/>
+          <text x="490" y="144" class="t-small t-mono" fill="var(--s1)">+12.0%</text>
+          <text x="40" y="184" class="t-small t-muted">HR 0.42（0.273–0.638）</text>
+        </g>
+        <!-- row 2 -->
+        <g>
+          <text x="40" y="238" class="t-label">Wang 2025</text>
+          <text x="40" y="258" class="t-small t-muted">老年 CD150low HSC</text>
+          <rect x="260" y="224" width="172" height="24" rx="4" fill="var(--s1)" opacity=".85"/>
+          <text x="442" y="242" class="t-small t-mono" fill="var(--s1)">+9.4%</text>
+          <rect x="260" y="254" width="132" height="24" rx="4" fill="var(--surface)" stroke="var(--s1)" stroke-width="2"/>
+          <text x="402" y="272" class="t-small t-mono" fill="var(--s1)">+7.2%</text>
+          <text x="40" y="286" class="t-small t-muted">对照：未分选 HSC</text>
+        </g>
+        <!-- row 3 -->
+        <g>
+          <text x="40" y="336" class="t-label">Montserrat-Vazquez 2022</text>
+          <text x="40" y="356" class="t-small t-muted">CASIN 处理的老 HSC</text>
+          <rect x="260" y="322" width="454" height="24" rx="4" fill="var(--s1)" opacity=".85"/>
+          <text x="724" y="340" class="t-small t-mono" fill="var(--s1)">+24.8%</text>
+          <rect x="260" y="352" width="622" height="24" rx="4" fill="var(--surface)" stroke="var(--s1)" stroke-width="2"/>
+          <text x="892" y="370" class="t-small t-mono" fill="var(--s1)">+34.0%</text>
+          <text x="40" y="384" class="t-small t-muted">受者：免疫缺陷 NBSGW；n = 7–9</text>
+        </g>
+
+        <!-- context -->
+        <g>
+          <rect x="40" y="438" width="1040" height="64" rx="10" fill="var(--s4)" fill-opacity=".08" stroke="var(--line)"/>
+          <text x="58" y="462" class="t-small t-label">参照，不是干细胞直接证据</text>
+          <text x="58" y="484" class="t-small t-muted">IL-11 信号阻断：基因敲除平均延长 24.9%，anti-IL-11 中位延长 22.5%（雄）/25%（雌）。它说明“系统性炎症”可以改变寿命，但不能单独证明干细胞是中介。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 12</span> · 三项 HSC 移植实验对小鼠寿命的效应 <span class="fig-sub">Guderyon 2020 中位 +12%；Wang 2025 中位 +9.4%、最大 +7.2%；Montserrat-Vazquez 2022 中位 +24.8%、最大 +34.0%。三项均为移植实验、受者为老年小鼠，其中一项使用免疫缺陷受者且样本量小。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>4.3 人体证据：CHIP 是“干细胞衰老”最硬的落点</h3>
+      <p>在人体中，干细胞衰老最难直接测量，但有一个可量化的出口：<strong>克隆性造血（CHIP）</strong>。Jaiswal 等人在 17,182 名未按血液表型挑选的人群中做全外显子测序，发现 70–79 岁、80–89 岁、90 岁以上组的克隆性突变检出率分别为 <strong>9.5%、11.7%、18.4%</strong>；突变主要集中在 DNMT3A、TET2、ASXL1。<span class="badge a">A</span>（Jaiswal et al., 2014）</p>
+      <p>携带 CHIP 的人，血液肿瘤风险显著升高（HR 11.1，95% CI 3.9–32.6），全因死亡风险升高（HR 1.4，1.1–1.8），冠心病（HR 2.0，1.2–3.4）和缺血性卒中（HR 2.6，1.4–4.8）风险也升高。<span class="badge a">A</span> 这些是<strong>关联</strong>，不是“CHIP 直接导致”的证明；但小鼠机制实验（如 Tet2 缺失加重动脉粥样硬化）提供了方向一致的因果支持。<span class="badge b">B</span></p>
+      <p>CHIP 的意义在于：它把“干细胞池里的一个克隆获得了优势”变成了一个可检测、可分层的临床变量。它同时也是“体细胞选择”层的最佳人体例证——老年血液的问题不只是细胞变少，而是<strong>某些克隆变多</strong>。<span class="badge a">A</span></p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 560" role="img" aria-label="CHIP 的年龄患病率与临床风险">
+        <text x="40" y="34" class="t-title">CHIP：年龄越大越常见，风险不只落在血液</text>
+        <text x="40" y="56" class="t-small t-muted">左：按年龄组的检出率；右：携带 CHIP 的相对风险（HR，对数坐标）</text>
+
+        <!-- panel a -->
+        <text x="60" y="96" class="t-label">A · 检出率</text>
+        <g class="axis"><path d="M80 130 L80 420 L470 420"/></g>
+        <g class="grid"><path d="M80 210 L470 210"/><path d="M80 290 L470 290"/><path d="M80 370 L470 370"/></g>
+        <text x="72" y="424" text-anchor="end" class="t-small t-muted">0</text>
+        <text x="72" y="374" text-anchor="end" class="t-small t-muted">5</text>
+        <text x="72" y="294" text-anchor="end" class="t-small t-muted">10</text>
+        <text x="72" y="214" text-anchor="end" class="t-small t-muted">15</text>
+        <text x="50" y="280" class="t-small t-muted" transform="rotate(-90 50 280)" text-anchor="middle">检出率（%）</text>
+
+        <rect x="110" y="268" width="70" height="152" rx="4" fill="var(--s1)" opacity=".85"/>
+        <rect x="230" y="233" width="70" height="187" rx="4" fill="var(--s1)" opacity=".85"/>
+        <rect x="350" y="126" width="70" height="294" rx="4" fill="var(--s1)" opacity=".85"/>
+        <text x="145" y="258" text-anchor="middle" class="t-small t-mono">9.5%</text>
+        <text x="265" y="223" text-anchor="middle" class="t-small t-mono">11.7%</text>
+        <text x="385" y="116" text-anchor="middle" class="t-small t-mono">18.4%</text>
+        <text x="145" y="442" text-anchor="middle" class="t-small t-muted">70–79</text>
+        <text x="265" y="442" text-anchor="middle" class="t-small t-muted">80–89</text>
+        <text x="385" y="442" text-anchor="middle" class="t-small t-muted">90+</text>
+        <text x="265" y="470" text-anchor="middle" class="t-small t-muted">年龄（岁）</text>
+        <text x="80" y="500" class="t-small t-muted">n = 2300 / 317 / 103；70 岁以下罕见。</text>
+
+        <!-- panel b -->
+        <text x="560" y="96" class="t-label">B · 临床结局的相对风险</text>
+        <g class="axis"><path d="M620 130 L620 420 L1080 420"/></g>
+        <g class="grid"><path d="M620 130 L620 420"/><path d="M713 130 L713 420"/><path d="M806 130 L806 420"/><path d="M899 130 L899 420"/><path d="M992 130 L992 420"/></g>
+        <text x="620" y="442" text-anchor="middle" class="t-small t-muted">1</text>
+        <text x="713" y="442" text-anchor="middle" class="t-small t-muted">2</text>
+        <text x="806" y="442" text-anchor="middle" class="t-small t-muted">5</text>
+        <text x="899" y="442" text-anchor="middle" class="t-small t-muted">10</text>
+        <text x="992" y="442" text-anchor="middle" class="t-small t-muted">20</text>
+        <text x="850" y="470" text-anchor="middle" class="t-small t-muted">风险比（HR，对数坐标）</text>
+
+        <!-- rows -->
+        <g>
+          <text x="600" y="174" text-anchor="end" class="t-small">血液肿瘤</text>
+          <line x1="775" y1="168" x2="1017" y2="168" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="775" y1="160" x2="775" y2="176" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="1017" y1="160" x2="1017" y2="176" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="894" cy="168" r="5" fill="var(--s2)"/>
+          <text x="1030" y="174" class="t-small t-mono" fill="var(--s2)">11.1</text>
+        </g>
+        <g>
+          <text x="600" y="254" text-anchor="end" class="t-small">缺血性卒中</text>
+          <line x1="658" y1="248" x2="799" y2="248" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="658" y1="240" x2="658" y2="256" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="799" y1="240" x2="799" y2="256" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="729" cy="248" r="5" fill="var(--s2)"/>
+          <text x="812" y="254" class="t-small t-mono" fill="var(--s2)">2.6</text>
+        </g>
+        <g>
+          <text x="600" y="334" text-anchor="end" class="t-small">冠心病</text>
+          <line x1="641" y1="328" x2="759" y2="328" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="641" y1="320" x2="641" y2="336" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="759" y1="320" x2="759" y2="336" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="699" cy="328" r="5" fill="var(--s2)"/>
+          <text x="772" y="334" class="t-small t-mono" fill="var(--s2)">2.0</text>
+        </g>
+        <g>
+          <text x="600" y="414" text-anchor="end" class="t-small">全因死亡</text>
+          <line x1="631" y1="408" x2="687" y2="408" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="631" y1="400" x2="631" y2="416" stroke="var(--s2)" stroke-width="2"/>
+          <line x1="687" y1="400" x2="687" y2="416" stroke="var(--s2)" stroke-width="2"/>
+          <circle cx="658" cy="408" r="5" fill="var(--s2)"/>
+          <text x="700" y="414" class="t-small t-mono" fill="var(--s2)">1.4</text>
+        </g>
+        <text x="620" y="500" class="t-small t-muted">误差棒为 95% CI；关联证据，不是人类因果实验。</text>
+
+        <text x="40" y="536" class="t-small t-muted">数据：Jaiswal et al., 2014，NEJM；17,182 名未按血液表型挑选的个体。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 13</span> · CHIP 的年龄患病率与临床风险 <span class="fig-sub">70–79 岁检出率 9.5%，90 岁以上 18.4%；携带者的血液肿瘤、卒中、冠心病和全因死亡风险均升高。这是“干细胞池的克隆选择”在人体中最清晰的临床落点，但风险比是关联而非因果。</span></figcaption>
+    </figure>
+    <div class="prose">
+      <h3>4.4 组织地图：影响不是均匀分布的</h3>
+      <p>把“干细胞对组织的贡献”拆成两个维度——<strong>基线更新依赖</strong>和<strong>损伤修复依赖</strong>——可以看到三种模式：血液、肠道、皮肤属于“持续更新 + 修复”双高；肌肉、骨骼属于“ baseline 低、修复高”的储备型；脑属于“双低但不可替代”；卵巢则是另一种模式——不靠自我更新，而靠有限储备。<span class="badge b">B</span></p>
+      <p>这张地图解释了一个常见困惑：为什么老年小鼠“看起来正常”，一做损伤实验就暴露缺陷？因为很多干细胞衰老的表型是<strong>储备不足</strong>，只有在应激时才显现。肌肉和肠道是典型；血液则因为持续更新，基线就能看出克隆偏倚。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 560" role="img" aria-label="不同组织对干细胞依赖的二维地图">
+        <text x="40" y="34" class="t-title">组织地图：三种依赖模式，加一个特殊案例</text>
+        <text x="40" y="56" class="t-small t-muted">位置为概念性排序，不是测量值；圆的大小表示影响确定性的强弱</text>
+
+        <!-- quadrants -->
+        <rect x="120" y="110" width="520" height="320" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <line x1="380" y1="110" x2="380" y2="430" stroke="var(--line)" stroke-dasharray="4 5"/>
+        <line x1="120" y1="270" x2="640" y2="270" stroke="var(--line)" stroke-dasharray="4 5"/>
+        <text x="136" y="132" class="t-small t-muted">修复储备型</text>
+        <text x="624" y="132" text-anchor="end" class="t-small t-muted">持续更新 + 修复</text>
+        <text x="136" y="418" class="t-small t-muted">低依赖</text>
+        <text x="624" y="418" text-anchor="end" class="t-small t-muted">基线更新型</text>
+
+        <!-- axes -->
+        <path d="M120 430 L660 430" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <path d="M660 430 L648 424 M660 430 L648 436" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <text x="390" y="458" text-anchor="middle" class="t-small t-muted">基线更新对干细胞的依赖 →</text>
+        <path d="M120 430 L120 96" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <path d="M120 96 L114 108 M120 96 L126 108" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <text x="96" y="270" class="t-small t-muted" transform="rotate(-90 96 270)" text-anchor="middle">损伤 / 应激修复依赖 →</text>
+
+        <!-- bubbles -->
+        <g>
+          <circle cx="500" cy="170" r="25" fill="var(--s1)" opacity=".75"/>
+          <text x="532" y="170" class="t-small">HSC / 血液</text>
+          <text x="532" y="188" class="t-small t-muted">克隆偏倚、CHIP</text>
+        </g>
+        <g>
+          <circle cx="560" cy="235" r="21" fill="var(--s3)" opacity=".75"/>
+          <text x="588" y="235" class="t-small">ISC / 肠道</text>
+          <text x="588" y="253" class="t-small t-muted">Notum↑、修复↓</text>
+        </g>
+        <g>
+          <circle cx="450" cy="315" r="18" fill="var(--s2)" opacity=".75"/>
+          <text x="474" y="315" class="t-small">皮肤 / 毛囊</text>
+          <text x="474" y="333" class="t-small t-muted">COL17A1↓、白发</text>
+        </g>
+        <g>
+          <circle cx="520" cy="380" r="13" fill="var(--s2)" opacity=".65"/>
+          <text x="540" y="380" class="t-small">表皮</text>
+          <text x="540" y="398" class="t-small t-muted">基线维持，愈合慢</text>
+        </g>
+        <g>
+          <circle cx="270" cy="185" r="23" fill="var(--s1)" opacity=".75"/>
+          <text x="300" y="185" class="t-small">MuSC / 肌肉</text>
+          <text x="300" y="203" class="t-small t-muted">II 型纤维丢失</text>
+        </g>
+        <g>
+          <circle cx="240" cy="300" r="16" fill="var(--s4)" opacity=".75"/>
+          <text x="262" y="300" class="t-small">MSC / 骨</text>
+          <text x="262" y="318" class="t-small t-muted">成骨↓、脂肪↑</text>
+        </g>
+        <g>
+          <circle cx="190" cy="390" r="18" fill="var(--s7)" opacity=".75"/>
+          <text x="214" y="390" class="t-small">NSC / 脑</text>
+          <text x="214" y="408" class="t-small t-muted">神经发生↓</text>
+        </g>
+
+        <!-- ovary special -->
+        <g>
+          <rect x="700" y="118" width="380" height="252" rx="12" fill="var(--s2)" fill-opacity=".06" stroke="var(--line)"/>
+          <text x="722" y="146" class="t-label">卵巢：储备耗尽型</text>
+          <g transform="translate(730,166)">
+            <path d="M18 0 L22 12 L35 12 L25 20 L29 33 L18 25 L7 33 L11 20 L1 12 L14 12 Z" fill="var(--s2)" opacity=".8"/>
+          </g>
+          <text x="770" y="180" class="t-small t-ink2">不靠自我更新，而靠出生前定下的</text>
+          <text x="770" y="198" class="t-small t-ink2">有限原始卵泡储备</text>
+          <text x="722" y="230" class="t-small t-muted">储备随年龄对数下降；30 岁约剩峰值 12%，</text>
+          <text x="722" y="248" class="t-small t-muted">40 岁约 3%，平均 49.6 岁绝经。</text>
+          <text x="722" y="280" class="t-small t-muted">影响：决定性、时间可预测、不可逆。</text>
+          <text x="722" y="308" class="t-small" fill="var(--s2)">证据等级：A</text>
+          <text x="722" y="340" class="t-small t-muted">它不在二维坐标内：这里没有“修复”</text>
+          <text x="722" y="358" class="t-small t-muted">或“自我更新”，只有“用掉”。</text>
+        </g>
+
+        <!-- size legend -->
+        <g>
+          <circle cx="60" cy="510" r="8" fill="var(--muted)" opacity=".45"/>
+          <text x="76" y="514" class="t-small t-muted">中等确定性</text>
+          <circle cx="190" cy="510" r="14" fill="var(--muted)" opacity=".45"/>
+          <text x="210" y="514" class="t-small t-muted">较强确定性</text>
+          <text x="330" y="514" class="t-small t-muted">圆大小是本文的综合判断，不是原始研究的效应量。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 14</span> · 不同组织对干细胞依赖的二维地图 <span class="fig-sub">血液、肠道、皮肤是“持续更新 + 修复”双高；肌肉、骨骼是“baseline 低、修复高”的储备型；脑是双低但不可替代；卵巢是储备耗尽型，单独列出。位置是概念排序，不是测量值。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>4.5 为什么“平时没事，一受伤就不行”：储备阈值模型</h3>
+      <p>干细胞衰老的影响，往往不是线性地体现在静息状态，而是体现在<strong>储备与需求的差距</strong>。年轻时，干细胞储备远高于日常更新需求和应激需求；老年时，储备下降，可能仍高于基线需求，但已经低于应激需求。于是出现一个典型模式：<strong>静息正常，应激失败。</strong><span class="badge b">B</span></p>
+      <p>这个模型能解释很多看似矛盾的结果：老年肠道在基线仍能更新，但损伤后修复差；老年肌肉在平时力量尚可，但受伤后再生慢；老年 HSC 在稳态下仍能产血，但移植或化疗后恢复差。它也提示干预的方向：要么提高储备（rejuvenation），要么降低需求（保护性治疗）。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 520" role="img" aria-label="干细胞储备与需求的阈值模型">
+        <text x="40" y="34" class="t-title">储备阈值模型：衰老把“安全边际”吃掉</text>
+        <text x="40" y="56" class="t-small t-muted">概念模型；曲线不代表某一组织的实测值</text>
+
+        <!-- exposure zone -->
+        <rect x="440" y="110" width="300" height="310" fill="var(--s2)" opacity=".06"/>
+        <text x="590" y="132" text-anchor="middle" class="t-small" fill="var(--s2)">应激暴露区</text>
+
+        <!-- axes -->
+        <g class="axis"><path d="M100 110 L100 420 L1000 420"/></g>
+        <text x="92" y="424" text-anchor="end" class="t-small t-muted">低</text>
+        <text x="92" y="116" text-anchor="end" class="t-small t-muted">高</text>
+        <text x="50" y="270" class="t-small t-muted" transform="rotate(-90 50 270)" text-anchor="middle">干细胞储备 / 功能</text>
+        <text x="100" y="446" text-anchor="middle" class="t-small t-muted">20</text>
+        <text x="357" y="446" text-anchor="middle" class="t-small t-muted">40</text>
+        <text x="614" y="446" text-anchor="middle" class="t-small t-muted">60</text>
+        <text x="871" y="446" text-anchor="middle" class="t-small t-muted">80</text>
+        <text x="550" y="474" text-anchor="middle" class="t-small t-muted">年龄（岁）</text>
+
+        <!-- demand lines -->
+        <line x1="100" y1="240" x2="1000" y2="240" stroke="var(--s2)" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="112" y="232" class="t-small" fill="var(--s2)">应激需求</text>
+        <line x1="100" y1="350" x2="1000" y2="350" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="112" y="342" class="t-small" fill="var(--s1)">基线需求</text>
+
+        <!-- reserve curve -->
+        <path d="M100 130 C260 160 420 225 580 290 C740 350 880 390 1000 405"
+              fill="none" stroke="var(--brand)" stroke-width="3"/>
+        <text x="760" y="382" class="t-small" fill="var(--brand)">储备</text>
+
+        <!-- intersection markers -->
+        <circle cx="440" cy="240" r="5" fill="var(--s2)"/>
+        <text x="452" y="226" class="t-small" fill="var(--s2)">储备跌破应激需求</text>
+        <circle cx="740" cy="350" r="5" fill="var(--s1)"/>
+        <text x="752" y="372" class="t-small" fill="var(--s1)">储备跌破基线需求</text>
+
+        <!-- intervention arrow -->
+        <path d="M240 320 L240 230" stroke="var(--s3)" stroke-width="2.5"/>
+        <path d="M240 230 L233 244 M240 230 L247 244" stroke="var(--s3)" stroke-width="2.5"/>
+        <text x="252" y="276" class="t-small" fill="var(--s3)">干预：提高储备</text>
+        <text x="252" y="294" class="t-small" fill="var(--s3)">或降低需求</text>
+
+        <text x="100" y="504" class="t-small t-muted">读法：曲线与两条水平线的交点，分别标记“应激下开始失败”和“静息下开始失败”的年龄。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 15</span> · 干细胞储备与需求的阈值模型 <span class="fig-sub">衰老先吃掉“安全边际”：储备仍高于基线需求时，静息正常；一旦低于应激需求，损伤、化疗或感染就会暴露缺陷。这解释了为什么很多干细胞衰老表型只在应激后出现。</span></figcaption>
+    </figure>
+
+    <div class="table-wrap">
+      <table>
+        <caption>表 4 · 干细胞衰老的影响分级（按组织与结局）</caption>
+        <thead>
+          <tr><th>影响等级</th><th>组织 / 结局</th><th>关键证据</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>决定性</strong></td>
+            <td>卵巢储备 → 绝经</td>
+            <td>组织学模型 + 人群数据 <span class="badge a">A</span></td>
+            <td>有限储备耗尽，时间可预测，不可逆。</td>
+          </tr>
+          <tr>
+            <td><strong>决定性（特定通路）</strong></td>
+            <td>HSC 克隆选择 → CHIP → 血液肿瘤/心血管风险</td>
+            <td>17,182 人队列 <span class="badge a">A</span></td>
+            <td>CHIP 是克隆性造血的临床落点；风险比为关联，机制有小鼠支持。</td>
+          </tr>
+          <tr>
+            <td><strong>重大</strong></td>
+            <td>骨骼肌损伤修复</td>
+            <td>人体横断面 + 训练干预 <span class="badge b">B</span></td>
+            <td>II 型纤维卫星细胞选择性丢失；可部分逆转。</td>
+          </tr>
+          <tr>
+            <td><strong>重大</strong></td>
+            <td>肠道损伤修复</td>
+            <td>人类器官 + 小鼠机制 <span class="badge b">B</span></td>
+            <td>基线更新维持，应激修复下降；Notum 可靶向。</td>
+          </tr>
+          <tr>
+            <td><strong>重大</strong></td>
+            <td>骨折修复 / 骨形成</td>
+            <td>人体 MSC 数据 + 小鼠 niche <span class="badge b">B</span><span class="badge c">C</span></td>
+            <td>MSC 数量维持但激活/增殖下降；小鼠 SSC 成骨能力下降；人类体外谱系选择未变。</td>
+          </tr>
+          <tr>
+            <td><strong>中等</strong></td>
+            <td>表皮基线更新 / 伤口愈合</td>
+            <td>人体组织学 <span class="badge b">B</span></td>
+            <td>基线维持较好，愈合变慢；影响幅度小于肌肉/肠道。</td>
+          </tr>
+          <tr>
+            <td><strong>中等且不确定</strong></td>
+            <td>海马神经发生 → 认知</td>
+            <td>人体多组学 <span class="badge b">B</span>；认知因果 <span class="badge c">C</span></td>
+            <td>神经发生随年龄下降较一致；与认知的因果关系未定。</td>
+          </tr>
+          <tr>
+            <td><strong>不确定</strong></td>
+            <td>人类整体寿命由干细胞衰老贡献的比例</td>
+            <td>无直接人体实验 <span class="badge c">C</span><span class="badge d">D</span></td>
+            <td>小鼠移植实验不能外推为“人类寿命的主开关”。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>4.6 把“多大”说清楚：三层结论</h3>
+      <p><strong>第一层：作为现象，干细胞衰老是真实的、可测量的。</strong>五个功能标志在多个组织中得到验证，人体中有 CHIP、卫星细胞、卵巢储备、类器官等独立证据。<span class="badge a">A</span></p>
+      <p><strong>第二层：作为因果驱动，证据是“组织特异的中等强度”。</strong>小鼠 HSC 移植可以延长寿命（+9.4% 到 +24.8%），但受者多为老年或免疫缺陷小鼠，样本量有限；肌肉、肠道、骨骼的因果证据主要停留在组织功能层面；脑的认知因果最弱。<span class="badge b">B</span></p>
+      <p><strong>第三层：作为人类衰老的“主开关”，证据不足。</strong>没有人体实验证明“逆转干细胞衰老可以延长健康寿命”；把小鼠寿命效应直接换算成人类寿命增量，是不成立的。<span class="badge c">C</span><span class="badge d">D</span></p>
+      <p>所以，对“多大影响”的诚实回答是：<strong>对卵巢是决定性的，对血液的克隆性疾病是决定性的（通过 CHIP），对肌肉/肠道/骨骼的应激修复是重大的，对脑和皮肤基线是中等或不确定的，对人类整体寿命则未知。</strong><span class="badge b">B</span></p>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">一句话回答“多大影响”</span>
+      <p>干细胞衰老的影响<strong>高度依赖组织和结局</strong>：卵巢储备耗尽决定绝经，HSC 克隆选择驱动 CHIP 及相关疾病，肌肉/肠道/骨骼的应激修复显著变差，而脑与皮肤基线的影响较小且因果未定；至于人类整体寿命，目前没有直接证据。<span class="badge b">B</span></p>
+    </div>
+  </div>
+</section>
+<!-- ================= 05 干预 ================= -->
+<section class="section alt" id="intervene">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">05 / INTERVENE</div>
+      <div>
+        <h2>干预：哪些有证据，哪些只是故事</h2>
+        <p class="section-lede">把干预按“人体证据 × 干细胞机制清晰度”排一下，会发现大多数热门项目并不在右上角。运动是唯一在人体干细胞层面有直接证据的干预，但它不是“抗衰老药”。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="lede">评估一个“干细胞抗衰老”干预，至少问三个问题：<strong>它是否真的作用在干细胞上？它是否改善了人体健康结局？它的风险是否可接受？</strong>三个问题都答“是”的干预，目前几乎没有。</p>
+      <p>下面这张图把常见干预放在两个维度上：横轴是人体健康结局的证据强度，纵轴是干细胞机制的可解释程度。位置是综合判断，不是精确评分；具体证据和限制见表 5。</p>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 580" role="img" aria-label="干细胞相关干预的人体证据与机制清晰度地图">
+        <text x="40" y="34" class="t-title">干预地图：右上角很空</text>
+        <text x="40" y="56" class="t-small t-muted">横轴：人体健康结局证据；纵轴：干细胞机制清晰度；编号对应右侧清单</text>
+
+        <!-- quadrants -->
+        <rect x="90" y="100" width="650" height="350" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <line x1="415" y1="100" x2="415" y2="450" stroke="var(--line)" stroke-dasharray="4 5"/>
+        <line x1="90" y1="275" x2="740" y2="275" stroke="var(--line)" stroke-dasharray="4 5"/>
+        <text x="104" y="120" class="t-small t-muted">机制清楚 / 人体证据不足</text>
+        <text x="726" y="120" text-anchor="end" class="t-small t-muted">两者都较强</text>
+        <text x="104" y="440" class="t-small t-muted">两者都弱</text>
+        <text x="726" y="440" text-anchor="end" class="t-small t-muted">人体有用 / 机制待定</text>
+
+        <!-- axes -->
+        <path d="M90 450 L760 450" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <path d="M760 450 L748 444 M760 450 L748 456" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <text x="420" y="478" text-anchor="middle" class="t-small t-muted">人体证据（对健康结局）→</text>
+        <path d="M90 450 L90 86" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <path d="M90 86 L84 98 M90 86 L96 98" stroke="var(--ink-2)" stroke-width="1.2"/>
+        <text x="66" y="275" class="t-small t-muted" transform="rotate(-90 66 275)" text-anchor="middle">干细胞机制清晰度 →</text>
+
+        <!-- bubbles -->
+        <g>
+          <circle cx="640" cy="250" r="17" fill="var(--s3)" opacity=".85"/>
+          <text x="640" y="255" text-anchor="middle" class="t-small" fill="#fff">1</text>
+          <text x="664" y="250" class="t-small">运动</text>
+          <text x="664" y="268" class="t-small t-muted">肌肉卫星细胞 ↑</text>
+        </g>
+        <g>
+          <circle cx="450" cy="170" r="14" fill="var(--s4)" opacity=".85"/>
+          <text x="450" y="175" text-anchor="middle" class="t-small" fill="#fff">2</text>
+        </g>
+        <g>
+          <circle cx="350" cy="135" r="14" fill="var(--s4)" opacity=".85"/>
+          <text x="350" y="140" text-anchor="middle" class="t-small" fill="#fff">3</text>
+        </g>
+        <g>
+          <circle cx="270" cy="190" r="13" fill="var(--s4)" opacity=".85"/>
+          <text x="270" y="195" text-anchor="middle" class="t-small" fill="#fff">4</text>
+        </g>
+        <g>
+          <circle cx="200" cy="145" r="14" fill="var(--s7)" opacity=".85"/>
+          <text x="200" y="150" text-anchor="middle" class="t-small" fill="#fff">5</text>
+          <text x="220" y="145" class="t-small">重编程</text>
+        </g>
+        <g>
+          <circle cx="180" cy="225" r="12" fill="var(--s4)" opacity=".85"/>
+          <text x="180" y="230" text-anchor="middle" class="t-small" fill="#fff">6</text>
+        </g>
+        <g>
+          <circle cx="330" cy="270" r="13" fill="var(--s4)" opacity=".85"/>
+          <text x="330" y="275" text-anchor="middle" class="t-small" fill="#fff">7</text>
+        </g>
+        <g>
+          <circle cx="230" cy="340" r="12" fill="var(--s4)" opacity=".85"/>
+          <text x="230" y="345" text-anchor="middle" class="t-small" fill="#fff">8</text>
+        </g>
+        <g>
+          <circle cx="170" cy="385" r="12" fill="var(--s2)" opacity=".85"/>
+          <text x="170" y="390" text-anchor="middle" class="t-small" fill="#fff">9</text>
+        </g>
+        <g>
+          <circle cx="300" cy="415" r="12" fill="var(--s2)" opacity=".85"/>
+          <text x="300" y="420" text-anchor="middle" class="t-small" fill="#fff">10</text>
+          <text x="318" y="415" class="t-small">MSC 输注</text>
+        </g>
+
+        <!-- legend panel -->
+        <g>
+          <rect x="790" y="96" width="290" height="420" rx="12" class="fill-surface" stroke="var(--line)"/>
+          <text x="810" y="124" class="t-label">干预清单</text>
+          <text x="1060" y="124" text-anchor="end" class="t-small t-muted">等级</text>
+
+          <circle cx="812" cy="154" r="9" fill="var(--s3)"/><text x="812" y="158" text-anchor="middle" class="t-small" fill="#fff">1</text>
+          <text x="830" y="158" class="t-small">运动</text><text x="1060" y="158" text-anchor="end" class="t-small t-muted">B</text>
+
+          <circle cx="812" cy="188" r="9" fill="var(--s4)"/><text x="812" y="192" text-anchor="middle" class="t-small" fill="#fff">2</text>
+          <text x="830" y="192" class="t-small">热量限制</text><text x="1060" y="192" text-anchor="end" class="t-small t-muted">C</text>
+
+          <circle cx="812" cy="222" r="9" fill="var(--s4)"/><text x="812" y="226" text-anchor="middle" class="t-small" fill="#fff">3</text>
+          <text x="830" y="226" class="t-small">雷帕霉素</text><text x="1060" y="226" text-anchor="end" class="t-small t-muted">C</text>
+
+          <circle cx="812" cy="256" r="9" fill="var(--s4)"/><text x="812" y="260" text-anchor="middle" class="t-small" fill="#fff">4</text>
+          <text x="830" y="260" class="t-small">IL-11 阻断</text><text x="1060" y="260" text-anchor="end" class="t-small t-muted">B/C</text>
+
+          <circle cx="812" cy="290" r="9" fill="var(--s7)"/><text x="812" y="294" text-anchor="middle" class="t-small" fill="#fff">5</text>
+          <text x="830" y="294" class="t-small">部分重编程</text><text x="1060" y="294" text-anchor="end" class="t-small t-muted">C</text>
+
+          <circle cx="812" cy="324" r="9" fill="var(--s4)"/><text x="812" y="328" text-anchor="middle" class="t-small" fill="#fff">6</text>
+          <text x="830" y="328" class="t-small">Cdc42 抑制</text><text x="1060" y="328" text-anchor="end" class="t-small t-muted">C</text>
+
+          <circle cx="812" cy="358" r="9" fill="var(--s4)"/><text x="812" y="362" text-anchor="middle" class="t-small" fill="#fff">7</text>
+          <text x="830" y="362" class="t-small">Senolytics</text><text x="1060" y="362" text-anchor="end" class="t-small t-muted">C</text>
+
+          <circle cx="812" cy="392" r="9" fill="var(--s4)"/><text x="812" y="396" text-anchor="middle" class="t-small" fill="#fff">8</text>
+          <text x="830" y="396" class="t-small">NAD+ 前体</text><text x="1060" y="396" text-anchor="end" class="t-small t-muted">C/D</text>
+
+          <circle cx="812" cy="426" r="9" fill="var(--s2)"/><text x="812" y="430" text-anchor="middle" class="t-small" fill="#fff">9</text>
+          <text x="830" y="430" class="t-small">年轻血浆</text><text x="1060" y="430" text-anchor="end" class="t-small t-muted">C/D</text>
+
+          <circle cx="812" cy="460" r="9" fill="var(--s2)"/><text x="812" y="464" text-anchor="middle" class="t-small" fill="#fff">10</text>
+          <text x="830" y="464" class="t-small">MSC 输注</text><text x="1060" y="464" text-anchor="end" class="t-small t-muted">D</text>
+        </g>
+
+        <text x="40" y="536" class="t-small t-muted">位置为作者综合判断；等级针对“干细胞衰老/健康结局”的证据强度，不是对药物在其他适应症中疗效的评价。</text>
+      </svg>
+      <figcaption><span class="fig-num">图 16</span> · 干细胞相关干预的人体证据与机制清晰度地图 <span class="fig-sub">运动是唯一在人体肌肉干细胞层面有直接证据的干预；雷帕霉素、热量限制、部分重编程、IL-11 阻断机制较清楚但人体干细胞终点不足；MSC 输注和年轻血浆在“抗衰老”适应症上证据最弱。</span></figcaption>
+    </figure>
+
+    <div class="table-wrap">
+      <table>
+        <caption>表 5 · 常见“干细胞抗衰老”干预的证据与限制</caption>
+        <thead>
+          <tr><th>干预</th><th>主要机制 / 靶点</th><th>最强证据</th><th>等级</th><th>关键限制</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>阻力运动</td><td>机械负荷、卫星细胞激活、 niche 信号</td><td>老年人 12 周训练：II 型纤维卫星细胞与横截面积↑</td><td><span class="badge b">B</span></td><td>对干细胞“ rejuvenation”是部分的；不证明延长寿命。</td></tr>
+          <tr><td>热量限制</td><td>mTOR/IGF-1、代谢与炎症</td><td>小鼠寿命延长；人类短期代谢改善</td><td><span class="badge c">C</span></td><td>缺乏人体干细胞终点；长期依从性差。</td></tr>
+          <tr><td>雷帕霉素</td><td>mTORC1</td><td>小鼠晚年开始给药延长寿命</td><td><span class="badge c">C</span></td><td>免疫抑制、口腔溃疡等副作用；人体干细胞证据有限。</td></tr>
+          <tr><td>IL-11 阻断</td><td>IL-6 家族炎症因子</td><td>小鼠平均寿命 +24.9%；anti-IL-11 中位 +22.5%/+25%</td><td><span class="badge b">B</span><span class="badge c">C</span></td><td>不是干细胞特异；人体尚在早期试验。</td></tr>
+          <tr><td>Senolytics</td><td>清除 p16+ 衰老细胞</td><td>小鼠健康寿命与寿命改善</td><td><span class="badge c">C</span></td><td>p16 不特异；人体试验多针对特定疾病，非健康衰老。</td></tr>
+          <tr><td>NAD+ 前体</td><td>NAD+ 代谢、线粒体与 DNA 修复</td><td>小鼠干细胞功能改善</td><td><span class="badge c">C</span><span class="badge d">D</span></td><td>人体试验多以生物标志物为终点，缺少硬结局。</td></tr>
+          <tr><td>部分重编程</td><td>OSKM 短暂表达、表观遗传重塑</td><td>小鼠多器官表型改善；视神经再生</td><td><span class="badge c">C</span></td><td>致瘤性、剂量与时程安全性未解决。</td></tr>
+          <tr><td>Cdc42 抑制</td><td>细胞极性、H4K16ac</td><td>小鼠老年 HSC 功能恢复；移植后寿命延长</td><td><span class="badge c">C</span></td><td>人体无数据；CASIN 不是临床药物。</td></tr>
+          <tr><td>年轻血浆 / 换血</td><td>系统性因子、炎症</td><td>小鼠异体共生部分表型改善</td><td><span class="badge c">C</span><span class="badge d">D</span></td><td>人体证据弱；商业化诊所风险高。</td></tr>
+          <tr><td>MSC 输注</td><td>旁分泌、免疫调节</td><td>特定疾病适应症有限</td><td><span class="badge d">D</span></td><td>无抗衰老人体证据；异体细胞与制备标准化问题。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>5.1 运动：最好的“干细胞干预”，但不是神药</h3>
+      <p>在人体中，阻力训练可以增加老年 II 型纤维的卫星细胞数和纤维横截面积，这是目前最直接的“人体干细胞可塑性”证据。<span class="badge b">B</span>（Verdijk et al., 2014） 但它的效果是<strong>局部的、部分的、依赖训练持续性的</strong>；停止训练后收益会消退，也不能证明它延长人类寿命。</p>
+      <p>运动的价值在于：它同时改善肌肉功能、代谢、炎症和心肺适能，即使干细胞机制只占其中一部分，健康收益仍然真实。把它称为“干细胞抗衰老疗法”反而窄化了它。</p>
+
+      <h3>5.2 药物：小鼠寿命 ≠ 人体干细胞终点</h3>
+      <p>雷帕霉素、热量限制、senolytics、IL-11 阻断都在小鼠中显示出寿命或健康寿命收益，但它们大多<strong>没有以人体干细胞功能作为主要终点</strong>。雷帕霉素有免疫抑制和代谢副作用；senolytics 的 p16 靶点不特异；IL-11 阻断是系统性抗炎，不能单独归因于干细胞。<span class="badge c">C</span></p>
+      <p>这并不意味着它们无效，而是说：<strong>“延长小鼠寿命”与“逆转人类干细胞衰老”是两个不同的主张</strong>。前者有较多证据，后者在人体中基本未被检验。</p>
+
+      <h3>5.3 细胞与血浆：证据最弱，风险最实在</h3>
+      <p>年轻血浆/异体共生在小鼠中能改善部分组织功能，但人体证据很弱，且血浆成分复杂、感染与免疫风险真实。<span class="badge c">C</span><span class="badge d">D</span> MSC 输注在特定疾病（如移植物抗宿主病）中有研究，但没有可靠证据支持“抗衰老”；商业化诊所的“干细胞回输”不在循证医学范围内。<span class="badge d">D</span></p>
+
+      <h3>5.4 部分重编程：最有想象力，也最需要安全数据</h3>
+      <p>短暂表达 OSKM 可以在小鼠中改善多器官表型、恢复视神经再生能力，说明“表观遗传年龄”在活体内可以被部分逆转。<span class="badge c">C</span>（Ocampo et al., 2016；Lu et al., 2020） 但致瘤性、剂量窗口、组织特异性和长期安全性都未解决；目前不能用于健康人抗衰老。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 争议 ================= -->
+<section class="section" id="debate">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">06 / DEBATE</div>
+      <div>
+        <h2>争议与主动降级：哪些说法本文不采纳</h2>
+        <p class="section-lede">一份可信的调研，必须说明自己<strong>不相信什么</strong>。下面列出常见但证据不足、或被本文主动降级的说法，以及降级理由。</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption>表 6 · 被主动降级或排除的常见说法</caption>
+        <thead>
+          <tr><th>说法</th><th>问题所在</th><th>本文处理</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>“干细胞耗竭是衰老的主因”</td><td>干细胞衰老是真实的标志，但组织特异、因果强度中等；小鼠移植实验不能证明它是人类衰老的主开关。</td><td>作为标志 <span class="badge a">A</span>；作为主因 <span class="badge c">C</span></td></tr>
+          <tr><td>“干细胞数量一定随年龄下降”</td><td>HSC 频率可升高，MSC 的 CFU-F 可维持；数量与功能可以脱钩。</td><td>排除；数量≠功能</td></tr>
+          <tr><td>“成人海马神经发生已有定论”</td><td>2026 年多组学支持 NSC/神经母细胞存在，但技术、队列和功能意义仍有争议；认知因果未定。</td><td><span class="badge b">B</span>（存在与下降）；<span class="badge c">C</span>（认知因果）</td></tr>
+          <tr><td>“卵巢有大量卵原干细胞，可终身新生”</td><td>缺乏可重复的人体证据；主流模型仍认为原始卵泡池出生前确定。</td><td>排除 <span class="badge d">D</span></td></tr>
+          <tr><td>“输注 MSC 可以抗衰老”</td><td>无可靠人体证据；制备、异体免疫和长期安全性问题未解决。</td><td>排除 <span class="badge d">D</span></td></tr>
+          <tr><td>“年轻血浆/换血可以抗衰老”</td><td>小鼠部分表型改善，人体证据弱；商业化应用风险高。</td><td>降级 <span class="badge c">C</span><span class="badge d">D</span></td></tr>
+          <tr><td>“端粒长度是干细胞衰老的可靠标志”</td><td>端粒长度与功能不总一致；组织、细胞类型和测量方法差异大。</td><td>降级 <span class="badge c">C</span></td></tr>
+          <tr><td>“小鼠寿命延长可以换算成人类寿命”</td><td>物种、品系、样本量、受者免疫状态差异；不能线性外推。</td><td>排除</td></tr>
+          <tr><td>“干细胞衰老不可逆”</td><td>训练、Notum 抑制、 niche 年轻化、部分重编程均可部分恢复功能；但可逆程度有限。</td><td>排除；改为“部分可逆”<span class="badge b">B</span></td></tr>
+          <tr><td>“p16 是干细胞衰老的特异标志”</td><td>p16 是细胞衰老标志，也标记非干细胞；不同组织中特异性不同。</td><td>降级 <span class="badge c">C</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>6.1 为什么“干细胞耗竭”这个词容易误导</h3>
+      <p>“Exhaustion”暗示池子被用完。但在 HSC 中，老年池子常常<strong>扩张</strong>；在 MSC 中，CFU-F 频率可以维持；在表皮中，基线更新可以维持。真正的问题往往是<strong>组成变了、单细胞质量变了、应激储备不够了</strong>，而不是“细胞没了”。</p>
+      <p>因此，本文更愿意用“干细胞衰老（stem cell aging）”而不是“干细胞耗竭”，并把“耗竭”保留给特定情境：例如卵巢储备耗尽、或某种干细胞在反复应激后确实接近枯竭。</p>
+
+      <h3>6.2 小鼠到人的鸿沟</h3>
+      <p>小鼠寿命实验提供了最强的因果证据，但也最容易误读。实验小鼠通常近交、无菌环境、寿命短、死因以肿瘤为主；人类是异质群体，死因以心血管、肿瘤、神经退行性疾病为主。即使某个干预在小鼠中延长寿命 20%，也不能推出人类寿命延长 20%。<span class="badge c">C</span></p>
+      <p>人体证据目前主要来自：CHIP 队列、卵巢储备模型、卫星细胞横断面、肠道类器官、MSC 体外实验和尸检多组学。这些证据能支持“机制存在”，但还不足以支持“干预有效”。</p>
+    </div>
+  </div>
+</section>
+<!-- ================= 07 结论 ================= -->
+<section class="section alt" id="conclusion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">07 / CONCLUSION</div>
+      <div>
+        <h2>结论：把三个问题连成一个模型</h2>
+        <p class="section-lede">为什么变、变什么、影响多大，不是三个独立问题。它们分别对应演化与机制、功能表型、组织后果；把它们连起来，才能得到一张可用的心智模型。</p>
+      </div>
+    </div>
+
+    <figure>
+      <svg class="fig-svg" viewBox="0 0 1120 600" role="img" aria-label="干细胞衰老的三层心智模型">
+        <text x="40" y="34" class="t-title">一张图：为什么 → 变什么 → 影响多大</text>
+        <text x="40" y="56" class="t-small t-muted">三层模型；箭头表示主导关系，不表示唯一因果</text>
+
+        <!-- layer labels -->
+        <text x="40" y="106" class="t-mono t-muted">WHY</text>
+        <text x="40" y="250" class="t-mono t-muted">WHAT</text>
+        <text x="40" y="398" class="t-mono t-muted">HOW MUCH</text>
+
+        <!-- top boxes -->
+        <g>
+          <rect x="90" y="80" width="300" height="105" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="108" y="106" class="t-label">演化层</text>
+          <text x="108" y="130" class="t-small t-ink2">维护被优化，不被最大化</text>
+          <text x="108" y="152" class="t-small t-muted">选择阴影 · 拮抗多效性</text>
+          <text x="108" y="170" class="t-small t-muted">可抛弃体细胞 · 体细胞选择</text>
+        </g>
+        <g>
+          <rect x="410" y="80" width="300" height="105" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="428" y="106" class="t-label">机制层</text>
+          <text x="428" y="130" class="t-small t-ink2">损伤 + niche + 炎症</text>
+          <text x="428" y="152" class="t-small t-muted">DNA、端粒、表观、线粒体、</text>
+          <text x="428" y="170" class="t-small t-muted">蛋白稳态、SASP</text>
+        </g>
+        <g>
+          <rect x="730" y="80" width="300" height="105" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="748" y="106" class="t-label">选择层</text>
+          <text x="748" y="130" class="t-small t-ink2">克隆竞争，适合度 ≠ 功能</text>
+          <text x="748" y="152" class="t-small t-muted">突变克隆扩张、表观漂移</text>
+          <text x="748" y="170" class="t-small t-muted">CHIP 是人体例证</text>
+        </g>
+
+        <!-- arrows top -> middle -->
+        <path d="M240 185 L240 228" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M240 228 L234 216 M240 228 L246 216" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M560 185 L560 228" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M560 228 L554 216 M560 228 L566 216" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M880 185 L880 228" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M880 228 L874 216 M880 228 L886 216" stroke="var(--muted)" stroke-width="1.5"/>
+
+        <!-- middle band -->
+        <rect x="90" y="230" width="940" height="108" rx="12" fill="var(--brand)" fill-opacity=".06" stroke="var(--line)"/>
+        <g>
+          <text x="112" y="256" class="t-label">静息深度</text>
+          <text x="112" y="278" class="t-small t-muted">太深或太浅</text>
+          <text x="112" y="296" class="t-small t-muted">都是偏离</text>
+        </g>
+        <g>
+          <text x="300" y="256" class="t-label">自我更新</text>
+          <text x="300" y="278" class="t-small t-muted">HSC ↑</text>
+          <text x="300" y="296" class="t-small t-muted">MuSC/ISC ↓</text>
+        </g>
+        <g>
+          <text x="488" y="256" class="t-label">子代命运</text>
+          <text x="488" y="278" class="t-small t-muted">髓系↑ · 胶质↑</text>
+          <text x="488" y="296" class="t-small t-muted">成骨↓ · 分泌↑</text>
+        </g>
+        <g>
+          <text x="676" y="256" class="t-label">韧性 / 存活</text>
+          <text x="676" y="278" class="t-small t-muted">应激后存活↓</text>
+          <text x="676" y="296" class="t-small t-muted">移植恢复差</text>
+        </g>
+        <g>
+          <text x="864" y="256" class="t-label">群体异质性</text>
+          <text x="864" y="278" class="t-small t-muted">克隆扩张</text>
+          <text x="864" y="296" class="t-small t-muted">功能方差增大</text>
+        </g>
+
+        <!-- arrow middle -> bottom -->
+        <path d="M560 338 L560 376" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M560 376 L554 364 M560 376 L566 364" stroke="var(--muted)" stroke-width="1.5"/>
+
+        <!-- bottom boxes -->
+        <g>
+          <rect x="90" y="380" width="220" height="140" rx="10" fill="var(--s2)" fill-opacity=".07" stroke="var(--line)"/>
+          <text x="106" y="406" class="t-label">决定性</text>
+          <text x="106" y="430" class="t-small t-ink2">卵巢 → 绝经</text>
+          <text x="106" y="450" class="t-small t-ink2">HSC 克隆 → CHIP</text>
+          <text x="106" y="478" class="t-small t-muted">时间可预测；</text>
+          <text x="106" y="496" class="t-small t-muted">部分不可逆</text>
+        </g>
+        <g>
+          <rect x="330" y="380" width="220" height="140" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="346" y="406" class="t-label">重大</text>
+          <text x="346" y="430" class="t-small t-ink2">肌肉 / 肠道 / 骨</text>
+          <text x="346" y="450" class="t-small t-muted">应激修复下降</text>
+          <text x="346" y="478" class="t-small t-muted">基线可能正常；</text>
+          <text x="346" y="496" class="t-small t-muted">损伤后暴露</text>
+        </g>
+        <g>
+          <rect x="570" y="380" width="220" height="140" rx="10" class="fill-surface" stroke="var(--line)"/>
+          <text x="586" y="406" class="t-label">中等</text>
+          <text x="586" y="430" class="t-small t-ink2">皮肤 / 神经发生</text>
+          <text x="586" y="450" class="t-small t-muted">基线维持较好</text>
+          <text x="586" y="478" class="t-small t-muted">功能影响有限；</text>
+          <text x="586" y="496" class="t-small t-muted">认知因果未定</text>
+        </g>
+        <g>
+          <rect x="810" y="380" width="220" height="140" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+          <text x="826" y="406" class="t-label">不确定</text>
+          <text x="826" y="430" class="t-small t-ink2">人类整体寿命</text>
+          <text x="826" y="450" class="t-small t-muted">无直接人体实验</text>
+          <text x="826" y="478" class="t-small t-muted">小鼠效应不能</text>
+          <text x="826" y="496" class="t-small t-muted">线性外推</text>
+        </g>
+
+        <!-- intervention note -->
+        <g>
+          <rect x="90" y="542" width="940" height="42" rx="8" fill="var(--s3)" fill-opacity=".08" stroke="var(--line)"/>
+          <text x="108" y="568" class="t-small">干预可以改变中间层（五个标志），但能否改变最终结局，取决于组织、剂量、时机和证据层级。</text>
+        </g>
+      </svg>
+      <figcaption><span class="fig-num">图 17</span> · 干细胞衰老的三层心智模型 <span class="fig-sub">为什么（演化/机制/选择）→ 变什么（五个功能标志）→ 影响多大（组织分级）。干预作用于中间层，但最终结局取决于组织与证据。</span></figcaption>
+    </figure>
+
+    <div class="prose">
+      <h3>7.1 如果只记五件事</h3>
+      <ol>
+        <li><strong>衰老不是把干细胞“用完”，而是让池子的组成、状态和输出变差。</strong>HSC 可以变多但功能下降；MSC 可以维持数量但激活变慢；表皮可以维持更新但修复变慢。<span class="badge a">A</span><span class="badge b">B</span></li>
+        <li><strong>五个功能标志比“数量”更接近本质：</strong>静息深度、自我更新、子代命运、韧性、异质性。方向因组织而异，不能用一个“↓”概括。<span class="badge a">A</span></li>
+        <li><strong>为什么发生：</strong>演化没有把维护优化到无限期；损伤、niche 改变和炎症让细胞变坏；体细胞选择又让部分坏克隆留下来。<span class="badge b">B</span></li>
+        <li><strong>影响多大：</strong>卵巢是决定性的，血液通过 CHIP 是决定性的（对克隆性疾病），肌肉/肠道/骨是重大的，脑和皮肤是中等或不确定的，人类整体寿命未知。<span class="badge b">B</span></li>
+        <li><strong>干预：</strong>运动是人体证据最好的“干细胞可塑性”干预；没有获批的干细胞抗衰老药物；部分重编程最有想象力，但安全性未解决。<span class="badge b">B</span><span class="badge c">C</span></li>
+      </ol>
+
+      <h3>7.2 还有哪些关键未知</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">未知一</div>
+          <h4>人体因果链</h4>
+          <p>没有人体实验直接检验“逆转干细胞衰老 → 延长健康寿命”。CHIP、卫星细胞、卵巢储备都是间接或局部证据。<span class="badge c">C</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">未知二</div>
+          <h4>克隆选择的规则</h4>
+          <p>为什么某些 DNMT3A/TET2 克隆会扩张、另一些不会？克隆扩张与功能下降之间的因果方向仍未完全拆开。<span class="badge c">C</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">未知三</div>
+          <h4>niche 的可逆性</h4>
+          <p>年轻化 niche 能恢复部分干细胞功能，但不同组织的 niche 成分差异很大，哪些改变是可逆的、能维持多久，仍不清楚。<span class="badge c">C</span></p>
+        </div>
+        <div class="card">
+          <div class="tag">未知四</div>
+          <h4>人类干细胞生物标志物</h4>
+          <p>缺少能在活体中可靠测量“干细胞功能”的工具；目前多数依赖替代指标，难以做大型人群干预试验。<span class="badge c">C</span></p>
+        </div>
+      </div>
+
+      <div class="quote">
+        衰老不是把干细胞的数量清零，而是把“还能不能用、够不够用”这两个问题的答案，慢慢改成“平时勉强，应激不行”。
+        <cite>本文的核心判断，证据等级 B</cite>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">最终一句话</span>
+        <p>衰老导致干细胞变化，是因为<strong>维护系统未被演化优化到无限期</strong>，损伤、niche 改变和炎症让细胞变坏，体细胞选择又让部分坏克隆留下；变化体现在<strong>静息、自我更新、命运、韧性和异质性</strong>五个维度，方向因组织而异；影响<strong>高度组织依赖</strong>——卵巢和血液克隆性疾病接近决定性，肌肉/肠道/骨修复重大，脑与皮肤中等或不确定，人类整体寿命仍未知。<span class="badge b">B</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 附录 ================= -->
+<section class="section" id="appendix">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">APPENDIX</div>
+      <div>
+        <h2>附录：术语、分级与来源</h2>
+        <p class="section-lede">本报告为自包含 HTML，所有图表为手绘 SVG；下列来源用于支撑正文论断，链接指向 PubMed / DOI。</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>A · 术语表</h3>
+      <dl class="glossary">
+        <div><dt>干细胞衰老（stem cell aging）</dt><dd>干细胞随年龄出现的功能、状态、命运和群体结构改变；不等于数量下降。</dd></div>
+        <div><dt>静息（quiescence）</dt><dd>细胞退出细胞周期但保留重新进入周期能力的可逆状态。</dd></div>
+        <div><dt>自我更新（self-renewal）</dt><dd>分裂后至少保留一个干细胞，维持池子的能力。</dd></div>
+        <div><dt>niche</dt><dd>干细胞周围的细胞、基质、血管、神经和信号环境，决定干细胞的维持与激活。</dd></div>
+        <div><dt>CHIP</dt><dd>意义未明的克隆性造血；血液中出现一个或多个体细胞突变克隆，常见于 DNMT3A、TET2、ASXL1。</dd></div>
+        <div><dt>SASP</dt><dd>衰老相关分泌表型；衰老细胞分泌的炎症因子、蛋白酶和生长因子。</dd></div>
+        <div><dt>geroconversion</dt><dd>细胞从可逆静息/衰老前状态转入不可逆衰老状态的过程。</dd></div>
+        <div><dt>部分重编程</dt><dd>短暂表达 OSKM 等重编程因子，部分逆转表观遗传年龄而不完全去分化。</dd></div>
+        <div><dt>异体共生（parabiosis）</dt><dd>将两只动物的循环系统连接，用于研究系统性因子对衰老的影响。</dd></div>
+        <div><dt>储备阈值</dt><dd>干细胞储备低于应激需求时，静息正常但损伤/化疗后功能失败的现象。</dd></div>
+      </dl>
+
+      <h3>B · 证据分级</h3>
+      <div class="tier-grid">
+        <div class="card">
+          <div class="tag">A</div>
+          <h4>强证据</h4>
+          <p>多项独立研究、人体数据或金标准因果实验一致；结论稳健，例外有限。</p>
+        </div>
+        <div class="card">
+          <div class="tag">B</div>
+          <h4>中等证据</h4>
+          <p>有因果实验或较强人体关联，但存在样本、物种、特异性或外推限制。</p>
+        </div>
+        <div class="card">
+          <div class="tag">C</div>
+          <h4>有限证据</h4>
+          <p>主要是相关性、单一模型、小样本或机制推测；方向可信，效应量不确定。</p>
+        </div>
+        <div class="card">
+          <div class="tag">D</div>
+          <h4>不足 / 排除</h4>
+          <p>缺乏可重复证据，或与主流数据冲突；不作为结论依据。</p>
+        </div>
+      </div>
+      <p class="small-note">分级针对<strong>具体论断</strong>，不是对研究质量或作者的总体评价。同一篇论文的不同结论可以有不同的等级；“相关”不自动等于“因果”。</p>
+
+      <h3>C · 参考文献</h3>
+      <ol class="sources">
+        <li><span class="src-title">López-Otín C, Blasco MA, Partridge L, Serrano M, Kroemer G.</span> Hallmarks of aging: An expanding universe. <em>Cell.</em> 2023;186(2):243–278.<span class="src-meta">doi:10.1016/j.cell.2022.11.001 · PMID 36599349</span></li>
+        <li><span class="src-title">Rando TA, Brunet A, Goodell MA.</span> Hallmarks of stem cell aging. <em>Cell Stem Cell.</em> 2025;32(7):…<span class="src-meta">doi:10.1016/j.stem.2025.06.004 · PMID 40562035</span></li>
+        <li><span class="src-title">Brunet A, Goodell MA, Rando TA.</span> Ageing and rejuvenation of tissue stem cells and their niches. <em>Nat Rev Mol Cell Biol.</em> 2023;24(1):45–62.<span class="src-meta">doi:10.1038/s41580-022-00510-w · PMID 35859206</span></li>
+        <li><span class="src-title">Pang WW, Price EA, Sahoo D, et al.</span> Human bone marrow hematopoietic stem cells are increased in frequency and myeloid-biased with age. <em>PNAS.</em> 2011;108(50):20012–20017.<span class="src-meta">doi:10.1073/pnas.1116110108 · PMID 22123971</span></li>
+        <li><span class="src-title">Beerman I, Bhattacharya D, Zandi S, et al.</span> Functionally distinct hematopoietic stem cells modulate hematopoietic lineage potential during aging. <em>PNAS.</em> 2010;107(12):5465–5470.<span class="src-meta">doi:10.1073/pnas.1000834107 · PMID 20304793</span></li>
+        <li><span class="src-title">Jaiswal S, Fontanillas P, Flannick J, et al.</span> Age-related clonal hematopoiesis associated with adverse outcomes. <em>N Engl J Med.</em> 2014;371(26):2488–2498.<span class="src-meta">doi:10.1056/NEJMoa1408617 · PMID 25426837</span></li>
+        <li><span class="src-title">Mitchell CA, Verovskaya EV, Calero-Nieto FJ, et al.</span> Stromal niche inflammation mediated by IL-1 signalling is a targetable driver of haematopoietic ageing. <em>Nat Cell Biol.</em> 2023;25(1):30–41.<span class="src-meta">doi:10.1038/s41556-022-01053-0 · PMID 36650381</span></li>
+        <li><span class="src-title">Widjaja AA, Lim WW, Viswanathan S, et al.</span> Inhibition of IL-11 signalling extends mammalian healthspan and lifespan. <em>Nature.</em> 2024;632(8023):157–165.<span class="src-meta">doi:10.1038/s41586-024-07701-9 · PMID 39020175</span></li>
+        <li><span class="src-title">Wang Y, Zhang W, Zhang C, et al.</span> Reducing functionally defective old HSCs alleviates aging-related phenotypes in old recipient mice. <em>Cell Res.</em> 2025;35(1):45–58.<span class="src-meta">doi:10.1038/s41422-024-01057-5 · PMID 39743633</span></li>
+        <li><span class="src-title">Montserrat-Vazquez S, Ali NJ, Matteini F, et al.</span> Transplanting rejuvenated blood stem cells extends lifespan of aged immunocompromised mice. <em>NPJ Regen Med.</em> 2022;7(1):78.<span class="src-meta">doi:10.1038/s41536-022-00275-y · PMID 36581635</span></li>
+        <li><span class="src-title">Guderyon MJ, Chen C, Bhattacharjee A, et al.</span> Mobilization-based transplantation of young-donor hematopoietic stem cells extends lifespan in mice. <em>Aging Cell.</em> 2020;19(3):e13110.<span class="src-meta">doi:10.1111/acel.13110 · PMID 32012439</span></li>
+        <li><span class="src-title">Verdijk LB, Snijders T, Drost M, et al.</span> Satellite cells in human skeletal muscle; from birth to old age. <em>Age (Dordr).</em> 2014;36(2):545–557.<span class="src-meta">doi:10.1007/s11357-013-9583-2 · PMID 24122288</span></li>
+        <li><span class="src-title">Chakkalakal JV, Jones KM, Basson MA, Brack AS.</span> The aged niche disrupts muscle stem cell quiescence. <em>Nature.</em> 2012;490(7420):355–360.<span class="src-meta">doi:10.1038/nature11438 · PMID 23023126</span></li>
+        <li><span class="src-title">Sousa-Victor P, Gutarra S, García-Prat L, et al.</span> Geriatric muscle stem cells switch reversible quiescence into senescence. <em>Nature.</em> 2014;506(7488):316–321.<span class="src-meta">doi:10.1038/nature13013 · PMID 24522534</span></li>
+        <li><span class="src-title">Pentinmikko N, Iqbal S, Mana M, et al.</span> Notum produced by Paneth cells attenuates regeneration of aged intestinal epithelium. <em>Nature.</em> 2019;571(7765):398–402.<span class="src-meta">doi:10.1038/s41586-019-1383-0 · PMID 31292548</span></li>
+        <li><span class="src-title">Matsumura H, Mohri Y, Binh NT, et al.</span> Hair follicle aging is driven by transepidermal elimination of stem cells via COL17A1 proteolysis. <em>Science.</em> 2016;351(6273):aad4395.<span class="src-meta">doi:10.1126/science.aad4395 · PMID 26912707</span></li>
+        <li><span class="src-title">Dexheimer V, Mueller S, Braatz F, Richter W.</span> Reduced reactivation from dormancy but maintained lineage choice of human mesenchymal stem cells with donor age. <em>PLoS One.</em> 2011;6(8):e22980.<span class="src-meta">doi:10.1371/journal.pone.0022980 · PMID 21850247</span></li>
+        <li><span class="src-title">Ambrosi TH, Scialdone A, Graja A, et al.</span> Aged skeletal stem cells generate an inflammatory degenerative niche. <em>Nature.</em> 2021;597(7875):256–262.<span class="src-meta">doi:10.1038/s41586-021-03795-7 · PMID 34381212</span></li>
+        <li><span class="src-title">Wallace WHB, Kelsey TW.</span> Human ovarian reserve from conception to the menopause. <em>PLoS One.</em> 2010;5(1):e8772.<span class="src-meta">doi:10.1371/journal.pone.0008772 · PMID 20111701</span></li>
+        <li><span class="src-title">Faddy MJ, Gosden RG, Gougeon A, Richardson SJ, Nelson JF.</span> Accelerated disappearance of ovarian follicles in mid-life: implications for forecasting menopause. <em>Hum Reprod.</em> 1992;7(10):1342–1346.<span class="src-meta">doi:10.1093/oxfordjournals.humrep.a137570 · PMID 1291557</span></li>
+        <li><span class="src-title">Florian MC, Dörr K, Niebel A, et al.</span> Cdc42 activity regulates hematopoietic stem cell aging and rejuvenation. <em>Cell Stem Cell.</em> 2012;10(5):520–530.<span class="src-meta">doi:10.1016/j.stem.2012.04.007 · PMID 22560076</span></li>
+        <li><span class="src-title">Baker DJ, Wijshake T, Tchkonia T, et al.</span> Clearance of p16Ink4a-positive senescent cells delays ageing-associated disorders. <em>Nature.</em> 2011;479(7372):232–236.<span class="src-meta">doi:10.1038/nature10600 · PMID 22048312</span></li>
+        <li><span class="src-title">Xu M, Pirtskhalava T, Farr JN, et al.</span> Senolytics improve physical function and increase lifespan in old age. <em>Nat Med.</em> 2018;24(8):1246–1256.<span class="src-meta">doi:10.1038/s41591-018-0092-9 · PMID 29988130</span></li>
+        <li><span class="src-title">Harrison DE, Strong R, Sharp ZD, et al.</span> Rapamycin fed late in life extends lifespan in genetically heterogeneous mice. <em>Nature.</em> 2009;460(7253):392–395.<span class="src-meta">doi:10.1038/nature08221 · PMID 19587680</span></li>
+        <li><span class="src-title">Ocampo A, Reddy P, Martinez-Redondo P, et al.</span> In vivo amelioration of age-associated hallmarks by partial reprogramming. <em>Cell.</em> 2016;167(7):1719–1733.e12.<span class="src-meta">doi:10.1016/j.cell.2016.11.052 · PMID 27984723</span></li>
+        <li><span class="src-title">Lu Y, Brommer B, Tian X, et al.</span> Reprogramming to recover youthful epigenetic information and restore vision. <em>Nature.</em> 2020;588(7836):124–129.<span class="src-meta">doi:10.1038/s41586-020-2975-4 · PMID 33268865</span></li>
+        <li><span class="src-title">Conboy IM, Conboy MJ, Wagers AJ, et al.</span> Rejuvenation of aged progenitor cells by exposure to a young systemic environment. <em>Nature.</em> 2005;433(7027):760–764.<span class="src-meta">doi:10.1038/nature03260 · PMID 15716955</span></li>
+        <li><span class="src-title">Villeda SA, Plambeck KE, Middeldorp J, et al.</span> Young blood reverses age-related impairments in cognitive function and synaptic plasticity in mice. <em>Nat Med.</em> 2014;20(6):659–663.<span class="src-meta">doi:10.1038/nm.3569 · PMID 24793238</span></li>
+        <li><span class="src-title">Nishimura EK, Granter SR, Fisher DE.</span> Mechanisms of hair graying: incomplete melanocyte stem cell maintenance in the niche. <em>Science.</em> 2005;307(5710):720–724.<span class="src-meta">doi:10.1126/science.1099593 · PMID 15618488</span></li>
+        <li><span class="src-title">Barker N, van Es JH, Kuipers J, et al.</span> Identification of stem cells in small intestine and colon by marker gene Lgr5. <em>Nature.</em> 2007;449(7165):1003–1007.<span class="src-meta">doi:10.1038/nature06196 · PMID 17934449</span></li>
+        <li><span class="src-title">Jasper H.</span> Intestinal stem cell aging: origins and interventions. <em>Annu Rev Physiol.</em> 2020;82:203–226.<span class="src-meta">doi:10.1146/annurev-physiol-021119-034359 · PMID 31610128</span></li>
+        <li><span class="src-title">Schultz MB, Sinclair DA.</span> When stem cells grow old: phenotypes and mechanisms of stem cell aging. <em>Development.</em> 2016;143(1):3–14.<span class="src-meta">doi:10.1242/dev.130633 · PMID 26732838</span></li>
+        <li><span class="src-title">Ermolaeva M, Neri F, Ori A, Rudolph KL.</span> Cellular and epigenetic drivers of stem cell ageing. <em>Nat Rev Mol Cell Biol.</em> 2018;19(9):594–610.<span class="src-meta">doi:10.1038/s41580-018-0020-3 · PMID 29858605</span></li>
+        <li><span class="src-title">Morrison SJ, Spradling AC.</span> Stem cells and niches: mechanisms that promote stem cell maintenance throughout life. <em>Cell.</em> 2008;132(4):598–611.<span class="src-meta">doi:10.1016/j.cell.2008.01.038 · PMID 18295578</span></li>
+        <li><span class="src-title">Disouky A, Sanborn MA, Sabitha KR, et al.</span> Human hippocampal neurogenesis in adulthood, ageing and Alzheimer's disease. <em>Nature.</em> 2026.<span class="src-meta">doi:10.1038/s41586-026-10169-4 · PMID 41741649</span></li>
+        <li><span class="src-title">Boldrini M, Fulmore CA, Tartt AN, et al.</span> Human hippocampal neurogenesis persists throughout aging. <em>Cell Stem Cell.</em> 2018;22(4):589–599.e5.<span class="src-meta">doi:10.1016/j.stem.2018.03.015 · PMID 29625071</span></li>
+        <li><span class="src-title">Moreno-Jiménez EP, Flor-García M, Terreros-Roncal J, et al.</span> Adult hippocampal neurogenesis is abundant in neurologically healthy subjects and drops sharply in patients with Alzheimer's disease. <em>Nat Med.</em> 2019;25(4):554–560.<span class="src-meta">doi:10.1038/s41591-019-0375-9 · PMID 30911133</span></li>
+      </ol>
+
+      <p class="small-note">说明：本报告优先引用可核验的 PubMed/DOI 文献；部分“常见说法”在正文中被主动降级，理由见表 6。图中所有数值均来自正文所述来源或为明确标注的示意值。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>关于这份报告</h5>
+        <p>《干细胞的衰老：为什么 · 变什么 · 影响多大》是《衰老机制调研》的专题续篇。目标不是给出“抗衰老答案”，而是把证据层级、组织差异和不确定性写清楚。</p>
+        <p>自包含 HTML，无外部字体、脚本或图片；全部图表为手绘 SVG。</p>
+      </div>
+      <div>
+        <h5>阅读顺序</h5>
+        <p>先读 00 摘要，再读 02“为什么”；如果只关心影响，直接跳到 04；如果关心干预，读 05 与 06。</p>
+        <p>所有论断后的 A–D 徽标对应附录 B 的分级定义。</p>
+      </div>
+      <div>
+        <h5>版本</h5>
+        <p>调研截止：2026-10-28</p>
+        <p>姊妹篇：<a href="衰老机制调研.md">衰老机制调研.md</a></p>
+        <p>证据等级：A–D · 17 张图 · 37 条来源</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>本文不构成医疗建议。干细胞输注、年轻血浆等干预在正规临床之外存在明确风险。</span>
+      <span>HTML / SVG · 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

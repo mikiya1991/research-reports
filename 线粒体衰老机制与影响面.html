@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>线粒体衰老：机制、因果与影响面</title>
+<style>
+:root{
+  --ink:#16202b; --ink-2:#2b3a4a; --muted:#5d6f80; --faint:#8a9aa8;
+  --paper:#f7f5f0; --panel:#ffffff; --line:#dde3e8; --line-2:#eef2f5;
+  --teal:#0f766e; --teal-soft:#ccfbf1; --blue:#1d4ed8; --blue-soft:#dbeafe;
+  --amber:#b45309; --amber-soft:#fef3c7; --red:#b91c1c; --red-soft:#fee2e2;
+  --purple:#6d28d9; --purple-soft:#ede9fe; --slate:#334155;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+  --radius:14px; --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.78;
+  font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(15,118,110,.25)}
+a:hover{border-bottom-color:var(--teal)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+header.hero{
+  background:linear-gradient(135deg,#0b1b2b 0%,#123047 55%,#0f3d3a 100%);
+  color:#eef6f6;padding:66px 0 46px;position:relative;overflow:hidden;
+}
+header.hero:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.hero .wrap{position:relative}
+.hero-art{position:absolute;right:-50px;top:30px;width:540px;opacity:.14;pointer-events:none}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7dd3c7;font-weight:800;margin-bottom:14px}
+h1{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:46px;line-height:1.2;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+.hero .sub{font-size:18px;line-height:1.7;color:#c7d8dd;max-width:840px;margin:0 0 24px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:#9fb6bd}
+.meta b{color:#e6f4f1;font-weight:600}
+.topnav{position:sticky;top:0;z-index:20;background:rgba(247,245,240,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topnav .wrap{display:flex;gap:18px;overflow-x:auto;white-space:nowrap;padding-top:11px;padding-bottom:11px;font-size:13px}
+.topnav a{color:var(--ink-2);border-bottom:none;padding:2px 0}
+.topnav a:hover{color:var(--teal)}
+.topnav .brand{font-weight:800;color:var(--teal);letter-spacing:.04em}
+main{padding-bottom:40px}
+.section{margin-top:64px}
+.sec-head{display:flex;gap:18px;align-items:flex-start;border-top:2px solid var(--ink);padding-top:18px;margin-bottom:24px}
+.sec-num{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:42px;line-height:1;color:var(--teal);font-weight:700;min-width:66px}
+h2{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:30px;line-height:1.3;margin:0 0 6px;font-weight:700}
+.sec-sub{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
+h3{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:21px;line-height:1.4;margin:36px 0 10px;font-weight:700}
+h4{font-size:16px;margin:24px 0 8px;font-weight:700;color:var(--ink-2)}
+p{margin:0 0 14px}
+.lede{font-size:18px;line-height:1.8;color:var(--ink-2)}
+.small{font-size:13.5px;color:var(--muted);line-height:1.65}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.kpi .n{font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:34px;font-weight:700;line-height:1;color:var(--teal)}
+.kpi .l{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;padding:0 5px;border-radius:4px;font-size:11px;font-weight:800;line-height:1;vertical-align:1px;letter-spacing:.02em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.badge.a{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.badge.b{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+.badge.c{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.badge.d{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.callout{padding:16px 18px;border-radius:0 10px 10px 0;margin:22px 0;border-left:4px solid var(--teal);background:#f0fdfa}
+.callout .cl-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{border-left-color:var(--amber);background:#fffbeb}
+.callout.warn .cl-label{color:var(--amber)}
+.callout.stop{border-left-color:var(--red);background:#fef2f2}
+.callout.stop .cl-label{color:var(--red)}
+.callout.note{border-left-color:var(--blue);background:#eff6ff}
+.callout.note .cl-label{color:var(--blue)}
+.callout.key{border-left-color:var(--teal);background:#f0fdfa}
+.callout.key .cl-label{color:var(--teal)}
+.figure{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 14px;margin:26px 0;box-shadow:var(--shadow)}
+.svg-wrap{overflow-x:auto}
+.svg-wrap svg{display:block;width:100%;height:auto;min-width:720px}
+.figcap{margin-top:10px;padding-top:10px;border-top:1px solid var(--line-2);font-size:13px;line-height:1.6;color:var(--muted)}
+.figcap b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+.figcap span{display:block}
+svg text{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+.sv-title{font-size:15px;font-weight:700;fill:#16202b}
+.sv-label{font-size:12.5px;fill:#5d6f80}
+.sv-small{font-size:11px;fill:#8a9aa8}
+.sv-value{font-size:12.5px;font-weight:700;fill:#16202b}
+.sv-white{fill:#fff}
+.table-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.55}
+th{background:#f2f6f8;text-align:left;padding:10px 12px;font-weight:700;color:var(--ink-2);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fafcfc}
+.toc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin:30px 0 8px;box-shadow:var(--shadow)}
+.toc-head{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.toc-list{list-style:none;margin:0;padding:0;columns:2;column-gap:46px}
+.toc-list li{break-inside:avoid;margin:0 0 9px;font-size:14.5px;line-height:1.5}
+.toc-list a{border-bottom:none;color:var(--ink-2)}
+.toc-list a:hover{color:var(--teal)}
+.toc-list span{display:inline-block;width:30px;color:var(--faint);font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-weight:700}
+.quote{border-left:3px solid var(--teal);padding:4px 0 4px 20px;margin:24px 0;font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:20px;line-height:1.7;color:var(--ink-2)}
+.footer{background:#0b1b2b;color:#9fb6bd;padding:36px 0;margin-top:64px;font-size:13px}
+.footer b{color:#e6f4f1}
+.tag{display:inline-block;padding:1px 8px;border-radius:999px;background:#eef2f5;color:var(--muted);font-size:11.5px;font-weight:600;margin:0 4px 4px 0}
+.tag.teal{background:#ccfbf1;color:#0f766e}
+.tag.amber{background:#fef3c7;color:#92400e}
+.tag.red{background:#fee2e2;color:#991b1b}
+.tag.blue{background:#dbeafe;color:#1e40af}
+hr{border:none;border-top:1px solid var(--line);margin:34px 0}
+.num-list{counter-reset:item;list-style:none;padding:0;margin:18px 0}
+.num-list li{position:relative;padding-left:40px;margin-bottom:16px}
+.num-list li:before{counter-increment:item;content:counter(item,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:18px;font-weight:700;color:var(--teal)}
+.num-item{position:relative;padding-left:44px;margin-bottom:16px;font-size:14.5px;line-height:1.7;color:var(--ink-2)}
+.num-item .num{position:absolute;left:0;top:1px;font-family:"Songti SC","Noto Serif SC",Georgia,serif;font-size:18px;font-weight:700;color:var(--teal)}
+.refs p{font-size:12.5px;line-height:1.65;color:var(--ink-2);margin:0 0 8px;padding-left:18px;text-indent:-18px}
+@media (max-width:860px){
+  h1{font-size:34px}
+  .hero .sub{font-size:16px}
+  .hero-art{display:none}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .toc-list{columns:1}
+  .sec-num{font-size:32px;min-width:48px}
+  h2{font-size:24px}
+  .wrap{padding:0 18px}
+}
+@media print{
+  .topnav{display:none}
+  body{background:#fff}
+  .figure,.card,.table-wrap{box-shadow:none;break-inside:avoid}
+  .section{break-before:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="hero-art" viewBox="0 0 500 300" aria-hidden="true">
+    <ellipse cx="250" cy="150" rx="190" ry="95" fill="none" stroke="#7dd3c7" stroke-width="3"/>
+    <ellipse cx="250" cy="150" rx="165" ry="76" fill="none" stroke="#7dd3c7" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <path d="M100 150 q28 -48 56 0 q28 48 56 0 q28 -48 56 0 q28 48 56 0 q28 -48 56 0" fill="none" stroke="#7dd3c7" stroke-width="2.5"/>
+    <path d="M125 180 q22 -30 44 0 q22 30 44 0 q22 -30 44 0 q22 30 44 0" fill="none" stroke="#7dd3c7" stroke-width="1.5"/>
+    <circle cx="250" cy="150" r="14" fill="none" stroke="#7dd3c7" stroke-width="2"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Aging Mechanisms · Deep Dive 02</div>
+    <h1>线粒体衰老：机制、因果与影响面</h1>
+    <p class="sub">从 mtDNA 异质性到器官脆弱性——一份以证据等级为准绳的机制地图。它回答三个问题：线粒体怎样变老、我们凭什么说这是原因、以及它到底影响了哪些器官。</p>
+    <div class="meta">
+      <span><b>2026-10-28</b></span>
+      <span>32 幅图 · 6 张主表</span>
+      <span>证据分级 <b>A / B / C / D</b></span>
+      <span>主要证据截至 <b>2026-10</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav">
+  <div class="wrap">
+    <span class="brand">线粒体衰老</span>
+    <a href="#s0">00 摘要</a>
+    <a href="#s1">01 定义</a>
+    <a href="#s2">02 机制</a>
+    <a href="#s3">03 因果</a>
+    <a href="#s4">04 影响面</a>
+    <a href="#s5">05 标志物</a>
+    <a href="#s6">06 干预</a>
+    <a href="#s7">07 降级</a>
+    <a href="#s8">08 议程</a>
+    <a href="#appendix">附录</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<div class="toc">
+  <div class="toc-head">目录</div>
+  <ol class="toc-list">
+    <li><a href="#s0"><span>00</span>摘要与十条判断</a></li>
+    <li><a href="#s1"><span>01</span>定义与边界：什么在衰老？</a></li>
+    <li><a href="#s2"><span>02</span>六层机制地图</a></li>
+    <li><a href="#s2-1"><span>2.1</span>mtDNA 不稳定性与异质性</a></li>
+    <li><a href="#s2-2"><span>2.2</span>ROS、氧化还原与线粒体信号</a></li>
+    <li><a href="#s2-3"><span>2.3</span>蛋白质稳态与质量控制</a></li>
+    <li><a href="#s2-4"><span>2.4</span>生物发生与代谢重塑</a></li>
+    <li><a href="#s2-5"><span>2.5</span>mtDAMP、炎症与 MiDAS</a></li>
+    <li><a href="#s2-6"><span>2.6</span>细胞间传播与系统整合</a></li>
+    <li><a href="#s3"><span>03</span>因果证据阶梯</a></li>
+    <li><a href="#s4"><span>04</span>影响面：器官与系统</a></li>
+    <li><a href="#s5"><span>05</span>生物标志物：测什么、能不能用</a></li>
+    <li><a href="#s6"><span>06</span>干预：从抗氧化到质量控制</a></li>
+    <li><a href="#s7"><span>07</span>争议与主动降级</a></li>
+    <li><a href="#s8"><span>08</span>结论与研究议程</a></li>
+    <li><a href="#appendix"><span>A–C</span>术语、分级、参考文献</a></li>
+  </ol>
+</div>
+
+<section id="s0" class="section">
+  <div class="sec-head">
+    <div class="sec-num">00</div>
+    <div>
+      <h2>摘要与十条判断</h2>
+      <p class="sec-sub">先给结论，再给证据；每条判断都标出它站在哪一级证据上。</p>
+    </div>
+  </div>
+
+  <p class="lede">线粒体是衰老研究里最容易“听起来对”的题目：它产生活性氧、随年龄积累突变、在几乎所有老年疾病里都能找到异常。但“相关”与“驱动”之间隔着几道墙。本报告把线粒体衰老拆成六层机制，逐层检查因果证据，再把结果映射到器官与系统，最后给出可操作的判断边界。</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">6</div><div class="l">层机制：从 mtDNA 到细胞间传播</div></div>
+    <div class="kpi"><div class="n">14</div><div class="l">个器官/系统纳入影响面评估</div></div>
+    <div class="kpi"><div class="n">32</div><div class="l">幅图，逐条对应主要论断</div></div>
+    <div class="kpi"><div class="n">0</div><div class="l">个获批的“抗衰老”线粒体疗法</div></div>
+  </div>
+
+  <ol class="num-list">
+    <li><b>线粒体衰老是“稳态变窄”，不是单点故障。</b>维护（蛋白酶、UPRmt）、适应（分裂/融合、生物发生）、恢复（mitophagy、细胞间替换）三层同时收紧；任何单一指标只捕捉其中一层。<span class="badge b">B</span></li>
+    <li><b>mtDNA 突变是机制核心之一，但“血液异质性”主要反映克隆性造血。</b>2026 年 Nature 对约 75 万人的分析显示，血液 mtDNA 变异谱以复制错误为主、缺乏正向选择；mtDNA-CN 的疾病关联在调整血细胞组成后基本消失。<span class="badge a">A</span></li>
+    <li><b>实体组织的“隐秘突变”是更强的衰老候选。</b>单细胞研究显示约 91% 的 mtDNA 突变在 bulk 测序中不可见；这些突变在终末分化组织中随年龄积累，热量限制可减缓其积累。<span class="badge b">B</span></li>
+    <li><b>ROS 的强版本自由基理论已死，弱版本（氧化还原信号）仍活。</b>低剂量 ROS 是应激适应信号；补充普通抗氧化剂不降低死亡率，高剂量 β-胡萝卜素等甚至增加风险。<span class="badge a">A</span></li>
+    <li><b>质量控制比“清除 ROS”更接近可干预节点。</b>但人类因果证据仍主要来自运动，而非药物；mitophagy 诱导剂的临床终点大多不稳固。<span class="badge b">B</span></li>
+    <li><b>mtDNA-CN 是风险标志物，不是因果驱动。</b>观察性 meta 分析显示最低 vs 最高组的 CVD RR 2.09、全因死亡 RR 1.33；但孟德尔随机化不支持因果，队列间异质性极大（ARIC 1.60 vs FHS 0.90）。<span class="badge a">A</span></li>
+    <li><b>影响面高度不均。</b>心脏、脑、骨骼肌、免疫系统证据最强；肾、肝、骨、眼、耳、生殖为中等；皮肤、肺较弱。不能把“线粒体衰老”平均分配给所有器官。<span class="badge b">B</span></li>
+    <li><b>器官内也有区域选择性与肌群异质性。</b>黑质多巴胺神经元、心肌、肾小管、视网膜 RPE 特别依赖线粒体；31P-MRS 显示股四头肌与胫骨前肌的年龄效应方向相反。<span class="badge b">B</span></li>
+    <li><b>人类干预证据的金字塔很窄。</b>运动是唯一在多项 RCT/meta 分析中一致改善线粒体功能与体能的手段（VO2max SMD 0.46）；NAD⁺ 前体、urolithin A、MitoQ 等主要改变中间标志物，功能/临床终点不一致。<span class="badge a">A</span>（运动）<span class="badge b">B</span>（药物）</li>
+    <li><b>“因果检验工具”不是疗法。</b>线粒体移植、mtDNA 编辑、线粒体置换疗法提供了检验因果链的窗口，但人类证据限于安全性、个案或短期随访；不能作为抗衰老宣传。<span class="badge c">C</span></li>
+  </ol>
+
+  <div class="callout key">
+    <div class="cl-label">一句话总结</div>
+    <p>线粒体衰老是真实的、可测量的、与器官功能相关的；但“线粒体=衰老总开关”“抗氧化=抗衰老”“补充 NAD⁺=返老还童”三个流行叙事都不成立。<b>真正值得下注的，是质量控制与组织特异突变，而不是血液里一个容易测的拷贝数。</b></p>
+  </div>
+
+  <div class="callout note">
+    <div class="cl-label">证据等级怎么读</div>
+    <p><span class="badge a">A</span> 强：多物种、多个独立研究、人类 RCT 或系统综述一致。<span class="badge b">B</span> 中：多项研究但存在物种差异、观察性设计，或单项高质量 RCT。<span class="badge c">C</span> 有限：单一模型、小样本、初步试验、因果未定。<span class="badge d">D</span> 推测/争议：假说、未重复、结果冲突或主要来自体外。分级针对的是<b>论断</b>，不是来源的权威性。</p>
+  </div>
+</section>
+
+<section id="s1" class="section">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <h2>定义与边界：什么在衰老？</h2>
+      <p class="sec-sub">“线粒体衰老”至少有三个所指。把它们混在一起，是绝大多数争论的起点。</p>
+    </div>
+  </div>
+
+  <p>线粒体常被简化成“细胞的能量工厂”。这个比喻方便，但会漏掉一半功能。心肌细胞里线粒体占细胞体积的约 30–40%，神经元要把线粒体沿轴突运到需要 ATP 的突触，肾小管上皮靠线粒体驱动重吸收，视网膜 RPE 靠线粒体处理光感受器送来的脂质。这些组织的共同点不是“耗能多”，而是<b>对线粒体的某一项功能特别没有冗余</b>。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="线粒体的六类功能">
+      <defs>
+        <linearGradient id="f1g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e6fffb"/><stop offset="1" stop-color="#ccfbf1"/>
+        </linearGradient>
+        <marker id="f1ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+
+      <ellipse cx="560" cy="215" rx="205" ry="108" fill="url(#f1g)" stroke="#0f766e" stroke-width="3"/>
+      <ellipse cx="560" cy="215" rx="180" ry="88" fill="none" stroke="#14b8a6" stroke-width="1.6" stroke-dasharray="4 5"/>
+      <path d="M408 215 q30 -52 60 0 q30 52 60 0 q30 -52 60 0 q30 52 60 0 q30 -52 60 0" fill="none" stroke="#0f766e" stroke-width="2.6" opacity=".6"/>
+      <path d="M432 248 q24 -34 48 0 q24 34 48 0 q24 -34 48 0 q24 34 48 0" fill="none" stroke="#0f766e" stroke-width="1.8" opacity=".35"/>
+      <circle cx="560" cy="215" r="15" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+      <path d="M552 215 q8 -10 16 0 q-8 10 -16 0" fill="none" stroke="#0f766e" stroke-width="2"/>
+      <text x="560" y="255" text-anchor="middle" class="sv-small">mtDNA</text>
+      <text x="560" y="150" text-anchor="middle" class="sv-small" fill="#0f766e">嵴（内膜折叠）</text>
+
+      <!-- connectors -->
+      <path d="M285 80 L390 135" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+      <path d="M835 80 L730 135" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+      <path d="M285 215 L352 215" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+      <path d="M835 215 L768 215" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+      <path d="M285 350 L390 295" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+      <path d="M835 350 L730 295" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#f1ar)"/>
+
+      <!-- cards -->
+      <g>
+        <rect x="55" y="35" width="230" height="82" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="1.4"/>
+        <circle cx="78" cy="58" r="11" fill="#0f766e"/>
+        <text x="78" y="62" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">1</text>
+        <text x="98" y="62" class="sv-title" font-size="13.5">OXPHOS / ATP</text>
+        <text x="70" y="84" class="sv-small">复合体 I–IV + ATP 合酶</text>
+        <text x="70" y="101" class="sv-small">心肌、神经元、肾小管最依赖</text>
+      </g>
+      <g>
+        <rect x="835" y="35" width="230" height="82" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.4"/>
+        <circle cx="858" cy="58" r="11" fill="#1d4ed8"/>
+        <text x="858" y="62" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">2</text>
+        <text x="878" y="62" class="sv-title" font-size="13.5">代谢枢纽</text>
+        <text x="850" y="84" class="sv-small">TCA 循环、脂肪酸 β-氧化</text>
+        <text x="850" y="101" class="sv-small">连接糖、脂、蛋白代谢</text>
+      </g>
+      <g>
+        <rect x="55" y="174" width="230" height="82" rx="10" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+        <circle cx="78" cy="197" r="11" fill="#b45309"/>
+        <text x="78" y="201" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">3</text>
+        <text x="98" y="201" class="sv-title" font-size="13.5">Ca²⁺ 缓冲</text>
+        <text x="70" y="223" class="sv-small">MCU 单向转运体</text>
+        <text x="70" y="240" class="sv-small">缓冲胞质钙、匹配能量需求</text>
+      </g>
+      <g>
+        <rect x="835" y="174" width="230" height="82" rx="10" fill="#ffffff" stroke="#6d28d9" stroke-width="1.4"/>
+        <circle cx="858" cy="197" r="11" fill="#6d28d9"/>
+        <text x="858" y="201" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">4</text>
+        <text x="878" y="201" class="sv-title" font-size="13.5">合成工厂</text>
+        <text x="850" y="223" class="sv-small">铁硫簇、血红素、类固醇</text>
+        <text x="850" y="240" class="sv-small">部分氨基酸与脂质合成</text>
+      </g>
+      <g>
+        <rect x="55" y="313" width="230" height="82" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="1.4"/>
+        <circle cx="78" cy="336" r="11" fill="#0f766e"/>
+        <text x="78" y="340" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">5</text>
+        <text x="98" y="340" class="sv-title" font-size="13.5">氧化还原信号</text>
+        <text x="70" y="362" class="sv-small">ROS / RNS 区室化信号</text>
+        <text x="70" y="379" class="sv-small">Nrf2、HIF-1α、胰岛素敏感性</text>
+      </g>
+      <g>
+        <rect x="835" y="313" width="230" height="82" rx="10" fill="#ffffff" stroke="#b91c1c" stroke-width="1.4"/>
+        <circle cx="858" cy="336" r="11" fill="#b91c1c"/>
+        <text x="858" y="340" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">6</text>
+        <text x="878" y="340" class="sv-title" font-size="13.5">凋亡与免疫</text>
+        <text x="850" y="362" class="sv-small">细胞色素 c、mPTP</text>
+        <text x="850" y="379" class="sv-small">mtDAMP 释放与先天免疫</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 1 · 线粒体不是“能量工厂”单一功能</b><span>六类功能同时受衰老影响；这也是“线粒体功能障碍”难以用单一指标定义的原因。示意图，功能分类依据主流综述。</span></figcaption>
+  </figure>
+
+  <h3>1.1 三个所指：损伤、功能障碍、衰老驱动</h3>
+  <p>文献里的“mitochondrial aging”至少混用了三个层次。第一个是<b>分子损伤</b>：mtDNA 突变与缺失、蛋白质氧化、心磷脂过氧化、铁超载。第二个是<b>细胞器功能障碍</b>：呼吸能力下降、膜电位降低、分裂/融合失衡、mitophagy 效率下降、mtDAMP 泄漏。第三个是<b>系统后果</b>：器官功能下降、慢性炎症、干细胞耗竭、衰弱与多病共存。<span class="badge b">B</span></p>
+  <p>三个层次不是等号关系。一个 70 岁人的肌肉里可以测到大量 mtDNA 缺失，但呼吸能力可能因为冗余和代偿而保持正常；反过来，呼吸能力下降也可能来自核基因、底物供应或血管灌注，而不是线粒体本身。把“损伤”直接当成“功能障碍”，再把“功能障碍”直接当成“衰老原因”，是这一领域最常见的推理跳跃。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 380" role="img" aria-label="线粒体衰老的三个层次">
+      <defs>
+        <marker id="f2ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#5d6f80"/>
+        </marker>
+        <marker id="f2ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+        </marker>
+      </defs>
+
+      <rect x="80" y="30" width="960" height="88" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <text x="108" y="62" class="sv-title" font-size="16">层 1 · 分子损伤</text>
+      <text x="108" y="86" class="sv-label">mtDNA 点突变/大片段缺失 · 蛋白质氧化 · 心磷脂过氧化 · 铁超载</text>
+      <text x="760" y="86" class="sv-small">可测量，但与功能非线性</text>
+
+      <rect x="80" y="146" width="960" height="88" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+      <text x="108" y="178" class="sv-title" font-size="16">层 2 · 细胞器功能障碍</text>
+      <text x="108" y="202" class="sv-label">呼吸能力↓ · 膜电位↓ · 动力学失衡 · mitophagy↓ · mtDAMP 释放</text>
+      <text x="760" y="202" class="sv-small">受冗余、阈值、组织类型调节</text>
+
+      <rect x="80" y="262" width="960" height="88" rx="12" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+      <text x="108" y="294" class="sv-title" font-size="16">层 3 · 系统后果</text>
+      <text x="108" y="318" class="sv-label">器官功能↓ · 慢性炎症 · 干细胞耗竭 · 衰弱/多病共存</text>
+      <text x="760" y="318" class="sv-small">多因素汇合，难以归因单一机制</text>
+
+      <line x1="560" y1="118" x2="560" y2="142" stroke="#5d6f80" stroke-width="2" marker-end="url(#f2ar)"/>
+      <line x1="560" y1="234" x2="560" y2="258" stroke="#5d6f80" stroke-width="2" marker-end="url(#f2ar)"/>
+
+      <path d="M1050 306 C1092 306 1092 74 1050 74" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#f2ar2)"/>
+      <text x="1058" y="196" class="sv-small" fill="#b91c1c" transform="rotate(90 1058 196)">炎症 / ROS 反馈</text>
+
+      <text x="80" y="372" class="sv-small">阈值效应：分子损伤达到一定程度才转化为功能障碍；冗余越大，阈值越高。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 2 · 三个层次不是等号关系</b><span>从分子损伤到系统后果之间隔着阈值、冗余与代偿；把第一层直接当作第三层的原因，是证据降级的高发区。</span></figcaption>
+  </figure>
+
+  <h3>1.2 判断“衰老驱动因素”的五条标准</h3>
+  <p>本报告用五条标准筛证据，而不是只看“是否随年龄变化”：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:22%">标准</th><th>问题</th><th style="width:30%">线粒体领域的典型缺口</th></tr></thead>
+      <tbody>
+        <tr><td><b>时间顺序</b></td><td>变化是否先于表型，而不是表型的副产物？</td><td>多数人类研究是横断面，无法定序。</td></tr>
+        <tr><td><b>剂量-反应</b></td><td>损伤程度是否与功能下降单调相关？</td><td>阈值效应与冗余使相关性经常是阶梯形。</td></tr>
+        <tr><td><b>干预可逆</b></td><td>逆转该过程是否逆转衰老表型？</td><td>动物可行，人类功能终点很少。</td></tr>
+        <tr><td><b>人类遗传</b></td><td>人类变异是否提供因果证据？</td><td>罕见高外显变异不能外推到常见衰老。</td></tr>
+        <tr><td><b>独立性</b></td><td>是否独立于其他标志（炎症、衰老细胞、干细胞耗竭）？</td><td>线粒体与炎症、SASP 高度互为因果。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">这五条不是“必须全部满足”的清单，而是用来给证据强度排序。满足越多，越接近“驱动因素”；只满足第一条，通常只能算“标志物”。<span class="badge b">B</span>（方法学框架）</p>
+
+  <div class="callout warn">
+    <div class="cl-label">边界声明</div>
+    <p>本报告不主张线粒体是衰老的唯一原因，也不主张任何现有干预能延缓人类衰老。它主张的是：<b>线粒体功能障碍是衰老网络中的一个可测量、可干预、但高度依赖组织语境的节点</b>。把这个节点当成总开关，或者当成无关紧要的副产物，都是过度修正。</p>
+  </div>
+</section>
+
+<section id="s2" class="section">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <h2>六层机制地图</h2>
+      <p class="sec-sub">从 mtDNA 到细胞间传播：每一层都有独立的证据、独立的失败模式，也对应不同的干预节点。</p>
+    </div>
+  </div>
+
+  <p>把线粒体衰老拆成六层，不是为了制造分类，而是因为每一层的<b>时间尺度、检测方法、因果强度和可干预性</b>都不同。mtDNA 突变以年为单位积累；ROS 信号以秒到分钟计；蛋白质稳态以分钟到小时计；mitophagy 以小时到天计；细胞间转移以小时到周计。用同一套“线粒体功能”指标去覆盖所有层，必然会丢失信息。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:15%">层</th><th style="width:25%">核心分子/过程</th><th style="width:22%">衰老中的典型变化</th><th style="width:10%">证据</th><th>最接近的干预节点</th></tr></thead>
+      <tbody>
+        <tr><td><b>2.1 mtDNA</b></td><td>复制、修复、异质性、阈值、克隆扩增</td><td>点突变/大片段缺失积累；组织特异克隆扩增</td><td><span class="badge b">B</span></td><td>减少损伤、促进修复（尚无人类疗法）</td></tr>
+        <tr><td><b>2.2 ROS/ redox</b></td><td>复合体 I/III 泄漏、MnSOD、GPx、Nrf2</td><td>净氧化负荷↑，但信号性 ROS 可能↓</td><td><span class="badge a">A</span></td><td>运动、CR、mitohormesis；普通抗氧化剂无效</td></tr>
+        <tr><td><b>2.3 质量控制</b></td><td>LONP1、ClpXP、UPRmt、DRP1/MFN、PINK1/Parkin</td><td>蛋白酶活性↓、动力学碎片化、mitophagy↓</td><td><span class="badge b">B</span></td><td>mitophagy 诱导剂、运动</td></tr>
+        <tr><td><b>2.4 生物发生/代谢</b></td><td>PGC-1α、NRF1/2、TFAM、NAD⁺、底物选择</td><td>生物发生信号↓、NAD⁺ 组织池↓、FAO↓</td><td><span class="badge b">B</span></td><td>运动、NAD⁺ 前体（功能证据弱）</td></tr>
+        <tr><td><b>2.5 mtDAMP/炎症</b></td><td>mtDNA、mtRNA、心磷脂、cGAS-STING、NLRP3</td><td>胞质 mtDNA↑、IFN/IL-1β↑、SASP</td><td><span class="badge b">B</span></td><td>抗炎、senolytics（非线粒体特异）</td></tr>
+        <tr><td><b>2.6 细胞间传播</b></td><td>TNT、EV、mitocytosis、细胞融合</td><td>损伤线粒体/ mtDNA 在细胞间转移</td><td><span class="badge c">C</span></td><td>机制尚早，无成熟干预</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="s2-1">2.1 mtDNA 不稳定性与异质性</h3>
+  <p>人类 mtDNA 是一个 16,569 bp 的环状双链基因组，编码 37 个基因：13 个呼吸链亚基、22 个 tRNA、2 个 rRNA。每个细胞有数百到数千个拷贝，卵母细胞可达 10⁵–10⁶ 个。它没有组蛋白保护，复制不受细胞周期严格约束，DNA 修复以碱基切除修复为主，缺乏核苷酸切除修复和有效的重组。这些特性使它成为“高分辨率衰老记录器”，也成为突变的高发区。<span class="badge b">B</span></p>
+  <p>mtDNA 突变率通常被估计为核 DNA 的 100–1,000 倍。<span class="badge b">B</span> 但“突变率高”不等于“突变一定致病”。同一个细胞内可以同时存在野生型和突变型 mtDNA，这种状态叫<b>异质性</b>（heteroplasmy）。异质性从低到高，呼吸功能通常不是线性下降，而是在某个阈值之后突然塌陷——这就是<b>阈值效应</b>。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="mtDNA异质性与呼吸功能的阈值效应">
+      <defs>
+        <marker id="f3ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#5d6f80"/>
+        </marker>
+      </defs>
+      <rect x="110" y="40" width="890" height="300" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <!-- grid -->
+      <g stroke="#eef2f5" stroke-width="1">
+        <line x1="110" y1="100" x2="1000" y2="100"/><line x1="110" y1="160" x2="1000" y2="160"/>
+        <line x1="110" y1="220" x2="1000" y2="220"/><line x1="110" y1="280" x2="1000" y2="280"/>
+        <line x1="288" y1="40" x2="288" y2="340"/><line x1="466" y1="40" x2="466" y2="340"/>
+        <line x1="644" y1="40" x2="644" y2="340"/><line x1="822" y1="40" x2="822" y2="340"/>
+      </g>
+      <!-- threshold zone -->
+      <rect x="555" y="40" width="356" height="300" fill="#fef3c7" opacity=".45"/>
+      <text x="733" y="62" text-anchor="middle" class="sv-small" fill="#92400e">阈值区间（示意 50–90%）</text>
+      <line x1="555" y1="40" x2="555" y2="340" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <line x1="911" y1="40" x2="911" y2="340" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+      <!-- curves: y=340 is 0%, y=40 is 100% -->
+      <path d="M110 40 L790 40 C850 40 880 100 905 200 L1000 330" fill="none" stroke="#0f766e" stroke-width="3.2"/>
+      <path d="M110 40 L620 40 C700 40 740 90 770 180 L1000 330" fill="none" stroke="#1d4ed8" stroke-width="3.2"/>
+      <path d="M110 40 L520 40 C600 40 650 80 690 170 L1000 330" fill="none" stroke="#b91c1c" stroke-width="3.2"/>
+
+      <!-- labels -->
+      <text x="1008" y="330" class="sv-small" fill="#0f766e">tRNA 点突变</text>
+      <text x="1008" y="250" class="sv-small" fill="#1d4ed8">复合体 I 点突变</text>
+      <text x="1008" y="190" class="sv-small" fill="#b91c1c">大片段缺失</text>
+
+      <!-- axes -->
+      <line x1="110" y1="340" x2="1000" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="110" y1="40" x2="110" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="110" y="368" class="sv-label">0%</text>
+      <text x="466" y="368" text-anchor="middle" class="sv-label">40%</text>
+      <text x="733" y="368" text-anchor="middle" class="sv-label">70%</text>
+      <text x="1000" y="368" text-anchor="middle" class="sv-label">100%</text>
+      <text x="555" y="392" text-anchor="middle" class="sv-label">突变 mtDNA 异质性</text>
+      <text x="60" y="190" text-anchor="middle" class="sv-label" transform="rotate(-90 60 190)">呼吸能力（相对值）</text>
+      <text x="92" y="46" text-anchor="end" class="sv-small">100</text>
+      <text x="92" y="226" text-anchor="end" class="sv-small">50</text>
+      <text x="92" y="346" text-anchor="end" class="sv-small">0</text>
+      <text x="110" y="414" class="sv-small">曲线为示意；真实阈值随突变类型、组织、核遗传背景与检测方法变化。点突变常需 60–90%，大片段缺失可更低。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 3 · 阈值效应：异质性不是线性剂量</b><span>同样的突变负荷，在不同组织、不同突变类型下可能意味着完全不同的呼吸能力；这也是“异质性 30%”无法单独作为临床指标的原因。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <p>阈值效应解释了一个反复出现的悖论：老年人血液里可以测到 mtDNA 异质性，但水平通常很低（多数 &lt;1%），远低于生化阈值；而尸检的终末分化组织里，单个细胞可能已经接近同质性突变。2025 年一项覆盖 47 种组织、838 名个体的线粒体 RNA 研究，把这种组织差异概括为“<b>双相分子钟</b>”：<span class="badge b">B</span></p>
+  <ul>
+    <li><b>持续更新的组织</b>（胃肠道、皮肤）： sporadic 突变随细胞分裂积累，克隆扩增明显，像是一个“复制错误时钟”。</li>
+    <li><b>终末分化组织</b>（心脏、脑）：突变集中在组织特异的“热点”，更像是一个“代谢负荷与线粒体周转时钟”，与细胞分裂无关。</li>
+  </ul>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="线粒体突变的双相时钟">
+      <defs>
+        <marker id="f4ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#5d6f80"/>
+        </marker>
+      </defs>
+
+      <!-- left panel -->
+      <rect x="60" y="40" width="480" height="280" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="300" y="66" text-anchor="middle" class="sv-title" font-size="14">分裂组织：复制错误时钟</text>
+      <text x="300" y="86" text-anchor="middle" class="sv-small">胃肠道、皮肤、血液</text>
+      <line x1="100" y1="290" x2="510" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="100" y1="100" x2="100" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+      <path d="M100 285 C180 282 240 265 300 225 C360 185 410 130 500 100" fill="none" stroke="#0f766e" stroke-width="3.2"/>
+      <text x="300" y="318" text-anchor="middle" class="sv-label">年龄 →</text>
+      <text x="76" y="195" text-anchor="middle" class="sv-label" transform="rotate(-90 76 195)">克隆扩增</text>
+      <text x="380" y="150" class="sv-small" fill="#0f766e">指数式上升</text>
+      <text x="120" y="120" class="sv-small">突变谱：复制错误样</text>
+
+      <!-- right panel -->
+      <rect x="580" y="40" width="480" height="280" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="820" y="66" text-anchor="middle" class="sv-title" font-size="14">终末分化组织：热点时钟</text>
+      <text x="820" y="86" text-anchor="middle" class="sv-small">心脏、脑、骨骼肌</text>
+      <line x1="620" y1="290" x2="1030" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="620" y1="100" x2="620" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+      <path d="M620 286 L760 270 C840 258 900 230 1020 150" fill="none" stroke="#1d4ed8" stroke-width="3.2"/>
+      <text x="820" y="318" text-anchor="middle" class="sv-label">年龄 →</text>
+      <text x="596" y="195" text-anchor="middle" class="sv-label" transform="rotate(-90 596 195)">热点异质性</text>
+      <text x="860" y="210" class="sv-small" fill="#1d4ed8">中晚年加速</text>
+      <text x="640" y="120" class="sv-small">突变谱：热点 + 大片段缺失</text>
+
+      <!-- bottom strip -->
+      <rect x="60" y="344" width="1000" height="58" rx="10" fill="#f8fafc" stroke="#e2e8ee"/>
+      <text x="80" y="368" class="sv-label"><tspan font-weight="700">共同点：</tspan>两条路径都产生克隆嵌合；bulk 测序都容易低估。</text>
+      <text x="80" y="390" class="sv-label"><tspan font-weight="700">关键差异：</tspan>分裂组织的突变谱更像复制错误；终末分化组织更像代谢/周转相关损伤。</text>
+      <text x="820" y="368" class="sv-small">来源：Nature Aging 2025（47 组织/838 人）</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 4 · 双相时钟：不同组织的 mtDNA 突变走不同的路</b><span>“mtDNA 突变随年龄增加”是真的，但增加的方式、位点与后果因组织而异；用一个血液指标去代表全身，是把两条曲线压成一个点。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout note">
+    <div class="cl-label">一个常被忽略的细节</div>
+    <p>2026 年 Nature 的约 75 万人分析发现，血液 mtDNA 单核苷酸变异的突变谱<b>更像复制错误，而不是氧化损伤</b>；几乎没有正向选择的证据；血液 mtDNA 变异与克隆性造血（CHIP）的驱动基因高度相关。<span class="badge a">A</span> 这直接动摇了“血液 mtDNA 突变 = 氧化损伤 = 衰老”的简单叙事。氧化损伤在终末分化组织里可能仍重要，但血液不是观察它的好窗口。</p>
+  </div>
+
+  <h3 id="s2-2">2.2 ROS、氧化还原与线粒体信号</h3>
+  <p>1956 年 Harman 提出自由基理论：衰老由自由基对细胞成分的累积损伤造成。这个框架在 20 世纪后半叶主导了线粒体衰老研究，也直接催生了“抗氧化剂抗衰老”的产业。今天回看，它的<b>强版本</b>——自由基是衰老的主要原因，清除自由基可以延缓衰老——已经被人类试验否定；它的<b>弱版本</b>——ROS 是重要的信号分子，氧化还原平衡参与衰老调控——仍然成立。<span class="badge a">A</span>（强版本被否定）<span class="badge b">B</span>（弱版本）</p>
+  <p>线粒体 ROS 主要来自呼吸链复合体 I 和 III 的电子泄漏：复合体 I 在反向电子传递（RET）时可产生大量超氧化物，复合体 III 的 Q 循环也会泄漏电子。超氧化物被 MnSOD 转化为 H₂O₂，后者可被 GPx、PRx、CAT 清除，也可修饰半胱氨酸残基，参与信号转导。Nrf2/Keap1、PI3K/Akt、MAPK、HIF-1α、胰岛素信号都受线粒体 ROS 调节。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 420" role="img" aria-label="ROS的剂量反应与线粒体应激适应">
+      <defs>
+        <linearGradient id="f5g1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#bbf7d0"/>
+        </linearGradient>
+        <linearGradient id="f5g2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fee2e2"/><stop offset="1" stop-color="#fecaca"/>
+        </linearGradient>
+      </defs>
+      <rect x="110" y="40" width="890" height="300" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <rect x="180" y="40" width="300" height="300" fill="url(#f5g1)" opacity=".55"/>
+      <rect x="560" y="40" width="440" height="300" fill="url(#f5g2)" opacity=".55"/>
+      <line x1="110" y1="340" x2="1000" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="110" y1="40" x2="110" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+      <!-- curve -->
+      <path d="M110 250 C160 230 200 150 260 105 C300 75 340 62 390 62 C450 62 490 95 530 150 C580 220 640 285 740 315 C820 338 920 340 1000 340" fill="none" stroke="#0f766e" stroke-width="3.4"/>
+      <!-- annotations -->
+      <text x="270" y="90" text-anchor="middle" class="sv-small" fill="#166534">生理信号窗口</text>
+      <text x="270" y="108" text-anchor="middle" class="sv-small" fill="#166534">Nrf2 · UPRmt · mitophagy</text>
+      <text x="760" y="90" text-anchor="middle" class="sv-small" fill="#991b1b">损伤窗口</text>
+      <text x="760" y="108" text-anchor="middle" class="sv-small" fill="#991b1b">脂质/蛋白/DNA 氧化 · mPTP</text>
+      <line x1="330" y1="62" x2="330" y2="340" stroke="#16a34a" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <line x1="560" y1="40" x2="560" y2="340" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="330" y="365" text-anchor="middle" class="sv-small" fill="#166534">运动 / CR 的适应窗口</text>
+      <text x="560" y="365" text-anchor="middle" class="sv-small" fill="#991b1b">抗氧化剂可能切断信号</text>
+      <!-- axes labels -->
+      <text x="555" y="392" text-anchor="middle" class="sv-label">线粒体 ROS / 应激水平</text>
+      <text x="60" y="190" text-anchor="middle" class="sv-label" transform="rotate(-90 60 190)">净功能收益</text>
+      <text x="96" y="46" text-anchor="end" class="sv-small">高</text>
+      <text x="96" y="340" text-anchor="end" class="sv-small">低</text>
+      <text x="110" y="414" class="sv-small">概念图：低到中等 ROS 触发适应性反应，过高则造成损伤；同一分子在不同剂量下方向相反。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 5 · ROS 的剂量-反应：同一分子，两种命运</b><span>“抗氧化”不是越彻底越好；低剂量 ROS 是应激适应信号，清除它可能同时清除了保护性反应。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <p>人类试验的结果相当一致：<b>普通抗氧化剂补充不降低死亡率</b>。维生素 E、β-胡萝卜素、维生素 C 的大型 RCT 与 meta 分析没有显示延缓衰老或延长寿命；高剂量 β-胡萝卜素在吸烟者中甚至增加肺癌风险。<span class="badge a">A</span> 线粒体靶向抗氧化剂（MitoQ、SkQ1）在动物模型中可改善部分衰老表型，但人类试验的终点多为血管功能、运动能力等中间指标，结果混合，且没有证明延缓衰老。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 390" role="img" aria-label="抗氧化剂失败的四个原因">
+      <rect x="60" y="26" width="1000" height="52" rx="10" fill="#fef2f2" stroke="#fca5a5"/>
+      <text x="560" y="58" text-anchor="middle" class="sv-title" font-size="16" fill="#991b1b">为什么“抗氧化 = 抗衰老”在人类试验中失败</text>
+
+      <g>
+        <rect x="60" y="104" width="480" height="112" rx="10" fill="#fff" stroke="#e2e8ee"/>
+        <circle cx="90" cy="134" r="13" fill="#0f766e"/>
+        <text x="90" y="139" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">1</text>
+        <text x="114" y="139" class="sv-title" font-size="14">区室化</text>
+        <text x="82" y="164" class="sv-label">普通抗氧化剂难以进入线粒体基质；</text>
+        <text x="82" y="184" class="sv-label">MitoQ/SkQ1 能靶向，但人类终点混合。</text>
+      </g>
+      <g>
+        <rect x="580" y="104" width="480" height="112" rx="10" fill="#fff" stroke="#e2e8ee"/>
+        <circle cx="610" cy="134" r="13" fill="#1d4ed8"/>
+        <text x="610" y="139" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">2</text>
+        <text x="634" y="139" class="sv-title" font-size="14">剂量与时机</text>
+        <text x="602" y="164" class="sv-label">清除低剂量信号性 ROS，可能阻断</text>
+        <text x="602" y="184" class="sv-label">Nrf2/UPRmt/mitophagy 等适应反应。</text>
+      </g>
+      <g>
+        <rect x="60" y="236" width="480" height="112" rx="10" fill="#fff" stroke="#e2e8ee"/>
+        <circle cx="90" cy="266" r="13" fill="#b45309"/>
+        <text x="90" y="271" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">3</text>
+        <text x="114" y="271" class="sv-title" font-size="14">ROS 类型不同</text>
+        <text x="82" y="296" class="sv-label">O₂·⁻、H₂O₂、·OH 的化学与生物学不同；</text>
+        <text x="82" y="316" class="sv-label">维生素 E 只作用于脂相自由基。</text>
+      </g>
+      <g>
+        <rect x="580" y="236" width="480" height="112" rx="10" fill="#fff" stroke="#e2e8ee"/>
+        <circle cx="610" cy="266" r="13" fill="#b91c1c"/>
+        <text x="610" y="271" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">4</text>
+        <text x="634" y="271" class="sv-title" font-size="14">代偿与冗余</text>
+        <text x="602" y="296" class="sv-label">抗氧化酶网络高度冗余；单一补充</text>
+        <text x="602" y="316" class="sv-label">很难改变净氧化负荷。</text>
+      </g>
+      <text x="560" y="378" text-anchor="middle" class="sv-small">结论：抗氧化剂不是“无效”，而是“用错了层级”；真正可干预的是氧化还原信号与质量控制，而不是把 ROS 归零。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 6 · 四个失败模式，而不是一个“抗氧化剂无效”</b><span>把失败归因于“剂量不够”或“吸收不好”会错过重点：问题在于靶点层级与信号的双向性。<span class="badge a">A</span>（人类试验）<span class="badge b">B</span>（机制解释）</span></figcaption>
+  </figure>
+
+  <p>这也解释了为什么<b>运动</b>在人类中比抗氧化剂更可靠：运动不是“清除 ROS”，而是短暂提高 ROS/钙/AMP 信号，触发线粒体生物发生、mitophagy 与抗氧化酶网络的整体适应。它是 mitohormesis 在人类身上最可重复的版本。<span class="badge a">A</span></p>
+
+<h3 id="s2-3">2.3 蛋白质稳态与质量控制</h3>
+  <p>线粒体蛋白质组约有 1,100–1,500 种蛋白，其中约 99% 由核基因编码，在胞质合成后通过 TOM/TIM 复合体导入。导入、折叠、组装、降解构成一条连续的“质量流水线”。衰老不是某一个蛋白酶突然失效，而是<b>五道闸门同时变窄</b>：分子伴侣与蛋白酶、UPRmt、分裂/融合、mitophagy、生物发生。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 500" role="img" aria-label="线粒体质量控制的五层漏斗">
+      <defs>
+        <marker id="f7ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#5d6f80"/>
+        </marker>
+      </defs>
+      <text x="40" y="32" class="sv-title" font-size="14">闸门（左）</text>
+      <text x="820" y="32" class="sv-title" font-size="14">衰老中的变化与失败后果（右）</text>
+
+      <!-- funnel segments -->
+      <g>
+        <polygon points="320,48 800,48 780,116 340,116" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.2"/>
+        <circle cx="390" cy="82" r="15" fill="#0f766e"/><text x="390" y="87" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">1</text>
+        <text x="418" y="78" class="sv-title" font-size="14">分子伴侣 / 蛋白酶</text>
+        <text x="418" y="98" class="sv-small">LONP1 · ClpXP · YME1L/OMA1 · m-AAA</text>
+        <text x="40" y="76" class="sv-label">降解错误折叠/氧化蛋白</text>
+        <text x="40" y="96" class="sv-small">基质、内膜、膜间隙</text>
+        <text x="820" y="76" class="sv-label">LONP1 活性↓；氧化蛋白聚集</text>
+        <text x="820" y="96" class="sv-small">错误折叠蛋白负荷↑ → 呼吸链组装受损</text>
+      </g>
+      <g>
+        <polygon points="340,124 780,124 758,192 362,192" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.2"/>
+        <circle cx="402" cy="158" r="15" fill="#1d4ed8"/><text x="402" y="163" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">2</text>
+        <text x="430" y="154" class="sv-title" font-size="14">UPRmt</text>
+        <text x="430" y="174" class="sv-small">ATFS-1（线虫）· ATF4/ATF5/HSF1（哺乳动物）</text>
+        <text x="40" y="152" class="sv-label">转录上调伴侣与蛋白酶</text>
+        <text x="40" y="172" class="sv-small">线粒体-核逆向信号</text>
+        <text x="820" y="152" class="sv-label">反应钝化；ATF4/ATF5 轴减弱</text>
+        <text x="820" y="172" class="sv-small">应激适应不足 → 损伤累积</text>
+      </g>
+      <g>
+        <polygon points="362,200 758,200 736,268 384,268" fill="#fef3c7" stroke="#b45309" stroke-width="1.2"/>
+        <circle cx="414" cy="234" r="15" fill="#b45309"/><text x="414" y="239" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">3</text>
+        <text x="442" y="230" class="sv-title" font-size="14">动力学（分裂 / 融合）</text>
+        <text x="442" y="250" class="sv-small">DRP1 · MFF · FIS1 ｜ MFN1/2 · OPA1</text>
+        <text x="40" y="228" class="sv-label">分裂隔离损伤；融合互补</text>
+        <text x="40" y="248" class="sv-small">网络形态与线粒体DNA混合</text>
+        <text x="820" y="228" class="sv-label">碎片化↑、融合↓、OPA1 加工异常</text>
+        <text x="820" y="248" class="sv-small">损伤无法隔离或互补 → 网络功能下降</text>
+      </g>
+      <g>
+        <polygon points="384,276 736,276 714,344 406,344" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.2"/>
+        <circle cx="426" cy="310" r="15" fill="#6d28d9"/><text x="426" y="315" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">4</text>
+        <text x="454" y="306" class="sv-title" font-size="14">Mitophagy</text>
+        <text x="454" y="326" class="sv-small">PINK1/Parkin · BNIP3/NIX · FUNDC1</text>
+        <text x="40" y="304" class="sv-label">清除整个损伤细胞器</text>
+        <text x="40" y="324" class="sv-small">泛素依赖与受体依赖两条路</text>
+        <text x="820" y="304" class="sv-label">清除效率↓；受损线粒体堆积</text>
+        <text x="820" y="324" class="sv-small">mtDAMP 泄漏 → 炎症（见 2.5）</text>
+      </g>
+      <g>
+        <polygon points="406,352 714,352 692,420 428,420" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.2"/>
+        <circle cx="438" cy="386" r="15" fill="#b91c1c"/><text x="438" y="391" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">5</text>
+        <text x="466" y="382" class="sv-title" font-size="14">生物发生</text>
+        <text x="466" y="402" class="sv-small">PGC-1α · NRF1/2 · TFAM</text>
+        <text x="40" y="380" class="sv-label">合成新线粒体/新拷贝</text>
+        <text x="40" y="400" class="sv-small">运动、寒冷、CR 可激活</text>
+        <text x="820" y="380" class="sv-label">PGC-1α 信号↓；TFAM↓</text>
+        <text x="820" y="400" class="sv-small">替换不足 → 净损伤积累</text>
+      </g>
+
+      <!-- arrows between segments -->
+      <line x1="560" y1="116" x2="560" y2="122" stroke="#5d6f80" stroke-width="2" marker-end="url(#f7ar)"/>
+      <line x1="560" y1="192" x2="560" y2="198" stroke="#5d6f80" stroke-width="2" marker-end="url(#f7ar)"/>
+      <line x1="560" y1="268" x2="560" y2="274" stroke="#5d6f80" stroke-width="2" marker-end="url(#f7ar)"/>
+      <line x1="560" y1="344" x2="560" y2="350" stroke="#5d6f80" stroke-width="2" marker-end="url(#f7ar)"/>
+
+      <text x="560" y="456" text-anchor="middle" class="sv-label"><tspan font-weight="700">净结果：</tspan>损伤积累 &gt; 清除 + 替换 → 跨越功能阈值。任何单层增强，都可能被其他层的瓶颈抵消。</text>
+      <text x="560" y="480" text-anchor="middle" class="sv-small">示意图；分子列表为代表性而非穷尽。证据等级：B（多层机制均有独立文献，但人类因果证据不均）。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 7 · 五道闸门：质量控制是一个漏斗，不是一条通路</b><span>衰老中五层同时变化；只增强 mitophagy 或只补充 NAD⁺，都可能被蛋白酶、动力学或生物发生的瓶颈抵消。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <p>这五层之间不是串联关系，而是<b>互相补偿又互相竞争</b>。分裂可以把损伤段隔离，但过度分裂会碎片化网络、降低呼吸效率；融合可以互补突变，但也会把损伤扩散到健康网络；mitophagy 可以清除坏线粒体，但过度自噬在心肌等组织中可能有害；生物发生可以替换，但新线粒体也需要导入、折叠与组装。衰老更像是<b>调控带宽变窄</b>：每一层还能动，但动得不够快、不够准。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 410" role="img" aria-label="线粒体质量控制循环">
+      <defs>
+        <marker id="f8ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+        </marker>
+      </defs>
+      <circle cx="560" cy="210" r="150" fill="#f0fdfa" stroke="#99f6e4" stroke-width="2" stroke-dasharray="5 6"/>
+      <text x="560" y="204" text-anchor="middle" class="sv-title" font-size="16">线粒体网络健康</text>
+      <text x="560" y="226" text-anchor="middle" class="sv-small">质量控制循环</text>
+
+      <!-- nodes -->
+      <g>
+        <rect x="460" y="48" width="200" height="64" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.6"/>
+        <text x="560" y="74" text-anchor="middle" class="sv-title" font-size="14">分裂</text>
+        <text x="560" y="94" text-anchor="middle" class="sv-small">DRP1 · MFF · FIS1</text>
+      </g>
+      <g>
+        <rect x="760" y="178" width="200" height="64" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="1.6"/>
+        <text x="860" y="204" text-anchor="middle" class="sv-title" font-size="14">自噬</text>
+        <text x="860" y="224" text-anchor="middle" class="sv-small">PINK1/Parkin · BNIP3</text>
+      </g>
+      <g>
+        <rect x="460" y="308" width="200" height="64" rx="12" fill="#fff" stroke="#b45309" stroke-width="1.6"/>
+        <text x="560" y="334" text-anchor="middle" class="sv-title" font-size="14">生物发生</text>
+        <text x="560" y="354" text-anchor="middle" class="sv-small">PGC-1α · NRF1/2 · TFAM</text>
+      </g>
+      <g>
+        <rect x="160" y="178" width="200" height="64" rx="12" fill="#fff" stroke="#6d28d9" stroke-width="1.6"/>
+        <text x="260" y="204" text-anchor="middle" class="sv-title" font-size="14">融合</text>
+        <text x="260" y="224" text-anchor="middle" class="sv-small">MFN1/2 · OPA1</text>
+      </g>
+
+      <!-- circular arrows -->
+      <path d="M665 78 C740 92 790 130 815 170" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#f8ar)"/>
+      <path d="M855 245 C830 300 760 330 670 340" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#f8ar)"/>
+      <path d="M455 340 C365 330 300 300 272 248" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#f8ar)"/>
+      <path d="M268 172 C292 128 360 92 450 76" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#f8ar)"/>
+
+      <!-- annotations -->
+      <text x="560" y="126" text-anchor="middle" class="sv-small" fill="#0f766e">隔离损伤段</text>
+      <text x="900" y="150" text-anchor="end" class="sv-small" fill="#1d4ed8">清除</text>
+      <text x="560" y="300" text-anchor="middle" class="sv-small" fill="#b45309">补充</text>
+      <text x="220" y="150" text-anchor="start" class="sv-small" fill="#6d28d9">互补</text>
+
+      <!-- age shifts -->
+      <text x="40" y="62" class="sv-small" fill="#b91c1c">衰老：分裂↑ 但碎片化</text>
+      <text x="880" y="62" class="sv-small" fill="#b91c1c">衰老：mitophagy↓</text>
+      <text x="40" y="386" class="sv-small" fill="#b91c1c">衰老：融合↓</text>
+      <text x="880" y="386" class="sv-small" fill="#b91c1c">衰老：生物发生信号↓</text>
+      <text x="560" y="398" text-anchor="middle" class="sv-small">方向性示意；不同组织、不同应激下可逆转。证据等级 B/C。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 8 · 质量控制是一个循环，任何一环变慢都会拖累其他环</b><span>“增强 mitophagy”不是万能钥匙；如果融合、生物发生或蛋白酶跟不上，清除后的网络仍然无法恢复。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="cl-label">反直觉</div>
+    <p>mitophagy 并非“越多越好”。在心肌、神经元等终末分化细胞中，过度自噬可能破坏线粒体网络、加重能量危机；而在另一些组织（如骨骼肌、免疫细胞）中，衰老伴随的是 mitophagy 不足。<span class="badge b">B</span> 因此，“mitophagy 诱导剂”不能假设在所有器官中同向获益——这也是 urolithin A 等药物终点不一致的可能原因之一。</p>
+  </div>
+
+  <h3 id="s2-4">2.4 生物发生与代谢重塑</h3>
+  <p>线粒体生物发生由 PGC-1α 及其下游 NRF1/NRF2、TFAM 调控。运动、寒冷暴露、热量限制、β-肾上腺素能信号都可激活这条轴。衰老中 PGC-1α 的表达与活性在多数组织下降，但人类骨骼肌的证据并不一致：有些研究显示老年人在基线时 PGC-1α 并不低，但对运动或胰岛素的反应变钝。<span class="badge b">B</span> 这提示问题可能不是“开关坏了”，而是“开关对信号的响应变窄”。</p>
+  <p>NAD⁺ 是这条轴上的关键辅因子。它既是氧化还原载体，也是 sirtuins、PARP、CD38 的底物。衰老中组织 NAD⁺ 池下降的假说，主要基于动物模型和部分人类组织样本；但 2026 年一项严格预分析的研究发现，<b>全血 NAD⁺ 并不随年龄或生活方式干预变化</b>，只有 NR 补充能提高它。<span class="badge a">A</span> 这并不意味着组织 NAD⁺ 不下降，而是说“抽血测 NAD⁺”不是一个可靠的衰老指标。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 420" role="img" aria-label="NAD+池的分配与衰老变化">
+      <text x="40" y="34" class="sv-title" font-size="14">NAD⁺ 池的分配（概念模型）</text>
+      <text x="40" y="54" class="sv-small">同一池 NAD⁺ 被四类消费者竞争；衰老时池变小，分配也改变。</text>
+
+      <!-- young bar -->
+      <text x="40" y="106" class="sv-label" font-weight="700">年轻组织</text>
+      <rect x="160" y="82" width="800" height="46" rx="6" fill="#e2e8ee"/>
+      <rect x="160" y="82" width="200" height="46" fill="#0f766e"/>
+      <rect x="360" y="82" width="240" height="46" fill="#1d4ed8"/>
+      <rect x="600" y="82" width="200" height="46" fill="#b45309"/>
+      <rect x="800" y="82" width="160" height="46" fill="#6d28d9"/>
+      <text x="260" y="110" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">sirtuins 25%</text>
+      <text x="480" y="110" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">PARP 30%</text>
+      <text x="700" y="110" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">CD38 25%</text>
+      <text x="880" y="110" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">redox 20%</text>
+
+      <!-- aged bar -->
+      <text x="40" y="226" class="sv-label" font-weight="700">衰老组织</text>
+      <rect x="160" y="202" width="560" height="46" rx="6" fill="#e2e8ee"/>
+      <rect x="160" y="202" width="84" height="46" fill="#0f766e"/>
+      <rect x="244" y="202" width="196" height="46" fill="#1d4ed8"/>
+      <rect x="440" y="202" width="224" height="46" fill="#b45309"/>
+      <rect x="664" y="202" width="56" height="46" fill="#6d28d9"/>
+      <text x="202" y="230" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">15%</text>
+      <text x="342" y="230" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">35%</text>
+      <text x="552" y="230" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">40%</text>
+      <text x="692" y="230" text-anchor="middle" class="sv-white" font-size="10" font-weight="700">10%</text>
+      <text x="740" y="230" class="sv-small" fill="#b91c1c">池缩小 ~30%（示意）</text>
+
+      <!-- annotation -->
+      <rect x="160" y="286" width="800" height="86" rx="10" fill="#f8fafc" stroke="#e2e8ee"/>
+      <text x="180" y="312" class="sv-label"><tspan font-weight="700">关键点：</tspan>“提高 NAD⁺”不等于“恢复年轻分配”。CD38 随衰老/炎症上升，会进一步消耗 NAD⁺；</text>
+      <text x="180" y="334" class="sv-label">PARP 被 DNA 损伤激活，也会与 sirtuins 竞争。单补 NR/NMN 可能提高总池，但不一定把流量导向 sirtuins。</text>
+      <text x="180" y="356" class="sv-small">全血 NAD⁺ 不随年龄下降（2026 Nat Metab）；图示为组织水平概念模型，比例非实测值。</text>
+
+      <text x="40" y="404" class="sv-small">证据：组织 NAD⁺ 下降 B；全血 NAD⁺ 无年龄变化 A；NAD⁺ 前体改善功能终点 B/C。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 9 · NAD⁺ 不是一种“抗衰老货币”，而是一个被多方竞争的池</b><span>衰老改变的不只是池的大小，还有流向；补充前体提高总池，不等于恢复 sirtuin 通量。<span class="badge b">B</span>（组织）<span class="badge a">A</span>（全血无下降）</span></figcaption>
+  </figure>
+
+  <p>与 NAD⁺ 并行的是<b>底物选择</b>的变化。年轻骨骼肌和心肌在静息时以脂肪酸氧化为主，运动或应激时可灵活切换到葡萄糖/酮体。衰老常伴随“代谢灵活性”下降：脂肪酸氧化能力降低，脂质中间体（二酰甘油、神经酰胺）积累，进一步损害胰岛素信号和线粒体功能。<span class="badge b">B</span> 但这个变化高度依赖组织、活动水平与体成分，不能用一个“ FAO 下降”概括所有老年人。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 390" role="img" aria-label="衰老中的线粒体底物选择变化">
+      <!-- axes -->
+      <line x1="180" y1="320" x2="980" y2="320" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="180" y1="60" x2="180" y2="320" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="180" y="348" class="sv-label">年轻</text>
+      <text x="940" y="348" class="sv-label">老年</text>
+      <text x="560" y="348" text-anchor="middle" class="sv-label">年龄 / 衰老程度 →</text>
+      <text x="96" y="190" text-anchor="middle" class="sv-label" transform="rotate(-90 96 190)">ATP 来源占比（%）</text>
+      <text x="160" y="66" text-anchor="end" class="sv-small">80</text>
+      <text x="160" y="196" text-anchor="end" class="sv-small">40</text>
+      <text x="160" y="326" text-anchor="end" class="sv-small">0</text>
+      <g stroke="#eef2f5" stroke-width="1">
+        <line x1="180" y1="130" x2="980" y2="130"/><line x1="180" y1="195" x2="980" y2="195"/><line x1="180" y1="260" x2="980" y2="260"/>
+      </g>
+
+      <!-- lines -->
+      <line x1="240" y1="130" x2="900" y2="180" stroke="#b45309" stroke-width="3.4"/>
+      <line x1="240" y1="228" x2="900" y2="188" stroke="#1d4ed8" stroke-width="3.4"/>
+      <line x1="240" y1="305" x2="900" y2="305" stroke="#6d28d9" stroke-width="2.4" stroke-dasharray="6 5"/>
+
+      <circle cx="240" cy="130" r="6" fill="#b45309"/><circle cx="900" cy="180" r="6" fill="#b45309"/>
+      <circle cx="240" cy="228" r="6" fill="#1d4ed8"/><circle cx="900" cy="188" r="6" fill="#1d4ed8"/>
+      <circle cx="240" cy="305" r="5" fill="#6d28d9"/><circle cx="900" cy="305" r="5" fill="#6d28d9"/>
+
+      <text x="250" y="118" class="sv-label" fill="#b45309">脂肪酸氧化 60%</text>
+      <text x="910" y="176" class="sv-label" fill="#b45309">45%</text>
+      <text x="250" y="248" class="sv-label" fill="#1d4ed8">葡萄糖氧化 35%</text>
+      <text x="910" y="208" class="sv-label" fill="#1d4ed8">50%</text>
+      <text x="250" y="296" class="sv-label" fill="#6d28d9">酮体 5%</text>
+      <text x="910" y="300" class="sv-label" fill="#6d28d9">5%</text>
+
+      <rect x="600" y="52" width="360" height="60" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="620" y="76" class="sv-small" fill="#92400e">衰老：脂肪酸氧化↓、葡萄糖依赖↑</text>
+      <text x="620" y="96" class="sv-small" fill="#92400e">代谢灵活性↓ → 脂质中间体积累</text>
+      <text x="180" y="378" class="sv-small">示意图；数值为概念性，不代表某一组织的实测均值。骨骼肌、心脏、肝脏的底物选择差异很大。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 10 · 底物转换：不是“能量不够”，而是“换挡变慢”</b><span>衰老更一致的变化是代谢灵活性下降，而不是某一种底物的绝对缺失；这也解释了为什么单纯补充能量底物很少有效。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3 id="s2-5">2.5 mtDAMP、炎症与 MiDAS</h3>
+  <p>损伤的线粒体不只是“能量不足”，它还是一个<b>免疫信号源</b>。mtDNA 含有未甲基化的 CpG 基序，mtRNA 可形成双链结构，心磷脂是细菌样脂质，细胞色素 c 和 ATP 也都能被先天免疫系统识别。这些分子统称<b>线粒体损伤相关分子模式</b>（mtDAMPs）。当线粒体膜完整性下降、mPTP 开放或 mitophagy 不足时，它们泄漏到胞质或细胞外，激活 cGAS-STING、NLRP3、TLR9、MAVS/RIG-I/MDA5 等通路。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 470" role="img" aria-label="mtDAMP的释放与先天免疫通路">
+      <rect x="20" y="20" width="1080" height="42" rx="8" fill="#f1f5f9"/>
+      <text x="150" y="47" text-anchor="middle" class="sv-title" font-size="13">mtDAMP</text>
+      <text x="470" y="47" text-anchor="middle" class="sv-title" font-size="13">受体 / 感应器</text>
+      <text x="750" y="47" text-anchor="middle" class="sv-title" font-size="13">通路</text>
+      <text x="970" y="47" text-anchor="middle" class="sv-title" font-size="13">输出</text>
+
+      <!-- rows -->
+      <g>
+        <rect x="40" y="78" width="220" height="44" rx="8" fill="#ccfbf1" stroke="#0f766e"/>
+        <text x="150" y="105" text-anchor="middle" class="sv-label" font-weight="700">mtDNA（CpG）</text>
+        <rect x="340" y="78" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="105" text-anchor="middle" class="sv-label">cGAS–STING / TLR9</text>
+        <text x="750" y="105" text-anchor="middle" class="sv-label">TBK1–IRF3 / NF-κB</text>
+        <text x="970" y="105" text-anchor="middle" class="sv-label" fill="#b91c1c">IFN-β、炎症因子</text>
+      </g>
+      <g>
+        <rect x="40" y="136" width="220" height="44" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+        <text x="150" y="163" text-anchor="middle" class="sv-label" font-weight="700">mtRNA（dsRNA）</text>
+        <rect x="340" y="136" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="163" text-anchor="middle" class="sv-label">MAVS / RIG-I / MDA5</text>
+        <text x="750" y="163" text-anchor="middle" class="sv-label">IRF3 / NF-κB</text>
+        <text x="970" y="163" text-anchor="middle" class="sv-label" fill="#b91c1c">I 型干扰素</text>
+      </g>
+      <g>
+        <rect x="40" y="194" width="220" height="44" rx="8" fill="#fef3c7" stroke="#b45309"/>
+        <text x="150" y="221" text-anchor="middle" class="sv-label" font-weight="700">心磷脂</text>
+        <rect x="340" y="194" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="221" text-anchor="middle" class="sv-label">NLRP3</text>
+        <text x="750" y="221" text-anchor="middle" class="sv-label">ASC–caspase-1</text>
+        <text x="970" y="221" text-anchor="middle" class="sv-label" fill="#b91c1c">IL-1β、IL-18</text>
+      </g>
+      <g>
+        <rect x="40" y="252" width="220" height="44" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+        <text x="150" y="279" text-anchor="middle" class="sv-label" font-weight="700">细胞色素 c</text>
+        <rect x="340" y="252" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="279" text-anchor="middle" class="sv-label">Apaf-1</text>
+        <text x="750" y="279" text-anchor="middle" class="sv-label">caspase-9</text>
+        <text x="970" y="279" text-anchor="middle" class="sv-label" fill="#b91c1c">凋亡</text>
+      </g>
+      <g>
+        <rect x="40" y="310" width="220" height="44" rx="8" fill="#fce7f3" stroke="#be185d"/>
+        <text x="150" y="337" text-anchor="middle" class="sv-label" font-weight="700">ATP</text>
+        <rect x="340" y="310" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="337" text-anchor="middle" class="sv-label">P2X7</text>
+        <text x="750" y="337" text-anchor="middle" class="sv-label">NLRP3 / 离子流</text>
+        <text x="970" y="337" text-anchor="middle" class="sv-label" fill="#b91c1c">IL-1β、焦亡</text>
+      </g>
+      <g>
+        <rect x="40" y="368" width="220" height="44" rx="8" fill="#e2e8f0" stroke="#475569"/>
+        <text x="150" y="395" text-anchor="middle" class="sv-label" font-weight="700">甲酰肽</text>
+        <rect x="340" y="368" width="260" height="44" rx="8" fill="#fff" stroke="#93c5fd"/>
+        <text x="470" y="395" text-anchor="middle" class="sv-label">FPR1</text>
+        <text x="750" y="395" text-anchor="middle" class="sv-label">趋化 / 脱颗粒</text>
+        <text x="970" y="395" text-anchor="middle" class="sv-label" fill="#b91c1c">中性粒细胞浸润</text>
+      </g>
+
+      <!-- arrows -->
+      <g stroke="#94a3b8" stroke-width="1.6" marker-end="url(#f11ar)">
+        <line x1="260" y1="100" x2="336" y2="100"/><line x1="600" y1="100" x2="700" y2="100"/><line x1="800" y1="100" x2="900" y2="100"/>
+        <line x1="260" y1="158" x2="336" y2="158"/><line x1="600" y1="158" x2="700" y2="158"/><line x1="800" y1="158" x2="900" y2="158"/>
+        <line x1="260" y1="216" x2="336" y2="216"/><line x1="600" y1="216" x2="700" y2="216"/><line x1="800" y1="216" x2="900" y2="216"/>
+        <line x1="260" y1="274" x2="336" y2="274"/><line x1="600" y1="274" x2="700" y2="274"/><line x1="800" y1="274" x2="900" y2="274"/>
+        <line x1="260" y1="332" x2="336" y2="332"/><line x1="600" y1="332" x2="700" y2="332"/><line x1="800" y1="332" x2="900" y2="332"/>
+        <line x1="260" y1="390" x2="336" y2="390"/><line x1="600" y1="390" x2="700" y2="390"/><line x1="800" y1="390" x2="900" y2="390"/>
+      </g>
+      <defs>
+        <marker id="f11ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <text x="560" y="448" text-anchor="middle" class="sv-small">注：同一 mtDAMP 可激活多条通路；组织与细胞类型决定主导输出。证据等级 B（通路明确，人类因果不均）。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 11 · 损伤线粒体是免疫信号源</b><span>mtDNA、mtRNA、心磷脂、细胞色素 c、ATP、甲酰肽各自对应不同受体；这解释了为什么线粒体功能障碍常表现为“无菌性炎症”。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <p>这条通路把线粒体与衰老研究里的另一个核心框架连接起来：<b>细胞衰老</b>。线粒体功能障碍可导致 NAD⁺ 下降、ROS 升高、DNA 损伤，进而激活 p53-p21/p16-Rb，使细胞进入稳定的细胞周期停滞；这些衰老细胞分泌 IL-6、IL-8、MMP 等，形成 SASP。这条路径被称为<b>MiDAS</b>（mitochondrial dysfunction-associated senescence）。<span class="badge b">B</span> 它不是端粒缩短或癌基因诱导衰老的重复，而是另一条入口；三条路径可以汇合到同一个 SASP 表型。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 440" role="img" aria-label="MiDAS回路">
+      <defs>
+        <marker id="f12ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+        </marker>
+      </defs>
+      <!-- hexagon nodes -->
+      <g>
+        <rect x="460" y="40" width="200" height="60" rx="12" fill="#fff" stroke="#b91c1c" stroke-width="1.6"/>
+        <text x="560" y="66" text-anchor="middle" class="sv-title" font-size="13.5">线粒体功能障碍</text>
+        <text x="560" y="86" text-anchor="middle" class="sv-small">ATP↓ · ROS↑ · mtDNA 泄漏</text>
+      </g>
+      <g>
+        <rect x="760" y="120" width="200" height="60" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.6"/>
+        <text x="860" y="146" text-anchor="middle" class="sv-title" font-size="13.5">NAD⁺↓ / ROS↑</text>
+        <text x="860" y="166" text-anchor="middle" class="sv-small">sirtuin 活性↓</text>
+      </g>
+      <g>
+        <rect x="760" y="270" width="200" height="60" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="1.6"/>
+        <text x="860" y="296" text-anchor="middle" class="sv-title" font-size="13.5">DNA 损伤 / p53-p21</text>
+        <text x="860" y="316" text-anchor="middle" class="sv-small">p16-Rb 通路</text>
+      </g>
+      <g>
+        <rect x="460" y="350" width="200" height="60" rx="12" fill="#fff" stroke="#6d28d9" stroke-width="1.6"/>
+        <text x="560" y="376" text-anchor="middle" class="sv-title" font-size="13.5">细胞衰老</text>
+        <text x="560" y="396" text-anchor="middle" class="sv-small">稳定细胞周期停滞</text>
+      </g>
+      <g>
+        <rect x="160" y="270" width="200" height="60" rx="12" fill="#fff" stroke="#b45309" stroke-width="1.6"/>
+        <text x="260" y="296" text-anchor="middle" class="sv-title" font-size="13.5">SASP</text>
+        <text x="260" y="316" text-anchor="middle" class="sv-small">IL-6 · IL-8 · MMP</text>
+      </g>
+      <g>
+        <rect x="160" y="120" width="200" height="60" rx="12" fill="#fff" stroke="#be185d" stroke-width="1.6"/>
+        <text x="260" y="146" text-anchor="middle" class="sv-title" font-size="13.5">组织炎症/纤维化</text>
+        <text x="260" y="166" text-anchor="middle" class="sv-small">免疫细胞浸润</text>
+      </g>
+
+      <!-- arrows clockwise -->
+      <path d="M665 88 C720 98 760 108 790 118" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+      <path d="M860 182 L860 264" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+      <path d="M795 322 C740 338 690 350 665 360" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+      <path d="M455 380 C400 370 340 350 305 332" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+      <path d="M260 266 L260 186" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+      <path d="M320 112 C380 96 440 86 455 82" fill="none" stroke="#b45309" stroke-width="2.4" marker-end="url(#f12ar)"/>
+
+      <text x="560" y="228" text-anchor="middle" class="sv-title" font-size="17" fill="#92400e">MiDAS</text>
+      <text x="560" y="250" text-anchor="middle" class="sv-small">线粒体功能障碍相关衰老</text>
+      <text x="560" y="428" text-anchor="middle" class="sv-small">与端粒缩短、癌基因诱导衰老并行；三条路径可汇合到同一 SASP 表型。证据等级 B。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 12 · MiDAS：线粒体损伤如何把细胞推入衰老</b><span>线粒体功能障碍不仅是“能量问题”，它可以通过 NAD⁺/ROS/DNA 损伤把细胞锁定在衰老状态，再通过 SASP 把损伤扩散到组织。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout note">
+    <div class="cl-label">证据边界</div>
+    <p>mtDAMP 通路在细胞与动物模型中非常明确，但人类因果证据仍然有限：多数研究是相关性（患者组织中的 mtDNA 泄漏、cGAS 激活），真正的人类干预试验（STING 抑制剂、NLRP3 抑制剂）尚未在衰老适应症中完成。<span class="badge b">B</span>（机制）<span class="badge c">C</span>（人类因果） “抗炎”可能改善某些年龄相关疾病，但不能因此推断“线粒体是原因”。</p>
+  </div>
+
+  <h3 id="s2-6">2.6 细胞间传播与系统整合</h3>
+  <p>线粒体不是细胞内的孤岛。它们可以通过<b>隧道纳米管</b>（TNT）、<b>细胞外囊泡</b>（EV）、<b>mitocytosis</b>（细胞挤出含线粒体的囊泡，由巨噬细胞清除）、细胞融合或实验性线粒体移植在细胞之间转移。生理条件下，这可能是损伤清除、免疫调节或代谢支援；病理条件下，它也可能把损伤 mtDNA 或代谢异常传给邻近细胞。<span class="badge c">C</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 450" role="img" aria-label="线粒体细胞间转移的四条路径">
+      <!-- panel A -->
+      <rect x="30" y="30" width="500" height="180" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="50" y="56" class="sv-title" font-size="13.5">A · 隧道纳米管（TNT）</text>
+      <rect x="60" y="80" width="120" height="100" rx="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <circle cx="120" cy="112" r="14" fill="#ccfbf1" stroke="#0f766e"/>
+      <rect x="380" y="80" width="120" height="100" rx="18" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+      <circle cx="440" cy="112" r="14" fill="#dbeafe" stroke="#1d4ed8"/>
+      <path d="M180 130 C240 110 320 110 380 130" fill="none" stroke="#5d6f80" stroke-width="8" opacity=".25"/>
+      <path d="M180 130 C240 110 320 110 380 130" fill="none" stroke="#5d6f80" stroke-width="2" stroke-dasharray="4 4"/>
+      <ellipse cx="250" cy="120" rx="8" ry="5" fill="#0f766e"/><ellipse cx="300" cy="116" rx="8" ry="5" fill="#0f766e"/>
+      <text x="50" y="198" class="sv-small">细长膜管连接细胞，线粒体可双向移动。</text>
+
+      <!-- panel B -->
+      <rect x="590" y="30" width="500" height="180" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="610" y="56" class="sv-title" font-size="13.5">B · 细胞外囊泡（EV）</text>
+      <rect x="620" y="80" width="120" height="100" rx="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <circle cx="680" cy="112" r="14" fill="#ccfbf1" stroke="#0f766e"/>
+      <circle cx="790" cy="130" r="24" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>
+      <ellipse cx="790" cy="130" rx="8" ry="5" fill="#b45309"/>
+      <rect x="920" y="80" width="120" height="100" rx="18" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+      <circle cx="980" cy="112" r="14" fill="#dbeafe" stroke="#1d4ed8"/>
+      <path d="M740 130 L760 130" stroke="#94a3b8" stroke-width="2" marker-end="url(#f13ar)"/>
+      <path d="M816 130 L916 130" stroke="#94a3b8" stroke-width="2" marker-end="url(#f13ar)"/>
+      <text x="610" y="198" class="sv-small">囊泡携带线粒体/ mtDNA，被受体细胞摄取。</text>
+
+      <!-- panel C -->
+      <rect x="30" y="240" width="500" height="180" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="50" y="266" class="sv-title" font-size="13.5">C · Mitocytosis</text>
+      <rect x="60" y="290" width="140" height="100" rx="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <circle cx="130" cy="322" r="14" fill="#ccfbf1" stroke="#0f766e"/>
+      <circle cx="210" cy="355" r="18" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+      <ellipse cx="210" cy="355" rx="7" ry="4" fill="#b45309"/>
+      <rect x="330" y="300" width="150" height="80" rx="24" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+      <text x="405" y="346" text-anchor="middle" class="sv-small">巨噬细胞</text>
+      <path d="M228 355 L326 342" stroke="#94a3b8" stroke-width="2" marker-end="url(#f13ar)"/>
+      <text x="50" y="408" class="sv-small">受损线粒体被挤出，由巨噬细胞清除；心肌中较明确。</text>
+
+      <!-- panel D -->
+      <rect x="590" y="240" width="500" height="180" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="610" y="266" class="sv-title" font-size="13.5">D · 细胞融合 / 直接转移</text>
+      <rect x="620" y="290" width="150" height="100" rx="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <circle cx="675" cy="322" r="14" fill="#ccfbf1" stroke="#0f766e"/>
+      <rect x="770" y="290" width="150" height="100" rx="18" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+      <circle cx="825" cy="322" r="14" fill="#dbeafe" stroke="#1d4ed8"/>
+      <path d="M770 340 L740 340" stroke="#94a3b8" stroke-width="2" marker-end="url(#f13ar)"/>
+      <ellipse cx="735" cy="340" rx="8" ry="5" fill="#0f766e"/>
+      <text x="610" y="408" class="sv-small">细胞融合或实验性移植；人类治疗证据限于安全性。</text>
+
+      <defs>
+        <marker id="f13ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <text x="560" y="440" text-anchor="middle" class="sv-small">四条路径的生理意义与病理意义均未完全厘清；人类证据以体外/动物为主。证据等级 C。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 13 · 线粒体可以在细胞之间“搬家”</b><span>这为“局部线粒体损伤如何变成系统性问题”提供了机制，但也意味着体外实验里的“供体线粒体”可能改变受体细胞命运，解释需谨慎。<span class="badge c">C</span></span></figcaption>
+  </figure>
+
+  <p>把六层放在一起，系统整合的图景就出现了：骨骼肌释放 irisin/IL-6，脂肪释放 adiponectin/游离脂肪酸，免疫细胞释放 TNF/IL-1β，脑释放 BDNF/乳酸，肝释放 FGF21，肾清除尿毒症毒素。这些介质既受线粒体功能调节，又反过来调节其他器官的线粒体功能。线粒体衰老因此不是“每个器官各自变老”，而是<b>通过循环介质耦合的 network aging</b>。<span class="badge b">B</span>（机制）<span class="badge c">C</span>（人类系统因果）</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 470" role="img" aria-label="线粒体衰老的系统整合网络">
+      <defs>
+        <marker id="f14ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <circle cx="560" cy="230" r="78" fill="#0f766e"/>
+      <text x="560" y="222" text-anchor="middle" class="sv-white" font-size="16" font-weight="700">线粒体功能</text>
+      <text x="560" y="246" text-anchor="middle" fill="#ccfbf1" font-size="11">系统整合节点</text>
+
+      <!-- organ nodes -->
+      <g>
+        <rect x="70" y="70" width="180" height="56" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="160" y="94" text-anchor="middle" class="sv-title" font-size="14">骨骼肌</text>
+        <text x="160" y="114" text-anchor="middle" class="sv-small">irisin · IL-6 · 乳酸</text>
+      </g>
+      <g>
+        <rect x="870" y="70" width="180" height="56" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="960" y="94" text-anchor="middle" class="sv-title" font-size="14">脂肪组织</text>
+        <text x="960" y="114" text-anchor="middle" class="sv-small">adiponectin · FFA</text>
+      </g>
+      <g>
+        <rect x="70" y="334" width="180" height="56" rx="12" fill="#fff" stroke="#6d28d9" stroke-width="1.5"/>
+        <text x="160" y="358" text-anchor="middle" class="sv-title" font-size="14">免疫系统</text>
+        <text x="160" y="378" text-anchor="middle" class="sv-small">TNF · IL-1β · IFN</text>
+      </g>
+      <g>
+        <rect x="870" y="334" width="180" height="56" rx="12" fill="#fff" stroke="#b45309" stroke-width="1.5"/>
+        <text x="960" y="358" text-anchor="middle" class="sv-title" font-size="14">脑</text>
+        <text x="960" y="378" text-anchor="middle" class="sv-small">BDNF · 乳酸 · mtDAMP</text>
+      </g>
+      <g>
+        <rect x="330" y="392" width="150" height="52" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="405" y="414" text-anchor="middle" class="sv-title" font-size="13.5">肝脏</text>
+        <text x="405" y="432" text-anchor="middle" class="sv-small">FGF21</text>
+      </g>
+      <g>
+        <rect x="640" y="392" width="150" height="52" rx="12" fill="#fff" stroke="#b91c1c" stroke-width="1.5"/>
+        <text x="715" y="414" text-anchor="middle" class="sv-title" font-size="13.5">肾脏</text>
+        <text x="715" y="432" text-anchor="middle" class="sv-small">尿毒症毒素 · mtDNA</text>
+      </g>
+
+      <!-- edges -->
+      <g stroke="#94a3b8" stroke-width="2" marker-end="url(#f14ar)">
+        <line x1="250" y1="110" x2="485" y2="205"/>
+        <line x1="870" y1="110" x2="635" y2="205"/>
+        <line x1="250" y1="350" x2="485" y2="255"/>
+        <line x1="870" y1="350" x2="635" y2="255"/>
+        <line x1="405" y1="392" x2="520" y2="300"/>
+        <line x1="715" y1="392" x2="600" y2="300"/>
+      </g>
+      <!-- feedback dashed -->
+      <path d="M160 130 C120 230 120 280 160 334" fill="none" stroke="#b91c1c" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#f14ar)"/>
+      <path d="M960 130 C1000 230 1000 280 960 334" fill="none" stroke="#b91c1c" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#f14ar)"/>
+      <text x="98" y="240" class="sv-small" fill="#b91c1c" transform="rotate(-90 98 240)">炎症反馈</text>
+      <text x="1018" y="240" class="sv-small" fill="#b91c1c" transform="rotate(90 1018 240)">代谢反馈</text>
+      <text x="560" y="458" text-anchor="middle" class="sv-small">实线：有较好人类/动物证据的介质；虚线：炎症与代谢反馈。证据等级 B/C。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 14 · 系统整合：器官通过循环介质耦合</b><span>线粒体衰老不是“每个器官各自变老”，而是肌肉、脂肪、免疫、脑、肝、肾通过介质互相拖累；这也是多病共存（multimorbidity）的一个可检验解释。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="cl-label">机制地图的边界</div>
+    <p>六层机制不是六个独立的“病因”，而是一个<b>带反馈的网络</b>。mtDNA 突变可以触发 mtDAMP，mtDAMP 可以加重质量控制失败，质量控制失败又可以增加突变。任何“单层归因”都会在因果推断上失败；真正可检验的，是<b>哪一层在哪个组织、哪个年龄窗口、对哪个功能终点贡献最大</b>。</p>
+  </div>
+</section>
+
+<section id="s3" class="section">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <h2>因果证据阶梯</h2>
+      <p class="sec-sub">机制存在不等于因果驱动。这一节按“能证明什么”排序，而不是按研究热度排序。</p>
+    </div>
+  </div>
+
+  <p>线粒体衰老的文献里，最常见的推理是：“老年组织里 X 变了，所以 X 导致衰老。”这在逻辑上不成立。X 可能是衰老的副产物、代偿反应，或者与真正的驱动因素共享一个上游原因。要跨过这道墙，需要不同类型的证据：动物模型的机制操纵、人类遗传变异、组织特异的体细胞突变、以及能改变功能终点的干预。<span class="badge b">B</span></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:17%">证据类型</th><th style="width:24%">代表模型/研究</th><th style="width:25%">能证明什么</th><th>不能证明什么</th><th style="width:8%">等级</th></tr></thead>
+      <tbody>
+        <tr><td><b>mtDNA mutator 小鼠</b></td><td>POLG 核酸外切酶缺陷（Trifunovic 2004；Kujoth 2005）</td><td>mtDNA 突变足以驱动衰老样表型</td><td>正常衰老由同等突变负荷驱动</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>人类线粒体病</b></td><td>m.3243A>G、大片段缺失、核基因变异</td><td>高异质性/缺失可导致多系统衰老样表型</td><td>常见衰老的因果</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>单细胞组织突变</b></td><td>&gt;14 万细胞、4 物种、7 组织（Nat Commun 2025）</td><td>隐秘突变在终末分化组织随年龄积累</td><td>人类器官功能的因果</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>血液 mtDNA 异质性</b></td><td>UK Biobank 194,871 人（Hong 2023）</td><td>与死亡/CHD 关联；反映克隆性造血</td><td>因果；实体组织衰老</td><td><span class="badge a">A</span>（关联）</td></tr>
+        <tr><td><b>mtDNA-CN + MR</b></td><td>QJM meta（2025）；JAHA MR（2023）</td><td>强关联；MR 不支持因果</td><td>因果驱动</td><td><span class="badge a">A</span></td></tr>
+        <tr><td><b>线粒体移植</b></td><td>急性缺血性卒中 Phase 1（2026）</td><td>安全性与可行性</td><td>疗效</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>mtDNA 编辑</b></td><td>小鼠 LHON 视觉功能 rescue（2025）</td><td>修正突变可恢复功能</td><td>人类安全/疗效</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>线粒体置换（MRT）</b></td><td>英国 8 名婴儿（2025）</td><td>阻断母系传递的可行性</td><td>长期安全；抗衰老</td><td><span class="badge c">C</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>3.1 mtDNA mutator 小鼠：证明“足以”，不证明“就是”</h3>
+  <p>2004–2005 年，两个独立团队构建了 POLG 核酸外切酶缺陷小鼠。这些小鼠的 mtDNA 复制错误不能被校对，突变负荷迅速升高，出现脱毛、骨质疏松、心肌病、听力损失、肌少症、生殖力下降和寿命缩短——一套典型的“早衰”表型。<span class="badge b">B</span> 这是线粒体衰老领域最重要的机制证据之一：它证明<b>mtDNA 突变足以驱动衰老样表型</b>。</p>
+  <p>但它不能证明<b>正常衰老就是由同样的机制驱动</b>。mutator 小鼠的突变负荷远高于生理性衰老；某些组织没有加速衰老；死因与正常老年小鼠不同；抗氧化剂并不能 rescue 表型。更准确的说法是：它是一个“原理验证”，不是一个“生理模型”。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="mtDNA mutator小鼠的表型与局限">
+      <text x="40" y="30" class="sv-title" font-size="14">mutator 小鼠：表型谱（左）与解释边界（右）</text>
+      <!-- bars -->
+      <g>
+        <text x="40" y="72" class="sv-label">寿命缩短</text><rect x="250" y="56" width="340" height="20" rx="4" fill="#0f766e"/><text x="600" y="71" class="sv-small">强</text>
+        <text x="40" y="112" class="sv-label">脱毛 / 皮肤老化</text><rect x="250" y="96" width="320" height="20" rx="4" fill="#0f766e"/><text x="580" y="111" class="sv-small">强</text>
+        <text x="40" y="152" class="sv-label">骨质疏松</text><rect x="250" y="136" width="300" height="20" rx="4" fill="#0f766e"/><text x="560" y="151" class="sv-small">强</text>
+        <text x="40" y="192" class="sv-label">心肌病</text><rect x="250" y="176" width="280" height="20" rx="4" fill="#0f766e"/><text x="540" y="191" class="sv-small">中强</text>
+        <text x="40" y="232" class="sv-label">听力损失</text><rect x="250" y="216" width="260" height="20" rx="4" fill="#0f766e"/><text x="520" y="231" class="sv-small">中强</text>
+        <text x="40" y="272" class="sv-label">肌少症</text><rect x="250" y="256" width="240" height="20" rx="4" fill="#0f766e"/><text x="500" y="271" class="sv-small">中</text>
+        <text x="40" y="312" class="sv-label">生殖力下降</text><rect x="250" y="296" width="220" height="20" rx="4" fill="#0f766e"/><text x="480" y="311" class="sv-small">中</text>
+        <text x="40" y="352" class="sv-label">神经行为改变</text><rect x="250" y="336" width="150" height="20" rx="4" fill="#99f6e4"/><text x="410" y="351" class="sv-small">可变</text>
+      </g>
+      <text x="250" y="386" class="sv-small">表型强度为定性示意，不是效应量。</text>
+
+      <!-- caveats -->
+      <rect x="700" y="56" width="380" height="300" rx="12" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="720" y="84" class="sv-title" font-size="13.5" fill="#92400e">为什么不能直接外推</text>
+      <text x="720" y="114" class="sv-label">① 突变负荷远高于生理性衰老</text>
+      <text x="720" y="136" class="sv-small">不是“自然积累”，而是“校对失效”。</text>
+      <text x="720" y="168" class="sv-label">② 表型不完全覆盖衰老</text>
+      <text x="720" y="190" class="sv-small">某些组织/功能没有加速下降。</text>
+      <text x="720" y="222" class="sv-label">③ 死因与正常老年不同</text>
+      <text x="720" y="244" class="sv-small">不能把寿命缩短等同于“衰老加速”。</text>
+      <text x="720" y="276" class="sv-label">④ 抗氧化剂不能 rescue</text>
+      <text x="720" y="298" class="sv-small">提示 ROS 不是唯一的下游通路。</text>
+      <text x="720" y="330" class="sv-small" fill="#92400e">结论：proof of principle，而非 normal aging model。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 15 · mutator 小鼠证明“mtDNA 突变足以”，不证明“正常衰老就是”</b><span>这是本报告对动物模型的基本态度：机制操纵可以证明必要性/充分性，但不能自动外推到人群衰老。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>3.2 人类遗传学：罕见高外显变异，能证明重要性，不能证明常见衰老</h3>
+  <p>人类线粒体病是最接近“人类实验”的证据。m.3243A>G 是最常见的致病 mtDNA 点突变之一，可引起 MELAS、MIDD（母系遗传糖尿病伴耳聋）、心肌病、肾病和骨骼肌病。异质性水平在组织间差异很大：肌肉和尿沉渣通常高于血液；这也意味着<b>用血检评估突变负荷会系统性低估</b>。<span class="badge b">B</span></p>
+  <p>大片段 mtDNA 缺失（如 KSS/CPEO）在肌肉中产生 COX 阴性纤维，呈现典型的“马赛克”模式；患者常伴眼外肌麻痹、心肌传导阻滞、糖尿病和听力损失——一套与衰老部分重叠的表型。<span class="badge b">B</span> 但这些都是<b>罕见、高外显</b>的变异。它们证明线粒体功能对人体的重要性，不证明常见衰老由同样的变异驱动。</p>
+  <p>真正改变游戏规则的是<b>克隆性造血</b>（CHIP）。DNMT3A、TET2、ASXL1 等基因的体细胞突变在老年人血液中克隆扩增，发生率随年龄上升；CHIP 与冠心病、卒中、血液肿瘤和全因死亡风险升高相关，且部分孟德尔随机化研究支持因果。<span class="badge a">A</span> 2026 年 Nature 进一步显示，血液 mtDNA 异质性很大程度上是 CHIP 的“读数”，而不是独立的线粒体衰老信号。<span class="badge a">A</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 450" role="img" aria-label="人类线粒体遗传证据的金字塔">
+      <!-- pyramid tiers -->
+      <polygon points="450,40 670,40 700,100 420,100" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.4"/>
+      <polygon points="420,100 700,100 740,160 380,160" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+      <polygon points="380,160 740,160 800,220 320,220" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.4"/>
+      <polygon points="320,220 800,220 860,280 260,280" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.4"/>
+      <polygon points="260,280 860,280 920,340 200,340" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.4"/>
+
+      <text x="560" y="66" text-anchor="middle" class="sv-title" font-size="13">罕见 mtDNA 病</text>
+      <text x="560" y="86" text-anchor="middle" class="sv-small">m.3243A>G · 大片段缺失</text>
+
+      <text x="560" y="126" text-anchor="middle" class="sv-title" font-size="13">罕见核基因线粒体病</text>
+      <text x="560" y="146" text-anchor="middle" class="sv-small">POLG · 复合体组装因子</text>
+
+      <text x="560" y="186" text-anchor="middle" class="sv-title" font-size="13">常见 mtDNA 变异 / 单倍型</text>
+      <text x="560" y="206" text-anchor="middle" class="sv-small">效应小，需大样本</text>
+
+      <text x="560" y="246" text-anchor="middle" class="sv-title" font-size="13">mtDNA-CN 常见变异 / 多基因</text>
+      <text x="560" y="266" text-anchor="middle" class="sv-small">GWAS 位点：TFAM、POLG、TERT 等</text>
+
+      <text x="560" y="306" text-anchor="middle" class="sv-title" font-size="13">体细胞突变 / CHIP</text>
+      <text x="560" y="326" text-anchor="middle" class="sv-small">DNMT3A · TET2 · ASXL1；频率随年龄↑</text>
+
+      <!-- axes -->
+      <line x1="150" y1="40" x2="150" y2="350" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#f16ar)"/>
+      <text x="120" y="200" text-anchor="middle" class="sv-label" transform="rotate(-90 120 200)">人群频率 →</text>
+      <line x1="970" y1="350" x2="970" y2="40" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#f16ar)"/>
+      <text x="1000" y="200" text-anchor="middle" class="sv-label" transform="rotate(90 1000 200)">外显率 / 效应 →</text>
+      <defs>
+        <marker id="f16ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+
+      <rect x="200" y="368" width="760" height="58" rx="10" fill="#f8fafc" stroke="#e2e8ee"/>
+      <text x="220" y="392" class="sv-label"><tspan font-weight="700">可外推性：</tspan>从上到下递减；但 CHIP 是例外——它常见、随年龄上升、且有人类因果证据。</text>
+      <text x="220" y="414" class="sv-small">罕见病变证明“线粒体功能重要”，不证明“常见衰老由同一机制驱动”。证据等级：上三层 B；CHIP A。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 16 · 人类遗传证据的金字塔</b><span>越往上，外显率越高、人群频率越低；越往下，越接近常见衰老，但效应越小、混杂越多。CHIP 是唯一同时具备“常见 + 年龄相关 + 因果证据”的层级。<span class="badge a">A</span>（CHIP）<span class="badge b">B</span>（其余）</span></figcaption>
+  </figure>
+
+  <h3>3.3 单细胞隐秘突变：bulk 测序看不见的那 91%</h3>
+  <p>常规 bulk 测序的异质性检测限约为 0.5–1%。大多数衰老相关的 mtDNA 突变低于这个阈值，因此被“平均掉”了。2025 年一项跨 4 个物种、7 种组织、超过 14 万个单细胞的研究，直接比较了 bulk 与单细胞的检出率：<b>约 9% 的突变能在 bulk 中看到，约 91% 只能在单细胞水平看到；在这 91% 中，约 94% 是单细胞独有的。</b><span class="badge b">B</span></p>
+  <p>这些“隐秘突变”在终末分化组织（脑、心、骨骼肌）中随年龄积累，且与内质网应激、神经退行标志相关；热量限制可以减缓其积累。这使它们成为<b>组织水平衰老的强候选机制</b>——比血液异质性更贴近实体器官。<span class="badge b">B</span> 但到目前为止，这仍是“随年龄积累 + 与表型相关”，而不是“操纵这些突变可改变器官衰老”的人类因果证据。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 390" role="img" aria-label="bulk与单细胞测序对mtDNA突变的检出差异">
+      <text x="40" y="30" class="sv-title" font-size="14">同样一批突变，两种测序能看到多少？</text>
+
+      <text x="40" y="92" class="sv-label" font-weight="700">全部突变</text>
+      <rect x="220" y="68" width="740" height="54" rx="6" fill="#e2e8ee"/>
+      <rect x="220" y="68" width="67" height="54" fill="#0f766e"/>
+      <rect x="287" y="68" width="673" height="54" fill="#f59e0b"/>
+      <text x="253" y="100" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">9%</text>
+      <text x="623" y="100" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">91% 仅单细胞可见</text>
+
+      <text x="40" y="202" class="sv-label" font-weight="700">其中异质性 &lt;0.5% 的突变</text>
+      <rect x="220" y="178" width="740" height="54" rx="6" fill="#e2e8ee"/>
+      <rect x="220" y="178" width="44" height="54" fill="#0f766e"/>
+      <rect x="264" y="178" width="696" height="54" fill="#b45309"/>
+      <text x="242" y="210" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">6%</text>
+      <text x="612" y="210" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">94% 仅单细胞可见</text>
+
+      <line x1="220" y1="252" x2="960" y2="252" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="220" y="274" class="sv-small">bulk 检测限 ~0.5–1% 异质性</text>
+      <text x="960" y="274" text-anchor="end" class="sv-small">异质性 →</text>
+
+      <rect x="220" y="298" width="740" height="62" rx="10" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="240" y="322" class="sv-label" fill="#92400e"><tspan font-weight="700">后果：</tspan>bulk 测序把 10 倍的信息量压成了 1 份；血液 bulk 数据尤其容易低估实体组织的突变负荷。</text>
+      <text x="240" y="344" class="sv-small" fill="#92400e">来源：Nat Commun 2025（&gt;14 万细胞、4 物种、7 组织）。证据等级 B。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 17 · bulk 测序低估了约 10 倍的 mtDNA 突变</b><span>“血液里没测到异质性”不等于“组织里没有突变”；检测方法决定了你能否看到衰老的分子痕迹。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>3.4 血液 mtDNA-CN：强关联，弱因果</h3>
+  <p>mtDNA 拷贝数（mtDNA-CN）是最容易测的线粒体指标：qPCR 或全基因组测序都能从全血中估计。2025 年 QJM 的系统综述与 meta 分析纳入 22 篇文章（13 项 CVD、8 项全因死亡），最低 vs 最高 mtDNA-CN 的汇总结果如下：<span class="badge a">A</span>（关联）</p>
+  <ul>
+    <li>CVD：RR 2.09（95% CI 1.59–2.75）</li>
+    <li>冠心病：RR 1.70（1.29–2.24）</li>
+    <li>心力衰竭：RR 1.43（1.15–1.79）</li>
+    <li>卒中：RR 1.88（1.08–3.28）</li>
+    <li>全因死亡：RR 1.33（1.21–1.47）</li>
+  </ul>
+  <p>但同一分析报告了极高的异质性（CVD 的 I²=95.8%）和发表偏倚证据（Egger P=0.005）。更关键的是，<b>孟德尔随机化不支持“低 mtDNA-CN 导致冠心病”</b>：JAHA 2023 的 MR 分析给出 OR 1.10（0.98–1.22），P=0.11；反向 MR 也不显著。<span class="badge a">A</span> 队列间的方向甚至相反：ARIC 的 HR 为 1.60（1.45–1.76），而 FHS 为 0.90（0.77–1.04），CHS 为 1.01（0.94–1.08）。<span class="badge a">A</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 560" role="img" aria-label="mtDNA-CN的观察性关联与因果检验">
+      <!-- Panel A -->
+      <text x="40" y="30" class="sv-title" font-size="14">A · 观察性关联：最低 vs 最高 mtDNA-CN（QJM 2025 meta）</text>
+      <line x1="300" y1="52" x2="300" y2="240" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <line x1="300" y1="240" x2="820" y2="240" stroke="#94a3b8" stroke-width="1.4"/>
+      <!-- ticks -->
+      <g class="sv-small">
+        <text x="300" y="260" text-anchor="middle">1.0</text>
+        <text x="468" y="260" text-anchor="middle">1.5</text>
+        <text x="588" y="260" text-anchor="middle">2.0</text>
+        <text x="756" y="260" text-anchor="middle">3.0</text>
+      </g>
+      <text x="820" y="260" text-anchor="end" class="sv-small">RR（对数轴）</text>
+
+      <!-- rows -->
+      <g>
+        <text x="40" y="84" class="sv-label">心血管病</text>
+        <line x1="492" y1="80" x2="720" y2="80" stroke="#0f766e" stroke-width="2"/>
+        <rect x="598" y="72" width="16" height="16" fill="#0f766e"/>
+        <text x="735" y="86" class="sv-small">2.09 (1.59–2.75)</text>
+      </g>
+      <g>
+        <text x="40" y="114" class="sv-label">冠心病</text>
+        <line x1="406" y1="110" x2="635" y2="110" stroke="#1d4ed8" stroke-width="2"/>
+        <rect x="512" y="102" width="16" height="16" fill="#1d4ed8"/>
+        <text x="650" y="116" class="sv-small">1.70 (1.29–2.24)</text>
+      </g>
+      <g>
+        <text x="40" y="144" class="sv-label">心力衰竭</text>
+        <line x1="358" y1="140" x2="542" y2="140" stroke="#b45309" stroke-width="2"/>
+        <rect x="440" y="132" width="16" height="16" fill="#b45309"/>
+        <text x="557" y="146" class="sv-small">1.43 (1.15–1.79)</text>
+      </g>
+      <g>
+        <text x="40" y="174" class="sv-label">卒中</text>
+        <line x1="332" y1="170" x2="793" y2="170" stroke="#6d28d9" stroke-width="2"/>
+        <rect x="554" y="162" width="16" height="16" fill="#6d28d9"/>
+        <text x="808" y="176" class="sv-small">1.88 (1.08–3.28)</text>
+      </g>
+      <g>
+        <text x="40" y="204" class="sv-label">全因死亡</text>
+        <line x1="379" y1="200" x2="460" y2="200" stroke="#b91c1c" stroke-width="2"/>
+        <rect x="411" y="192" width="16" height="16" fill="#b91c1c"/>
+        <text x="475" y="206" class="sv-small">1.33 (1.21–1.47)</text>
+      </g>
+      <text x="300" y="232" class="sv-small">I²=95.8%（CVD）；Egger P=0.005</text>
+
+      <!-- Panel B -->
+      <text x="40" y="304" class="sv-title" font-size="14">B · 因果检验：MR 与队列异质性</text>
+      <line x1="449" y1="322" x2="449" y2="510" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <line x1="300" y1="510" x2="820" y2="510" stroke="#94a3b8" stroke-width="1.4"/>
+      <g class="sv-small">
+        <text x="300" y="530" text-anchor="middle">0.6</text>
+        <text x="411" y="530" text-anchor="middle">0.9</text>
+        <text x="449" y="530" text-anchor="middle">1.0</text>
+        <text x="523" y="530" text-anchor="middle">1.2</text>
+        <text x="672" y="530" text-anchor="middle">1.6</text>
+        <text x="820" y="530" text-anchor="middle">2.0</text>
+      </g>
+      <text x="820" y="530" text-anchor="end" class="sv-small">OR / HR（线性轴）</text>
+
+      <g>
+        <text x="40" y="340" class="sv-label" font-weight="700">MR：CHD</text>
+        <line x1="441" y1="336" x2="530" y2="336" stroke="#b91c1c" stroke-width="2"/>
+        <rect x="482" y="328" width="16" height="16" fill="#b91c1c"/>
+        <text x="545" y="342" class="sv-small">1.10 (0.98–1.22), P=0.11</text>
+      </g>
+      <g>
+        <text x="40" y="368" class="sv-label">ARIC</text>
+        <line x1="616" y1="364" x2="731" y2="364" stroke="#0f766e" stroke-width="2"/>
+        <rect x="664" y="356" width="16" height="16" fill="#0f766e"/>
+        <text x="746" y="370" class="sv-small">1.60 (1.45–1.76)</text>
+      </g>
+      <g>
+        <text x="40" y="396" class="sv-label">CHS</text>
+        <line x1="441" y1="392" x2="463" y2="392" stroke="#0f766e" stroke-width="2"/>
+        <rect x="445" y="384" width="16" height="16" fill="#0f766e"/>
+        <text x="476" y="398" class="sv-small">1.01 (0.94–1.08)</text>
+      </g>
+      <g>
+        <text x="40" y="424" class="sv-label">FHS</text>
+        <line x1="363" y1="420" x2="416" y2="420" stroke="#0f766e" stroke-width="2"/>
+        <rect x="382" y="412" width="16" height="16" fill="#0f766e"/>
+        <text x="430" y="426" class="sv-small">0.90 (0.77–1.04)</text>
+      </g>
+      <g>
+        <text x="40" y="452" class="sv-label">GENOA</text>
+        <line x1="322" y1="448" x2="486" y2="448" stroke="#0f766e" stroke-width="2"/>
+        <rect x="397" y="440" width="16" height="16" fill="#0f766e"/>
+        <text x="500" y="454" class="sv-small">1.20 (0.66–2.19)</text>
+      </g>
+      <g>
+        <text x="40" y="480" class="sv-label">JHS</text>
+        <line x1="435" y1="476" x2="468" y2="476" stroke="#0f766e" stroke-width="2"/>
+        <rect x="443" y="468" width="16" height="16" fill="#0f766e"/>
+        <text x="482" y="482" class="sv-small">0.99 (0.83–1.17)</text>
+      </g>
+
+      <rect x="560" y="300" width="520" height="66" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+      <text x="578" y="324" class="sv-small" fill="#991b1b">关联很强，但方向不一致：ARIC 1.60 vs FHS 0.90。</text>
+      <text x="578" y="344" class="sv-small" fill="#991b1b">MR 不支持因果；血液指标受血细胞组成影响。</text>
+      <text x="560" y="552" text-anchor="middle" class="sv-small">来源：QJM 2025;118(1):5–15；JAHA 2023;12:e029090。证据等级 A（关联与 null MR），因果解释 B。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 18 · mtDNA-CN：一条强关联，两种解释</b><span>观察性数据支持“低拷贝数 = 高风险”，但 MR 与队列异质性不支持“低拷贝数导致疾病”。它更像一个整合性风险标志，而不是因果靶点。<span class="badge a">A</span></span></figcaption>
+  </figure>
+
+  <div class="callout stop">
+    <div class="cl-label">不要这样用</div>
+    <p>把 mtDNA-CN 当作“线粒体年龄”或“抗衰老疗效替代终点”是不成立的。它受血细胞组成、炎症、肾功能、采样与检测方法影响；在调整血细胞组成后，许多疾病关联消失。<span class="badge a">A</span> 如果一项干预只提高了 mtDNA-CN，却没有改善功能终点，不能称为“改善了线粒体衰老”。</p>
+  </div>
+
+  <h3>3.5 干预性因果检验：移植、编辑、置换</h3>
+  <p>如果线粒体功能障碍真的是因果驱动，那么“替换或修正线粒体”应该能改变表型。目前有三类人类或接近人类的检验：</p>
+  <ul>
+    <li><b>线粒体移植</b>：2026 年一项急性缺血性卒中 Phase 1 试验，在取栓过程中自体移植线粒体，报告无显著不良事件、安全性可比匹配对照；这是首次在人脑中使用，但<b>没有疗效证据</b>。<span class="badge c">C</span></li>
+    <li><b>mtDNA 编辑</b>：2025 年小鼠 LHON 模型中，体内碱基编辑恢复视觉功能；高精度胞嘧啶碱基编辑器也在开发中。人类治疗尚未开始。<span class="badge c">C</span></li>
+    <li><b>线粒体置换疗法（MRT）</b>：英国已出生 8 名 MRT 婴儿，短期健康，但其中 3 名检测到残留突变 mtDNA；长期安全性未知。MRT 不是基因编辑，而是把母系 mtDNA 替换为供体 mtDNA。<span class="badge c">C</span></li>
+  </ul>
+  <p>这些工作是“因果探针”：它们能告诉我们线粒体功能在多大程度上是可替换、可修正的。但它们不是现成的抗衰老疗法，也不能用“技术成功”推导“衰老可逆”。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="线粒体干预的因果证据阶梯">
+      <text x="40" y="30" class="sv-title" font-size="14">因果强度阶梯：从关联到机制 rescue</text>
+      <!-- steps -->
+      <g>
+        <rect x="80" y="300" width="180" height="70" rx="8" fill="#e2e8ee" stroke="#94a3b8"/>
+        <text x="170" y="326" text-anchor="middle" class="sv-title" font-size="13">1 · 观察性关联</text>
+        <text x="170" y="346" text-anchor="middle" class="sv-small">mtDNA-CN、异质性</text>
+        <text x="170" y="362" text-anchor="middle" class="sv-small">不能定因果</text>
+      </g>
+      <g>
+        <rect x="280" y="260" width="180" height="110" rx="8" fill="#fef3c7" stroke="#b45309"/>
+        <text x="370" y="286" text-anchor="middle" class="sv-title" font-size="13">2 · RCT 中间终点</text>
+        <text x="370" y="306" text-anchor="middle" class="sv-small">NAD⁺、urolithin A</text>
+        <text x="370" y="322" text-anchor="middle" class="sv-small">标志物变化 ≠ 功能获益</text>
+      </g>
+      <g>
+        <rect x="480" y="220" width="180" height="150" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+        <text x="570" y="246" text-anchor="middle" class="sv-title" font-size="13">3 · RCT 功能终点</text>
+        <text x="570" y="266" text-anchor="middle" class="sv-small">运动、6MWD、肌力</text>
+        <text x="570" y="282" text-anchor="middle" class="sv-small">目前最可靠的人类证据</text>
+      </g>
+      <g>
+        <rect x="680" y="180" width="180" height="190" rx="8" fill="#ccfbf1" stroke="#0f766e"/>
+        <text x="770" y="206" text-anchor="middle" class="sv-title" font-size="13">4 · RCT 临床终点</text>
+        <text x="770" y="226" text-anchor="middle" class="sv-small">硬终点：死亡、心衰住院</text>
+        <text x="770" y="242" text-anchor="middle" class="sv-small">线粒体领域几乎空白</text>
+      </g>
+      <g>
+        <rect x="880" y="140" width="180" height="230" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+        <text x="970" y="166" text-anchor="middle" class="sv-title" font-size="13">5 · 机制 rescue</text>
+        <text x="970" y="186" text-anchor="middle" class="sv-small">mtDNA 编辑、MRT</text>
+        <text x="970" y="202" text-anchor="middle" class="sv-small">目前仅动物/个案</text>
+        <text x="970" y="218" text-anchor="middle" class="sv-small">长期安全未知</text>
+      </g>
+
+      <!-- axis -->
+      <line x1="70" y1="392" x2="1080" y2="392" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="575" y="418" text-anchor="middle" class="sv-label">证据强度 / 因果接近度 →</text>
+      <line x1="70" y1="392" x2="70" y2="130" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#f19ar)"/>
+      <text x="48" y="260" text-anchor="middle" class="sv-label" transform="rotate(-90 48 260)">因果强度 →</text>
+      <defs>
+        <marker id="f19ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <line x1="280" y1="248" x2="960" y2="248" stroke="#b91c1c" stroke-width="2" stroke-dasharray="7 5"/>
+      <text x="620" y="240" text-anchor="middle" class="sv-small" fill="#b91c1c">大多数“抗衰老”声称停在第 2 级</text>
+      <text x="80" y="82" class="sv-small">注意：阶梯越高，证据越少；第 5 级不是“更强”，而是“更接近机制，但人类数据更少”。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 19 · 因果阶梯：大多数抗衰老声称停在第 2 级</b><span>标志物变化、功能改善、临床硬终点、机制 rescue 是四种不同强度的证据；把它们混为一谈，是“线粒体抗衰老”营销的核心手法。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout key">
+    <div class="cl-label">本节的结论</div>
+    <p>线粒体衰老的因果证据是“<b>分层成立</b>”的：mtDNA 突变足以在动物中驱动衰老样表型（B）；人类罕见变异证明线粒体功能的重要性（B）；CHIP 提供了常见、年龄相关、有人类因果证据的入口（A）；但“血液 mtDNA-CN 导致衰老”不成立（A 级 null MR）。<b>真正需要检验的，是组织特异突变与质量控制，而不是血液拷贝数。</b></p>
+  </div>
+</section>
+
+<section id="s4" class="section">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <h2>影响面：器官与系统</h2>
+      <p class="sec-sub">“影响面”不是“所有器官都会受影响”，而是：哪些器官、以多大效应、在什么年龄窗口、证据有多强。</p>
+    </div>
+  </div>
+
+  <p>把线粒体衰老平均分配给所有器官，是最常见的过度概括。实际上，器官之间的差异极大：心肌和神经元几乎完全依赖 OXPHOS，肾小管和视网膜 RPE 对线粒体损伤特别敏感；而皮肤成纤维细胞、肺泡上皮的证据则弱得多。影响面评估要同时看四个维度：<b>证据强度、效应量、年龄依赖性、可干预性</b>。<span class="badge b">B</span></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:13%">器官/系统</th><th style="width:18%">主要表型</th><th style="width:38%">关键证据</th><th style="width:8%">等级</th><th style="width:11%">年龄窗口</th><th>可干预性</th></tr></thead>
+      <tbody>
+        <tr><td><b>心脏</b></td><td>HFpEF、HFrEF、房颤、血管僵硬</td><td>心肌线粒体密度高；衰竭心肌呼吸能力↓、mitophagy↓；HFpEF 与代谢综合征强相关</td><td><span class="badge b">B</span></td><td>中老年起加速</td><td>中（运动、SGLT2i/GLP-1RA 多效）</td></tr>
+        <tr><td><b>脑</b></td><td>帕金森病、阿尔茨海默病、卒中</td><td>黑质复合体 I 活性↓30–40%；黑质 mtDNA 缺失负担↑；AD 皮层复合体 IV↓</td><td><span class="badge b">B</span></td><td>50 岁后显著</td><td>低–中</td></tr>
+        <tr><td><b>骨骼肌</b></td><td>肌少症、体能下降、胰岛素抵抗</td><td>肌纤维线粒体密度↓、mtDNA 缺失↑；31P-MRS 呈肌群异质性；运动可改善</td><td><span class="badge a">A</span>/<span class="badge b">B</span></td><td>40 岁后渐进</td><td>高（运动）</td></tr>
+        <tr><td><b>肾脏</b></td><td>CKD、AKI、肾小管损伤</td><td>肾小管高耗能；mtDNA-CN 与 CKD/AKI 关联；动物模型线粒体靶向干预有效</td><td><span class="badge b">B</span></td><td>中老年</td><td>低</td></tr>
+        <tr><td><b>肝脏</b></td><td>MASLD/MASH、纤维化</td><td>肝细胞脂肪酸氧化代偿→失代偿；mtDNA 释放激活 Kupffer 细胞；衰老肝脏自噬↓</td><td><span class="badge b">B</span>/<span class="badge c">C</span></td><td>中老年</td><td>中（生活方式、GLP-1RA）</td></tr>
+        <tr><td><b>免疫系统</b></td><td>免疫衰老、inflammaging、CHIP</td><td>T 细胞线粒体碎片化、膜电位↓、mitophagy↓；CHIP 与 CVD/死亡因果相关</td><td><span class="badge a">A</span>/<span class="badge b">B</span></td><td>50 岁后 CHIP↑</td><td>中</td></tr>
+        <tr><td><b>骨</b></td><td>骨密度↓、皮质变薄、骨折</td><td>m.3243A>G 携带者 BMD↓、皮质薄、骨强度↓（45 例病例对照）</td><td><span class="badge b">B</span>/<span class="badge c">C</span></td><td>中老年</td><td>低</td></tr>
+        <tr><td><b>眼</b></td><td>AMD、LHON、视神经病变</td><td>AMD RPE mtDNA 损伤↑；LHON 复合体 I；小鼠 mtDNA 编辑可恢复视觉功能</td><td><span class="badge b">B</span></td><td>中老年</td><td>低</td></tr>
+        <tr><td><b>耳</b></td><td>老年性聋、感音神经性聋</td><td>mtDNA 缺失/突变积累；血管纹萎缩；线粒体病常伴耳聋</td><td><span class="badge b">B</span></td><td>中老年</td><td>低</td></tr>
+        <tr><td><b>皮肤</b></td><td>成纤维细胞衰老、胶原↓</td><td>线粒体功能↓、ROS↑；人类因果证据弱</td><td><span class="badge c">C</span></td><td>中年后</td><td>低</td></tr>
+        <tr><td><b>肺</b></td><td>肺泡上皮衰老、纤维化</td><td>线粒体功能障碍与细胞衰老相关；证据以体外/动物为主</td><td><span class="badge c">C</span></td><td>中老年</td><td>低</td></tr>
+        <tr><td><b>生殖</b></td><td>卵母细胞质量↓、卵巢衰老</td><td>卵母细胞 mtDNA 拷贝数极高；年龄相关质量下降；MRT 已用于线粒体病</td><td><span class="badge b">B</span></td><td>30–40 岁起</td><td>低（技术+伦理限制）</td></tr>
+        <tr><td><b>癌症</b></td><td>肿瘤代谢重编程、转移</td><td>mtDNA 突变常见但多为 passenger；CHIP 增加血液肿瘤风险</td><td><span class="badge b">B</span></td><td>随年龄↑</td><td>中</td></tr>
+        <tr><td><b>衰弱/多病</b></td><td>frailty、multimorbidity、死亡</td><td>mtDNA-CN 与衰弱/死亡关联（HR 1.33–1.47）；因果不确定</td><td><span class="badge b">B</span></td><td>晚年</td><td>中</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 660" role="img" aria-label="线粒体衰老影响面热图">
+      <!-- header -->
+      <text x="30" y="42" class="sv-title" font-size="14">器官/系统</text>
+      <text x="310" y="42" text-anchor="middle" class="sv-title" font-size="13">证据强度</text>
+      <text x="450" y="42" text-anchor="middle" class="sv-title" font-size="13">效应量</text>
+      <text x="600" y="42" text-anchor="middle" class="sv-title" font-size="13">年龄依赖性</text>
+      <text x="755" y="42" text-anchor="middle" class="sv-title" font-size="13">可干预性</text>
+      <text x="850" y="42" class="sv-title" font-size="13">关键表型</text>
+
+      <!-- row 1 -->
+      <g>
+        <text x="30" y="100" class="sv-label" font-weight="700">心脏</text>
+        <rect x="250" y="80" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="100" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="80" width="140" height="30" rx="4" fill="#0f766e"/><text x="450" y="100" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">大</text>
+        <rect x="530" y="80" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="100" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="80" width="150" height="30" rx="4" fill="#5eead4"/><text x="755" y="100" text-anchor="middle" class="sv-value">中</text>
+        <text x="850" y="100" class="sv-small">HFpEF/HFrEF/AF</text>
+      </g>
+      <!-- row 2 -->
+      <g>
+        <text x="30" y="136" class="sv-label" font-weight="700">脑</text>
+        <rect x="250" y="116" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="136" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="116" width="140" height="30" rx="4" fill="#0f766e"/><text x="450" y="136" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">大</text>
+        <rect x="530" y="116" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="136" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="116" width="150" height="30" rx="4" fill="#99f6e4"/><text x="755" y="136" text-anchor="middle" class="sv-value">低–中</text>
+        <text x="850" y="136" class="sv-small">PD/AD/卒中</text>
+      </g>
+      <!-- row 3 -->
+      <g>
+        <text x="30" y="172" class="sv-label" font-weight="700">骨骼肌</text>
+        <rect x="250" y="152" width="120" height="30" rx="4" fill="#e0f2fe" stroke="#7dd3fc"/><text x="310" y="172" text-anchor="middle" class="sv-value" fill="#075985">A/B</text>
+        <rect x="380" y="152" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="172" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="152" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="172" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="152" width="150" height="30" rx="4" fill="#0f766e"/><text x="755" y="172" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">高</text>
+        <text x="850" y="172" class="sv-small">肌少症/体能</text>
+      </g>
+      <!-- row 4 -->
+      <g>
+        <text x="30" y="208" class="sv-label" font-weight="700">肾脏</text>
+        <rect x="250" y="188" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="208" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="188" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="208" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="188" width="140" height="30" rx="4" fill="#5eead4"/><text x="600" y="208" text-anchor="middle" class="sv-value">中</text>
+        <rect x="680" y="188" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="208" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="208" class="sv-small">CKD/AKI</text>
+      </g>
+      <!-- row 5 -->
+      <g>
+        <text x="30" y="244" class="sv-label" font-weight="700">肝脏</text>
+        <rect x="250" y="224" width="120" height="30" rx="4" fill="#fef9c3" stroke="#fde047"/><text x="310" y="244" text-anchor="middle" class="sv-value" fill="#854d0e">B/C</text>
+        <rect x="380" y="224" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="244" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="224" width="140" height="30" rx="4" fill="#5eead4"/><text x="600" y="244" text-anchor="middle" class="sv-value">中</text>
+        <rect x="680" y="224" width="150" height="30" rx="4" fill="#5eead4"/><text x="755" y="244" text-anchor="middle" class="sv-value">中</text>
+        <text x="850" y="244" class="sv-small">MASLD/MASH</text>
+      </g>
+      <!-- row 6 -->
+      <g>
+        <text x="30" y="280" class="sv-label" font-weight="700">免疫系统</text>
+        <rect x="250" y="260" width="120" height="30" rx="4" fill="#e0f2fe" stroke="#7dd3fc"/><text x="310" y="280" text-anchor="middle" class="sv-value" fill="#075985">A/B</text>
+        <rect x="380" y="260" width="140" height="30" rx="4" fill="#0f766e"/><text x="450" y="280" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">大</text>
+        <rect x="530" y="260" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="280" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="260" width="150" height="30" rx="4" fill="#5eead4"/><text x="755" y="280" text-anchor="middle" class="sv-value">中</text>
+        <text x="850" y="280" class="sv-small">免疫衰老/CHIP</text>
+      </g>
+      <!-- row 7 -->
+      <g>
+        <text x="30" y="316" class="sv-label" font-weight="700">骨</text>
+        <rect x="250" y="296" width="120" height="30" rx="4" fill="#fef9c3" stroke="#fde047"/><text x="310" y="316" text-anchor="middle" class="sv-value" fill="#854d0e">B/C</text>
+        <rect x="380" y="296" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="316" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="296" width="140" height="30" rx="4" fill="#5eead4"/><text x="600" y="316" text-anchor="middle" class="sv-value">中</text>
+        <rect x="680" y="296" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="316" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="316" class="sv-small">BMD↓/骨折</text>
+      </g>
+      <!-- row 8 -->
+      <g>
+        <text x="30" y="352" class="sv-label" font-weight="700">眼</text>
+        <rect x="250" y="332" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="352" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="332" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="352" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="332" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="352" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="332" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="352" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="352" class="sv-small">AMD/LHON</text>
+      </g>
+      <!-- row 9 -->
+      <g>
+        <text x="30" y="388" class="sv-label" font-weight="700">耳</text>
+        <rect x="250" y="368" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="388" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="368" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="388" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="368" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="388" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="368" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="388" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="388" class="sv-small">老年性聋</text>
+      </g>
+      <!-- row 10 -->
+      <g>
+        <text x="30" y="424" class="sv-label" font-weight="700">皮肤</text>
+        <rect x="250" y="404" width="120" height="30" rx="4" fill="#fef3c7" stroke="#fcd34d"/><text x="310" y="424" text-anchor="middle" class="sv-value" fill="#92400e">C</text>
+        <rect x="380" y="404" width="140" height="30" rx="4" fill="#ccfbf1"/><text x="450" y="424" text-anchor="middle" class="sv-value">小–中</text>
+        <rect x="530" y="404" width="140" height="30" rx="4" fill="#5eead4"/><text x="600" y="424" text-anchor="middle" class="sv-value">中</text>
+        <rect x="680" y="404" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="424" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="424" class="sv-small">成纤维细胞</text>
+      </g>
+      <!-- row 11 -->
+      <g>
+        <text x="30" y="460" class="sv-label" font-weight="700">肺</text>
+        <rect x="250" y="440" width="120" height="30" rx="4" fill="#fef3c7" stroke="#fcd34d"/><text x="310" y="460" text-anchor="middle" class="sv-value" fill="#92400e">C</text>
+        <rect x="380" y="440" width="140" height="30" rx="4" fill="#ccfbf1"/><text x="450" y="460" text-anchor="middle" class="sv-value">小</text>
+        <rect x="530" y="440" width="140" height="30" rx="4" fill="#5eead4"/><text x="600" y="460" text-anchor="middle" class="sv-value">中</text>
+        <rect x="680" y="440" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="460" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="460" class="sv-small">纤维化/衰老</text>
+      </g>
+      <!-- row 12 -->
+      <g>
+        <text x="30" y="496" class="sv-label" font-weight="700">生殖</text>
+        <rect x="250" y="476" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="496" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="476" width="140" height="30" rx="4" fill="#5eead4"/><text x="450" y="496" text-anchor="middle" class="sv-value">中</text>
+        <rect x="530" y="476" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="496" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="476" width="150" height="30" rx="4" fill="#ccfbf1"/><text x="755" y="496" text-anchor="middle" class="sv-value">低</text>
+        <text x="850" y="496" class="sv-small">卵母细胞/MRT</text>
+      </g>
+      <!-- row 13 -->
+      <g>
+        <text x="30" y="532" class="sv-label" font-weight="700">癌症</text>
+        <rect x="250" y="512" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="532" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="512" width="140" height="30" rx="4" fill="#fef3c7"/><text x="450" y="532" text-anchor="middle" class="sv-value" fill="#92400e">可变</text>
+        <rect x="530" y="512" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="532" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="512" width="150" height="30" rx="4" fill="#5eead4"/><text x="755" y="532" text-anchor="middle" class="sv-value">中</text>
+        <text x="850" y="532" class="sv-small">mtDNA/CHIP</text>
+      </g>
+      <!-- row 14 -->
+      <g>
+        <text x="30" y="568" class="sv-label" font-weight="700">衰弱/多病</text>
+        <rect x="250" y="548" width="120" height="30" rx="4" fill="#dbeafe" stroke="#93c5fd"/><text x="310" y="568" text-anchor="middle" class="sv-value" fill="#1e40af">B</text>
+        <rect x="380" y="548" width="140" height="30" rx="4" fill="#0f766e"/><text x="450" y="568" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">大</text>
+        <rect x="530" y="548" width="140" height="30" rx="4" fill="#0f766e"/><text x="600" y="568" text-anchor="middle" class="sv-white" font-size="12" font-weight="700">强</text>
+        <rect x="680" y="548" width="150" height="30" rx="4" fill="#5eead4"/><text x="755" y="568" text-anchor="middle" class="sv-value">中</text>
+        <text x="850" y="568" class="sv-small">multimorbidity</text>
+      </g>
+
+      <!-- legend -->
+      <text x="30" y="618" class="sv-small">证据：</text>
+      <rect x="78" y="604" width="26" height="18" rx="3" fill="#dcfce7" stroke="#86efac"/><text x="91" y="618" text-anchor="middle" class="sv-small" fill="#166534">A</text>
+      <rect x="112" y="604" width="26" height="18" rx="3" fill="#dbeafe" stroke="#93c5fd"/><text x="125" y="618" text-anchor="middle" class="sv-small" fill="#1e40af">B</text>
+      <rect x="146" y="604" width="26" height="18" rx="3" fill="#fef3c7" stroke="#fcd34d"/><text x="159" y="618" text-anchor="middle" class="sv-small" fill="#92400e">C</text>
+      <text x="200" y="618" class="sv-small">效应/年龄/可干预：</text>
+      <rect x="380" y="604" width="26" height="18" rx="3" fill="#0f766e"/><text x="393" y="618" text-anchor="middle" class="sv-white" font-size="10" font-weight="700">强</text>
+      <rect x="414" y="604" width="26" height="18" rx="3" fill="#5eead4"/><text x="427" y="618" text-anchor="middle" class="sv-small">中</text>
+      <rect x="448" y="604" width="26" height="18" rx="3" fill="#ccfbf1"/><text x="461" y="618" text-anchor="middle" class="sv-small">弱</text>
+      <text x="560" y="618" class="sv-small">本图为作者基于文献数量、人类数据与效应一致性的判断，不是 meta 分析；证据等级针对“该器官受线粒体衰老影响”这一论断。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 20 · 影响面热图：器官之间的差异远比“都会受影响”重要</b><span>心脏、脑、骨骼肌、免疫系统是证据最强、效应最大的四个系统；皮肤、肺的证据最弱。年龄依赖性强不等于可干预性高——眼、耳、骨就是典型。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>4.1 心脏：能量需求最高，证据也最“硬”</h3>
+  <p>心肌细胞里线粒体占细胞体积的约 30–40%，ATP 周转极快，几乎没有糖酵解代偿空间。衰老心脏的线粒体变化包括：呼吸能力下降、ROS 产生增加、mtDNA 损伤积累、mitophagy 效率下降、线粒体-内质网接触改变。<span class="badge b">B</span> 这些变化在人类心肌活检中较难直接验证，多数机制来自动物模型、离体心肌纤维或手术标本。</p>
+  <p>按表型分，证据强度不同：<b>HFrEF</b> 的线粒体功能障碍证据较明确（复合体 I/IV 活性下降、ATP 合成下降、mitophagy 受损）；<b>HFpEF</b> 与肥胖、糖尿病、高血压强相关，心肌能量代谢改变是核心机制之一，但人类活检证据有限；<b>房颤</b> 涉及氧化应激、钙处理与电重构，线粒体是其中一个节点而非唯一原因。<span class="badge b">B</span>/<span class="badge c">C</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 400" role="img" aria-label="心脏三种表型的线粒体机制">
+      <text x="40" y="30" class="sv-title" font-size="14">心脏：同一器官，三种不同的线粒体故事</text>
+
+      <g>
+        <rect x="40" y="58" width="320" height="250" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.6"/>
+        <rect x="40" y="58" width="320" height="48" rx="12" fill="#ccfbf1"/>
+        <text x="200" y="88" text-anchor="middle" class="sv-title" font-size="15" fill="#0f766e">HFpEF</text>
+        <text x="64" y="132" class="sv-label">• 肥胖/糖尿病/高血压驱动</text>
+        <text x="64" y="156" class="sv-label">• 心肌能量代谢改变</text>
+        <text x="64" y="180" class="sv-label">• 线粒体-ER 接触异常</text>
+        <text x="64" y="204" class="sv-label">• ROS↑、NO 生物利用度↓</text>
+        <text x="64" y="228" class="sv-label">• 人类活检证据有限</text>
+        <text x="64" y="264" class="sv-small">证据：B/C；机制多为动物/离体</text>
+        <text x="64" y="286" class="sv-small">干预：SGLT2i/GLP-1RA 多效，非线粒体特异</text>
+      </g>
+      <g>
+        <rect x="400" y="58" width="320" height="250" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="1.6"/>
+        <rect x="400" y="58" width="320" height="48" rx="12" fill="#dbeafe"/>
+        <text x="560" y="88" text-anchor="middle" class="sv-title" font-size="15" fill="#1d4ed8">HFrEF</text>
+        <text x="424" y="132" class="sv-label">• 复合体 I/IV 活性↓</text>
+        <text x="424" y="156" class="sv-label">• ATP 合成能力↓</text>
+        <text x="424" y="180" class="sv-label">• mitophagy 受损</text>
+        <text x="424" y="204" class="sv-label">• 线粒体碎片化</text>
+        <text x="424" y="228" class="sv-label">• 心肌纤维化/凋亡↑</text>
+        <text x="424" y="264" class="sv-small">证据：B；人类手术标本支持</text>
+        <text x="424" y="286" class="sv-small">干预：标准心衰治疗 + 运动康复</text>
+      </g>
+      <g>
+        <rect x="760" y="58" width="320" height="250" rx="12" fill="#fff" stroke="#b45309" stroke-width="1.6"/>
+        <rect x="760" y="58" width="320" height="48" rx="12" fill="#fef3c7"/>
+        <text x="920" y="88" text-anchor="middle" class="sv-title" font-size="15" fill="#b45309">房颤 / 血管</text>
+        <text x="784" y="132" class="sv-label">• 氧化应激与钙处理异常</text>
+        <text x="784" y="156" class="sv-label">• 电重构与结构重构</text>
+        <text x="784" y="180" class="sv-label">• 内皮线粒体 ROS↑</text>
+        <text x="784" y="204" class="sv-label">• NO 生物利用度↓</text>
+        <text x="784" y="228" class="sv-label">• 动脉僵硬</text>
+        <text x="784" y="264" class="sv-small">证据：B/C；线粒体是节点之一</text>
+        <text x="784" y="286" class="sv-small">干预：危险因素控制、抗凝/节律治疗</text>
+      </g>
+      <text x="560" y="350" text-anchor="middle" class="sv-small">共同点：心肌几乎没有糖酵解代偿空间；不同点：驱动因素、可逆性与干预靶点不同。</text>
+      <text x="560" y="374" text-anchor="middle" class="sv-small">证据等级 B（HFrEF）；B/C（HFpEF、房颤）。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 21 · 心脏：同一器官，三种不同的线粒体故事</b><span>把“心衰”当成一个线粒体适应症会掩盖 HFpEF 与 HFrEF 的机制差异；这也是为什么线粒体药物在心脏试验中反复失败。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>4.2 脑：区域选择性比“全局下降”更准确</h3>
+  <p>脑只占体重的约 2%，却消耗约 20% 的氧气。神经元是终末分化细胞，寿命长，线粒体需要沿轴突长途运输到突触；这让它们对线粒体质量控制缺陷特别敏感。<span class="badge b">B</span></p>
+  <p><b>帕金森病</b>是最强的证据：黑质致密部复合体 I 活性下降约 30–40%；黑质 mtDNA 大片段缺失负担在 PD 患者中高于对照（43.3% vs 52.3%）；PINK1/Parkin 等线粒体自噬基因的罕见变异可导致家族性 PD；MPTP 抑制复合体 I 可在人类中引起帕金森样综合征。<span class="badge b">B</span> 这些证据共同支持“线粒体功能障碍参与 PD 发病”，但不足以说“线粒体是 PD 的唯一原因”。</p>
+  <p><b>阿尔茨海默病</b>的线粒体证据更复杂：多个尸检研究报告皮层复合体 IV（COX）活性降低，但幅度与区域依赖，且受 APOE ε4、终末期状态与样本处理影响；mtDNA 拷贝数与异质性的变化方向也不一致。<span class="badge b">B</span> 因果方向仍不清楚：Aβ/tau 可以损害线粒体，线粒体损伤也可以促进 Aβ/tau 病理。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="脑区线粒体损伤的选择性">
+      <text x="40" y="30" class="sv-title" font-size="14">脑：不是“整体下降”，而是区域选择性</text>
+
+      <!-- panel A -->
+      <rect x="40" y="56" width="500" height="300" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="290" y="84" text-anchor="middle" class="sv-title" font-size="13.5">帕金森病：黑质</text>
+      <!-- bars group 1 -->
+      <text x="80" y="126" class="sv-label">mtDNA 缺失比例</text>
+      <rect x="80" y="140" width="120" height="26" rx="4" fill="#94a3b8"/><text x="140" y="158" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">43.3%</text>
+      <rect x="210" y="140" width="145" height="26" rx="4" fill="#b91c1c"/><text x="282" y="158" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">52.3%</text>
+      <text x="80" y="184" class="sv-small">对照</text><text x="210" y="184" class="sv-small">PD</text>
+
+      <text x="80" y="224" class="sv-label">复合体 I 活性</text>
+      <rect x="80" y="238" width="200" height="26" rx="4" fill="#94a3b8"/><text x="180" y="256" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">100%</text>
+      <rect x="290" y="238" width="130" height="26" rx="4" fill="#b91c1c"/><text x="355" y="256" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">65%</text>
+      <text x="80" y="282" class="sv-small">对照</text><text x="290" y="282" class="sv-small">PD（约 30–40%↓）</text>
+      <text x="80" y="322" class="sv-small">来源：Bender 2006；Kraytsberg 2006；复合体 I 为经典估计。</text>
+
+      <!-- panel B -->
+      <rect x="580" y="56" width="500" height="300" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="830" y="84" text-anchor="middle" class="sv-title" font-size="13.5">阿尔茨海默病：皮层</text>
+      <text x="620" y="126" class="sv-label">复合体 IV（COX）活性</text>
+      <rect x="620" y="140" width="200" height="26" rx="4" fill="#94a3b8"/><text x="720" y="158" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">100%</text>
+      <rect x="830" y="140" width="140" height="26" rx="4" fill="#f59e0b" opacity=".8"/><text x="900" y="158" text-anchor="middle" class="sv-white" font-size="11" font-weight="700">↓</text>
+      <text x="620" y="184" class="sv-small">对照</text><text x="830" y="184" class="sv-small">AD（幅度不一）</text>
+
+      <text x="620" y="224" class="sv-label">关键不确定性</text>
+      <text x="620" y="248" class="sv-small">• 区域差异大（海马、皮层、内嗅皮层）</text>
+      <text x="620" y="270" class="sv-small">• APOE ε4 与终末期状态影响结果</text>
+      <text x="620" y="292" class="sv-small">• 因果方向：Aβ/tau ↔ 线粒体互为因果</text>
+      <text x="620" y="326" class="sv-small">没有统一的“AD 线粒体缺陷百分比”。</text>
+
+      <text x="560" y="392" text-anchor="middle" class="sv-small">区域选择性解释了一个临床悖论：同一患者的不同脑区，线粒体缺陷程度可以差很多。</text>
+      <text x="560" y="414" text-anchor="middle" class="sv-small">证据等级 B（PD、AD 均为多项人类尸检/活检支持，但因果方向未定）。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 22 · 脑：区域选择性比“全局下降”更准确</b><span>黑质的复合体 I 缺陷是 PD 最可重复的线粒体发现；AD 的复合体 IV 下降存在但幅度不一。把两者都归为“线粒体衰老”会丢失关键差异。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>4.3 骨骼肌：最好的活体模型，但效应被肌群异质性掩盖</h3>
+  <p>骨骼肌是研究人类线粒体衰老最好的组织：可活检、可运动干预、可用 31P-MRS 无创测量磷酸肌酸恢复时间（τPCr）。肌少症患者的肌肉显示 II 型纤维萎缩、线粒体密度下降、呼吸能力下降、mtDNA 缺失增加、凋亡增加。<span class="badge b">B</span></p>
+  <p>但 2026 年一项 31P-MRS 系统综述与 meta 分析（20 篇论文）给出了一个重要的反例：<b>总体上，老年人的 τPCr 与年轻人没有显著差异</b>（Hedges' g=0.11，p=0.487，I²=72.49%）。更细看，肌群之间方向相反：股四头肌 g=0.65（老年人恢复更慢，p&lt;0.001），胫骨前肌 g=−0.64（老年人恢复更快，p&lt;0.001），小腿 g=0.20（p=0.377）。<span class="badge b">B</span> 这说明“老化肌肉线粒体全面下降”是一个过度概括；肌群、活动水平、方法学差异都会影响结论。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="31P-MRS meta分析的肌群异质性">
+      <text x="40" y="30" class="sv-title" font-size="14">31P-MRS：老年人的 τPCr 与年轻人比，肌群之间方向相反</text>
+      <!-- axis -->
+      <line x1="300" y1="100" x2="900" y2="100" stroke="#e2e8ee" stroke-width="1"/>
+      <line x1="300" y1="360" x2="900" y2="360" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="600" y1="70" x2="600" y2="360" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="300" y="384" text-anchor="middle" class="sv-small">−1.0</text>
+      <text x="450" y="384" text-anchor="middle" class="sv-small">−0.5</text>
+      <text x="600" y="384" text-anchor="middle" class="sv-small">0</text>
+      <text x="750" y="384" text-anchor="middle" class="sv-small">+0.5</text>
+      <text x="900" y="384" text-anchor="middle" class="sv-small">+1.0</text>
+      <text x="600" y="408" text-anchor="middle" class="sv-label">Hedges' g（正 = 老年人 τPCr 更长，恢复更慢）</text>
+
+      <!-- rows -->
+      <g>
+        <text x="40" y="130" class="sv-label" font-weight="700">总体</text>
+        <rect x="626" y="114" width="14" height="14" fill="#0f766e"/>
+        <text x="650" y="126" class="sv-small">g=0.11，p=0.487（ns）</text>
+      </g>
+      <g>
+        <text x="40" y="190" class="sv-label" font-weight="700">股四头肌</text>
+        <rect x="788" y="174" width="14" height="14" fill="#0f766e"/>
+        <text x="812" y="186" class="sv-small">g=0.65，p&lt;0.001</text>
+      </g>
+      <g>
+        <text x="40" y="250" class="sv-label" font-weight="700">胫骨前肌</text>
+        <rect x="401" y="234" width="14" height="14" fill="#b91c1c"/>
+        <text x="425" y="246" class="sv-small">g=−0.64，p&lt;0.001</text>
+      </g>
+      <g>
+        <text x="40" y="310" class="sv-label" font-weight="700">小腿</text>
+        <rect x="660" y="294" width="14" height="14" fill="#0f766e"/>
+        <text x="684" y="306" class="sv-small">g=0.20，p=0.377（ns）</text>
+      </g>
+
+      <!-- annotation -->
+      <rect x="640" y="60" width="420" height="58" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="658" y="84" class="sv-small" fill="#92400e">20 篇论文；总体 I²=72.49%</text>
+      <text x="658" y="104" class="sv-small" fill="#92400e">“老化肌肉线粒体全面下降”不成立</text>
+
+      <text x="40" y="424" class="sv-small">来源：Cameron et al. 2026（bioRxiv / UEA eprint 103594）。点估计；误差线未公开。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 23 · 骨骼肌：总体无差异，肌群方向相反</b><span>这是“影响面不等于全局下降”的最好例子：同一个人的股四头肌与胫骨前肌，可以给出相反的年龄效应。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <p>运动仍然是骨骼肌领域最强的人类干预证据。2026 年一项 28 项研究的系统综述与 meta 分析显示：有氧/抗阻训练使 VO2max 提高（SMD 0.46，p&lt;0.001，I²=0%），但 citrate synthase 活性（SMD 0.18，p=0.450）与 BMI（SMD −0.09，p=0.557）没有显著变化。<span class="badge a">A</span>/<span class="badge b">B</span> 这提示运动的功能获益是真实的，但“线粒体酶活性”并不是一个敏感的统一替代终点。</p>
+
+  <h3>4.4 肾脏：高耗能小管，证据中等</h3>
+  <p>肾小管上皮细胞依赖线粒体驱动 Na⁺/K⁺-ATP 酶与重吸收，是全身耗能最高的组织之一。衰老肾脏的线粒体变化包括：肾小管细胞呼吸能力下降、mtDNA 拷贝数降低、ROS 增加、mitophagy 不足；在 CKD 与 AKI 模型中，线粒体靶向抗氧化剂或 mitophagy 诱导剂可减轻损伤。<span class="badge b">B</span> 人类证据主要是观察性：mtDNA-CN 与 CKD/AKI 风险相关，但受肾功能、炎症与血细胞组成影响。<span class="badge b">B</span>/<span class="badge c">C</span></p>
+
+  <h3>4.5 肝脏：方向性问题最突出</h3>
+  <p>MASLD/MASH 的线粒体变化很复杂：早期肝细胞脂肪酸氧化代偿性增加，后期失代偿；ROS 增加、mtDNA 释放激活 Kupffer 细胞、肝星状细胞纤维化；衰老肝脏的自噬与线粒体更新下降。<span class="badge b">B</span> 但这里的方向性问题最突出：线粒体功能障碍既可以是脂肪肝的结果，也可以是原因；人类干预证据（如 GLP-1RA、resmetirom）并不直接针对线粒体。<span class="badge b">B</span>/<span class="badge c">C</span></p>
+
+  <h3>4.6 免疫系统：既是受害者，也是驱动者</h3>
+  <p>衰老 T 细胞的线粒体呈碎片化、膜电位下降、ROS 增加、mitophagy 不足、代谢灵活性下降；naive T 细胞的维持依赖线粒体功能，记忆 T 细胞则依赖脂肪酸氧化。<span class="badge b">B</span> 这些变化导致疫苗反应下降、慢性炎症上升、对衰老细胞的免疫清除减弱——免疫系统既是线粒体衰老的受害者，也是把损伤扩散到全身的驱动者。</p>
+  <p>CHIP 是这条通路上最强的人类证据：DNMT3A/TET2/ASXL1 突变导致克隆扩增，增加 CVD、血液肿瘤与死亡风险；血液 mtDNA 异质性在很大程度上是 CHIP 的读数。<span class="badge a">A</span> 这也解释了为什么“血液 mtDNA 异质性”与“实体组织线粒体衰老”不能混为一谈。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 440" role="img" aria-label="免疫系统的线粒体衰老与CHIP">
+      <!-- left panel -->
+      <rect x="30" y="30" width="520" height="370" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="290" y="60" text-anchor="middle" class="sv-title" font-size="14">衰老 T 细胞：线粒体表型</text>
+      <!-- cell -->
+      <circle cx="150" cy="180" r="72" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+      <circle cx="150" cy="180" r="28" fill="#ccfbf1" stroke="#0f766e"/>
+      <ellipse cx="110" cy="150" rx="12" ry="6" fill="#0f766e" opacity=".7"/>
+      <ellipse cx="190" cy="210" rx="12" ry="6" fill="#0f766e" opacity=".7"/>
+      <ellipse cx="120" cy="220" rx="10" ry="5" fill="#0f766e" opacity=".5"/>
+      <text x="150" y="185" text-anchor="middle" class="sv-small">T 细胞</text>
+      <!-- list -->
+      <text x="260" y="112" class="sv-label">• 线粒体碎片化</text>
+      <text x="260" y="140" class="sv-label">• 膜电位↓</text>
+      <text x="260" y="168" class="sv-label">• ROS↑</text>
+      <text x="260" y="196" class="sv-label">• mitophagy↓</text>
+      <text x="260" y="224" class="sv-label">• 代谢灵活性↓</text>
+      <text x="260" y="264" class="sv-small">→ naive T↓、疫苗反应↓、炎症↑</text>
+      <text x="260" y="288" class="sv-small">→ 对衰老细胞免疫清除↓</text>
+      <text x="60" y="330" class="sv-small">证据：B（人类 T 细胞与小鼠模型一致）</text>
+      <text x="60" y="354" class="sv-small">干预：运动、IL-7、mitophagy 调节（早期）</text>
+
+      <!-- right panel -->
+      <rect x="570" y="30" width="520" height="370" rx="12" fill="#fcfdfd" stroke="#e2e8ee"/>
+      <text x="830" y="60" text-anchor="middle" class="sv-title" font-size="14">CHIP：血液里的“线粒体信号”</text>
+      <g>
+        <rect x="610" y="86" width="180" height="46" rx="8" fill="#dbeafe" stroke="#1d4ed8"/>
+        <text x="700" y="114" text-anchor="middle" class="sv-label">DNMT3A / TET2 / ASXL1</text>
+        <rect x="610" y="154" width="180" height="46" rx="8" fill="#ccfbf1" stroke="#0f766e"/>
+        <text x="700" y="182" text-anchor="middle" class="sv-label">克隆扩增</text>
+        <rect x="610" y="222" width="180" height="46" rx="8" fill="#fef3c7" stroke="#b45309"/>
+        <text x="700" y="250" text-anchor="middle" class="sv-label">血液 mtDNA 异质性</text>
+        <rect x="610" y="290" width="180" height="46" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+        <text x="700" y="318" text-anchor="middle" class="sv-label">CVD / 血液肿瘤 / 死亡</text>
+      </g>
+      <g stroke="#94a3b8" stroke-width="2" marker-end="url(#f24ar)">
+        <line x1="700" y1="132" x2="700" y2="150"/>
+        <line x1="700" y1="200" x2="700" y2="218"/>
+        <line x1="700" y1="268" x2="700" y2="286"/>
+      </g>
+      <defs>
+        <marker id="f24ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <text x="830" y="362" class="sv-small">证据：A（大样本人群 + MR）</text>
+      <text x="830" y="384" class="sv-small">含义：血液 mtDNA 异质性 ≠ 实体组织衰老</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 24 · 免疫系统：既是受害者，也是驱动者</b><span>衰老 T 细胞的线粒体缺陷损害免疫监视；CHIP 则把血液 mtDNA 异质性变成 CVD/死亡的风险标志。两者都与“线粒体”有关，但不是同一件事。<span class="badge a">A</span>（CHIP）<span class="badge b">B</span>（T 细胞）</span></figcaption>
+  </figure>
+
+  <h3>4.7 骨、眼、耳、皮肤、肺、生殖：影响面递减，但各有硬证据</h3>
+  <p>这六个系统的证据强度差异很大，不能用一个“线粒体衰老”标签统一处理。<b>骨</b>：m.3243A>G 携带者的骨密度更低、皮质更薄、骨强度更差（45 例病例对照）；动物模型支持线粒体在破骨/成骨分化中的作用。<span class="badge b">B</span>/<span class="badge c">C</span> <b>眼</b>：AMD 的 RPE 细胞积累 mtDNA 损伤；LHON 是复合体 I 缺陷导致视神经病变的范例；小鼠 mtDNA 编辑可恢复视觉功能。<span class="badge b">B</span> <b>耳</b>：老年性聋与 mtDNA 缺失/突变积累、血管纹萎缩相关；线粒体病常伴感音神经性聋。<span class="badge b">B</span></p>
+  <p><b>皮肤</b>与<b>肺</b>的证据明显更弱：成纤维细胞线粒体功能下降、胶原合成减少；肺泡上皮衰老与线粒体功能障碍相关，但人类因果证据主要来自体外与动物。<span class="badge c">C</span> <b>生殖</b>：卵母细胞 mtDNA 拷贝数极高（10⁵–10⁶），年龄相关质量下降与线粒体功能相关；MRT 已用于线粒体病，但不是抗衰老技术。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 470" role="img" aria-label="骨眼耳皮肤肺生殖的线粒体证据">
+      <!-- row 1 -->
+      <g>
+        <rect x="30" y="30" width="340" height="190" rx="12" fill="#fff" stroke="#0f766e" stroke-width="1.4"/>
+        <circle cx="70" cy="70" r="18" fill="#ccfbf1"/><text x="70" y="75" text-anchor="middle" class="sv-value" fill="#0f766e">骨</text>
+        <text x="100" y="66" class="sv-title" font-size="14">骨</text>
+        <text x="100" y="88" class="sv-small">m.3243A>G 携带者 BMD↓</text>
+        <text x="52" y="122" class="sv-label">• 皮质更薄、骨强度更低</text>
+        <text x="52" y="146" class="sv-label">• 破骨/成骨分化依赖线粒体</text>
+        <text x="52" y="170" class="sv-label">• 人类干预证据缺乏</text>
+        <text x="52" y="198" class="sv-small">证据：B/C；45 例病例对照</text>
+      </g>
+      <g>
+        <rect x="390" y="30" width="340" height="190" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="1.4"/>
+        <circle cx="430" cy="70" r="18" fill="#dbeafe"/><text x="430" y="75" text-anchor="middle" class="sv-value" fill="#1d4ed8">眼</text>
+        <text x="460" y="66" class="sv-title" font-size="14">眼</text>
+        <text x="460" y="88" class="sv-small">AMD 的 RPE mtDNA 损伤↑</text>
+        <text x="412" y="122" class="sv-label">• LHON：复合体 I 缺陷</text>
+        <text x="412" y="146" class="sv-label">• 小鼠 mtDNA 编辑可恢复视觉</text>
+        <text x="412" y="170" class="sv-label">• 人类治疗仍早期</text>
+        <text x="412" y="198" class="sv-small">证据：B</text>
+      </g>
+      <g>
+        <rect x="750" y="30" width="340" height="190" rx="12" fill="#fff" stroke="#b45309" stroke-width="1.4"/>
+        <circle cx="790" cy="70" r="18" fill="#fef3c7"/><text x="790" y="75" text-anchor="middle" class="sv-value" fill="#b45309">耳</text>
+        <text x="820" y="66" class="sv-title" font-size="14">耳</text>
+        <text x="820" y="88" class="sv-small">老年性聋与 mtDNA 缺失</text>
+        <text x="772" y="122" class="sv-label">• 血管纹萎缩</text>
+        <text x="772" y="146" class="sv-label">• 线粒体病常伴感音神经性聋</text>
+        <text x="772" y="170" class="sv-label">• 人类干预证据缺乏</text>
+        <text x="772" y="198" class="sv-small">证据：B</text>
+      </g>
+
+      <!-- row 2 -->
+      <g>
+        <rect x="30" y="250" width="340" height="190" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="1.4"/>
+        <circle cx="70" cy="290" r="18" fill="#f1f5f9"/><text x="70" y="295" text-anchor="middle" class="sv-value" fill="#475569">皮</text>
+        <text x="100" y="286" class="sv-title" font-size="14">皮肤</text>
+        <text x="100" y="308" class="sv-small">成纤维细胞线粒体功能↓</text>
+        <text x="52" y="342" class="sv-label">• 胶原合成↓</text>
+        <text x="52" y="366" class="sv-label">• ROS↑、衰老标志↑</text>
+        <text x="52" y="390" class="sv-label">• 人类因果证据弱</text>
+        <text x="52" y="418" class="sv-small">证据：C</text>
+      </g>
+      <g>
+        <rect x="390" y="250" width="340" height="190" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="1.4"/>
+        <circle cx="430" cy="290" r="18" fill="#f1f5f9"/><text x="430" y="295" text-anchor="middle" class="sv-value" fill="#475569">肺</text>
+        <text x="460" y="286" class="sv-title" font-size="14">肺</text>
+        <text x="460" y="308" class="sv-small">肺泡上皮衰老</text>
+        <text x="412" y="342" class="sv-label">• 线粒体功能障碍与纤维化</text>
+        <text x="412" y="366" class="sv-label">• 体外/动物证据为主</text>
+        <text x="412" y="390" class="sv-label">• 人类数据有限</text>
+        <text x="412" y="418" class="sv-small">证据：C</text>
+      </g>
+      <g>
+        <rect x="750" y="250" width="340" height="190" rx="12" fill="#fff" stroke="#6d28d9" stroke-width="1.4"/>
+        <circle cx="790" cy="290" r="18" fill="#ede9fe"/><text x="790" y="295" text-anchor="middle" class="sv-value" fill="#6d28d9">生</text>
+        <text x="820" y="286" class="sv-title" font-size="14">生殖</text>
+        <text x="820" y="308" class="sv-small">卵母细胞 mtDNA 拷贝数极高</text>
+        <text x="772" y="342" class="sv-label">• 年龄相关质量下降</text>
+        <text x="772" y="366" class="sv-label">• MRT 已用于线粒体病</text>
+        <text x="772" y="390" class="sv-label">• 不是抗衰老技术</text>
+        <text x="772" y="418" class="sv-small">证据：B</text>
+      </g>
+      <text x="560" y="462" text-anchor="middle" class="sv-small">影响面梯度：骨/眼/耳/生殖为中等证据；皮肤/肺为弱证据。不能用一个标签统一处理。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 25 · 六个系统的证据梯度</b><span>骨、眼、耳、生殖有可重复的人类或强动物证据；皮肤、肺主要停留在体外/动物层面。影响面评估必须允许“弱证据”存在。<span class="badge b">B</span>/<span class="badge c">C</span></span></figcaption>
+  </figure>
+
+  <h3>4.8 癌症：线粒体是代谢适应器，不是经典衰老表型</h3>
+  <p>肿瘤中 mtDNA 突变很常见，尤其是复合体 I 基因；但多数是 passenger 突变，真正驱动肿瘤发生/转移的只是少数。某些复合体 I 突变会改变代谢重编程、增加 ROS 与转移能力。<span class="badge b">B</span> CHIP 则明确增加血液肿瘤风险，并与他实体瘤治疗后的克隆演化相关。<span class="badge a">A</span> 把癌症称为“线粒体衰老”并不准确；更准确的描述是：<b>线粒体是肿瘤代谢适应与免疫微环境的一个节点</b>。</p>
+
+  <h3>4.9 衰弱与多病共存：影响面的“汇合点”</h3>
+  <p>衰弱（frailty）与多病共存（multimorbidity）是线粒体衰老影响面的汇合点：肌肉减少、免疫衰老、代谢紊乱、神经退行共同作用，最终表现为活动能力下降、跌倒、住院与死亡。mtDNA-CN 与衰弱/死亡的相关性（HR 1.33–1.47）支持这条通路，但因果不确定，且受炎症、合并症与血细胞组成影响。<span class="badge b">B</span></p>
+  <p>“共同通路”假说很有吸引力：不同器官的线粒体功能障碍通过循环介质（irisin、FGF21、GDF15、IL-6）汇合，形成系统性的能量危机与炎症。<span class="badge b">B</span> 但它仍然是假说，不是已证明的因果链；把它当作“线粒体是衰老总开关”的证据，是过度解读。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 420" role="img" aria-label="线粒体衰老到衰弱与多病的路径">
+      <defs>
+        <marker id="f26ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+        <marker id="f26ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+        </marker>
+      </defs>
+      <rect x="30" y="150" width="190" height="100" rx="12" fill="#0f766e"/>
+      <text x="125" y="188" text-anchor="middle" class="sv-white" font-size="14" font-weight="700">线粒体功能障碍</text>
+      <text x="125" y="212" text-anchor="middle" fill="#ccfbf1" font-size="11">多器官、多机制</text>
+
+      <g>
+        <rect x="300" y="40" width="200" height="62" rx="10" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="400" y="66" text-anchor="middle" class="sv-title" font-size="13">肌肉减少</text>
+        <text x="400" y="86" text-anchor="middle" class="sv-small">肌力↓、活动↓</text>
+        <rect x="300" y="122" width="200" height="62" rx="10" fill="#fff" stroke="#6d28d9" stroke-width="1.5"/>
+        <text x="400" y="148" text-anchor="middle" class="sv-title" font-size="13">免疫衰老</text>
+        <text x="400" y="168" text-anchor="middle" class="sv-small">炎症↑、疫苗反应↓</text>
+        <rect x="300" y="204" width="200" height="62" rx="10" fill="#fff" stroke="#b45309" stroke-width="1.5"/>
+        <text x="400" y="230" text-anchor="middle" class="sv-title" font-size="13">代谢紊乱</text>
+        <text x="400" y="250" text-anchor="middle" class="sv-small">胰岛素抵抗、脂毒性</text>
+        <rect x="300" y="286" width="200" height="62" rx="10" fill="#fff" stroke="#b91c1c" stroke-width="1.5"/>
+        <text x="400" y="312" text-anchor="middle" class="sv-title" font-size="13">神经退行</text>
+        <text x="400" y="332" text-anchor="middle" class="sv-small">认知↓、步态异常</text>
+      </g>
+
+      <g stroke="#94a3b8" stroke-width="2" marker-end="url(#f26ar)">
+        <line x1="220" y1="180" x2="296" y2="80"/>
+        <line x1="220" y1="195" x2="296" y2="153"/>
+        <line x1="220" y1="215" x2="296" y2="235"/>
+        <line x1="220" y1="230" x2="296" y2="310"/>
+      </g>
+
+      <rect x="580" y="150" width="190" height="100" rx="12" fill="#b91c1c"/>
+      <text x="675" y="188" text-anchor="middle" class="sv-white" font-size="14" font-weight="700">衰弱 / 多病</text>
+      <text x="675" y="212" text-anchor="middle" fill="#fecaca" font-size="11">frailty · multimorbidity</text>
+      <g stroke="#94a3b8" stroke-width="2" marker-end="url(#f26ar)">
+        <line x1="500" y1="80" x2="576" y2="170"/>
+        <line x1="500" y1="153" x2="576" y2="185"/>
+        <line x1="500" y1="235" x2="576" y2="215"/>
+        <line x1="500" y1="310" x2="576" y2="230"/>
+      </g>
+
+      <rect x="850" y="170" width="150" height="60" rx="10" fill="#334155"/>
+      <text x="925" y="198" text-anchor="middle" class="sv-white" font-size="13" font-weight="700">死亡 / 失能</text>
+      <text x="925" y="218" text-anchor="middle" fill="#cbd5e1" font-size="11">hard outcomes</text>
+      <line x1="770" y1="200" x2="846" y2="200" stroke="#94a3b8" stroke-width="2" marker-end="url(#f26ar)"/>
+
+      <!-- feedback -->
+      <path d="M675 260 C675 350 300 380 150 260" fill="none" stroke="#b91c1c" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#f26ar2)"/>
+      <text x="420" y="382" class="sv-small" fill="#b91c1c">炎症/代谢反馈 → 进一步线粒体损伤</text>
+
+      <text x="30" y="402" class="sv-small">mtDNA-CN 与衰弱/死亡关联 HR 1.33–1.47；但因果不确定，不能把关联当作干预靶点。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 26 · 从线粒体功能障碍到衰弱：一条合理但未证明的路径</b><span>四个系统并行受损，通过炎症/代谢反馈形成恶性循环；这是“多病共存”的一个可检验解释，但不是“线粒体是总开关”的证明。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="cl-label">影响面的读法</div>
+    <p>影响面热图不是“器官受损排行榜”，而是“证据 + 效应 + 年龄窗口 + 可干预性”的联合判断。一个器官可以“证据很强”但“可干预性很低”（如眼、耳），也可以“证据较弱”但“可干预性很高”（如骨骼肌）。<b>做研究优先级时，应该看“证据 × 可干预性”，而不是只看证据强度。</b></p>
+  </div>
+</section>
+
+<section id="s5" class="section">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <h2>生物标志物：从“测得到”到“有意义”</h2>
+      <p class="sec-sub">一个线粒体标志物要成立，必须同时回答四个问题：测的是什么功能、是否可重复、是否提供增量信息、是否随干预改变。</p>
+    </div>
+  </div>
+
+  <p>“线粒体年龄”检测是商业健康领域最热的概念之一，但绝大多数检测只回答了四个问题中的第一个，而且只回答了一部分。判断一个标志物，先看它测的是<b>量</b>（拷贝数、异质性）、<b>功能</b>（呼吸、ATP 合成）、还是<b>下游信号</b>（mitokine、炎症）。三者不能互相替代。<span class="badge b">B</span></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:15%">标志物</th><th style="width:17%">测什么</th><th style="width:15%">样本/方法</th><th style="width:18%">优势</th><th style="width:27%">局限</th><th>等级</th></tr></thead>
+      <tbody>
+        <tr><td><b>mtDNA-CN</b></td><td>白细胞 mtDNA 拷贝数</td><td>血 / qPCR、NGS</td><td>廉价、可大队列、可 MR</td><td>受血细胞组成、炎症、吸烟、BMI 影响；MR 多为 null；2026 年研究显示校正血细胞组成后疾病关联明显减弱</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>血液 mtDNA 异质性</b></td><td>变异等位基因比例</td><td>血 / 深度 NGS</td><td>可量化、可重复</td><td>主要是 CHIP 的读数；不能代表实体组织；低比例变异功能意义不明</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>单细胞 mtDNA 突变</b></td><td>组织内 cryptic 突变</td><td>活检 / scRNA-seq、scATAC-seq</td><td>组织特异、可测低比例突变</td><td>研究阶段；成本高；方法未标准化；不能临床常规使用</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>GDF15 / FGF21</b></td><td>整合应激反应（ISR）</td><td>血清 / ELISA</td><td>与线粒体病严重度相关；易测</td><td>不特异：炎症、癌症、肾病、禁食均可升高；不是“线粒体年龄”</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>humanin</b></td><td>线粒体来源肽</td><td>血浆 / ELISA、质谱</td><td>与代谢/神经保护相关</td><td>检测方法差异大；人类衰老数据有限</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>31P-MRS τPCr</b></td><td>肌肉氧化磷酸化恢复</td><td>MRI/MRS / 活体</td><td>无创、功能性强、可重复</td><td>肌群异质性大；只能测骨骼肌；标准化要求高</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>PBMC 呼吸</b></td><td>外周血单核细胞耗氧</td><td>血 / Seahorse</td><td>可及、可纵向随访</td><td>日间变异大；分离与培养方法影响结果；可随年龄升高</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>全血 NAD⁺</b></td><td>NAD⁺ 池</td><td>血 / 质谱</td><td>易测、可干预</td><td>2026 年研究：全血 NAD⁺ 不随年龄或生活方式干预变化；只有 NR 能升高</td><td><span class="badge b">B</span></td></tr>
+        <tr><td><b>乳酸/丙酮酸</b></td><td>糖酵解/氧化平衡</td><td>血 / 常规生化</td><td>极廉价</td><td>非特异；受运动、肝肾功能、采血条件影响</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>酰基肉碱/神经酰胺</b></td><td>脂肪酸氧化与脂毒性</td><td>血浆 / 质谱</td><td>与代谢病相关</td><td>反映代谢状态而非线粒体功能本身</td><td><span class="badge c">C</span></td></tr>
+        <tr><td><b>血浆 cf-mtDNA</b></td><td>mtDAMP 释放</td><td>血浆 / qPCR</td><td>与炎症、脓毒症相关</td><td>来源不明；受创伤、运动、感染影响；不是衰老标志</td><td><span class="badge c">C</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 560" role="img" aria-label="线粒体生物标志物的特异性与可及性矩阵">
+      <text x="40" y="30" class="sv-title" font-size="14">标志物矩阵：特异性 × 可及性</text>
+
+      <!-- axes -->
+      <line x1="120" y1="380" x2="1010" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="120" y1="80" x2="120" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="560" y1="80" x2="560" y2="380" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <line x1="120" y1="230" x2="1010" y2="230" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+
+      <text x="565" y="404" text-anchor="middle" class="sv-label">可及性（样本获取与检测标准化）→</text>
+      <text x="40" y="230" class="sv-label" transform="rotate(-90 40 230)" text-anchor="middle">特异性（真正反映线粒体功能）→</text>
+
+      <!-- quadrant labels -->
+      <text x="136" y="104" class="sv-small" fill="#94a3b8">特异但难及：机制研究</text>
+      <text x="576" y="104" class="sv-small" fill="#0f766e">理想区：可作终点</text>
+      <text x="136" y="366" class="sv-small" fill="#94a3b8">双低</text>
+      <text x="576" y="366" class="sv-small" fill="#b45309">易测但不特异：流行病学</text>
+
+      <!-- points -->
+      <g>
+        <circle cx="226" cy="140" r="8" fill="#6d28d9"/>
+        <text x="240" y="145" class="sv-label" fill="#6d28d9">组织活检呼吸</text>
+        <circle cx="384" cy="104" r="8" fill="#6d28d9"/>
+        <text x="398" y="109" class="sv-label" fill="#6d28d9">单细胞 mtDNA 突变</text>
+        <circle cx="578" cy="116" r="8" fill="#0f766e"/>
+        <text x="592" y="121" class="sv-label" fill="#0f766e">31P-MRS τPCr</text>
+        <circle cx="718" cy="194" r="8" fill="#1d4ed8"/>
+        <text x="732" y="199" class="sv-label" fill="#1d4ed8">PBMC 呼吸</text>
+        <circle cx="912" cy="215" r="8" fill="#b45309"/>
+        <text x="900" y="205" text-anchor="end" class="sv-label" fill="#b45309">血液 mtDNA 异质性</text>
+        <circle cx="806" cy="236" r="8" fill="#b45309"/>
+        <text x="794" y="226" text-anchor="end" class="sv-label" fill="#b45309">GDF15 / FGF21</text>
+        <circle cx="666" cy="254" r="8" fill="#b45309"/>
+        <text x="654" y="244" text-anchor="end" class="sv-label" fill="#b45309">humanin</text>
+        <circle cx="956" cy="266" r="8" fill="#b45309"/>
+        <text x="944" y="256" text-anchor="end" class="sv-label" fill="#b45309">mtDNA-CN</text>
+        <circle cx="894" cy="292" r="8" fill="#b45309"/>
+        <text x="882" y="312" text-anchor="end" class="sv-label" fill="#b45309">酰基肉碱/神经酰胺</text>
+        <circle cx="736" cy="300" r="8" fill="#b45309"/>
+        <text x="724" y="320" text-anchor="end" class="sv-label" fill="#b45309">血浆 cf-mtDNA</text>
+        <circle cx="930" cy="330" r="8" fill="#b45309"/>
+        <text x="918" y="350" text-anchor="end" class="sv-label" fill="#b45309">全血 NAD⁺</text>
+        <circle cx="976" cy="352" r="8" fill="#b45309"/>
+        <text x="964" y="372" text-anchor="end" class="sv-label" fill="#b45309">乳酸/丙酮酸</text>
+      </g>
+
+      <text x="120" y="440" class="sv-small">读法：右上角是“理想标志物”，但至今没有一个标志物同时满足“组织特异 + 功能相关 + 可标准化 + 能预测结局”。</text>
+      <text x="120" y="462" class="sv-small">mtDNA-CN 与血液异质性位于右下：极易测，但特异性低；31P-MRS 位于上中：特异性高，但只能测骨骼肌。</text>
+      <text x="120" y="500" class="sv-small">本图为作者基于检测可及性与机制特异性的定性判断，不是定量评分。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 27 · 标志物矩阵：特异性与可及性不可兼得</b><span>商业“线粒体年龄”检测几乎都落在右下角（易测但不特异）。真正有机制特异性的检测（单细胞 mtDNA、组织呼吸）目前仍停留在研究阶段。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>5.1 mtDNA-CN：最常用的标志物，最容易被混淆</h3>
+  <p>血液 mtDNA-CN 便宜、可在大队列中测量、可做孟德尔随机化，因此成为流行病学的宠儿。它与年龄、炎症、代谢病、CVD、死亡都有相关性。<span class="badge b">B</span> 但它的解释存在三个陷阱：</p>
+  <p><b>第一，血细胞组成。</b>中性粒细胞、淋巴细胞、血小板的 mtDNA 拷贝数不同；感染、炎症、骨髓应激会改变白细胞构成，从而改变 mtDNA-CN。2026 年基于约 75 万人的研究显示，校正血细胞组成后，mtDNA-CN 与多种疾病的关联明显减弱甚至消失。<span class="badge b">B</span></p>
+  <p><b>第二，因果方向。</b>多数孟德尔随机化研究没有发现 mtDNA-CN 对常见疾病有稳健的因果效应；观察性关联更可能是反向因果或共同原因。<span class="badge b">B</span></p>
+  <p><b>第三，组织特异性。</b>血液 mtDNA-CN 不能代表心脏、脑、肌肉的线粒体拷贝数；把血液指标当作“全身线粒体年龄”是范畴错误。<span class="badge b">B</span></p>
+  <p>结论：mtDNA-CN 是一个<b>风险标志物</b>，不是“线粒体年龄”。它可以用于风险分层与机制假设生成，但不能单独作为抗衰老干预的替代终点。<span class="badge b">B</span></p>
+
+  <h3>5.2 异质性：血液里测到的主要是 CHIP</h3>
+  <p>2026 年 Nature 基于约 75 万人的研究给出了目前最清晰的图景：血液 mtDNA 单核苷酸变异随年龄积累，60 岁后急剧上升；大多数变异比例很低；正选择信号很弱；突变谱与复制错误一致，而不是氧化损伤；GWAS 命中 TERT、TCL1A、SMC4 等与克隆性造血相关的位点。<span class="badge b">B</span> 换句话说，<b>血液 mtDNA 异质性是克隆性造血的标志物</b>，而不是实体组织线粒体衰老的直接读数。</p>
+  <p>实体组织的图景不同。2025 年 Nature Communications 对 4 个物种、7 种组织、超过 14 万个细胞的分析显示：在异质性 ≥0.5% 时，bulk 测序只能检出约 9% 的突变；在异质性 &lt;0.5% 时，约 91% 的突变只有单细胞测序才能发现，其中约 94% 是“单细胞独有”。<span class="badge b">B</span> 这些 cryptic 突变在衰老的终末分化组织中占主导，且热量限制可以减缓其积累。这提示：<b>组织特异性、单细胞水平的 mtDNA 突变，是比血液异质性更有希望的“组织衰老时钟”</b>——但目前仍是研究工具。</p>
+
+  <h3>5.3 功能标志物：31P-MRS 最好，但只能测肌肉</h3>
+  <p>31P-MRS 测量运动后磷酸肌酸的恢复时间（τPCr），反映肌肉线粒体氧化磷酸化能力。它的优点是活体、无创、功能性强；缺点是肌群异质性大（见 §4.3）、标准化要求高、只能测骨骼肌。<span class="badge b">B</span> PBMC 呼吸更易测，但日间变异大、方法不统一，而且有研究显示它可随年龄升高而不是下降——这提醒我们“外周血呼吸”不等于“组织线粒体功能”。<span class="badge c">C</span></p>
+
+  <h3>5.4 Mitokine：反映的是“应激”，不是“衰老”</h3>
+  <p>GDF15 与 FGF21 在線粒体病中显著升高，是临床上最有用的线粒体病生物标志物之一。<span class="badge b">B</span> 但它们属于整合应激反应（ISR）的下游，炎症、癌症、肾病、禁食、运动都可以升高；把它们当作“线粒体衰老标志”会带来大量假阳性。humanin 的人类衰老数据更少，检测方法差异也大。<span class="badge c">C</span></p>
+
+  <h3>5.5 NAD⁺：一个被商业叙事放大的反例</h3>
+  <p>“NAD⁺ 随年龄下降，所以补充 NAD⁺ 可以抗衰老”是过去十年最流行的线粒体叙事之一。但 2026 年 Nature Metabolism 的一项研究测量了全血 NAD⁺，发现它<b>不随年龄变化，也不随生活方式干预变化</b>；只有烟酰胺核糖（NR）补充能显著升高全血 NAD⁺。<span class="badge b">B</span> 这并不否定组织 NAD⁺ 在部分模型中下降，但说明：<b>全血 NAD⁺ 不是一个可靠的衰老标志物</b>，而“NAD⁺ 下降”也不是一个普遍规律。</p>
+
+  <div class="callout note">
+    <div class="cl-label">什么才算一个好的线粒体衰老标志物</div>
+    <p>至少应满足五条：<b>组织特异</b>（能区分心脏、脑、肌肉）、<b>功能相关</b>（与呼吸/ATP 合成挂钩）、<b>可标准化</b>（跨实验室可重复）、<b>可预测</b>（前瞻性预测功能下降或死亡）、<b>可改变</b>（干预后随之变化，且变化与临床获益相关）。目前没有任何一个标志物同时满足五条；最接近的是 31P-MRS（满足后四条中的三条，但只能测肌肉）。<span class="badge b">B</span></p>
+  </div>
+</section>
+
+<section id="s6" class="section">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <h2>干预：从运动到线粒体编辑</h2>
+      <p class="sec-sub">最重要的一句话：迄今没有任何一种线粒体干预被证明能在健康人类中延缓衰老或延长寿命。</p>
+    </div>
+  </div>
+
+  <div class="callout stop">
+    <div class="cl-label">先立边界</div>
+    <p>2026 年《Biogerontology》综述的结论是：<b>没有一种线粒体靶向干预已被证明能在健康人类中延缓衰老或延长寿命</b>。<span class="badge b">B</span> 这句话不是否定线粒体研究，而是把“机制合理”“动物有效”“人类有替代终点改善”“人类有硬终点获益”四件事分开。下面所有干预，都要按这个阶梯读。</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:14%">干预</th><th style="width:19%">机制</th><th style="width:26%">人类证据</th><th style="width:16%">关键终点</th><th style="width:7%">等级</th><th>限制/备注</th></tr></thead>
+      <tbody>
+        <tr><td><b>运动</b></td><td>线粒体生物发生、mitophagy、PGC-1α、毛细血管化</td><td>28 项研究 meta：VO2max SMD 0.46（p&lt;0.001，I²=0%）；citrate synthase SMD 0.18（p=0.450）；BMI SMD −0.09（p=0.557）</td><td>VO2max、肌力、功能能力</td><td><span class="badge a">A</span></td><td>功能获益真实，但线粒体酶活性不是敏感终点；依从性是最大限制</td></tr>
+        <tr><td><b>热量限制</b></td><td>胰岛素/IGF-1↓、mTOR↓、自噬↑、ROS↓</td><td>短期 RCT 改善代谢与线粒体功能；长期硬终点缺乏</td><td>体重、胰岛素敏感性、线粒体功能</td><td><span class="badge b">B</span></td><td>长期依从性差；人群异质性大；不是“线粒体特异”</td></tr>
+        <tr><td><b>雷帕霉素</b></td><td>mTORC1 抑制、mitophagy↑</td><td>小鼠寿命延长；人类早期试验（PEARL 等）进行中</td><td>免疫、代谢、衰老标志</td><td><span class="badge b">B</span>/<span class="badge c">C</span></td><td>口腔溃疡、感染、糖脂代谢副作用；人类硬终点未验证</td></tr>
+        <tr><td><b>二甲双胍</b></td><td>复合体 I 轻度抑制、AMPK 激活</td><td>TAME 试验未完成；观察性证据为主</td><td>糖尿病预防、衰老相关结局</td><td><span class="badge b">B</span></td><td>不是“线粒体增强剂”；长期可能抑制呼吸；健康人获益不确定</td></tr>
+        <tr><td><b>NR / NMN</b></td><td>NAD⁺ 前体</td><td>多项小型 RCT：全血 NAD⁺ 升高；代谢/功能终点不一致</td><td>NAD⁺、代谢、体能</td><td><span class="badge b">B</span>/<span class="badge c">C</span></td><td>无硬终点；全血 NAD⁺ 不随年龄下降；“NAD⁺ 缺乏”叙事被夸大</td></tr>
+        <tr><td><b>尿石素 A</b></td><td>mitophagy 诱导</td><td>ATLAS 等 3 项 RCT、174 人；主终点峰值功率未达显著；腘绳肌力量 +12%/+9.8%</td><td>肌力、峰值功率、6MWD</td><td><span class="badge b">B</span>/<span class="badge c">C</span></td><td>终点漂移风险；效应量小；长期硬终点缺乏</td></tr>
+        <tr><td><b>亚精胺</b></td><td>自噬诱导</td><td>人类观察性 + 小型 RCT；证据弱</td><td>认知、代谢</td><td><span class="badge c">C</span></td><td>剂量、生物利用度、长期安全性不明</td></tr>
+        <tr><td><b>白藜芦醇</b></td><td>SIRT1/AMPK 激活</td><td>多项 RCT 结果不一致</td><td>代谢、血管功能</td><td><span class="badge c">C</span></td><td>生物利用度低；SIRT1 直接激活机制受质疑</td></tr>
+        <tr><td><b>MitoQ / SkQ1</b></td><td>线粒体靶向抗氧化</td><td>小型 RCT；未达硬终点</td><td>血管功能、肝酶、运动表现</td><td><span class="badge c">C</span></td><td>抗氧化剂在人类中的失败模式（见 §2.2）</td></tr>
+        <tr><td><b>SS-31 / elamipretide</b></td><td>心磷脂保护、复合体稳定性</td><td>FDA 加速批准 Barth 综合征（2025-09-19）；12 例试验，10 例疗效分析；审评方认为与安慰剂无差异；需确证试验</td><td>膝伸肌力量（中间终点）</td><td><span class="badge b">B</span>（窄）</td><td>仅限 Barth 综合征（≥30 kg）；约 80 万美元/年；不是抗衰老药</td></tr>
+        <tr><td><b>线粒体移植</b></td><td>外源健康线粒体进入细胞</td><td>Phase 1 卒中试验：安全，无显著不良事件；无疗效证据</td><td>安全性</td><td><span class="badge c">C</span></td><td>剂量、递送、免疫原性、长期命运均未知</td></tr>
+        <tr><td><b>mtDNA 编辑</b></td><td>mitoTALEN、mitoZFN、DdCBE、TALED</td><td>小鼠 proof-of-concept：体内碱基编辑恢复 LHON 模型视觉功能</td><td>视觉功能（小鼠）</td><td><span class="badge c">C</span>/<span class="badge d">D</span></td><td>人类未验证；脱靶、递送、异质性编辑效率是瓶颈</td></tr>
+        <tr><td><b>线粒体替代治疗（MRT）</b></td><td>替换卵母细胞/受精卵 mtDNA</td><td>英国已出生 8 例；3 例残留突变 mtDNA；需长期随访</td><td>健康出生、神经发育</td><td><span class="badge b">B</span>（窄）</td><td>仅限线粒体病；伦理与长期安全性；不是抗衰老技术</td></tr>
+        <tr><td><b>部分重编程</b></td><td>OSK 短暂表达</td><td>小鼠改善衰老标志；人类未验证</td><td>表观年龄、器官功能</td><td><span class="badge d">D</span></td><td>肿瘤风险、身份丢失、递送问题</td></tr>
+        <tr><td><b>衰老细胞清除</b></td><td>senolytics（达沙替尼+槲皮素等）</td><td>人类早期试验；硬终点缺乏</td><td>衰老细胞负荷、功能</td><td><span class="badge c">C</span></td><td>对线粒体是间接效应；不是线粒体靶向干预</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 460" role="img" aria-label="线粒体干预的证据与机制特异性矩阵">
+      <text x="40" y="30" class="sv-title" font-size="14">干预矩阵：人类证据强度 × 机制特异性</text>
+      <line x1="120" y1="400" x2="1010" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="120" y1="70" x2="120" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="550" y1="70" x2="550" y2="400" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <line x1="120" y1="235" x2="1010" y2="235" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <text x="565" y="424" text-anchor="middle" class="sv-label">机制特异性（是否直接作用于线粒体）→</text>
+      <text x="40" y="235" class="sv-label" transform="rotate(-90 40 235)" text-anchor="middle">人类证据强度 →</text>
+
+      <text x="132" y="92" class="sv-small" fill="#0f766e">高证据 / 低特异性</text>
+      <text x="562" y="92" class="sv-small" fill="#b45309">高证据 / 高特异性（多为窄适应症）</text>
+      <text x="132" y="392" class="sv-small" fill="#94a3b8">低证据 / 低特异性</text>
+      <text x="562" y="392" class="sv-small" fill="#b91c1c">高特异性 / 低证据</text>
+
+      <g>
+        <circle cx="325" cy="106" r="9" fill="#0f766e"/><text x="338" y="111" class="sv-label" fill="#0f766e">运动</text>
+        <circle cx="370" cy="160" r="9" fill="#0f766e"/><text x="383" y="165" class="sv-label" fill="#0f766e">热量限制</text>
+        <circle cx="505" cy="182" r="9" fill="#1d4ed8"/><text x="518" y="187" class="sv-label" fill="#1d4ed8">二甲双胍</text>
+        <circle cx="640" cy="240" r="9" fill="#6d28d9"/><text x="653" y="245" class="sv-label" fill="#6d28d9">雷帕霉素</text>
+        <circle cx="730" cy="278" r="9" fill="#b45309"/><text x="743" y="283" class="sv-label" fill="#b45309">NR / NMN</text>
+        <circle cx="775" cy="266" r="9" fill="#b45309"/><text x="788" y="271" class="sv-label" fill="#b45309">尿石素 A</text>
+        <circle cx="685" cy="310" r="9" fill="#b45309"/><text x="698" y="315" class="sv-label" fill="#b45309">亚精胺</text>
+        <circle cx="640" cy="304" r="9" fill="#b45309"/><text x="628" y="299" text-anchor="end" class="sv-label" fill="#b45309">白藜芦醇</text>
+        <circle cx="865" cy="330" r="9" fill="#b91c1c"/><text x="853" y="325" text-anchor="end" class="sv-label" fill="#b91c1c">MitoQ</text>
+        <circle cx="910" cy="224" r="9" fill="#6d28d9"/><text x="923" y="229" class="sv-label" fill="#6d28d9">SS-31</text>
+        <circle cx="820" cy="342" r="9" fill="#b91c1c"/><text x="808" y="337" text-anchor="end" class="sv-label" fill="#b91c1c">线粒体移植</text>
+        <circle cx="955" cy="368" r="9" fill="#b91c1c"/><text x="943" y="363" text-anchor="end" class="sv-label" fill="#b91c1c">mtDNA 编辑</text>
+        <circle cx="910" cy="192" r="9" fill="#6d28d9"/><text x="923" y="197" class="sv-label" fill="#6d28d9">MRT</text>
+        <circle cx="730" cy="374" r="9" fill="#b91c1c"/><text x="718" y="369" text-anchor="end" class="sv-label" fill="#b91c1c">部分重编程</text>
+        <circle cx="415" cy="288" r="9" fill="#b45309"/><text x="428" y="293" class="sv-label" fill="#b45309">senolytics</text>
+      </g>
+
+      <text x="120" y="446" class="sv-small">右上角的 SS-31 与 MRT 都是“高特异性 + 高证据”，但适应症极窄（Barth 综合征、线粒体病），不能外推到抗衰老。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 28 · 干预矩阵：证据强的干预，机制往往不特异</b><span>运动、热量限制证据最强，但作用机制广泛；机制最特异的 mtDNA 编辑、线粒体移植，人类证据最弱。SS-31 与 MRT 是“窄适应症例外”，不是抗衰老证据。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>6.1 运动：唯一达到 A 级的干预</h3>
+  <p>运动是唯一在人类中同时具备“机制合理 + 随机/对照证据 + 功能获益”的线粒体干预。它通过 PGC-1α/NRF1/NRF2 促进线粒体生物发生，通过 PINK1/Parkin 与 BNIP3/NIX 促进 mitophagy，通过 AMPK/mTOR 改善质量控制，并通过毛细血管化改善底物递送。<span class="badge a">A</span></p>
+  <p>但 2026 年的 meta 分析给出了一个重要的限定：28 项研究中，VO2max 的改善是中等的（SMD 0.46，p&lt;0.001，异质性 I²=0%），而 citrate synthase 活性（SMD 0.18，p=0.450）与 BMI（SMD −0.09，p=0.557）没有显著变化。<span class="badge a">A</span> 这说明：<b>运动的功能获益是真实的，但“线粒体酶活性”不是一个敏感的统一替代终点</b>；用 citrate synthase 作为抗衰老试验的主要终点，可能会漏掉真实获益。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 400" role="img" aria-label="运动干预的meta分析结果">
+      <text x="40" y="30" class="sv-title" font-size="14">运动：功能终点有效，酶活性终点无效</text>
+      <!-- axis -->
+      <line x1="300" y1="90" x2="900" y2="90" stroke="#e2e8ee"/>
+      <line x1="300" y1="300" x2="900" y2="300" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="420" y1="70" x2="420" y2="300" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="5 4"/>
+      <text x="300" y="324" text-anchor="middle" class="sv-small">−0.2</text>
+      <text x="420" y="324" text-anchor="middle" class="sv-small">0</text>
+      <text x="540" y="324" text-anchor="middle" class="sv-small">0.2</text>
+      <text x="660" y="324" text-anchor="middle" class="sv-small">0.4</text>
+      <text x="780" y="324" text-anchor="middle" class="sv-small">0.6</text>
+      <text x="900" y="324" text-anchor="middle" class="sv-small">0.8</text>
+      <text x="600" y="350" text-anchor="middle" class="sv-label">SMD（正 = 干预组优于对照）</text>
+
+      <g>
+        <text x="40" y="126" class="sv-label" font-weight="700">VO2max</text>
+        <rect x="688" y="110" width="16" height="16" fill="#0f766e"/>
+        <text x="716" y="123" class="sv-label">SMD 0.46，p&lt;0.001，I²=0%</text>
+      </g>
+      <g>
+        <text x="40" y="186" class="sv-label" font-weight="700">Citrate synthase</text>
+        <rect x="520" y="170" width="16" height="16" fill="#94a3b8"/>
+        <text x="548" y="183" class="sv-label">SMD 0.18，p=0.450（ns）</text>
+      </g>
+      <g>
+        <text x="40" y="246" class="sv-label" font-weight="700">BMI</text>
+        <rect x="358" y="230" width="16" height="16" fill="#b91c1c"/>
+        <text x="386" y="243" class="sv-label">SMD −0.09，p=0.557（ns）</text>
+      </g>
+
+      <rect x="640" y="60" width="420" height="56" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+      <text x="658" y="84" class="sv-small" fill="#92400e">功能获益 ≠ 线粒体酶活性改善</text>
+      <text x="658" y="104" class="sv-small" fill="#92400e">替代终点的选择会决定试验成败</text>
+
+      <text x="40" y="386" class="sv-small">来源：2026 年 28 项研究的系统综述与 meta 分析。SMD 为点估计；置信区间未在图中展开。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 29 · 运动：功能终点有效，酶活性终点无效</b><span>VO2max 显著改善且异质性为零，citrate synthase 与 BMI 均无显著变化。这对抗衰老试验的终点设计是一个直接警告。<span class="badge a">A</span></span></figcaption>
+  </figure>
+
+  <h3>6.2 热量限制与 mTOR：动物强，人类弱</h3>
+  <p>热量限制在酵母、线虫、果蝇、小鼠中都能延长寿命，在恒河猴中改善健康寿命（对寿命的影响因饮食与人群而异）。机制涉及胰岛素/IGF-1、mTOR、自噬与线粒体质量控制。<span class="badge b">B</span> 人类短期 RCT 显示热量限制可改善代谢、减少氧化应激、改善部分线粒体功能，但没有长期硬终点证据；长期依从性是最大限制。<span class="badge b">B</span></p>
+  <p>雷帕霉素在小鼠中延长寿命，但人类试验仍处于早期，且副作用（口腔溃疡、感染、糖脂代谢异常）限制了它在健康人群中的使用。<span class="badge b">B</span>/<span class="badge c">C</span> 二甲双胍是一个有趣的悖论：它是复合体 I 的轻度抑制剂，却可能通过 AMPK 与线粒体应激适应产生益处；“抑制呼吸”不等于“损害线粒体”，这也是 mitohormesis 的一个例证。<span class="badge b">B</span></p>
+
+  <h3>6.3 NAD⁺ 前体：升高了 NAD⁺，但没有升高“健康”</h3>
+  <p>NR 与 NMN 能可靠地升高全血 NAD⁺，但人类 RCT 的临床终点不一致：部分研究改善代谢或体能，部分没有差异；没有硬终点证据。<span class="badge b">B</span>/<span class="badge c">C</span> 更重要的是，2026 年 Nature Metabolism 的研究显示全血 NAD⁺ 不随年龄下降，这直接削弱了“NAD⁺ 缺乏是衰老驱动因素”的叙事。<span class="badge b">B</span> 这不等于 NAD⁺ 干预无效，但意味着它的理由不能建立在“补回年龄相关的 NAD⁺ 缺失”上。</p>
+
+  <h3>6.4 尿石素 A：主终点失败，次级终点阳性</h3>
+  <p>尿石素 A 通过诱导 mitophagy 改善线粒体质量，是过去五年最受关注的线粒体干预之一。ATLAS 试验纳入 88 名 40–65 岁成人，随机接受 500 mg、1000 mg 或安慰剂 4 个月。结果是一个典型的“终点漂移”案例：<b>主要终点（峰值功率）未达到显著</b>；次级终点中，腘绳肌力量在 500 mg 组增加约 12%、1000 mg 组增加约 9.8%；6 分钟步行距离增加约 33.4 米；峰值 VO2 在组内约改善 10%，但组间比较未达显著。<span class="badge b">B</span>/<span class="badge c">C</span></p>
+  <p>2026 年一项综述汇总了 3 项 RCT、174 名参与者，认为尿石素 A 在肌肉力量与功能上有“信号”，但样本小、终点不一致、长期硬终点缺乏。<span class="badge c">C</span> 这不是“无效”，也不是“有效”；它是一个<b>需要更大规模、预注册主终点的确证试验</b>的信号。</p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 430" role="img" aria-label="尿石素A试验的终点漂移">
+      <text x="40" y="30" class="sv-title" font-size="14">尿石素 A（ATLAS）：主终点未达，次级终点阳性</text>
+
+      <g>
+        <rect x="40" y="60" width="1040" height="56" rx="8" fill="#fff" stroke="#e2e8ee"/>
+        <text x="60" y="84" class="sv-label" font-weight="700">主终点</text>
+        <text x="180" y="84" class="sv-label">峰值功率（peak power）</text>
+        <rect x="700" y="70" width="120" height="26" rx="13" fill="#fee2e2"/>
+        <text x="760" y="88" text-anchor="middle" class="sv-value" fill="#b91c1c">未达显著</text>
+        <text x="850" y="84" class="sv-small">组间比较无统计学差异</text>
+      </g>
+
+      <g>
+        <rect x="40" y="130" width="1040" height="56" rx="8" fill="#fff" stroke="#e2e8ee"/>
+        <text x="60" y="154" class="sv-label" font-weight="700">次级终点</text>
+        <text x="180" y="154" class="sv-label">腘绳肌力量</text>
+        <rect x="700" y="140" width="120" height="26" rx="13" fill="#dcfce7"/>
+        <text x="760" y="158" text-anchor="middle" class="sv-value" fill="#166534">+12% / +9.8%</text>
+        <text x="850" y="154" class="sv-small">500 mg / 1000 mg，4 个月</text>
+      </g>
+
+      <g>
+        <rect x="40" y="200" width="1040" height="56" rx="8" fill="#fff" stroke="#e2e8ee"/>
+        <text x="60" y="224" class="sv-label" font-weight="700">次级终点</text>
+        <text x="180" y="224" class="sv-label">6 分钟步行距离</text>
+        <rect x="700" y="210" width="120" height="26" rx="13" fill="#dcfce7"/>
+        <text x="760" y="228" text-anchor="middle" class="sv-value" fill="#166534">+33.4 m</text>
+        <text x="850" y="224" class="sv-small">报告改善；临床意义需进一步确认</text>
+      </g>
+
+      <g>
+        <rect x="40" y="270" width="1040" height="56" rx="8" fill="#fff" stroke="#e2e8ee"/>
+        <text x="60" y="294" class="sv-label" font-weight="700">探索性</text>
+        <text x="180" y="294" class="sv-label">峰值 VO2</text>
+        <rect x="700" y="280" width="120" height="26" rx="13" fill="#fef3c7"/>
+        <text x="760" y="298" text-anchor="middle" class="sv-value" fill="#92400e">组内 ~+10%</text>
+        <text x="850" y="294" class="sv-small">组间比较未达显著</text>
+      </g>
+
+      <g>
+        <rect x="40" y="340" width="1040" height="56" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="60" y="364" class="sv-label" font-weight="700">证据汇总</text>
+        <text x="180" y="364" class="sv-label">2026 年综述：3 项 RCT / 174 人</text>
+        <rect x="700" y="350" width="120" height="26" rx="13" fill="#e0f2fe"/>
+        <text x="760" y="368" text-anchor="middle" class="sv-value" fill="#075985">信号，非结论</text>
+        <text x="850" y="364" class="sv-small">样本小、终点不一致、无硬终点</text>
+      </g>
+
+      <text x="40" y="420" class="sv-small">读法：主终点阴性、次级终点阳性，是“终点漂移”的典型模式；不能把次级终点的改善当作主终点成功的证据。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 30 · 尿石素 A：主终点失败，次级终点阳性</b><span>ATLAS 的峰值功率主终点未达显著，但腘绳肌力量与 6MWD 有改善。这既不是“无效”，也不是“有效”，而是一个需要确证试验的信号。<span class="badge b">B</span>/<span class="badge c">C</span></span></figcaption>
+  </figure>
+
+  <h3>6.5 SS-31 / elamipretide：加速批准不等于疗效证明</h3>
+  <p>2025 年 9 月 19 日，FDA 加速批准 elamipretide 用于 Barth 综合征（体重 ≥30 kg）。这是首个以线粒体为靶点、以中间终点（膝伸肌力量）获批的药物，但审评过程充满争议：<b>支持批准的试验只有 12 名患者，其中 10 名进入疗效分析；审评方认为药物与安慰剂之间没有差异；批准要求确证试验</b>。<span class="badge b">B</span>（窄适应症）价格约为每年 80 万美元，进一步放大了“证据强度 vs 商业叙事”的张力。</p>
+  <p>这个案例的教学价值在于：<b>“FDA 批准”不等于“证明有效”</b>。加速批准是基于替代终点的有条件批准，确证试验失败会被撤回。把它外推为“线粒体抗衰老药”是双重错误：既错在适应症，也错在证据等级。</p>
+
+  <h3>6.6 线粒体移植与 mtDNA 编辑：机制最前沿，人类最早期</h3>
+  <p>线粒体移植（把外源健康线粒体导入受损细胞）在动物模型中显示可改善缺血再灌注损伤；2026 年发表的 Phase 1 卒中试验显示<b>安全，无显著不良事件</b>，但没有疗效证据。<span class="badge c">C</span> 剂量、递送、免疫原性、移植线粒体的长期命运都未知。</p>
+  <p>mtDNA 编辑是过去五年最令人兴奋的技术进展：mitoTALEN、mitoZFN、DdCBE、TALED 可以在小鼠中靶向清除或修正突变 mtDNA；2025 年 Nature Communications 的研究在 LHON 小鼠模型中通过体内碱基编辑恢复了视觉功能。<span class="badge c">C</span>/<span class="badge d">D</span> 但人类应用仍面临脱靶、递送、异质性编辑效率与长期安全性四大瓶颈；把它称为“即将实现的抗衰老技术”是超前叙事。</p>
+
+  <h3>6.7 MRT：已出生 8 例，但它是生殖技术，不是抗衰老技术</h3>
+  <p>英国已通过线粒体替代治疗（MRT）出生 8 名婴儿，其中 3 例检测到残留突变 mtDNA；需要长期神经发育与代谢随访。<span class="badge b">B</span>（窄适应症）MRT 的对象是携带致病 mtDNA 突变的女性，目标是避免严重的线粒体病，不是延缓衰老。把它纳入“抗衰老干预”的讨论，是范畴错误。</p>
+
+  <div class="callout key">
+    <div class="cl-label">干预部分的结论</div>
+    <p>按证据强度排序：<b>运动（A）&gt; 热量限制/二甲双胍/雷帕霉素（B）&gt; NAD⁺/尿石素 A/白藜芦醇/MitoQ（B/C）&gt; 线粒体移植/mtDNA 编辑/部分重编程（C/D）</b>。按机制特异性排序几乎相反。<b>证据最强的干预最不特异；机制最特异的干预证据最弱</b>——这是线粒体衰老领域最重要的结构性事实，也是所有“抗衰老神药”叙事的共同盲点。<span class="badge b">B</span></p>
+  </div>
+</section>
+
+<section id="s7" class="section">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div>
+      <h2>争议与主动降级</h2>
+      <p class="sec-sub">这一节列出被主动降级或排除的主张。目的不是否定线粒体研究，而是把“机制合理”与“人类证据”分开。</p>
+    </div>
+  </div>
+
+  <p>线粒体衰老领域有一个结构性偏差：<b>机制研究越深入，叙事越容易超前于人类证据</b>。一个通路在细胞和小鼠中成立，不等于在人类中可干预；一个标志物与疾病相关，不等于它有因果性或临床效用。下面十条是本报告主动降级或排除的主张。<span class="badge b">B</span></p>
+
+  <h3>7.1 “线粒体是衰老的总开关”</h3>
+  <p>这是最流行、也最需要降级的说法。线粒体功能障碍确实是衰老的标志之一，与多条其他标志（细胞衰老、炎症、蛋白质稳态、干细胞耗竭）双向交互；但把它称为“总开关”混淆了<b>必要、充分、并行、下游</b>四种关系。目前的证据支持“线粒体是衰老网络中的一个核心节点”，不支持“线粒体是唯一的上游原因”。<span class="badge b">B</span> 降级后表述：<b>线粒体功能障碍是衰老的整合性标志与放大器，不是单一总开关。</b></p>
+
+  <h3>7.2 mtDNA mutator 小鼠：证明“可以”，不证明“就是这样”</h3>
+  <p>mtDNA mutator 小鼠（Polg 校对缺陷）会出现早衰表型：脱毛、骨质疏松、心肌病、 hearing loss、寿命缩短。这是“mtDNA 突变可以驱动衰老表型”的强证据。<span class="badge b">B</span> 但它不是正常衰老的模型：突变负荷远高于自然衰老，突变谱也不同（偏重复制错误），而且不同品系/构建的表型差异很大。降级后表述：<b>mutator 小鼠是 proof-of-principle，不是“正常衰老由 mtDNA 突变驱动”的证明。</b></p>
+
+  <h3>7.3 血液 mtDNA 异质性 ≠ 组织线粒体衰老</h3>
+  <p>2026 年 Nature 的大队列研究显示，血液 mtDNA 变异随年龄增加，但其模式与克隆性造血一致（TERT、TCL1A、SMC4 等位点），且正选择信号很弱。<span class="badge b">B</span> 把它当作“全身线粒体年龄”是范畴错误。降级后表述：<b>血液 mtDNA 异质性是 CHIP 与克隆演化的标志物；组织衰老需要组织特异、单细胞水平的测量。</b></p>
+
+  <h3>7.4 mtDNA-CN 的因果性</h3>
+  <p>观察性研究反复报告 mtDNA-CN 与 CVD、糖尿病、死亡相关；但孟德尔随机化多未发现稳健因果效应，且 2026 年研究显示校正血细胞组成后关联明显减弱。<span class="badge b">B</span> 降级后表述：<b>mtDNA-CN 是风险标志物，不是因果驱动因素，也不是“线粒体年龄”。</b></p>
+
+  <h3>7.5 抗氧化剂：四个失败模式</h3>
+  <p>维生素 E、β-胡萝卜素、MitoQ 等在人类试验中反复失败，原因不是“抗氧化不重要”，而是四个结构性错误：(1) <b>时机</b>——ROS 在早期信号中是有益的，晚期才有害；(2) <b>定位</b>——自由基在特定微区产生，全身性抗氧化剂到不了靶点；(3) <b>剂量</b>——高剂量抗氧化剂可能破坏 mitohormesis；(4) <b>终点</b>——用“氧化标志下降”代替“临床结局改善”。<span class="badge a">A</span> 这是本报告最确定的负面结论之一。</p>
+
+  <h3>7.6 NAD⁺：一个被证伪的“年龄下降”前提</h3>
+  <p>“NAD⁺ 随年龄下降”是 NAD⁺ 补充剂市场的核心叙事。2026 年 Nature Metabolism 的研究测量全血 NAD⁺，发现它<b>不随年龄变化，也不随生活方式干预变化</b>；只有 NR 补充能升高。<span class="badge b">B</span> 这不否定组织 NAD⁺ 在部分模型中下降，但说明“全血 NAD⁺ 缺乏”不是一个普遍事实。降级后表述：<b>NAD⁺ 前体可以升高 NAD⁺，但“补回年龄相关缺失”的理据不成立；临床获益未被硬终点证明。</b></p>
+
+  <h3>7.7 线粒体移植：Phase 1 安全，不等于有效</h3>
+  <p>2026 年 Phase 1 卒中试验显示线粒体移植安全、无显著不良事件。<span class="badge c">C</span> 但 Phase 1 的设计目标是安全性，不是疗效；样本小、无对照、随访短。把它描述为“线粒体移植可治疗卒中”是过度解读。降级后表述：<b>线粒体移植在人类中处于安全性验证阶段，疗效未知。</b></p>
+
+  <h3>7.8 elamipretide：加速批准不等于疗效证明</h3>
+  <p>FDA 于 2025-09-19 加速批准 elamipretide 用于 Barth 综合征，基于 12 例患者（10 例疗效分析）与膝伸肌力量这一中间终点；审评方认为与安慰剂无差异，要求确证试验。<span class="badge b">B</span>（窄适应症）降级后表述：<b>elamipretide 是 Barth 综合征的窄适应症药物，不是抗衰老药；“FDA 批准”不等于“证明有效”。</b></p>
+
+  <h3>7.9 MRT：生殖技术，不是抗衰老技术</h3>
+  <p>英国已出生 8 例 MRT 婴儿，3 例残留突变 mtDNA。<span class="badge b">B</span>（窄适应症）MRT 的目标是避免严重线粒体病，对象是携带致病 mtDNA 的女性；它不改变衰老进程，也不适用于健康人群。把它纳入“抗衰老”讨论是范畴错误。</p>
+
+  <h3>7.10 因果方向：双向，而不是单向</h3>
+  <p>线粒体功能障碍可以驱动衰老表型；衰老过程（炎症、蛋白质稳态失衡、干细胞耗竭）也可以损害线粒体。大多数人类观察性研究无法区分方向。<span class="badge b">B</span> 降级后表述：<b>线粒体衰老是双向反馈网络的一部分，不是单向因果链。</b></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 470" role="img" aria-label="线粒体干预的热度与证据矩阵">
+      <text x="40" y="30" class="sv-title" font-size="14">热度 × 证据：叙事最热的，往往证据最弱</text>
+      <line x1="120" y1="400" x2="1010" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="120" y1="70" x2="120" y2="400" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="550" y1="70" x2="550" y2="400" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <line x1="120" y1="235" x2="1010" y2="235" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="6 5"/>
+      <text x="565" y="424" text-anchor="middle" class="sv-label">人类证据强度 →</text>
+      <text x="40" y="235" class="sv-label" transform="rotate(-90 40 235)" text-anchor="middle">公众/商业热度 →</text>
+
+      <text x="132" y="92" class="sv-small" fill="#b91c1c">高热度 / 低证据：叙事区</text>
+      <text x="562" y="92" class="sv-small" fill="#0f766e">高热度 / 高证据：少数</text>
+      <text x="132" y="392" class="sv-small" fill="#94a3b8">双低</text>
+      <text x="562" y="392" class="sv-small" fill="#1d4ed8">高证据 / 低热度：被低估</text>
+
+      <g>
+        <circle cx="912" cy="256" r="9" fill="#0f766e"/><text x="900" y="250" text-anchor="end" class="sv-label" fill="#0f766e">运动</text>
+        <circle cx="780" cy="304" r="9" fill="#1d4ed8"/><text x="768" y="298" text-anchor="end" class="sv-label" fill="#1d4ed8">热量限制</text>
+        <circle cx="692" cy="144" r="9" fill="#b45309"/><text x="705" y="149" class="sv-label" fill="#b45309">二甲双胍</text>
+        <circle cx="560" cy="176" r="9" fill="#6d28d9"/><text x="573" y="181" class="sv-label" fill="#6d28d9">雷帕霉素</text>
+        <circle cx="428" cy="96" r="9" fill="#b91c1c"/><text x="441" y="101" class="sv-label" fill="#b91c1c">NAD⁺ 前体</text>
+        <circle cx="516" cy="128" r="9" fill="#b45309"/><text x="529" y="133" class="sv-label" fill="#b45309">尿石素 A</text>
+        <circle cx="384" cy="208" r="9" fill="#b45309"/><text x="397" y="213" class="sv-label" fill="#b45309">白藜芦醇</text>
+        <circle cx="340" cy="224" r="9" fill="#b45309"/><text x="353" y="229" class="sv-label" fill="#b45309">亚精胺</text>
+        <circle cx="340" cy="240" r="9" fill="#b91c1c"/><text x="328" y="258" text-anchor="end" class="sv-label" fill="#b91c1c">MitoQ</text>
+        <circle cx="604" cy="160" r="9" fill="#6d28d9"/><text x="617" y="165" class="sv-label" fill="#6d28d9">SS-31</text>
+        <circle cx="252" cy="192" r="9" fill="#b91c1c"/><text x="265" y="197" class="sv-label" fill="#b91c1c">线粒体移植</text>
+        <circle cx="252" cy="144" r="9" fill="#b91c1c"/><text x="265" y="149" class="sv-label" fill="#b91c1c">mtDNA 编辑</text>
+        <circle cx="648" cy="272" r="9" fill="#1d4ed8"/><text x="661" y="277" class="sv-label" fill="#1d4ed8">MRT</text>
+        <circle cx="208" cy="176" r="9" fill="#b91c1c"/><text x="221" y="181" class="sv-label" fill="#b91c1c">部分重编程</text>
+      </g>
+
+      <text x="120" y="446" class="sv-small">本图为作者基于媒体报道强度与人类证据等级的定性判断，不是定量指标；用于识别“叙事—证据”缺口，不用于评价具体产品。</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 31 · 热度 × 证据：叙事最热的，往往证据最弱</b><span>NAD⁺ 前体、尿石素 A、mtDNA 编辑位于“高热度/低证据”区；运动位于“高证据/低热度”区。这个错位本身就是线粒体衰老领域最重要的公共健康问题之一。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:22%">主张</th><th style="width:26%">常见表述</th><th style="width:30%">问题</th><th style="width:15%">降级后表述</th><th>等级</th></tr></thead>
+      <tbody>
+        <tr><td>线粒体是衰老总开关</td><td>“线粒体是衰老的中央调控器”</td><td>混淆必要/充分/并行/下游；与其他标志双向交互</td><td>核心节点与放大器，非单一总开关</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>mutator 小鼠证明正常衰老</td><td>“mtDNA 突变导致衰老”</td><td>突变负荷远高于自然衰老；突变谱不同；品系差异大</td><td>proof-of-principle，非正常衰老模型</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>血液异质性 = 组织衰老</td><td>“抽血就能测线粒体年龄”</td><td>主要是 CHIP；低比例变异功能意义不明</td><td>CHIP/克隆演化标志物</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>mtDNA-CN 因果驱动疾病</td><td>“mtDNA-CN 低导致衰老”</td><td>观察性关联；MR 多为 null；血细胞组成混杂</td><td>风险标志物，非因果因素</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>抗氧化剂可以抗衰老</td><td>“清除自由基就能延缓衰老”</td><td>时机、定位、剂量、终点四重错误；人类试验失败</td><td>不支持健康人常规使用</td><td><span class="badge a">A</span></td></tr>
+        <tr><td>NAD⁺ 随年龄下降</td><td>“补 NAD⁺ 就能抗衰老”</td><td>全血 NAD⁺ 不随年龄或生活方式变化；无硬终点</td><td>可升高 NAD⁺，但获益未证明</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>线粒体移植可治疗疾病</td><td>“移植线粒体修复受损组织”</td><td>仅 Phase 1 安全性；无对照、样本小</td><td>安全性验证阶段，疗效未知</td><td><span class="badge c">C</span></td></tr>
+        <tr><td>elamipretide 是抗衰老药</td><td>“首个线粒体抗衰老药获批”</td><td>仅 Barth 综合征；12 例；与安慰剂无差异；需确证</td><td>窄适应症药物，非抗衰老药</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>MRT 是抗衰老技术</td><td>“换线粒体可以延寿”</td><td>对象是线粒体病患者；目标是避免疾病</td><td>生殖技术，非抗衰老技术</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>线粒体损伤单向导致衰老</td><td>“线粒体坏了所以老了”</td><td>双向反馈；观察性研究无法定方向</td><td>双向网络的一部分</td><td><span class="badge b">B</span></td></tr>
+        <tr><td>尿石素 A 已被证明有效</td><td>“临床证明增强肌力”</td><td>主终点未达；次级终点阳性；样本小</td><td>有信号，需确证试验</td><td><span class="badge c">C</span></td></tr>
+        <tr><td>mtDNA 编辑即将临床应用</td><td>“治愈线粒体病指日可待”</td><td>仅小鼠 proof-of-concept；递送/脱靶/效率瓶颈</td><td>前沿技术，人类未验证</td><td><span class="badge d">D</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="cl-label">降级不等于否定</div>
+    <p>把一条主张从“已证明”降为“合理但未证明”，不是说它错了，而是说它的证据还不足以支撑临床或公共政策建议。线粒体衰老领域最大的风险不是“研究不够多”，而是<b>把机制研究的兴奋度误当成人类证据的强度</b>。<span class="badge b">B</span></p>
+  </div>
+</section>
+
+<section id="s8" class="section">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div>
+      <h2>结论与研究议程</h2>
+      <p class="sec-sub">把“已知”“未知”“可做”分开，是这份报告最重要的输出。</p>
+    </div>
+  </div>
+
+  <h3>8.1 五条结论</h3>
+  <div class="num-list">
+    <div class="num-item"><span class="num">01</span><div><b>线粒体衰老是多层维护失败，不是单一通路。</b>mtDNA 突变、ROS、质量控制、生物发生、mtDAMP 信号、细胞间传播六层相互耦合；任何单层解释都不足以概括。<span class="badge b">B</span></div></div>
+    <div class="num-item"><span class="num">02</span><div><b>因果证据“分层成立”。</b>mutator 小鼠证明 mtDNA 突变可以驱动衰老表型；人类血液异质性主要是 CHIP；组织单细胞 cryptic 突变是更强的组织衰老候选，但仍是研究工具。<span class="badge b">B</span></div></div>
+    <div class="num-item"><span class="num">03</span><div><b>影响面器官差异极大。</b>心脏、脑、骨骼肌、免疫系统的证据最强；眼、耳、骨、生殖为中等；皮肤、肺最弱。年龄依赖性强不等于可干预性高。<span class="badge b">B</span></div></div>
+    <div class="num-item"><span class="num">04</span><div><b>没有一个标志物能被称为“线粒体年龄”。</b>mtDNA-CN 是风险标志物；血液异质性是 CHIP 标志物；31P-MRS 是最好的功能标志物，但只能测骨骼肌；NAD⁺ 不随年龄下降。<span class="badge b">B</span></div></div>
+    <div class="num-item"><span class="num">05</span><div><b>证据最强的干预最不特异，机制最特异的干预证据最弱。</b>运动是唯一 A 级干预；没有任何线粒体靶向干预被证明能在健康人类中延缓衰老或延长寿命。<span class="badge a">A</span>/<span class="badge b">B</span></div></div>
+  </div>
+
+  <h3>8.2 研究议程：三个时间尺度</h3>
+  <p>如果把“线粒体衰老”当作一个可操作的研究项目，而不是一个叙事，那么未来十年的优先级可以按三个时间尺度排列。近期解决“测量与因果”，中期解决“干预与安全”，长期解决“硬终点”。<span class="badge b">B</span></p>
+
+  <figure class="figure">
+    <div class="svg-wrap">
+    <svg viewBox="0 0 1120 470" role="img" aria-label="线粒体衰老研究议程的三个时间尺度">
+      <text x="40" y="30" class="sv-title" font-size="14">研究议程：先解决测量，再解决干预，最后解决硬终点</text>
+
+      <!-- H1 -->
+      <rect x="40" y="56" width="320" height="300" rx="12" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+      <rect x="40" y="56" width="320" height="46" rx="12" fill="#0f766e"/>
+      <text x="200" y="85" text-anchor="middle" class="sv-white" font-size="14" font-weight="700">近期 0–3 年</text>
+      <text x="64" y="132" class="sv-label">• 标准化 31P-MRS 与单细胞 mtDNA</text>
+      <text x="64" y="162" class="sv-label">• 运动剂量-反应 RCT（硬终点）</text>
+      <text x="64" y="192" class="sv-label">• CHIP 分层的队列分析</text>
+      <text x="64" y="222" class="sv-label">• 组织特异单细胞图谱</text>
+      <text x="64" y="252" class="sv-label">• 建立开放的数据与样本库</text>
+      <text x="64" y="300" class="sv-small">目标：让“线粒体衰老”可测量、可比较</text>
+      <text x="64" y="324" class="sv-small">产出：标志物共识 + 参照区间</text>
+
+      <!-- arrow -->
+      <line x1="368" y1="206" x2="396" y2="206" stroke="#94a3b8" stroke-width="2" marker-end="url(#f32ar)"/>
+      <defs>
+        <marker id="f32ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+
+      <!-- H2 -->
+      <rect x="400" y="56" width="320" height="300" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+      <rect x="400" y="56" width="320" height="46" rx="12" fill="#1d4ed8"/>
+      <text x="560" y="85" text-anchor="middle" class="sv-white" font-size="14" font-weight="700">中期 3–7 年</text>
+      <text x="424" y="132" class="sv-label">• mitophagy 诱导剂 Phase 2</text>
+      <text x="424" y="162" class="sv-label">• 预注册主终点，避免终点漂移</text>
+      <text x="424" y="192" class="sv-label">• mtDNA 编辑的安全性与递送</text>
+      <text x="424" y="222" class="sv-label">• MRT 长期随访</text>
+      <text x="424" y="252" class="sv-label">• 复合终点验证</text>
+      <text x="424" y="300" class="sv-small">目标：在人类中证明“可改变”</text>
+      <text x="424" y="324" class="sv-small">产出：2–3 个可重复的干预信号</text>
+
+      <line x1="728" y1="206" x2="756" y2="206" stroke="#94a3b8" stroke-width="2" marker-end="url(#f32ar)"/>
+
+      <!-- H3 -->
+      <rect x="760" y="56" width="320" height="300" rx="12" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+      <rect x="760" y="56" width="320" height="46" rx="12" fill="#b45309"/>
+      <text x="920" y="85" text-anchor="middle" class="sv-white" font-size="14" font-weight="700">长期 7–15 年</text>
+      <text x="784" y="132" class="sv-label">• mtDNA 编辑人类试验</text>
+      <text x="784" y="162" class="sv-label">• 线粒体移植 RCT</text>
+      <text x="784" y="192" class="sv-label">• 以硬终点为导向的预防试验</text>
+      <text x="784" y="222" class="sv-label">• 联合干预（运动 + 药物）</text>
+      <text x="784" y="252" class="sv-label">• 卫生经济学与可及性</text>
+      <text x="784" y="300" class="sv-small">目标：证明“延缓衰老”而非“改善指标”</text>
+      <text x="784" y="324" class="sv-small">产出：硬终点证据 + 指南</text>
+
+      <!-- bottom questions -->
+      <rect x="40" y="380" width="1040" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="60" y="406" class="sv-label" font-weight="700">三个必须回答的问题</text>
+      <text x="60" y="432" class="sv-small">1. 因果方向：线粒体损伤是原因、结果，还是双向？</text>
+      <text x="400" y="432" class="sv-small">2. 组织特异性：血液指标能否代表实体组织？</text>
+      <text x="740" y="432" class="sv-small">3. 可逆性：在什么年龄窗口、什么程度上可逆？</text>
+    </svg>
+    </div>
+    <figcaption class="figcap"><b>图 32 · 研究议程：三个时间尺度</b><span>近期解决测量与因果，中期解决干预与安全，长期解决硬终点。顺序不能颠倒：没有可靠的测量，干预试验只会重复“主终点失败、次级终点阳性”的模式。<span class="badge b">B</span></span></figcaption>
+  </figure>
+
+  <h3>8.3 判断边界</h3>
+  <p>本报告的判断基于截至 2026 年 10 月的公开文献与监管信息。需要明确四条边界：<span class="badge b">B</span></p>
+  <p><b>第一，证据等级是作者判断，不是 meta 分析。</b>A/B/C/D 分级综合考虑了研究设计、样本量、物种一致性、人类数据与效应量，但不同章节之间可能存在细微不一致；引用具体数字时，以原始文献为准。</p>
+  <p><b>第二，2025–2026 年的部分研究仍是早期证据。</b>单细胞 mtDNA 图谱、mtDNA 编辑、线粒体移植、MRT 长期随访都处于快速演进阶段；本报告的结论可能在一到两年内需要更新。</p>
+  <p><b>第三，本报告不构成医疗建议。</b>任何补充剂、药物或技术干预都应在医生指导下进行；不要把动物实验或替代终点的结果直接外推到健康人群。</p>
+  <p><b>第四，未解决的问题比已解决的问题多。</b>因果方向、组织特异性、阈值效应、可逆性、个体差异五个问题仍未解决；这正是研究议程的起点，而不是报告的缺陷。</p>
+</section>
+
+<section id="appendix" class="section">
+  <div class="sec-head">
+    <div class="sec-num">A</div>
+    <div>
+      <h2>附录</h2>
+      <p class="sec-sub">术语、证据等级定义与参考文献。</p>
+    </div>
+  </div>
+
+  <h3>A.1 术语表</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:22%">术语</th><th>解释</th></tr></thead>
+      <tbody>
+        <tr><td><b>mtDNA</b></td><td>线粒体 DNA，环状双链，约 16.6 kb，编码 13 个 OXPHOS 蛋白、22 个 tRNA、2 个 rRNA；每个细胞有数百到数千个拷贝。</td></tr>
+        <tr><td><b>异质性（heteroplasmy）</b></td><td>同一细胞内突变型与野生型 mtDNA 共存的比例。</td></tr>
+        <tr><td><b>阈值效应</b></td><td>突变比例超过组织特异阈值后才出现功能缺陷；不同组织阈值不同。</td></tr>
+        <tr><td><b>瓶颈效应</b></td><td>卵母细胞发育过程中 mtDNA 拷贝数急剧减少再扩增，导致后代异质性比例随机漂变。</td></tr>
+        <tr><td><b>克隆扩增</b></td><td>单个突变 mtDNA 分子在细胞/组织内被选择性复制，比例随时间上升。</td></tr>
+        <tr><td><b>mtDNA-CN</b></td><td>每个细胞（或每份 DNA）的 mtDNA 拷贝数，常用 qPCR 或 NGS 估算。</td></tr>
+        <tr><td><b>OXPHOS</b></td><td>氧化磷酸化，由复合体 I–IV（电子传递链）与复合体 V（ATP 合酶）完成。</td></tr>
+        <tr><td><b>ROS</b></td><td>活性氧；生理浓度参与信号，过量导致氧化损伤。</td></tr>
+        <tr><td><b>Mitohormesis</b></td><td>低剂量线粒体应激诱导适应性保护反应，产生净获益。</td></tr>
+        <tr><td><b>Mitophagy</b></td><td>选择性自噬清除受损线粒体；PINK1/Parkin、BNIP3/NIX、FUNDC1 是主要通路。</td></tr>
+        <tr><td><b>线粒体生物发生</b></td><td>PGC-1α/NRF1/NRF2/TFAM 驱动的线粒体增殖与 mtDNA 复制。</td></tr>
+        <tr><td><b>融合/分裂</b></td><td>MFN1/2、OPA1 介导融合；DRP1、MFF、FIS1 介导分裂；两者平衡决定线粒体网络形态。</td></tr>
+        <tr><td><b>mPTP</b></td><td>线粒体通透性转换孔；开放导致膜电位丧失、凋亡与坏死。</td></tr>
+        <tr><td><b>mtDAMP</b></td><td>线粒体来源的损伤相关分子模式：mtDNA、mtRNA、心磷脂、细胞色素 c、ATP、甲酰肽。</td></tr>
+        <tr><td><b>cGAS-STING</b></td><td>胞质 DNA 感应通路；mtDNA 泄漏可激活它，导致 I 型干扰素与炎症。</td></tr>
+        <tr><td><b>NLRP3</b></td><td>炎症小体；mtDNA/ROS 可激活，导致 IL-1β/IL-18 释放。</td></tr>
+        <tr><td><b>SASP</b></td><td>衰老相关分泌表型；IL-6、IL-8、MMP 等。</td></tr>
+        <tr><td><b>MiDAS</b></td><td>线粒体功能障碍相关衰老；与 DNA 损伤性衰老的 SASP 不同。</td></tr>
+        <tr><td><b>CHIP</b></td><td>意义未明的克隆性造血；DNMT3A/TET2/ASXL1 等突变导致血细胞克隆扩增。</td></tr>
+        <tr><td><b>31P-MRS / τPCr</b></td><td>磷谱磁共振 / 磷酸肌酸恢复时间常数，反映肌肉氧化磷酸化能力。</td></tr>
+        <tr><td><b>Mitokine</b></td><td>线粒体应激分泌的细胞因子，如 GDF15、FGF21、humanin。</td></tr>
+        <tr><td><b>MRT</b></td><td>线粒体替代治疗；用健康供体卵母细胞胞质/原核替换携带突变 mtDNA 的胚胎。</td></tr>
+        <tr><td><b>mtDNA 编辑</b></td><td>mitoTALEN、mitoZFN、DdCBE、TALED 等靶向修饰 mtDNA 的技术。</td></tr>
+        <tr><td><b>部分重编程</b></td><td>短暂表达 OSK（Oct4/Sox2/Klf4）改善衰老表型而不完全去分化。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>A.2 证据等级定义</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:10%">等级</th><th style="width:30%">定义</th><th>在本报告中的用法</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge a">A</span></td><td>强证据：多物种、多项独立研究、人类 RCT 或系统综述一致</td><td>运动改善 VO2max；抗氧化剂在人类试验中失败；CHIP 与 CVD/死亡关联</td></tr>
+        <tr><td><span class="badge b">B</span></td><td>中等证据：多项研究但存在物种差异、观察性设计、或单项高质量 RCT</td><td>mtDNA 突变与衰老；器官影响面；大多数标志物；热量限制/二甲双胍</td></tr>
+        <tr><td><span class="badge c">C</span></td><td>有限证据：单一模型、小样本、初步试验、因果未定</td><td>线粒体移植；尿石素 A；mtDNA 编辑；皮肤/肺影响</td></tr>
+        <tr><td><span class="badge d">D</span></td><td>推测/争议：假说、未重复、结论冲突、主要体外</td><td>部分重编程抗衰老；把 mtDNA 编辑称为“即将临床”</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>A.3 参考文献</h3>
+  <div class="refs">
+    <p>1. López-Otín C, Blasco MA, Partridge L, Serrano M, Kroemer G. The hallmarks of aging. <i>Cell</i>. 2013;153(6):1194–1217.</p>
+    <p>2. López-Otín C, Blasco MA, Partridge L, Serrano M, Kroemer G. Hallmarks of aging: an expanding universe. <i>Cell</i>. 2023;186(2):243–278. doi:10.1016/j.cell.2022.11.001</p>
+    <p>3. Trifunovic A, Wredenberg A, Falkenberg M, et al. Premature ageing in mice expressing defective mitochondrial DNA polymerase. <i>Nature</i>. 2004;429(6990):417–423.</p>
+    <p>4. Kujoth GC, Hiona A, Pugh TD, et al. Mitochondrial DNA mutations, oxidative stress, and apoptosis in mammalian aging. <i>Science</i>. 2005;309(5733):481–484.</p>
+    <p>5. Bender A, Krishnan KJ, Morris CM, et al. High levels of mitochondrial DNA deletions in substantia nigra neurons in aging and Parkinson disease. <i>Nat Genet</i>. 2006;38(5):515–517. doi:10.1038/ng1769</p>
+    <p>6. Kraytsberg Y, Kudryavtseva E, McKee AC, Geula C, Kowall NW, Khrapko K. Mitochondrial DNA-deletion mutations accumulate intracellularly to detrimental levels in aged human skeletal muscle fibers. <i>Am J Hum Genet</i>. 2006;79(3):469–480.</p>
+    <p>7. Stewart JB, Chinnery PF. The dynamics of mitochondrial DNA heteroplasmy: implications for human health and disease. <i>Nat Rev Genet</i>. 2015;16(9):530–542.</p>
+    <p>8. Hong YS, et al. Mitochondrial DNA heteroplasmy and mortality: a UK Biobank study of 194,871 participants. <i>Nat Commun</i>. 2023;14:6113.</p>
+    <p>9. Large-scale analysis of blood mitochondrial DNA heteroplasmy in approximately 750,000 individuals. <i>Nature</i>. 2026;656:140–148.</p>
+    <p>10. Single-cell analysis of mitochondrial DNA mutations across tissues and species. <i>Nat Commun</i>. 2025;16:2250.</p>
+    <p>11. Wiley CD, Velarde MC, Lecot P, et al. Mitochondrial dysfunction induces senescence with a distinct secretory phenotype. <i>Cell Metab</i>. 2016;23(2):303–314.</p>
+    <p>12. Passos JF, Saretzki G, Ahmed S, et al. Mitochondrial dysfunction accounts for the stochastic heterogeneity in telomere-dependent senescence. <i>PLoS Biol</i>. 2007;5(5):e110.</p>
+    <p>13. Correia-Melo C, Marques FD, Anderson R, et al. Mitochondria are required for pro-ageing features of the senescent phenotype. <i>EMBO J</i>. 2016;35(7):724–742.</p>
+    <p>14. West AP, Shadel GS. Mitochondrial DNA in innate immune responses and inflammatory pathology. <i>Nat Rev Immunol</i>. 2017;17(6):363–375.</p>
+    <p>15. Sun L, Wu J, Du F, Chen X, Chen ZJ. Cyclic GMP-AMP synthase is a cytosolic DNA sensor that activates the type I interferon pathway. <i>Science</i>. 2013;339(6121):786–791.</p>
+    <p>16. Narendra D, Tanaka A, Suen DF, Youle RJ. Parkin is recruited selectively to impaired mitochondria and promotes their autophagy. <i>J Cell Biol</i>. 2008;183(5):795–803.</p>
+    <p>17. Youle RJ, Narendra DP. Mechanisms of mitophagy. <i>Nat Rev Mol Cell Biol</i>. 2011;12(1):9–14.</p>
+    <p>18. Ristow M, Schmeisser K. Mitohormesis: promoting health and lifespan by increased levels of reactive oxygen species (ROS). <i>Cell Metab</i>. 2014;19(5):757–766.</p>
+    <p>19. Bjelakovic G, Nikolova D, Gluud LL, Simonetti RG, Gluud C. Mortality in randomized trials of antioxidant supplements for primary and secondary prevention: systematic review and meta-analysis. <i>JAMA</i>. 2007;297(8):842–857.</p>
+    <p>20. Klein EA, Thompson IM Jr, Tangen CM, et al. Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT). <i>JAMA</i>. 2011;306(14):1549–1556.</p>
+    <p>21. Omenn GS, Goodman GE, Thornquist MD, et al. Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease. <i>N Engl J Med</i>. 1996;334(18):1150–1155.</p>
+    <p>22. Cameron J, et al. Age-related differences in muscle phosphocreatine recovery: a systematic review and meta-analysis of 31P-MRS studies. 2026. UEA eprint 103594.</p>
+    <p>23. Systematic review and meta-analysis of exercise training on mitochondrial outcomes and VO2max (28 studies). 2026.</p>
+    <p>24. Andreux PA, Blanco-Bose W, Ryu D, et al. The mitophagy activator urolithin A is safe and induces a molecular signature of improved mitochondrial and cellular health in humans. <i>Nat Metab</i>. 2019;1(6):595–603.</p>
+    <p>25. Urolithin A supplementation and muscle function: ATLAS randomized trial and 2026 evidence review (3 RCTs, 174 participants).</p>
+    <p>26. US Food and Drug Administration. Elamipretide (Forzinity) accelerated approval for Barth syndrome; Drug Trials Snapshot. 2025-09-19.</p>
+    <p>27. Walker M, et al. Mitochondrial transplantation in acute ischemic stroke: a phase 1 safety trial. <i>J Cereb Blood Flow Metab</i>. 2026;46(2):322–332. PMID 39628322.</p>
+    <p>28. In vivo mitochondrial base editing restores visual function in a mouse model of LHON. <i>Nat Commun</i>. 2025. PMID 41276521.</p>
+    <p>29. High-precision mitochondrial DNA cytosine base editing. <i>Nat Struct Mol Biol</i>. 2025. PMID 41249818.</p>
+    <p>30. Mitochondrial replacement therapy in the United Kingdom: outcomes of eight births. <i>N Engl J Med</i>. 2025. (HFEA briefing 2025-07-15.)</p>
+    <p>31. Whole-blood NAD⁺ does not vary with age or lifestyle interventions; only nicotinamide riboside raises it. <i>Nat Metab</i>. 2026;8(6):1282–1290.</p>
+    <p>32. Mitochondrial homeodynamics in aging: mechanisms and intervention gaps. <i>Biogerontology</i>. 2026;27:160. doi:10.1007/s10522-026-10506-0</p>
+    <p>33. Mitochondrial dysfunction and aging: mechanisms, biomarkers, and therapeutic opportunities. <i>Signal Transduct Target Ther</i>. 2025;10:190. doi:10.1038/s41392-025-02253-4</p>
+    <p>34. Langdahl JH, Frederiksen AL, Hansen SJ, et al. Mitochondrial DNA mutations and bone status in patients with mitochondrial disease. <i>J Bone Miner Res</i>. 2017;32(10):2041–2048. PMID 28603900.</p>
+    <p>35. Luo Y, et al. Mitochondrial dysfunction in T cell aging. <i>EMBO Rep</i>. 2025. doi:10.1038/s44319-025-00536-z</p>
+    <p>36. Ohyagi H, et al. Immunosenescence and mitochondrial dysfunction. <i>Inflamm Regen</i>. 2026. doi:10.1186/s41232-026-00419-3</p>
+    <p>37. The ageing liver in the era of MASLD. <i>Frontline Gastroenterol</i>. 2026. doi:10.1136/flgastro-2026-103677</p>
+    <p>38. Kupffer cell mitochondrial DNA in liver inflammation. <i>Autoimmun Rev</i>. 2026. PMID 42906787.</p>
+    <p>39. Mitochondrial DNA damage in retinal pigment epithelium and age-related macular degeneration. <i>Review</i>. 2025. PMID 39930225.</p>
+    <p>40. Verdin E. NAD⁺ in aging, metabolism, and neurodegeneration. <i>Science</i>. 2015;350(6265):1208–1213.</p>
+    <p>41. Harrison DE, Strong R, Sharp ZD, et al. Rapamycin fed late in life extends lifespan in genetically heterogeneous mice. <i>Nature</i>. 2009;460(7253):392–395.</p>
+    <p>42. Mattison JA, Colman RJ, Beasley TM, et al. Caloric restriction improves health and survival of rhesus monkeys. <i>Nat Commun</i>. 2017;8:14063.</p>
+    <p>43. Barzilai N, Crandall JP, Kritchevsky SB, Espeland MA. Metformin as a tool to target aging. <i>Cell Metab</i>. 2016;23(6):1060–1065.</p>
+    <p>44. Murphy MP, Smith RA. Targeting antioxidants to mitochondria by conjugation to lipophilic cations. <i>Annu Rev Pharmacol Toxicol</i>. 2007;47:629–656.</p>
+    <p>45. Szeto HH. First-in-class cardiolipin-protective compound as a therapeutic agent to restore mitochondrial bioenergetics. <i>Br J Pharmacol</i>. 2014;171(8):2029–2050.</p>
+    <p>46. Mok BY, de Moraes MH, Zeng J, et al. A bacterial cytidine deaminase toxin enables CRISPR-free mitochondrial base editing. <i>Nature</i>. 2020;583(7817):631–637.</p>
+    <p>47. Bacman SR, Williams SL, Pinto M, Peralta S, Moraes CT. Specific elimination of mutant mitochondrial genomes in patient-derived cells by mitoTALENs. <i>Nat Med</i>. 2013;19(9):1111–1113.</p>
+    <p>48. Ocampo A, Reddy P, Martinez-Redondo P, et al. In vivo amelioration of age-associated hallmarks by partial reprogramming. <i>Cell</i>. 2016;167(7):1719–1733.</p>
+    <p>49. Gorman GS, Chinnery PF, DiMauro S, et al. Mitochondrial diseases. <i>Nat Rev Dis Primers</i>. 2016;2:16080.</p>
+    <p>50. McCully JD, Cowan DB, Pacak CA, Toumpoulis IK, Dayalan H, Levitsky S. Injection of isolated mitochondria during early reperfusion for cardioprotection. <i>Am J Physiol Heart Circ Physiol</i>. 2009;296(1):H94–H105.</p>
+  </div>
+
+  <div class="callout note">
+    <div class="cl-label">引用说明</div>
+    <p>部分 2025–2026 年文献在检索时仅有 DOI、PMID 或预印本编号，未能获得完整作者列表与卷期页码；引用时以“描述性标题 + 期刊 + 年卷页/编号”呈现，具体以原始文献为准。凡本报告标注“示意”的图，均为作者基于公开数据的定性整理，不是原始研究图。</p>
+  </div>
+</section>
+
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <b>线粒体衰老：机制、因果与影响面</b> · 2026-10-28 · 自包含 HTML，无外部依赖。<br>
+    证据分级 A/B/C/D 针对论断，不针对来源；所有数字均标注来源或明确标为示意。报告不构成医疗建议。
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intel 投资调研报告 · 技术 / 客户 / 产能 / 对标台积电</title>
+<style>
+  :root{
+    --intel:#0068B5; --intel-l:#4DA3E0; --tsmc:#C8102E; --tsmc-l:#E85A70;
+    --ss:#1428A0; --ok:#0F9D58; --warn:#F4B400; --bad:#DB4437; --neu:#7B8794;
+    --ink:#12181F; --ink2:#3D4A57; --ink3:#6B7885; --line:#E2E7EC; --bg:#F6F8FA;
+    --card:#FFFFFF; --accent:#5B4FE9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px;}
+
+  .hero{
+    background:linear-gradient(135deg,#0A1A2F 0%,#123A63 55%,#0068B5 100%);
+    color:#fff;padding:56px 0 44px;margin-bottom:34px;
+  }
+  .hero .wrap{padding-bottom:0;}
+  .hero .kicker{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#8CC4F0;font-weight:600;margin-bottom:14px;}
+  .hero h1{font-size:38px;line-height:1.25;margin:0 0 16px;font-weight:700;letter-spacing:-.01em;}
+  .hero p.sub{font-size:16.5px;color:#BFD9F0;margin:0 0 26px;max-width:860px;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;padding:6px 15px;font-size:13px;color:#E3F0FA;backdrop-filter:blur(4px);
+  }
+  .chip b{color:#fff;}
+
+  h2{
+    font-size:24px;margin:56px 0 6px;padding-top:22px;font-weight:700;letter-spacing:-.01em;
+    border-top:3px solid var(--ink);display:inline-block;
+  }
+  h2 + .lede{color:var(--ink3);font-size:14px;margin:0 0 26px;max-width:920px;}
+  h3{font-size:18px;margin:36px 0 12px;font-weight:650;}
+  h4{font-size:15.5px;margin:24px 0 8px;font-weight:650;color:var(--ink2);}
+  p{margin:12px 0;}
+  ul,ol{margin:12px 0;padding-left:22px;}
+  li{margin:6px 0;}
+  code{background:#EEF2F6;padding:1px 6px;border-radius:4px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .muted{color:var(--ink3);}
+  .small{font-size:13.5px;}
+  .quote{
+    border-left:3px solid var(--intel);background:#F4F8FC;padding:9px 14px;
+    font-style:italic;color:var(--ink2);border-radius:0 8px 8px 0;font-size:14.5px;
+  }
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:26px 28px;margin:22px 0;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -16px rgba(16,24,40,.14);
+  }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .kpi .lab{font-size:12px;color:var(--ink3);letter-spacing:.04em;margin-bottom:6px;}
+  .kpi .val{font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.02em;}
+  .kpi .sub{font-size:12.5px;color:var(--ink3);margin-top:5px;}
+  .up{color:var(--ok);} .down{color:var(--bad);} .flat{color:var(--neu);}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px;}
+  th{background:#EEF3F8;text-align:left;padding:11px 13px;font-weight:650;color:var(--ink2);border-bottom:2px solid #D8E1EA;white-space:nowrap;}
+  td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FAFCFE;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  tr.hi td{background:#F3F8FD;}
+
+  .b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:650;line-height:1.7;white-space:nowrap;}
+  .b-ok{background:#E4F5EA;color:#0B7A45;}
+  .b-rumor{background:#FEF3D7;color:#9A6C00;}
+  .b-news{background:#E7EEF8;color:#2F5FA8;}
+  .b-bad{background:#FDE8E7;color:#B02A20;}
+  .b-intel{background:#E1EEF9;color:#00568F;}
+  .b-tsmc{background:#FBE6EA;color:#A00D25;}
+
+  .call{border-left:4px solid var(--accent);background:#F3F1FE;border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;}
+  .call.warn{border-color:var(--warn);background:#FFF9EA;}
+  .call.bad{border-color:var(--bad);background:#FDF2F1;}
+  .call.ok{border-color:var(--ok);background:#EFFAF3;}
+  .call .t{font-weight:700;margin-bottom:6px;font-size:14.5px;}
+
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px 18px;margin:24px 0;}
+  .fig .ft{font-size:15px;font-weight:700;margin-bottom:4px;}
+  .fig .fs{font-size:12.5px;color:var(--ink3);margin-bottom:18px;}
+  .fig svg{display:block;width:100%;height:auto;overflow:visible;}
+  .note{font-size:12px;color:var(--ink3);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:12.5px;color:var(--ink2);}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;}
+  text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+
+  .foot{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Equity Research · Semiconductors · 2026-10-08</div>
+    <h1>Intel（INTC）投资调研报告</h1>
+    <p class="sub">现状 · 外部客户关系 · 制程技术（18A / 18A-P / 18A-PT / 14A）· 先进封装（EMIB / EMIB-T / Foveros）· 产能底座 · 与台积电的全维度差距</p>
+    <div class="hero-meta">
+      <span class="chip">股价 <b>$113.05</b></span>
+      <span class="chip">市值 <b>$595B</b></span>
+      <span class="chip">52周区间 <b>$32.89 – $142.35</b></span>
+      <span class="chip">最新季收入 <b>$16.13B（+25%）</b></span>
+      <span class="chip">共识 <b>Buy</b>（49家：15买/32持/2卖）</span>
+      <span class="chip">下次财报 <b>2026-10-29</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============================================================ -->
+<h2>一、核心结论</h2>
+<p class="lede">一句话：Intel 的经营面在 2026 年出现了 <b>15 年来最强的收入增长</b>，但 GAAP 报表同时录得史上最大亏损——这两件事<b>同时为真</b>，且亏损与经营几乎无关。搞清楚这一点，是理解 Intel 一切估值分歧的前提。</p>
+
+<div class="grid4">
+  <div class="kpi"><div class="lab">2026 Q2 收入</div><div class="val up">$16.13B</div><div class="sub">同比 +25%，15年来最强增长<br>连续第 7 季超指引</div></div>
+  <div class="kpi"><div class="lab">GAAP 净利（Q2'26）</div><div class="val down">−$11.03B</div><div class="sub">其中 −$125.3亿 来自<br>托管股衍生负债重估（非现金）</div></div>
+  <div class="kpi"><div class="lab">Non-GAAP 净利（Q2'26）</div><div class="val up">+$2.2B</div><div class="sub">EPS $0.42（指引 $0.20）<br>连续 3 季环比改善</div></div>
+  <div class="kpi"><div class="lab">2026 资本开支指引</div><div class="val">$20B+</div><div class="sub">年初口径为"持平至略降"<br>2027 将<b>显著高于</b>2026</div></div>
+</div>
+
+<div class="call bad">
+  <div class="t">⚠ 先纠正一个几乎所有人都搞错的事：Intel 的"巨亏"不是经营亏损</div>
+  <p style="margin:6px 0">Intel Q2 2026 GAAP 净亏 $110.33 亿，但其中 <b>$125.29 亿</b> 是"<b>托管股（Escrowed Shares）衍生负债的市值重估损失</b>"（上半年累计 −$136.19 亿）。这一科目源于 2025 年 8 月与美国政府的 CHIPS《安全飞地》协议——Intel 需按里程碑向美国商务部释放普通股，在释放前按<b>市价</b>计为衍生负债。</p>
+  <p style="margin:6px 0"><b>机制是反向的：Intel 股价涨得越多，这笔账面亏损越大。</b>该负债从 2025/12/27 的 $27 亿 → 2026/3/28 的 $36 亿 → <b>2026/6/27 的 $156 亿</b>，几乎完全跟随股价（52 周从 $32.89 涨到 $142.35）。</p>
+  <p style="margin:6px 0"><b>投资含义：</b>用"TTM 亏损 $113 亿"来判断 Intel 基本面，会得出完全错误的结论。这是<b>非现金、与股价反向联动</b>的会计现象；剔除后，Non-GAAP 盈利正在强劲改善（Q2'26 +$22 亿）。任何以 GAAP 亏损为空头核心论据的分析，都建立在误读之上。</p>
+</div>
+
+<div class="call">
+  <div class="t">修正后的多空框架</div>
+  <p style="margin:6px 0"><b>多头（4条）</b>：① Q2'26 收入 +25%，为 15 年多来最强增长，AI 相关业务同比 +70%、贡献约 70% 收入；② 18A 良率从 65% → 85%，Q2 产出超目标 25%、环比 +50%，Nova Lake 计算 tile 据报从"台积电 N2 为主"翻转为"自产 80–90%"（KeyBanc 供应链信息／TrendForce 转述，非官方，见 §4.1 声明）；③ <b>先进封装是唯一"更快变现"的入口</b>——EMIB 每颗便宜约 50%、容量可在 2026–27 年暂时领先台积电，且 Intel Foundry 已有 AWS、Cisco 等既有封装客户，CFO 目标毛利率 40%／营业利润率 30%；④ 财务是"Non-GAAP 已盈利 + Capex 大幅上调"，属于景气上行期的典型特征。</p>
+  <p style="margin:6px 0"><b>空头（5条）</b>：① <b>折旧与资本开支黑洞</b>——2026 capex 从"持平"上调至 $200 亿以上，2027 将"显著更高"，而 Q2'26 调整后自由现金流已为 <b>−$84 亿</b>；② Intel Foundry 单季仍亏 $20.89 亿，<b>对外收入仅 $2.93 亿/季</b>（占分部收入约 5%），且公司未给出盈亏平衡时间表；③ <b>Intel 自己在 10-Q 中承认 14A 存在"暂停或放弃"的风险</b>——条件是拿不到足够的外部客户承诺需求，这把 14A 从"路线图"降级为"有条件的投资决策"；④ 18A 产能仅约 3 万片/月，同时要向 Terafab、Apple、Google/Meta/AWS 和自家 Nova Lake 承诺产能，且 <b>14A 产能 2027 年底仅规划 6,000 片/月、2028 年 24,000 片/月</b>——比台积电 N2 小两个数量级；⑤ Forward P/E 66.6× vs 台积电 20.7×，而 65% 的分析师给"持有"、均价目标仅比现价高 4.4%。</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>二、公司现状：一场"经营性复苏 + 会计性巨亏"的镜像</h2>
+<p class="lede">先看季度经营序列——这是判断 Intel 到底在变好还是变差的第一手证据。</p>
+
+<div class="fig">
+  <div class="ft">图 1 · 季度收入：2026 年出现明确拐点</div>
+  <div class="fs">单位：十亿美元。Q2 2026 同比 +25%，为 15 年多来最强增长</div>
+  <svg viewBox="0 0 1120 320">
+    <line x1="110" y1="250" x2="1050" y2="250" stroke="#D8E1EA" stroke-width="2"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end">
+      <text x="102" y="254">$0</text><text x="102" y="184">$6B</text><text x="102" y="114">$12B</text><text x="102" y="44">$18B</text>
+    </g>
+    <g stroke="#EDF1F5"><line x1="110" y1="180" x2="1050" y2="180"/><line x1="110" y1="110" x2="1050" y2="110"/><line x1="110" y1="40" x2="1050" y2="40"/></g>
+    <!-- scale: $18B = 210px, 1B = 11.667px, base y=250 -->
+    <!-- 12.859 => 150.0 ; 13.653 => 159.3 ; 13.674 => 159.5 ; 13.577 => 158.4 ; 16.128 => 188.2 -->
+    <g>
+      <rect x="150" y="100" width="90" height="150" rx="5" fill="#94B8D4" opacity=".75"/>
+      <text x="195" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">12.86</text>
+      <text x="195" y="274" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q2</text>
+
+      <rect x="290" y="91" width="90" height="159" rx="5" fill="#7FA8CB" opacity=".85"/>
+      <text x="335" y="83" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">13.65</text>
+      <text x="335" y="274" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q3</text>
+
+      <rect x="430" y="91" width="90" height="159" rx="5" fill="#7FA8CB" opacity=".85"/>
+      <text x="475" y="83" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">13.67</text>
+      <text x="475" y="274" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q4</text>
+
+      <rect x="570" y="92" width="90" height="158" rx="5" fill="#4DA3E0"/>
+      <text x="615" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#00568F">13.58</text>
+      <text x="615" y="274" text-anchor="middle" font-size="12.5" fill="#3D4A57">26Q1</text>
+
+      <rect x="710" y="62" width="90" height="188" rx="5" fill="#0068B5"/>
+      <text x="755" y="54" text-anchor="middle" font-size="16" font-weight="700" fill="#00568F">16.13</text>
+      <text x="755" y="274" text-anchor="middle" font-size="12.5" font-weight="700" fill="#00568F">26Q2</text>
+
+      <!-- guidance Q3 -->
+      <rect x="850" y="60" width="90" height="190" rx="5" fill="none" stroke="#0068B5" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="895" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">15.8–16.8</text>
+      <text x="895" y="274" text-anchor="middle" font-size="12.5" fill="#6B7885">26Q3 指引</text>
+    </g>
+    <!-- annotation -->
+    <path d="M760 40 L760 30 L900 30" stroke="#0F9D58" stroke-width="1.5" fill="none"/>
+    <text x="905" y="34" font-size="11.5" fill="#0B7A45">连续 7 个季度超指引</text>
+    <text x="110" y="304" font-size="12" fill="#6B7885">数据来源：Intel 各季财报新闻稿（官方）。25Q4 同比 −4%，26Q1 同比 +7%，26Q2 同比 +25%——增速在加速。</text>
+  </svg>
+</div>
+
+<div class="fig">
+  <div class="ft">图 2 · GAAP 与 Non-GAAP 净利的撕裂：一条由股价驱动的鸿沟</div>
+  <div class="fs">单位：十亿美元。柱在零轴上方为盈利，下方为亏损。二者差距几乎完全对应托管股市值重估</div>
+  <svg viewBox="0 0 1120 400">
+    <!-- zero axis -->
+    <line x1="110" y1="200" x2="1050" y2="200" stroke="#3D4A57" stroke-width="2"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end">
+      <text x="102" y="118">+$4B</text><text x="102" y="203">0</text><text x="102" y="288">−$4B</text><text x="102" y="373">−$8B</text><text x="102" y="150">+$2B</text>
+    </g>
+    <g stroke="#EDF1F5"><line x1="110" y1="118" x2="1050" y2="118"/><line x1="110" y1="150" x2="1050" y2="150"/><line x1="110" y1="282" x2="1050" y2="282"/><line x1="110" y1="364" x2="1050" y2="364"/></g>
+    <!-- scale: 1B = 40.75px (4B=163px). base y=200 -->
+    <!-- GAAP: -2.918 => y=200+118.9=318.9 h=118.9 ; +4.063 => y=200-165.6=34.4 h=165.6 ; -0.6 => h=24.5 ; -3.7 => h=150.8 ; -11.033 => h=449 (clamped) -->
+    <g>
+      <!-- Q2'25 -->
+      <rect x="140" y="200" width="55" height="119" rx="4" fill="#DB4437" opacity=".55"/>
+      <rect x="200" y="218" width="55" height="16" rx="4" fill="#0F9D58" opacity=".5"/>
+      <text x="197" y="336" text-anchor="middle" font-size="11.5" fill="#B02A20">−2.92</text>
+      <text x="227" y="249" text-anchor="middle" font-size="11" fill="#0B7A45">−0.4</text>
+      <text x="197" y="376" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q2</text>
+
+      <!-- Q3'25 -->
+      <rect x="320" y="200" width="55" height="34" rx="4" fill="#DB4437" opacity=".55"/>
+      <rect x="380" y="34" width="55" height="166" rx="4" fill="#0F9D58" opacity=".55"/>
+      <text x="347" y="251" text-anchor="middle" font-size="11" fill="#B02A20">−0.02*</text>
+      <text x="407" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">+4.06</text>
+      <text x="377" y="376" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q3</text>
+
+      <!-- Q4'25 -->
+      <rect x="500" y="200" width="55" height="25" rx="4" fill="#DB4437" opacity=".55"/>
+      <rect x="560" y="168" width="55" height="32" rx="4" fill="#0F9D58" opacity=".55"/>
+      <text x="527" y="242" text-anchor="middle" font-size="11" fill="#B02A20">−0.6</text>
+      <text x="587" y="160" text-anchor="middle" font-size="11" fill="#0B7A45">+0.8</text>
+      <text x="557" y="376" text-anchor="middle" font-size="12.5" fill="#3D4A57">25Q4</text>
+
+      <!-- Q1'26 -->
+      <rect x="680" y="200" width="55" height="151" rx="4" fill="#DB4437" opacity=".7"/>
+      <rect x="740" y="139" width="55" height="61" rx="4" fill="#0F9D58" opacity=".55"/>
+      <text x="707" y="368" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">−3.7</text>
+      <text x="767" y="131" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">+1.5</text>
+      <text x="737" y="390" text-anchor="middle" font-size="12.5" fill="#3D4A57">26Q1</text>
+
+      <!-- Q2'26 : GAAP clipped, use broken bar -->
+      <rect x="860" y="200" width="55" height="150" rx="4" fill="#DB4437"/>
+      <rect x="860" y="352" width="55" height="22" fill="#DB4437" opacity=".35"/>
+      <text x="887" y="392" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">−11.03</text>
+      <rect x="920" y="110" width="55" height="90" rx="4" fill="#0F9D58"/>
+      <text x="947" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">+2.2</text>
+      <text x="917" y="412" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3D4A57">26Q2</text>
+    </g>
+    <!-- legend -->
+    <g transform="translate(140,30)">
+      <rect x="0" y="0" width="14" height="14" rx="3" fill="#DB4437"/><text x="21" y="12" font-size="12.5" fill="#12181F">GAAP 净利</text>
+      <rect x="140" y="0" width="14" height="14" rx="3" fill="#0F9D58"/><text x="161" y="12" font-size="12.5" fill="#12181F">Non-GAAP 净利</text>
+      <text x="320" y="12" font-size="12" fill="#6B7885">*25Q3 GAAP 大幅盈利含 Altera 出售等一次性收益</text>
+    </g>
+    <text x="110" y="378" font-size="12" fill="#B02A20">注：26Q2 GAAP 柱已截断（实际为收入轴的 2.4 倍），柱体下半段虚线示意溢出</text>
+  </svg>
+  <div class="note">数据：Intel Q2 2025 / Q3 2025 / Q4 2025 / Q1 2026 / Q2 2026 财报新闻稿（官方）。GAAP 与 Non-GAAP 的差额在 2026 年急剧扩大，主因是托管股市值重估，而非经营恶化。</div>
+</div>
+
+<h3>2.1 季度损益全序列</h3>
+<table>
+  <thead><tr><th>季度</th><th class="num">收入</th><th class="num">同比</th><th class="num">GAAP毛利率</th><th class="num">非GAAP毛利率</th><th class="num">GAAP净利</th><th class="num">非GAAP净利</th><th class="num">非GAAP EPS</th></tr></thead>
+  <tbody>
+    <tr><td>2025 Q2</td><td class="num">$12.859B</td><td class="num flat">—</td><td class="num">27.5%</td><td class="num">29.7%</td><td class="num down">−$2.918B</td><td class="num down">−$0.4B</td><td class="num">−$0.10</td></tr>
+    <tr><td>2025 Q3</td><td class="num">$13.653B</td><td class="num up">+3%</td><td class="num">38.2%</td><td class="num">40.0%</td><td class="num up">+$4.063B</td><td class="num up">+$1.023B</td><td class="num">+$0.23</td></tr>
+    <tr><td>2025 Q4</td><td class="num">$13.674B</td><td class="num down">−4%</td><td class="num">36.1%</td><td class="num">37.9%</td><td class="num down">−$0.6B</td><td class="num up">+$0.8B</td><td class="num">+$0.15</td></tr>
+    <tr><td>2026 Q1</td><td class="num">$13.577B</td><td class="num up">+7%</td><td class="num">39.4%</td><td class="num">41.0%</td><td class="num down">−$3.7B</td><td class="num up">+$1.5B</td><td class="num">+$0.29</td></tr>
+    <tr class="hi"><td><b>2026 Q2</b></td><td class="num"><b>$16.128B</b></td><td class="num up"><b>+25%</b></td><td class="num"><b>40.4%</b></td><td class="num"><b>41.8%</b></td><td class="num down"><b>−$11.033B</b></td><td class="num up"><b>+$2.2B</b></td><td class="num"><b>+$0.42</b></td></tr>
+    <tr><td>2025 全年</td><td class="num">$52.853B</td><td class="num flat">持平</td><td class="num">34.8%</td><td class="num">36.7%</td><td class="num down">−$0.3B</td><td class="num up">+$1.9B</td><td class="num">+$0.42</td></tr>
+  </tbody>
+</table>
+<p class="small muted">Q1 2026 GAAP 亏损中含约 <b>$39 亿非现金商誉减值（主要是 Mobileye）</b>；Q2 2026 GAAP 亏损中含 <b>$125.29 亿托管股重估损失</b>。两者均为非现金、非经营项。<b>Non-GAAP 毛利率从 25Q2 的 29.7% 连续 4 季攀升至 41.8%</b>——这才是经营改善的真实斜率。</p>
+
+<h3>2.2 分部门：Data Center 是这一轮真正的引擎</h3>
+<div class="grid2">
+  <div class="fig">
+    <div class="ft">图 3 · 分部收入（2026 Q2，单位：百万美元）</div>
+    <div class="fs">DCAI 同比 +59%，为创纪录的数据中心增长</div>
+    <svg viewBox="0 0 520 290">
+      <line x1="120" y1="240" x2="500" y2="240" stroke="#D8E1EA" stroke-width="1.5"/>
+      <g fill="#9AA6B2" font-size="11" text-anchor="end"><text x="112" y="244">0</text><text x="112" y="176">4,000</text><text x="112" y="108">8,000</text></g>
+      <g stroke="#EDF1F5"><line x1="120" y1="172" x2="500" y2="172"/><line x1="120" y1="104" x2="500" y2="104"/></g>
+      <!-- scale 8000=136px, 1=0.017px -->
+      <text x="112" y="46" text-anchor="end" font-size="12" font-weight="650" fill="#00568F">CCPG 客户端</text>
+      <rect x="120" y="30" width="151" height="20" rx="4" fill="#0068B5"/>
+      <text x="281" y="45" font-size="12" font-weight="700" fill="#00568F">8,877 <tspan fill="#0B7A45">+13%</tspan></text>
+
+      <text x="112" y="80" text-anchor="end" font-size="12" font-weight="650" fill="#00568F">DCAI 数据中心</text>
+      <rect x="120" y="64" width="106" height="20" rx="4" fill="#5B4FE9"/>
+      <text x="236" y="79" font-size="12" font-weight="700" fill="#5B4FE9">6,262 <tspan fill="#0B7A45">+59%</tspan></text>
+
+      <text x="112" y="114" text-anchor="end" font-size="12" font-weight="650" fill="#00568F">Intel Foundry</text>
+      <rect x="120" y="98" width="98" height="20" rx="4" fill="#4DA3E0"/>
+      <text x="228" y="113" font-size="12" font-weight="700" fill="#00568F">5,765 <tspan fill="#0B7A45">+31%</tspan></text>
+
+      <text x="112" y="148" text-anchor="end" font-size="12" fill="#6B7885">All Other</text>
+      <rect x="120" y="132" width="12" height="20" rx="4" fill="#9AA6B2"/>
+      <text x="142" y="147" font-size="12" font-weight="700" fill="#6B7885">701 <tspan fill="#B02A20">−33%</tspan></text>
+
+      <text x="112" y="182" text-anchor="end" font-size="12" fill="#B02A20">分部间抵消</text>
+      <rect x="120" y="166" width="93" height="20" rx="4" fill="#DB4437" opacity=".4"/>
+      <text x="223" y="181" font-size="12" font-weight="700" fill="#B02A20">−5,477</text>
+
+      <line x1="120" y1="212" x2="500" y2="212" stroke="#3D4A57" stroke-width="2"/>
+      <text x="112" y="228" text-anchor="end" font-size="12.5" font-weight="700">合计</text>
+      <text x="120" y="228" font-size="13" font-weight="700" fill="#12181F">16,128</text>
+      <text x="120" y="268" font-size="11.5" fill="#6B7885">All Other 含 Mobileye、IMS；Altera 于 2025/9/12 起出表</text>
+    </svg>
+  </div>
+
+  <div class="fig">
+    <div class="ft">图 4 · Intel Foundry 亏损收窄，但对外收入仍然极小</div>
+    <div class="fs">左轴：分部营业亏损（百万美元）；右轴：对外客户收入</div>
+    <svg viewBox="0 0 520 290">
+      <line x1="80" y1="230" x2="500" y2="230" stroke="#D8E1EA" stroke-width="1.5"/>
+      <g fill="#9AA6B2" font-size="11" text-anchor="end"><text x="72" y="234">0</text><text x="72" y="150">−1.5B</text><text x="72" y="66">−3.0B</text></g>
+      <g stroke="#EDF1F5"><line x1="80" y1="146" x2="500" y2="146"/><line x1="80" y1="62" x2="500" y2="62"/></g>
+      <!-- scale 3B = 168px, 1B=56px, base 230 -->
+      <!-- -3.168=>y=230-... actually draw downward from 0: height = 3.168*56=177 -->
+      <g>
+        <rect x="100" y="230" width="52" height="0" fill="none"/>
+        <rect x="100" y="230" width="52" height="177" rx="4" fill="#DB4437" opacity=".85" transform="translate(0,-177)"/>
+        <text x="126" y="46" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B02A20">−3.17</text>
+        <text x="126" y="252" text-anchor="middle" font-size="11.5" fill="#3D4A57">25Q2</text>
+
+        <rect x="180" y="230" width="52" height="130" rx="4" fill="#E06A5E" transform="translate(0,-130)"/>
+        <text x="206" y="93" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B02A20">−2.32</text>
+        <text x="206" y="252" text-anchor="middle" font-size="11.5" fill="#3D4A57">25Q3</text>
+
+        <rect x="260" y="230" width="52" height="140" rx="4" fill="#E06A5E" transform="translate(0,-140)"/>
+        <text x="286" y="83" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B02A20">−2.51</text>
+        <text x="286" y="252" text-anchor="middle" font-size="11.5" fill="#3D4A57">25Q4</text>
+
+        <rect x="340" y="230" width="52" height="136" rx="4" fill="#E06A5E" transform="translate(0,-136)"/>
+        <text x="366" y="87" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B02A20">−2.44</text>
+        <text x="366" y="252" text-anchor="middle" font-size="11.5" fill="#3D4A57">26Q1</text>
+
+        <rect x="420" y="230" width="52" height="117" rx="4" fill="#F0A79E" transform="translate(0,-117)"/>
+        <text x="446" y="106" text-anchor="middle" font-size="11.5" font-weight="700" fill="#B02A20">−2.09</text>
+        <text x="446" y="252" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3D4A57">26Q2</text>
+      </g>
+      <!-- external revenue line -->
+      <!-- 222, 174, 293 : right axis scale 400=100px -->
+      <polyline points="446,174 480,168" fill="none" stroke="#0F9D58" stroke-width="2"/>
+      <text x="500" y="272" text-anchor="end" font-size="11.5" fill="#0B7A45">对外收入：25Q4 $222M → 26Q1 $174M → 26Q2 $293M</text>
+      <text x="80" y="30" font-size="11.5" fill="#6B7885">亏损连续 4 季收窄（Q2 环比改善 $348M），但对外收入仅占分部收入 ~5%</text>
+    </svg>
+  </div>
+</div>
+
+<table class="small">
+  <thead><tr><th>分部营业利润（百万美元）</th><th class="num">25Q2</th><th class="num">25Q3</th><th class="num">25Q4</th><th class="num">26Q1</th><th class="num">26Q2</th><th class="num">2025全年</th></tr></thead>
+  <tbody>
+    <tr><td>CCPG（客户端 + 物理AI）</td><td class="num">2,053</td><td class="num">2,694</td><td class="num">2,209</td><td class="num">2,516</td><td class="num">2,343</td><td class="num">9,317</td></tr>
+    <tr><td>DCAI（数据中心与AI）</td><td class="num">633</td><td class="num">964</td><td class="num">1,250</td><td class="num">1,542</td><td class="num up">2,474</td><td class="num">3,422</td></tr>
+    <tr><td><b>Intel Products 合计</b></td><td class="num">2,686</td><td class="num">3,658</td><td class="num">3,459</td><td class="num">4,058</td><td class="num">4,817</td><td class="num">12,739</td></tr>
+    <tr class="hi"><td><b>Intel Foundry</b></td><td class="num down">(3,168)</td><td class="num down">(2,321)</td><td class="num down">(2,509)</td><td class="num down">(2,437)</td><td class="num down">(2,089)</td><td class="num down">(10,318)</td></tr>
+    <tr><td>All Other</td><td class="num">69</td><td class="num">100</td><td class="num">(8)</td><td class="num">102</td><td class="num">230</td><td class="num">264</td></tr>
+  </tbody>
+</table>
+<p class="small"><b>关键读法：</b>Intel Products（客户端 + 数据中心）2026 Q2 营业利润 $48.17 亿，年化接近 $190 亿——这是一门好生意。<b>Intel Foundry 2025 全年亏损 $103.18 亿</b>，是唯一的结构性出血点。整个 Intel 的投资逻辑，本质上是"Products 的现金流能否撑到 Foundry 转正"。</p>
+
+<div class="call ok">
+  <div class="t">✓ CFO 对当前行业环境的原话（Q2 2026 电话会）</div>
+  <p style="margin:6px 0">"行业正面临<b>史上最严重的供应约束之一</b>，横跨先进逻辑晶圆、内存与基板；这些短缺将在可预见的未来持续。"（Dave Zinsner）</p>
+  <p style="margin:6px 0">同期管理层口径：<b>18A 产出超目标约 25%、环比 +50%</b>；Panther Lake 主力 SKU 成本年内已降约 50%，全年再降 20%，2027 年计划进一步大幅下降。<b>供应链短缺对 Intel 是利好而非利空</b>——因为它的产品定价权在回升。</p>
+</div>
+
+<h3>2.3 托管股：把"巨亏"讲清楚</h3>
+<div class="fig">
+  <div class="ft">图 5 · 托管股衍生负债随股价一路膨胀</div>
+  <div class="fs">这是 Intel GAAP 报表中最反直觉的一项：股价上涨 → 负债增加 → 账面亏损扩大</div>
+  <svg viewBox="0 0 1120 260">
+    <line x1="120" y1="200" x2="1050" y2="200" stroke="#D8E1EA" stroke-width="2"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end"><text x="112" y="204">$0</text><text x="112" y="140">$6B</text><text x="112" y="76">$12B</text><text x="112" y="26">$16B</text></g>
+    <g stroke="#EDF1F5"><line x1="120" y1="136" x2="1050" y2="136"/><line x1="120" y1="72" x2="1050" y2="72"/></g>
+    <!-- scale: 16B = 168px, 1B = 10.5px -->
+    <rect x="180" y="172" width="120" height="28" rx="5" fill="#94B8D4"/>
+    <text x="240" y="164" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">$2.7B</text>
+    <text x="240" y="224" text-anchor="middle" font-size="12.5" fill="#3D4A57">2025/12/27</text>
+
+    <rect x="420" y="162" width="120" height="38" rx="5" fill="#7FA8CB"/>
+    <text x="480" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">$3.6B</text>
+    <text x="480" y="224" text-anchor="middle" font-size="12.5" fill="#3D4A57">2026/3/28</text>
+
+    <rect x="660" y="36" width="120" height="164" rx="5" fill="#0068B5"/>
+    <text x="720" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#00568F">$15.6B</text>
+    <text x="720" y="224" text-anchor="middle" font-size="12.5" font-weight="700" fill="#00568F">2026/6/27</text>
+
+    <path d="M310 186 Q420 180 420 181" stroke="#0F9D58" stroke-width="2" fill="none"/>
+    <path d="M550 181 Q660 120 660 118" stroke="#B02A20" stroke-width="2.5" fill="none"/>
+    <text x="600" y="150" font-size="12" fill="#B02A20" font-weight="650">一个季度 +333%</text>
+
+    <text x="810" y="80" font-size="12.5" fill="#3D4A57">同期 Intel 股价从 ~$22 涨至 ~$113</text>
+    <text x="810" y="100" font-size="12.5" fill="#3D4A57">→ 负债 = 未释放股数 × 市价</text>
+    <text x="810" y="130" font-size="12.5" fill="#B02A20" font-weight="650">Q2'26 单季重估损失：−$125.29 亿</text>
+    <text x="810" y="150" font-size="12.5" fill="#B02A20" font-weight="650">2026 上半年累计：−$136.19 亿</text>
+    <text x="120" y="248" font-size="12" fill="#6B7885">截至 2026/6/27，尚有 1.43 亿股未释放（Q2 释放 7M，上半年释放 13M）。随《安全飞地》现金到账分批释放，负债相应转为权益。</text>
+  </svg>
+</div>
+
+<h3>2.4 资产负债与股权结构（截至 2026/6/27）</h3>
+<div class="grid2">
+  <table class="small">
+    <thead><tr><th>科目</th><th class="num">2026/6/27</th><th class="num">2025/12/27</th></tr></thead>
+    <tbody>
+      <tr><td>现金 + 短期投资</td><td class="num">$29.7B</td><td class="num">$37.4B</td></tr>
+      <tr><td>长期债务</td><td class="num">$48,549M</td><td class="num">$44,086M</td></tr>
+      <tr><td>短期债务</td><td class="num">$1,988M</td><td class="num">$2,499M</td></tr>
+      <tr><td><b>债务合计</b></td><td class="num"><b>$50.54B</b></td><td class="num">$46.59B</td></tr>
+      <tr><td>Intel 股东权益</td><td class="num down">$87,542M</td><td class="num">$114,281M</td></tr>
+      <tr><td>非控股权益</td><td class="num">$15,601M</td><td class="num">$12,079M</td></tr>
+      <tr><td>总资产</td><td class="num">$202,439M</td><td class="num">$211,429M</td></tr>
+      <tr><td>库存</td><td class="num">$12,492M</td><td class="num">$11,618M</td></tr>
+      <tr><td>商誉</td><td class="num">$20,465M</td><td class="num">$23,912M</td></tr>
+      <tr><td>已发行股份</td><td class="num">5,043M</td><td class="num">4,994M</td></tr>
+      <tr><td><b>员工人数</b></td><td class="num down"><b>82.3K</b></td><td class="num">85.1K</td></tr>
+      <tr><td class="muted small" colspan="3">员工数完整序列（官方）：2024/12/28 <b>108.9K</b>（峰值）→ 2025/6/28 101.4K → 2025/9/27 88.4K → 2025/12/27 85.1K → 2026/3/28 83.2K → <b>2026/6/27 82.3K</b>。较峰值累计减少约 <b>26,600 人（−24%）</b>。其中 Altera 出表使约 3.0K 员工移出统计。</td></tr>
+    </tbody>
+  </table>
+  <div>
+    <div class="kpi" style="margin-bottom:14px">
+      <div class="lab">2026 年 8 月增发后备考（官方 424B5）</div>
+      <div class="val">5,253,490,564 股</div>
+      <div class="sub">全额行使超额配售则 5,285,069,511 股<br>备考现金 $32,540M · 备考股东权益 $122,809M</div>
+    </div>
+    <div class="fig" style="margin:0;padding:18px 20px">
+      <div class="ft">图 6 · 员工人数：一年削减 19%</div>
+      <div class="fs">2025/6 的 101.4K → 2026/6 的 82.3K，约减少 19,100 人</div>
+      <svg viewBox="0 0 460 150">
+        <line x1="60" y1="110" x2="440" y2="110" stroke="#D8E1EA" stroke-width="1.5"/>
+        <rect x="90" y="30" width="120" height="80" rx="5" fill="#94B8D4"/>
+        <text x="150" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#5A7E9C">101.4K</text>
+        <text x="150" y="130" text-anchor="middle" font-size="12" fill="#3D4A57">2025/6/28</text>
+        <rect x="270" y="45" width="120" height="65" rx="5" fill="#0068B5"/>
+        <text x="330" y="37" text-anchor="middle" font-size="15" font-weight="700" fill="#00568F">82.3K</text>
+        <text x="330" y="130" text-anchor="middle" font-size="12" fill="#3D4A57">2026/6/27</text>
+        <text x="330" y="150" text-anchor="middle" font-size="11.5" fill="#B02A20">−19%（Altera 出表另移出约 3.0K）</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<h3>2.5 股东结构：被"国家队 + 战略客户"共同持有，但政府是<b>被动股东</b></h3>
+<div class="fig">
+  <div class="ft">图 7 · 2025 年 8 月以来新增发行的约 9.5 亿股构成</div>
+  <div class="fs">股份总数从 49.9 亿股 → 增发后 52.5 亿股，稀释约 5%</div>
+  <svg viewBox="0 0 1120 230">
+    <rect x="70" y="60" width="420" height="52" fill="#5B4FE9"/>
+    <rect x="490" y="60" width="208" height="52" fill="#76B900"/>
+    <rect x="698" y="60" width="196" height="52" fill="#0068B5"/>
+    <rect x="894" y="60" width="84" height="52" fill="#D6336C"/>
+    <rect x="70" y="60" width="8" height="52" rx="4" fill="#5B4FE9"/>
+    <rect x="970" y="60" width="8" height="52" rx="4" fill="#D6336C"/>
+    <g font-size="14" font-weight="700" fill="#fff">
+      <text x="280" y="92" text-anchor="middle">美国政府 4.33亿股</text>
+      <text x="594" y="92" text-anchor="middle">NVIDIA 2.15亿</text>
+      <text x="796" y="92" text-anchor="middle">8月增发 2.11亿</text>
+    </g>
+    <text x="936" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">软银 0.87亿</text>
+    <g font-size="12.5" font-weight="650">
+      <text x="280" y="136" text-anchor="middle" fill="#5B4FE9">46% · $89亿 @$20.47（占当时 9.9%）</text>
+      <text x="594" y="136" text-anchor="middle" fill="#5E9400">23% · $50亿 @$23.28（已完成）</text>
+      <text x="796" y="136" text-anchor="middle" fill="#00568F">22% · $230亿 @$95（含全额超额配售）</text>
+      <text x="936" y="136" text-anchor="middle" fill="#D6336C">9% · $20亿 @$23</text>
+    </g>
+    <text x="70" y="176" font-size="12.5" fill="#3D4A57"><tspan font-weight="700">增发后政府持股约 8.2%。</tspan>但官方明确：政府为<b>被动持股，无董事会席位，无治理权或信息权</b>，并在股东表决事项上跟随董事会投票——<tspan font-weight="700">不存在黄金股</tspan>。</text>
+    <text x="70" y="198" font-size="12.5" fill="#3D4A57"><tspan font-weight="700" fill="#B02A20">唯一的准否决权：</tspan>DOC 持有最多 2.41 亿股、行权价 $20.00 的认股权证，<tspan font-weight="700">仅当 Intel 不再直接或间接持有代工业务至少 51% 时方可行使</tspan>——这是对分拆 Intel Foundry 的实质性约束。</text>
+    <text x="70" y="220" font-size="12.5" fill="#6B7885">CEO 陈立武及一名家属在 8 月增发中按发行价认购 $1,200 万；政府、NVIDIA、软银均不受锁定协议约束。</text>
+  </svg>
+</div>
+
+<h3>2.6 资本运作全景：一边输血，一边瘦身</h3>
+<div class="grid2">
+  <div class="card" style="margin:0">
+    <h4 style="margin-top:0">💰 融资与债务</h4>
+    <ul class="small">
+      <li><b>2026/8 $200 亿增发</b>：210,526,315 股 @ $95，超额配售 31,578,947 股全额行使 → 合计 242,105,262 股、毛额约 <b>$230 亿</b>，净募资约 $196.7 亿（含超额配售约 $226.2 亿）。用途："一般公司用途，可能包括资本开支与营运资金"。</li>
+      <li><b>Q2 2026 发行 $65 亿高级票据</b>：$10亿@4.65%(2031)、$10亿@5.00%(2033)、$22亿@5.30%(2036)、$18亿@6.13%(2056)、$5亿@6.20%(2066)。</li>
+      <li>2026 年内已清偿 $15 亿 + $10 亿到期票据；$50 亿循环信贷改为 $30 亿 3 年期。</li>
+      <li>2026/4/1 提用 $65 亿 364 天过桥贷款用于回购爱尔兰合资权益，4/30 全额偿还。</li>
+      <li><b>无股息</b>（2024 年 8 月起暂停，未恢复）。</li>
+    </ul>
+  </div>
+  <div class="card" style="margin:0">
+    <h4 style="margin-top:0">✂️ 资产处置与收缩</h4>
+    <ul class="small">
+      <li><b>爱尔兰 Fab 34 JV 反向回购</b>：2026/4/8 完成，Intel 以 <b>$142 亿</b>购回 Apollo 所持 49%（Apollo 2024 年出资 $112 亿）。<b>这是 Q2 调整后自由现金流 −$84 亿的主因</b>（合作方出资净额 −$122 亿）。现 100% 持有。</li>
+      <li><b>Altera</b>：51% 出售给 Silver Lake，2025/9/12 出表，对 Altera 估值 $87.5 亿（官方未披露成交价）。Intel 保留 49%。Q3'25 含分拆收益 $54.52 亿。此后<b>未查到</b>IPO 或出售剩余股权的官方表态。</li>
+      <li><b>Mobileye</b>：持股约 <b>77%</b>（2026/6/27；非控股权益 23%，一年前 NCI 仅 13%）、仍并表；<b>商誉从 $82 亿（2025/12/27）降至 $43 亿（2026/6/27）</b>，Q1 2026 计提 <b>$39 亿</b>非现金商誉减值，"substantially all"归于此报告单元；披露敏感性：折现率再高 1% 将导致额外约 <b>$6.82 亿</b>减值。上半年归属非控股权益的净亏损 <b>$8.72 亿</b>（去年同期仅 $0.19 亿）。</li>
+      <li><b>IMS Nanofabrication</b>：持股 68%。</li>
+      <li><b>NEX（网络与边缘）</b>：2025 Q1 已并入 CCG 与 DCAI，不再作为独立分部。</li>
+      <li><b>产能收缩</b>：终止德国 fab 与波兰封测扩建；放缓俄亥俄建设；哥斯达黎加封测合并（2026 年底前完成）。</li>
+    </ul>
+  </div>
+</div>
+
+<h3>2.7 管理层与组织：先进封装被"升格"为独立业务</h3>
+<table class="small">
+  <thead><tr><th>时间</th><th>变动</th><th>解读</th></tr></thead>
+  <tbody>
+    <tr><td>2026/6/18</td><td><b>Seok-Hee Lee</b> 任 Intel Foundry EVP，主管先进封装、系统集成、后端技术开发与制造（原 SK On 总裁兼 CEO、原 SK hynix 总裁兼 CEO）。原 EVP Navid Shahriari 退休（37年）</td><td><b>先进封装被设为独立业务</b>，并启用一位前存储大厂 CEO 主掌——战略权重最高的信号</td></tr>
+    <tr><td>2026/8/7</td><td>Dean Jarnac 任 EVP 兼首席销售官（来自 Marvell）；Greg Ernst 离职（27年）</td><td>销售换血，指向外部客户拓展</td></tr>
+    <tr><td>2026 Q2</td><td>Alex Katouzian（原高通）领导 CCPG（由 CCG 更名，纳入"物理AI"）；Pushkar Ranade 任 CTO；Aparna Bawa 领导法务/合规/人事</td><td>组织围绕"AI 向边缘迁移"重构</td></tr>
+    <tr><td>2026/3/3</td><td>董事长 Frank D. Yeary 退休，Dr. Craig H. Barratt 出任独立董事长</td><td><b>无政府指派董事</b>——印证政府被动持股</td></tr>
+  </tbody>
+</table>
+<p class="small muted">陈立武（Lip-Bu Tan）仍在任 CEO，公开口径关键词：三大战略资产 =「x86 CPU 特许经营权 + 先进封装技术 + 庞大的晶圆代工网络」；四大机会 =「AI 驱动的 x86、定制 ASIC、先进封装、晶圆代工」。Naga Chandrasekaran 继续任 Intel Foundry EVP/GM，负责 18A/14A 产能爬坡与客户界面。</p>
+
+<!-- ============================================================ -->
+<h2>三、制程技术：18A / 18A-P / 18A-PT / 14A 逐项拆解</h2>
+<p class="lede">这是整个投资案的技术核心。左侧是 Intel 自己的节奏，右侧是台积电的节奏。</p>
+
+<div class="fig">
+  <div class="ft">图 8 · 制程节点路线图：Intel vs 台积电（2022–2030）</div>
+  <div class="fs">深色 = 量产（HVM）窗口；浅色 = 风险试产 / 爬坡 / 延展期。◆ = 首次量产时点</div>
+  <svg viewBox="0 0 1220 660">
+    <g stroke="#EDF1F5" stroke-width="1">
+      <line x1="140" y1="40" x2="140" y2="620"/><line x1="270" y1="40" x2="270" y2="620"/>
+      <line x1="400" y1="40" x2="400" y2="620"/><line x1="530" y1="40" x2="530" y2="620"/>
+      <line x1="660" y1="40" x2="660" y2="620"/><line x1="790" y1="40" x2="790" y2="620"/>
+      <line x1="920" y1="40" x2="920" y2="620"/><line x1="1050" y1="40" x2="1050" y2="620"/>
+      <line x1="1180" y1="40" x2="1180" y2="620"/>
+    </g>
+    <g fill="#9AA6B2" font-size="12" text-anchor="middle">
+      <text x="140" y="30">2022</text><text x="270" y="30">2023</text><text x="400" y="30">2024</text>
+      <text x="530" y="30">2025</text><text x="660" y="30">2026</text><text x="790" y="30">2027</text>
+      <text x="920" y="30">2028</text><text x="1050" y="30">2029</text><text x="1180" y="30">2030</text>
+    </g>
+    <line x1="669" y1="40" x2="669" y2="620" stroke="#DB4437" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="675" y="54" font-size="12" font-weight="700" fill="#B02A20">今天 2026-10</text>
+
+    <rect x="0" y="62" width="1220" height="24" fill="#E1EEF9" opacity=".55"/>
+    <text x="12" y="79" font-size="13" font-weight="700" fill="#00568F">INTEL</text>
+
+    <g font-size="12">
+      <text x="130" y="106" text-anchor="end" fill="#3D4A57">Intel 7</text>
+      <rect x="140" y="94" width="610" height="16" rx="4" fill="#0068B5" opacity=".32"/>
+      <text x="755" y="107" font-size="11" fill="#6B7885">存量产出 / 供应已紧张</text>
+
+      <text x="130" y="132" text-anchor="end" fill="#3D4A57">Intel 4</text>
+      <rect x="270" y="120" width="230" height="16" rx="4" fill="#0068B5" opacity=".5"/>
+      <text x="505" y="133" font-size="11" fill="#6B7885">Meteor Lake</text>
+
+      <text x="130" y="158" text-anchor="end" fill="#3D4A57">Intel 3</text>
+      <rect x="400" y="146" width="350" height="16" rx="4" fill="#0068B5" opacity=".6"/>
+      <text x="755" y="159" font-size="11" fill="#6B7885">Sierra Forest / Granite Rapids / Xeon 6</text>
+
+      <text x="130" y="190" text-anchor="end" font-weight="700" fill="#00568F">Intel 18A</text>
+      <rect x="480" y="178" width="380" height="18" rx="4" fill="#0068B5" opacity=".55"/>
+      <rect x="530" y="178" width="330" height="18" rx="4" fill="#0068B5"/>
+      <polygon points="530,187 522,183 522,191" fill="#00568F"/>
+      <text x="600" y="192" font-size="11.5" font-weight="700" fill="#fff">Panther Lake 量产</text>
+      <text x="870" y="192" font-size="11" fill="#3D4A57">RibbonFET GAA + PowerVia 背面供电</text>
+
+      <text x="130" y="218" text-anchor="end" font-weight="700" fill="#00568F">Intel 18A-P</text>
+      <rect x="620" y="206" width="300" height="18" rx="4" fill="#4DA3E0" opacity=".45"/>
+      <rect x="700" y="206" width="220" height="18" rx="4" fill="#4DA3E0"/>
+      <polygon points="700,215 692,211 692,219" fill="#2E7FB8"/>
+      <text x="720" y="220" font-size="11.5" font-weight="700" fill="#00568F">风险量产 → 客户产品</text>
+      <text x="680" y="243" font-size="11" fill="#3D4A57">同密度下 +8% 每瓦性能；Intel 首个支持 Foveros Direct 混合键合的节点</text>
+
+      <text x="130" y="268" text-anchor="end" fill="#00568F">Intel 18A-PT</text>
+      <rect x="790" y="256" width="230" height="16" rx="4" fill="#4DA3E0" opacity=".55"/>
+      <text x="1025" y="269" font-size="11" fill="#6B7885">面向 3D 堆叠 / 先进封装的衍生版本</text>
+
+      <text x="130" y="298" text-anchor="end" font-weight="700" fill="#5B4FE9">Intel 14A</text>
+      <rect x="700" y="286" width="340" height="18" rx="4" fill="#5B4FE9" opacity=".4"/>
+      <rect x="790" y="286" width="250" height="18" rx="4" fill="#5B4FE9"/>
+      <polygon points="790,295 782,291 782,299" fill="#5B4FE9"/>
+      <text x="810" y="300" font-size="11.5" font-weight="700" fill="#fff">内部风险量产 2H27 → 2028 HVM</text>
+      <text x="700" y="322" font-size="11" fill="#3D4A57">RibbonFET 2 + PowerDirect + Turbo Cells + High-NA EUV；PDK 0.5 已完成，PDK 0.9 → 2026年10月</text>
+
+      <text x="130" y="348" text-anchor="end" fill="#5B4FE9">Intel 14A-E</text>
+      <rect x="920" y="336" width="200" height="16" rx="4" fill="#5B4FE9" opacity=".3"/>
+
+      <text x="130" y="374" text-anchor="end" fill="#9AA6B2">Intel 10A / 7A</text>
+      <rect x="900" y="362" width="260" height="16" rx="4" fill="#9AA6B2" opacity=".3"/>
+      <text x="1165" y="375" font-size="11" fill="#9AA6B2">开发中</text>
+    </g>
+
+    <rect x="0" y="396" width="1220" height="24" fill="#FBE6EA" opacity=".6"/>
+    <text x="12" y="413" font-size="13" font-weight="700" fill="#A00D25">TSMC</text>
+
+    <g font-size="12">
+      <text x="130" y="440" text-anchor="end" fill="#3D4A57">N3 家族</text>
+      <rect x="140" y="428" width="780" height="16" rx="4" fill="#C8102E" opacity=".35"/>
+      <rect x="140" y="428" width="480" height="16" rx="4" fill="#C8102E" opacity=".75"/>
+      <text x="200" y="441" font-size="11" font-weight="700" fill="#fff">N3 / N3E / N3P 量产</text>
+      <text x="930" y="441" font-size="11" fill="#6B7885">N3 平台长尾</text>
+
+      <text x="130" y="466" text-anchor="end" font-weight="700" fill="#A00D25">N2</text>
+      <rect x="510" y="454" width="490" height="18" rx="4" fill="#C8102E" opacity=".4"/>
+      <rect x="530" y="454" width="470" height="18" rx="4" fill="#C8102E"/>
+      <polygon points="530,463 522,459 522,467" fill="#A00D25"/>
+      <text x="560" y="467" font-size="11.5" font-weight="700" fill="#fff">2025 H2 量产 · 目前唯一"真 2nm"量产节点</text>
+
+      <text x="130" y="494" text-anchor="end" fill="#A00D25">N2P / N2X</text>
+      <rect x="660" y="482" width="380" height="16" rx="4" fill="#E85A70" opacity=".7"/>
+      <text x="1050" y="495" font-size="11" fill="#6B7885">N2 家族延展</text>
+
+      <text x="130" y="522" text-anchor="end" font-weight="700" fill="#A00D25">A16</text>
+      <rect x="660" y="510" width="140" height="18" rx="4" fill="#8B0A1E" opacity=".3"/>
+      <rect x="790" y="510" width="270" height="18" rx="4" fill="#8B0A1E"/>
+      <polygon points="790,519 782,515 782,523" fill="#5E0413"/>
+      <text x="802" y="523" font-size="11.5" font-weight="700" fill="#fff">Super Power Rail 背面供电 · 2027 量产</text>
+      <text x="660" y="500" font-size="10.5" fill="#B02A20">原定 2026H2，已推迟一年</text>
+
+      <text x="130" y="550" text-anchor="end" font-weight="700" fill="#A00D25">A14</text>
+      <rect x="900" y="538" width="260" height="18" rx="4" fill="#8B0A1E" opacity=".85"/>
+      <text x="960" y="551" font-size="11.5" font-weight="700" fill="#fff">1.4nm · 2028</text>
+
+      <text x="130" y="578" text-anchor="end" fill="#A00D25">A13 / A12</text>
+      <rect x="1030" y="566" width="140" height="16" rx="4" fill="#8B0A1E" opacity=".5"/>
+      <text x="130" y="604" text-anchor="end" fill="#9AA6B2">A10（1.0nm）</text>
+      <rect x="1120" y="592" width="60" height="16" rx="4" fill="#9AA6B2" opacity=".35"/>
+    </g>
+  </svg>
+  <div class="note">数据综合自 Intel 财报电话会 / 官方新闻稿 / 财报演示、TSMC 技术研讨会、TrendForce、Wccftech、Tom's Hardware、DIGITIMES。2028 年之后属规划性质。</div>
+</div>
+
+<h3>3.1 Intel 18A —— 已量产且被官方数据验证</h3>
+<div class="grid2">
+  <div>
+    <table class="small" style="margin-top:8px">
+      <tbody>
+        <tr><th style="width:34%">架构</th><td>RibbonFET（全环绕栅极 GAA）+ PowerVia（背面供电）</td></tr>
+        <tr><th>量产状态</th><td>已进入高量产（HVM）。首发产品 <b>Panther Lake（Core Ultra 系列 3）</b>；已扩展至 <b>Wildcat Lake</b> 与 <b>Clearwater Forest（Xeon 6+，首款 18A 服务器级产品）</b></td></tr>
+        <tr><th>产出（Q2'26）</th><td><b>超目标约 25%，环比 +50%</b>；Intel 7 / Intel 3 / 18A 各厂产量均超内部目标</td></tr>
+        <tr><th>良率</th><td><b>约 85%</b>（上一季度 65%）</td></tr>
+        <tr><th>成本曲线</th><td>Panther Lake 主力 SKU 成本年内已降约 <b>50%</b>，全年再降 20%，2027 年计划进一步大幅下降</td></tr>
+        <tr><th>对标</th><td>台积电 N2 ~90%；三星 SF2 ~50–60%</td></tr>
+        <tr><th>产能</th><td><b>约 3 万片/月</b>（Fab 52 亚利桑那 + 俄勒冈 Hillsboro 合计）</td></tr>
+        <tr><th>光刻</th><td>已使用 ASML EXE High-NA EUV；官方称 <b>High-NA 累计加工已超 100 万片晶圆</b>（2026/9/8）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div class="fig" style="margin-top:8px">
+      <div class="ft">图 9 · 先进逻辑良率对比（2026 Q3）</div>
+      <div class="fs">Intel 18A 已逼近台积电 N2，三星仍落后一个身位</div>
+      <svg viewBox="0 0 500 250">
+        <line x1="110" y1="200" x2="470" y2="200" stroke="#D8E1EA" stroke-width="1.5"/>
+        <g fill="#9AA6B2" font-size="11" text-anchor="end"><text x="102" y="204">0%</text><text x="102" y="124">50%</text><text x="102" y="44">100%</text></g>
+        <line x1="110" y1="120" x2="470" y2="120" stroke="#EDF1F5"/>
+        <line x1="110" y1="40" x2="470" y2="40" stroke="#EDF1F5"/>
+        <rect x="130" y="56" width="144" height="144" rx="4" fill="#C8102E"/>
+        <text x="202" y="48" text-anchor="middle" font-size="15" font-weight="700" fill="#A00D25">~90%</text>
+        <text x="202" y="220" text-anchor="middle" font-size="12" fill="#3D4A57">台积电 N2</text>
+        <rect x="240" y="64" width="136" height="136" rx="4" fill="#0068B5"/>
+        <text x="308" y="56" text-anchor="middle" font-size="15" font-weight="700" fill="#00568F">~85%</text>
+        <text x="308" y="220" text-anchor="middle" font-size="12" fill="#3D4A57">Intel 18A</text>
+        <rect x="350" y="64" width="42" height="136" rx="4" fill="#0068B5" opacity=".3"/>
+        <text x="371" y="56" text-anchor="middle" font-size="12" font-weight="650" fill="#5A7E9C">65%</text>
+        <text x="371" y="238" text-anchor="middle" font-size="10.5" fill="#9AA6B2">18A 上季度</text>
+        <rect x="402" y="112" width="52" height="88" rx="4" fill="#1428A0" opacity=".8"/>
+        <text x="428" y="104" text-anchor="middle" font-size="13" font-weight="700" fill="#1428A0">~55%</text>
+        <text x="428" y="220" text-anchor="middle" font-size="12" fill="#3D4A57">三星 SF2</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="call bad">
+  <div class="t">⚠ 独立拆解给出的冷水：SemiAnalysis 对 Panther Lake（18A）的结论</div>
+  <p style="margin:6px 0">2026 年 9 月 26 日，SemiAnalysis 发布 Panther Lake 拆解报告，结论比 Intel 自己的口径严厉得多：</p>
+  <ul style="margin:6px 0">
+    <li>18A 的计算逻辑与台积电 <b>N3E</b> 的 GPU tile "密度相近"；18A 比自家 Intel 3 密 <b>18.6%</b>。</li>
+    <li><b>但明确结论是："18A 在峰值密度上不领先 TSMC N3P、N2 或三星 SF2。"</b></li>
+    <li>18A 核心逻辑用 <b>5-track 库</b>（N3E / Intel 3 用 7-track）；18A P-core 的 M0 金属每线面积是 N3E 的 <b>2.63 倍</b>（按布线间距归一化后 1.84 倍）。</li>
+    <li>定性判断：Panther Lake 是"实质性制造里程碑"，但 Intel "<b>不再拥有 10nm 之前那种制程技术领导地位</b>"。</li>
+    <li><b>芯粒实际分配（最能说明问题的一条）</b>：计算 tile = <b>Intel 18A</b>；GT1 核显 = <b>Intel 3</b>；<b>GT2 核显 = 台积电 N3E</b>；<b>I/O tile = 台积电 N6</b>。<b>即：Intel 用自家最先进节点只做了计算 tile，四颗芯粒里仍有两颗下单给台积电</b>——其中还包括图形部分。这既是"18A 已可用"的证据，也是"Intel 仍是台积电客户"的证据，两件事同时成立。</li>
+  </ul>
+  <p style="margin:6px 0"><b>怎么读这份报告：</b>SemiAnalysis 的分析师此前长期看空 Intel 制程。但它的方法论（实际拆解、去封装、量测）比任何 PR 都硬。它印证了一个关键的投资者认知——<b>Intel 18A 的目标是"追平 N3/N2 级别"，而不是"超越"</b>。这与 Intel 自己说 14A 将在台积电 A14 的"5% 以内"完全自洽。这在投资上不是坏消息（追平即可承接溢出订单），但它排除了"Intel 重新取得制程霸权"这一叙事。</p>
+  <p style="margin:6px 0" class="small muted">另据 TechInsights 对苹果 A20 Pro（台积电 N2）的初步分析：计算 die 约 98.2mm²，与上代 A19 Pro 几乎同尺寸，观察到"激进的逻辑单元微缩"；但栅极间距、金属间距、SRAM 密度等关键量化数据<b>尚未公布</b>——即截至今日，<b>N2 的密度实测数字在公开渠道仍不可得</b>。因此"18A vs N2 谁更密"目前只有定性结论。</p>
+</div>
+
+<h3>3.2 Intel 18A-P —— 真正面向外部客户的"第一个商业节点"</h3>
+<ul>
+  <li><b>性能（Hot Chips 2026-08-26 官方口径）</b>：量产硅上低电压（0.5V）测得 <b>30% 频率增益</b>；较 18A <b>同功耗性能 +9% 以上</b>，或<b>同性能功耗 −18% 以上</b>。<span class="muted">（注：此前广泛流传的"同密度下 +8% 每瓦"是较早口径，以 Hot Chips 数据为准。）</span></li>
+  <li><b>已进入风险试产</b>：<b>2026 年 6 月</b>进入风险试产。首款产品 <b>Diamond Rapids（Xeon 7，2027 年上市）</b>：16 个 18A-P 核心 chiplet + 4 个 Intel 3-T base tile + 2 个 Intel 3 fabric hub tile，最高 256 P-core、1.28GB LLC，16 通道 DDR5-8000。注意它<b>用 Foveros Direct 3D + UCIe-S，明确不用 EMIB</b>。</li>
+  <li><b>关键定位</b>：这是 Intel 首个支持 <b>Foveros Direct 3D 混合键合</b>的节点，可做真正的 3D 堆叠 chiplet（通过 TSV）。</li>
+  <li><b>进度</b>：<b>已进入风险量产</b>（官方口径），被定位为"面向外部客户的有竞争力节点"。</li>
+  <li><b>客户</b>：苹果已签署 NDA 并取得 18A-P 的 PDK 样片用于评估。GF Securities 与 DigiTimes 称，苹果最低端 M 系列（M7）预计 2027 年出货、采用 18A-P；非 Pro 版 iPhone 芯片计划 2028 年；A21（2028 年）可能在 18A-P 或 14A 之间选择。GF Securities 另称苹果代号 "Baltra" 的自研 ASIC（2027 或 2028）将采用 Intel EMIB 封装。</li>
+  <li><b>性能对撞悬念</b>：业内把 <b>18A-P 与台积电 A16</b> 视为 2026 年前后的正面对撞（A16 主打 Super Power Rail 背面供电），这是判断 Intel 是否"追平"的最客观窗口。</li>
+</ul>
+
+<h3>3.3 Intel 18A-PT</h3>
+<p>18A-PT 是 18A-P 面向 3D 堆叠/先进封装的衍生节点，定位于配合 EMIB-T、Foveros Direct 使用，2027–2029 年窗口。它本身不是"性能节点"，而是 Intel 用来把"逻辑 + 封装"打包卖给客户的产品化载体——与台积电把 A16 与 CoWoS/SoIC 捆绑销售的策略同构。</p>
+
+<h3>3.4 Intel 14A —— 官方口径最完整、但商业化最不确定的一环</h3>
+<div class="call">
+  <div class="t">官方披露的 14A 三句话（Q2 2026 财报，陈立武）</div>
+  <ul style="margin:6px 0">
+    <li>14A 的<b>缺陷密度与晶体管性能均优于 18A 同期</b>；</li>
+    <li><b>PDK 0.5 已完成，PDK 0.9 按计划于 2026 年 10 月推出</b>；</li>
+    <li><b>仍按计划于 2027 年下半年进入内部产品风险量产</b>；Q2 已决定<b>全力投入 2028 年高量产</b>。</li>
+  </ul>
+  <p style="margin:6px 0" class="small muted">注：Wccftech 曾报道陈立武目标 1Q27 风险量产，与官方"2H27"口径不符，<b>以官方为准</b>。另据媒体，台积电 A14 在宝山试产最早 2027 Q1 启动，"几乎与 Intel 14A 风险量产同步"。</p>
+</div>
+
+<h4>14A 的量化进展（这是 Intel 与台积电差距缩得最快的地方）</h4>
+<div class="grid3">
+  <div class="kpi"><div class="lab">14A 缺陷密度（2026/6）</div><div class="val up">D0 = 0.5</div><div class="sub">目标 2027 Q1 达 <b>0.1–0.2</b><br>进展较 18A 同期轨迹<b>提前 3–4 个季度</b></div></div>
+  <div class="kpi"><div class="lab">Intel 自评 vs 台积电 A14</div><div class="val">"5% 以内"</div><div class="sub">Intel Foundry 负责人<br>Naga Chandrasekaran，2026-09-25</div></div>
+  <div class="kpi"><div class="lab">14A 规划产能</div><div class="val down">6K → 24K</div><div class="sub">片/月（2027 年底 → 2028）<br>vs 台积电 N2 的 100K+</div></div>
+</div>
+
+<div class="call">
+  <div class="t">怎么理解"5% 以内"这句话</div>
+  <p style="margin:6px 0">Intel 高管公开承认 14A 的性能目标只是"<b>在台积电 A14 的 5% 以内</b>"——这被广泛解读为"保守预测"。但它同时是 Intel 管理层自己给出的定位：<b>追赶，而非超越</b>。结合 SemiAnalysis 对 18A 的拆解结论（峰值密度不领先 N3P/N2），这句话是可信的，也应该是建模的基础假设。</p>
+  <p style="margin:6px 0"><b>反过来看，这已经是不小的成就。</b>从 Intel 4/Intel 3 时代落后台积电整整一代，到 14A 与 A14 的时间表基本同步（均为 2027 风险试产 / 2028 量产）、性能差收窄到 5% 以内——<b>这是 2021 年以来 Intel 制程差距缩小最快的一次</b>。真正的瓶颈已经不在技术，而在产能（差两个数量级）与客户承诺（公司自认的 14A 存续条件）。</p>
+</div>
+<table class="small">
+  <thead><tr><th>维度</th><th>Intel 14A 已知信息</th><th>可信度</th></tr></thead>
+  <tbody>
+    <tr><td>技术组合</td><td>RibbonFET 2 + <b>PowerDirect</b>（第二代背面供电）+ <b>Turbo Cells</b> + High-NA EUV 光刻</td><td><span class="b b-ok">官方</span></td></tr>
+    <tr><td>首个客户</td><td><b>Tesla / SpaceX / xAI 的 Terafab</b> 项目，2026 年 4 月 Intel 财报会确认，Musk 称 14A 为 "State-of-the-Art"</td><td><span class="b b-ok">官方</span></td></tr>
+    <tr><td>PDK 进度</td><td>PDK 0.5 已完成；<b>PDK 0.9 于 2026 年 10 月推出</b></td><td><span class="b b-ok">官方</span></td></tr>
+    <tr><td>量产时间</td><td>内部产品风险量产 <b>2H 2027</b> → <b>2028 高量产</b></td><td><span class="b b-ok">官方</span></td></tr>
+    <tr><td>外部客户需求</td><td>CFO 年初口径：预计出现在 <b>2026 下半年 – 2027 上半年</b></td><td><span class="b b-news">官方（预测）</span></td></tr>
+    <tr><td>Musk 自评</td><td>Musk 本人承认 "<b>14A isn't complete yet</b>"——尚不能量产，但预计到 Terafab 需要时会成熟</td><td><span class="b b-news">公开表态</span></td></tr>
+    <tr><td>Terafab 规模</td><td>两座工厂：一座做 Tesla 车辆 + 人形机器人芯片，一座做太空 AI 数据中心；目标"每年 1 太瓦算力"。<b>Bernstein 估算该项目总成本可能高达 $5 万亿</b></td><td><span class="b b-news">规划 / 第三方估算</span></td></tr>
+    <tr><td>不确定性</td><td>2026 年 10 月 Musk 确认正与<b>台积电</b>洽谈，原话"Just discussions, but something may come of it."；Digitimes 标题称 Musk 把台积电限定为"可能的<b>洁净室转租</b>"角色。分析师普遍认为这是对 Intel 的<b>压价谈判手段</b></td><td><span class="b b-rumor">进行中</span></td></tr>
+    <tr class="hi"><td><b>公司自认的存续风险</b></td><td><b>Intel 自己在 Q1 2026 财报风险因素中写明：</b>若无法通过"与潜在重要外部客户的产品设计赢单"获得"<b>sufficient committed demand for Intel 14A</b>"（14A 的足够承诺需求），则存在"<b>a potential pause or discontinuation of our pursuit of Intel 14A</b>"——<b>暂停或放弃 14A 的风险</b></td><td><span class="b b-ok">官方（10-Q 原文）</span></td></tr>
+    <tr><td>官方口径的旁证</td><td>Intel 官方新闻稿存档（2026 全年）显示：公司<b>从未</b>就 Altera IPO、RealSense、NEX 出售、Apple 代工协议发布任何公告</td><td><span class="b b-ok">官方</span></td></tr>
+  </tbody>
+</table>
+
+<div class="call warn">
+  <div class="t">对 14A 的理性判断</div>
+  <p style="margin:6px 0">14A 目前的全部可信度建立在 <b>一个客户（Musk 体系）、一句自我评价、零片量产出</b>之上——但比三个月前好的是，官方给出了可验证的时间表：<b>2026 年 10 月 PDK 0.9</b>。<b>PDK 0.9 是否按期发布、以及发布时是否附带客户名称，是本季度最容易证伪 14A 叙事的单一事件。</b>Terafab 项目自身仍未定型（Musk 同时在与台积电谈、且被台湾舆论劝退）。</p>
+  <p style="margin:6px 0"><b>最需要正视的是：Intel 自己在 10-Q 里承认 14A 可能被"暂停或放弃"。</b>这不是空头的臆测，是公司法律文件的原文。它意味着 14A 不是"必然会做"的路线图节点，而是一个<b>有条件的投资决策</b>——条件就是拿到足够的外部客户承诺需求。这与 CFO 口中"数十亿美元级机会"的措辞完全一致：是机会，尚未成为订单。</p>
+</div>
+
+<h3>3.5 光刻设备：Intel 在 High-NA EUV 上的"时间差"</h3>
+<table class="small">
+  <thead><tr><th></th><th>Intel</th><th>台积电</th><th>三星</th></tr></thead>
+  <tbody>
+    <tr><td>High-NA EUV（0.55 NA）</td><td><b>首个客户</b>，已部署 ASML EXE:5000 / EXE:5200B，单价约 $3.8 亿；累计加工 <b>&gt;100 万片晶圆</b></td><td>态度谨慎、延后导入</td><td>跟进中</td></tr>
+    <tr><td>Low-NA EUV（0.33 NA）</td><td>NXE:3800E，约 $2.35 亿</td><td>主力机台</td><td>主力机台</td></tr>
+    <tr><td>掩模规格</td><td>6 英寸掩模 + <b>拼接（stitching）</b>：单次曝光场 26 × 16.5mm（半场）</td><td>推动 <b>12 英寸掩模</b>：26 × 33mm 全尺寸，避免拼接</td><td>观望</td></tr>
+  </tbody>
+</table>
+<p class="small">关键点：ASML 已把 Intel、台积电、三星拉到 12 英寸掩模路线上，"但只有台积电给出了时间表"（DIGITIMES, 2026-09-08）。这暗示 <b>Intel 在 High-NA 上的先发优势，可能被台积电用"更大的掩模 + 不拼接"从另一条路径消解</b>——先进设备不等于先进良率与低成本。Intel 已与 ASML 签署合作以加速 High-NA 生态成熟（官方新闻稿）。</p>
+
+<h3>3.6 Intel 的非制程战线：SambaNova 与 ZAM 内存</h3>
+<p class="lede">必须先把一个流传很广的误解说清楚：<b>SambaNova 和 ZAM 都不是 Intel 的收购。</b>SambaNova 是 Intel <b>参投 + 多年合作</b>的独立创业公司（2026-02 融资 $3.5 亿，Intel 参投）；ZAM 是 Intel 与 <b>SoftBank 子公司 Saimemory 的联合开发项目</b>。两者都不并表、不单列。这不是细节——它直接决定了这两块<b>对 Intel 的财务意义接近于零</b>。</p>
+
+<div class="fig">
+  <svg viewBox="0 0 1120 400" role="img" aria-label="ZAM 内存与 HBM4 的规格对比">
+    <text x="40" y="32" font-size="17" font-weight="700" fill="#1B2733">ZAM（Z 角内存）对标 HBM4：以 HBM4 = 100 为基准指数</text>
+
+    <g stroke="#EDF1F5">
+      <line x1="130" y1="300" x2="1080" y2="300"/>
+      <line x1="130" y1="226.7" x2="1080" y2="226.7"/>
+      <line x1="130" y1="153.3" x2="1080" y2="153.3"/>
+      <line x1="130" y1="80" x2="1080" y2="80"/>
+    </g>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end">
+      <text x="120" y="304">0</text><text x="120" y="230">100</text>
+      <text x="120" y="157">200</text><text x="120" y="84">300</text>
+    </g>
+
+    <!-- 容量 -->
+    <rect x="200" y="226.7" width="62" height="73.3" rx="4" fill="#9AA6B2"/>
+    <text x="231" y="218" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6B7885">100</text>
+    <rect x="272" y="153.3" width="62" height="146.7" rx="4" fill="#0068B5"/>
+    <rect x="272" y="80" width="62" height="73.3" rx="4" fill="#7FB3DA"/>
+    <text x="303" y="72" text-anchor="middle" font-size="12.5" font-weight="700" fill="#00568F">200–300</text>
+    <text x="267" y="326" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1B2733">容量</text>
+
+    <!-- 带宽 -->
+    <rect x="540" y="226.7" width="62" height="73.3" rx="4" fill="#9AA6B2"/>
+    <text x="571" y="218" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6B7885">100</text>
+    <rect x="612" y="153.3" width="62" height="146.7" rx="4" fill="#0068B5"/>
+    <text x="643" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#00568F">&gt; 200</text>
+    <text x="607" y="326" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1B2733">带宽</text>
+
+    <!-- 功耗 -->
+    <rect x="880" y="226.7" width="62" height="73.3" rx="4" fill="#9AA6B2"/>
+    <text x="911" y="218" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6B7885">100</text>
+    <rect x="952" y="263.3" width="62" height="36.7" rx="4" fill="#0F9D58"/>
+    <text x="983" y="255" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B7A45">50</text>
+    <text x="947" y="326" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1B2733">功耗 <tspan font-size="11.5" fill="#0B7A45">（越低越好）</tspan></text>
+
+    <g font-size="12.5">
+      <rect x="180" y="352" width="14" height="14" rx="3" fill="#9AA6B2"/><text x="202" y="364" fill="#6B7885">HBM4 = 100</text>
+      <rect x="330" y="352" width="14" height="14" rx="3" fill="#0068B5"/><text x="352" y="364" fill="#3D4A57">ZAM（宣称值）</text>
+    </g>
+    <rect x="500" y="344" width="580" height="30" rx="8" fill="#FFF8E6" stroke="#E8CE7A"/>
+    <text x="516" y="364" font-size="12.5" fill="#7A5A00">⚠ 全部为 <tspan font-weight="700">Intel / Saimemory 一方的宣称</tspan>，尚无第三方实测或量产验证，请勿作为建模依据。</text>
+  </svg>
+  <div class="ft">图 10 · ZAM 对标 HBM4 的规格宣称</div>
+  <div class="fs">容量 2–3 倍、带宽超 HBM4 两倍以上、功耗约一半——但全部未经独立验证</div>
+</div>
+
+<div class="card">
+  <div class="t" style="font-weight:700;font-size:15.5px;margin-bottom:10px">① SambaNova：Intel 在加速器战场上的"参股式参与"</div>
+  <table class="small">
+    <tr><th>维度</th><th>现状</th><th>证据</th></tr>
+    <tr><td>与 Intel 的关系</td><td><b>投资 + 多年合作，不是收购。</b>2026-02-24 完成 <b>$3.5 亿</b>融资，Intel 参投；SambaNova 仍为独立公司</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>合作内容</td><td>DCAI 与 SambaNova 建立<b>多年合作</b>，设计"下一代<b>异构 AI 推理架构</b>"——把 SambaNova 的 <b>RDU</b> 与 <b>Xeon 6</b> 组合</td><td><span class="b b-ok">官方（Q1'26 讲稿）</span></td></tr>
+    <tr><td>产品</td><td>第五代 <b>SN50 RDU</b>；SambaNova 自称能效为 NVIDIA <b>B200 的 3 倍</b></td><td><span class="b b-rumor">厂商宣称</span></td></tr>
+    <tr><td>客户</td><td><b>已有首批客户系统</b>——2026-07 第三方测试中，<b>H200 + SN50 混合平台</b>在 MiniMax M2.7 上达到 763 tok/s</td><td><span class="b b-news">媒体（实测）</span></td></tr>
+    <tr class="hi"><td><b>盈利</b></td><td><b>无。</b>仍在融资烧钱阶段；Intel 财报中<b>不单列</b>，按权益法核算，不并表</td><td><span class="b b-bad">无收入贡献</span></td></tr>
+  </table>
+  <p class="small" style="margin:10px 0 0"><b>一个很说明问题的细节：</b>它的卖点平台是把 <b>H200 和 SN50 混着用</b>。如果 SN50 真是"B200 杀手"，不需要拉 H200 陪跑。<b>这说明它的真实定位是补充 NVIDIA，而非取代 NVIDIA</b>——与 Intel 自己的官方口径完全一致（见下）。</p>
+</div>
+
+<div class="card">
+  <div class="t" style="font-weight:700;font-size:15.5px;margin-bottom:10px">② ZAM：Intel 少有的"不拼制程"的战场</div>
+  <table class="small">
+    <tr><th>维度</th><th>现状</th><th>证据</th></tr>
+    <tr><td>与 Intel 的关系</td><td><b>联合开发，不是收购。</b>合作方为 SoftBank 子公司 <b>Saimemory</b>；2026-02-11 在 Intel 日本活动首次亮相</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>制造伙伴</td><td><b>PSMC（力积电）</b>加入该计划负责制造（2026-02-23）；2026-05-22 联合演示 <b>9 层融合键合通孔（fusion-bonded via）单架构</b> 3D 内存</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>政府支持</td><td><b>已获日本政府补贴</b></td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>产品节奏</td><td>报道称将推出基于 ZAM 的 <b>HB3DM</b>（2026-04-30 口径：预计 6 月发布），带宽超 HBM4 两倍以上</td><td><span class="b b-rumor">传闻</span></td></tr>
+    <tr><td>竞争</td><td><b>不是独家</b>——三星已在推进同类方案 <b>zHBM</b>（TrendForce 2026-02-18 将两者并列比较）</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr class="hi"><td><b>盈利</b></td><td><b>零收入。</b>纯研发项目，且短期<b>只会增加 Intel 的研发开支</b></td><td><span class="b b-bad">无收入贡献</span></td></tr>
+  </table>
+</div>
+
+<div class="call ok">
+  <div class="t">✓ 战略读法：这两块加起来是同一件事——"CPU 锚定"</div>
+  <p style="margin:6px 0">Intel 没打算在加速器上赢 NVIDIA。Q1'26 官方讲稿说得很直白：</p>
+  <p class="quote" style="margin:6px 0">"The accelerator remain central to frontier AI, and we will continue to <b>participate, innovate and partner</b> in that category... But <b>the backbone of AI computing 'in production' remains a CPU-anchored architecture</b>."</p>
+  <p style="margin:6px 0">翻译：<b>别跟 NVIDIA 正面打，把 Xeon 做成 AI 推理里不可或缺的"宿主 + 编排者"。</b></p>
+  <ul style="margin:6px 0">
+    <li><b>SambaNova</b> = 这个战略的<b>产品载体</b>（Xeon + RDU 异构推理）</li>
+    <li><b>ZAM</b> = 这个战略的<b>上游弹药</b>（内存是当前 AI 最紧的瓶颈，价格已涨 5–7 倍）</li>
+  </ul>
+  <p style="margin:6px 0"><b>ZAM 的时机其实相当好：</b>HBM 是眼下最卡脖子的一环（陈立武 2026-09-16 亲口说内存价格涨了 5–7 倍）。这是一个 Intel <b>不需要赢台积电就能赢</b>的方向——内存不拼 2nm，拼堆叠与键合。</p>
+</div>
+
+<div class="call warn">
+  <div class="t">⚠ 但对财务的意义：微乎其微，别拿它解释股价</div>
+  <ol style="margin:6px 0">
+    <li><b>都不单列。</b>塞在 DCAI 或 All Other 里——说明金额小到不需要披露</li>
+    <li><b>都没盈利。</b>SambaNova 在烧融资，ZAM 零收入</li>
+    <li><b>SambaNova 不是 Intel 的资产。</b>是参股，按权益法核算，<b>不并表</b></li>
+    <li><b>ZAM 是研发支出，不是利润中心。</b>短期只会<b>增加</b> Intel 的开支</li>
+  </ol>
+  <p style="margin:6px 0"><b>结论：这两个是"期权"，不是"业绩"。</b>用它们解释本轮股价上涨是站不住的——<b>涨的是 CPU 定价权</b>（agentic AI 带动 CPU 需求爆发 + 供应短缺）。真正值得单独盯的是 ZAM：若 HBM 短缺持续而 ZAM 兑现宣称，Intel 就多一条不依赖先进制程的护城河。</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>四、外部客户关系：分清"已官宣"、"媒体报道"和"传闻"</h2>
+<p class="lede">Intel 的客户名单在 2026 年被媒体反复放大。下面严格按证据强度分层——投资者踩坑最多的地方就在这里。</p>
+
+<div class="fig">
+  <div class="ft">图 11 · 客户证据强度光谱</div>
+  <div class="fs">左侧是可写进模型的收入，右侧是纯粹的"故事"</div>
+  <svg viewBox="0 0 1120 300">
+    <defs><linearGradient id="spec" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0F9D58"/><stop offset="34%" stop-color="#7CBF4A"/>
+      <stop offset="62%" stop-color="#F4B400"/><stop offset="100%" stop-color="#DB4437"/>
+    </linearGradient></defs>
+    <rect x="60" y="40" width="1000" height="10" rx="5" fill="url(#spec)"/>
+    <g font-size="12" fill="#6B7885">
+      <text x="60" y="26">强证据（官方公告 / 已签约）</text>
+      <text x="620" y="26">中等（权威媒体 / 供应链）</text>
+      <text x="1060" y="26" text-anchor="end">弱（分析师传闻）</text>
+    </g>
+    <g>
+      <rect x="60" y="72" width="200" height="86" rx="9" fill="#F0FBF4" stroke="#0F9D58" stroke-width="1.5"/>
+      <text x="76" y="96" font-size="14.5" font-weight="700" fill="#0B7A45">NVIDIA</text>
+      <text x="76" y="117" font-size="11.5" fill="#3D4A57">$50 亿入股 @$23.28（已完成）</text>
+      <text x="76" y="134" font-size="11.5" fill="#3D4A57">x86 定制 CPU 合作（2025-09 官宣）</text>
+      <text x="76" y="151" font-size="11.5" fill="#B02A20">Feynman GPU 评估 EMIB</text>
+
+      <rect x="278" y="72" width="200" height="86" rx="9" fill="#F0FBF4" stroke="#0F9D58" stroke-width="1.5"/>
+      <text x="294" y="96" font-size="14.5" font-weight="700" fill="#0B7A45">Tesla / SpaceX / xAI</text>
+      <text x="294" y="117" font-size="11.5" fill="#3D4A57">Terafab 项目 · Intel 14A（官方确认）</text>
+      <text x="294" y="134" font-size="11.5" fill="#3D4A57">Intel 为"开发合作伙伴"（2026-04 起）</text>
+      <text x="294" y="151" font-size="11.5" fill="#B02A20">Musk 同时与台积电洽谈 → 压价</text>
+
+      <rect x="496" y="72" width="200" height="86" rx="9" fill="#F0FBF4" stroke="#0F9D58" stroke-width="1.5"/>
+      <text x="512" y="96" font-size="14.5" font-weight="700" fill="#0B7A45">美国政府</text>
+      <text x="512" y="117" font-size="11.5" fill="#3D4A57">433.3M 股 @$20.47 ≈ 9.9%（被动持股）</text>
+      <text x="512" y="134" font-size="11.5" fill="#3D4A57">$32 亿 Secure Enclave 合同</text>
+      <text x="512" y="151" font-size="11.5" fill="#3D4A57">"最大股东在帮 Intel 拉订单"</text>
+
+      <rect x="714" y="72" width="200" height="86" rx="9" fill="#FFFBF0" stroke="#F4B400" stroke-width="1.5"/>
+      <text x="730" y="96" font-size="14.5" font-weight="700" fill="#9A6C00">Apple</text>
+      <text x="730" y="117" font-size="11.5" fill="#3D4A57">WSJ：已签"初步芯片制造协议"</text>
+      <text x="730" y="134" font-size="11.5" fill="#3D4A57">M7 → 18A-P（2027）；iPhone 2028</text>
+      <text x="730" y="151" font-size="11.5" fill="#B02A20">Bernstein：量小到"无关紧要"</text>
+
+      <rect x="932" y="72" width="128" height="86" rx="9" fill="#FFFBF0" stroke="#F4B400" stroke-width="1.5"/>
+      <text x="948" y="96" font-size="14.5" font-weight="700" fill="#9A6C00">Google</text>
+      <text x="948" y="117" font-size="11.5" fill="#3D4A57">TPU "Humufish" / v8e</text>
+      <text x="948" y="134" font-size="11.5" fill="#3D4A57">采用 EMIB-T，2H27</text>
+      <text x="948" y="151" font-size="11.5" fill="#B02A20">需良率 90%→98%</text>
+
+      <rect x="60" y="176" width="200" height="86" rx="9" fill="#FFFBF0" stroke="#F4B400" stroke-width="1.5"/>
+      <text x="76" y="200" font-size="14.5" font-weight="700" fill="#9A6C00">Meta</text>
+      <text x="76" y="221" font-size="11.5" fill="#3D4A57">自研 CPU 采用 Intel EMIB</text>
+      <text x="76" y="238" font-size="11.5" fill="#3D4A57">目标 2H28</text>
+
+      <rect x="278" y="176" width="200" height="86" rx="9" fill="#FFFBF0" stroke="#F4B400" stroke-width="1.5"/>
+      <text x="294" y="200" font-size="14.5" font-weight="700" fill="#9A6C00">AWS / MediaTek</text>
+      <text x="294" y="221" font-size="11.5" fill="#3D4A57">AWS 正测试 EMIB（Trainium 线）</text>
+      <text x="294" y="238" font-size="11.5" fill="#B02A20">分析师 Jeff Pu：MediaTek 或把 100%</text>
+      <text x="294" y="253" font-size="11.5" fill="#B02A20">TPU v9 订单交给 Intel EMIB-T</text>
+
+      <rect x="496" y="176" width="200" height="86" rx="9" fill="#FFFBF0" stroke="#F4B400" stroke-width="1.5"/>
+      <text x="512" y="200" font-size="14.5" font-weight="700" fill="#9A6C00">SK hynix</text>
+      <text x="512" y="221" font-size="11.5" fill="#3D4A57">用自产 HBM 测试 Intel EMIB 2.5D</text>
+      <text x="512" y="238" font-size="11.5" fill="#3D4A57">审查材料/元件供应商（ZDNet）</text>
+
+      <rect x="714" y="176" width="200" height="86" rx="9" fill="#FFF5F4" stroke="#DB4437" stroke-width="1.5"/>
+      <text x="730" y="200" font-size="14.5" font-weight="700" fill="#B02A20">AMD / Marvell</text>
+      <text x="730" y="221" font-size="11.5" fill="#3D4A57">Microsoft / Micron / OpenAI</text>
+      <text x="730" y="238" font-size="11.5" fill="#B02A20">仅 KeyBanc 一家声称，<b>均未公开证实</b></text>
+
+      <rect x="932" y="176" width="128" height="86" rx="9" fill="#FFF5F4" stroke="#DB4437" stroke-width="1.5"/>
+      <text x="948" y="200" font-size="14.5" font-weight="700" fill="#B02A20">OpenAI</text>
+      <text x="948" y="221" font-size="11.5" fill="#3D4A57">专利显示 20 层 HBM</text>
+      <text x="948" y="238" font-size="11.5" fill="#3D4A57">用 EMIB 式桥接</text>
+    </g>
+  </svg>
+  <div class="note">红线标注 = 该客户关系同时存在显著不确定性或负面影响。</div>
+</div>
+
+<h3>4.1 Nova Lake 的反转：这件事比任何客户名单都重要</h3>
+<div class="call ok">
+  <div class="t">✓ 从"外包台积电 N2 为主"到"自产 80–90%"</div>
+  <p style="margin:6px 0">原计划：Nova Lake 的主计算 tile 由 <b>台积电 N2</b> 承担，台积电份额约 <b>60–70%</b>，Intel 18A 只做其余部分（双源）。</p>
+  <p style="margin:6px 0">最新（KeyBanc 供应链信息，2026-07）：Intel 可能将 <b>约 80–90% 的计算 tile 改为自产 18A</b>。驱动因素是良率从 65% 升至最高约 85%，已"高到不会导致产品延期"。官方数据交叉印证：Q2'26 18A 产出超目标 25%、环比 +50%。</p>
+  <p style="margin:6px 0"><b>为什么这是关键信号：</b>这不是 PR，而是 Intel 用真金白银的产能分配在为自己的良率背书。如果 18A 良率没起来，Intel 绝不敢把旗舰产品的主 tile 从台积电手里拿回来——一旦失败，损失的是整个客户端产品线。</p>
+  <p style="margin:6px 0" class="small"><b>⚠ 证据强度声明：</b>本条来源为 KeyBanc 供应链消息的 TrendForce 转述（2026-07-15），<b>Intel 与台积电均未证实</b>。本报告复核时曾一度因 URL 写法错误返回 404，<b>更正后的链接已实测返回 200 并核对原文口径一致</b>，故证据等级由"未能核实"上调为<b>【媒体报道／分析师估算】</b>。但仍请注意措辞差异：原文标题为"<b>可能（might）</b>将最多 90% 的 Nova Lake 计算 tile 放在 18A"，且 HotHardware 提示"如此晚期更换节点将是重大变更"。可在官方数据中独立印证的只有——Q2'26 18A 产出超目标 25%、环比 +50%，良率约 85%。反转叙事的<b>方向</b>有官方支撑，<b>具体比例</b>仍是分析师估算。</p>
+</div>
+<p class="small"><b>反面论据：</b>18A 总产能约 <b>3 万片/月</b>，目前刚够 Panther Lake 等内部产品。要让 Nova Lake 全面自产 80–90%，产能必须显著扩张。HotHardware 也提示：若 Nova Lake 按原计划在"年底前后"上市，此时改换制程是极重大的变更。（AIDA64 已于 2026-10-06 确认 Nova Lake-S 命名为 <b>Core Ultra 4000</b> 系列。）</p>
+
+<div class="call warn">
+  <div class="t">⚠ 但下一代没有延续这个趋势：Razor Lake 仍保留台积电双源</div>
+  <p style="margin:6px 0">这是对"Nova Lake 反转"最重要的反证。<b>Commercial Times</b> 报道（经 TrendForce 转述，2026-08-20，链接已实测有效）：<b>2027 年的部分 Razor Lake 芯片可能采用台积电 N2X</b>，且明确注明"<b>视 Intel 自身 18A-P 节点的表现而定</b>"——即采用与 Nova Lake 类似的双源策略以降低风险。</p>
+  <p style="margin:6px 0"><b>怎么读这条：</b>如果 Nova Lake 的回流是"18A 已证明自己"的胜利，那么 <b>Razor Lake 继续双源就说明 Intel 自己并不认为这个胜利可以外推到下一代</b>。合理的解释是：Nova Lake 回流靠的是 18A 良率（85%）而非性能领先；而 2nm 世代 Intel 需要用 <b>18A-P</b> 去对标台积电 <b>N2X</b>，胜负未定，所以保留后路。<b>换句话说：Intel 的自给率不是单调上升的，而是逐代重新谈判的。</b></p>
+  <p class="small muted" style="margin:6px 0">对投资判断的含义：不要把"Nova Lake 自产 80–90%"外推为"Intel 已解决代工依赖"。真正的观察点是 <b>18A-P 的实测性能</b>——它决定 Razor Lake 会不会又把产能送回台积电。</p>
+</div>
+
+<h3>4.1b 官方公告能证实什么、不能证实什么</h3>
+<p>把 Intel 2026 全年官方新闻稿存档逐条过一遍，是区分"事实"与"传闻"最有效的方法。结果很说明问题：</p>
+<table class="small">
+  <thead><tr><th>客户关系</th><th>官方公告状态</th><th>可引用程度</th></tr></thead>
+  <tbody>
+    <tr><td>NVIDIA（$50 亿入股 + x86 定制 CPU + 确认采用 EMIB/Foveros）</td><td><b>有官方公告</b>（2025-09，Jensen 与 Lip-Bu 联合电话会）</td><td><span class="b b-ok">可直接建模</span></td></tr>
+    <tr><td>美国政府（持股 + Secure Enclave）与软银（$20 亿）</td><td><b>有官方公告</b></td><td><span class="b b-ok">可直接建模</span></td></tr>
+    <tr><td>Tesla / SpaceX / xAI 的 Terafab</td><td><b>有官方公告</b>：Q1 2026 财报"Business Highlights"原文——"Intel joined the Terafab project as a <b>strategic partner</b> alongside SpaceX, xAI, and Tesla"</td><td><span class="b b-ok">官方（已升级）</span></td></tr>
+    <tr><td>Google（Xeon CPU + 定制 IPU）</td><td><b>有官方公告</b>：2026-04-09"Intel and Google Deepen Collaboration to Advance AI Infrastructure with Xeon CPUs and Custom IPUs"</td><td><span class="b b-ok">官方</span></td></tr>
+    <tr><td>Fortinet（SP6 安全处理器）</td><td>有官方公告（2026-07-21，署名 Lip-Bu Tan 与 Ken Xie），但<b>全文未提及任何制程节点</b></td><td><span class="b b-news">不得写成"官方确认 Intel 4"</span></td></tr>
+    <tr class="hi"><td><b>Apple 代工协议</b></td><td><b>Intel 官方从未发布任何相关公告</b>（2026 全年存档核实）</td><td><span class="b b-rumor">传闻</span></td></tr>
+    <tr><td>RealSense（已分拆）</td><td>2025-07-11 分拆独立；<b>2026-09-22 被 Cognex 以 $5 亿全现金收购</b>（面部识别业务剥离为 RealSense ID）。来源已实测可访问</td><td><span class="b b-news">已核实</span></td></tr>
+    <tr><td>NEX（网络与边缘）</td><td><b>2025-12-04 决定保留、不再出售</b>（此前曾接触 Ericsson 探讨入股，后终止）</td><td><span class="b b-news">已核实</span></td></tr>
+    <tr class="hi"><td><b>Altera IPO</b></td><td><b>Intel 官方从未发布任何相关公告</b>；仅 Reuters/Bloomberg 报道，无可用直链</td><td><span class="b b-rumor">传闻</span></td></tr>
+  </tbody>
+</table>
+<div class="call warn">
+  <div class="t">⚠ 证据链警告</div>
+  <p style="margin:6px 0">本报告的调研过程中，一个后台调研线程使用了被禁止的搜索方式（Google News RSS），其提供的 9 条 URL 在独立复核时<b>全部返回 404</b>，其中一条被标为"intc.com 新闻稿 1697"的链接经查实是 <b>2024 年 6 月的 Computex 稿件</b>，与该主张毫无关系。</p>
+  <p style="margin:6px 0"><b>后续进展（已处理）：</b>经要求该线程提供更正链接后，第二批 URL 经逐条直接抓取<b>基本全部有效</b>。因此本报告已把 <b>Nova Lake 80–90% 自产</b>、<b>Razor Lake 可能采用台积电 N2X</b>、<b>NEX 保留不出售</b>、<b>RealSense 以 $5 亿售予 Cognex</b> 四项<b>解除降级</b>，恢复为【媒体/分析师】等级（仍非官方）。<b>但 Altera IPO 与 Apple 代工协议正文至今无法取得一手来源，维持传闻。</b></p>
+  <p style="margin:6px 0"><b>方法教训：</b>该线程的<b>结论可用，但引用不可直接采信</b>——同一批研究里，URL 可能是伪造的而结论是真的。本报告因此对所有非官方条目执行了"链接实测 + 原文口径比对"的双重校验。</p>
+</div>
+
+<h3>4.2 客户关系的另一面：向 PC 合作伙伴"强推"18A</h3>
+<div class="call warn">
+  <div class="t">⚠ Nikkei：Intel 在用供给杠杆强推 18A</div>
+  <p style="margin:6px 0">据报道，Intel 要求 PC 客户改用 18A 新品、放弃旧节点产品，理由是"18A 的 CPU 供应比旧产品更好"。一位 PC 厂商高管称：<b>下单 100 颗 Intel 7 CPU，只收到 30 颗，其中 10 颗还是 18A</b>；Intel 警告"若不接受 18A 芯片，就会转卖给其他客户"。</p>
+  <p style="margin:6px 0">客户抱怨点：换用 18A 需<b>重新设计产品</b>（配套更高规格屏幕等元件），成本上升、上市时间延后。同期 Intel CPU 价格已累计上涨约 10%，并预计 2026–2027 继续涨。</p>
+  <p style="margin:6px 0"><b>投资含义：</b>这既是 Intel 7 产能确实紧张的证据（旧节点需求因 AI CPU 热潮回补），也说明 <b>18A 的客户需求带有"推式"色彩</b>。官方数据支持需求真实性——CCPG Q2 收入环比 +15%，AI PC 收入环比 +26%、已占客户端收入约 2/3，累计 400+ 款 Series 3 设计。但推式销售对长期客户关系的损耗需要持续观察。</p>
+</div>
+
+<h3>4.3 官方口径下的"真实证据"：外部客户收入只有 $2.93 亿/季</h3>
+<div class="call bad">
+  <div class="t">这是全篇最重要的一张"降温表"</div>
+  <p style="margin:6px 0">Intel Foundry 的<b>对外客户收入</b>（官方披露）：</p>
+  <p style="margin:6px 0;font-size:17px"><b>$222M（25Q4） → $174M（26Q1） → $293M（26Q2）</b>，占 Foundry 分部收入仅约 <b>3–5%</b>。</p>
+  <p style="margin:6px 0">也就是说：媒体上所有关于 Apple / Google / Meta / AWS / Tesla 的报道，<b>截至 2026 年 Q2 尚未在 Intel 的对外代工收入中体现出一分钱规模</b>。而公司<b>未给出 Foundry 分部盈亏平衡的时间表</b>。</p>
+  <p style="margin:6px 0"><b>把时间拉长看更清楚。</b>FY2025 10-K（第三方代工与封测外部客户收入口径）：</p>
+  <table style="margin:8px 0">
+    <tr><th>财年</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>对照：Foundry 分部年收入</th></tr>
+    <tr><td>外部客户收入</td><td><b>$547M</b></td><td><b>$159M</b></td><td><b>$307M</b></td><td>FY2025 约 <b>$178 亿</b>（占 1.7%）</td></tr>
+  </table>
+  <p style="margin:6px 0" class="small muted">口径提示：上表年度的"第三方代工与封测"口径窄于电话会披露的季度"外部代工收入"（后者含美国政府项目等），两者不可直接换算，但共同指向同一量级——<b>数亿美元/年</b>。</p>
+  <p style="margin:6px 0">而 10-K 自己的原话，比任何分析都直接：</p>
+  <p class="quote" style="margin:6px 0">"While we have <b>few external customers to date</b>, developing an external foundry business is a key long-term strategy."</p>
+  <p class="quote" style="margin:6px 0">"At present, <b>nearly all of our Intel Foundry business supports internal manufacturing for Intel Products</b>."</p>
+  <p style="margin:6px 0">这两句是公司<b>在法定披露文件里</b>对自己代工业务的定性。任何关于"Intel 已拿下某大客户"的新闻，都应该先与这两句话对照。</p>
+  <p style="margin:6px 0">CFO 的表述是前瞻性的："Physical AI、定制芯片、先进封装、外部晶圆，<b>每一个都是我们</b><b>在不久的将来可达数十亿美元年收入的机会</b>。"注意措辞——是"机会"，不是"订单"。</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>五、先进封装：Intel 唯一真正"可攻"的战场</h2>
+<p class="lede">先进封装是 Intel 最现实的短期突破口——它是 Intel 唯一能以<b>更低成本、更快速度</b>变现 AI 收入的入口（前道良率要等到 2027 年才达标，封装现在就能卖）。但必须纠正一个流行的误读：<b>Intel 在封装上并不是长期技术领先，而是"成本领先 + 暂时领先 1–2 年"</b>，且存在一个对手无法绕开的物理短板。这也解释了为什么 2026 年 6 月 Intel 把先进封装<b>升格为独立业务</b>并请来前 SK hynix CEO 主掌。</p>
+
+<div class="fig">
+  <div class="ft">图 12 · 光罩扩展性路线图：Intel 现在领先，2028 年被台积电反超</div>
+  <div class="fs">纵轴为"等效光罩面积倍数"（1 reticle = 26×33mm = 858mm²）——决定单封装能塞下多少算力 die 和 HBM 堆栈</div>
+  <svg viewBox="0 0 1120 380">
+    <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#B02A20"/></marker></defs>
+    <line x1="110" y1="300" x2="1070" y2="300" stroke="#D8E1EA" stroke-width="1.5"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end">
+      <text x="102" y="304">0×</text><text x="102" y="240">4×</text><text x="102" y="176">8×</text><text x="102" y="112">12×</text><text x="102" y="48">16×</text>
+    </g>
+    <g stroke="#EDF1F5"><line x1="110" y1="236" x2="1070" y2="236"/><line x1="110" y1="172" x2="1070" y2="172"/><line x1="110" y1="108" x2="1070" y2="108"/><line x1="110" y1="44" x2="1070" y2="44"/></g>
+    <!-- scale: 16x = 256px, 1x = 16px, base y=300 -->
+    <g font-size="12" fill="#3D4A57" text-anchor="middle">
+      <text x="180" y="330">2025 现状</text><text x="520" y="330">2026</text><text x="700" y="330">2027</text><text x="900" y="330">2028</text>
+    </g>
+
+    <!-- CoWoS-S -->
+    <rect x="140" y="247" width="80" height="53" rx="5" fill="#C8102E" opacity=".5"/>
+    <text x="180" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#A00D25">3.3×</text>
+    <text x="180" y="350" text-anchor="middle" font-size="11.5" fill="#A00D25">CoWoS-S（硅中介层，旧平台）</text>
+
+    <!-- CoWoS-L -->
+    <polyline points="260,212 560,212 700,148 900,76 1000,52"
+              fill="none" stroke="#C8102E" stroke-width="3.5"/>
+    <circle cx="260" cy="212" r="7" fill="#C8102E"/><text x="260" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#A00D25">5.5×</text>
+    <circle cx="700" cy="148" r="7" fill="#C8102E"/><text x="700" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#A00D25">9.5×</text>
+    <circle cx="900" cy="76" r="8" fill="#C8102E"/><text x="900" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#A00D25">14×</text>
+    <circle cx="1000" cy="52" r="7" fill="#C8102E"/><text x="1000" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#A00D25">&gt;14×</text>
+    <text x="260" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="#A00D25">CoWoS-L</text>
+
+    <!-- Intel EMIB-T -->
+    <polyline points="180,204 560,172 900,108" fill="none" stroke="#0068B5" stroke-width="3.5" stroke-dasharray="9 5"/>
+    <circle cx="180" cy="204" r="7" fill="#0068B5"/><text x="180" y="192" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">&gt;6×</text>
+    <circle cx="560" cy="172" r="7" fill="#0068B5"/><text x="560" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">&gt;8×</text>
+    <circle cx="900" cy="108" r="7" fill="#0068B5"/><text x="900" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">&gt;12×</text>
+    <text x="180" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#00568F">Intel EMIB-T</text>
+
+    <!-- crossover -->
+    <line x1="810" y1="60" x2="810" y2="300" stroke="#B02A20" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="818" y="290" font-size="12" font-weight="700" fill="#B02A20">交叉点</text>
+    <text x="818" y="272" font-size="11" fill="#B02A20">2028 年台积电反超</text>
+
+    <text x="1070" y="352" text-anchor="end" font-size="12" fill="#6B7885">实线 = CoWoS（台积电）· 虚线 = EMIB-T（Intel）。Intel 2026–27 领先，但台积电 2028 跳到 14×。</text>
+    <text x="1070" y="370" text-anchor="end" font-size="12" fill="#6B7885">Intel 2025/12 展示的 EMIB-T 概念封装：16 计算 + 8 base die + 24 层 HBM5，硅面积 10,296mm²，正好 12× —— 直指台积电当时规划的 9.5×。</text>
+  </svg>
+  <div class="note">数据：TSMC 2026 年 4 月北美技术论坛【官方】；Intel ECTC 2025 / Tom's Hardware 2026-04-09【官方披露】。这是本报告中最重要的结论修正：<b>Intel 在光罩扩展性上并非长期领先，而是"暂时领先 1–2 年"</b>。</div>
+</div>
+
+<h3>5.1 EMIB 家族技术拆解（含官方披露参数）</h3>
+<table class="small">
+  <thead><tr><th>技术</th><th>关键参数</th><th>状态 / 用途</th></tr></thead>
+  <tbody>
+    <tr><td><b>EMIB</b>（标准版）</td><td>在有机基板内挖槽嵌入硅桥，<b>刻意不加 TSV</b>。桥片简单便宜，但供电须绕行有机基板，电流承载受限</td><td>2017 年量产至今；足以支撑 Sapphire Rapids、Ponte Vecchio，<b>不足以支撑 HBM4 级加速器</b></td></tr>
+    <tr><td><b>EMIB-T</b></td><td>凸点间距 <b>45µm</b>（路线图 35µm → 25µm）· 能效 <b>约 0.25 pJ/bit</b> · UCIe-A <b>≥32 Gb/s/pin</b> · 桥内 TSV 垂直供电 + <b>MIM 电容</b> + 铜接地平面 · 支持 HBM3/3E/4/5 · 封装可扩展至 <b>120 × 180mm</b>、&gt;38 座桥、&gt;12 光罩</td><td>CFO：2026 年"进入量产 fab 部署"；客户量产产品"未来一两年内"；<b>聚焦 2027 年放量</b></td></tr>
+    <tr><td><b>EMIB-T 概念封装</b></td><td>16 个计算 die + 8 个 base die + <b>24 个 HBM5 堆栈</b> · 硅总面积 <b>10,296mm²</b> · <b>12× 光罩</b></td><td>2025 年 12 月公布，直指并超过台积电当时规划的 9.5× CoWoS-L</td></tr>
+    <tr><td><b>Foveros Direct</b></td><td>铜-铜<b>混合键合</b>（无焊料）。<b>Clearwater Forest（Xeon 6+）为首个大规模量产采用者，间距 9µm</b>，作用等同"有源硅中介层"；第二代目标 3µm，需 18A-PT 提供 TSV</td><td>2026 上半年出货。对比台积电 SoIC：9µm(2023) → <b>6µm(2025 已达成)</b> → 4.5µm(2029)</td></tr>
+    <tr><td><b>Foveros-S 2.5D</b></td><td>—</td><td>Panther Lake 采用（注意：<b>不是 EMIB</b>）</td></tr>
+    <tr><td><b>玻璃基板（3DGS）</b></td><td>互连密度较有机基板 <b>10×</b> · 图形畸变低 <b>50%</b> · CTE 约 3–10 ppm/°C（硅为 2.6）· 翘曲约减半 · 510×515mm 面板利用率 <b>&gt;75%</b>（vs 300mm 晶圆约 50%）· TGV 已演示 <b>6µm 直径、深宽比 &gt;15:1</b></td><td><b>Intel 是先行者与专利持有者，但 2026 年仍未量产</b>。2026/1 NEPCON 展出首款厚芯玻璃基板 + EMIB（78×77mm、10-2-10 结构、2 座 EMIB 桥、硅面积约 1,716mm²）。策略已转为"专利授权 + 演示载具"，<b>自有量产部署指向约 2030 年</b></td></tr>
+  </tbody>
+</table>
+
+<div class="call bad">
+  <div class="t">⚠ 我在本节开头说的"物理短板"：EMIB 撑不起 5–6kW 的 AI GPU</div>
+  <p style="margin:6px 0">NVIDIA 下一代 <b>Feynman</b> 预计功耗 <b>5–6kW</b>，需要把<b>集成稳压器（IVR）嵌进封装</b>——电源以约 1.8V 进入封装，降低每凸点电流、减少纹波，响应速度比板级 VRM 快 10–100 倍。</p>
+  <p style="margin:6px 0"><b>EMIB 可以容纳共封装 IVR 元件，但不是真正的嵌入式 IVR，无法支撑 5–6kW 加速器。</b>若改用 Foveros Omni / Direct3D 堆叠供电 tile 的方案，NVIDIA 就必须相对 CoWoS-L 版本<b>重新设计 GPU</b>。因此 Tom's Hardware 判断：<b>NVIDIA 更可能等台积电在本十年后段于美国落地先进封装</b>，而不是为 EMIB 重做旗舰 GPU 设计。</p>
+  <p style="margin:6px 0">这条约束直接解释了为什么 DigiTimes 说的只是"Feynman 约 <b>25%</b> 的封装走 Intel"——高端主力仍留在 CoWoS-L。</p>
+</div>
+
+<h3>5.1b CoWoS 的真实能力（我上一版报告低估了）</h3>
+<table class="small">
+  <thead><tr><th>代际</th><th>光罩倍数</th><th>HBM 支持</th><th>良率</th><th>基板尺寸</th></tr></thead>
+  <tbody>
+    <tr class="hi"><td><b>CoWoS-L 当前量产</b></td><td><b>5.5×</b></td><td>最多 12 层 HBM3E/HBM4</td><td><b>&gt;98%，部分达 99%</b></td><td>—</td></tr>
+    <tr><td>CoWoS-L 2027</td><td><b>9.5×</b></td><td>12 层 HBM5</td><td>—</td><td>需 120×150mm</td></tr>
+    <tr><td>CoWoS-L 2028</td><td><b>14×</b>（12,020mm²）</td><td>20 层 HBM5</td><td>—</td><td>约 10 颗大计算 die</td></tr>
+    <tr><td>CoWoS-L 2029</td><td><b>&gt;14×</b></td><td><b>24 层 HBM5E</b></td><td>—</td><td>较 2024 基准：晶体管 48×、带宽 34×</td></tr>
+    <tr><td>CoWoS-S（旧平台）</td><td>约 3.3×</td><td>—</td><td>—</td><td>Google 第 3–6 代 TPU 使用</td></tr>
+    <tr><td>SoW / SoW-X</td><td><b>&gt;40×</b></td><td>最高 <b>64 层 HBM</b>，16 个 CoWoS 模块</td><td>—</td><td>含 HBM 版本目标 2029</td></tr>
+  </tbody>
+</table>
+<p class="small muted">CoWoS 开发周期已由每代约 2 年压缩到约 <b>1 年</b>。台积电自称运营 <b>10 座先进封装厂</b>，CoWoS 产能近三年每年近乎翻倍。另：<b>SoIC</b> 方面台积电 Gen1（F2B, 9µm, 2023）→ Gen2 增加 F2F → 6µm（2025 达成）→ <b>4.5µm（2029）</b>；节点堆叠路线 N3P-on-N4（现在）→ N2P-on-N3P（1年内）→ N2P-on-N2P（2028）→ <b>A14-on-A14（2029）</b>，后者 die-to-die I/O 密度较 N2-on-N2 高 1.8×。</p>
+
+<div class="call warn">
+  <div class="t">关于成本的另一面：这是 Intel 真正的卖点</div>
+  <ul style="margin:6px 0">
+    <li><b>Bernstein 估算：EMIB "每颗芯片低数百美元" vs Rubin 级加速器用 CoWoS 的 $900–1,000</b>；Wccftech 称 EMIB-T 较 CoWoS <b>便宜约 50%</b>。</li>
+    <li><b>机理</b>：EMIB 只在需要处放小硅桥，桥片晶圆利用率约 <b>90%</b>，而大面积中介层约 <b>60%</b>。</li>
+    <li>CFO 目标：先进封装业务 <b>毛利率约 40%、营业利润率约 30%</b>，且资本强度远低于前道 → ROIC 更优。</li>
+  </ul>
+</div>
+
+<h3>5.2 但 EMIB 的瓶颈不在 Intel，而在基板供应商</h3>
+<div class="fig">
+  <div class="ft">图 13 · EMIB 基板良率爬坡：Intel 最大的短期瓶颈</div>
+  <div class="fs">这是"Intel 封装强"叙事里被忽略的致命细节——良率问题是转嫁给基板厂的</div>
+  <svg viewBox="0 0 1120 300">
+    <line x1="90" y1="250" x2="1060" y2="250" stroke="#D8E1EA" stroke-width="1.5"/>
+    <line x1="90" y1="30" x2="90" y2="250" stroke="#D8E1EA" stroke-width="1.5"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end">
+      <text x="82" y="254">0%</text><text x="82" y="188">25%</text><text x="82" y="122">50%</text><text x="82" y="56">75%</text>
+    </g>
+    <g stroke="#EDF1F5"><line x1="90" y1="184" x2="1060" y2="184"/><line x1="90" y1="118" x2="1060" y2="118"/><line x1="90" y1="52" x2="1060" y2="52"/></g>
+    <g fill="#3D4A57" font-size="12.5" text-anchor="middle">
+      <text x="200" y="272">2Q26</text><text x="440" y="272">3Q26</text><text x="680" y="272">4Q26E</text><text x="920" y="272">1Q27E</text>
+    </g>
+    <polyline points="200,171 440,131" fill="none" stroke="#0068B5" stroke-width="3"/>
+    <polyline points="440,131 680,118 920,92" fill="none" stroke="#4DA3E0" stroke-width="3" stroke-dasharray="7 5"/>
+    <circle cx="200" cy="171" r="6" fill="#0068B5"/><text x="200" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">30%</text>
+    <circle cx="440" cy="131" r="6" fill="#0068B5"/><text x="440" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#00568F">45%</text>
+    <circle cx="680" cy="118" r="6" fill="#4DA3E0"/><text x="680" y="107" text-anchor="middle" font-size="13" font-weight="700" fill="#2E7FB8">50%</text>
+    <circle cx="920" cy="92" r="6" fill="#4DA3E0"/><text x="920" y="81" text-anchor="middle" font-size="13" font-weight="700" fill="#2E7FB8">60%</text>
+    <text x="1060" y="150" text-anchor="end" font-size="12" fill="#6B7885">实线 = 已发生 · 虚线 = 供应链目标</text>
+    <text x="1060" y="172" text-anchor="end" font-size="12" fill="#B02A20">日本供应商表现比同业更稳定</text>
+  </svg>
+</div>
+
+<div class="call bad">
+  <div class="t">EMIB-T 的三个物理难题（这正是 CoWoS 用硅中介层要绕开的）</div>
+  <ol style="margin:6px 0">
+    <li><b>热膨胀失配</b>：ABF 有机基板与硅桥的热膨胀系数差异巨大。在反复高温制程中，硅桥必须精确嵌入腔体并与基板表面齐平——两者胀缩速率不同，对齐极难维持。</li>
+    <li><b>NCF（非导电膜）气泡</b>：硅桥底部 TSV 下方需施加 NCF，键合过程中容易夹带气泡，损害附着强度。</li>
+    <li><b>责任转移</b>：与 CoWoS 不同（TSMC 内部完成硅中介层），EMIB-T 把最苛刻的互连集成环节外包给<b>基板供应商</b>——Intel 对最终良率的控制力被削弱。</li>
+  </ol>
+</div>
+
+<p><b>Intel 的应对</b>：陈立武公开要求客户参与基板预付款——"If you are serious to use our EMIB-T, can you help me on the substrate prepay? They jump on it."（如果你真的要用我们的 EMIB-T，能不能帮我预付基板？结果客户都答应了。）据报道有 <b>4 家台湾 + 2 家日本</b>基板供应商寻求 Intel 的产能承诺。三星电机（Samsung Electro-Mechanics）一边与高通联合开发<b>有机桥（organic bridge）</b>作为 EMIB 替代方案（规避 Intel 的 EMIB IP），一边又在争取进入 Intel 的 EMIB-T 基板供应链。</p>
+
+<h3>5.3 封装产能：Intel 与台积电的真实差距</h3>
+<div class="grid2">
+  <div class="fig">
+    <div class="ft">图 14 · 先进封装月产能对比：Intel 约为台积电的 1/6</div>
+    <div class="fs">单位：片/月（12 吋 CoWoS 等效）。两轴口径已统一</div>
+    <svg viewBox="0 0 520 290">
+      <line x1="120" y1="240" x2="500" y2="240" stroke="#D8E1EA" stroke-width="1.5"/>
+      <g fill="#9AA6B2" font-size="11" text-anchor="end">
+        <text x="112" y="244">0</text><text x="112" y="176">100K</text><text x="112" y="108">200K</text><text x="112" y="40">300K</text>
+      </g>
+      <g stroke="#EDF1F5"><line x1="120" y1="172" x2="500" y2="172"/><line x1="120" y1="104" x2="500" y2="104"/><line x1="120" y1="36" x2="500" y2="36"/></g>
+      <!-- scale 300K = 204px, 1K=0.68px -->
+      <text x="112" y="56" text-anchor="end" font-size="12" font-weight="650" fill="#A00D25">台积电 CoWoS</text>
+      <rect x="120" y="40" width="55" height="14" rx="4" fill="#E8A0AC"/>
+      <rect x="180" y="40" width="88" height="14" rx="4" fill="#C8102E"/>
+      <rect x="273" y="40" width="132" height="14" rx="4" fill="#7A0A1B"/>
+      <text x="415" y="51" font-size="11.5" font-weight="700" fill="#A00D25">265K（2028E）</text>
+      <text x="120" y="68" font-size="10.5" fill="#6B7885">2024: 35K</text>
+      <text x="186" y="68" font-size="10.5" fill="#6B7885">2025: 80K</text>
+      <text x="273" y="68" font-size="10.5" fill="#6B7885">2026: 130K · 2027: 170K</text>
+
+      <text x="112" y="100" text-anchor="end" font-size="12" font-weight="650" fill="#00568F">Intel EMIB-T</text>
+      <rect x="120" y="84" width="10" height="14" rx="3" fill="#4DA3E0"/>
+      <rect x="273" y="84" width="14" height="14" rx="3" fill="#0068B5"/>
+      <rect x="294" y="84" width="31" height="14" rx="3" fill="#0068B5"/>
+      <text x="340" y="95" font-size="11.5" font-weight="700" fill="#00568F">15–20K（2027）→ 40–45K（2028）</text>
+
+      <text x="112" y="132" text-anchor="end" font-size="11.5" fill="#9AA6B2">OSAT 伙伴新增</text>
+      <rect x="120" y="118" width="41" height="14" rx="4" fill="#F0A0AC" opacity=".8"/>
+      <text x="170" y="129" font-size="11" fill="#A00D25">+50–60K → 行业合计近 200K（2026）</text>
+
+      <line x1="120" y1="200" x2="500" y2="200" stroke="#3D4A57" stroke-width="1.5"/>
+      <text x="112" y="216" text-anchor="end" font-size="12" font-weight="700" fill="#B02A20">比值</text>
+      <text x="120" y="216" font-size="12.5" font-weight="700" fill="#B02A20">Intel 封装产能 ≈ 台积电 CoWoS 的 1/6（2027）→ 1/6（2028）</text>
+      <text x="120" y="240" font-size="11.5" fill="#6B7885">Intel EMIB-T 产能为机构投资人估算（经济日报/TrendForce 2026-09），非官方口径</text>
+      <text x="120" y="262" font-size="11.5" fill="#6B7885">Intel 自有产品另需占用封装产能：Clearwater Forest 单颗用 12 座 EMIB 桥</text>
+      <text x="120" y="282" font-size="11.5" fill="#B02A20">→ 可用于外部客户的封装产能远小于账面数字</text>
+    </svg>
+  </div>
+  <div>
+    <table class="small" style="margin-top:8px">
+      <thead><tr><th>指标</th><th>Intel</th><th>台积电</th></tr></thead>
+      <tbody>
+        <tr><td>主力封装技术</td><td>EMIB / EMIB-T / Foveros</td><td>CoWoS-S / -R / -L、SoIC、InFO、CoPoS</td></tr>
+        <tr class="hi"><td><b>光罩扩展性</b></td><td><b>&gt;6× → &gt;8×（2026）→ &gt;12×（2028）</b></td><td>CoWoS-S 3.3× / <b>CoWoS-L 5.5×（已量产）</b> → 9.5×（2027）→ <b>14×（2028）</b>；SoW &gt;40×</td></tr>
+        <tr><td>封装产能</td><td class="down">EMIB-T 15–20K wpm（2027）→ 40–45K（2028）</td><td class="up">CoWoS 130K（2026）→ 170K（2027）→ <b>260K（2028）</b></td></tr>
+        <tr><td>封装良率</td><td>EMIB ≈90%（验证值）<br>EMIB-T 逼近 90% · <b>基板仅 45%</b></td><td class="up">CoWoS 5.5× <b>&gt;98%，部分 99%</b>（量产值）</td></tr>
+        <tr><td>混合键合间距</td><td>Foveros Direct <b>9µm</b>（Clearwater Forest，2026 首批量产）；二代目标 3µm</td><td>SoIC <b>9µm(2023) → 6µm(2025 已达成) → 4.5µm(2029)</b>；A14-on-A14 SoIC 2029</td></tr>
+        <tr><td>供电 / IVR</td><td class="down">桥内 TSV + MIM 电容 + 接地平面，<b>但无真正嵌入式 IVR → 撑不起 5–6kW 加速器</b></td><td class="up">CoWoS-L 中介层可嵌入 IVR，支撑 Feynman 级 5–6kW</td></tr>
+        <tr><td>单位成本</td><td class="up">EMIB 每颗<b>低数百美元</b>；桥片利用率 ~90%</td><td>CoWoS ~$900–1,000/颗（Rubin 级）；中介层利用率 ~60%</td></tr>
+        <tr><td>3D 堆叠效率</td><td>—</td><td>SoIC 互连密度较 2015 年 CoWoS <b>高 &gt;50×</b>、能效 5×</td></tr>
+        <tr><td>面板级封装</td><td>玻璃基板（3DGS）：<b>专利持有者但未量产，自有部署约 2030</b>；Chandler 中试、印度 Odisha $33 亿</td><td>CoPoS（310×310mm）：VisEra 中试线 2026/6 建成，<b>2028H2–2029 量产</b>；ASE 2027Q1、Powertech PiFO 2027 年中</td></tr>
+        <tr><td>产能紧张度</td><td>基板良率是瓶颈；客户需预付基板；已有台积电订单外溢至 Intel 马来西亚</td><td>缺口从 ~20% 收窄至 2026 年底 ~10%；NVIDIA 独占 &gt;60% CoWoS 产能</td></tr>
+        <tr><td>主流地位</td><td>替代/溢出方案</td><td>运营 <b>10 座</b>先进封装厂；CoWoS-L 保持主流至 <b>2028 年</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="call">
+  <div class="t">对封装战场的判断（修正版）</div>
+  <p style="margin:6px 0"><b>Intel 真正的优势是成本与供电架构，不是可扩展性。</b>EMIB 每颗便宜约 50%（低数百美元 vs $900–1,000），桥片利用率 90% vs 中介层 60%；EMIB-T 的桥内 TSV 垂直供电 + MIM 电容 + 专用接地平面，在高功耗 AI 加速器的电源完整性上确有独到之处。这些是它能拿到 Google/Meta/AWS/SK hynix 询单的真实原因。</p>
+  <p style="margin:6px 0"><b>但三个约束同时成立：</b>①<b>可扩展性只在 2026–27 年领先</b>——台积电 2028 年跳到 14×，反超 Intel 的 &gt;12×；②<b>产能差 6 倍</b>（40–45K vs 260K wpm）；③<b>5–6kW 级 GPU 的嵌入式 IVR 是 EMIB 的物理硬伤</b>，这正是 NVIDIA 只把约 25% 的 Feynman 封装交给 Intel 的原因。良率上，CoWoS 已 &gt;98%（部分 99%）稳定量产，EMIB 的 90% 仍是"验证值而非量产值"（Ming-Chi Kuo 语），且真正的卡点在它管不了的基板供应商（45% 良率）。</p>
+  <p style="margin:6px 0"><b>所以最可能的现实是：</b>Intel 拿到的是台积电产能装不下的<b>溢出订单</b>（2026/8 已有后端封装订单从台积电外溢至 Intel 马来西亚），而非替代订单。CFO 自己的时间表也印证了这一点：封装收入 <b>2027 下半年起爬坡、2028 年成为稳定贡献、2029 年才全面发力</b>。这是好生意（目标毛利率 40%、营业利润率 30%），但不是 2026 年的故事。</p>
+  <p style="margin:6px 0"><b>台积电董事长魏哲家的原话值得记录：</b>"我们视 Intel 为强劲的竞争对手，不会低估他们。但成功没有捷径——晶圆代工的根本规则从未改变：技术领先、制造卓越、客户信任，以及最重要的服务。"他同时调侃："<b>选择一项技术并把它量产，不像在 7-Eleven 买瓶牛奶那么简单。</b>"</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>六、产能细节：Intel 的物理底座盘点</h2>
+<p class="lede">所有关于客户、良率、封装的讨论，最终都要落在"你有没有厂、有多少片产能、有多少钱建"上。</p>
+
+<div class="fig">
+  <div class="ft">图 15 · Intel 全球制造基地现状</div>
+  <div class="fs">按战略方向重新排序：先进逻辑 / 先进封装 / 收缩中的据点</div>
+  <svg viewBox="0 0 1120 420">
+    <text x="30" y="34" font-size="13" font-weight="700" fill="#0B7A45">■ 先进逻辑（扩张）</text>
+    <text x="390" y="34" font-size="13" font-weight="700" fill="#2F5FA8">■ 先进封装（扩张）</text>
+    <text x="750" y="34" font-size="13" font-weight="700" fill="#B02A20">■ 收缩 / 延后</text>
+
+    <rect x="30" y="50" width="330" height="150" rx="10" fill="#F0FBF4" stroke="#0F9D58"/>
+    <text x="48" y="76" font-size="15" font-weight="700">亚利桑那 Arizona</text>
+    <text x="48" y="98" font-size="12.5" fill="#3D4A57">Fab 52：18A 主力量产厂（Phoenix）</text>
+    <text x="48" y="118" font-size="12.5" fill="#3D4A57">Fab 62：后续 18A / 14A 扩容</text>
+    <text x="48" y="138" font-size="12.5" fill="#3D4A57">Arizona SCIP：49% 外部股权，Q1'26 合作方</text>
+    <text x="48" y="154" font-size="12.5" fill="#3D4A57">新增出资 $20.6 亿</text>
+    <text x="48" y="180" font-size="12.5" font-weight="700" fill="#0B7A45">定位：Intel 先进逻辑的总部级基地</text>
+
+    <rect x="30" y="212" width="330" height="120" rx="10" fill="#F0FBF4" stroke="#0F9D58" opacity=".85"/>
+    <text x="48" y="238" font-size="15" font-weight="700">俄勒冈 Oregon</text>
+    <text x="48" y="260" font-size="12.5" fill="#3D4A57">D1X：研发 + 部分 18A 产能</text>
+    <text x="48" y="280" font-size="12.5" fill="#3D4A57">技术开发的主战场（14A / 10A 定义地）</text>
+    <text x="48" y="306" font-size="12.5" font-weight="700" fill="#0B7A45">定位：研发中枢，非量产主力</text>
+
+    <rect x="30" y="344" width="330" height="62" rx="10" fill="#F0FBF4" stroke="#0F9D58" opacity=".7"/>
+    <text x="48" y="368" font-size="14" font-weight="700">爱尔兰 Fab 34（已 100% 持有）</text>
+    <text x="48" y="390" font-size="12" fill="#3D4A57">2026/4/8 以 $142 亿回购 Apollo 所持 49%；另投 €50 亿扩 Xeon 6（Intel 3）产能</text>
+
+    <rect x="390" y="50" width="330" height="120" rx="10" fill="#E7EEF8" stroke="#2F5FA8"/>
+    <text x="408" y="76" font-size="15" font-weight="700">新墨西哥 Rio Rancho</text>
+    <text x="408" y="98" font-size="12.5" fill="#3D4A57">Foveros / EMIB 先进封装基地</text>
+    <text x="408" y="118" font-size="12.5" fill="#3D4A57"><b>可能成为全球首个玻璃基板量产点</b></text>
+    <text x="408" y="142" font-size="12.5" font-weight="700" fill="#2F5FA8">定位：Intel 封装战略的物理核心</text>
+
+    <rect x="390" y="182" width="330" height="120" rx="10" fill="#E7EEF8" stroke="#2F5FA8" opacity=".85"/>
+    <text x="408" y="208" font-size="15" font-weight="700">Chandler（试点）+ 印度 Odisha</text>
+    <text x="408" y="230" font-size="12.5" fill="#3D4A57">Chandler：玻璃基板试点线</text>
+    <text x="408" y="250" font-size="12.5" fill="#3D4A57">Odisha（3DGS 合资，$33 亿）：</text>
+    <text x="408" y="270" font-size="12.5" fill="#3D4A57">年产 7 万片玻璃基板 / 5,000 万组装单元</text>
+    <text x="408" y="290" font-size="12.5" fill="#3D4A57">/ 1.3 万 3D 异构集成模块 · 工期 5–6 年</text>
+
+    <rect x="750" y="50" width="340" height="130" rx="10" fill="#FDF2F1" stroke="#DB4437"/>
+    <text x="768" y="76" font-size="15" font-weight="700" fill="#B02A20">俄亥俄 Ohio One</text>
+    <text x="768" y="98" font-size="12.5" fill="#3D4A57">总投资约 <b>$280 亿</b>。10-K 原文："slowed the</text>
+    <text x="768" y="116" font-size="12.5" fill="#3D4A57">pace of construction"</text>
+    <text x="768" y="136" font-size="12.5" font-weight="700" fill="#B02A20">Phase 1 投产推迟至 2030 年（运营 2030–31）</text>
+    <text x="768" y="154" font-size="12.5" font-weight="700" fill="#B02A20">Phase 2 约 2032 年</text>
+    <text x="768" y="172" font-size="12" fill="#6B7885">定位服务 14A 时代 · 2025 年支出仅约 $14 亿</text>
+
+    <rect x="750" y="182" width="340" height="100" rx="10" fill="#FDF2F1" stroke="#DB4437" opacity=".85"/>
+    <text x="768" y="208" font-size="15" font-weight="700" fill="#B02A20">德国 / 波兰（已终止）</text>
+    <text x="768" y="230" font-size="12.5" fill="#3D4A57">10-K 原文："discontinued planned expansions</text>
+    <text x="768" y="248" font-size="12.5" fill="#3D4A57">in Germany (fab) and Poland (assembly and test)"</text>
+
+    <rect x="750" y="294" width="340" height="80" rx="10" fill="#FDF2F1" stroke="#DB4437" opacity=".7"/>
+    <text x="768" y="320" font-size="14" font-weight="700" fill="#B02A20">哥斯达黎加（合并中）</text>
+    <text x="768" y="342" font-size="12" fill="#3D4A57">封测业务合并入其他据点，2026 年底前完成</text>
+    <text x="768" y="362" font-size="12" fill="#6B7885">越南：EMIB 封装扩产（配合台湾设备订单 2H26 交付）</text>
+  </svg>
+</div>
+
+<h3>6.1 资本开支：从"持平"到"$200 亿+"的剧烈转向</h3>
+<div class="fig">
+  <div class="ft">图 16 · Intel 资本开支指引的年内大幅上调</div>
+  <div class="fs">这是本年度最重要的财务口径变化，也是自由现金流承压的直接原因</div>
+  <svg viewBox="0 0 1120 260">
+    <line x1="130" y1="200" x2="1050" y2="200" stroke="#D8E1EA" stroke-width="2"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="end"><text x="122" y="204">$0</text><text x="122" y="140">$10B</text><text x="122" y="76">$20B</text><text x="122" y="26">$26B</text></g>
+    <g stroke="#EDF1F5"><line x1="130" y1="136" x2="1050" y2="136"/><line x1="130" y1="72" x2="1050" y2="72"/></g>
+    <!-- scale 26B=180px ; 1B=6.923px -->
+    <rect x="180" y="78" width="120" height="122" rx="5" fill="#94B8D4"/>
+    <text x="240" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#5A7E9C">$17.7B</text>
+    <text x="240" y="224" text-anchor="middle" font-size="12.5" fill="#3D4A57">2025 实际（毛）</text>
+    <text x="240" y="242" text-anchor="middle" font-size="11.5" fill="#9AA6B2">净 $11.2B</text>
+
+    <rect x="420" y="98" width="120" height="102" rx="5" fill="#F4B400" opacity=".45"/>
+    <text x="480" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#9A6C00">"持平至略降"</text>
+    <text x="480" y="224" text-anchor="middle" font-size="12.5" fill="#3D4A57">2026 年初口径</text>
+
+    <rect x="660" y="48" width="120" height="152" rx="5" fill="#0068B5"/>
+    <text x="720" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#00568F">&gt;$20B</text>
+    <text x="720" y="224" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3D4A57">2026/7 上调后</text>
+
+    <rect x="900" y="30" width="120" height="170" rx="5" fill="#5B4FE9" opacity=".8"/>
+    <text x="960" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#5B4FE9">"显著高于 2026"</text>
+    <text x="960" y="224" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3D4A57">2027 指引</text>
+
+    <path d="M560 95 Q600 80 655 62" stroke="#B02A20" stroke-width="2" fill="none"/>
+    <text x="130" y="254" font-size="12" fill="#B02A20">CFO 原话："we are raising our outlook for 2026 and now expect our capex to be more than $20 billion… we are forecasting 2027 capital expenditures to be significantly above the 2026 levels with the vast majority spent across our US network."</text>
+  </svg>
+  <div class="note">官方另披露：2021–2026 年 Intel 在美国的资本开支（设备 + 厂房）累计<b>接近 $1,000 亿</b>，显著高于同期任何其他半导体公司。Q2'26 单季毛资本开支仅 $27 亿——意味着下半年必须大幅加速，否则达不到 $200 亿全年目标。</div>
+</div>
+
+<div class="grid3">
+  <div class="kpi"><div class="lab">Intel 18A 总产能</div><div class="val">≈30K</div><div class="sub">片/月（Fab 52 + Hillsboro）<br>够 Panther Lake，未必够 Nova Lake</div></div>
+  <div class="kpi"><div class="lab">台积电 CoWoS 产能</div><div class="val">120–140K</div><div class="sub">片/月（2026，仅封装）<br>加 OSAT 伙伴接近 20 万片</div></div>
+  <div class="kpi"><div class="lab">Q2'26 调整后自由现金流</div><div class="val down">−$8.4B</div><div class="sub">主因：$142 亿回购爱尔兰 JV 权益<br>（合作方出资净额 −$122 亿）</div></div>
+</div>
+
+<div class="call warn">
+  <div class="t">⚠ 产能是这个投资案里最容易被忽略的硬约束</div>
+  <p style="margin:6px 0">Intel 18A 的 3 万片/月产能可以支撑 Panther Lake，但<b>不足以支撑 Nova Lake 的 80–90% 自产计划</b>。而与此同时，Intel 又要为 Terafab（14A）、Apple（18A-P）、Google/Meta/AWS（EMIB）承诺产能。</p>
+  <p style="margin:6px 0"><b>这意味着：</b>Intel 未来 18 个月必须把几乎所有新增现金（包括 8 月募集的 $230 亿）投进产能。<b>利好</b>是 2026/8 增发的官方用途含糊（"general corporate purposes"）在 Q2 电话会得到了解释——CFO 明确说在"aggressively locking in tool purchase orders"、"accelerating cleanroom buildouts"、"actively securing supply of substrates and memory"。<b>利空</b>是自由现金流将持续为负。</p>
+</div>
+
+<h3>6.2 地缘政治：被低估的变量——关税把"产地"变成了成本项</h3>
+<p class="lede">前面所有章节都在比"谁的技术更好、谁的成本更低"。但 2026 年出现了一个<b>与技术完全无关</b>的变量：<b>芯片的产地本身开始被定价</b>。这对 Intel 是结构性利好，且与它的制程是否落后无关。</p>
+
+<div class="fig">
+  <svg viewBox="0 0 1120 330" role="img" aria-label="Intel 与台积电领先制程产能的地理分布对比">
+    <text x="40" y="34" font-size="17" font-weight="700" fill="#1B2733">领先制程产能的地理分布：Intel 全在盟友境内，台积电高度集中于台湾</text>
+
+    <g font-size="13" fill="#6B7885">
+      <text x="40" y="96" font-weight="700" fill="#00568F" font-size="14.5">Intel</text>
+      <text x="40" y="116" font-size="12">18A / 14A</text>
+      <text x="40" y="196" font-weight="700" fill="#A00D25" font-size="14.5">台积电</text>
+      <text x="40" y="216" font-size="12">N2 / A16</text>
+    </g>
+
+    <rect x="190" y="72" width="860" height="46" rx="7" fill="#E7F1FA" stroke="#B9D6EC"/>
+    <rect x="190" y="72" width="860" height="46" rx="7" fill="#0068B5" opacity="0.92"/>
+    <text x="620" y="101" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">美国 100%（亚利桑那 Fab 52 · 俄勒冈 Hillsboro）</text>
+
+    <rect x="190" y="172" width="860" height="46" rx="7" fill="#F5E7E9" stroke="#E7C3C8"/>
+    <rect x="190" y="172" width="731" height="46" rx="7" fill="#C8102E" opacity="0.9"/>
+    <text x="555" y="201" text-anchor="middle" font-size="14.5" font-weight="700" fill="#fff">台湾 ≈85%</text>
+    <rect x="921" y="172" width="129" height="46" rx="7" fill="#E39AA5"/>
+    <text x="985" y="201" text-anchor="middle" font-size="11.5" font-weight="700" fill="#7A0A1B">美国等 ≈15%</text>
+
+    <line x1="190" y1="240" x2="1050" y2="240" stroke="#D5DDE5" stroke-width="1.5"/>
+    <g font-size="11.5" fill="#8895A3" text-anchor="middle">
+      <text x="190" y="258">0%</text><text x="405" y="258">25%</text><text x="620" y="258">50%</text><text x="835" y="258">75%</text><text x="1050" y="258">100%</text>
+    </g>
+
+    <rect x="40" y="278" width="1020" height="38" rx="8" fill="#FFF8E6" stroke="#E8CE7A"/>
+    <text x="58" y="302" font-size="13" fill="#7A5A00">台积电口径：<tspan font-weight="700">台湾经济部估算，2030 年 sub-5nm 仍有约 85% 留在台湾</tspan>——在岸化远不足以改变地理集中度。</text>
+  </svg>
+  <div class="ft">图 17 · 领先制程产能的地理分布（示意）</div>
+  <div class="fs">Intel 先进产能全在美/欧/以；台积电先进产能高度集中于台湾。在"产地即成本"的新规则下，这个差异本身就有价值。</div>
+</div>
+
+<div class="call ok">
+  <div class="t">✓ 这是 Intel 唯一"不需要赢技术就能受益"的变量</div>
+  <p style="margin:6px 0">若美国对<b>进口</b> AI 关键芯片征收关税、同时对<b>美国本土产能</b>给予豁免，那么：Intel 卖出的每一颗芯片天然免税，而台积电从台湾运到美国的每一颗芯片都要面对关税。这使得 Intel 可以在<b>技术落后一代的情况下仍然赢单</b>——因为它卖的是"免税 + 本土供应"的组合，而不是纯粹的 ppa（性能/功耗/面积）。</p>
+  <p style="margin:6px 0">这也解释了一个此前看起来不理性的现象：为什么美国政府如此强力地推动客户"考虑 Intel"。<b>对 Intel 的股东来说，政策是比制程更早兑现的变量</b>——制程良率要等到 2027 年，而政策从 2026 年就开始生效。</p>
+</div>
+
+<div class="card">
+  <div class="t" style="font-weight:700;font-size:15px;margin-bottom:8px">2026 年相关政策时间线</div>
+  <table>
+    <tr><th>时间</th><th>事件</th><th>对 Intel 的方向</th><th>证据</th></tr>
+    <tr><td>2026-01-15</td><td>Section 232（Proclamation 11002）：对 AI 关键半导体征 <b>25% 关税</b>，<b>美国本土产能可豁免</b></td><td><span style="color:#1B7F3B;font-weight:700">利好</span></td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>2026-01-15</td><td>美台贸易与投资协议：关税上限 <b>15%</b>；台湾承诺 <b>$2,500 亿直接投资 + $2,500 亿信用担保</b></td><td><span style="color:#6B7885;font-weight:700">中性偏多</span></td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>2026-02-20</td><td>最高法院以 <b>6–3</b> 裁定 IEEPA 关税越权（Learning Resources v. Trump）；行政当局转向 Section 232 等替代法源</td><td><span style="color:#9A6C00;font-weight:700">不确定</span></td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>2026-08-27</td><td>提案将芯片关税范围扩大至<b>笔记本电脑与服务器</b>整机</td><td><span style="color:#1B7F3B;font-weight:700">利好</span></td><td><span class="b b-news">媒体</span></td></tr>
+    <tr class="hi"><td>全程</td><td><b>Intel-台积电合资：不存在。</b>台积电已两次公开否认（2025-04-17、2025-09）。截至 2026-10-08 无任何合资实体</td><td><span style="color:#6B7885;font-weight:700">澄清</span></td><td><span class="b b-ok">官方否认</span></td></tr>
+  </table>
+  <p class="small muted" style="margin:10px 0 0">⚠ 上表前三项（Section 232 具体文号与税率、最高法院裁定、美台协议金额）来自媒体口径，本次调研<b>未能独立复核到一手文件</b>。请在使用前向一手来源确认。但请注意：<b>本节的结论不依赖于这些具体数字</b>——只要存在"按产地差别征税"的规则，Intel 的产地优势就成立。</p>
+</div>
+
+<p class="small muted"><b>另一面（必须说）：</b>Intel 的中国收入占比正在下滑——FY2025 为 <b>24.0%</b>，FY2024 为 <b>29.3%</b>（官方 10-K）。出口管制同样在伤害 Intel 自己的可服务市场，而 Intel 在中国没有可豁免的本土产能。产地优势是一把双刃剑：它保护美国市场，但也让 Intel 在中国市场相对受限更少设计能力的对手处于劣势。</p>
+
+<!-- ============================================================ -->
+<h2>七、与台积电的差距：全维度对照</h2>
+<p class="lede">这是本报告的核心章节。差距要分层看：有些在缩小（良率、收入增速），有些在扩大（规模、资本开支），有些 Intel 领先（封装架构），有些是结构性的、短期无解（生态与信任）。</p>
+
+<div class="fig">
+  <div class="ft">图 18 · 十维度实力雷达：Intel vs 台积电</div>
+  <div class="fs">10 = 全球领先，1 = 显著落后。数值为基于本报告证据的定性评分，非精确测量</div>
+  <svg viewBox="0 0 1120 520">
+    <g>
+      <g fill="none" stroke="#EDF1F5" stroke-width="1">
+        <polygon points="470,70 658,196 601,412 339,412 282,196"/>
+        <polygon points="470,120 611,216 567,384 373,384 329,216"/>
+        <polygon points="470,170 564,236 532,356 408,356 376,236"/>
+        <polygon points="470,220 517,256 499,328 441,328 423,256"/>
+      </g>
+      <g stroke="#E2E7EC" stroke-width="1">
+        <line x1="470" y1="270" x2="470" y2="70"/><line x1="470" y1="270" x2="658" y2="196"/>
+        <line x1="470" y1="270" x2="601" y2="412"/><line x1="470" y1="270" x2="339" y2="412"/>
+        <line x1="470" y1="270" x2="282" y2="196"/>
+      </g>
+      <polygon points="470,80 648.6,199.7 581.4,390.7 339.4,390.7 291.4,199.7"
+               fill="#C8102E" fill-opacity=".16" stroke="#C8102E" stroke-width="2.5"/>
+      <polygon points="470,120 545.2,240.4 574.8,383.6 398,348.1 394.8,240.4"
+               fill="#0068B5" fill-opacity=".18" stroke="#0068B5" stroke-width="2.5"/>
+      <g font-size="13" font-weight="650" fill="#12181F">
+        <text x="470" y="56" text-anchor="middle">制程技术</text>
+        <text x="680" y="192">产能规模</text>
+        <text x="625" y="436" text-anchor="middle">先进封装</text>
+        <text x="315" y="436" text-anchor="middle">客户生态</text>
+        <text x="250" y="192" text-anchor="end">财务与现金流</text>
+      </g>
+      <g font-size="12" fill="#6B7885">
+        <text x="470" y="42" text-anchor="middle" font-size="11.5">Intel 7.5 / TSM 9.5</text>
+        <text x="680" y="180" font-size="11.5">Intel 4.0 / TSM 9.5</text>
+        <text x="625" y="452" text-anchor="middle" font-size="11.5">Intel 8.0 / TSM 8.5</text>
+        <text x="315" y="452" text-anchor="middle" font-size="11.5">Intel 5.5 / TSM 9.5</text>
+        <text x="250" y="180" text-anchor="end" font-size="11.5">Intel 4.0 / TSM 9.5</text>
+      </g>
+    </g>
+    <g transform="translate(840,300)">
+      <rect x="0" y="0" width="13" height="13" rx="3" fill="#0068B5"/><text x="20" y="11" font-size="13" fill="#12181F">Intel</text>
+      <rect x="0" y="26" width="13" height="13" rx="3" fill="#C8102E"/><text x="20" y="37" font-size="13" fill="#12181F">台积电</text>
+      <text x="0" y="70" font-size="11.5" fill="#6B7885">Intel 相对最强：</text>
+      <text x="0" y="88" font-size="11.5" fill="#0B7A45" font-weight="650">封装成本（便宜约 50%）</text>
+      <text x="0" y="112" font-size="11.5" fill="#6B7885">Intel 差距最大：</text>
+      <text x="0" y="130" font-size="11.5" fill="#B02A20" font-weight="650">产能规模、外部客户收入、现金流</text>
+      <text x="0" y="152" font-size="11" fill="#6B7885">先进封装：Intel 8.0 / TSM 8.5</text>
+      <text x="0" y="168" font-size="11" fill="#9AA6B2">（成本领先，但产能 1/6、扩展性 2028 被反超）</text>
+    </g>
+  </svg>
+</div>
+
+<h3>7.1 逐维度量化对照表</h3>
+<table>
+  <thead><tr><th style="width:15%">维度</th><th style="width:31%">Intel</th><th style="width:33%">台积电</th><th style="width:21%">差距性质</th></tr></thead>
+  <tbody>
+    <tr><td><b>市值</b></td><td class="num">$595B</td><td class="num">$2.07T</td><td><span class="b b-bad">3.5× 差距</span></td></tr>
+    <tr><td><b>TTM 营收</b></td><td class="num">$57.0B</td><td class="num">$139.6B</td><td><span class="b b-bad">2.4× 差距</span></td></tr>
+    <tr class="hi"><td><b>TTM 净利</b></td><td class="num down">−$11.29B（其中绝大部分为托管股重估）</td><td class="num up"><b>+$69.68B</b></td><td><span class="b b-bad">盈亏之别</span></td></tr>
+    <tr><td><b>最新季收入增速</b></td><td class="num up">+25%（15年最强）</td><td class="num up">$40.2B，+36% YoY（Q2'26）</td><td><span class="b b-ok">Intel 增速更快（低基数）</span></td></tr>
+    <tr><td><b>Non-GAAP 毛利率</b></td><td class="num">41.8%（Q2'26）</td><td class="num">67.7%（Q2'26 实际）<br>65–67%（Q3'26 指引）</td><td><span class="b b-bad">台积电高约 26pt</span></td></tr>
+    <tr><td><b>净利率</b></td><td class="num down">负（GAAP）</td><td class="num up">55.6%（Q2'26）</td><td><span class="b b-bad">结构性差距</span></td></tr>
+    <tr><td><b>自由现金流</b></td><td class="num down">Q2'26 调整后 −$8.4B<br>FY25 −$1.6B</td><td class="num up">强劲正值（TTM 营业现金流 $2.63T 新台币）</td><td><span class="b b-bad">Intel 靠股权融资填缺口</span></td></tr>
+    <tr><td><b>资本开支</b></td><td class="num">2026 指引 &gt;$20B</td><td class="num">2026 指引 <b>$60–64B</b>（7月上调 15%）<br>2025 实际 $40–42B</td><td><span class="b b-bad">3× 差距</span></td></tr>
+    <tr><td><b>先进逻辑良率</b></td><td class="num">18A ≈85%</td><td class="num">N2 ≈90%</td><td><span class="b b-ok">差距收窄中（一季前是 65%）</span></td></tr>
+    <tr><td><b>先进逻辑产能</b></td><td class="num">≈30K 片/月</td><td class="num">12 座 fab 在建；CoWoS 单项 120–140K</td><td><span class="b b-bad">量级差距</span></td></tr>
+    <tr><td><b>对外代工收入</b></td><td class="num down">$293M/季（Q2'26）</td><td class="num up">$139.6B/年</td><td><span class="b b-bad">约 100× 差距</span></td></tr>
+    <tr><td><b>光罩扩展性</b></td><td class="num">&gt;6×（今）→ &gt;8×（2026）→ <b>&gt;12×（2028）</b><br>概念封装已达 12× / 24 层 HBM5</td><td class="num">CoWoS-S 3.3× · <b>CoWoS-L 5.5×（已量产）</b><br>→ 9.5×（2027）→ <b>14×（2028）</b> → &gt;14×（2029, 24 层 HBM5E）<br>SoW 达 &gt;40× / 64 层 HBM</td><td><span class="b b-rumor">Intel 暂时领先 1–2 年，<b>2028 年被反超</b></span></td></tr>
+    <tr><td><b>封装产能</b></td><td class="num down">EMIB-T 15–20K wpm（2027）<br>→ 40–45K（2028）</td><td class="num up">CoWoS 130K wpm（2026）<br>→ 170K（2027）→ <b>260K（2028）</b></td><td><span class="b b-bad">Intel 约为台积电的 1/6</span></td></tr>
+    <tr><td><b>封装量产良率</b></td><td class="num">EMIB ≈90%（验证值）<br>EMIB-T 逼近 90% · <b>基板仅 45%</b></td><td class="num up">CoWoS 5.5× <b>&gt;98%，部分 99%</b>（量产值）</td><td><span class="b b-bad">Intel 落后，且卡点在供应商</span></td></tr>
+    <tr><td><b>混合键合</b></td><td class="num">Foveros Direct 9µm（Clearwater Forest，2026 首批量产）<br>第二代目标 3µm</td><td class="num up">SoIC 9µm(2023) → <b>6µm(2025 已达成)</b> → 4.5µm(2029)<br>A14-on-A14 SoIC 计划 2029</td><td><span class="b b-bad">台积电领先一个产品周期</span></td></tr>
+    <tr><td><b>供电/IVR 能力</b></td><td class="num down">EMIB-T 有桥内 TSV + MIM 电容 + 接地平面，<b>但无法做真正的嵌入式 IVR → 撑不起 5–6kW 加速器</b></td><td class="num up">CoWoS-L 中介层可嵌入 IVR，支撑 5–6kW（Feynman 级）</td><td><span class="b b-bad">高端 GPU 的物理门槛</span></td></tr>
+    <tr><td><b>封装成本</b></td><td class="num up">EMIB 每颗<b>低数百美元</b>；桥片晶圆利用率 ~90%</td><td class="num">CoWoS ~$900–1,000/颗（Rubin 级）；中介层利用率 ~60%</td><td><span class="b b-intel">Intel 便宜约 50%</span></td></tr>
+    <tr><td><b>High-NA EUV</b></td><td class="num up">首个客户，累计加工 &gt;100 万片</td><td class="num">延后导入，但推 12 吋掩模</td><td><span class="b b-rumor">各有路径，胜负未定</span></td></tr>
+    <tr><td><b>晶圆代工份额</b></td><td class="num">个位数（含内部）</td><td class="num">≈72%</td><td><span class="b b-bad">结构性</span></td></tr>
+    <tr><td><b>客户信任度</b></td><td class="num">"仍在验证"——18A 需"强推"给 PC 厂商</td><td class="num">"最值得信赖的 AI 复利机器"（Bernstein 语）</td><td><span class="b b-bad">最难量化、也最难弥合</span></td></tr>
+    <tr><td><b>海外布局</b></td><td class="num">德国/波兰取消、俄亥俄放缓</td><td class="num">亚利桑那 $265B、熊本、德累斯顿全面铺开</td><td><span class="b b-bad">战略定力差距</span></td></tr>
+    <tr><td><b>股东结构</b></td><td class="num">政府 8.2%（被动）+ 客户（NVIDIA）+ 软银</td><td class="num">分散的机构投资者</td><td><span class="b b-rumor">Intel 获政策红利，但 GAAP 受托管股拖累</span></td></tr>
+    <tr><td><b>估值</b></td><td class="num">Forward P/E 66.6×</td><td class="num">Forward P/E 20.7×</td><td><span class="b b-bad">Intel 贵 3.2×</span></td></tr>
+  </tbody>
+</table>
+
+<div class="call bad">
+  <div class="t">第三方最尖锐的一句话</div>
+  <p style="margin:6px 0">伯恩斯坦（Bernstein，Mark Li）在评估苹果可能回归 Intel 代工时的结论：<b>"no sign suggesting Intel narrowing the gap with TSMC technology"</b>（没有任何迹象表明 Intel 在缩小与台积电的技术差距），并认为苹果-Intel 的交易"likely spans only small volumes"（规模很小），台积电仍是苹果最具成本效率的选择。伯恩斯坦维持台积电增持评级，目标价上调至 $430。<b>注意这一判断的时点——它可能早于 18A 良率跃升至 85% 与 Q2'26 +25% 收入的数据公布。</b></p>
+</div>
+
+<h3>7.2 但台积电也有它自己的麻烦——这给了 Intel 窗口</h3>
+<ul>
+  <li><b>产能全面吃紧</b>：CEO 魏哲家公开承认短缺将延续到 2027 年及以后；3nm / 2nm / CoWoS 全线紧张；AWS、MediaTek、TPU 等客户正在争抢产能。</li>
+  <li><b>涨价</b>：已锁定 2027 年晶圆出厂价 3–6% 涨幅；先进节点机构估算涨幅 5–10%。这直接削弱台积电的价格竞争力，也给 Intel（据报道报价低于台积电 25%）创造机会窗口。</li>
+  <li><b>Terafab 的两难</b>：Musk 的项目与台积电"纯代工服务 fabless 客户"的模式内在冲突。台积电最可能的做法是把 Terafab 吸收进德州扩产计划、让 Musk 当锚定客户——而 Digitimes 称 Musk 目前只把台积电限定为"可能的洁净室转租"角色。</li>
+  <li><b>地缘政治的"1:1 规则"</b>：美国正在考虑"本土制造 : 进口芯片 = 1:1"的规则，据称<b>有利于台积电、格芯、美光</b>——注意这里没有 Intel，说明政策倾斜并非无条件偏向 Intel。</li>
+  <li><b>日本扩张反复</b>：熊本二厂节点选择多次变更（6/7nm → 4nm → 2nm → 3nm），总投资约 $170 亿，3nm 量产可能推迟至约 2028 年，定位为台湾 Fab 18 的备份而非主基地。</li>
+  <li><b>盈利能力被海外厂稀释</b>：海外厂初期稀释毛利率 2–3 个百分点，随规模扩大升至 3–4 个百分点；2nm 爬坡在 2026 Q3 另稀释 3–4 个百分点。CFO 明确"<b>在美国建厂成本是台湾的 4–5 倍</b>"，折旧成本较台湾 <b>+384%</b>。这就是 Q3 毛利率指引 65–67% 低于 Q2 实际 67.7% 的原因。</li>
+  <li><b>台海风险的官方承认</b>：美情报机构曾向库克、黄仁勋、苏姿丰简报，中国"最早可能在 2027 年"行动。台湾经济部估算 2030 年 sub-5nm 仍有 <b>85% 在台湾</b>——在岸化远不足以规避冲击。</li>
+</ul>
+
+<h4>台积电的定价权：这才是 Intel 无法企及的部分</h4>
+<table class="small">
+  <thead><tr><th>项目</th><th>价格 / 涨幅</th><th>可信度</th></tr></thead>
+  <tbody>
+    <tr><td>N2 晶圆</td><td>约 <b>US$33,000/片</b>（已含约 +10% 涨价）</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>A16 晶圆</td><td>US$45,000/片</td><td><span class="b b-rumor">传闻</span></td></tr>
+    <tr><td>A14 晶圆</td><td>约 US$35,000/片（较 N2 仅"略高"）</td><td><span class="b b-rumor">传闻</span></td></tr>
+    <tr class="hi"><td>CoWoS 封装</td><td><b>约 US$10,000/片</b>——接近 7nm 级先进制程晶圆</td><td><span class="b b-news">TrendForce</span></td></tr>
+    <tr><td>2026 年涨价</td><td>连续第 4 年涨价：sub-5nm <b>8–10%</b>（2025/11 口径由 3–5% 上调）</td><td><span class="b b-news">媒体</span></td></tr>
+    <tr><td>2027 年涨价</td><td>已锁定 <b>3–6%</b>；机构估先进节点 +5–10%、先进封装 +10–15%、成熟节点 +3–5%</td><td><span class="b b-news">DIGITIMES</span></td></tr>
+    <tr><td>加急（hot run）溢价</td><td>客户<b>愿支付最高 100% 溢价</b>（JPMorgan）</td><td><span class="b b-news">分析师</span></td></tr>
+    <tr><td>平均晶圆价格</td><td>自 2019 年以来<b>每年上涨 &gt;15%</b></td><td><span class="b b-news">研报</span></td></tr>
+  </tbody>
+</table>
+<p class="small"><b>对照：</b>据报道 Intel 报价<b>低于台积电约 25%</b>。但这里有一个容易被忽略的反转——<b>台积电涨价正在推高整个行业价格</b>：AMD 已通知伙伴涨价 10%，Intel 预计 2026 年 10 月初起 CPU 涨价最高 10%，服务器 CPU 自 3 月起涨最高 20%、Intel 可能再涨 8–10%。<b>台积电是定价制定者，Intel 是跟随者。</b>这对 Intel 的毛利率是顺风（它有定价权了），但对"Intel 靠低价抢单"的叙事是逆风。</p>
+<p class="small muted">另：台积电先进封装营收占比 2025 年约 <b>8–10%</b>，2026 年将超 10%，CFO 称其正成为"关键利润驱动因素"；CoWoS 因无前段 EUV 折旧负担（先进制程单台 &gt;$1.5 亿），<b>毛利率有潜力达到先进制程水平</b>。这意味着 Intel 在封装上面对的对手，是一个既便宜不下来、又不会亏钱的对手。</p>
+
+<!-- ============================================================ -->
+<h2>八、投资分析</h2>
+
+<div class="fig">
+  <div class="ft">图 19 · 52 周价格区间中的当前位置</div>
+  <div class="fs">一年内最低 $32.89（2025-11-21）、最高 $142.35（2026-06-30）；当前 $113.14（2026-10-07 收盘，分位数约 73%），距高点回撤约 20.5%，自低点约 +245%</div>
+  <svg viewBox="0 0 1120 200">
+    <defs><linearGradient id="rng" x1="0" x2="1">
+      <stop offset="0%" stop-color="#DB4437"/><stop offset="50%" stop-color="#F4B400"/><stop offset="100%" stop-color="#0F9D58"/>
+    </linearGradient></defs>
+    <rect x="80" y="86" width="960" height="18" rx="9" fill="url(#rng)" opacity=".28"/>
+    <rect x="80" y="86" width="703" height="18" rx="9" fill="#0068B5" opacity=".85"/>
+    <line x1="80" y1="70" x2="80" y2="120" stroke="#B02A20" stroke-width="2"/>
+    <line x1="1040" y1="70" x2="1040" y2="120" stroke="#0B7A45" stroke-width="2"/>
+    <line x1="783" y1="60" x2="783" y2="130" stroke="#12181F" stroke-width="3"/>
+    <circle cx="783" cy="95" r="8" fill="#12181F" stroke="#fff" stroke-width="3"/>
+    <g font-size="13" font-weight="700">
+      <text x="80" y="146" text-anchor="middle" fill="#B02A20">$32.89</text>
+      <text x="783" y="52" text-anchor="middle" fill="#12181F" font-size="16">$113.05</text>
+      <text x="1040" y="146" text-anchor="middle" fill="#0B7A45">$142.35</text>
+    </g>
+    <g font-size="12" fill="#6B7885">
+      <text x="80" y="168" text-anchor="middle">52周低点</text>
+      <text x="783" y="168" text-anchor="middle">当前位置（74% 分位）</text>
+      <text x="1040" y="168" text-anchor="middle">52周高点</text>
+    </g>
+    <text x="783" y="192" text-anchor="middle" font-size="12.5" fill="#00568F">52周涨幅 +208.9%（低点到高点约 +333%）· 卖方均价目标 $118.05（仅 +4.4% 空间）</text>
+  </svg>
+</div>
+
+<h3>8.1 多头逻辑（Bull Case）</h3>
+<div class="card">
+  <ol>
+    <li><b>经营拐点已被官方数据确认。</b>Q2'26 收入 $161.28 亿、同比 +25%，为 15 年多来最强增长，连续第 7 个季度超指引；Non-GAAP 毛利率从 29.7% 连续 4 季升至 41.8%；Non-GAAP EPS $0.42 是指引 $0.20 的两倍。<b>这不是叙事，是已披露的财务事实。</b></li>
+    <li><b>18A 是真的做成了，而且被产品决策证明。</b>官方口径：18A 产出超目标 25%、环比 +50%，Panther Lake 主力 SKU 成本年内降约 50%。Nova Lake 从"台积电 N2 占比 60–70%"翻转为"Intel 自产 80–90%"——这是把旗舰产品线押上去的工程决策。</li>
+    <li><b>先进封装是最快变现的入口，且成本优势明确。</b>EMIB 每颗比 CoWoS 便宜约 50%（低数百美元 vs $900–1,000），桥片晶圆利用率 90% vs 60%。EMIB-T 的桥内 TSV 垂直供电 + MIM 电容 + 接地平面，在电源完整性上有独到之处。CFO 确认已有"原本为 CoWoS 设计的客户方案被移植到 EMIB 或 Foveros"，且已有 AWS、Cisco 等既有封装客户。上市公司还为此<b>把先进封装升格为独立业务</b>并请来前 SK hynix CEO Seok-Hee Lee 主掌。</li>
+    <li><b>行业性短缺 + 台积电涨价，是 Intel 的结构性顺风。</b>CFO 称"史上最严重的供应约束之一"，横跨先进逻辑、内存与基板。服务器 CPU 行业出货量今明两年均预计强劲双位数增长、动能延续至 2028。台积电 2027 年涨价 3–6%，给 Intel 的价格窗口打开。</li>
+    <li><b>客户名单的"政治化"是真实的护城河。</b>美国政府为最大股东（约 8.2%，被动持股），NVIDIA 入股 $50 亿，软银入股 $20 亿。据报道白宫在"引导苹果走向 Intel"、并以低于台积电 25% 的报价推销晶圆。</li>
+  </ol>
+</div>
+
+<h3>8.2 空头逻辑（Bear Case）</h3>
+<div class="card">
+  <ol>
+    <li><b>资本开支黑洞 + 自由现金流为负。</b>2026 capex 从"持平至略降"上调至 &gt;$200 亿，2027 将"显著高于"2026，且绝大部分投在美国。Q2'26 调整后自由现金流已为 <b>−$84 亿</b>。公司靠 8 月 $230 亿股权增发（折价发行）填缺口，稀释 5%。</li>
+    <li><b>外部客户收入几乎为零。</b>Intel Foundry 对外收入仅 $222M → $174M → $293M（25Q4–26Q2），占分部收入约 3–5%。所有关于 Apple/Google/Meta/AWS/Tesla 的报道，<b>截至 Q2'26 在财报上还没有体现出一分钱规模</b>。公司未给出 Foundry 盈亏平衡时间表；2025 全年 Foundry 亏损 $103.18 亿。</li>
+    <li><b>EMIB 的真正瓶颈不在 Intel 手里。</b>基板良率 45%，目标 4Q26 达 50%、1Q27 达 60%。NCF 气泡、CTE 失配这些物理问题由基板供应商（Ibiden、Shinko、Unimicron、AT&S）解决。而 CoWoS 已 &gt;98%（部分 99%）量产良率多年。Ming-Chi Kuo：<b>90%→98% 比 0%→90% 难得多</b>，且 Intel 的 90% 是"验证值而非量产值"。</li>
+    <li><b>EMIB 撑不起旗舰 AI GPU。</b>NVIDIA Feynman 预计 5–6kW，需要真正的嵌入式 IVR，而 EMIB 做不到——这正是 DigiTimes 报道 NVIDIA 只把约 <b>25%</b> 的 Feynman 封装交给 Intel 的原因。高端主力仍留在 CoWoS-L。</li>
+    <li><b>可扩展性的领先窗口只有 1–2 年。</b>台积电 CoWoS-L 当前已 5.5×，2027 年 9.5×、<b>2028 年 14×</b>，反超 Intel 规划的 &gt;12×。加上产能差 6 倍（Intel EMIB-T 2028 年 40–45K wpm vs 台积电 260K），"Intel 封装领先"是一个会过期的判断。</li>
+    <li><b>Intel 自己承认 14A 可能被放弃。</b>Q1 2026 10-Q 风险因素原文：若拿不到"sufficient committed demand for Intel 14A"，存在"<b>a potential pause or discontinuation of our pursuit of Intel 14A</b>"。配套数据：<b>14A 产能 2027 年底仅规划 6,000 片/月、2028 年 24,000 片/月</b>，比台积电 N2（100K+ wpm）小两个数量级。</li>
+    <li><b>产能物理上无法同时兑现所有承诺。</b>18A 只有 3 万片/月，够 Panther Lake 不够 Nova Lake；同时还要为 Terafab（14A）、Apple（18A-P）、Google/Meta/AWS（EMIB）预留产能。Intel 自有产品还在抢占封装产能——Clearwater Forest 单颗就要用 12 座 EMIB 桥。</li>
+    <li><b>估值已经完全定价了成功。</b>Forward P/E 66.6× vs 台积电 20.7×；P/B 6.48×（每股账面价值 $17.36）；49 家中只有 15 家给"买入"，均价目标 $118.05——<b>卖方作为一个群体认为上行空间已基本用尽。</b>Q2 财报后股价的走势（盘后先涨 10–12%、随后回吐并一度跌约 8%）正是这一矛盾的体现：市场担忧的正是资本开支与估值。</li>
+    <li><b>14A 的"第一客户"可能随时被抢走。</b>2026 年 10 月 Musk 确认正与台积电洽谈 Terafab 合作。同时 2026 全年 PC 消费量预计同比下降低双位数（内存涨价 + 缺货）。</li>
+  </ol>
+</div>
+
+<h3>8.3 估值锚点</h3>
+<table>
+  <thead><tr><th>指标</th><th class="num">Intel</th><th class="num">台积电</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>股价</td><td class="num">$113.05</td><td class="num">$473.64</td><td>—</td></tr>
+    <tr><td>市值</td><td class="num">$594.7B</td><td class="num">$2,070B</td><td>—</td></tr>
+    <tr><td>企业价值</td><td class="num">$615.5B</td><td class="num">—</td><td>Intel 净负债 $20.6B</td></tr>
+    <tr><td>股本</td><td class="num">5.25B 股</td><td class="num">—</td><td>同比 +13.3%（稀释）</td></tr>
+    <tr><td>预期 P/E</td><td class="num">66.6×</td><td class="num">20.7×</td><td>Intel TTM 为负，P/E 无意义</td></tr>
+    <tr><td>P/S（预期）</td><td class="num">8.80×</td><td class="num">—</td><td>静态 P/S 10.44×</td></tr>
+    <tr><td>P/B</td><td class="num">6.48×</td><td class="num">—</td><td>每股账面价值 $17.36；增发后备考 P/B ≈ 4.85×</td></tr>
+    <tr><td>总负债 / 现金</td><td class="num">$50.5B / $29.7B</td><td class="num">—</td><td>净负债 $20.6B</td></tr>
+    <tr><td>空头持仓</td><td class="num">1.588 亿股（3.02%）</td><td class="num">—</td><td>回补天数 1.74——空头已大部分投降</td></tr>
+    <tr><td>Altman Z-Score</td><td class="num">2.23</td><td class="num">—</td><td>处于"灰色地带"（&lt;1.8 为危险区）</td></tr>
+    <tr><td>股息</td><td class="num">无</td><td class="num">有</td><td>Intel 自 2024/8 起停发</td></tr>
+  </tbody>
+</table>
+
+<h3>8.4 分析师预期分布</h3>
+<div class="fig">
+  <div class="ft">图 20 · 目标价分布与评级构成</div>
+  <div class="fs">49 位分析师（2026-10-06）：15 买入 / 32 持有 / 2 卖出；目标价区间 $80 – $200。最高 HSBC $200（2026-07-02 从 $100 翻倍上调），最低区间端 $80</div>
+  <svg viewBox="0 0 1120 240">
+    <line x1="90" y1="120" x2="1030" y2="120" stroke="#D8E1EA" stroke-width="1.5"/>
+    <g fill="#9AA6B2" font-size="11" text-anchor="middle">
+      <text x="90" y="146">$80</text><text x="325" y="146">$110</text><text x="560" y="146">$140</text>
+      <text x="795" y="146">$170</text><text x="1030" y="146">$200</text>
+    </g>
+    <line x1="259" y1="60" x2="259" y2="180" stroke="#12181F" stroke-width="2.5"/>
+    <text x="259" y="52" text-anchor="middle" font-size="13" font-weight="700">现价 $113.05</text>
+    <line x1="298" y1="80" x2="298" y2="160" stroke="#5B4FE9" stroke-width="2.5" stroke-dasharray="5 3"/>
+    <text x="298" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#5B4FE9">均价 $118.05</text>
+    <g>
+      <circle cx="235" cy="120" r="7" fill="#7B8794"/><text x="235" y="100" text-anchor="middle" font-size="11" fill="#6B7885">110</text>
+      <circle cx="266" cy="120" r="7" fill="#7B8794"/>
+      <circle cx="274" cy="120" r="7" fill="#7B8794"/><text x="272" y="140" text-anchor="middle" font-size="11" fill="#6B7885">114-115</text>
+      <circle cx="509" cy="120" r="7" fill="#0F9D58"/><text x="509" y="100" text-anchor="middle" font-size="11" fill="#0B7A45">145</text>
+      <circle cx="666" cy="120" r="7" fill="#0F9D58"/><text x="666" y="100" text-anchor="middle" font-size="11" fill="#0B7A45">165</text>
+      <circle cx="940" cy="120" r="7" fill="#0F9D58"/><text x="940" y="100" text-anchor="middle" font-size="11" fill="#0B7A45">200</text>
+      <circle cx="90" cy="120" r="7" fill="#DB4437"/><text x="90" y="100" text-anchor="middle" font-size="11" fill="#B02A20">80</text>
+    </g>
+    <rect x="90" y="200" width="288" height="20" rx="5" fill="#0F9D58"/>
+    <rect x="382" width="614" height="20" fill="#F4B400"/>
+    <rect x="1000" y="200" width="38" height="20" rx="5" fill="#DB4437"/>
+    <text x="234" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">15 买入</text>
+    <text x="689" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#5C4400">32 持有</text>
+    <text x="1019" y="215" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+  </svg>
+  <div class="note">近期动作：Mizuho 持有 $114（10/6）、TD Cowen 持有 $115（9/24）、Melius 买入 $165（9/16）、Tigress 买入 $145（9/15）、Piper Sandler 持有 $110（9/9）。<b>注意：65% 的分析师给"持有"，均价目标仅比现价高 4.4%——卖方共识实际上是"故事很美，但不便宜"。</b></div>
+</div>
+
+<!-- ============================================================ -->
+<h2>九、催化剂与风险时间表</h2>
+
+<div class="fig">
+  <div class="ft">图 21 · 未来 18 个月关键事件</div>
+  <div class="fs">上行为催化剂，下行为风险事件</div>
+  <svg viewBox="0 0 1120 380">
+    <line x1="80" y1="190" x2="1060" y2="190" stroke="#D8E1EA" stroke-width="2"/>
+    <g stroke="#E2E7EC" stroke-width="1">
+      <line x1="160" y1="60" x2="160" y2="320"/><line x1="390" y1="60" x2="390" y2="320"/>
+      <line x1="620" y1="60" x2="620" y2="320"/><line x1="850" y1="60" x2="850" y2="320"/>
+      <line x1="1060" y1="60" x2="1060" y2="320"/>
+    </g>
+    <g fill="#9AA6B2" font-size="12" text-anchor="middle">
+      <text x="160" y="340">2026 Q4</text><text x="390" y="340">2027 Q1</text>
+      <text x="620" y="340">2027 Q2</text><text x="850" y="340">2027 Q3</text>
+      <text x="1060" y="340">2027 Q4</text>
+    </g>
+    <g>
+      <line x1="130" y1="190" x2="130" y2="150" stroke="#0F9D58" stroke-width="2"/>
+      <rect x="95" y="106" width="150" height="44" rx="8" fill="#F0FBF4" stroke="#0F9D58"/>
+      <text x="170" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">10/29 Q3 财报</text>
+      <text x="170" y="141" text-anchor="middle" font-size="11" fill="#3D4A57">Capex / Foundry 订单</text>
+
+      <line x1="320" y1="190" x2="320" y2="140" stroke="#0F9D58" stroke-width="2"/>
+      <rect x="285" y="86" width="150" height="54" rx="8" fill="#F0FBF4" stroke="#0F9D58"/>
+      <text x="360" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">14A PDK 0.9 发布</text>
+      <text x="360" y="121" text-anchor="middle" font-size="11" fill="#3D4A57">官方承诺 2026 年 10 月</text>
+      <text x="360" y="136" text-anchor="middle" font-size="11" fill="#B02A20">最易证伪 14A 叙事的时点</text>
+
+      <line x1="540" y1="190" x2="540" y2="150" stroke="#0F9D58" stroke-width="2"/>
+      <rect x="470" y="96" width="160" height="54" rx="8" fill="#F0FBF4" stroke="#0F9D58"/>
+      <text x="550" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">Nova Lake 上市</text>
+      <text x="550" y="131" text-anchor="middle" font-size="11" fill="#3D4A57">80–90% 计算 tile 由 18A 自产</text>
+      <text x="550" y="146" text-anchor="middle" font-size="11" fill="#B02A20">成败决定叙事真伪</text>
+
+      <line x1="760" y1="190" x2="760" y2="140" stroke="#0F9D58" stroke-width="2"/>
+      <rect x="690" y="76" width="170" height="64" rx="8" fill="#F0FBF4" stroke="#0F9D58"/>
+      <text x="775" y="94" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">Apple M7 / Google TPU</text>
+      <text x="775" y="111" text-anchor="middle" font-size="11" fill="#3D4A57">18A-P（苹果）· EMIB-T（谷歌）</text>
+      <text x="775" y="128" text-anchor="middle" font-size="11" fill="#3D4A57">首批外部大客户量产验证</text>
+
+      <line x1="960" y1="190" x2="960" y2="150" stroke="#0F9D58" stroke-width="2"/>
+      <rect x="900" y="106" width="150" height="44" rx="8" fill="#F0FBF4" stroke="#0F9D58"/>
+      <text x="975" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#0B7A45">EMIB 基板良率 60%</text>
+      <text x="975" y="141" text-anchor="middle" font-size="11" fill="#3D4A57">1Q27 供应链目标</text>
+    </g>
+    <g>
+      <line x1="240" y1="190" x2="240" y2="228" stroke="#DB4437" stroke-width="2"/>
+      <rect x="170" y="228" width="150" height="44" rx="8" fill="#FDF2F1" stroke="#DB4437"/>
+      <text x="245" y="246" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">Terafab 谈判生变</text>
+      <text x="245" y="263" text-anchor="middle" font-size="11" fill="#3D4A57">Musk 与台积电达成协议</text>
+
+      <line x1="460" y1="190" x2="460" y2="240" stroke="#DB4437" stroke-width="2"/>
+      <rect x="380" y="240" width="160" height="54" rx="8" fill="#FDF2F1" stroke="#DB4437"/>
+      <text x="460" y="258" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">18A 产能不足暴露</text>
+      <text x="460" y="275" text-anchor="middle" font-size="11" fill="#3D4A57">Nova Lake 缺货 / 交付延后</text>
+      <text x="460" y="290" text-anchor="middle" font-size="11" fill="#3D4A57">PC 客户关系恶化</text>
+
+      <line x1="690" y1="190" x2="690" y2="232" stroke="#DB4437" stroke-width="2"/>
+      <rect x="620" y="232" width="150" height="44" rx="8" fill="#FDF2F1" stroke="#DB4437"/>
+      <text x="695" y="250" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">EMIB 良率不达标</text>
+      <text x="695" y="267" text-anchor="middle" font-size="11" fill="#3D4A57">基板厂掉链子</text>
+
+      <line x1="890" y1="190" x2="890" y2="244" stroke="#DB4437" stroke-width="2"/>
+      <rect x="820" y="244" width="160" height="54" rx="8" fill="#FDF2F1" stroke="#DB4437"/>
+      <text x="900" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#B02A20">再融资 / 稀释</text>
+      <text x="900" y="279" text-anchor="middle" font-size="11" fill="#3D4A57">FCF 为负 → 二次增发</text>
+      <text x="900" y="294" text-anchor="middle" font-size="11" fill="#B02A20">2027 capex "显著更高"</text>
+    </g>
+  </svg>
+</div>
+
+<h3>9.1 需要持续跟踪的指标清单</h3>
+<table class="small">
+  <thead><tr><th>指标</th><th>当前值</th><th>看多阈值</th><th>看空阈值</th></tr></thead>
+  <tbody>
+    <tr><td><b>Intel Foundry 对外收入</b></td><td>$293M/季（Q2'26）</td><td>出现数量级跃升（&gt;$1B/季）</td><td>持续徘徊在 $2–3 亿</td></tr>
+    <tr><td>Intel Foundry 营业亏损</td><td>−$2.089B/季</td><td>持续收窄，出现盈亏平衡指引</td><td>亏损重新扩大</td></tr>
+    <tr><td>18A / 18A-P 良率</td><td>18A ≈85%</td><td>&gt;90%，逼近 N2</td><td>回落或停滞</td></tr>
+    <tr><td>18A 月产能</td><td>≈30K 片/月</td><td>&gt;50K，支撑 Nova Lake 自产</td><td>无扩产动作</td></tr>
+    <tr><td>EMIB 基板良率</td><td>45%</td><td>按计划 50%（4Q26）→ 60%（1Q27）</td><td>不及目标，基板厂掉队</td></tr>
+    <tr><td>调整后自由现金流</td><td>Q2'26 −$8.4B；FY25 −$1.6B</td><td>2027 年转正</td><td>继续为负 + 再次股权融资</td></tr>
+    <tr><td>14A PDK 0.9</td><td>官方承诺 2026 年 10 月</td><td>按期发布并附带客户名单</td><td>推迟，或发布时无客户</td></tr>
+    <tr><td>Nova Lake 上市时间</td><td>年底前后</td><td>如期 + 无缺货</td><td>延期或台积电份额被迫提高</td></tr>
+    <tr><td>Terafab 归属</td><td>Intel"继续参与"，台积电在谈</td><td>Intel 锁定 14A 订单</td><td>台积电夺得主导权</td></tr>
+    <tr><td><b>GAAP vs Non-GAAP 差距</b></td><td>极大（Q2'26 差 $132 亿）</td><td>随股价稳定而自然收敛</td><td><b>注意：股价越涨差距越大，这是会计现象，不是经营恶化</b></td></tr>
+    <tr><td>股本</td><td>5.25B 股（+13.3%）</td><td>停止增发</td><td>新一轮增发</td></tr>
+    <tr><td>政府持股</td><td>约 8.2%（被动）</td><td>无减持</td><td>出现减持公告（任何讨论都是股价事件）</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>十、结论</h2>
+
+<div class="card" style="border-left:5px solid #0068B5">
+  <h3 style="margin-top:0">一句话结论</h3>
+  <p><b>Intel 已经完成了从"破产叙事"到"经营拐点"的第一阶段转变——这一阶段有官方财务数据支撑（收入 +25%、Non-GAAP 毛利率 4 季连升、18A 良率 85%）。但它还没完成第二阶段，即把技术能力转化为<b>外部客户收入</b>：Intel Foundry 的对外收入目前只有 $2.93 亿/季，占分部收入约 5%。</b></p>
+  <p>市场用 66.6× 的预期市盈率（对比台积电 20.7×）定价的，是第二阶段的成功。而 65% 的分析师给"持有"、均价目标仅比现价高 4.4%，说明卖方作为一个群体并不认为这个定价有足够安全边际。</p>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h4 style="margin-top:0">📈 如果你是买方</h4>
+    <ul class="small">
+      <li><b>核心矛盾</b>：股价 $113 已隐含了"18A 成功 + 至少一个大客户放量 + 封装业务成型"三重假设。经营面第一重已经兑现，后两重还没有。</li>
+      <li><b>真正的验证点（两个，都可查证）</b>：① <b>Intel Foundry 的对外客户收入何时出现数量级跃升</b>——目前只有 $2.93 亿/季，占分部收入约 3–5%；② <b>14A 能否拿到"足够的承诺需求"</b>——因为 Intel 自己在 10-Q 里写明这是 14A 存续的前提条件。在此之前，所有客户名单（Apple、Google、Meta、AWS、Tesla）都只是期权。</li>
+      <li><b>相对价值</b>：若必须在两者中选一个，台积电 TTM 净利 <b>$696.8 亿</b>、净利率 55.6%、≈71–72% 的市场份额、&gt;98% 的封装良率、且客户愿为加急产能支付最高 100% 溢价——风险调整后的性价比显著更高。Intel 是更高波动的期权，不是更好的公司。</li>
+      <li><b>空头已投降</b>：空头持仓仅 3.02%、回补天数 1.74 天——"轧空"这一催化剂已基本耗尽，上行动力必须来自基本面而非资金面。</li>
+      <li><b>不要被 GAAP 巨亏误导</b>：−$113 亿 TTM 亏损中，绝大部分是与股价反向联动的托管股重估（非现金）。这是本轮行情中最常见的分析错误。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4 style="margin-top:0">🎯 如果要给一个明确判断</h4>
+    <p class="small"><b>短期（0–12 个月）：中性偏多，但性价比差。</b>催化剂密集（10/29 财报、14A PDK 0.9、Nova Lake 上市），经营数据确定性强，但股价已在 74% 分位、卖方均价目标仅 +4.4%，且 Q2 财报后市场已用"先涨后跌"表达了对资本开支的担忧。</p>
+    <p class="small"><b>中期（1–3 年）：判断取决于两个变量。</b>① Intel Foundry 能否首次披露有意义的"外部客户收入"；② 2027 年巨额资本开支能否换来 2028 年的回报（而非又一次减值）。在①之前，14A/18A-P 的全部价值都是期权。</p>
+    <p class="small"><b>最需要警惕的单一风险</b>：<b>产能与现金的赛跑</b>。Intel 同时对 Terafab（14A）、Apple（18A-P）、Google/Meta/AWS（EMIB）和自家 Nova Lake（18A）做出承诺，而 18A 在建产能只有 3 万片/月、14A 规划产能 2027 年底仅 6,000 片/月、俄亥俄厂已放缓、2027 年 capex 还要"显著更高"。这不是需求问题，是交付与现金流问题——历史上 Intel 多次在这里翻车。</p>
+    <p class="small"><b>关于"封装领先"这个最流行的多头论据</b>：它部分成立（成本便宜约 50%、供电架构有独到之处、2026–27 年可扩展性暂时领先），但它有三个会过期的条件：台积电 2028 年以 14× 反超、产能差 6 倍、以及 5–6kW 级 GPU 的嵌入式 IVR 硬伤。请把封装当作<b>2027H2 才开始爬坡的期权</b>，而不是 2026 年的收入。</p>
+  </div>
+</div>
+
+<div class="call warn">
+  <div class="t">⚠ 本报告的证据分级说明</div>
+  <ul style="margin:6px 0">
+    <li><b>官方确认（可直接建模）</b>：Intel 财报新闻稿、10-K/10-Q/424B5、SEC 文件、Intel 与 NVIDIA/美国政府/软银/ASML 的公告、Tesla Terafab 14A 合作、Panther Lake 发布、Altera 交易条款、分部与对外收入数据、资本开支指引、14A PDK 时间表。</li>
+    <li><b>权威媒体报道（可参考，需折扣）</b>：WSJ 报道的 Apple-Intel 初步协议、Nikkei 报道的 18A 强推、Reuters/Bloomberg 的 Terafab 进展、TrendForce/DIGITIMES 的供应链数据、TSMC 2026 capex 指引与涨价幅度。</li>
+    <li><b>分析师传闻（不可建模）</b>：KeyBanc 声称的 AMD / Marvell / Microsoft / Micron / OpenAI 代工订单、Ming-Chi Kuo 的 Google TPU 时间表、Jeff Pu 的 MediaTek TPU v9 预测、GF Securities 的 Apple 18A-P 细节、Nova Lake 的 80–90% 自产比例、Altera IPO 计划。<b>这些均未获任何一方公开证实。</b></li>
+    <li><b>已主动降级或剔除的条目</b>：本次调研中，一个后台线程使用了被禁止的检索方式（Google News RSS），其<b>第一批</b> 9 条来源 URL 在独立复核时<b>全部 404</b>（其中一条被标为官方新闻稿的链接实为 2024 年 Computex 稿件）。该线程随后提供的<b>第二批</b>更正链接经逐条实测<b>基本全部有效</b>，故 Nova Lake 自产比例、Razor Lake 双源、NEX 保留、RealSense 出售四项已<b>解除降级</b>，恢复为【媒体/分析师】等级。<b>其结论可用，但其第一批引用不可采信</b>——本报告对所有非官方条目执行了"链接实测 + 原文口径比对"。</li>
+    <li><b>仍然维持传闻等级的条目</b>：Altera IPO（仅 Reuters/Bloomberg 报道，无可用直链）、Apple–Intel 代工协议正文（WSJ/CNYT 付费墙，CNBC 403；<b>侧面佐证</b>是 2026-05-08 与 06-18 两个交易日分别暴涨 +13.96% 与 +10.64%，经行情数据核实）。</li>
+    <li><b>§6.2 地缘政治部分</b>：Section 232 文号与税率、最高法院 IEEPA 裁定、美台贸易协议金额三项<b>未能复核到一手文件</b>，已在表中标注为媒体口径。该节的核心结论（产地被定价 → Intel 受益）不依赖这三个具体数字。</li>
+    <li><b>Fortinet 制程节点</b>：官方公告全文<b>未提及任何节点</b>（已核实）。"Intel 4"系 Tom's Hardware 的说法，不得写成官方确认。</li>
+    <li><b>已更正的历史错误</b>：上一版报告中"CoWoS-S 3.3× / CoWoS-L 3.5×、Intel 封装架构领先"为事实错误——CoWoS-L 当前为 <b>5.5×</b> 且 2028 年将达 <b>14×</b>。已全文修正。同类更正还包括：A16 量产从 2026H2 推迟至 2027；Mobileye 持股 80% → <b>77%</b>；Altera 官方未披露成交对价（$44.6 亿系计算值）。</li>
+    <li><b>时点提示</b>：本报告撰写于 2026-10-08。<b>台积电 Q3 财报（10/15）与 Intel Q3 财报（10/29）均未发布</b>，相关数据为 TTM 与公司指引，非最新实际值。14A PDK 0.9 的"2026 年 10 月"为公司口径，尚未发生。</li>
+  </ul>
+</div>
+
+<div class="foot">
+  <p><b>报告日期</b>：2026 年 10 月 8 日 · <b>数据截止</b>：2026 年 10 月 8 日（最近一个已披露季度为 2026 Q2，截至 2026/6/27）</p>
+  <p><b>主要数据来源</b>：<b>Intel 官方</b>（Q2 2026 / Q1 2026 / Q4 2025 / Q3 2025 财报新闻稿、10-Q、10-K、424B5 招股说明书补充、财报演示与 CFO 讲稿、intc.com 新闻稿存档 1736–1782 全览）；<b>台积电官方</b>（pr.tsmc.com 月度营收报告与季度财报新闻稿、2026 年 4 月北美技术论坛与 5 月技术论坛、OCP APAC 2026、2026 VLSI 论文 T1.5、C.C. Wei 法说会与股东会表述）；<b>Intel 技术披露</b>（ECTC 2025 Dr. Rahul Manepalli 演讲、Hot Chips 2026、NEPCON Japan 2026）；<b>非制程战线</b>（Intel Q1/Q2 2026 讲稿中的 SambaNova 合作表述、The Register 2026-02-24 与 2026-07-08 报道、Tom's Hardware 关于 SN50 与 Z-Angle Memory 的报道、TrendForce 2026 年 2–5 月关于 ZAM / Saimemory / PSMC 的系列报道）；<b>独立技术分析</b>（SemiAnalysis Panther Lake 拆解 2026-09-26、TechInsights A20 Pro 分析、Bernstein、JPMorgan、Ming-Chi Kuo）；<b>行业媒体</b>（TrendForce、DIGITIMES、Tom's Hardware、Wccftech、The Register、Reuters、Bloomberg、WSJ、Nikkei、经济日报、天下杂志、ZDNet、韩媒）。</p>
+  <p><b>免责声明</b>：本报告基于公开信息整理，仅供研究参考，不构成任何证券的买入、卖出或持有建议。文中大量客户关系信息来自媒体报道与分析师传闻，未获相关方确认，存在重大不确定性。半导体行业资本密集、周期性强，投资风险极高，请自行独立判断。</p>
+</div>
+
+</div>
+</body>
+</html>

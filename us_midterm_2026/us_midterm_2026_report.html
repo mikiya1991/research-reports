@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 美国中期选举 · 情景推演与股市影响</title>
+<style>
+  :root{
+    --ink:#101820; --ink2:#3A4750; --ink3:#697683; --line:#E2E7EC; --bg:#F6F8FA;
+    --card:#FFFFFF; --accent:#0E7C66; --accent2:#B8860B; --ok:#0F9D58; --warn:#F4B400;
+    --bad:#DB4437; --neu:#7B8794; --gold:#C08A2E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px;}
+
+  .hero{background:linear-gradient(135deg,#0A1F1B 0%,#0D3B33 55%,#0E7C66 100%);color:#fff;padding:56px 0 44px;margin-bottom:30px;}
+  .hero .wrap{padding-bottom:0;}
+  .hero .kicker{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#8FD8C4;font-weight:600;margin-bottom:14px;}
+  .hero h1{font-size:38px;line-height:1.25;margin:0 0 16px;font-weight:700;letter-spacing:-.01em;}
+  .hero p.sub{font-size:16.5px;color:#C9E8DE;margin:0 0 26px;max-width:880px;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 15px;font-size:13px;color:#E6F5F0;backdrop-filter:blur(4px);}
+  .chip b{color:#fff;}
+
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:26px 0 8px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;}
+  .toc a{color:var(--ink2);text-decoration:none;border-bottom:1px dashed transparent;}
+  .toc a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+  .toc .n{color:var(--ink3);margin-right:6px;font-variant-numeric:tabular-nums;}
+
+  h2{font-size:24px;margin:56px 0 6px;padding-top:22px;font-weight:700;letter-spacing:-.01em;border-top:3px solid var(--ink);display:inline-block;}
+  h2 + .lede{color:var(--ink3);font-size:14px;margin:0 0 26px;max-width:940px;}
+  h3{font-size:18px;margin:36px 0 12px;font-weight:650;}
+  h4{font-size:15.5px;margin:24px 0 8px;font-weight:650;color:var(--ink2);}
+  p{margin:12px 0;}
+  ul,ol{margin:12px 0;padding-left:22px;}
+  li{margin:6px 0;}
+  code{background:#EEF2F6;padding:1px 6px;border-radius:4px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .muted{color:var(--ink3);}
+  .small{font-size:13.5px;}
+  .quote{border-left:3px solid var(--accent);background:#F2F9F7;padding:9px 14px;font-style:italic;color:var(--ink2);border-radius:0 8px 8px 0;font-size:14.5px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin:22px 0;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -16px rgba(16,24,40,.14);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .kpi .lab{font-size:12px;color:var(--ink3);letter-spacing:.04em;margin-bottom:6px;}
+  .kpi .val{font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.02em;}
+  .kpi .sub{font-size:12.5px;color:var(--ink3);margin-top:5px;}
+  .up{color:var(--ok);} .down{color:var(--bad);} .flat{color:var(--neu);}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.8px;}
+  th{background:#EDF3F1;text-align:left;padding:11px 13px;font-weight:650;color:var(--ink2);border-bottom:2px solid #D6E2DE;white-space:nowrap;}
+  td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FAFCFB;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  tr.hi td{background:#F2F8F6;}
+
+  .b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:650;line-height:1.7;white-space:nowrap;}
+  .b-ok{background:#E4F5EA;color:#0B7A45;}
+  .b-news{background:#E7EEF8;color:#2F5FA8;}
+  .b-analyst{background:#F3E8FB;color:#7A2FA8;}
+  .b-rumor{background:#FEF3D7;color:#9A6C00;}
+  .b-est{background:#EDEFF2;color:#5A6570;}
+
+  .call{border-left:4px solid var(--accent);background:#F1F8F6;border-radius:0 10px 10px 0;padding:16px 20px;margin:20px 0;}
+  .call.warn{border-color:var(--warn);background:#FFF9EA;}
+  .call.bad{border-color:var(--bad);background:#FDF2F1;}
+  .call.ok{border-color:var(--ok);background:#EFFAF3;}
+  .call .t{font-weight:700;margin-bottom:6px;font-size:14.5px;}
+
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px 18px;margin:24px 0;}
+  .fig .ft{font-size:15px;font-weight:700;margin-bottom:4px;}
+  .fig .fs{font-size:12.5px;color:var(--ink3);margin-bottom:18px;}
+  .fig svg,.chart{display:block;width:100%;height:auto;overflow:visible;}
+  .note{font-size:12px;color:var(--ink3);margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:12.5px;color:var(--ink2);}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;}
+  text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+
+  .foot{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);color:var(--ink3);font-size:12.5px;}
+  .disclaimer{background:#FBFCFD;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-top:40px;font-size:12.5px;color:var(--ink3);}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="kicker">Scenario Analysis · 独立研究</div>
+  <h1>2026 美国中期选举：情景推演与股市影响</h1>
+  <p class="sub">选举日是 11 月 3 日。这份报告回答三个问题：可能的结果有哪些、各自概率多少、
+  对市场意味着什么——以及为什么这次选举可能不是当前最重要的变量。</p>
+  <div class="hero-meta">
+    <span class="chip">报告日期 <b>2026-10-17</b></span>
+    <span class="chip">数据截止 <b>2026-10-15 收盘</b></span>
+    <span class="chip">选举日 <b>2026-11-03</b></span>
+    <span class="chip">距今 <b>17 天</b></span>
+    <span class="chip">标普 500 <b>7,744.06</b></span>
+    <span class="chip">全部图表 <b>内嵌 SVG</b></span>
+  </div>
+</div></header>
+
+<div class="wrap">
+<div class="toc"><a href='#s0'><span class='n'>摘要</span>核心判断</a>
+<a href='#s1'><span class='n'>第一章</span>事实基础：选什么、什么时候、现在什么赔率</a>
+<a href='#s2'><span class='n'>第二章</span>市场是在什么状态下走进这场选举的</a>
+<a href='#s3'><span class='n'>第三章</span>历史基准率，以及它为什么现在不可靠</a>
+<a href='#s4'><span class='n'>第四章</span>换个切法：按结果类型分组</a>
+<a href='#s5'><span class='n'>第五章</span>情景推演：四种结果与概率</a>
+<a href='#s6'><span class='n'>第六章</span>预测市场：它知道什么，不知道什么</a>
+<a href='#s7'><span class='n'>第七章</span>传导渠道与板块影响</a>
+<a href='#s8'><span class='n'>第八章</span>选情的基本面：选民在投什么</a>
+<a href='#s9'><span class='n'>第九章</span>比选举更重要的事</a>
+<a href='#s10'><span class='n'>第十章</span>操作含义与政策日历</a>
+<a href='#s11'><span class='n'>第十一章</span>证据分级、已剔除项与已知错误</a></div>
+
+<h2 id="s0">摘要 · 核心判断</h2>
+<p class="lede">一句话结论：这场选举的结果本身大概率已被定价；它真正危险的地方，不是谁赢，
+而是它恰好落在了一个「高估值 + 加息周期 + 油价冲击 + AI 信用紧张」的基本面上。</p>
+
+<div class="card">
+<ol>
+<li><b>时间：2026 年 11 月 3 日（周二），距今 17 天。</b>
+全部 435 个众议院席位、35 个参议院席位（33 个常规 + 佛罗里达、俄亥俄两个补选）、36 个州长，
+以及数千个州议席同时改选。<span class='b b-ok'>已证实</span></li>
+
+<li><b>众议院翻盘几乎已成定局，参议院才是真变量。</b>
+预测市场给民主党拿下众议院的概率约 90%，参议院约 61–65%；模型端分歧更大
+（Decision Desk HQ 参议院 56%，Silver Bulletin 75%）。参议院算术很硬：共和党 53–47 领先，
+民主党需要净赢 4 席。<span class='b b-news'>媒体报道</span></li>
+
+<li><b>「民调不准就看预测市场」这个想法只对一半。</b>
+对众议院不对：市场给 91%，但它的边际定价者读的就是同一批民调，
+民调错它就错得一样。对参议院对：参议院市场在 2026 年 1–10 月移动了 27 个百分点，
+而同期全国普选民调只动了约 1.5 个百分点——那 27 个百分点里装的是战争、
+候选人质量、筹款与州级信息，是民调不直接测量的东西。
+<b>所以用法是：众议院看民调（并记住安全垫只有 3.5 个百分点），参议院看市场。</b>
+另需知道，这个「市场」实际是几十个钱包——前 1% 的账户占了约七成交易量（见第六章）。<span class='b b-est'>估算</span></li>
+
+<li><b>不要用「中期选举后必涨」这条历史规律做交易。</b>
+1950–2022 的 19 次中期选举，选举后 12 个月标普 19/19 为正、均值 +18.2%，看起来无懈可击。
+但把它和相邻周期年份对照后，这个超额优势在最近四个周期（2010/2014/2018/2022）已经变成
+<b>−4.1 个百分点</b>，四次里只有一次跑赢。这条规律主要是 2000 年以前的现象。<span class='b b-est'>估算</span></li>
+
+<li><b>真正有区分度的发现：按「结果类型」分组，本次最可能的分裂国会是历史上最差的一类。</b>
+1990 年以来，参众两院分裂（在野党只拿众议院）的三次——2010、2018、2022——选举后 12 个月
+平均 +8.1%，且平均要经历 −8.5% 的最大回撤，为四类结果中最差。样本只有 3 个，
+只能当机制参考，不能当统计结论。<span class='b b-est'>估算</span></li>
+
+<li><b>整套概率最可能错在哪里：2025 年民调系统性地低估了民主党约 6 个百分点。</b>
+Silver Bulletin 的 2025 年民调评分卡显示，平均偏差方向是 6.1 个百分点、偏向共和党，
+新泽西州长选举的民调误差接近 10 个百分点。如果这个偏差在 2026 年重现，
+当前的 D+8 至 D+9 全国普选民调对应的实际结果会强得多。
+但 2025 年 12 月的田纳西第 7 选区补选与纽约市长选举中，
+民调是<b>高估</b>而非低估民主党——<b>两个方向的误差都是活的，这是本次预测最大的不确定来源。</b><span class='b b-news'>媒体报道</span> <span class='b b-est'>估算</span></li>
+
+<li><b>市场进入选举时并不便宜。</b>
+标普 500 在 10 月 6 日创下 7,818.93 的收盘纪录，10 月 15 日收 7,744.06（YTD +13.1%）。
+但滚动市盈率 25.8 倍、席勒 CAPE 40.8 倍（155 年历史第二高，仅次于 2000 年）、
+<b>股权风险溢价已归零</b>——这是 2002 年以来的第一次。<span class='b b-news'>媒体报道</span></li>
+
+<li><b>选举不是当前的主导变量。</b>
+真正在驱动盘面的是三件事：AI 资本开支的信用压力（CoreWeave 的 CDS 突破 1,000bp）、
+伊朗战争的能源冲击（布伦特约 $105，9 月 CPI 3.7%）、以及沃什接任后美联储转入
+<b>加息周期</b>（9 月 16 日加息 25bp 至 3.75–4.00%，年底前至少再加一次的概率约 93%）。<span class='b b-news'>媒体报道</span></li>
+
+<li><b>因此，各情景的市场影响应当理解为「叠加在脆弱基本面上的扰动」，不是独立驱动力。</b>
+选举能改变的，主要是政策尾部风险与不确定性溢价；它改不了油价、改不了 AI 的资本回报、
+也改不了美联储的双重使命（美联储主席不在选票上）。<span class='b b-est'>估算</span></li>
+
+<li><b>被低估的尾部不在民主党横扫，而在另外两处：</b>
+(a) 共和党守住两院——预测市场只给 8–11%，一旦发生是最大的预期差；
+(b) 结果被质疑或延迟认证——这会推高波动率，而不是决定方向。<span class='b b-est'>估算</span></li>
+
+<li><b>操作含义：不要为选举方向建仓，要为波动率建仓。</b>
+历史上选举后 12 个月平均要吃 −5.6% 的回撤，11/19 次回撤超过 5%。
+在股权风险溢价为零、且选举后紧接着 12 月 11 日拨款截止日的组合下，
+用期权而非现货表达观点，性价比明显更高。<span class='b b-est'>估算</span></li>
+</ol>
+</div>
+
+<div class="call warn">
+<div class="t">阅读这份报告前需要知道的三件事</div>
+<b>第一，数据截止 2026-10-15。</b>标普点位与涨跌幅来自 FRED 原始日线序列（本报告自行计算），
+其余宏观与选情数据来自公开报道，逐条标注来源与证据等级。10 月 16 日盘中有报道称
+美股因 AI 信用问题进一步下跌，但该日收盘数据未能核实，本报告不予采用。<br>
+<b>第二，历史统计全部基于月均序列。</b>本报告使用的 multpl 月度标普序列经交叉验证为
+<b>月平均值</b>而非月末收盘（与 FRED 日线月均偏差仅 0.02%，与月末收盘偏差 1.82%）。
+所有长周期回报因此按「月均价到月均价」计算，与常见的「收盘到收盘」口径会有小幅差异。<br>
+<b>第三，情景概率是本报告基于公开赔率与模型的主观合成</b>，不是任何机构的官方预测，
+已全部标为 <span class='b b-est'>估算</span>。请把它当作一组有内部一致性的假设，而不是事实。
+</div>
+
+
+<h2 id="s1">第一章 · 事实基础：选什么、什么时候、现在什么赔率</h2>
+<p class="lede">在做任何推演之前，先把可核对的事实钉死。本章的全部数字都可以回到原始出处。</p>
+
+<h3>1.1 时间与标的</h3>
+<div class="grid4">
+  <div class="kpi"><div class="lab">选举日</div><div class="val">11 月 3 日</div>
+    <div class="sub">2026 年，周二 · 距今 17 天</div></div>
+  <div class="kpi"><div class="lab">众议院</div><div class="val">435 席</div>
+    <div class="sub">过半需 218 席</div></div>
+  <div class="kpi"><div class="lab">参议院</div><div class="val">35 席</div>
+    <div class="sub">33 常规 + FL/OH 补选</div></div>
+  <div class="kpi"><div class="lab">州长</div><div class="val">36 个</div>
+    <div class="sub">另有数千州议席</div></div>
+</div>
+
+<p><b>参议院的算术是这个周期里最硬的一条约束。</b>共和党目前以 53–47 领先，
+由于 50–50 时副总统 JD·万斯可以投下打破平局的一票，民主党必须<b>净赢 4 席</b>才能真正控制参议院。
+35 个改选席位中有 22 个是共和党持有的——这意味着地图理论上对民主党有利，
+但其中多数位于特朗普在 2024 年以两位数优势拿下的州，这也是为什么各家的参议院预测差异远大于众议院。<span class='b b-news'>媒体报道</span></p>
+
+<h3>1.2 各家预测的差异本身就是信息</h3>
+<p>众议院方面，所有来源高度一致；参议院方面分歧显著。这种分歧结构告诉我们：
+<b>市场对众议院的定价是坚实的，对参议院的定价是脆弱的</b>——而脆弱的那一端，才是可能产生预期差的地方。</p>
+
+
+<div class="fig">
+  <div class="ft">图 1 · 民主党赢得两院的概率：模型与预测市场，2026 年 10 月中旬</div>
+  <div class="fs">众议院 76% 到 98%，参议院 55% 到 75%——
+  两院的分歧都比任何一家机构自称的置信区间大得多</div>
+  <svg class='chart' viewBox='0 0 1120 554' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='250.0' y1='26.0' x2='250.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='250.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>40%</text><line x1='379.0' y1='26.0' x2='379.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='379.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>50%</text><line x1='508.0' y1='26.0' x2='508.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='508.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>60%</text><line x1='637.0' y1='26.0' x2='637.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='637.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>70%</text><line x1='766.0' y1='26.0' x2='766.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='766.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>80%</text><line x1='895.0' y1='26.0' x2='895.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='895.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>90%</text><line x1='1024.0' y1='26.0' x2='1024.0' y2='510.0' stroke='#E8EDEF' stroke-width='1'/><text x='1024.0' y='530.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>100%</text><line x1='250.0' y1='510.0' x2='1024.0' y2='510.0' stroke='#D5DCE1' stroke-width='1.5'/><line x1='379.0' y1='26.0' x2='379.0' y2='510.0' stroke='#9AA6B2' stroke-width='1.2' stroke-dasharray='4 4' opacity='0.8'/><text x='379.0' y='20.0' font-size='11' fill='#9AA6B2' text-anchor='middle' font-weight='650'>五五开</text><text x='236.0' y='52.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · Decision Desk HQ</text><rect x='714.4' y='41.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='714.4' cy='48.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='722.4' y='52.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>76%</text><text x='236.0' y='96.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · Quantus Insights</text><rect x='830.5' y='85.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='830.5' cy='92.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='838.5' y='96.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>85%</text><text x='236.0' y='140.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · Polymarket</text><rect x='907.9' y='129.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='907.9' cy='136.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='915.9' y='140.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>91%</text><text x='236.0' y='184.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · Kalshi</text><rect x='920.8' y='173.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='920.8' cy='180.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='928.8' y='184.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>92%</text><text x='236.0' y='228.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · Silver Bulletin</text><rect x='933.7' y='217.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='933.7' cy='224.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='941.7' y='228.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>93%</text><text x='236.0' y='272.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>众议院 · FiftyPlusOne</text><rect x='998.2' y='261.0' width='0.0' height='14.0' rx='7' fill='#2F6FB8' opacity='0.3'/><circle cx='998.2' cy='268.0' r='6' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><text x='1006.2' y='272.0' font-size='12.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>98%</text><text x='236.0' y='316.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>参议院 · Call the Map</text><rect x='443.5' y='305.0' width='0.0' height='14.0' rx='7' fill='#C0392B' opacity='0.3'/><circle cx='443.5' cy='312.0' r='6' fill='#C0392B' stroke='#fff' stroke-width='2'/><text x='451.5' y='316.0' font-size='12.5' fill='#C0392B' text-anchor='start' font-weight='700'>55%</text><text x='236.0' y='360.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>参议院 · Decision Desk HQ</text><rect x='456.4' y='349.0' width='0.0' height='14.0' rx='7' fill='#C0392B' opacity='0.3'/><circle cx='456.4' cy='356.0' r='6' fill='#C0392B' stroke='#fff' stroke-width='2'/><text x='464.4' y='360.0' font-size='12.5' fill='#C0392B' text-anchor='start' font-weight='700'>56%</text><text x='236.0' y='404.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>参议院 · Kalshi</text><rect x='520.9' y='393.0' width='0.0' height='14.0' rx='7' fill='#C0392B' opacity='0.3'/><circle cx='520.9' cy='400.0' r='6' fill='#C0392B' stroke='#fff' stroke-width='2'/><text x='528.9' y='404.0' font-size='12.5' fill='#C0392B' text-anchor='start' font-weight='700'>61%</text><text x='236.0' y='448.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>参议院 · Polymarket</text><rect x='546.7' y='437.0' width='0.0' height='14.0' rx='7' fill='#C0392B' opacity='0.3'/><circle cx='546.7' cy='444.0' r='6' fill='#C0392B' stroke='#fff' stroke-width='2'/><text x='554.7' y='448.0' font-size='12.5' fill='#C0392B' text-anchor='start' font-weight='700'>63%</text><text x='236.0' y='492.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>参议院 · Silver Bulletin</text><rect x='701.5' y='481.0' width='0.0' height='14.0' rx='7' fill='#C0392B' opacity='0.3'/><circle cx='701.5' cy='488.0' r='6' fill='#C0392B' stroke='#fff' stroke-width='2'/><text x='709.5' y='492.0' font-size='12.5' fill='#C0392B' text-anchor='start' font-weight='700'>75%</text></svg>
+  <div class="legend">
+    <span><i style="background:#2F6FB8"></i>众议院</span>
+    <span><i style="background:#C0392B"></i>参议院</span>
+  </div>
+  <div class="note">来源：Decision Desk HQ、Quantus Insights（2026-10-06/07）、Call the Map、
+  Silver Bulletin FLIPR（2026-10-08）、FiftyPlusOne、Polymarket（2026-10-09/11）、Kalshi（2026-10-09/11）。<span class='b b-news'>媒体报道</span>
+  <b>专家评级机构（Cook、Inside Elections、Sabato）不在图上——它们不发布概率数字，
+  只做逐选区定级，而它们对众议院的判断是「接近五五开」。</b>本报告不给它们编一个百分比，
+  这一点在 6.3 节展开。<span class='b b-est'>估算</span>
+  <br>预测市场成交额合计超过 2.2 亿美元（截至 2026-09-30），是 2024 年整个国会周期
+  （9,240 万美元）的两倍以上。但要注意 ACDC 的同口径警告：
+  <b>Polymarket 上约 68%–70% 的国会交易额来自前 1% 的钱包</b>，
+  因此这些价格未必是干净的共识读数。详见 6.5 节。<span class='b b-news'>媒体报道</span></div>
+</div>
+
+
+<h2 id="s2">第二章 · 市场是在什么状态下走进这场选举的</h2>
+<p class="lede">同一个选举结果，在不同的估值与流动性起点上，市场含义完全不同。所以起点必须先说清楚。</p>
+
+<div class="grid4">
+  <div class="kpi"><div class="lab">标普 500</div><div class="val">7,744</div>
+    <div class="sub">2026-10-15 收盘 · 距 10/6 纪录高点 -0.96%</div></div>
+  <div class="kpi"><div class="lab">2026 年内涨幅</div><div class="val up">+13.1%</div>
+    <div class="sub">自 2025-12-31 的 6,846</div></div>
+  <div class="kpi"><div class="lab">滚动市盈率</div><div class="val">25.8×</div>
+    <div class="sub">远期 12 个月约 19.1×</div></div>
+  <div class="kpi"><div class="lab">席勒 CAPE</div><div class="val down">40.8</div>
+    <div class="sub">155 年第二高，仅次于 2000 年</div></div>
+</div>
+
+<div class="grid4" style="margin-top:14px">
+  <div class="kpi"><div class="lab">联邦基金利率</div><div class="val">3.75–4.00%</div>
+    <div class="sub">9/16 加息 25bp，12–0 全票</div></div>
+  <div class="kpi"><div class="lab">10 年期美债</div><div class="val">~5.1%</div>
+    <div class="sub">10/5 触及 5.31%，2002 年来最高</div></div>
+  <div class="kpi"><div class="lab">股权风险溢价</div><div class="val down">≈ 0</div>
+    <div class="sub">2002 年以来首次归零</div></div>
+  <div class="kpi"><div class="lab">布伦特原油</div><div class="val">~$105</div>
+    <div class="sub">9 月中曾达 $131</div></div>
+</div>
+
+<div class="call bad">
+<div class="t">最重要的一点：这次选举不是 2018 年的重演</div>
+2018 年中期选举时，市场刚从第四季度急跌中走出，估值被压缩，美联储还在加息路径的末端。
+2026 年的起点完全不同：<b>标普在选举前一个月刚创下历史新高，而股权风险溢价恰好归零</b>——
+这意味着股票相对债券没有任何估值补偿。历史上这个指标上一次归零是 2002 年。
+在一个没有风险补偿的起点上，任何一类尾部风险的定价都不充分。<span class='b b-news'>媒体报道</span>
+</div>
+
+<h3>2.1 当前真正在驱动盘面的，不是选举</h3>
+<p>美国银行 10 月全球基金经理调查（10 月 2–8 日执行，10 月 13 日发布，样本约 161–185 位经理、
+管理规模约 4,500–5,120 亿美元）给出的尾部风险排序，可以作为市场注意力的直接读数：<span class='b b-analyst'>机构观点</span></p>
+
+<div class="card">
+<table>
+<thead><tr><th>排序</th><th>尾部风险</th><th class="num">受访占比</th><th>与本次选举的关系</th></tr></thead>
+<tbody>
+<tr class="hi"><td>1</td><td>债券收益率无序上行</td><td class="num">约 31%</td>
+  <td>选举只能间接影响（财政赤字路径）</td></tr>
+<tr><td>2</td><td>AI 泡沫破裂</td><td class="num">约 23%</td><td><b>与选举无关</b></td></tr>
+<tr><td>3</td><td>通胀重燃</td><td class="num">约 20%</td><td>主要来自伊朗战争能源冲击</td></tr>
+<tr><td>4</td><td>超大规模云厂商引发信用事件</td><td class="num">约 11%</td><td><b>与选举无关</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>值得注意的是，调查中基金经理表示<b>在 10 年期收益率达到约 5.9% 之前不会从股票轮换到债券</b>——
+而当前是 5.1%。最拥挤的交易是做多全球半导体（45%）和做空美债（27%）；
+科技板块净超配 +37%，为 2020 年 8 月以来最高；可选消费净低配 −34%，为 2008 年 7 月以来最悲观。<span class='b b-analyst'>机构观点</span></p>
+
+<div class="call">
+<div class="t">这对选举推演意味着什么</div>
+拥挤的科技多头 + 极度悲观的消费空头 + 归零的风险溢价，共同构成一个特征：
+<b>市场对「坏消息」的敏感度高于对「好消息」的敏感度</b>。
+在这种结构下，同一份选举结果，负面解读的传导速度会快于正面解读。
+本报告第七章的情景影响评估已经内生地反映了这一非对称性。
+</div>
+
+
+<h2 id="s3">第三章 · 历史基准率，以及它为什么现在不可靠</h2>
+<p class="lede">关于中期选举与股市，流传最广的一句话是「选举后一年必涨」。这句话有数据支撑，
+但支撑它的数据主要来自 2000 年以前。本章把这条规律拆开检验。</p>
+
+<h3>3.1 原始规律：看起来无懈可击</h3>
+<p>以选举年 10 月到次年 10 月为窗口，1950–2022 年的 19 次中期选举中，
+标普 500 的 12 个月回报<b>全部为正</b>，均值 +18.2%，中位数 +18.0%，最低 +3.0%。<span class='b b-est'>估算</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 2 · 中期选举后 12 个月标普 500 回报（1950–2022，共 19 次）</div>
+  <div class="fs">窗口为选举年 10 月月均 → 次年 10 月月均。19 次全部为正，均值 +18.2%，最差 +3.0%</div>
+  <svg class='chart' viewBox='0 0 1120 430' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='64.0' y1='372.0' x2='1094.0' y2='372.0' stroke='#E8EDEF' stroke-width='1'/><text x='54.0' y='376.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>0%</text><line x1='64.0' y1='284.0' x2='1094.0' y2='284.0' stroke='#E8EDEF' stroke-width='1'/><text x='54.0' y='288.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>10%</text><line x1='64.0' y1='196.0' x2='1094.0' y2='196.0' stroke='#E8EDEF' stroke-width='1'/><text x='54.0' y='200.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>20%</text><line x1='64.0' y1='108.0' x2='1094.0' y2='108.0' stroke='#E8EDEF' stroke-width='1'/><text x='54.0' y='112.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>30%</text><line x1='64.0' y1='20.0' x2='1094.0' y2='20.0' stroke='#E8EDEF' stroke-width='1'/><text x='54.0' y='24.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>40%</text><line x1='64.0' y1='372.0' x2='1094.0' y2='372.0' stroke='#D5DCE1' stroke-width='1.5'/><rect x='74.3' y='217.4' width='33.6' height='154.6' rx='4' fill='#0A9960' opacity='0.9'/><text x='91.1' y='210.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+17.6</text><text x='91.1' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 91.1 392.0)'>1950</text><rect x='128.5' y='100.5' width='33.6' height='271.5' rx='4' fill='#0A9960' opacity='0.9'/><text x='145.3' y='93.5' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+30.9</text><text x='145.3' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1954</text><rect x='182.7' y='267.5' width='33.6' height='104.5' rx='4' fill='#0A9960' opacity='0.9'/><text x='199.5' y='260.5' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+11.9</text><text x='199.5' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 199.5 392.0)'>1958</text><rect x='236.9' y='107.9' width='33.6' height='264.1' rx='4' fill='#0A9960' opacity='0.9'/><text x='253.7' y='100.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+30.0</text><text x='253.7' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1962</text><rect x='291.1' y='160.6' width='33.6' height='211.4' rx='4' fill='#0A9960' opacity='0.9'/><text x='307.9' y='153.6' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+24.0</text><text x='307.9' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 307.9 392.0)'>1966</text><rect x='345.4' y='237.2' width='33.6' height='134.8' rx='4' fill='#0A9960' opacity='0.9'/><text x='362.2' y='230.2' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+15.3</text><text x='362.2' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1970</text><rect x='399.6' y='129.6' width='33.6' height='242.4' rx='4' fill='#0A9960' opacity='0.9'/><text x='416.4' y='122.6' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+27.5</text><text x='416.4' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 416.4 392.0)'>1974</text><rect x='453.8' y='337.9' width='33.6' height='34.1' rx='4' fill='#0A9960' opacity='0.9'/><text x='470.6' y='330.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+3.9</text><text x='470.6' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1978</text><rect x='508.0' y='139.9' width='33.6' height='232.1' rx='4' fill='#0A9960' opacity='0.9'/><text x='524.8' y='132.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+26.4</text><text x='524.8' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 524.8 392.0)'>1982</text><rect x='562.2' y='213.3' width='33.6' height='158.7' rx='4' fill='#0A9960' opacity='0.9'/><text x='579.0' y='206.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+18.0</text><text x='579.0' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1986</text><rect x='616.4' y='143.5' width='33.6' height='228.5' rx='4' fill='#0A9960' opacity='0.9'/><text x='633.2' y='136.5' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+26.0</text><text x='633.2' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 633.2 392.0)'>1990</text><rect x='670.6' y='146.0' width='33.6' height='226.0' rx='4' fill='#0A9960' opacity='0.9'/><text x='687.4' y='139.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+25.7</text><text x='687.4' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1994</text><rect x='724.8' y='144.0' width='33.6' height='228.0' rx='4' fill='#0A9960' opacity='0.9'/><text x='741.6' y='137.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+25.9</text><text x='741.6' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 741.6 392.0)'>1998</text><rect x='779.0' y='182.4' width='33.6' height='189.6' rx='4' fill='#0A9960' opacity='0.9'/><text x='795.8' y='175.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+21.5</text><text x='795.8' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2002</text><rect x='833.2' y='258.2' width='33.6' height='113.8' rx='4' fill='#0A9960' opacity='0.9'/><text x='850.1' y='251.2' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+12.9</text><text x='850.1' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 850.1 392.0)'>2006</text><rect x='887.5' y='345.2' width='33.6' height='26.8' rx='4' fill='#0A9960' opacity='0.9'/><text x='904.3' y='338.2' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+3.0</text><text x='904.3' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2010</text><rect x='941.7' y='332.2' width='33.6' height='39.8' rx='4' fill='#0A9960' opacity='0.9'/><text x='958.5' y='325.2' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+4.5</text><text x='958.5' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 958.5 392.0)'>2014</text><rect x='995.9' y='311.3' width='33.6' height='60.7' rx='4' fill='#0A9960' opacity='0.9'/><text x='1012.7' y='304.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+6.9</text><text x='1012.7' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2018</text><rect x='1050.1' y='246.1' width='33.6' height='125.9' rx='4' fill='#0A9960' opacity='0.9'/><text x='1066.9' y='239.1' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>+14.3</text><text x='1066.9' y='392.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 1066.9 392.0)'>2022</text><line x1='64.0' y1='211.6' x2='1094.0' y2='211.6' stroke='#2F6FB8' stroke-width='1.6' stroke-dasharray='6 4' opacity='0.85'/><text x='1094.0' y='203.6' font-size='11.5' fill='#2F6FB8' text-anchor='end' font-weight='650'>19 次平均 +18.2%</text></svg>
+  <div class="note">数据来源：multpl 标普 500 月度序列（经交叉验证为<b>月平均值</b>），本报告计算。<span class='b b-est'>估算</span>
+  这张图是「中期选举后必涨」这一说法的原始证据。下一张图说明它为什么不能直接用。</div>
+</div>
+
+
+<div class="fig">
+  <div class="ft">图 3 · 中期选举年的「超额回报」：扣掉相邻周期年份之后</div>
+  <div class="fs">纵轴 = 中期选举年 12 个月回报 − 相邻两个周期年份 12 个月回报的均值，单位为百分点。每一个点是一个选举周期</div>
+  <svg class='chart' viewBox='0 0 1120 254' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='201.7' y1='22.0' x2='201.7' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='201.7' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>−30%</text><line x1='297.0' y1='22.0' x2='297.0' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='297.0' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>−20%</text><line x1='392.4' y1='22.0' x2='392.4' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='392.4' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>−10%</text><line x1='487.7' y1='22.0' x2='487.7' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='487.7' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>0%</text><line x1='583.0' y1='22.0' x2='583.0' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='583.0' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>10%</text><line x1='678.3' y1='22.0' x2='678.3' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='678.3' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>20%</text><line x1='773.6' y1='22.0' x2='773.6' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='773.6' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>30%</text><line x1='869.0' y1='22.0' x2='869.0' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='869.0' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>40%</text><line x1='964.3' y1='22.0' x2='964.3' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='964.3' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>50%</text><line x1='487.7' y1='22.0' x2='487.7' y2='208.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='182.0' y='57.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>1950–1986</text><text x='182.0' y='73.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=10 · 9/10 跑赢邻年</text><rect x='372.5' y='50.0' width='481.2' height='6.0' rx='3' fill='#0A9960' opacity='0.16'/><line x1='622.0' y1='42.0' x2='622.0' y2='64.0' stroke='#0A9960' stroke-width='2.6'/><circle cx='517.4' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='571.8' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='516.0' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='779.6' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='750.5' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='629.0' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='853.7' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='372.5' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='696.0' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='533.2' cy='53.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='865.7' y='57.0' font-size='11.5' fill='#0A9960' text-anchor='start' font-weight='700'>均值 +14.1%</text><text x='182.0' y='119.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>1990–2006</text><text x='182.0' y='135.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=5 · 5/5 跑赢邻年</text><rect x='635.6' y='112.0' width='123.3' height='6.0' rx='3' fill='#0A9960' opacity='0.16'/><line x1='706.0' y1='104.0' x2='706.0' y2='126.0' stroke='#0A9960' stroke-width='2.6'/><circle cx='758.9' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='635.6' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='660.9' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='755.3' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='719.1' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='770.9' y='119.0' font-size='11.5' fill='#0A9960' text-anchor='start' font-weight='700'>均值 +22.9%</text><text x='182.0' y='181.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>2010–2022</text><text x='182.0' y='197.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=4 · 1/4 跑赢邻年</text><rect x='379.2' y='174.0' width='151.7' height='6.0' rx='3' fill='#C0392B' opacity='0.16'/><line x1='448.3' y1='166.0' x2='448.3' y2='188.0' stroke='#C0392B' stroke-width='2.6'/><circle cx='379.2' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='442.7' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='440.3' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='530.9' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='542.9' y='181.0' font-size='11.5' fill='#C0392B' text-anchor='start' font-weight='700'>均值 -4.1%</text></svg>
+  <div class="legend">
+    <span><i style="background:#0A9960"></i>均值跑赢相邻年份</span>
+    <span><i style="background:#C0392B"></i>均值跑输相邻年份</span>
+  </div>
+  <div class="note">方法与含义：股票长期是上涨的，所以「选举后一年上涨」本身不构成任何证据。
+  必须扣掉同期其他年份的涨幅。扣完之后：1950–1986 年平均超额 +14.1pp（10 次中 9 次跑赢），
+  1990–2006 年 +22.9pp（5 次全部跑赢），而 <b>2010–2022 年变成 −4.1pp（4 次中只有 1 次跑赢）</b>。<span class='b b-est'>估算</span>
+  <br>结论：这条规律在最近四个周期已经失效。它可能是被数据挖掘出来的历史巧合，
+  也可能曾经真实存在但已被市场学习套利掉。无论哪种解释，都不应该拿它作为 2026 年的交易依据。</div>
+</div>
+
+
+<div class="fig">
+  <div class="ft">图 4 · 2026 年与最近两次中期选举年的路径对比（归一化，1 月首个交易日 = 100）</div>
+  <div class="fs">进入选举日当天的累计涨幅：2026 年 +12.9%、2018 年 +2.2%、2022 年 -20.2%。这是完全不同的一种起点</div>
+  <svg class='chart' viewBox='0 0 1120 400' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='74.0' y1='354.0' x2='1090.0' y2='354.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='358.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>0</text><line x1='74.0' y1='243.3' x2='1090.0' y2='243.3' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='247.3' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>50</text><line x1='74.0' y1='132.7' x2='1090.0' y2='132.7' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='136.7' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>100</text><line x1='74.0' y1='22.0' x2='1090.0' y2='22.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='26.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>150</text><line x1='74.0' y1='354.0' x2='1090.0' y2='354.0' stroke='#D5DCE1' stroke-width='1.5'/><line x1='88.5' y1='354.0' x2='88.5' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='88.5' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2018</text><line x1='200.7' y1='354.0' x2='200.7' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='200.7' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2019</text><line x1='313.0' y1='354.0' x2='313.0' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='313.0' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2020</text><line x1='425.5' y1='354.0' x2='425.5' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='425.5' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2021</text><line x1='537.7' y1='354.0' x2='537.7' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='537.7' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2022</text><line x1='650.0' y1='354.0' x2='650.0' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='650.0' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2023</text><line x1='762.2' y1='354.0' x2='762.2' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='762.2' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2024</text><line x1='874.7' y1='354.0' x2='874.7' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='874.7' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2025</text><line x1='987.0' y1='354.0' x2='987.0' y2='359.0' stroke='#C3CCD3' stroke-width='1'/><text x='987.0' y='373.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2026</text><text x='18.0' y='12.0' font-size='11.5' fill='#8B95A3' text-anchor='start' font-weight='400'>指数（各年首个交易日 = 100）</text><line x1='1081.0' y1='22.0' x2='1081.0' y2='354.0' stroke='#3A4750' stroke-width='1.4' stroke-dasharray='4 4' opacity='0.75'/><text x='1085.0' y='34.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='650'>选举日</text><path d='M 987.3 132.7 L 988.2 131.3 L 988.5 129.9 L 988.8 130.7 L 989.1 130.6 L 989.4 129.2 L 990.3 128.8 L 990.6 129.3 L 991.0 130.5 L 991.3 129.9 L 991.6 130.0 L 992.8 134.7 L 993.1 132.1 L 993.4 130.9 L 993.7 130.8 L 994.6 129.7 L 995.0 128.8 L 995.3 128.8 L 995.6 129.1 L 995.9 130.1 L 996.8 128.9 L 997.1 130.8 L 997.4 131.9 L 997.7 134.6 L 998.0 130.3 L 998.9 129.2 L 999.3 130.0 L 999.6 130.0 L 999.9 133.5 L 1000.2 133.4 L 1001.4 133.2 L 1001.7 131.9 L 1002.0 132.6 L 1002.3 131.0 L 1003.3 133.3 L 1003.6 131.6 L 1003.9 129.8 L 1004.2 131.0 L 1004.5 132.0 L 1005.4 131.9 L 1005.7 134.0 L 1006.0 132.3 L 1006.3 133.6 L 1006.6 136.5 L 1007.6 134.7 L 1007.9 135.2 L 1008.2 135.3 L 1008.5 138.7 L 1008.8 140.0 L 1009.7 137.8 L 1010.0 137.3 L 1010.3 140.2 L 1010.6 140.8 L 1010.9 144.0 L 1011.9 141.6 L 1012.2 142.4 L 1012.5 141.3 L 1012.8 145.0 L 1013.1 148.5 L 1014.0 149.3 L 1014.3 143.3 L 1014.6 141.8 L 1014.9 141.6 L 1016.2 140.6 L 1016.5 140.5 L 1016.8 135.1 L 1017.1 133.8 L 1017.4 134.0 L 1018.3 131.8 L 1018.6 129.2 L 1018.9 127.4 L 1019.2 126.8 L 1019.5 124.0 L 1020.5 124.6 L 1020.8 126.0 L 1021.1 123.6 L 1021.4 124.6 L 1021.7 122.8 L 1022.6 122.5 L 1022.9 123.6 L 1023.2 123.7 L 1023.5 121.4 L 1023.9 120.7 L 1024.8 121.6 L 1025.1 119.7 L 1025.4 116.3 L 1025.7 117.2 L 1026.0 115.2 L 1026.9 114.8 L 1027.2 115.2 L 1027.5 113.8 L 1027.9 111.9 L 1028.2 114.9 L 1029.1 115.1 L 1029.4 116.7 L 1029.7 114.1 L 1030.0 113.7 L 1030.3 112.8 L 1031.5 111.3 L 1031.8 111.3 L 1032.2 109.9 L 1032.5 109.4 L 1033.4 108.7 L 1033.7 108.4 L 1034.0 110.2 L 1034.3 109.2 L 1034.6 115.7 L 1035.5 115.0 L 1035.8 115.6 L 1036.2 119.5 L 1036.5 115.4 L 1036.8 114.2 L 1037.7 110.2 L 1038.0 111.6 L 1038.3 114.5 L 1038.6 111.9 L 1039.8 112.8 L 1040.2 116.3 L 1040.5 116.5 L 1040.8 116.6 L 1041.1 116.7 L 1042.0 113.9 L 1042.3 112.0 L 1042.6 112.5 L 1042.9 112.5 L 1044.1 110.8 L 1044.5 111.8 L 1044.8 112.5 L 1045.1 110.6 L 1045.4 109.5 L 1046.3 111.5 L 1046.6 110.6 L 1046.9 109.6 L 1047.2 110.9 L 1047.5 113.3 L 1048.5 113.8 L 1048.8 111.7 L 1049.1 112.0 L 1049.4 114.9 L 1049.7 114.8 L 1050.6 114.8 L 1050.9 114.3 L 1051.2 117.9 L 1051.5 114.0 L 1051.8 112.3 L 1052.8 108.7 L 1053.1 104.3 L 1053.4 104.7 L 1053.7 105.2 L 1054.0 103.6 L 1054.9 103.8 L 1055.2 104.6 L 1055.5 103.9 L 1055.8 102.3 L 1056.1 102.7 L 1057.1 104.1 L 1057.4 105.8 L 1057.7 105.3 L 1058.0 107.4 L 1058.3 106.3 L 1059.2 107.0 L 1059.5 106.2 L 1059.8 106.3 L 1060.1 104.5 L 1060.4 105.1 L 1061.4 106.0 L 1061.7 107.7 L 1062.0 106.6 L 1062.3 104.0 L 1062.6 104.9 L 1063.8 106.4 L 1064.1 107.6 L 1064.4 109.0 L 1064.7 106.9 L 1065.7 108.1 L 1066.0 109.2 L 1066.3 110.3 L 1066.6 107.5 L 1066.9 107.1 L 1067.8 103.4 L 1068.1 103.4 L 1068.4 105.3 L 1068.7 105.4 L 1069.1 104.1 L 1070.0 106.0 L 1070.3 106.4 L 1070.6 107.1 L 1070.9 106.6 L 1071.2 104.8 L 1072.1 103.1 L 1072.4 101.7 L 1072.7 102.2 L 1073.1 103.4 L 1073.4 101.9 L 1074.3 102.0 L 1074.6 102.1 L 1074.9 104.9 L 1075.2 104.1' fill='none' stroke='#0A9960' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1075.2' cy='104.1' r='4.5' fill='#fff' stroke='#0A9960' stroke-width='2.6'/><text x='1083.2' y='96.1' font-size='12' fill='#0A9960' text-anchor='end' font-weight='700'>113</text><path d='M 88.8 132.7 L 89.1 131.3 L 89.4 130.4 L 89.7 128.8 L 90.6 128.4 L 90.9 128.1 L 91.3 128.4 L 91.6 126.8 L 91.9 125.2 L 93.1 126.0 L 93.4 123.9 L 93.7 124.3 L 94.0 123.3 L 94.9 121.4 L 95.3 120.9 L 95.6 121.0 L 95.9 120.9 L 96.2 118.1 L 97.1 119.7 L 97.4 122.3 L 97.7 122.2 L 98.0 122.3 L 98.3 127.2 L 99.3 136.5 L 99.6 132.7 L 99.9 133.8 L 100.2 142.1 L 100.5 138.9 L 101.4 135.9 L 101.7 135.4 L 102.0 132.4 L 102.3 129.8 L 102.6 129.7 L 103.9 131.0 L 104.2 132.2 L 104.5 132.0 L 104.8 128.4 L 105.7 125.8 L 106.0 128.7 L 106.3 131.2 L 106.6 134.2 L 106.9 133.0 L 107.9 130.6 L 108.2 130.0 L 108.5 130.1 L 108.8 129.1 L 109.1 125.2 L 110.0 125.5 L 110.3 127.0 L 110.6 128.3 L 110.9 128.4 L 111.2 128.1 L 112.2 131.3 L 112.5 130.9 L 112.8 131.3 L 113.1 136.9 L 113.4 141.5 L 114.3 135.7 L 114.6 139.5 L 114.9 140.1 L 115.2 137.2 L 116.5 142.0 L 116.8 139.3 L 117.1 136.9 L 117.4 135.4 L 117.7 140.2 L 118.6 139.5 L 118.9 135.9 L 119.2 137.1 L 119.5 135.3 L 119.9 135.9 L 120.8 134.1 L 121.1 131.8 L 121.4 131.6 L 121.7 132.9 L 122.0 134.8 L 122.9 134.8 L 123.2 137.7 L 123.5 137.3 L 123.8 135.0 L 124.2 134.8 L 125.1 136.6 L 125.4 136.0 L 125.7 137.6 L 126.0 138.1 L 126.3 135.3 L 127.2 134.6 L 127.5 134.6 L 127.8 132.5 L 128.2 130.4 L 128.5 130.0 L 129.4 129.8 L 129.7 131.4 L 130.0 130.5 L 130.3 130.7 L 130.6 131.3 L 131.5 129.6 L 131.8 130.3 L 132.2 129.6 L 132.5 130.0 L 132.8 130.6 L 134.0 133.2 L 134.3 130.4 L 134.6 131.9 L 134.9 129.5 L 135.8 128.5 L 136.1 128.3 L 136.5 126.4 L 136.8 126.5 L 137.1 125.8 L 138.0 125.6 L 138.3 125.2 L 138.6 126.1 L 138.9 125.6 L 139.2 125.8 L 140.1 126.3 L 140.5 127.2 L 140.8 126.8 L 141.1 128.2 L 141.4 127.8 L 142.3 130.9 L 142.6 130.4 L 142.9 132.4 L 143.2 131.0 L 143.5 130.8 L 144.5 130.1 L 144.8 131.2 L 145.4 129.3 L 145.7 127.4 L 146.6 125.4 L 146.9 124.6 L 147.2 126.2 L 147.5 124.3 L 147.8 124.0 L 148.8 124.2 L 149.1 123.3 L 149.4 122.8 L 149.7 123.7 L 150.0 124.0 L 150.9 123.5 L 151.2 122.4 L 151.5 120.3 L 151.8 121.0 L 152.1 122.6 L 153.1 123.9 L 153.4 122.8 L 153.7 123.0 L 154.0 121.9 L 154.3 120.8 L 155.2 120.0 L 155.5 119.3 L 155.8 119.4 L 156.1 119.7 L 156.4 121.4 L 157.4 122.3 L 157.7 120.8 L 158.0 122.6 L 158.3 120.8 L 158.6 120.0 L 159.5 119.4 L 159.8 118.9 L 160.1 119.0 L 160.4 119.4 L 160.7 118.0 L 161.7 116.2 L 162.0 116.1 L 162.3 114.7 L 162.6 115.8 L 162.9 115.8 L 164.1 116.2 L 164.4 116.8 L 164.7 117.7 L 165.1 118.2 L 166.0 117.8 L 166.3 116.9 L 166.6 116.8 L 166.9 115.6 L 167.2 115.5 L 168.1 116.8 L 168.4 115.5 L 168.7 115.2 L 169.0 113.4 L 169.4 113.5 L 170.3 114.3 L 170.6 114.6 L 170.9 115.4 L 171.2 114.8 L 171.5 114.8 L 172.4 113.9 L 172.7 114.0 L 173.0 113.8 L 173.4 115.8 L 173.7 117.1 L 174.6 117.2 L 174.9 117.5 L 175.2 125.3 L 175.5 130.0 L 175.8 126.8 L 176.7 128.2 L 177.0 123.3 L 177.4 123.4 L 177.7 126.7 L 178.0 126.8 L 178.9 127.7 L 179.2 129.0 L 179.5 135.9 L 179.8 131.9 L 180.1 135.7 L 181.0 137.1 L 181.3 133.7 L 181.7 131.4 L 182.0 129.0 L 182.3 130.4 L 183.2 129.2 L 183.5 127.8' fill='none' stroke='#9AA6B2' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='183.5' cy='127.8' r='4.5' fill='#fff' stroke='#9AA6B2' stroke-width='2.6'/><text x='191.5' y='119.8' font-size='12' fill='#9AA6B2' text-anchor='start' font-weight='700'>102</text><path d='M 538.3 132.7 L 538.6 132.8 L 539.0 137.1 L 539.3 137.3 L 539.6 138.2 L 540.5 138.5 L 540.8 136.5 L 541.1 135.9 L 541.4 139.0 L 541.7 138.8 L 542.9 142.8 L 543.3 144.8 L 543.6 147.1 L 543.9 151.1 L 544.8 150.5 L 545.1 153.0 L 545.4 153.3 L 545.7 154.4 L 546.0 149.5 L 546.9 145.6 L 547.3 144.2 L 547.6 142.2 L 547.9 147.4 L 548.2 146.3 L 549.1 147.1 L 549.4 145.4 L 549.7 142.3 L 550.0 146.2 L 550.3 150.1 L 551.3 150.9 L 551.6 147.7 L 551.9 147.5 L 552.2 151.9 L 552.5 153.3 L 553.7 155.4 L 554.0 159.0 L 554.3 156.1 L 554.6 151.7 L 555.6 152.2 L 555.9 155.3 L 556.2 151.6 L 556.5 152.7 L 556.8 154.2 L 557.7 160.1 L 558.0 161.5 L 558.3 156.6 L 558.6 157.4 L 558.9 160.0 L 559.9 161.4 L 560.2 157.3 L 560.5 152.9 L 560.8 150.4 L 561.1 148.1 L 562.0 148.1 L 562.3 145.8 L 562.6 148.4 L 562.9 145.4 L 563.2 144.4 L 564.2 142.9 L 564.5 140.3 L 564.8 141.6 L 565.1 144.9 L 565.4 144.2 L 566.3 142.5 L 566.6 145.2 L 566.9 147.2 L 567.2 146.3 L 567.5 146.9 L 568.5 150.4 L 568.8 151.1 L 569.1 148.8 L 569.4 151.3 L 570.6 151.3 L 570.9 148.1 L 571.2 148.2 L 571.5 151.3 L 571.9 156.9 L 572.8 155.8 L 573.1 161.3 L 573.4 160.9 L 573.7 156.2 L 574.0 163.3 L 574.9 162.3 L 575.2 161.3 L 575.5 155.6 L 575.9 162.6 L 576.2 163.7 L 577.1 169.8 L 577.4 169.4 L 577.7 172.4 L 578.0 172.7 L 578.3 168.3 L 579.2 169.1 L 579.5 165.3 L 579.8 172.9 L 580.2 174.0 L 580.5 174.0 L 581.4 170.6 L 581.7 172.1 L 582.0 170.4 L 582.3 166.8 L 582.6 162.1 L 583.8 163.3 L 584.2 164.8 L 584.5 161.3 L 584.8 164.4 L 585.7 163.8 L 586.0 162.0 L 586.3 164.1 L 586.6 168.6 L 586.9 174.0 L 587.8 181.0 L 588.1 181.6 L 588.5 179.1 L 588.8 184.8 L 589.1 184.4 L 590.3 180.3 L 590.6 180.5 L 590.9 178.9 L 591.2 173.5 L 592.1 174.0 L 592.5 177.7 L 592.8 177.8 L 593.1 179.3 L 593.4 177.5 L 594.6 177.2 L 594.9 176.6 L 595.2 173.9 L 595.5 174.1 L 596.5 176.1 L 596.8 177.8 L 597.1 178.6 L 597.4 179.1 L 597.7 175.7 L 598.6 177.2 L 598.9 172.3 L 599.2 171.3 L 599.5 169.5 L 599.8 171.2 L 600.8 171.0 L 601.1 173.1 L 601.4 168.3 L 601.7 166.1 L 602.0 163.4 L 602.9 163.9 L 603.2 165.2 L 603.5 162.3 L 603.8 162.4 L 604.1 162.7 L 605.1 163.0 L 605.4 163.8 L 605.7 159.7 L 606.0 159.9 L 606.3 156.5 L 607.2 155.7 L 607.5 155.3 L 607.8 156.8 L 608.1 156.3 L 608.4 158.9 L 609.4 163.1 L 609.7 163.5 L 610.0 162.9 L 610.3 160.2 L 610.6 166.8 L 611.5 168.0 L 611.8 170.1 L 612.1 171.5 L 612.4 171.0 L 612.7 172.9 L 614.0 173.7 L 614.3 170.4 L 614.6 169.1 L 614.9 166.3 L 615.8 164.3 L 616.1 172.5 L 616.4 171.9 L 616.7 174.0 L 617.1 175.3 L 618.0 174.0 L 618.3 176.1 L 618.6 179.1 L 618.9 180.6 L 619.2 183.6 L 620.1 185.3 L 620.4 185.7 L 620.7 182.4 L 621.1 186.0 L 621.4 188.5 L 622.3 184.3 L 622.6 179.1 L 622.9 179.4 L 623.2 181.2 L 623.5 186.1 L 624.4 187.3 L 624.7 188.4 L 625.0 188.9 L 625.4 184.7 L 625.7 188.7 L 626.6 184.3 L 626.9 182.3 L 627.2 183.5 L 627.5 184.8 L 627.8 180.8 L 628.7 178.8 L 629.0 175.9 L 629.4 177.2 L 629.7 178.3 L 630.0 174.0 L 630.9 175.3 L 631.2 176.1 L 631.5 180.5 L 631.8 182.3 L 632.1 180.0 L 633.0 178.3 L 633.3 177.4' fill='none' stroke='#2F6FB8' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='633.3' cy='177.4' r='4.5' fill='#fff' stroke='#2F6FB8' stroke-width='2.6'/><text x='641.3' y='169.4' font-size='12' fill='#2F6FB8' text-anchor='start' font-weight='700'>80</text></svg>
+  <div class="legend">
+    <span><i style="background:#0A9960"></i>2026 年</span>
+    <span><i style="background:#9AA6B2"></i>2018 年</span>
+    <span><i style="background:#2F6FB8"></i>2022 年</span>
+  </div>
+  <div class="note">数据来源：FRED SP500 日线，本报告归一化计算。<span class='b b-est'>估算</span>
+  三条曲线都在<b>各自的选举日截止</b>（2018-11-06、2022-11-08、2026-11-03）；
+  2026 年的数据实际只到 10 月 15 日，距其选举日还有 17 天——
+  绿线右端到虚线之间空出的这一段<b>就是尚未走完的路</b>，本报告不对它做任何外推。
+  <br>读法：2018 与 2022 两个中期选举年，市场都是在年内先跌、带着亏损进入 11 月；
+  2026 年则是带着可观盈利、且在选举前一个月刚创历史新高进入。所以
+  「历史上中期选举后一年都涨」这句统计描述，其样本中的绝大部分起点是<b>跌下来的市场</b>，
+  而 2026 的起点是<b>涨上去的市场</b>。这一点在做类比时必须显式扣掉。</div>
+</div>
+
+
+<h2 id="s4">第四章 · 换个切法：按「结果类型」而不是「年份」分组</h2>
+<p class="lede">与其问「中期选举后会不会涨」，不如问一个更有用的问题：
+<b>不同类型的选举结果，对应什么样的市场结果？</b>本章是这份报告里原创性最高、但样本也最小的一部分。</p>
+
+<h3>4.1 把 1990 年以来的九次中期选举按结果归类</h3>
+<p>1990 年以来只有九次中期选举，把它们按执政党与在野党的席位得失分成四类，
+其中三类各自只有 1–3 个样本。这意味着<b>下面任何一个数字都不具备统计显著性</b>，
+它的价值在于提示机制，不在于给出预期值。<span class='b b-est'>估算</span></p>
+
+<div class="card">
+<table>
+<thead><tr><th>年份</th><th>执政党</th><th>结果类型</th><th class="num">选举后 12 个月</th><th class="num">期间最大回撤</th></tr></thead>
+<tbody>
+<tr><td>1990</td><td>R</td><td>维持现状，执政党保住两院</td><td class="num up">+26.0%</td><td class="num">−1.0%</td></tr>
+<tr class="hi"><td>1994</td><td>D</td><td>在野党拿下两院</td><td class="num up">+25.7%</td><td class="num">−1.9%</td></tr>
+<tr><td>1998</td><td>D</td><td>未翻盘（执政党还小赢）</td><td class="num up">+25.9%</td><td class="num">−5.9%</td></tr>
+<tr class="hi"><td>2002</td><td>R</td><td>未翻盘（执政党还小赢）</td><td class="num up">+21.5%</td><td class="num">−8.0%</td></tr>
+<tr><td>2006</td><td>R</td><td>在野党拿下两院</td><td class="num up">+12.9%</td><td class="num">−4.3%</td></tr>
+<tr><td>2010</td><td>D</td><td><b>分裂：在野党只拿众议院</b></td><td class="num up">+3.0%</td><td class="num down">−12.3%</td></tr>
+<tr><td>2014</td><td>D</td><td>在野党拿下两院</td><td class="num up">+4.5%</td><td class="num">−7.9%</td></tr>
+<tr class="hi"><td>2018</td><td>R</td><td><b>分裂：在野党只拿众议院</b></td><td class="num up">+6.9%</td><td class="num">−7.8%</td></tr>
+<tr><td>2022</td><td>D</td><td><b>分裂：在野党只拿众议院</b></td><td class="num up">+14.3%</td><td class="num">−5.5%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>四类结果的汇总，其中 2026 年最可能落入的「分裂国会」一类被高亮：</p>
+
+
+<div class="fig">
+  <div class="ft">图 5 · 按结果类型分组：选举后 12 个月标普 500 回报（1990–2022）</div>
+  <div class="fs">横轴为 10 月→次年 10 月的 12 个月回报，单位为 %。竖线为各组的简单均值，每个圆点是一次选举</div>
+  <svg class='chart' viewBox='0 0 1120 254' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='321.7' y1='22.0' x2='321.7' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='321.7' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>0%</text><line x1='518.3' y1='22.0' x2='518.3' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='518.3' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>10%</text><line x1='715.0' y1='22.0' x2='715.0' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='715.0' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>20%</text><line x1='911.7' y1='22.0' x2='911.7' y2='208.0' stroke='#E8EDEF' stroke-width='1'/><text x='911.7' y='228.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>30%</text><line x1='321.7' y1='22.0' x2='321.7' y2='208.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='218.0' y='57.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>执政党保住两院</text><text x='218.0' y='73.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=3 · 1998、2002、1990</text><rect x='745.3' y='50.0' width='87.1' height='6.0' rx='3' fill='#2F6FB8' opacity='0.16'/><line x1='803.0' y1='42.0' x2='803.0' y2='64.0' stroke='#2F6FB8' stroke-width='2.6'/><circle cx='831.3' cy='53.0' r='5.2' fill='#2F6FB8' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='745.3' cy='53.0' r='5.2' fill='#2F6FB8' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='832.4' cy='53.0' r='5.2' fill='#2F6FB8' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='844.4' y='57.0' font-size='11.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>均值 +24.5%</text><text x='218.0' y='119.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>在野党拿下两院</text><text x='218.0' y='135.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=3 · 1994、2006、2014</text><rect x='410.5' y='112.0' width='416.2' height='6.0' rx='3' fill='#0A9960' opacity='0.16'/><line x1='604.4' y1='104.0' x2='604.4' y2='126.0' stroke='#0A9960' stroke-width='2.6'/><circle cx='826.7' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='576.0' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='410.5' cy='115.0' r='5.2' fill='#0A9960' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='838.7' y='119.0' font-size='11.5' fill='#0A9960' text-anchor='start' font-weight='700'>均值 +14.4%</text><text x='218.0' y='181.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>分裂国会（本次最可能）</text><text x='218.0' y='197.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>n=3 · 2010、2018、2022</text><rect x='381.5' y='174.0' width='221.5' height='6.0' rx='3' fill='#C0392B' opacity='0.16'/><line x1='480.6' y1='166.0' x2='480.6' y2='188.0' stroke='#C0392B' stroke-width='2.6'/><circle cx='381.5' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='457.4' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><circle cx='603.0' cy='177.0' r='5.2' fill='#C0392B' stroke='#fff' stroke-width='1.6' opacity='0.95'/><text x='615.0' y='181.0' font-size='11.5' fill='#C0392B' text-anchor='start' font-weight='700'>均值 +8.1%</text></svg>
+  <div class="legend">
+    <span><i style="background:#2F6FB8"></i>执政党保住两院</span>
+    <span><i style="background:#0A9960"></i>在野党拿下两院</span>
+    <span><i style="background:#C0392B"></i>分裂国会（本次最可能）</span>
+  </div>
+  <div class="note">数据来源：multpl 月均序列，本报告计算。<span class='b b-est'>估算</span>
+  <br><b>怎么读这张图：</b>样本量写在每一行下面，务必看清楚——「未翻盘」只有 2 次、
+  「维持现状」只有 1 次。「分裂国会」的 3 次结果是 +3.0%、+6.9%、+14.3%，
+  均值 +8.1%，不仅是四类中最低的，也是离散度最大的。
+  <br><b>一个必须承认的混淆因素：</b>1990–2002 那几次的高回报，
+  很大程度上是九十年代大牛市和 2003 年後的复苏带来的，
+  与选举结果本身无关。所以「未翻盘 = 高回报」这个观察，
+  更可能反映的是「那几年本来就是牛市」，而不是因果关系。本报告在第七章
+  会改用机制来解释，而不是依赖这个相关性。</div>
+</div>
+
+
+<div class="fig">
+  <div class="ft">图 6 · 中期选举后 12 个月内的最大回撤（1950–2022，19 次，按幅度排序）</div>
+  <div class="fs">即使在那 19 次「全部为正」的年份里，投资者平均也要先承受 −5.6% 的回撤；11 次回撤超过 5%，最差一次 −14.9%</div>
+  <svg class='chart' viewBox='0 0 1120 360' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='74.0' y1='308.0' x2='1094.0' y2='308.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='312.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>0%</text><line x1='74.0' y1='235.5' x2='1094.0' y2='235.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='239.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−5%</text><line x1='74.0' y1='163.0' x2='1094.0' y2='163.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='167.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−10%</text><line x1='74.0' y1='90.5' x2='1094.0' y2='90.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='94.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−15%</text><line x1='74.0' y1='18.0' x2='1094.0' y2='18.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='22.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−20%</text><line x1='74.0' y1='308.0' x2='1094.0' y2='308.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='100.8' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 100.8 328.0)'>1986</text><rect x='83.1' y='91.4' width='35.4' height='216.6' rx='3' fill='#C0392B' opacity='0.9'/><text x='100.8' y='85.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>14.9</text><text x='154.5' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 154.5 328.0)'>2010</text><rect x='136.8' y='129.8' width='35.4' height='178.2' rx='3' fill='#C0392B' opacity='0.9'/><text x='154.5' y='123.8' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>12.3</text><text x='208.2' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 208.2 328.0)'>1974</text><rect x='190.5' y='185.4' width='35.4' height='122.6' rx='3' fill='#C0392B' opacity='0.9'/><text x='208.2' y='179.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>8.5</text><text x='261.9' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 261.9 328.0)'>2002</text><rect x='244.2' y='191.8' width='35.4' height='116.2' rx='3' fill='#C0392B' opacity='0.9'/><text x='261.9' y='185.8' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>8.0</text><text x='315.6' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 315.6 328.0)'>2014</text><rect x='297.9' y='193.0' width='35.4' height='115.0' rx='3' fill='#C0392B' opacity='0.9'/><text x='315.6' y='187.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>7.9</text><text x='369.3' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 369.3 328.0)'>2018</text><rect x='351.5' y='194.4' width='35.4' height='113.6' rx='3' fill='#C0392B' opacity='0.9'/><text x='369.3' y='188.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>7.8</text><text x='422.9' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 422.9 328.0)'>1998</text><rect x='405.2' y='223.0' width='35.4' height='85.0' rx='3' fill='#C0392B' opacity='0.9'/><text x='422.9' y='217.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.9</text><text x='476.6' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 476.6 328.0)'>1978</text><rect x='458.9' y='223.1' width='35.4' height='84.9' rx='3' fill='#C0392B' opacity='0.9'/><text x='476.6' y='217.1' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.9</text><text x='530.3' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 530.3 328.0)'>1970</text><rect x='512.6' y='226.9' width='35.4' height='81.1' rx='3' fill='#C0392B' opacity='0.9'/><text x='530.3' y='220.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.6</text><text x='584.0' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 584.0 328.0)'>2022</text><rect x='566.3' y='227.9' width='35.4' height='80.1' rx='3' fill='#C0392B' opacity='0.9'/><text x='584.0' y='221.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.5</text><text x='637.7' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 637.7 328.0)'>1954</text><rect x='620.0' y='235.1' width='35.4' height='72.9' rx='3' fill='#C0392B' opacity='0.9'/><text x='637.7' y='229.1' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.0</text><text x='691.4' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 691.4 328.0)'>1958</text><rect x='673.7' y='241.5' width='35.4' height='66.5' rx='3' fill='#C0392B' opacity='0.9'/><text x='691.4' y='235.5' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>4.6</text><text x='745.1' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 745.1 328.0)'>2006</text><rect x='727.3' y='245.0' width='35.4' height='63.0' rx='3' fill='#C0392B' opacity='0.9'/><text x='745.1' y='239.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>4.3</text><text x='798.7' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 798.7 328.0)'>1982</text><rect x='781.0' y='268.1' width='35.4' height='39.9' rx='3' fill='#C0392B' opacity='0.9'/><text x='798.7' y='262.1' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>2.8</text><text x='852.4' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 852.4 328.0)'>1950</text><rect x='834.7' y='278.3' width='35.4' height='29.7' rx='3' fill='#C0392B' opacity='0.9'/><text x='852.4' y='272.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>2.0</text><text x='906.1' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 906.1 328.0)'>1994</text><rect x='888.4' y='281.1' width='35.4' height='26.9' rx='3' fill='#C0392B' opacity='0.9'/><text x='906.1' y='275.1' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.9</text><text x='959.8' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 959.8 328.0)'>1962</text><rect x='942.1' y='285.9' width='35.4' height='22.1' rx='3' fill='#C0392B' opacity='0.9'/><text x='959.8' y='279.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.5</text><text x='1013.5' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 1013.5 328.0)'>1966</text><rect x='995.8' y='289.8' width='35.4' height='18.2' rx='3' fill='#C0392B' opacity='0.9'/><text x='1013.5' y='283.8' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.3</text><text x='1067.2' y='328.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400' transform='rotate(-45 1067.2 328.0)'>1990</text><rect x='1049.4' y='293.6' width='35.4' height='14.4' rx='3' fill='#C0392B' opacity='0.9'/><text x='1067.2' y='287.6' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.0</text></svg>
+  <div class="note">数据来源：multpl 月均序列，本报告计算，纵轴为回撤深度（正值表示跌了多少）。<span class='b b-est'>估算</span>
+  <br>这张图是对图 2 的必要补充。<b>「选举后一年都涨」和「选举后一年不难受」是两件完全不同的事。</b>
+  19 次里有 11 次中途回撤超过 5%，4 次超过 10%。
+  1990 年以来的 9 次，最差的一次是 2010 年选举后的 −12.3%。</div>
+</div>
+
+
+<h2 id="s5">第五章 · 情景推演：四种结果，以及它们各自意味着什么</h2>
+<p class="lede">本章给出完整的情景树。概率来自预测市场的交叉报价（这是唯一直接给出联合分布的数据源），
+市场影响判断是本报告的分析，不是任何机构的官方预测。</p>
+
+<h3>5.1 情景与概率</h3>
+<p>预测市场同时交易「众议院归谁」「参议院归谁」和「是否横扫」，
+因此可以直接读出四种组合的联合概率。Polymarket 与 Kalshi 两家高度一致：<span class='b b-news'>媒体报道</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 7 · 2026 年中期选举的四种结果组合与市场隐含概率</div>
+  <div class="fs">概率取自 Polymarket 与 Kalshi 在 2026-10-09 至 10-11 的报价，两家差异在 1–2 个百分点以内</div>
+  <svg class='chart' viewBox='0 0 1120 330' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><rect x='20.0' y='30.0' width='535.0' height='128.0' rx='10' fill='#2F6FB8' opacity='0.07'/><rect x='20.0' y='30.0' width='535.0' height='128.0' rx='10' fill='none' stroke='#2F6FB8' stroke-width='1.4'/><text x='38.0' y='60.0' font-size='14' fill='#101820' text-anchor='start' font-weight='700'>民主党横扫两院</text><text x='537.0' y='64.0' font-size='26' fill='#2F6FB8' text-anchor='end' font-weight='700'>62%</text><text x='38.0' y='86.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>众议院 ~90% × 参议院 ~62%</text><text x='38.0' y='104.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>完全立法控制权 + 调查权</text><text x='38.0' y='122.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>但参议院仍需 60 票才能通过法案</text><rect x='565.0' y='30.0' width='535.0' height='128.0' rx='10' fill='#C0392B' opacity='0.07'/><rect x='565.0' y='30.0' width='535.0' height='128.0' rx='10' fill='none' stroke='#C0392B' stroke-width='1.4'/><text x='583.0' y='60.0' font-size='14' fill='#101820' text-anchor='start' font-weight='700'>分裂国会（基准情景）</text><text x='1082.0' y='64.0' font-size='26' fill='#C0392B' text-anchor='end' font-weight='700'>29%</text><text x='583.0' y='86.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>民主党众议院 / 共和党参议院</text><text x='583.0' y='104.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>与 2018、2010、2022 同构</text><text x='583.0' y='122.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>历史上回报最低、回撤最大的一类</text><rect x='20.0' y='168.0' width='535.0' height='128.0' rx='10' fill='#0A9960' opacity='0.07'/><rect x='20.0' y='168.0' width='535.0' height='128.0' rx='10' fill='none' stroke='#0A9960' stroke-width='1.4'/><text x='38.0' y='198.0' font-size='14' fill='#101820' text-anchor='start' font-weight='700'>共和党守住两院</text><text x='537.0' y='202.0' font-size='26' fill='#0A9960' text-anchor='end' font-weight='700'>9%</text><text x='38.0' y='224.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>预测市场只给 8–11%</text><text x='38.0' y='242.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>最大的预期差所在</text><text x='38.0' y='260.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>政策连续性 + 财政供给压力</text><rect x='565.0' y='168.0' width='535.0' height='128.0' rx='10' fill='#9AA6B2' opacity='0.07'/><rect x='565.0' y='168.0' width='535.0' height='128.0' rx='10' fill='none' stroke='#9AA6B2' stroke-width='1.4'/><text x='583.0' y='198.0' font-size='14' fill='#101820' text-anchor='start' font-weight='700'>共和党众议院 / 民主党参议院</text><text x='1082.0' y='202.0' font-size='26' fill='#9AA6B2' text-anchor='end' font-weight='700'>1%</text><text x='583.0' y='224.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>Kalshi 报价低于 1%</text><text x='583.0' y='242.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>仅作完整性列出</text><text x='583.0' y='260.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='400'>在当前民调下基本不可能</text></svg>
+  <div class="note">来源：Polymarket、Kalshi。<span class='b b-news'>媒体报道</span> 一个重要的方法论保留：
+  两家平台合计成交额超过 2.2 亿美元，是 2024 年国会周期（9,200 万美元）的两倍以上，
+  但有研究指出 Polymarket 国际成交量的约 70% 来自前 1% 的钱包，
+  因此这些价格可能并不代表干净的共识。<span class='b b-rumor'>未核实</span></div>
+</div>
+
+
+<h3>5.2 逐个情景推演</h3>
+
+<div class="card">
+<h4>情景一 · 民主党横扫两院（约 62%）</h4>
+<p><b>实际会改变什么。</b>民主党获得完整的议程设置权、传票权与调查权，以及拨款权。
+但必须说清楚一个常被误解的点：<b>横扫不等于能立法。</b>参议院仍然需要 60 票才能终结阻挠议事，
+所以医保、气候、税收等重大立法依然无法通过。真正会变的是三件事：
+(1) 监督与调查——传票、听证会、文件调取，制造头条风险；
+(2) 拨款与债务上限——成为财政边缘政策的杠杆；
+(3) 人事确认——共和党未来的美联储理事提名可能被拦下。</p>
+<p><b>市场含义。</b>这是被讨论最多、也最被充分定价的情景。
+美银的哈特内特把它标记为「股权超过 10% 的下行风险」，摩根士丹利则认为短期回调后
+历史上 12 个月平均 +22%。<span class='b b-analyst'>机构观点</span>两者的分歧其实在于时间尺度。</p>
+<p><b>本报告判断：短期中性偏负，中期取决于非选举变量。</b>理由有三：
+其一，众议院翻盘已被定价到 90%，边际信息量很小；
+其二，真正会造成估值变化的是「特朗普式去监管与 AI 友好叙事」的降温，
+以及财政边缘政策风险上升——这两点对当前以 AI 为主线的市场是实质负面；
+其三，参议院 60 票的门槛意味着最极端的政策（加税、绿色新政）根本无法落地，
+所以市场对「横扫」的恐惧中有一部分是错配的。<span class='b b-est'>估算</span></p>
+</div>
+
+<div class="card">
+<h4>情景二 · 分裂国会（约 29%）——基准情景，也是历史上最难受的一类</h4>
+<p><b>实际会改变什么。</b>几乎什么都改变不了，这正是问题所在。立法僵局、政府停摆风险、
+债务上限边缘政策，以及无休止的调查。没有一项政策会变好，但几项政策会变得更不确定。</p>
+<p><b>市场含义。</b>卖方共识是「分裂即黄金」（gridlock = Goldilocks），
+理由是没有一方能加税或砍支出。但本报告第四章的分组分析给出了相反的观察：
+1990 年以来三次分裂国会（2010、2018、2022），选举后 12 个月平均 +8.1%，
+是四类结果中最低的，且平均最大回撤 −8.5%，是最高的。<span class='b b-est'>估算</span></p>
+<div class="call warn">
+<div class="t">这个矛盾怎么解释？</div>
+2010 年的选举结果本身不是问题，问题出在紧随其后的 2011 年——债务上限僵局与美国主权评级被下调，
+标普在 2011 年 4 月到 10 月间回撤约 19%。2018 年选举后，市场在第四季度因为加息与贸易战大跌。
+2022 年选举后则相对平稳。
+<br><b>机制是一致的：分裂政府不产生坏政策，它产生「财政边缘政策」。</b>
+而财政边缘政策的时点，恰好落在选举后的头 12 个月里。本次的时间表已经写好：
+拨款截止日 2026 年 12 月 11 日，债务上限窗口在 2027 年春夏季。
+</div>
+<p><b>本报告判断：短期中性（不确定性消除），但未来 12 个月的回撤风险是四类情景中最高的。</b>
+这不是一个「卖出」信号，而是一个「必须留出承受回撤的余量」的信号。<span class='b b-est'>估算</span></p>
+</div>
+
+<div class="card">
+<h4>情景三 · 共和党守住两院（约 9%）——最大的预期差</h4>
+<p><b>为什么重要。</b>不是因为政策更好，而是因为<b>这是唯一一个与市场定价方向相反的结果</b>。
+当 90% 的资金预期某件事发生而它没有发生时，价格调整的幅度会远超基本面差异本身。</p>
+<p><b>实际会改变什么。</b>政策全面延续：关税维持、去监管延续、减税永久化、对美联储的施压继续。
+摩根士丹利给出的受益方向是化石能源、核电与金融；但同一份报告也警告，
+这意味着更多的国债发行（2–7 年期），以及更高的收益率。ING 的情景假设是
+10 年期美债突破 5.5%。<span class='b b-analyst'>机构观点</span></p>
+<div class="call bad">
+<div class="t">这个情景里最值得注意的，是股票与债券可能分道扬镳</div>
+对股票而言，「政策不变」在短期内是利好——尤其是能源、金融、国防。
+但对债券而言，同一件事意味着财政纪律进一步松弛、国债供给增加。
+当前 10 年期已经站在 5.1%、并在 10 月 5 日触及 5.31%（2002 年以来最高）。
+如果共和党守住两院推动收益率突破 5.5%，<b>股票的最初上涨很可能被贴现率上行反噬</b>。
+换句话说：这个情景里，应该相信债券市场而不是股票市场。<span class='b b-est'>估算</span>
+</div>
+</div>
+
+<div class="card">
+<h4>情景四 · 结果被质疑或延迟认证（叠加情景，约 15–20%）</h4>
+<p>这不是一个独立的结果，而是可能叠加在以上任何一个情景之上的状态。
+2020 年的经验是，市场对「结果未定」的耐受度比想象中高，但波动率会显著上升。
+本次有三个具体的延迟来源，都不是猜测：</p>
+<p><b>(1) 认证期限本身就很晚。</b>佐治亚州要求各县在 11 月 9 日前完成认证、
+州务卿在 11 月 20 日前认证；亚利桑那州县认证为 11 月 19 日；加州为 12 月 3 日。
+<b>这些是法定日期，不是争议的结果</b>——意味着即使一切顺利，
+部分关键席位的官方结果也要到 11 月下旬甚至 12 月初才确定。<span class='b b-news'>媒体报道</span></p>
+<p><b>(2) 密苏里州的选区混乱。</b>最高法院在 9 月 25 日以无署名裁决恢复了 2022 年地图，
+推翻了 8 月党内初选所用的地图。<b>结果是 28 个县的选民在 11 月投的选区，
+和他们 8 月投的选区不一样。</b>这不必然导致争议，但它是选民用错选票、
+投票站指引错误这类行政事故的高发条件。<span class='b b-news'>媒体报道</span></p>
+<p><b>(3) 计票速度本身受法律限制，而最慢的几个州恰好是关键州。</b>
+宾夕法尼亚州要等到<b>选举日当天早上 7 点</b>才能开始处理邮寄选票；
+威斯康星州要等到投票站开放之后；亚利桑那州在选举日当天投递的选票
+<b>必须等到投票结束才能处理</b>——2022 年这类选票在马里科帕县约占全部选票的五分之一。
+密歇根州可以提前 8 天处理，是这几个州里最快的。<span class='b b-news'>媒体报道</span></p>
+<p><b>(4) 佐治亚州的决选，是参议院控制权可能拖到 12 月的唯一机制。</b>
+佐治亚州要求参议员候选人获得<b>超过 50%</b> 的选票才能当选；
+如果没有人在 11 月 3 日过半，前两名将在 <b>2026 年 12 月 1 日</b>决选。
+2021 年 1 月的两次决选把参议院变成 50–50，2022 年 12 月的决选把参议院变成 51–49——
+这个州已经两次决定过参议院归属。<span class='b b-news'>媒体报道</span>
+<br>更要紧的是：佐治亚州 2026 年新法规定的<b>自动手工重新计票只适用于州级行政职位，
+明确不覆盖联邦选举</b>。也就是说，如果佐治亚的参议员选举落进误差范围，
+<b>不会有自动重新计票</b>，只能由候选人申请。<span class='b b-news'>媒体报道</span></p>
+<p><b>(5) 已经有一场针对计票的联邦诉讼在选举前提起。</b>
+司法部在 10 月 15 日前后起诉加州选举官员（包括州务卿韦伯与洛杉矶县登记官洛根），
+要求<b>在核实公民身份之前，停止计入约 2 万名被联邦政府标记为「疑似非公民」的邮寄选票</b>。
+这是本次选举周期里最直接、也最已经落地的一项法律风险，
+因为它针对的不是规则，而是<b>正在进行的计票本身</b>。<span class='b b-news'>媒体报道</span></p>
+<p><b>(3b) 制度防线同时也加强了。</b>2024 年出现了至少 17 次试图干扰认证的行为，
+最终全部完成认证；认证在法律上是强制性、部级职责，法院在全部州都可以强制认证。
+弗吉尼亚与加州在 2026 年专门立法强化了这一点（弗吉尼亚规定拒绝认证可触发免职程序，
+加州规定在认证前夺取选票或选举记录可判重罪）。<span class='b b-news'>媒体报道</span></p>
+<div class="call warn">
+<div class="t">这意味着「什么时候能知道结果」这件事本身就是一个交易变量</div>
+市场普遍假设选举夜就知道结果。<b>但众议院控制权在最近两次中期选举中都不是当晚确定的</b>——
+2022 年是 11 月 16 日，2024 年是 11 月 13 日。而本次有两个额外的延迟源：
+路易斯安那州的众议院选举改成了 11 月 3 日丛林初选 + 12 月 12 日决选；
+加州有 6–8 个众议院选区可能需要 10–14 天才会有结果。
+<b>费城、密尔沃基、底特律、亚特兰大、凤凰城这几个计票最慢的城市，恰好都在决定参议院归属的州。</b><span class='b b-news'>媒体报道</span> <span class='b b-est'>估算</span>
+</div>
+<p><b>市场含义：方向不确定，但波动率确定上升。</b>这是唯一一个「不管谁赢都可能先跌」的情景，
+因为期权市场会重新定价不确定性，而不是方向。而且它的窗口比多数人预期的长——
+从 11 月 3 日到 12 月 1 日的佐治亚决选，是整整四周。<span class='b b-est'>估算</span></p>
+</div>
+
+
+<h3>5.3 这套概率最可能错在哪里：民调的系统性偏差</h3>
+<p class="lede">上面所有的概率都建立在民调之上，所以民调本身准不准，是这份报告里最重要的单点风险。
+本轮调研发现了一条比选举结果本身更有价值的线索。</p>
+
+<p>2025 年 11 月的选举中，<b>民调系统性地低估了民主党</b>。
+Silver Bulletin 的 2025 年民调机构评分卡给出的数字是：
+平均误差 7.1 个百分点（1998 年以来的历史均值是 5.9），
+而<b>平均偏差方向是 6.1 个百分点、偏向共和党</b>。
+该报告明确提出了一个此前很少被讨论的问题：<b>民调现在可能是在高估特朗普，而不是低估他。</b><span class='b b-news'>媒体报道</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 8 · 2025 年民调误差：实际结果 − 民调结果（单位：百分点）</div>
+  <div class="fs">正值 = 民调低估了民主党；负值 = 民调高估了民主党。四行里的三行同向，但有一行明确反向</div>
+  <svg class='chart' viewBox='0 0 1120 340' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='373.7' y1='26.0' x2='373.7' y2='286.0' stroke='#E8EDEF' stroke-width='1'/><text x='373.7' y='306.0' font-size='11' fill='#8B95A3' text-anchor='middle' font-weight='400'>−5pp</text><line x1='541.8' y1='26.0' x2='541.8' y2='286.0' stroke='#E8EDEF' stroke-width='1'/><text x='541.8' y='306.0' font-size='11' fill='#8B95A3' text-anchor='middle' font-weight='400'>0pp</text><line x1='709.9' y1='26.0' x2='709.9' y2='286.0' stroke='#E8EDEF' stroke-width='1'/><text x='709.9' y='306.0' font-size='11' fill='#8B95A3' text-anchor='middle' font-weight='400'>5pp</text><line x1='541.8' y1='26.0' x2='541.8' y2='286.0' stroke='#C3CCD3' stroke-width='2'/><rect x='541.8' y='43.5' width='174.8' height='30.0' rx='4' fill='#2F6FB8' opacity='0.9'/><text x='196.0' y='62.5' font-size='12' fill='#3A4750' text-anchor='end' font-weight='400'>弗吉尼亚州长 2025</text><text x='726.6' y='62.5' font-size='11.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>+5.2</text><rect x='541.8' y='108.5' width='349.7' height='30.0' rx='4' fill='#2F6FB8' opacity='0.9'/><text x='196.0' y='127.5' font-size='12' fill='#3A4750' text-anchor='end' font-weight='400'>新泽西州长 2025</text><text x='901.5' y='127.5' font-size='11.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>+10.4</text><rect x='541.8' y='173.5' width='205.1' height='30.0' rx='4' fill='#2F6FB8' opacity='0.9'/><text x='196.0' y='192.5' font-size='12' fill='#3A4750' text-anchor='end' font-weight='400'>2025 年全体平均</text><text x='756.9' y='192.5' font-size='11.5' fill='#2F6FB8' text-anchor='start' font-weight='700'>+6.1</text><rect x='306.4' y='238.5' width='235.4' height='30.0' rx='4' fill='#C0392B' opacity='0.9'/><text x='196.0' y='257.5' font-size='12' fill='#3A4750' text-anchor='end' font-weight='400'>田纳西第 7 选区补选</text><text x='296.4' y='257.5' font-size='11.5' fill='#C0392B' text-anchor='end' font-weight='700'>-7.0</text></svg>
+  <div class="legend">
+    <span><i style="background:#2F6FB8"></i>民调低估民主党</span>
+    <span><i style="background:#C0392B"></i>民调高估民主党</span>
+  </div>
+  <div class="note">来源：Silver Bulletin 2025 民调评分卡、Sabato's Crystal Ball《2025 年选举中的民调准确性》、
+各州选举认证结果。<span class='b b-news'>媒体报道</span> 弗吉尼亚与新泽西的民调均值为 RCP 最终平均。
+<br><b>为什么这张图对本报告至关重要。</b>上面三行是同一个方向：民调低估民主党 5–10 个百分点。
+如果这个偏差在 2026 年重现，那么当前 D+8 至 D+9 的全国普选民调，
+对应的实际结果可能是 D+13 以上——<b>参议院的概率就不是 62%，而是接近必然</b>。
+<br><b>但第四行必须一起看。</b>田纳西第 7 选区补选（2025 年 12 月）只有一家民调，
+它把共和党的领先压到 2 个百分点，实际结果是共和党赢 9 个百分点——
+<b>这一场里民调高估了民主党 7 个点，方向完全相反</b>。
+2025 年纽约市长选举中，民调同样是高估而非低估。
+<br><b>结论：两个方向的误差都是活的，这是整份预测里最主要的不确定来源。</b><span class='b b-est'>估算</span></div>
+</div>
+
+
+<div class="call warn">
+<div class="t">这一点怎么影响上面的情景概率</div>
+本报告不对 5.1 节的概率做调整，原因是<b>这两个方向的误差无法在事前被定向</b>——
+它们支持的是「不确定性比数字看起来更大」，而不是「应该往某个方向修正」。
+<br>可以明确的是三件事：
+<br><b>(1) 众议院的方向几乎不受影响。</b>民主党需要在摇摆选区跑赢哈里斯基准约 3 个百分点
+就能拿下众议院（Axios 的测算）。无论民调偏哪个方向，90% 这个数字都站得住。
+<br><b>(2) 参议院的概率应当理解为「比 62% 更不确定」，而不是「可能更高」。</b>
+参议院的争夺集中在几个特朗普以两位数优势拿下的州，
+这些州的民调历史误差最大，而本次的两个反向证据（田纳西、纽约市长）都发生在<b>深红或特殊选区</b>。
+<br><b>(3) 真正的信息不在民调，在补选。</b>一个被反复验证的经验规律是：
+<b>在补选中持续超预期的政党，自 2005 年以来 5 次全部赢得了众议院。</b>
+而 2026 年的补选与初选数据（弗吉尼亚民主党净增 13 个州众议院席位、
+威斯康星最高法院民主党大胜约 20 个百分点、
+得州初选民主党投票人数自 2020 年以来首次超过共和党）都指向同一个方向。<span class='b b-news'>媒体报道</span>
+<br><b>要注意的是，「民主党超预期」的幅度在不同机构之间完全没有可比性</b>——
+Brookings 的 4.5 个百分点、CNN 的 12 个百分点、NPR 的 14 个百分点，
+用的是不同的基线和不同的选区集合。<b>这些数字不能取平均</b>，
+本报告因此只使用方向，不使用幅度。<span class='b b-rumor'>未核实</span>
+</div>
+
+
+<h3>5.4 结构性因素：一个价值约 9 个席位的逆风</h3>
+<p class="lede">上面讨论的都是「选民想投给谁」。这一节讨论一个不同的问题：
+即使选民想投给民主党，席位能不能换算得出来。</p>
+
+<p>2026 年是美国现代史上第一次出现<b>全国性中期重划选区</b>。
+十个州在选举前重画了国会选区地图（阿拉巴马、加州、佛罗里达、路易斯安那、密苏里、
+北卡罗来纳、俄亥俄、田纳西、得州、犹他），覆盖约 <b>40–42% 的众议院席位</b>。
+按 2024 年总统选举结果逐州加总（得州 +5 R、加州 +5 D、佛州 +4 R、俄亥俄 +1–2 R、
+北卡 +1 R、阿拉巴马 +1 R、路易斯安那 +1 R、田纳西 +1 R、犹他 +1 D、
+密苏里 +1 R 被悬置、弗吉尼亚 0），
+<b>净效应是共和党 8 到 10 席</b>。Ballotpedia 给出的口径是 +9（2026-10-14）。<span class='b b-news'>媒体报道</span> <span class='b b-est'>估算</span></p>
+
+<div class="call warn">
+<div class="t">这个数字的含义被普遍低估了</div>
+民主党在众议院的胜率被定到约 90%，但这是在<b>背着 9 个席位的结构性逆风</b>的情况下达到的。
+换句话说，民主党需要在普选票上赢得足够多，才能先抵消掉这 9 席，再净赢 3 席翻盘。
+<br>这有两个后果。第一，<b>民主党的实际席位多数会比普选票优势所暗示的更薄</b>——
+如果最终是 224–234 席（各家预测的区间），那么对应的是一个相当可观的普选票优势。
+第二，<b>它让「共和党守住众议院」这个小概率情景比看起来更可信</b>——
+9 席的结构性优势不是小数，它压缩了误差容限。<span class='b b-est'>估算</span>
+</div>
+
+<p>这一轮重划的法律源头是两份 2026 年的判决。4 月 29 日的
+<i>Louisiana v. Callais</i>（6–3）裁定路易斯安那州的两个黑人多数选区构成违宪的种族杰利蝾螈，
+并把《投票权法》第二条的举证标准从「歧视性效果」收紧为「歧视性意图」——
+这是南方各州在 2026 年集中重划的直接触发点。6 月 29 日的
+<i>Watson v. RNC</i>（5–4，巴雷特主笔）则裁定联邦「选举日」条款并不要求邮寄选票必须在选举日<b>送达</b>，
+<b>保住了约 30 个州的邮寄选票宽限期</b>——这一条对本次计票节奏有直接影响，方向是好的。<span class='b b-news'>媒体报道</span></p>
+
+<p>萨巴托水晶球的测算给出了同一件事的另一个侧面：<b>竞争性选区数量从 85 个降到 70 个</b>，
+中位选区现在是弗吉尼亚第 1 选区，比过去的中位选区右移约 2 个百分点；
+特朗普以 55% 以上拿下的选区多了 14 个，而哈里斯以 55% 以上拿下的只多了 1 个。<span class='b b-news'>媒体报道</span>
+换言之，<b>整个棋盘被整体向右推了一格</b>，而民主党仍被预期能翻盘——这本身就是本次选举
+最重要的一个信息。</p>
+
+<p><b>但重划选区在 11 月 3 日的实际生效情况比「+9」这个净数字复杂得多</b>，
+因为有三张地图在法庭上被推翻或悬置：</p>
+
+<div class="card">
+<table>
+<thead><tr><th>州</th><th class="num">席位影响</th><th>11 月 3 日的实际状态</th></tr></thead>
+<tbody>
+<tr><td>得州</td><td class="num">+5 R</td><td><b>生效。</b>2025 年 11 月被三法官合议庭推翻，最高法院 12 月中止，
+2026 年 4 月 27 日以 6–3 维持</td></tr>
+<tr><td>加州（50 号提案）</td><td class="num">+5 D</td><td><b>生效。</b>2025 年 11 月以 64.4% 通过；最高法院 2026 年 2 月 4 日
+拒绝紧急中止</td></tr>
+<tr><td>佛罗里达</td><td class="num">+4 R</td><td><b>生效。</b>2026 年 5 月 4 日签署，州法院拒绝初步禁令，在上诉中</td></tr>
+<tr><td>俄亥俄</td><td class="num">+1–2 R</td><td><b>生效，且无诉讼。</b>唯一一个法律上被要求中期重划的州，锁定至 2030 年</td></tr>
+<tr><td>北卡罗来纳</td><td class="num">+1 R</td><td><b>生效。</b>三法官合议庭 2025 年 11 月一致拒绝禁令</td></tr>
+<tr><td>田纳西</td><td class="num">+1 R</td><td><b>生效。</b>把孟菲斯（约 63% 黑人）拆入三个白人居多的共和党选区，
+该州最后一个民主党席位被消除</td></tr>
+<tr class="hi"><td>密苏里</td><td class="num">+1 R 悬置</td><td><b>使用 2022 年地图。</b>最高法院 2026 年 9 月 25 日无署名裁决，
+理由是中期换图「会引入选举混乱」。28 个县 11 月的选区与 8 月初选不同</td></tr>
+<tr class="hi"><td>弗吉尼亚</td><td class="num">0</td><td><b>重划被推翻。</b>公投 2026 年 4 月 21 日以 51.7% 通过，
+但州最高法院 5 月 8 日以 4–3 裁定程序违宪、公投无效。
+<b>弗吉尼亚保留 2021 年的 6–5 民主党地图</b></td></tr>
+<tr><td>印第安纳 / 南卡</td><td class="num">0</td><td>两项重划均被本党议员否决（2025 年 12 月 31–19、2026 年 5 月 29–17）</td></tr>
+<tr><td>阿拉巴马 / 路易斯安那 / 犹他</td><td class="num">+1 R / +1 R / +1 D</td><td>均已生效；路易斯安那的众议院选举移至 11 月 3 日丛林初选 + 12 月 12 日决选</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><b>关于投票规则，需要纠正一个常见的印象。</b>两项联邦层面的重大变更
+<b>都没有在 2026 年生效</b>：SAVE 法案在参议院多次表决失败
+（2026 年 3 月 17 日 51–48、4 月 22 日程序性表决 48–50），
+从未达到 60 票门槛；行政令 14399 中关于邮政选票的规则也被法院阻止，
+最高法院 9 月 14 日拒绝中止该禁令，<b>邮政系统按原有规则运行</b>。<span class='b b-news'>媒体报道</span>
+真正改变规则的是州层面：共和党控制的州有<b>三十多项限制性投票法律</b>在 2026 年首次生效，
+影响约 1.3 亿选民，主要集中在邮寄选票的到达期限、投递箱数量与提前投票时段。<span class='b b-news'>媒体报道</span></p>
+
+<p><b>而这些限制似乎正在反向动员。</b>截至 10 月中旬，全国已投出约 <b>168 万张提前选票</b>，
+而 2022 年同期只有约 26.4 万张；在已知党派登记的选票中，
+<b>民主党以超过 2 比 1 领先</b>。俄亥俄州首周现场提前投票是 2022 年的近 4 倍
+（194,841 对 50,368）。路透/益普索显示
+<b>48% 的哈里斯 2024 年选民「非常有热情」投票，而特朗普选民只有 30%</b>。<span class='b b-news'>媒体报道</span>
+需要提醒的是，党派登记不等于投票选择，且共和党历来在选举日当天集中投票，
+所以提前投票的党派结构不是可靠的预测指标。<span class='b b-rumor'>未核实</span></p>
+
+
+<h2 id="s6">第六章 · 预测市场：它知道什么，不知道什么</h2>
+<p class="lede">上一节说民调可能有系统性偏差。一个自然的反应是：那就别看民调了，看钱怎么说。
+这一章要给出的答案是——<b>预测市场确实提供了民调没有的东西，但它在你最需要它独立的那个问题上，
+和民调是同一个来源。</b></p>
+
+<h3>6.1 市场现在说什么</h3>
+
+<p>2026 年中期选举已经是被下注最多的中期选举。按反贪数据联盟（ACDC）与路透社的口径，
+截至 9 月 30 日，Kalshi、Polymarket 与 Polymarket US 三个平台上
+针对本届国会选举的累计下注额超过 <b>2.2 亿美元</b>，分布在 <b>21,000 多个市场</b>中；
+作为对照，2024 年整个国会选举周期的下注额是 <b>9,240 万美元</b>，
+市场数量是 463 个。<b>市场数量增长了约 45 倍。</b><span class='b b-news'>媒体报道</span></p>
+
+<div class="card">
+<table>
+<thead><tr><th>结果</th><th class="num">Polymarket</th><th class="num">Kalshi</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><b>民主党拿下众议院</b></td><td class="num">91%</td><td class="num">92%</td>
+  <td>两家的报价基本一致</td></tr>
+<tr><td><b>民主党拿下参议院</b></td><td class="num">63%</td><td class="num">61%</td>
+  <td>民主党需净赢 4 席；50–50 由副总统万斯投下决定性一票，仍归共和党</td></tr>
+<tr class="hi"><td><b>民主党横扫两院</b></td><td class="num">62%</td><td class="num">61%</td>
+  <td>这一格是下面 6.7 节的核心争议点</td></tr>
+<tr><td>分裂国会（众院民主党 / 参院共和党）</td><td class="num">29%</td><td class="num">29%</td>
+  <td>本报告第四、五章的基准情景</td></tr>
+<tr><td>共和党守住两院</td><td class="num">9%</td><td class="num">11%</td><td>—</td></tr>
+<tr><td>共和党众议院 / 民主党参议院</td><td class="num">1%</td><td class="num">0.9%</td>
+  <td>仅作完整性列出</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">口径：10 月 9 日至 11 日的公开报价，来自 Polymarket 与 Kalshi 的国会控制权市场。
+两家在某些格子上相差 1 至 2 个百分点，属于正常做市价差范围。<span class='b b-news'>媒体报道</span></div>
+
+<p><b>值得单独指出的是，这些数字已经进入了主流财经媒体的日常版面。</b>
+2026 年 1 月，新闻集团与 Polymarket 达成多年期合作，把赔率嵌入《华尔街日报》
+《巴伦周刊》与 MarketWatch；CNN 指定 Kalshi 为独家预测数据供应商；
+CNBC 设立了 Kalshi 专栏；洲际交易所（ICE）以约 90 亿美元估值向 Polymarket 投资 20 亿美元。<span class='b b-news'>媒体报道</span></p>
+
+<div class="call warn">
+<div class="t">这件事的后果不是「市场更可信了」，而是「市场更容易自我强化」</div>
+赔率一旦被主流财经媒体按分钟引用，<b>价格本身就变成了新闻，新闻又反过来成为价格的理由</b>。
+6.5 节会给出一个具体案例：一笔 1,240 美元的赌注把某位候选人的赔率从 52 美分推到 63 美分，
+随后一家全国性媒体写了一篇报道，引用「Polymarket 显示该候选人胜算上升」——
+<b>而那个价格本来就是那 1,240 美元造的。这个价格维持了大约六周。</b><span class='b b-news'>媒体报道</span>
+<br><b>这不是市场在发现真相，是市场在引用自己。</b><span class='b b-est'>估算</span>
+</div>
+
+
+<h3>6.2 价格是怎么走到这里的</h3>
+<p class="lede">一个常见的误解是：市场赔率是慢变量，跟着民调走。
+2026 年的实际情况恰恰相反——<b>赔率的移动幅度，远远超过了它所依据的民调。</b></p>
+
+<p>把 2026 年 1 月到 10 月的报价连起来，看到的是<b>两条腿的移动，不是一次转折</b>。<span class='b b-news'>媒体报道</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 9 · 2026 年 1 月至 10 月：国会控制权的隐含概率</div>
+  <div class="fs">参议院从「共和党 66%」走到「民主党 61%」，同期全国普选民调只移动了约 1.5 个百分点</div>
+  <svg class='chart' viewBox='0 0 1120 430' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='74.0' y1='384.0' x2='1090.0' y2='384.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='388.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>20%</text><line x1='74.0' y1='293.5' x2='1090.0' y2='293.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='297.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>40%</text><line x1='74.0' y1='203.0' x2='1090.0' y2='203.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='207.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>60%</text><line x1='74.0' y1='112.5' x2='1090.0' y2='112.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='116.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>80%</text><line x1='74.0' y1='22.0' x2='1090.0' y2='22.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='26.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>100%</text><line x1='74.0' y1='384.0' x2='1090.0' y2='384.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='18.0' y='12.0' font-size='11.5' fill='#8B95A3' text-anchor='start' font-weight='400'>隐含概率（民主党）</text><line x1='1075.2' y1='22.0' x2='1075.2' y2='384.0' stroke='#3A4750' stroke-width='1.4' stroke-dasharray='4 4' opacity='0.75'/><text x='1079.2' y='34.0' font-size='11.5' fill='#3A4750' text-anchor='start' font-weight='650'>选举日</text><path d='M 88.8 320.6 L 149.6 325.2 L 237.4 290.8 L 267.8 261.8 L 284.7 243.7 L 446.9 252.8 L 656.3 284.4 L 848.9 257.3 L 913.1 216.6 L 960.3 171.3 L 994.1 193.9 L 1011.0 198.5' fill='none' stroke='#2F6FB8' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1011.0' cy='198.5' r='4.5' fill='#fff' stroke='#2F6FB8' stroke-width='2.6'/><text x='1019.0' y='188.5' font-size='12' fill='#2F6FB8' text-anchor='end' font-weight='700'>61</text><path d='M 149.6 112.5 L 267.8 89.9 L 284.7 94.4 L 544.8 119.3 L 865.8 71.8 L 960.3 53.7 L 994.1 62.7 L 1011.0 67.2' fill='none' stroke='#0A9960' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1011.0' cy='67.2' r='4.5' fill='#fff' stroke='#0A9960' stroke-width='2.6'/><text x='1019.0' y='59.2' font-size='12' fill='#0A9960' text-anchor='end' font-weight='700'>90</text><path d='M 88.8 356.9 L 335.4 252.8 L 396.2 232.4 L 848.9 261.8 L 960.3 175.9 L 994.1 196.2' fill='none' stroke='#CC7A00' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/><circle cx='994.1' cy='196.2' r='4.5' fill='#fff' stroke='#CC7A00' stroke-width='2.6'/><text x='1002.1' y='214.2' font-size='12' fill='#CC7A00' text-anchor='start' font-weight='700'>62</text><circle cx='237.4' cy='290.8' r='4.5' fill='#C0392B'/><line x1='237.4' y1='290.8' x2='234.6' y2='244.7' stroke='#C0392B' stroke-width='1.2' stroke-dasharray='3 3'/><text x='233.4' y='226.8' font-size='11.5' fill='#C0392B' text-anchor='middle' font-weight='600'>2/28 美伊战争爆发</text><circle cx='656.3' cy='284.4' r='4.5' fill='#C0392B'/><line x1='656.3' y1='284.4' x2='656.3' y2='272.9' stroke='#C0392B' stroke-width='1.2' stroke-dasharray='3 3'/><text x='656.3' y='268.4' font-size='11.5' fill='#C0392B' text-anchor='middle' font-weight='600'>7 月初共和党二次高点</text><circle cx='960.3' cy='171.3' r='4.5' fill='#5A6672'/><text x='954.3' y='157.3' font-size='11.5' fill='#5A6672' text-anchor='end' font-weight='600'>9 月底见顶</text></svg>
+  <div class="legend">
+    <span><i style="background:#2F6FB8"></i>参议院归民主党</span>
+    <span><i style="background:#0A9960"></i>众议院归民主党</span>
+    <span><i style="background:#CC7A00"></i>民主党横扫两院</span>
+  </div>
+  <div class="note">来源：Kalshi、Polymarket 及多家转引报道，逐点列于下表。<span class='b b-news'>媒体报道</span>
+  本图<b>只连接有实测报价的日期</b>，不做插值——曲线上的折角是数据密度的结果，不是价格跳空。
+  <br><b>怎么读这张图。</b>三条线讲的是同一件事的三个切面，所以纵轴只有一个（隐含概率）。
+  <br><b>第一段：2 月，市场还站在共和党一边。</b>2 月 1–2 日，众议院归民主党约 80%，
+  但参议院归共和党约 66%–68%——<b>而同一时期的 Economist/YouGov 全国普选民调是民主党 +7</b>。
+  一个 D+7 的环境对应 66% 的参议院共和党胜率，说明当时的定价里有一块与民调无关的东西：
+  中期选举的选区地图、参议院改选席位的分布、以及当时正在推进的十年中期重划选区。
+  <br><b>第二段：2 月 28 日之后的两周半，是曲线最陡的一段。</b>美伊战争爆发后，
+  两党在参议院的赔率在约三周内从共和党 66% 翻转为民主党 51%（3 月 14 日，Kalshi 自己披露的时点）。
+  <b>这是一次由事件驱动的重定价，不是民调驱动的。</b>
+  <br><b>第三段：7 月初共和党回到第二个高点（参议院共和党 58%–59%），
+  然后从 9 月中旬开始第二段民主党行情，一直走到 9 月底的高点。<span class='b b-est'>估算</span></b>
+  <br><b>这张图最重要的一个数字对比：</b>参议院从 34% 走到 61%，移动了 <b>27 个百分点</b>；
+  同期全国普选民调从约 D+7 走到 D+8.5，移动了 <b>约 1.5 个百分点</b>。
+  <b>如果市场只是民调的重新包装，这 27 个百分点无法解释。</b>
+  这 27 个百分点里装的是：战争、候选人质量、筹款、州级民调、
+  以及各州独有的结构性因素——<b>这些是民调不直接测量的东西。</b>
+  <br><b>但同一张图也给出了反证：众议院那条线几乎没动。</b>
+  它从 80% 到 90%，八个月走了 10 个百分点，形态与普选民调高度同步。
+  <b>众议院市场看起来像民调的影子，参议院市场看起来像独立信息。</b>
+  这个区别在 6.7 节会用到。<span class='b b-est'>估算</span></div>
+</div>
+<div class="card">
+<table>
+<thead><tr><th>日期</th><th class="num">众议院·民主党</th><th class="num">参议院·民主党</th><th class="num">横扫</th><th>事件 / 来源</th></tr></thead>
+<tbody>
+<tr><td>1 月中</td><td class="num">—</td><td class="num">34%</td><td class="num">26%</td><td>—</td></tr>
+<tr><td>2 月 1–2 日</td><td class="num">80%</td><td class="num">33%</td><td class="num">—</td><td>共和党参议院 66%–68%；PredictIt 67 美分</td></tr>
+<tr><td>2 月 28 日</td><td class="num">—</td><td class="num">41%</td><td class="num">—</td><td><b>美伊战争爆发</b>（战前值）</td></tr>
+<tr><td>3 月 9 日</td><td class="num">85%</td><td class="num">47%</td><td class="num">—</td><td>—</td></tr>
+<tr class="hi"><td>3 月 14 日</td><td class="num">84%</td><td class="num">51%</td><td class="num">—</td><td>民主党首次在 Kalshi 参议院市场反超</td></tr>
+<tr><td>3 月 29 日</td><td class="num">—</td><td class="num">—</td><td class="num">49%</td><td>共和党横扫 15%</td></tr>
+<tr><td>5 月 1 日</td><td class="num">—</td><td class="num">49%</td><td class="num">—</td><td>共和党回到 51%</td></tr>
+<tr><td>5 月 30 日</td><td class="num">78.5%</td><td class="num">—</td><td class="num">—</td><td>Polymarket 81% / Kalshi 76%</td></tr>
+<tr class="hi"><td>7 月 1–3 日</td><td class="num">—</td><td class="num">42%</td><td class="num">—</td><td><b>共和党二次高点</b>：58%–59%</td></tr>
+<tr><td>8 月 28 日</td><td class="num">—</td><td class="num">48%</td><td class="num">47%</td><td>Kalshi 共和党 52%</td></tr>
+<tr><td>9 月 14–16 日</td><td class="num">—</td><td class="num">57%</td><td class="num">—</td><td>民主党再次反超（Kalshi 55% / Polymarket 59%）</td></tr>
+<tr><td>9 月 30 日</td><td class="num">93%</td><td class="num">67%</td><td class="num">66%</td><td>横扫报价见顶</td></tr>
+<tr><td>10 月 10 日</td><td class="num">91%</td><td class="num">62%</td><td class="num">61.5%</td><td>—</td></tr>
+<tr><td>10 月 15 日</td><td class="num">90%</td><td class="num">61%</td><td class="num">—</td><td>Polymarket US</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">上表的证据强度并不一致，这里如实标出：
+<b>3 月 14 日的时点来自 Kalshi 自己的新闻稿</b>，是本表里最强的一档；
+2 月 28 日的「战前值」、5 月 1 日与 7 月 1 日的共和党高点来自财经媒体转引；
+1 月中、3 月 29 日、4 月 16 日的数字来自加密货币与行情类网站的二手快照，
+<b>这类站点存在缓存陈旧的问题，本报告不把它们当作可复核的一手报价</b>。<span class='b b-rumor'>未核实</span>
+<br>另有一处无法解决的冲突：民主党首次在参议院领先的时点，
+Kalshi 自己的记录是 3 月 14 日，而 CNBC 在 9 月的回顾文章里写的是 4 月。
+本报告按 Kalshi 的记录采用 3 月，并在第十一章列出这个分歧。</div>
+
+
+<h3>6.3 同一件事，六个来源给出六个数字</h3>
+<p class="lede">把预测市场和统计模型并排放在一起，会看到一件比任何单一数字都重要的事：
+<b>来源之间的分歧，大于来源内部宣称的不确定性。</b></p>
+
+<p>数字见<b>图 1</b>（第一章）。这里只做解读。</p>
+
+<div class="call bad">
+<div class="t">一个直接的回答：预测市场并不比民调更确定，它只是更干脆</div>
+如果你因为「民调可能不准」而去看预测市场，你会看到一个 91% 的数字。
+但同一件事，统计模型给出的众议院概率从 <b>76% 到 98%</b>，
+而实地评估选区的专家评级机构（Cook、Inside Elections、Sabato）认为众议院<b>接近五五开</b>。
+<br><b>区间是 50% 到 98%。</b>预测市场的 91% 落在区间的高端，
+而不是中间——它不是「各方共识的总结」，它是<b>分歧中的一个立场</b>。<span class='b b-est'>估算</span>
+</div>
+
+<p>这个分歧有一个具体的技术原因，值得理解，因为它决定了你该信谁。
+Nate Silver 把这场争论称为「书呆子吵架」：<b>基于民调的模型假定 2026 年的选举环境
+就是民调测到的样子；而专家评级机构在给选区定级时，隐含地假定了一个
+比民调所示右移 5 到 6 个百分点的环境。</b>
+换句话说，<b>「民调可能不准」这个判断，不是旁观者的怀疑，
+而是已经被制度化地写进了专家评级里。</b><span class='b b-analyst'>机构观点</span></p>
+
+
+<h3>6.4 「62%」是由哪些席位构成的</h3>
+<p class="lede">一个概率数字本身不告诉你任何东西。有信息量的是它的构成——
+<b>哪几个席位是市场认为已经定了的，哪几个是真正的掷硬币。</b>
+这一节把参议院的 62% 拆开。</p>
+
+<p>算术前提：民主党需要<b>净赢 4 席</b>才能拿到 51 席的多数。
+50–50 不算赢——副总统万斯握有打破平局的一票，50 席仍然由共和党控制。
+35 个参议院席位今年改选。<b>众议院的门槛是 218 席。</b><span class='b b-ok'>已证实</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 10 · 参议院各席位「民主党胜选」的隐含概率（按概率排序）</div>
+  <div class="fs">前三席市场已经定价完毕（95% 以上）；真正的选举是阿拉斯加到艾奥瓦这六席，
+  全部落在 29% 到 71% 之间</div>
+  <svg class='chart' viewBox='0 0 1120 610' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='258.0' y1='42.0' x2='258.0' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='258.0' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>0%</text><line x1='411.2' y1='42.0' x2='411.2' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='411.2' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>20%</text><line x1='564.4' y1='42.0' x2='564.4' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='564.4' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>40%</text><line x1='717.6' y1='42.0' x2='717.6' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='717.6' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>60%</text><line x1='870.8' y1='42.0' x2='870.8' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='870.8' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>80%</text><line x1='1024.0' y1='42.0' x2='1024.0' y2='558.0' stroke='#E8EDEF' stroke-width='1'/><text x='1024.0' y='579.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>100%</text><line x1='258.0' y1='558.0' x2='1024.0' y2='558.0' stroke='#D5DCE1' stroke-width='1.5'/><line x1='641.0' y1='42.0' x2='641.0' y2='558.0' stroke='#B9C3CB' stroke-width='1.6' stroke-dasharray='5 4'/><text x='641.0' y='30.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>50% · 五五开</text><text x='246.0' y='58.4' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>北卡罗来纳（共和党空缺席）</text><text x='246.0' y='74.4' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Cooper</text><rect x='258.0' y='50.4' width='735.4' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='1001.4' y='64.4' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>96%</text><text x='246.0' y='95.3' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>佐治亚（民主党现任）</text><text x='246.0' y='111.3' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Ossoff</text><rect x='258.0' y='87.3' width='731.5' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='997.5' y='101.3' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>95.5%</text><text x='246.0' y='132.1' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>弗吉尼亚（民主党现任）</text><text x='246.0' y='148.1' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Warner</text><rect x='258.0' y='124.1' width='735.4' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='1001.4' y='138.1' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>96%</text><text x='246.0' y='169.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>明尼苏达（民主党空缺席）</text><text x='246.0' y='185.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Flanagan</text><rect x='258.0' y='161.0' width='674.1' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='940.1' y='175.0' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>88%</text><text x='246.0' y='205.9' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>新罕布什尔（民主党空缺席）</text><text x='246.0' y='221.9' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Pappas</text><rect x='258.0' y='197.9' width='658.8' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='924.8' y='211.9' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>86%</text><text x='246.0' y='242.7' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>密歇根（民主党空缺席）</text><text x='246.0' y='258.7' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>El-Sayed</text><rect x='258.0' y='234.7' width='543.9' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='809.9' y='248.7' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>71%</text><text x='246.0' y='279.6' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>阿拉斯加（共和党现任）</text><text x='246.0' y='295.6' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Peltola</text><rect x='258.0' y='271.6' width='543.9' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='809.9' y='285.6' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>71%</text><text x='246.0' y='316.4' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>得克萨斯（共和党空缺席）</text><text x='246.0' y='332.4' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Talarico</text><rect x='258.0' y='308.4' width='490.2' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='756.2' y='322.4' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>64%</text><text x='246.0' y='353.3' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>俄亥俄特别选举（共和党现任）</text><text x='246.0' y='369.3' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Brown</text><rect x='258.0' y='345.3' width='467.3' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='733.3' y='359.3' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>61%</text><text x='246.0' y='390.1' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>缅因（共和党现任）</text><text x='246.0' y='406.1' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Jackson</text><rect x='258.0' y='382.1' width='444.3' height='20.0' rx='5' fill='#2F6FB8' opacity='0.88'/><text x='710.3' y='396.1' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>58%</text><text x='246.0' y='427.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>艾奥瓦（共和党空缺席）</text><text x='246.0' y='443.0' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Turek</text><rect x='258.0' y='419.0' width='344.7' height='20.0' rx='5' fill='#C0392B' opacity='0.88'/><text x='610.7' y='433.0' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>45%</text><text x='246.0' y='463.9' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>堪萨斯（共和党现任）</text><text x='246.0' y='479.9' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Hamilton</text><rect x='258.0' y='455.9' width='283.4' height='20.0' rx='5' fill='#C0392B' opacity='0.88'/><text x='549.4' y='469.9' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>37%</text><text x='246.0' y='500.7' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>内布拉斯加（共和党现任）</text><text x='246.0' y='516.7' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Osborn（独立）</text><rect x='258.0' y='492.7' width='222.1' height='20.0' rx='5' fill='#C0392B' opacity='0.88'/><text x='488.1' y='506.7' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>29%</text><text x='246.0' y='537.6' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>路易斯安那（共和党现任）</text><text x='246.0' y='553.6' font-size='10.5' fill='#8B95A3' text-anchor='end' font-weight='400'>Davis</text><rect x='258.0' y='529.6' width='46.0' height='20.0' rx='5' fill='#C0392B' opacity='0.88'/><text x='312.0' y='543.6' font-size='12.5' fill='#3A4750' text-anchor='start' font-weight='650'>6%</text></svg>
+  <div class="legend">
+    <span><i style="background:#2F6FB8"></i>市场认为民主党领先（≥50%）</span>
+    <span><i style="background:#C0392B"></i>市场认为共和党领先（&lt;50%）</span>
+  </div>
+  <div class="note">口径：2026 年 10 月 3 日至 15 日各平台公开报价的中位取值。<span class='b b-news'>媒体报道</span>
+  内布拉斯加一行为独立候选人 Dan Osborn，非民主党提名；路易斯安那的候选人身份本报告未能一手核实。<span class='b b-rumor'>未核实</span>
+  <b>同一席位的不同来源存在冲突，本图未做平均</b>：密歇根在 67%–73% 之间（四个来源），
+  艾奥瓦在 39.5%–46% 之间，得克萨斯在 63%–66% 之间。
+  <br><b>怎么读这张图。</b>竖虚线是 50%，也就是五五开。读法不是看谁高，是看谁靠近这条线。
+  <br><b>上半部分（前六行）是市场认为已经结束的。</b>北卡 96%、佐治亚 96%、弗吉尼亚 96%、
+  明尼苏达 88%、新罕布什尔 86%——<b>这里面只有北卡是共和党空出的席位，
+  也就是说民主党在这一档里只净赚 1 席。</b>
+  <br><b>下半部分是真正的选举。</b>阿拉斯加、得克萨斯、俄亥俄、缅因四席，
+  市场给的区间是 58% 到 71%——<b>这不是「已经赢了」，这是掷硬币掷到了偏一点的一面。</b>
+  再往下艾奥瓦 45%、堪萨斯 37%、内布拉斯加 29%，市场认为共和党守得住，
+  但守住的方式并不轻松（得克萨斯的共和党初选已经把 Paxton 推到了候选人位置）。
+  <br><b>而 62% 的脆弱之处在佐治亚和新罕布什尔的位置。</b>市场把佐治亚定在 95%、
+  新罕布什尔定在 86%，但 Cook、Sabato 与 Inside Elections 把佐治亚评为「偏向民主党」或「倾向民主党」，
+  把新罕布什尔评为<b>「五五开」</b>。<b>这是整张图上市场与专家分歧最大的一格。</b>
+  如果新罕布什尔真是五五开而不是 86%，民主党的净增席位立刻少一席，
+  参议院的 62% 会明显回落。<span class='b b-est'>估算</span>
+  <br><b>另有一个巧合值得指出：</b>参议院成交量最大的席位是得克萨斯
+  （Kalshi 约 1,640 万美元，Polymarket 约 360 万美元），
+  而市场给它的概率只有 64%——<b>被交易最多的，恰恰是最不确定的那几个之一。</b><span class='b b-news'>媒体报道</span></div>
+</div>
+
+
+<h3>6.5 是谁在给这些价格定价</h3>
+<p class="lede">「市场认为民主党有 91% 的概率」这句话，隐含了一个假设：有很多人在交易。
+ACDC 在 2026 年 8 月与 9 月的两份分析把这个假设拆开了。</p>
+
+<div class="card">
+<table>
+<thead><tr><th>指标</th><th class="num">数值</th><th>含义</th></tr></thead>
+<tbody>
+<tr class="hi"><td>前 1% 钱包占国会交易额</td><td class="num">68%（9 月底修正为 70%）</td>
+  <td>不到 <b>七成的交易量来自 1% 的账户</b></td></tr>
+<tr class="hi"><td>前 10 个钱包占交易额</td><td class="num">17%</td>
+  <td>这 10 个钱包在 470 个选区中的 <b>426 个</b>留下了交易记录</td></tr>
+<tr><td>参与交易的钱包总数</td><td class="num">约 39,820</td><td>对应 2.2 亿美元的下注额</td></tr>
+<tr><td>参与者少于 100 人的市场</td><td class="num">80%</td>
+  <td>参与者超过 1,000 人的市场只有 <b>10 个</b></td></tr>
+<tr class="hi"><td>3,500 美元能把报价推动 5 美分以上的市场</td><td class="num">97%</td>
+  <td>3,500 美元正是个人对联邦候选人的法定捐款上限</td></tr>
+<tr><td>1,000 美元能推动 10 美分的市场</td><td class="num">94%</td><td>—</td></tr>
+<tr><td>约 23 美元能让冷门候选人概率翻倍的市场</td><td class="num">806 / 1,094</td>
+  <td>赔率 ≤5 美分的市场</td></tr>
+<tr><td>市场构成</td><td class="num">仅 16% 是「谁赢」</td>
+  <td>2024 年该比例是 71%；现在是 58% 在赌差距、投票率等细项</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">来源：ACDC《Gambling on Democracy》第 1 号（2026-08-17，数据截至 8 月 10 日）
+与第 2 号（2026-09-09，9 月 1 日活跃订单簿 11,011 个市场，累计分析 18,780 个市场）；
+累计成交额与市场数另经路透社 2026-10-14 更新。<span class='b b-news'>媒体报道</span></div>
+
+<p><b>ACDC 还给了一个案例，因为它同时展示了机制和后果。</b>在得克萨斯州参议院初选中，
+一笔 <b>1,240 美元</b>的赌注把 Ken Paxton 的赔率从 52 美分推到 63 美分。
+随后 Newsweek 发表了一篇报道，引用「Polymarket 显示 Paxton 胜算上升」——
+<b>而那正是那 1,240 美元造出来的价格。该价格维持了约六周。</b><span class='b b-news'>媒体报道</span></p>
+
+<p><b>关于这些推动的持续性，ACDC 自己的数据其实相当克制，值得完整引用：</b>
+在 353 次由一到两个钱包造成的 5 美分以上移动中，<b>211 次价格维持住了，
+62 次引发了后续动能，80 次回弹</b>；而在维持住的那部分里，
+<b>只有大约一半的方向是正确的</b>。<span class='b b-news'>媒体报道</span>
+<br>换句话说：<b>小额资金能推动价格，这件事证据充分；
+但「被推动的价格后来被证明是对的」只有大约一半的概率——和抛硬币没有区别。</b><span class='b b-est'>估算</span></p>
+
+<div class="call warn">
+<div class="t">四条必须一起读的限定</div>
+<b>(1) 这只适用于 Polymarket。</b>Kalshi 与 Polymarket US 是链下撮合、不公开钱包身份，
+所以「前 1% 占 68%」这类结论<b>只覆盖三个平台中的一个</b>。<span class='b b-news'>媒体报道</span>
+<br><b>(2)「1 美元移动价格」这个头条数字，统计的是未成交的挂单改变了显示中间价，
+不是成交。</b>ACDC 自己说明了这个口径选择。引用它时必须带上这句话。<span class='b b-news'>媒体报道</span>
+<br><b>(3) 平台方不认。</b>Kalshi 称该报告「有缺陷」，
+举出的反例是一笔 <b>125 万美元</b>的 Spencer Pratt（洛杉矶市长）赌注，
+称价格在 <b>9 秒</b>内被套利纠正。Polymarket 称套利激励会自我修正，
+并声称自己的选举市场在选举前一天准确率 98%。
+<b>本报告没有找到学术界对该方法论的正式反驳，只找到平台方的回应。</b><span class='b b-news'>媒体报道</span>
+<br><b>(4) 还有一个独立的问题：刷量。</b>哥伦比亚大学的一项研究估计，
+Polymarket 三年历史成交量中约 <b>25% 是刷量交易</b>；
+分品类看，体育约 45%，<b>政治选举约 17%</b>——选举类是刷量最少的品类之一。
+该论文未经同行评议，且测算的是历史成交量，不直接描述 2026 年 10 月的市场。<span class='b b-news'>媒体报道</span>
+</div>
+
+<div class="call bad">
+<div class="t">这对本报告的使用方式有直接影响</div>
+上面这些不是说预测市场「造假」——集中度高不等于操纵，专业做市商确实可能比散户更准。
+<b>它要说的是另一件事：</b>
+<br>「市场认为 91%」这句话里的「市场」，实际指的是<b>几十个钱包</b>。
+当这个数字被《华尔街日报》按小时引用时，读者读到的却是「成千上万人的集体判断」。
+<br><b>本报告因此把预测市场的报价当作「一个有信息量的观点」，而不是「一个客观的共识」。</b>
+它和摩根士丹利的情景分析、和 Cook 的选区评级，在证据等级上是同一类东西——
+都是少数专业判断者的结论，只是其中这一个带上了价格。<span class='b b-est'>估算</span>
+</div>
+
+
+<h3>6.6 市场的历史成绩单</h3>
+
+<p>预测市场的支持者最常引用 2024 年：Polymarket 全程给特朗普更高的胜率
+（收盘在 58%–66% 之间，不同来源口径不一），最终特朗普赢下选举人票与普选票。
+「市场比民调准」的说法由此流行。<span class='b b-news'>媒体报道</span></p>
+
+<p><b>但同一份成绩单的另一面同样清楚。</b></p>
+
+<div class="card">
+<table>
+<thead><tr><th>时点</th><th>市场怎么说</th><th>实际发生</th><th class="num">结果</th></tr></thead>
+<tbody>
+<tr><td>2016 美国总统</td><td>PredictIt 约 83 美分、PredictWise 约 91%（选举日前夜）</td>
+  <td>特朗普胜</td><td class="num">错</td></tr>
+<tr><td>2016 英国脱欧</td><td>Betfair 约 85%–90% 留欧（投票结束时）</td>
+  <td>脱欧通过 52–48</td><td class="num">错</td></tr>
+<tr class="hi"><td>2022 美国中期选举</td><td>共和党拿参议院约 60%（10 月底），
+  选举日当天 PredictIt 75 美分 / Betfair 78%；共和党拿众议院 88%</td>
+  <td>民主党保住参议院，众议院只是小幅易手</td><td class="num">错</td></tr>
+<tr><td>2024 美国总统</td><td>特朗普约 60%–66%</td><td>特朗普胜</td><td class="num">对</td></tr>
+<tr><td>2025 纽约市长</td><td>Mamdani 约 92%（两个平台合计成交约 4.85 亿美元）</td>
+  <td>Mamdani 以 50.78% 胜选</td><td class="num">对</td></tr>
+<tr><td>2025 新泽西州长</td><td>Sherrill 约 84%–86%</td><td>以 13.1 个百分点胜选</td><td class="num">对</td></tr>
+<tr><td>2025 弗吉尼亚州长</td><td>Spanberger 约 97%–98%</td><td>胜选</td><td class="num">对</td></tr>
+<tr class="hi"><td>2025 纽约市民主党初选</td><td>投票结束时 Cuomo 约 57%</td>
+  <td>Mamdani 胜</td><td class="num">错</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><b>三点必须说清楚。</b></p>
+
+<p><b>第一，2016 年和脱欧不是 Polymarket 的记录。</b>
+Polymarket 2020 年才上线；2016 年的价格来自 PredictIt、Betfair、PredictWise 等已退场或转型的平台。
+把它们算作「Polymarket 的历史准确率」是错的。<span class='b b-ok'>已证实</span></p>
+
+<p><b>第二，2022 年这一次和 2026 年最像，值得单独看。</b>
+当年市场的错误不是因为交易者不懂民调，恰恰相反——他们读的是同一批民调，
+而那批民调高估了共和党。<b>市场把输入数据的偏差原样放大，而不是纠正它。</b>
+而且当年市场的立场比统计模型更极端：10 月底 538 给共和党拿参议院 59%、
+《经济学人》给 55%–60%，而博彩市场给到 60% 并在选举日当天冲到 75%–78%。
+<b>赌徒没有比统计学家更冷静，他们比统计学家更激动。</b><span class='b b-est'>估算</span></p>
+
+<p><b>第三，2025 年的四次命中，有两个共同特征：都是高关注度、民调一边倒的选举。</b>
+Mamdani 92%、Sherrill 85%、Spanberger 97%——这些不是市场「发现了什么」，
+而是市场在复述一个已经很清楚的民调。真正的问题是：<b>2026 年的参议院不是这种选举。</b>
+6.4 节显示，决定参议院归属的四到五个席位，市场价格在 58% 到 71% 之间——
+这正是 2025 年 6 月纽约市初选那种情形（投票结束时 Cuomo 57%，然后输了）。
+<br><b>顺带一个值得记住的细节：</b>Kalshi 在 2025 年的三场选举里都在媒体之前宣布了结果
+（纽约市长提前约 36 分钟，新泽西 32 分钟）。<b>这个优势来自快，不来自准。</b>
+跑得快和看得远是两种不同的能力，而在 58% 的席位上，你需要的是后者。<span class='b b-est'>估算</span></p>
+
+<div class="call bad">
+<div class="t">关于「预测市场的 Brier 分数比民调好」这个常被引用的说法，本报告选择不采信</div>
+流传最广的一组数字是：覆盖六个选举周期，预测市场综合 Brier 分数 0.108、
+民调 0.135；2024 年市场 0.04、民调 0.18；2020 年民调胜出；2022 年两者打平。
+<br><b>但这组数字只有一个来源，是一篇自行发布的博客文章。该文自我标注部分内容已过时，
+并且内部不自洽</b>——它的正文示例给出 2024 年最后一周 Polymarket 的 Brier 是 0.18，
+与它自己表格里的 0.04 直接矛盾。表格还混用了不同的问题类型。
+<br><b>其他来源的数字彼此也差很多：</b>一个实时跟踪项目给出 Polymarket 与 Kalshi 合并 Brier 约 0.09；
+另一项对 220 万个已结算合约的分析给出 Polymarket 约 0.084、Kalshi 约 0.02；
+另有研究给出超级预测者 0.05–0.07。<span class='b b-news'>媒体报道</span>
+<br><b>本报告的结论是：Brier 分数这个战场目前没有可信的共识数字，
+因此本报告不引用任何一组，也不把它当作「市场更准」的证据。</b>
+值得记下的反而是另一项研究的方法论批评：用「日均 Brier」评分会奖励建模缺陷，
+改用「能否盈利」检验后，2024 年大选的主流合约上，
+<b>538、《经济学人》与 Silver Bulletin 三家模型都没能跑赢 Polymarket 的市场价格</b>——
+尽管它们在一些冷门选区上赢了。<span class='b b-news'>媒体报道</span><span class='b b-est'>估算</span>
+</div>
+
+
+<h3>6.7 为什么市场不是民调的独立证据</h3>
+<p class="lede">这是本章最重要的一节。它回答最开始那个问题：
+如果民调不准，预测市场能不能救你。</p>
+
+<div class="call bad">
+<div class="t">答案是：在你最需要它独立的那个问题上，不能</div>
+<b>市场报价与民调之间的相关系数极高，因为边际定价者读的就是同一批民调。</b>
+交易这些市场的专业资金，输入的是 Silver Bulletin、Decision Desk HQ、Cook 和 Sabato——
+也就是 6.3 节里那些模型和评级本身。<b>市场不是对民调的独立验证，
+它是对民调的再包装，外加一个风险溢价。</b>
+<br>因此：如果民调存在 6.1 个百分点的系统性偏差，
+<b>市场把这个偏差原样继承下来，而不是把它对冲掉。</b>
+你在预测市场上看到的 91%，里面包含的民调误差与你直接在民调里看到的是一样的。<span class='b b-est'>估算</span>
+</div>
+
+<p><b>三条证据支持这个判断，一条反对，本报告把四条都列出来。</b></p>
+
+<p><b>支持一：学术上最直接的一项检验，结论是市场没有增量信息。</b>
+Erikson 与 Wlezien 在《Electoral Studies》上检验了 1880 年以来的美国总统选举。
+用 1952–2008 年的数据做回归：单用民调，调整后 R² 为 0.95；
+单用市场价格，0.75；<b>把市场价格加进民调之后，系数为 0.11、标准误 0.64，不显著，
+预测误差没有改善（RMSE 1.37，对比单用民调的 1.39）。</b>
+该文的原话是：<b>「当我们同时拥有市场价格和民调时，价格对选举预测没有额外贡献。」</b>
+该文另一个耐人寻味的结果是：在 1880–1936 年那个还没有科学民调的时代，
+市场表现得几乎和民调一样准——<b>这说明市场的本事本来就在「聚合已有信息」，
+而不是「产生新信息」。</b><span class='b b-news'>媒体报道</span></p>
+
+<p><b>支持二：市场自己的内部矛盾。</b>Polymarket 上同时存在两个关于「民主党横扫」的市场：
+成交额以千万美元计的「两院控制权」（Balance of Power）报价 <b>62%</b>；
+而一个流动性薄约两千倍的「2026 蓝色浪潮」二元合约报价 <b>87%</b>。
+同一件事、同一时间、同一个平台，<b>差 25 个百分点</b>。
+差价的原因不是信息，是合约措辞——后者的结算条款更宽松，可能不需要参议院翻盘也能判「是」。
+<b>如果价格反映的是共识，两个市场不可能差 25 个百分点。</b><span class='b b-news'>媒体报道</span></p>
+
+<p><b>支持三：市场的数字可以从模型算出来。</b>62% 的「横扫」概率，
+约等于 91% 的众议院概率乘以约 68% 的参议院条件概率。
+这是一个算术结果，不是一个独立发现。市场和民调模型之间没有信息差，只有表达形式的差别。<span class='b b-est'>估算</span></p>
+
+<div class="call">
+<div class="t">反对：有一条证据说市场确实有民调没有的东西，而且它就在本报告图 9 里</div>
+<b>6.2 节发现的事实与上面的结论直接冲突：参议院市场在八个月里移动了 27 个百分点，
+而同期全国普选民调只移动了约 1.5 个百分点。</b>这 27 个百分点不可能是民调的重述。
+<br>学术上也有对应的发现。一项基于 2024 年 11 个摇摆州、1,100 万笔以上 Polymarket 交易的研究发现，
+<b>市场价格趋势最多领先民调变化 14 天（p&lt;0.01）——但只在高波动州（亚利桑那、内华达、宾夕法尼亚）成立，
+在其他州信号很弱或不存在。</b>另一项研究发现，1 个百分点的民调意外
+在同州市场只引起 24 小时内约 0.112 个百分点的移动——
+<b>市场吸收民调信息是部分的、缓慢的，不是即时的。</b><span class='b b-news'>媒体报道</span>
+<br><b>本报告对这个冲突的判断是：</b>独立信息存在于<b>逐席位层面</b>，
+不存在于<b>全国层面</b>。参议院的 62% 在相当程度上是州级信息（候选人、筹款、州内民调、
+战争对各州的不同影响）的聚合，这部分是真信息；
+而众议院的 91% 几乎完全跟着全国普选民调走，这部分是民调的影子。
+<br><b>所以正确的用法不是「信市场」或「信民调」，而是：众议院看民调就够了，
+参议院必须看市场。</b><span class='b b-est'>估算</span>
+</div>
+
+<p><b>最后一种可能，也是本报告认为最实用的一种：两个都不用，用混合。</b>
+一项覆盖六个周期的校准研究发现，<b>把市场与民调按 60/40 混合，在多数周期里优于任何单一来源</b>。
+这个结论的方法论细节本报告无法核验（见 6.6 节对该数据源的保留），
+但它和图 9 的证据方向一致：<b>市场里有民调没有的东西，民调里有市场没有的东西，
+两者都不足以单独使用。</b>
+Nate Silver 的一句评价适合作为本节的结尾：<b>「外面有太多笨钱……而未必有足够的聪明钱去对冲它们。」</b><span class='b b-news'>媒体报道</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 11 · 要推翻众议院民主党胜选，民调需要错到什么程度</div>
+  <div class="fs">安全垫是 3.5 个百分点。而过去一年里唯一被实测到的民调偏差，方向正好相反</div>
+  <svg class='chart' viewBox='0 0 1120 236' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><rect x='56.0' y='44.0' width='1008.0' height='152.0' rx='10' fill='#F7F9FA'/><rect x='56.0' y='44.0' width='315.0' height='152.0' rx='0' fill='#C0392B' opacity='0.13'/><line x1='56.0' y1='44.0' x2='56.0' y2='196.0' stroke='#C0392B' stroke-width='1.2' stroke-dasharray='4 4' opacity='0.55'/><text x='213.5' y='32.0' font-size='12' fill='#C0392B' text-anchor='middle' font-weight='700'>共和党守住众议院</text><rect x='371.0' y='44.0' width='693.0' height='152.0' rx='0' fill='#2F6FB8' opacity='0.13'/><line x1='371.0' y1='44.0' x2='371.0' y2='196.0' stroke='#2F6FB8' stroke-width='1.2' stroke-dasharray='4 4' opacity='0.55'/><text x='717.5' y='32.0' font-size='12' fill='#2F6FB8' text-anchor='middle' font-weight='700'>民主党拿下众议院</text><line x1='56.0' y1='156.5' x2='1064.0' y2='156.5' stroke='#C3CCD3' stroke-width='2'/><line x1='56.0' y1='156.5' x2='56.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='56.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+0</text><line x1='182.0' y1='156.5' x2='182.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='182.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+2</text><line x1='308.0' y1='156.5' x2='308.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='308.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+4</text><line x1='434.0' y1='156.5' x2='434.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='434.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+6</text><line x1='560.0' y1='156.5' x2='560.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='560.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+8</text><line x1='686.0' y1='156.5' x2='686.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='686.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+10</text><line x1='812.0' y1='156.5' x2='812.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='812.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+12</text><line x1='938.0' y1='156.5' x2='938.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='938.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+14</text><line x1='1064.0' y1='156.5' x2='1064.0' y2='162.5' stroke='#C3CCD3' stroke-width='1'/><text x='1064.0' y='218.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>D+16</text><circle cx='371.0' cy='156.5' r='7' fill='#3A4750' stroke='#3A4750' stroke-width='2.4'/><line x1='371.0' y1='156.5' x2='371.0' y2='134.5' stroke='#3A4750' stroke-width='1.6' opacity='0.7'/><text x='371.0' y='122.5' font-size='13.5' fill='#3A4750' text-anchor='middle' font-weight='700'>D+5</text><text x='371.0' y='106.5' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>翻盘线</text><text x='371.0' y='91.5' font-size='10.5' fill='#5A6672' text-anchor='middle' font-weight='400'>Quantus 模型：众议院在约 D+5 处翻转</text><circle cx='591.5' cy='156.5' r='7' fill='#2F6FB8' stroke='#2F6FB8' stroke-width='2.4'/><line x1='591.5' y1='156.5' x2='591.5' y2='134.5' stroke='#2F6FB8' stroke-width='1.6' opacity='0.7'/><text x='591.5' y='122.5' font-size='13.5' fill='#2F6FB8' text-anchor='middle' font-weight='700'>D+8.5</text><text x='591.5' y='106.5' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>当前民调均值</text><text x='591.5' y='91.5' font-size='10.5' fill='#5A6672' text-anchor='middle' font-weight='400'>10 月中旬 · 8 月底为 D+6.3</text><circle cx='975.8' cy='156.5' r='7' fill='#fff' stroke='#2F6FB8' stroke-width='2.4'/><line x1='975.8' y1='156.5' x2='975.8' y2='134.5' stroke='#2F6FB8' stroke-width='1.6' opacity='0.7'/><text x='975.8' y='122.5' font-size='13.5' fill='#2F6FB8' text-anchor='middle' font-weight='700'>D+14.6</text><text x='975.8' y='106.5' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>若 2025 年偏差重演</text><text x='975.8' y='91.5' font-size='10.5' fill='#5A6672' text-anchor='middle' font-weight='400'>8.5 + 6.1 个百分点</text></svg>
+  <div class="note">口径：横轴为全国普选票的民主党领先幅度（generic ballot，单位：百分点）。
+  翻盘线取自 Quantus Insights 的模型（该模型认为众议院在约 D+5 处翻转），标为 <span class='b b-analyst'>机构观点</span>；
+  当前民调均值为 10 月中旬的多家平均，标为 <span class='b b-news'>媒体报道</span>；
+  2025 年实测偏差来自 Silver Bulletin 的民调机构评分卡，标为 <span class='b b-news'>媒体报道</span>。
+  <br><b>怎么读这张图。</b>民调现在给民主党 D+8.5，众议院在 D+5 处翻转，
+  所以<b>安全垫是 3.5 个百分点</b>。共和党要守住众议院，
+  需要民调<b>高估民主党 3.5 个百分点以上</b>。
+  <br><b>而 2025 年实测到的系统性偏差是 6.1 个百分点，方向是低估民主党。</b>
+  也就是说，最近一次关于「民调会怎么错」的实证证据，
+  <b>指向的方向与共和党守住众议院所需要的方向相反</b>。
+  如果那个偏差原样重演，实际结果是 D+14.6，民主党不只是赢，而是大赢。
+  <br><b>但必须同时说清楚三件事。</b>
+  第一，单家民调的离散度是从 D+2 到 D+15，<b>这个离散度（约 ±6.5）
+  本身就大于 3.5 个百分点的安全垫</b>——即使没有系统性偏差，随机误差也足以让结果落在翻盘线附近。
+  第二，2025 年的偏差样本只有三个：弗吉尼亚与新泽西两个州长选举（低估民主党），
+  以及一场田纳西补选（<b>方向完全相反，高估了民主党 7 个百分点</b>）。
+  <b>用三个样本推断一次全国选举，是很弱的证据。</b>
+  第三，本条不适用于参议院——6.4 节显示，参议院的胜负不取决于全国普选票，
+  而取决于四到五个州各自的结果，那些州的误差可能相互抵消，也可能同向叠加。
+  <br><b>所以正确的结论不是「民主党稳了」，而是：</b>
+  共和党守住众议院需要一个<b>与最近实证证据方向相反、且幅度大于安全垫</b>的民调误差。
+  这是一件可能发生但难以辩护的事。这也解释了为什么市场给 91% 而不是 60%。<span class='b b-est'>估算</span></div>
+</div>
+
+
+<h3>6.8 本章结论</h3>
+
+<div class="call">
+<div class="t">对「民调不准，那看预测市场行不行」这个问题的完整回答</div>
+<b>行，但要知道你买的是什么。</b>
+<br><br><b>1. 预测市场对众议院没有增量信息。</b>它的 91% 建立在同一批民调上，
+民调错，它就错得一样。而且它的定价权高度集中——
+「市场」实际是几十个钱包，其中前 1% 占了七成交易量。
+<br><b>2. 预测市场对参议院有增量信息。</b>图 9 里那 27 个百分点的移动，
+民调解释不了。参议院的结果不取决于全国普选票，取决于四到五个州，
+而市场把州级信息（候选人、筹款、战争影响）定进了价格。
+<br><b>3. 预测市场最独特的输出是分布，不是点估计。</b>
+「分裂国会 29%」这个数字在任何民调里都读不到，而它恰恰是本报告第四、五章认定的基准情景。
+<br><b>4. 它的历史记录是混合的，而且最近的成功有选择性。</b>
+2024 年赢了，2022 年输得很惨，2025 年赢的三场都是民调一边倒的高关注度选举，
+2025 年 6 月纽约市初选则输了。<b>2026 年参议院的形态更接近后者。</b>
+<br><b>5. 关于它「比民调准」的量化证据，目前不可信。</b>
+Brier 分数的各种版本互相矛盾且多为单一来源，本报告选择不引用任何一组。
+<br><br><b>可操作的结论：</b>如果你想用预测市场校正民调的偏差，你校正不了——
+两者是同一个来源。如果你想知道<b>结果分布的形状</b>、
+想知道<b>参议院哪几个州在决定归属</b>，预测市场是目前最好的单一工具，
+但它应当和 Cook 的选区评级、和民调一起读，而不是替代它们。
+<br><b>本报告在后续章节里的做法是：众议院的判断以民调为主并明确标注安全垫（3.5 个百分点）；
+参议院的判断采纳市场对席位的排序，但不采纳它的概率数字。</b><span class='b b-est'>估算</span>
+</div>
+
+
+<h2 id="s7">第七章 · 传导渠道与板块影响</h2>
+<p class="lede">选举结果不直接影响任何一家公司的盈利。它通过五条渠道传导，
+每一条的时滞和幅度都不同——把渠道分清楚，比记住结论更有用。</p>
+
+<div class="card">
+<p><b>渠道一 · 监管与执法（时滞 3–12 个月）。</b>不需要立法，只需要换一个机构负责人。
+证券、环保、反垄断、劳动、能源许可——这些领域的政策弹性最大，
+也是选举结果传导最快的路径。对科技、金融、能源、医药的影响主要走这条。</p>
+<p><b>渠道二 · 拨款与财政边缘政策（时滞 6–18 个月）。</b>这是唯一一条能让整个市场
+（而不只是某个板块）重新定价的渠道，因为它直接关系到国债供给与主权信用。
+触发点是政府停摆与债务上限。</p>
+<p><b>渠道三 · 立法（时滞 12 个月以上，且概率最低）。</b>参议院的 60 票门槛意味着
+除了预算调节程序（reconciliation）之外的重大立法几乎不可能。
+<b>本报告认为市场普遍高估了「横扫」能带来的立法变化。</b></p>
+<p><b>渠道四 · 调查与传票（时滞 1–6 个月，幅度小但持续）。</b>
+制造头条风险与个别公司的声誉风险，不制造系统性风险。</p>
+<p><b>渠道五 · 预期与贴现率（时滞为零）。</b>这一条今天就生效，
+也是为什么「已被定价」这个判断如此重要。</p>
+</div>
+
+<p>把五条渠道落到具体板块上，得到下面这张矩阵。<b>需要强调：格子里的数字是相对影响的评分，
+不是预期回报，也不是任何机构的官方观点。</b></p>
+
+
+<div class="fig">
+  <div class="ft">图 12 · 各情景对板块的相对影响（−2 到 +2，本报告主观评分）</div>
+  <div class="fs">格子里的数字是相对影响评分，不是预期回报。所有格子都带文字标注，颜色只是辅助</div>
+  <svg class='chart' viewBox='0 0 1120 286' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><text x='197.2' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>科技 / 半导体</text><text x='291.6' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>医药 / 生科</text><text x='386.0' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>医疗 保险</text><text x='480.4' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>化石能源</text><text x='574.8' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>可再生能源</text><text x='669.2' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>金融</text><text x='763.6' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>国防</text><text x='858.0' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>数据中心</text><text x='952.4' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>消费零售</text><text x='1046.8' y='62.0' font-size='11.5' fill='#3A4750' text-anchor='middle' font-weight='650'>材料 / 钢铁</text><text x='136.0' y='104.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>民主党横扫</text><rect x='152.0' y='74.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='197.2' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='246.4' y='74.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='291.6' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='340.8' y='74.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='386.0' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='435.2' y='74.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='480.4' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='529.6' y='74.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.88'/><text x='574.8' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+2</text><rect x='624.0' y='74.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='669.2' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='718.4' y='74.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='763.6' y='105.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='812.8' y='74.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='858.0' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='907.2' y='74.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='952.4' y='105.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='1001.6' y='74.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='1046.8' y='105.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><text x='136.0' y='160.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>分裂国会（基准）</text><rect x='152.0' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='197.2' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='246.4' y='130.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='291.6' y='161.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='340.8' y='130.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='386.0' y='161.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='435.2' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='480.4' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='529.6' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='574.8' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='624.0' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='669.2' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='718.4' y='130.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='763.6' y='161.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='812.8' y='130.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.88'/><text x='858.0' y='161.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+2</text><rect x='907.2' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='952.4' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><rect x='1001.6' y='130.0' width='90.4' height='52.0' rx='6' fill='#E6EBEF'/><text x='1046.8' y='161.0' font-size='12.5' fill='#3A4750' text-anchor='middle' font-weight='700'>0</text><text x='136.0' y='216.0' font-size='12.5' fill='#3A4750' text-anchor='end' font-weight='400'>共和党守住两院</text><rect x='152.0' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='197.2' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='246.4' y='186.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='291.6' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='340.8' y='186.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='386.0' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='435.2' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.88'/><text x='480.4' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+2</text><rect x='529.6' y='186.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='574.8' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='624.0' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='669.2' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='718.4' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='763.6' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='812.8' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='858.0' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text><rect x='907.2' y='186.0' width='90.4' height='52.0' rx='6' fill='#C0392B' opacity='0.52'/><text x='952.4' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>-1</text><rect x='1001.6' y='186.0' width='90.4' height='52.0' rx='6' fill='#0A9960' opacity='0.52'/><text x='1046.8' y='217.0' font-size='12.5' fill='#fff' text-anchor='middle' font-weight='700'>+1</text></svg>
+  <div class="legend">
+    <span><i style="background:#C0392B"></i>相对不利</span>
+    <span><i style="background:#E6EBEF"></i>中性</span>
+    <span><i style="background:#0A9960"></i>相对有利</span>
+  </div>
+  <div class="note">评分依据：摩根士丹利、摩根大通、美银、BNY 四家的 2026 年中期选举情景报告，
+  加上本报告对政策传导路径的判断。<span class='b b-analyst'>机构观点</span> <span class='b b-est'>估算</span>
+  <br><b>三个需要注意的非直觉项：</b>
+  (1) <b>医疗保险公司在民主党横扫下反而有利</b>——因为共和党削减医疗补助的可能性消失，
+  且到期的 ACA 补贴更可能被延长。这与「民主党对保险公司不友好」的直觉相反，
+  但摩根士丹利与摩根大通给出的方向一致。
+  (2) <b>数据中心 REIT 在分裂国会下是最佳标的</b>——摩根士丹利的逻辑是，
+  审批改革停滞会限制新增供给，反而让存量资产获得定价权。
+  (3) <b>材料 / 钢铁在共和党守住两院下有利</b>——因为关税保护延续；
+  但这同时意味着下游的汽车、建筑、工业继续承受成本压力。</div>
+</div>
+
+
+<h2 id="s8">第八章 · 选情的基本面：选民实际上在投什么</h2>
+<p class="lede">这一章存在的理由很实际：如果一个议题在选民心中排第一，
+那么无论选举结果如何，政策都必须回应它；而政策回应会直接落到某些行业的现金流上。</p>
+
+<p>2026 年 10 月的所有主要民调，在「第一议题」上给出了罕见的一致答案：
+<b>物价</b>。而且是各个调查口径下的历史极值。<span class='b b-news'>媒体报道</span></p>
+
+<div class="card">
+<table>
+<thead><tr><th>机构 · 时间</th><th>第一议题</th><th class="num">占比</th><th>值得注意的附带发现</th></tr></thead>
+<tbody>
+<tr class="hi"><td>Economist/YouGov · 10/2–10/5</td><td>通胀 / 物价</td><td class="num">37%</td>
+  <td>2022 年开始追踪以来最高；2024 年大选前最后一次调查是 24%</td></tr>
+<tr><td>Pew · 9/28–10/4</td><td>经济</td><td class="num">84%</td>
+  <td>「非常重要」占比；民主党 88% 反超共和党 82%（2022 年为 65%）</td></tr>
+<tr><td>AP-NORC · 10/8–10/12</td><td>经济 / 生活成本</td><td class="num">85% / 84%</td>
+  <td>约 80% 想要「实质性改变」或「彻底变革」</td></tr>
+<tr><td>Fox News · 10/9–10/12</td><td>政府腐败</td><td class="num">约 88–90%</td>
+  <td>唯一一个把腐败排到通胀之上的调查；通胀 58%「极度担忧」</td></tr>
+<tr><td>CBS/YouGov · 9/30–10/2</td><td>物价</td><td class="num">91%</td>
+  <td>「今天的经济就等于物价」——选民判断经济的单一标准</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>三个具体数字，决定了这场选举的性质。<b>第一</b>，通胀处理的支持率是 22% 对 77%，
+其中 <b>22% 是该追踪调查的新低</b>（2026 年 1 月还有 35%）。<span class='b b-news'>媒体报道</span>
+<b>第二</b>，路透/益普索 10 月 5 日完成的调查显示，
+<b>78% 的美国人认为特朗普的政策至少要为物价上涨负部分责任</b>——
+其中包括 76% 的独立选民和 <b>64% 的共和党人</b>。<span class='b b-news'>媒体报道</span>
+<b>第三</b>，盖洛普 9 月的调查中，民主党在「保持国家繁荣」这一项上以 51 比 37 领先 14 个百分点，
+是 2007 年以来最大的领先幅度，而三年前共和党在这一项上还领先 14 个百分点。<span class='b b-news'>媒体报道</span></p>
+
+<div class="call">
+<div class="t">为什么这一章对投资者有用</div>
+共和党在 2024 年的两大优势议题——移民和经济——到 2026 年 10 月已经基本消失。
+移民信任度从共和党领先 15 个百分点变成大致持平甚至民主党小幅领先
+（拉斯穆森 D+6、Morning Consult 持平、Quinnipiac D+3）；
+经济议题上民主党从落后 21 个百分点变成领先 1 个百分点。
+<br><b>这不是一组「选举会不会翻盘」的数字，而是一组「选举之后政策会被迫往哪里走」的数字。</b>
+当 84% 的选民把物价列为第一议题、且 64% 的共和党选民也认为关税政策要负责时，
+无论谁赢，<b>减轻生活成本压力的政策压力都会延续到 2027 年</b>——
+这对必需消费、医疗、公用事业是结构性的，对依赖可自由定价的行业是逆风。<span class='b b-est'>估算</span>
+</div>
+
+<p>还有两个议题值得单独列出，因为它们的市场传导路径非常直接：</p>
+<p><b>医疗</b>是民主党优势最大的议题（KFF 调查信任度 42 比 22，领先 20 个百分点，
+4 月时还只有 11 个百分点）。触发点是<b>增强版 ACA 补贴在 2025 年底到期</b>，
+参保人连续第二年面对两位数保费上涨；约三分之二的受访者认为国会不延长补贴是错的。<span class='b b-news'>媒体报道</span>
+这直接关系到第十章政策日历里 12 月的跛脚鸭会期——<b>补贴延期是唯一一件可能在选举后、
+新国会就职前完成立法的大事</b>。</p>
+<p><b>AI 监管</b>首次成为一个州级选举议题（在俄亥俄、密歇根、得州浮现）。
+Quinnipiac 的调查显示 <b>71% 的选民更愿意支持主张加强 AI 监管的候选人</b>，
+民主党在这一议题上领先 13 个百分点；Fox 的调查中 60% 对 AI 持负面看法。<span class='b b-news'>媒体报道</span>
+这对数据中心、电力与超大规模云厂商是慢变量，但方向明确：<b>AI 的政策环境正在从
+「补贴与加速」转向「监管与问责」</b>，而这个转变与选举结果无关，两党都在往这个方向走。<span class='b b-est'>估算</span></p>
+
+
+<h2 id="s9">第九章 · 比选举更重要的事：三件已经发生的事</h2>
+<p class="lede">前面七章都在讨论选举。这一章要说明为什么选举在当下是<b>次要变量</b>——
+以及什么才是主要变量。</p>
+
+<p>最直接的证据是时间线：2026 年的市场已经消化了两次幅度远超选举影响的冲击，
+而这两次都和选举无关。<span class='b b-est'>估算</span></p>
+
+
+<div class="fig">
+  <div class="ft">图 13 · 2026 年标普 500 月度回报（截至 10 月 15 日；10 月为不完整月份）</div>
+  <div class="fs">3 月 −5.1% 与 4 月 +10.4% 这一组数字，说明这一年的波动来源与选举无关</div>
+  <svg class='chart' viewBox='0 0 1120 340' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='74.0' y1='259.6' x2='1094.0' y2='259.6' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='263.6' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−5%</text><line x1='74.0' y1='188.5' x2='1094.0' y2='188.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='192.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>0%</text><line x1='74.0' y1='117.5' x2='1094.0' y2='117.5' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='121.5' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>5%</text><line x1='74.0' y1='46.4' x2='1094.0' y2='46.4' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='50.4' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>10%</text><line x1='74.0' y1='288.0' x2='1094.0' y2='288.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='125.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>1月</text><rect x='91.3' y='188.5' width='67.3' height='2.0' rx='3' fill='#0A9960' opacity='0.9'/><text x='227.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2月</text><rect x='193.3' y='188.5' width='67.3' height='12.4' rx='3' fill='#0A9960' opacity='0.9'/><text x='227.0' y='215.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.9</text><text x='329.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>3月</text><rect x='295.3' y='188.5' width='67.3' height='72.3' rx='3' fill='#0A9960' opacity='0.9'/><text x='329.0' y='275.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-5.1</text><text x='431.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>4月</text><rect x='397.3' y='40.5' width='67.3' height='148.1' rx='3' fill='#0A9960' opacity='0.9'/><text x='431.0' y='34.5' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>10.4</text><text x='533.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>5月</text><rect x='499.3' y='115.3' width='67.3' height='73.2' rx='3' fill='#0A9960' opacity='0.9'/><text x='533.0' y='109.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>5.2</text><text x='635.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>6月</text><rect x='601.3' y='188.5' width='67.3' height='15.1' rx='3' fill='#0A9960' opacity='0.9'/><text x='635.0' y='218.6' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-1.1</text><text x='737.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>7月</text><rect x='703.3' y='188.5' width='67.3' height='1.8' rx='3' fill='#0A9960' opacity='0.9'/><text x='737.0' y='205.4' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.1</text><text x='839.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>8月</text><rect x='805.3' y='151.3' width='67.3' height='37.2' rx='3' fill='#0A9960' opacity='0.9'/><text x='839.0' y='145.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>2.6</text><text x='941.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>9月</text><rect x='907.3' y='188.5' width='67.3' height='6.4' rx='3' fill='#0A9960' opacity='0.9'/><text x='941.0' y='209.9' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.5</text><text x='1043.0' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>10月</text><rect x='1009.3' y='171.3' width='67.3' height='17.2' rx='3' fill='#0A9960' opacity='0.9'/><text x='1043.0' y='165.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.2</text></svg>
+  <div class="note">数据来源：FRED SP500 日线，本报告按月末收盘计算。<span class='b b-est'>估算</span>
+  <br><b>这张图的作用是提供一个尺度参照。</b>本报告在第五章给各种选举情景的影响打了分，
+  但请把它和这张图放在一起看：2026 年前十个月里，单月就已经出现过 −5.1% 和 +10.4%。
+  <b>选举造成的单月波动，大概率不会超过这个量级。</b>
+  从 1 月 27 日的 6,978.60 到 3 月 30 日的 6,343.72，市场在没有选举的情况下回撤了 9.10%；
+  随后又从低点反弹 23.25% 到 10 月 6 日的历史新高。这些才是今年真正的行情。</div>
+</div>
+
+
+<h3>9.1 三件比选举重要的事</h3>
+
+<div class="card">
+<h4>第一 · 美联储已经转入加息周期，而主席不在选票上</h4>
+<p>9 月 16 日，美联储以 12 比 0 全票加息 25 个基点至 3.75–4.00%。
+这是在通胀 3.7%、且市场普遍预期年底前至少再加一次（概率约 93%）的背景下发生的。<span class='b b-news'>媒体报道</span></p>
+<p><b>为什么它比选举重要。</b>因为选举能改变的是财政与监管，而当前压制估值的是贴现率。
+在一个<b>股权风险溢价已经归零</b>的市场里，股票相对债券没有任何估值缓冲，
+分母端每一个基点的变化都会直接体现在价格上。美联储理事的任免需要参议院确认，
+所以选举确实能影响 2027 年之后的货币政策人事——但那是 2027 年的事，
+而现在到 2027 年之间还有至少两次议息会议。<span class='b b-est'>估算</span></p>
+<p>顺带一个容易被忽略的点：<b>如果民主党拿下参议院，共和党未来的美联储理事提名会更难通过。</b>
+这既是「维护央行独立性」的好消息，也意味着货币政策的人事不确定性会拉长。<span class='b b-est'>估算</span></p>
+</div>
+
+<div class="card">
+<h4>第二 · 伊朗战争的能源冲击</h4>
+<p>布伦特原油目前在 $105 附近，9 月中旬曾触及 $131。这已经把 9 月 CPI 推到 3.7%，
+并让「通胀重燃」在美国银行基金经理调查中成为第三大尾部风险（约 20% 的受访者）。<span class='b b-news'>媒体报道</span></p>
+<p><b>为什么它比选举重要。</b>因为它是当前通胀的主要来源，而通胀是美联储加息的原因，
+而加息是估值压力的原因——<b>这条链条上没有一个环节是选举能改变的。</b>
+皮尤 10 月 8 日发布的调查显示，33% 认可特朗普对军事行动的处理，65% 不认可；
+Silver Bulletin 的民调均值显示支持率约 32%，是该追踪的最低点。<span class='b b-news'>媒体报道</span>
+7 月的 Quinnipiac 调查中，34% 支持、60% 反对军事行动。<span class='b b-news'>媒体报道</span>
+这意味着战争在选举中是一个对执政党不利的议题——但它同时也是选举<b>无法解决</b>的议题。
+新国会无法结束一场战争，只有总统可以。<span class='b b-est'>估算</span></p>
+</div>
+
+<div class="card">
+<h4>第三 · AI 资本开支的信用压力</h4>
+<p>这是三件事里最值得盯的一件，也是最与选举无关的一件。
+美国银行基金经理调查把它拆成两项尾部风险：「AI 泡沫破裂」约 23%（第二位），
+「超大规模云厂商引发信用事件」约 11%（第四位）——合计约三分之一。<span class='b b-analyst'>机构观点</span>
+同时，做多全球半导体是调查中最拥挤的交易（45%），科技板块净超配 +37%，为 2020 年 8 月以来最高。<span class='b b-analyst'>机构观点</span></p>
+<p><b>为什么它比选举重要。</b>因为它同时具备三个特征：与选举完全无关、仓位极度集中、
+且传导路径是信用而非盈利。<b>信用事件的定价方式与盈利下修完全不同</b>——
+它不给你时间，也不按行业有序传导。在一个风险溢价归零、且 45% 的资金挤在同一个方向上的市场里，
+这是唯一一个可能产生非选举驱动的、无序下跌的来源。<span class='b b-est'>估算</span></p>
+</div>
+
+<div class="call bad">
+<div class="t">本章的结论</div>
+把三件事放在一起：<b>美联储在加息、油价在 $105、AI 信用在承压、股权风险溢价为零。</b>
+在这个组合下，中期选举的正确位置是「一个可能放大波动的日程事件」，
+而不是「一个决定方向的驱动力」。<br>
+反过来说，这也意味着<b>如果选举结果带来的是市场已经预期的结果（民主党拿下众议院），
+那么它很可能是一个非事件（non-event）</b>——价格会迅速回到油价、利率和 AI 信用这三条主线上。<span class='b b-est'>估算</span>
+</div>
+
+
+<h2 id="s10">第十章 · 操作含义与政策日历</h2>
+<p class="lede">把前面八章的分析压缩成可执行的东西。</p>
+
+<h3>10.1 四条结论</h3>
+<div class="card">
+<p><b>第一，不要为选举方向建仓。</b>众议院翻盘被定价到 90%，
+这个方向的边际信息量已经接近于零；剩余的 10% 里藏着最大的预期差（共和党守住两院），
+但 9% 的概率对应的赔率，不足以补偿方向性押注的风险。<span class='b b-est'>估算</span></p>
+
+<p><b>第二，如果要表达观点，用波动率而不是方向。</b>
+三个理由叠加：(a) 历史上选举后 12 个月平均要经历 −5.6% 的最大回撤，11/19 次超过 5%；
+(b) 选举后 6 周就是 12 月 11 日的拨款截止日，而本次基准情景（分裂国会）
+恰好是历史上财政边缘政策风险最高的一类；(c) 当前股权风险溢价归零，
+现货的多头没有估值缓冲。<b>在这三个条件同时成立时，期权的性价比高于现货。</b><span class='b b-est'>估算</span></p>
+
+<p><b>第三，选举真正的传导不是「谁赢」，而是「财政边缘政策的时点」。</b>
+分裂国会不产生坏政策，它产生政府停摆与债务上限对峙。
+2011 年的债务上限僵局是美国主权评级被下调的直接原因，而它发生的时间
+恰好是 2010 年中期选举之后九个月。<b>本次的时间表是 2026 年 12 月 11 日与 2027 年春夏季。</b><span class='b b-est'>估算</span></p>
+
+<p><b>第四，无论选举结果如何，有三条主线不会改变：</b>
+美联储的加息路径、伊朗战争带来的能源成本、以及 AI 资本开支的信用状况。
+<b>在这三条主线出现明确转折之前，选举对组合的影响应当是战术层面的，不是战略层面的。</b><span class='b b-est'>估算</span></p>
+</div>
+
+
+<div class="fig">
+  <div class="ft">图 14 · 选举前后四个月的月均回报：中期选举年 vs 全部年份（1950–2025）</div>
+  <div class="fs">11 月是唯一一个中期选举年明显跑赢的月份；但劣势集中在 9–10 月，选举前的两个月是负的</div>
+  <svg class='chart' viewBox='0 0 1120 340' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='74.0' y1='249.4' x2='1094.0' y2='249.4' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='253.4' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>−2%</text><line x1='74.0' y1='172.3' x2='1094.0' y2='172.3' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='176.3' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>0%</text><line x1='74.0' y1='95.1' x2='1094.0' y2='95.1' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='99.1' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>2%</text><line x1='74.0' y1='18.0' x2='1094.0' y2='18.0' stroke='#E8EDEF' stroke-width='1'/><text x='64.0' y='22.0' font-size='11.5' fill='#8B95A3' text-anchor='end' font-weight='400'>4%</text><line x1='74.0' y1='288.0' x2='1094.0' y2='288.0' stroke='#D5DCE1' stroke-width='1.5'/><text x='201.5' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>9 月</text><rect x='117.3' y='172.3' width='84.2' height='8.4' rx='3' fill='#0A9960' opacity='0.9'/><text x='159.4' y='195.7' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.22</text><rect x='201.5' y='172.3' width='84.2' height='1.0' rx='3' fill='#2F6FB8' opacity='0.9'/><text x='243.6' y='188.3' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.03</text><text x='456.5' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>10 月</text><rect x='372.4' y='152.7' width='84.2' height='19.6' rx='3' fill='#0A9960' opacity='0.9'/><text x='414.4' y='146.7' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>0.51</text><rect x='456.5' y='172.3' width='84.2' height='1.4' rx='3' fill='#2F6FB8' opacity='0.9'/><text x='498.6' y='188.7' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>-0.04</text><text x='711.5' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>11 月</text><rect x='627.4' y='60.0' width='84.2' height='112.3' rx='3' fill='#0A9960' opacity='0.9'/><text x='669.4' y='54.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>2.91</text><rect x='711.5' y='120.0' width='84.2' height='52.3' rx='3' fill='#2F6FB8' opacity='0.9'/><text x='753.6' y='114.0' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.36</text><text x='966.5' y='308.0' font-size='11.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>12 月</text><rect x='882.4' y='129.7' width='84.2' height='42.6' rx='3' fill='#0A9960' opacity='0.9'/><text x='924.4' y='123.7' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.10</text><rect x='966.5' y='123.6' width='84.2' height='48.7' rx='3' fill='#2F6FB8' opacity='0.9'/><text x='1008.6' y='117.6' font-size='11' fill='#3A4750' text-anchor='middle' font-weight='650'>1.26</text></svg>
+  <div class="legend">
+    <span><i style="background:#0A9960"></i>中期选举年（19 次）</span>
+    <span><i style="background:#2F6FB8"></i>全部年份</span>
+  </div>
+  <div class="note">数据来源：multpl 月均序列，本报告计算。<span class='b b-est'>估算</span>
+  <br><b>读法：</b>中期选举年的 9 月和 10 月平均是负的（选举前的「观望期」），
+  11 月平均 +2.91%，显著高于全部年份的 +1.36%——这是整条季节性规律里最强的一段。
+  但必须提醒：<b>这四个月里，中期选举年只在 11 月跑赢，其余三个月都跑输或持平</b>，
+  而 19 个样本的月份数据离散度很高（11 月的标准差约 4%），
+  这意味着 +2.91% 这个均值本身不足以构成交易依据。<span class='b b-est'>估算</span></div>
+</div>
+
+
+<div class="fig">
+  <div class="ft">图 15 · 从选举日到 2027 年年中的政策日历</div>
+  <div class="fs">五个日期里只有三个是确定的；灰色两项分别是条件事件与本报告的估算区间</div>
+  <svg class='chart' viewBox='0 0 1120 252' width='100%' preserveAspectRatio='xMidYMid meet' role='img' font-family='-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif'><line x1='46.0' y1='126.0' x2='1074.0' y2='126.0' stroke='#C3CCD3' stroke-width='2'/><text x='46.0' y='242.0' font-size='11' fill='#8B95A3' text-anchor='start' font-weight='400'>2026 年 10 月 → 2027 年 7 月（横轴按真实日期间距）</text><circle cx='106.9' cy='126.0' r='5.5' fill='#C0392B' stroke='#fff' stroke-width='2'/><path d='M 106.9 126.0 L 106.9 92.0 L 136.7 92.0' fill='none' stroke='#C0392B' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/><text x='136.7' y='52.0' font-size='12.5' fill='#C0392B' text-anchor='middle' font-weight='700'>选举日</text><text x='136.7' y='67.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2026-11-03</text><text x='136.7' y='82.0' font-size='10.5' fill='#3A4750' text-anchor='middle' font-weight='400'>众议院 435 席 + 参议院 35 席</text><circle cx='207.2' cy='126.0' r='5.5' fill='#9AA6B2' stroke='#fff' stroke-width='2'/><path d='M 207.2 126.0 L 207.2 160.0 L 207.2 160.0' fill='none' stroke='#9AA6B2' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/><text x='207.2' y='174.0' font-size='12.5' fill='#9AA6B2' text-anchor='middle' font-weight='700'>佐治亚参议院决选</text><text x='207.2' y='189.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2026-12-01</text><text x='207.2' y='204.0' font-size='10.5' fill='#3A4750' text-anchor='middle' font-weight='400'>若无人过半；无自动重新计票</text><circle cx='243.0' cy='126.0' r='5.5' fill='#2F6FB8' stroke='#fff' stroke-width='2'/><path d='M 243.0 126.0 L 243.0 92.0 L 299.1 92.0' fill='none' stroke='#2F6FB8' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/><text x='299.1' y='52.0' font-size='12.5' fill='#2F6FB8' text-anchor='middle' font-weight='700'>拨款截止日</text><text x='299.1' y='67.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2026-12-11</text><text x='299.1' y='82.0' font-size='10.5' fill='#3A4750' text-anchor='middle' font-weight='400'>持续决议到期，停摆窗口</text><circle cx='325.4' cy='126.0' r='5.5' fill='#0A9960' stroke='#fff' stroke-width='2'/><path d='M 325.4 126.0 L 325.4 160.0 L 358.1 160.0' fill='none' stroke='#0A9960' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/><text x='358.1' y='174.0' font-size='12.5' fill='#0A9960' text-anchor='middle' font-weight='700'>第 120 届国会就职</text><text x='358.1' y='189.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2027-01-03</text><text x='358.1' y='204.0' font-size='10.5' fill='#3A4750' text-anchor='middle' font-weight='400'>宣誓、议长选举</text><circle cx='963.0' cy='126.0' r='5.5' fill='#9AA6B2' stroke='#fff' stroke-width='2'/><path d='M 963.0 126.0 L 963.0 92.0 L 992.7 92.0' fill='none' stroke='#9AA6B2' stroke-width='1.4' stroke-linejoin='round' stroke-linecap='round' opacity='0.7'/><text x='992.7' y='52.0' font-size='12.5' fill='#9AA6B2' text-anchor='middle' font-weight='700'>债务上限窗口</text><text x='992.7' y='67.0' font-size='10.5' fill='#8B95A3' text-anchor='middle' font-weight='400'>2027-06-30</text><text x='992.7' y='82.0' font-size='10.5' fill='#3A4750' text-anchor='middle' font-weight='400'>本报告估算区间</text></svg>
+  <div class="note">来源：选举日与国会就职日为法定日期 <span class='b b-ok'>已证实</span>；
+  佐治亚决选日与「无自动重新计票」来自该州 2026 年新选举法与决选规则 <span class='b b-news'>媒体报道</span>；
+  12 月 11 日拨款截止日为已通过的持续决议所定 <span class='b b-news'>媒体报道</span>；
+  债务上限窗口为本报告基于财政现金流节奏的估算 <span class='b b-est'>估算</span>。
+  <br><b>这张图最重要的信息是横轴的长度。</b>从选举日到参议院控制权可能最终确定的日子，
+  最长可达四周（佐治亚决选）；到众议院控制权被普遍确认，历史上是 10–13 天。
+  <b>市场要为「不知道结果」的状态定价，而不只是为结果定价。</b>
+  <br><b>还有一件不在图上的事：</b>增强版 ACA 补贴已于 2025 年底到期，
+  约三分之二的选民认为国会应当延长。这是跛脚鸭会期（11 月中旬至 12 月）
+  唯一一件可能在换届前完成立法的大事，直接关系到医疗保险与医院板块。
+  但如果民主党横扫，它在跛脚鸭会期通过的概率反而<b>下降</b>，
+  因为共和党没有动力在自己即将失去多数席位前替对手完成立法。<span class='b b-est'>估算</span></div>
+</div>
+
+
+<h2 id="s11">第十一章 · 证据分级、已剔除项与已知错误</h2>
+<p class="lede">这份报告里的每一条论断都带了证据标签。本章解释标签的含义，
+并列出本报告<b>主动剔除</b>的内容——包括一条可能很重要、但无法核实的说法。</p>
+
+<h3>11.1 证据标签的含义</h3>
+<div class="card">
+<table>
+<thead><tr><th>标签</th><th>含义</th><th>本文中的用法</th></tr></thead>
+<tbody>
+<tr><td><span class='b b-ok'>已证实</span></td>
+  <td>可由一手或法定来源直接核验</td>
+  <td>选举日期、席位数量、国会就职日、FRED 原始行情</td></tr>
+<tr><td><span class='b b-news'>媒体报道</span></td>
+  <td>来自具名机构的报道或民调，但本报告未能回到一手文件</td>
+  <td>几乎所有选情与宏观数据</td></tr>
+<tr><td><span class='b b-analyst'>机构观点</span></td>
+  <td>某家机构的明确判断，不代表本报告认同</td>
+  <td>卖方情景报告、美国银行基金经理调查</td></tr>
+<tr><td><span class='b b-est'>估算</span></td>
+  <td>本报告自行计算或判断，含方法与口径说明</td>
+  <td>全部历史统计、情景概率合成、板块评分</td></tr>
+<tr><td><span class='b b-rumor'>未核实</span></td>
+  <td>来源单一、或存在明确方法论疑点</td>
+  <td>预测市场成交集中度、结果延迟概率</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>11.2 本报告主动剔除的内容</h3>
+<div class="call bad">
+<div class="t">一条被剔除的重要说法：最高法院推翻 IEEPA 关税（2026 年 2 月）</div>
+调研过程中出现一条说法，称最高法院已于 2026 年 2 月依据《国际紧急经济权力法》
+（IEEPA）裁定特朗普的紧急权力关税无效，此后政府改用其他贸易法授权重新加征。
+<b>如果这条说法为真，它是一条结构性事实</b>——它会改变关税的法律稳定性、
+改变进口商的成本预期，也改变 2027 年的政策路径。
+<br><b>但本报告未能在一手来源（判决书、法院公告）核实它</b>，
+且其时间线与已知的 2025 年 11 月口头辩论安排存在出入。
+<br><b>处理方式：不写入正文，在此处披露，供读者自行判断。</b>标记为 <span class='b b-rumor'>未核实</span>。
+</div>
+
+<div class="card">
+<p><b>其他被剔除或降级处理的内容：</b></p>
+<ul>
+<li><b>众议院当前席位构成</b>——三个来源给出三个数字（218R / 219R / 220R）。
+本报告在正文中只使用「共和党以微弱多数控制众议院」这一表述，不引用具体席位数。<span class='b b-rumor'>未核实</span></li>
+<li><b>重划选区席位的净影响</b>——Ballotpedia 估算共和党净得约 9 席，
+Inside Elections 的计算隐含约 5 席，第三个来源约 3 席。<b>三者差距接近三倍，
+本报告不采用任何单一数字</b>，仅在需要时说明「重划选区总体上有利于共和党，幅度存在争议」。<span class='b b-rumor'>未核实</span></li>
+<li><b>某位企业家向共和党阵营提供的政治捐款金额</b>——仅单一来源，且金额说法在
+$276M 到 $470M 以上之间浮动。不作为事实引用。<span class='b b-rumor'>未核实</span></li>
+<li><b>关于西语裔选民倾向共和党的某个说法</b>——该说法与 NBC/Telemundo
+和 CBS 两家独立民调直接矛盾，且来源于党派倾向媒体。已剔除。<span class='b b-rumor'>未核实</span></li>
+<li><b>AI 相关个股的具体点位与信用利差</b>——本报告的调研未能对这些数字做一手核验，
+正文中只保留了「AI 信用压力上升」这一定性描述。<span class='b b-est'>估算</span></li>
+</ul>
+</div>
+
+<h3>11.3 本报告在制作过程中修正的错误</h3>
+<div class="card">
+<p>为了可复核，这里列出本报告在制作中实际发现并修正的错误：</p>
+<ol>
+<li><b>把月均序列误当月末收盘。</b>本报告最初假定所用的 multpl 月度标普序列为月末收盘价。
+经与 FRED 日线交叉验证：该序列与美国国债 FRED 日线的<b>月平均值</b>平均绝对偏差仅 0.021%，
+而与月末收盘价的偏差为 1.823%。<b>结论：它是月平均值。</b>
+所有长周期历史图表因此按「月均价到月均价」口径计算，与常见的收盘口径会有小幅差异。<span class='b b-est'>估算</span></li>
+<li><b>2026 年年初基准点位错误。</b>本报告一度使用 6,929.12 作为 2026 年的起点，
+该数字实际是 2026 年 1 月的<b>月平均值</b>，而非 2025 年 12 月 31 日的收盘价。
+正确值为 <b>6,845.50</b>，2026 年内涨幅相应从 +13.9% 修正为
+<b>+13.13%</b>（截至 2026-10-15）。<span class='b b-ok'>已证实</span></li>
+<li><b>周期位置标签错位。</b>早期分析中四个周期年份的标签整体错位了一格。
+数值未受影响，标签已在最终版修正。<span class='b b-est'>估算</span></li>
+<li><b>图 4 的标题与图本身讲的是两件事。</b>该图初稿让 2018 与 2022 两条曲线画满整年
+（到 12 月 31 日），而 2026 年的数据只到 10 月，却在同一张图里比较——这是把一个完整年份
+和十个月放在一起比。<b>同时标题里写的「2018 年同期 −1.5%、2022 年 −16.1%」与图上的数字不符。</b>
+按数据重算，进入各自选举日当天的累计涨幅是 2018 年 <b>+2.2%</b>、
+2022 年 <b>-20.2%</b>、2026 年 <b>+12.9%</b>。
+最终版把三条曲线都在各自的选举日截止，标题数字改为由数据直接生成。<span class='b b-ok'>已证实</span></li>
+<li><b>图 13 与图 14 的柱状图基线错误。</b>这两张图原本让柱子从坐标轴底部（−7% 和 −3%）
+起画，于是 1 月「0.00%」这个月显示为一根从 −7% 到 0 的高柱，而 4 月的 +10.4% 柱子
+实际长度是 17.4 个百分点。<b>柱长因此不再等于数值。</b>最终版改为全部从零线起画，
+负值向下。<span class='b b-ok'>已证实</span></li>
+<li><b>图 4 的说明文字描述了一段图上并不存在的虚线。</b>该图注原写「绿线右端的两点虚线
+区间就是尚未走完的部分」，但 2026 年的序列本身没有任何虚线外推——数据在 10 月 15 日就结束了，
+图上那条竖虚线标记的是<b>选举日本身</b>，两道线之间的空白才是尚未走完的时间。
+文字与图不符，已改为直接说明这段空白不做外推。<span class='b b-ok'>已证实</span></li>
+<li><b>两张折线图一度只靠颜色区分系列。</b>图 4 与图 9 都是三条线共用一个坐标轴，
+初稿只在右端标了数值（如 113 / 102 / 80），没有任何一处说明哪条线是哪一年、哪条线是哪个院。
+色觉正常的读者也只能靠猜。最终版给两张图都补上了图例（图 9 原本已有，此处一并核对）。
+这是机器检查不出来的一类问题：SVG 几何审计只比较文本之间的重叠，
+<b>它无法判断「这条绿线是谁」</b>。<span class='b b-est'>估算</span></li>
+</ol>
+</div>
+
+<h3>11.4 已知的方法论局限</h3>
+<div class="card">
+<ol>
+<li><b>样本量。</b>第四章的四类结果分组中，三类各自只有 1–3 个样本。
+本报告在正文中已明确标注这些数字不具备统计显著性，只能作为机制参考。<span class='b b-est'>估算</span></li>
+<li><b>无法回到一手来源。</b>本报告的多数选情与宏观数据来自公开报道与民调摘要，
+调研过程中未能对多数外部域名完成一手抓取。这意味着一部分数字是「一次搜索摘要之隔」，
+存在转述失真的可能。已在正文中逐条标注机构与时间窗口以便复核。<span class='b b-rumor'>未核实</span></li>
+<li><b>历史相关不等于因果。</b>第三章与第四章的全部统计都是相关性证据。
+本报告已尽力通过「扣除相邻周期年份」来控制长期牛市带来的混淆，
+但无法排除其他共同因素。<span class='b b-est'>估算</span></li>
+<li><b>情景概率是合成值，不是市场报价。</b>第五章的 62% / 29% / 9% / 1% 来自
+对预测市场报价的整理与四舍五入，不是可直接交易的赔率，也不构成任何形式的建议。<span class='b b-est'>估算</span></li>
+<li><b>「选举夜就能知道结果」这个假设，在本次尤其靠不住。</b>
+本报告拿到的计票规则显示：宾州要等到选举日早上 7 点才能处理邮寄选票、
+威斯康星要等到投票站开放、亚利桑那选举日投递的选票要等到投票结束才能处理。
+再加上路易斯安那的众议院选举改为 12 月 12 日决选、加州有 6–8 个选区可能需 10–14 天，
+<b>众议院控制权在 11 月 15–20 日才被普遍确认是一个合理的基准预期</b>
+（2022 年是 11 月 16 日、2024 年是 11 月 13 日）。
+但需要说明：<b>这份「何时能知道」的时间表，其来源质量低于本报告其他部分</b>——
+它来自计票规则的一手条文（可靠）加上一个聚合类网站对选举夜流程的说明（质量中等），
+本报告未能找到任何主流媒体针对 2026 年的专门解释。标为 <span class='b b-rumor'>未核实</span>。</li>
+<li><b>仍然无法核实的四项。</b>(1) 各州「选票修补」（cure）截止日期，除内华达外一个都没拿到；
+(2) 众议院当前席位基数（218 / 219 / 220 三种说法并存）；(3) 本报告完全无法找到
+任何已被点名、预计会落入重新计票范围的 2026 年具体选区；
+(4) 关于最高法院是否在 2026 年 2 月推翻了 IEEPA 关税，见 11.2 节。<span class='b b-rumor'>未核实</span></li>
+</ol>
+</div>
+
+<h3>11.5 关于图表的几点说明</h3>
+<div class="card">
+<ol>
+<li><b>配色经过可计算校验，不是凭感觉挑的。</b>本报告的分类色板用色觉缺陷模拟
+（红/绿色盲、蓝黄色盲）逐对计算了色差。三色组（绿 #0A9960 / 蓝 #2F6FB8 / 红 #C0392B）
+在全配对下的最差色差为 ΔE 7.2，处于「需要二级编码」的区间——
+因此这几张图的每一根柱子、每一个点都带直接数字标注，颜色只是辅助。
+一个反例：橙 #CC7A00 与红 #C0392B 在正常视力下的色差只有 ΔE 14.9（低于 15 的下限），
+这两色<b>不允许出现在同一张图里</b>，最终版已逐图检查并排除。<span class='b b-est'>估算</span></li>
+<li><b>图 15 里的灰色是刻意的。</b>灰色 #9AA6B2 的彩度低于分类色的下限
+（校验器会判 FAIL）。它在这里不承担「一个分类」，而承担「非确定项」——
+两个条件事件（佐治亚决选、债务上限窗口）。所有五项都带日期与文字说明，
+没有一项靠颜色区分。<span class='b b-est'>估算</span></li>
+<li><b>图 4 的第二条线（2018 年）也是灰色</b>，同样是刻意的降级——
+它是背景参照，不是主角。三条线都有图例、都有端点数值标注。<span class='b b-est'>估算</span></li>
+<li><b>绿色与橙色同图时，一定带直接标注。</b>第六章图 9 的三条线是绿 / 蓝 / 橙，
+其中绿与橙在红色盲模拟下的色差是 ΔE 6.8，落在「需要二级编码」的下限区间。
+因此三条线在右端各有一个端点数值、并且各有图例——颜色只是辅助。
+图 10 用的是蓝 / 红两色（色差 ΔE 21.4），配 50% 参考线，每根柱子带数字。<span class='b b-est'>估算</span></li>
+<li><b>全部图表为手写 SVG，无外部库。</b>生成后逐图做了文字越界与文字重叠的程序化检查，
+15 张图共 377 个文本元素，越界 0 个、重叠 0 对。<b>但机器检查只能覆盖几何，
+不能覆盖语义</b>——图 4 的标题与数据不符那个错误，是人工看图才发现的；
+图 9 的「选举日」标记一度画到画布外、图 10 的 50% 标注一度压在首行柱子上，
+也是把图渲染出来用眼睛看才发现的。<span class='b b-est'>估算</span></li>
+</ol>
+</div>
+
+<div class="call warn">
+<div class="t">最后一句</div>
+这份报告花了大量篇幅说明历史规律为什么不可靠，可能给人一个错误的印象，
+好像结论是「什么都无法判断」。恰恰相反——<b>可判断的东西是清楚的：</b>
+众议院大概率翻盘（约 90%）、参议院是真变量（约 60%）、基准情景是分裂国会（约 29%）、
+历史上分裂国会是最难受的一类结果、而市场的起点（风险溢价为零 + 加息周期 + 油价 $105 + AI 信用承压）
+决定了它对坏消息的耐受度低于对好消息的耐受度。
+<br><b>这份报告的结论不是「无法判断」，而是「这次选举的方向判断价值很低，而对波动与财政边缘政策的判断价值很高」。</b><span class='b b-est'>估算</span>
+</div>
+
+
+<div class="disclaimer">
+<b>免责声明与阅读约定。</b>本报告为独立研究文档，不构成任何证券的买卖建议，也不构成投资顾问服务。
+报告中的所有情景概率、板块评分与历史统计均为本报告作者的推算，已在正文中标为「估算」；
+来自民调、媒体报道与机构研究的数据已逐条标注机构与时间窗口，可回到原始出处复核。
+本报告作者不持有文中提及证券的头寸，与文中提及的任何机构无业务关系。
+投资涉及本金损失风险，历史数据与情景推演均不代表未来结果。
+</div>
+
+<div class="foot">
+2026 美国中期选举情景推演 · 2026-10-17 · 全部图表为内嵌 SVG，由本报告数据直接生成，无外部依赖。<br>
+一手数据：FRED（SP500 日线序列，本报告自行下载并计算全部行情指标）。<br>
+历史数据：multpl 标普 500 月度序列（经交叉验证为<b>月平均值</b>，非月末收盘）。<br>
+选举与民调数据：Pew Research Center、AP-NORC、Fox News、Economist/YouGov、Reuters/Ipsos、
+Gallup、Quinnipiac、NBC News、KFF、CBS/YouGov、Decision Desk HQ、Silver Bulletin、
+Sabato's Crystal Ball、Ballotpedia、Polymarket、Kalshi。<br>
+本报告中未能一手核验或已主动剔除的事项，已在第十一章逐条列出。
+</div>
+</div>
+</body>
+</html>
